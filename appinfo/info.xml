@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<info>
+	<id>guests</id>
+	<name>Guests</name>
+	<description>Allow classifying users or contacts as guests</description>
+	<licence>agpl</licence>
+	<author>Jörn Friedrich Dreyer</author>
+	<require>8</require>
+	<types>
+		<authentication/>
+	</types>
+</info>
