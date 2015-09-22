@@ -15,13 +15,15 @@ use OCA\Guests\Db\GuestMapper;
 use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\Contacts\IManager;
 use OCP\IConfig;
+use OCP\IGroupManager;
 use OCP\ILogger;
 use OCP\IUserBackend;
+use OCP\IUserManager;
 use OCP\Security\IHasher;
 use OCP\UserInterface;
 
 
-class UserBackend implements UserInterface, IUserBackend {
+class Backend implements UserInterface, IUserBackend {
 
 	/** @var IConfig */
 	private $config;
@@ -36,20 +38,50 @@ class UserBackend implements UserInterface, IUserBackend {
 	private $hasher;
 
 	/** @var IManager */
-	private $manager;
+	private $contactsManager;
+
+	/** @var IUserManager */
+	private $userManager;
 
 	public function __construct(
 		IConfig $config,
 		ILogger $logger,
 		GuestMapper $mapper,
 		IHasher $hasher,
-		IManager $manager
+		IManager $contactsManager,
+		IGroupManager $groupManager
 	) {
 		$this->config = $config;
 		$this->logger = $logger;
 		$this->mapper = $mapper;
 		$this->hasher = $hasher;
-		$this->manager = $manager;
+		$this->contactsManager = $contactsManager;
+		$this->groupManager = $groupManager;
+	}
+
+	/**
+	 * @var Backend
+	 */
+	private static $instance;
+
+	/**
+	 * @deprecated use DI
+	 * @return Backend
+	 */
+	public static function createForStaticLegacyCode() {
+		if (!self::$instance) {
+			$logger = \OC::$server->getLogger();
+
+			self::$instance = new Backend(
+				\OC::$server->getConfig(),
+				$logger,
+				new GuestMapper(\OC::$server->getDatabaseConnection(), $logger),
+				\OC::$server->getHasher(),
+				\OC::$server->getContactsManager(),
+				\OC::$server->getGroupManager()
+			);
+		}
+		return self::$instance;
 	}
 
 	/**
@@ -123,7 +155,7 @@ class UserBackend implements UserInterface, IUserBackend {
 	* @return boolean
 	*/
 	public function userExists($uid) {
-		$guests = $this->manager->search($uid, ['EMAIL']);
+		$guests = $this->contactsManager->search($uid, ['EMAIL']);
 		if ($guests) {
 			return true;
 		}
@@ -224,5 +256,61 @@ class UserBackend implements UserInterface, IUserBackend {
 	 */
 	public function getBackendName() {
 		return 'Guests';
+	}
+
+	public function isGuest($uid) {
+		return
+			$uid !== '' && $this->userManager->userExists($uid) && (
+				// TODO only check if enabled
+				$this->isGuestByQuota($uid) ||
+				$this->isGuestByGroup($uid) ||
+				$this->isGuestByContact($uid)
+			);
+
+	}
+
+	public function isGuestByContact($uid) {
+		if (filter_var($uid, FILTER_VALIDATE_EMAIL)) {
+			try {
+				$this->mapper->findByUid($uid);
+				return true;
+			} catch (DoesNotExistException $ex) {
+				// not a guest
+			}
+		}
+		return false;
+	}
+	public function isGuestByQuota($uid) {
+		$userQuota = $this->config->getUserValue($uid, 'files', 'quota', 'default');
+		if ($userQuota === 'default') {
+			$userQuota = $this->config->getAppValue('files', 'default_quota', 'none');
+		}
+		if ($userQuota !== 'none' && (int)\OCP\Util::computerFileSize($userQuota) === 0) {
+			return true;
+		}
+		return false;
+	}
+	public function isGuestByGroup($uid) {
+		$this->groupManager->isInGroup($uid, 'guests');
+		return false;
+	}
+	public function getGuestApps () {
+		return ['files'];
+	}
+
+	public function createJail($uid) {
+		// FIXME without this the cache tries to gc a not existing folder
+		//trigger creation of user home and /files folder
+		\OC::$server->getUserFolder($uid);
+
+		// make root and home storage readonly
+		// root also needs to be readonly for objectstorage
+		\OC\Files\Filesystem::addStorageWrapper('readonly', function ($mountPoint, $storage) use ($uid) {
+			if ($mountPoint === '/' || $mountPoint === "/$uid/") {
+				return new \OC\Files\Storage\Wrapper\PermissionsMask(array('storage' => $storage, 'mask' => \OCP\Constants::PERMISSION_READ));
+			} else {
+				return $storage;
+			}
+		});
 	}
 }

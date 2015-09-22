@@ -9,8 +9,8 @@
  * @copyright Jörn Friedrich Dreyer 2015
  */
 
-$userBackend = \OCA\Guests\UserBackendFactory::createForStaticLegacyCode();
-\OC_User::useBackend($userBackend);
+$guestBackend = \OCA\Guests\Backend::createForStaticLegacyCode();
+\OC_User::useBackend($guestBackend);
 
 \OCP\Util::connectHook('OC_Filesystem', 'preSetup', '\OCA\Guests\Hooks', 'preSetup');
 \OCP\Util::connectHook('OCP\Share', 'pre_shared', '\OCA\Guests\Hooks', 'preShareHook');

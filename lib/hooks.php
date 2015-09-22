@@ -18,37 +18,22 @@ use OCP\AppFramework\Db\DoesNotExistException;
 class Hooks {
 
 	/**
-	 * jail into ro storage
+	 * jail into readonly storage
 	 * @param array $params
 	 */
 	static public function preSetup($params) {
-		$uid = $params['user'];
-		if (filter_var($uid, FILTER_VALIDATE_EMAIL)) {
-			$mapper = new GuestMapper(
-				\OC::$server->getDatabaseConnection(),
-				\OC::$server->getLogger()
-			);
-			try {
-				$mapper->findByUid($uid);
+		if (!empty($params['user'])) {
+			$uid = $params['user'];
 
-				// FIXME without this the cach tries to gc a not existing folder
-				//trigger creation of user home and /files folder
-				\OC::$server->getUserFolder($uid);
+			foreach(\OC::$server->getUserManager()->getBackends() as $backend) {
+				if ($backend instanceof Backend && $backend->isGuest($uid)) {
+					$backend->createJail($uid);
 
-				// make root and home storage readonly
-				\OC\Files\Filesystem::addStorageWrapper('readonly', function ($mountPoint, $storage) use ($uid) {
-					if ($mountPoint === '/' || $mountPoint === "/$uid/") {
-						return new \OC\Files\Storage\Wrapper\PermissionsMask(array('storage' => $storage, 'mask' => \OCP\Constants::PERMISSION_READ));
-					} else {
-						return $storage;
-					}
-				});
-
-
-			} catch (DoesNotExistException $ex) {
-				// not a guest, jail not needed
+					return;
+				}
 			}
 		}
+
 	}
 	/**
 	 * add guest account
