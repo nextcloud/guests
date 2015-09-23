@@ -4,7 +4,7 @@ Allow classifying users or contacts as guests
 
 Jails a user into a readonly home storage
 
-* TODO If his quota is 0
+* TODO If his quota is 0 TODO below x
 * TODO If he is member of a configurable group
 * If he is a contact of another user and has been shared a file
 

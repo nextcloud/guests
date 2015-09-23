@@ -10,8 +10,12 @@
  */
 
 $guestBackend = \OCA\Guests\Backend::createForStaticLegacyCode();
-\OC_User::useBackend($guestBackend);
+\OC::$server->getUserManager()->registerBackend($guestBackend);
+
+
+\OCP\App::registerAdmin('guests', 'settings/admin');
 
 \OCP\Util::connectHook('OC_Filesystem', 'preSetup', '\OCA\Guests\Hooks', 'preSetup');
 \OCP\Util::connectHook('OCP\Share', 'pre_shared', '\OCA\Guests\Hooks', 'preShareHook');
 \OCP\Util::connectHook('OCP\Share', 'post_shared', '\OCA\Guests\Hooks', 'postShareHook');
+

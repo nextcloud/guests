@@ -43,12 +43,16 @@ class Backend implements UserInterface, IUserBackend {
 	/** @var IUserManager */
 	private $userManager;
 
+	/** @var IGroupManager */
+	private $groupManager;
+
 	public function __construct(
 		IConfig $config,
 		ILogger $logger,
 		GuestMapper $mapper,
 		IHasher $hasher,
 		IManager $contactsManager,
+		IUserManager $userManager,
 		IGroupManager $groupManager
 	) {
 		$this->config = $config;
@@ -56,6 +60,7 @@ class Backend implements UserInterface, IUserBackend {
 		$this->mapper = $mapper;
 		$this->hasher = $hasher;
 		$this->contactsManager = $contactsManager;
+		$this->userManager = $userManager;
 		$this->groupManager = $groupManager;
 	}
 
@@ -78,6 +83,7 @@ class Backend implements UserInterface, IUserBackend {
 				new GuestMapper(\OC::$server->getDatabaseConnection(), $logger),
 				\OC::$server->getHasher(),
 				\OC::$server->getContactsManager(),
+				\OC::$server->getUserManager(),
 				\OC::$server->getGroupManager()
 			);
 		}
@@ -259,12 +265,13 @@ class Backend implements UserInterface, IUserBackend {
 	}
 
 	public function isGuest($uid) {
+		$conditions = $this->config->getAppValue('guests', 'conditions', 'quota');
+		$conditions = explode(',',$conditions);
 		return
 			$uid !== '' && $this->userManager->userExists($uid) && (
-				// TODO only check if enabled
-				$this->isGuestByQuota($uid) ||
-				$this->isGuestByGroup($uid) ||
-				$this->isGuestByContact($uid)
+			( in_array('quota', $conditions) && $this->isGuestByQuota($uid) ) ||
+			( in_array('group', $conditions) && $this->isGuestByGroup($uid) ) ||
+			( in_array('contact', $conditions) && $this->isGuestByContact($uid) )
 			);
 
 	}
@@ -291,11 +298,37 @@ class Backend implements UserInterface, IUserBackend {
 		return false;
 	}
 	public function isGuestByGroup($uid) {
-		$this->groupManager->isInGroup($uid, 'guests');
+		$group = $this->config->getAppValue('guests', 'group', 'guests');
+		$this->groupManager->isInGroup($uid, $group);
 		return false;
 	}
+
+	const DEFAULT_GUEST_GROUPS = ',core,settings,avatar,files,files_trashbin,files_versions,files_sharing,files_texteditor,activity';
 	public function getGuestApps () {
-		return ['files'];
+		$apps = $this->config->getAppValue('guests', 'apps', self::DEFAULT_GUEST_GROUPS);
+		return explode(',', $apps);
+	}
+
+	/**
+	 * TODO Core has \OC::$REQUESTEDAPP but it isn't set until the routes are matched
+	 * taken from \OC\Route\Router::match()
+	 */
+	public function getRequestedApp($url) {
+		if (substr($url, 0, 6) === '/apps/') {
+			// empty string / 'apps' / $app / rest of the route
+			list(, , $app,) = explode('/', $url, 4);
+
+			return  \OC_App::cleanAppId($app);
+		} else if (substr($url, 0, 6) === '/core/') {
+			return 'core';
+		} else if (substr($url, 0, 10) === '/settings/') {
+			return 'settings';
+		} else if (substr($url, 0, 8) === '/avatar/') {
+			return 'avatar';
+		} else if (substr($url, 0, 10) === '/heartbeat') {
+			return 'heartbeat';
+		}
+		return false;
 	}
 
 	public function createJail($uid) {

@@ -27,8 +27,16 @@ class Hooks {
 
 			foreach(\OC::$server->getUserManager()->getBackends() as $backend) {
 				if ($backend instanceof Backend && $backend->isGuest($uid)) {
-					$backend->createJail($uid);
+					$app = $backend->getRequestedApp(\OC::$server->getRequest()->getRawPathInfo());
+					if ( ! in_array($app, $backend->getGuestApps()) ) {
+						// send forbidden and exit
+						header('HTTP/1.0 403 Forbidden');
 
+						$l = \OC::$server->getL10NFactory()->get('guests');
+						\OCP\Template::printErrorPage($l->t('Access to this resource is forbidden for guests.'));
+						exit;
+					}
+					$backend->createJail($uid);
 					return;
 				}
 			}
