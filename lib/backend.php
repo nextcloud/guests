@@ -12,6 +12,7 @@
 namespace OCA\Guests;
 
 use OCA\Guests\Db\GuestMapper;
+use OCA\Guests\Files\Storage\Wrapper\DirMask;
 use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\Contacts\IManager;
 use OCP\IConfig;
@@ -334,13 +335,14 @@ class Backend implements UserInterface, IUserBackend {
 	public function createJail($uid) {
 		// FIXME without this the cache tries to gc a not existing folder
 		//trigger creation of user home and /files folder
-		\OC::$server->getUserFolder($uid);
+		//\OC::$server->getUserFolder($uid);
 
 		// make root and home storage readonly
 		// root also needs to be readonly for objectstorage
 		\OC\Files\Filesystem::addStorageWrapper('readonly', function ($mountPoint, $storage) use ($uid) {
 			if ($mountPoint === '/' || $mountPoint === "/$uid/") {
-				return new \OC\Files\Storage\Wrapper\PermissionsMask(array('storage' => $storage, 'mask' => \OCP\Constants::PERMISSION_READ));
+				return new DirMask(array('storage' => $storage, 'mask' => \OCP\Constants::PERMISSION_READ, 'path' => 'files'));
+				//return new \OC\Files\Storage\Wrapper\PermissionsMask(array('storage' => $storage, 'mask' => \OCP\Constants::PERMISSION_READ));
 			} else {
 				return $storage;
 			}

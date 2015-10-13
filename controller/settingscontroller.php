@@ -48,13 +48,13 @@ class SettingsController extends Controller {
 	 * @return DataResponse with the current config
 	 */
 	public function getConfig() {
-		$conditions = $this->config->getUserValue($this->userId, 'guests', 'conditions', 'quota');
+		$conditions = $this->config->getAppValue('guests', 'conditions', 'quota');
 		$conditions = explode(',', $conditions);
-		$apps = $this->config->getUserValue($this->userId, 'guests', 'apps', Backend::DEFAULT_GUEST_GROUPS);
+		$apps = $this->config->getAppValue('guests', 'apps', Backend::DEFAULT_GUEST_GROUPS);
 		$apps = explode(',', $apps);
 		return new DataResponse([
 			'conditions' => $conditions,
-			'group' => $this->config->getUserValue($this->userId, 'guests', 'group', 'guests'),
+			'group' => $this->config->getAppValue('guests', 'group', 'guests'),
 			'apps' => $apps,
 		]);
 	}
@@ -73,9 +73,9 @@ class SettingsController extends Controller {
 			$newApps[] = trim($app);
 		}
 		$newApps = join(',', $newApps);
-		$this->config->setUserValue($this->userId, 'guests', 'conditions', $conditions);
-		$this->config->setUserValue($this->userId, 'guests', 'group', $group);
-		$this->config->setUserValue($this->userId, 'guests', 'apps', $newApps);
+		$this->config->setAppValue('guests', 'conditions', $conditions);
+		$this->config->setAppValue('guests', 'group', $group);
+		$this->config->setAppValue('guests', 'apps', $newApps);
 		return new DataResponse();
 	}
 
