@@ -8,12 +8,12 @@ Jails a user into a readonly home storage
 * If he is member of a configurable group
 * If he is a contact of another user and has been shared a file
 
+Furthermore, the administrator has to whitelist the applications that guests can use.
+By default ',core,settings,avatar,files,files_trashbin,files_versions,files_sharing,files_texteditor,activity,firstrunwizard,gallery' are allowed.
+The initial `,` is necessary to allow access to root resources.
+
 # FIXME
 
-send the generated password to the user instead of logging it
-disable login for contacts when not enabled in options
-
-# TODO
-
--[ ] probably prevent guests to access other apps. for now the admin should create a users group and allow only normal users to access all apps
--[ ] in admin settings allow classifying users as guests when: 1. quota is 0, 2. user is member of a certain group, 3. is a contact ?  
+- When generating a password for a contact send it to the user instead of logging it ;)
+- Hide navigation entries for forbidden apps.
+- skeleton files cannot be deleted ... duh ... readonly storage. that also means guests cannot unshare files ...

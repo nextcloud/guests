@@ -304,7 +304,8 @@ class Backend implements UserInterface, IUserBackend {
 		return false;
 	}
 
-	const DEFAULT_GUEST_GROUPS = ',core,settings,avatar,files,files_trashbin,files_versions,files_sharing,files_texteditor,activity';
+	const DEFAULT_GUEST_GROUPS = ',core,settings,avatar,files,files_trashbin,files_versions,files_sharing,files_texteditor,activity,firstrunwizard,gallery';
+	//TODO add reset button
 	public function getGuestApps () {
 		$apps = $this->config->getAppValue('guests', 'apps', self::DEFAULT_GUEST_GROUPS);
 		return explode(',', $apps);
