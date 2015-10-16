@@ -308,7 +308,9 @@ class Backend implements UserInterface, IUserBackend {
 	//TODO add reset button
 	public function getGuestApps () {
 		$apps = $this->config->getAppValue('guests', 'apps', self::DEFAULT_GUEST_GROUPS);
-		return explode(',', $apps);
+		// the guests app is always enabled because we need to execute navigation.js
+		// to hide apps in the navigation
+		return array_merge(['guests'], explode(',', $apps));
 	}
 
 	/**

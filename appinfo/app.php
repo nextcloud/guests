@@ -12,6 +12,11 @@
 $guestBackend = \OCA\Guests\Backend::createForStaticLegacyCode();
 \OC::$server->getUserManager()->registerBackend($guestBackend);
 
+// hide navigation entries for guests
+$user = \OC::$server->getUserSession()->getUser();
+if($user && $guestBackend->isGuest($user->getUID())) {
+	\OCP\Util::addScript('guests', 'navigation');
+}
 
 \OCP\App::registerAdmin('guests', 'settings/admin');
 

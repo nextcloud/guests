@@ -79,4 +79,17 @@ class SettingsController extends Controller {
 		return new DataResponse();
 	}
 
+	/**
+	 * AJAX handler for getting the whitelisted apps
+	 *
+	 * @NoAdminRequired
+	 * @return DataResponse with the current config
+	 */
+	public function getApps() {
+		$apps = $this->config->getAppValue('guests', 'apps', Backend::DEFAULT_GUEST_GROUPS);
+		$apps = explode(',', $apps);
+		return new DataResponse([
+			'apps' => $apps,
+		]);
+	}
 }

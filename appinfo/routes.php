@@ -21,5 +21,10 @@ return [
 			'url' => '/config',
 			'verb' => 'PUT',
 		],
+		[
+			'name' => 'settings#getApps',
+			'url' => '/apps',
+			'verb' => 'GET',
+		],
 	],
 ];
