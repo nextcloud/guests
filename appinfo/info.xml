@@ -7,7 +7,7 @@
 	<licence>agpl</licence>
 	<author>Jörn Friedrich Dreyer</author>
 	<dependencies>
-		<owncloud min-version="8.2" max-version="8.3" />
+		<owncloud min-version="8.2" max-version="9.0" />
 		<php min-version="5.4" />
 	</dependencies>
 	<types>
