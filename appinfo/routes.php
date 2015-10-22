@@ -22,9 +22,14 @@ return [
 			'verb' => 'PUT',
 		],
 		[
-			'name' => 'settings#getApps',
-			'url' => '/apps',
+			'name' => 'settings#getWhitelist',
+			'url' => '/whitelist',
 			'verb' => 'GET',
+		],
+		[
+			'name' => 'settings#resetWhitelist',
+			'url' => '/whitelist/reset',
+			'verb' => 'POST',
 		],
 	],
 ];

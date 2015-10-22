@@ -21,8 +21,8 @@
 			<input type="text" id="guestGroup" value="" /><br/>
 		<input type="checkbox" id="guestsByContact" value="contact"/><label for="guestsByContact"><?php p($l->t('they are a contact of a regular user'));?></label><br/>
 		<br/>
-		<span class="inlineblock user-info-label"><?php p($l->t('Allow access to these apps:'));?></span><br/>
-		<input type="text" id="guestApps" value="" style="width:99%;"/><br/>
-		<span class="msg"></span>
+		<input type="checkbox" id="guestUseWhitelist" value="useWhitelist"/><label for="guestUseWhitelist"><?php p($l->t('Limit guest access to an app whitelist'));?></label><br/>
+		<input type="text" id="guestWhitelist" value="" style="display:none; width:99%;"/><br/>
+		<button type="button" id="guestResetWhitelist"><?php p($l->t('Reset whitelist'));?></button><span class="msg"></span>
 	</div>
 </div>

@@ -50,12 +50,14 @@ class SettingsController extends Controller {
 	public function getConfig() {
 		$conditions = $this->config->getAppValue('guests', 'conditions', 'quota');
 		$conditions = explode(',', $conditions);
-		$apps = $this->config->getAppValue('guests', 'apps', Backend::DEFAULT_GUEST_GROUPS);
-		$apps = explode(',', $apps);
+		$useWhitelist = $this->config->getAppValue('guests', 'usewhitelist', true);
+		$whitelist = $this->config->getAppValue('guests', 'whitelist', Backend::DEFAULT_WHITELIST);
+		$whitelist = explode(',', $whitelist);
 		return new DataResponse([
 			'conditions' => $conditions,
 			'group' => $this->config->getAppValue('guests', 'group', 'guests'),
-			'apps' => $apps,
+			'useWhitelist' => $useWhitelist,
+			'whitelist' => $whitelist,
 		]);
 	}
 	/**
@@ -63,33 +65,52 @@ class SettingsController extends Controller {
 	 *
 	 * @param $conditions string[]
 	 * @param $group string
-	 * @param $apps string[]
+	 * @param $useWhitelist bool
+	 * @param $whitelist string[]
 	 * @return DataResponse
 	 */
-	public function setConfig($conditions, $group, $apps) {
+	public function setConfig($conditions, $group, $useWhitelist, $whitelist) {
 		$conditions = join(',', $conditions);
-		$newApps = [];
-		foreach ($apps as $app) {
-			$newApps[] = trim($app);
+		$newWhitelist = [];
+		foreach ($whitelist as $app) {
+			$newWhitelist[] = trim($app);
 		}
-		$newApps = join(',', $newApps);
+		$newWhitelist = join(',', $newWhitelist);
 		$this->config->setAppValue('guests', 'conditions', $conditions);
 		$this->config->setAppValue('guests', 'group', $group);
-		$this->config->setAppValue('guests', 'apps', $newApps);
+		$this->config->setAppValue('guests', 'usewhitelist', $useWhitelist);
+		$this->config->setAppValue('guests', 'whitelist', $newWhitelist);
 		return new DataResponse();
 	}
 
 	/**
 	 * AJAX handler for getting the whitelisted apps
+	 * We do not set the whitelist to null when it is unused. This is by design.
+	 * It allows remembering the whitelist throughout changes.
 	 *
 	 * @NoAdminRequired
-	 * @return DataResponse with the current config
+	 * @return DataResponse with the current whitelist config
 	 */
-	public function getApps() {
-		$apps = $this->config->getAppValue('guests', 'apps', Backend::DEFAULT_GUEST_GROUPS);
-		$apps = explode(',', $apps);
+	public function getWhitelist() {
+		$useWhitelist = $this->config->getAppValue('guests', 'useWhitelist', true);
+		$whitelist = $this->config->getAppValue('guests', 'whitelist', Backend::DEFAULT_WHITELIST);
+		$whitelist = explode(',', $whitelist);
 		return new DataResponse([
-			'apps' => $apps,
+			'useWhitelist' => $useWhitelist,
+			'whitelist' => $whitelist,
+		]);
+	}
+
+	/**
+	 * AJAX handler for resetting the whitelisted apps
+	 *
+	 * @NoAdminRequired
+	 * @return DataResponse with the reset whitelist
+	 */
+	public function resetWhitelist() {
+		$this->config->setAppValue('guests', 'whitelist', Backend::DEFAULT_WHITELIST);
+		return new DataResponse([
+			'whitelist' => explode(',', Backend::DEFAULT_WHITELIST),
 		]);
 	}
 }

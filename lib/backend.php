@@ -304,10 +304,10 @@ class Backend implements UserInterface, IUserBackend {
 		return false;
 	}
 
-	const DEFAULT_GUEST_GROUPS = ',core,settings,avatar,files,files_trashbin,files_versions,files_sharing,files_texteditor,activity,firstrunwizard,gallery';
+	const DEFAULT_WHITELIST = ',core,settings,avatar,files,files_trashbin,files_versions,files_sharing,files_texteditor,activity,firstrunwizard,gallery';
 	//TODO add reset button
 	public function getGuestApps () {
-		$apps = $this->config->getAppValue('guests', 'apps', self::DEFAULT_GUEST_GROUPS);
+		$apps = $this->config->getAppValue('guests', 'apps', self::DEFAULT_WHITELIST);
 		// the guests app is always enabled because we need to execute navigation.js
 		// to hide apps in the navigation
 		return array_merge(['guests'], explode(',', $apps));

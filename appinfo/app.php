@@ -12,10 +12,13 @@
 $guestBackend = \OCA\Guests\Backend::createForStaticLegacyCode();
 \OC::$server->getUserManager()->registerBackend($guestBackend);
 
-// hide navigation entries for guests
-$user = \OC::$server->getUserSession()->getUser();
-if($user && $guestBackend->isGuest($user->getUID())) {
-	\OCP\Util::addScript('guests', 'navigation');
+// if the whitelist is used
+if (\OC::$server->getConfig()->getAppValue('guests', 'usewhitelist', true)) {
+	// hide navigation entries for guests
+	$user = \OC::$server->getUserSession()->getUser();
+	if ($user && $guestBackend->isGuest($user->getUID())) {
+		\OCP\Util::addScript('guests', 'navigation');
+	}
 }
 
 \OCP\App::registerAdmin('guests', 'settings/admin');

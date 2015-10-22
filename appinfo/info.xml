@@ -3,9 +3,13 @@
 	<id>guests</id>
 	<name>Guests</name>
 	<description>Allow classifying users or contacts as guests</description>
+	<version>0.0.2</version>
 	<licence>agpl</licence>
 	<author>Jörn Friedrich Dreyer</author>
-	<require>8</require>
+	<dependencies>
+		<owncloud min-version="8.2" max-version="8.3" />
+		<php min-version="5.4" />
+	</dependencies>
 	<types>
 		<authentication/>
 	</types>
