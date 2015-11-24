@@ -17,3 +17,7 @@ The initial `,` is necessary to allow access to root resources.
 - When generating a password for a contact send it to the user instead of logging it ;)
 - Hide navigation entries for forbidden apps.
 - skeleton files cannot be deleted ... duh ... readonly storage. that also means guests cannot unshare files ...
+- add notifications app to whitelist
+
+# TODO
+- provide groups from contacts
