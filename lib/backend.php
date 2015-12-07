@@ -300,8 +300,7 @@ class Backend implements UserInterface, IUserBackend {
 	}
 	public function isGuestByGroup($uid) {
 		$group = $this->config->getAppValue('guests', 'group', 'guests');
-		$this->groupManager->isInGroup($uid, $group);
-		return false;
+		return $this->groupManager->isInGroup($uid, $group);
 	}
 
 	const DEFAULT_WHITELIST = ',core,settings,avatar,files,files_trashbin,files_versions,files_sharing,files_texteditor,activity,firstrunwizard,gallery';
