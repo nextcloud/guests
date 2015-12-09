@@ -102,7 +102,7 @@ class Backend implements UserInterface, IUserBackend {
 	public function implementsActions($actions) {
 		return (bool)((\OC_User_Backend::CHECK_PASSWORD
 			| \OC_User_Backend::SET_PASSWORD
-			//| \OC_User_Backend::GET_DISPLAYNAME
+			| \OC_User_Backend::GET_DISPLAYNAME
 			//| \OC_User_Backend::PROVIDE_AVATAR
 			//| \OC_User_Backend::COUNT_USERS
 			) & $actions);
@@ -181,7 +181,8 @@ class Backend implements UserInterface, IUserBackend {
 	 * @return string display name
 	 */
 	public function getDisplayName($uid) {
-		return $uid;
+		$l = \OC::$server->getL10N('guests');
+		return "$uid ({$l->t('Guest')})";
 	}
 
 	/**
@@ -196,7 +197,8 @@ class Backend implements UserInterface, IUserBackend {
 	public function getDisplayNames($search = '', $limit = null, $offset = null) {
 		$this->logger->debug("getUsers '$search'", ['app'=>'guests']);
 		if (filter_var($search, FILTER_VALIDATE_EMAIL)) {
-			return [$search => $search];
+			$l = \OC::$server->getL10N('guests');
+			return [$search => "$search ({$l->t('Guest')})"];
 		}
 		return [];
 	}

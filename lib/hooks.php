@@ -44,27 +44,6 @@ class Hooks {
 
 	}
 	/**
-	 * add guest account
-	 * @param array $params
-	 */
-	static public function preShareHook($params) {
-		$shareWith = $params['shareWith'];
-		if (filter_var($shareWith, FILTER_VALIDATE_EMAIL)) {
-			$mapper = new GuestMapper(
-				\OC::$server->getDatabaseConnection(),
-				\OC::$server->getLogger()
-			);
-			try {
-				$mapper->findByUid($shareWith);
-				// guest exists, all good to go
-			} catch (DoesNotExistException $ex) {
-				$guest = new Guest($shareWith, null);
-				$mapper->insert($guest);
-			}
-		}
-	}
-
-	/**
 	 * generate guest password if new
 	 * @param array $params
 	 */
