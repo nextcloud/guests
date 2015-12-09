@@ -11,7 +11,7 @@
 
 namespace OCA\Guests\Controller;
 
-use OCA\Guests\Backend;
+use OCA\Guests\Jail;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\DataResponse;
@@ -51,7 +51,7 @@ class SettingsController extends Controller {
 		$conditions = $this->config->getAppValue('guests', 'conditions', 'quota');
 		$conditions = explode(',', $conditions);
 		$useWhitelist = $this->config->getAppValue('guests', 'usewhitelist', true);
-		$whitelist = $this->config->getAppValue('guests', 'whitelist', Backend::DEFAULT_WHITELIST);
+		$whitelist = $this->config->getAppValue('guests', 'whitelist', Jail::DEFAULT_WHITELIST);
 		$whitelist = explode(',', $whitelist);
 		return new DataResponse([
 			'conditions' => $conditions,
@@ -93,7 +93,7 @@ class SettingsController extends Controller {
 	 */
 	public function getWhitelist() {
 		$useWhitelist = $this->config->getAppValue('guests', 'useWhitelist', true);
-		$whitelist = $this->config->getAppValue('guests', 'whitelist', Backend::DEFAULT_WHITELIST);
+		$whitelist = $this->config->getAppValue('guests', 'whitelist', Jail::DEFAULT_WHITELIST);
 		$whitelist = explode(',', $whitelist);
 		return new DataResponse([
 			'useWhitelist' => $useWhitelist,
@@ -108,9 +108,9 @@ class SettingsController extends Controller {
 	 * @return DataResponse with the reset whitelist
 	 */
 	public function resetWhitelist() {
-		$this->config->setAppValue('guests', 'whitelist', Backend::DEFAULT_WHITELIST);
+		$this->config->setAppValue('guests', 'whitelist', Jail::DEFAULT_WHITELIST);
 		return new DataResponse([
-			'whitelist' => explode(',', Backend::DEFAULT_WHITELIST),
+			'whitelist' => explode(',', Jail::DEFAULT_WHITELIST),
 		]);
 	}
 }

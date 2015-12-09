@@ -9,14 +9,23 @@
  * @copyright Jörn Friedrich Dreyer 2015
  */
 
-$guestBackend = \OCA\Guests\Backend::createForStaticLegacyCode();
-\OC::$server->getUserManager()->registerBackend($guestBackend);
+$config = \OC::$server->getConfig();
+// Only register guest user backend if contacts should be treated as guests
+$conditions = $config->getAppValue('guests', 'conditions', 'quota');
+$conditions = explode(',',$conditions);
+if (in_array('contact', $conditions)) {
+	$guestBackend = \OCA\Guests\Backend::createForStaticLegacyCode();
+	\OC::$server->getUserManager()->registerBackend($guestBackend);
+}
+
+
 
 // if the whitelist is used
-if (\OC::$server->getConfig()->getAppValue('guests', 'usewhitelist', true)) {
+if ($config->getAppValue('guests', 'usewhitelist', true)) {
 	// hide navigation entries for guests
 	$user = \OC::$server->getUserSession()->getUser();
-	if ($user && $guestBackend->isGuest($user->getUID())) {
+	$jail = \OCA\Guests\Jail::createForStaticLegacyCode();
+	if ($user && $jail->isGuest($user->getUID())) {
 		\OCP\Util::addScript('guests', 'navigation');
 	}
 }

@@ -25,20 +25,20 @@ class Hooks {
 		if (!empty($params['user'])) {
 			$uid = $params['user'];
 
-			foreach(\OC::$server->getUserManager()->getBackends() as $backend) {
-				if ($backend instanceof Backend && $backend->isGuest($uid)) {
-					$app = $backend->getRequestedApp(\OC::$server->getRequest()->getRawPathInfo());
-					if ( ! in_array($app, $backend->getGuestApps()) ) {
-						// send forbidden and exit
-						header('HTTP/1.0 403 Forbidden');
+			$jail = \OCA\Guests\Jail::createForStaticLegacyCode();
 
-						$l = \OC::$server->getL10NFactory()->get('guests');
-						\OCP\Template::printErrorPage($l->t('Access to this resource is forbidden for guests.'));
-						exit;
-					}
-					$backend->createJail($uid);
-					return;
+			if ($jail->isGuest($uid)) {
+				$app = $jail->getRequestedApp(\OC::$server->getRequest()->getRawPathInfo());
+				if ( ! in_array($app, $jail->getGuestApps()) ) {
+					// send forbidden and exit
+					header('HTTP/1.0 403 Forbidden');
+
+					$l = \OC::$server->getL10NFactory()->get('guests');
+					\OCP\Template::printErrorPage($l->t('Access to this resource is forbidden for guests.'));
+					exit;
 				}
+				$jail->createJail($uid);
+				return;
 			}
 		}
 
