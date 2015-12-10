@@ -120,7 +120,7 @@ class Jail {
 		return $this->groupManager->isInGroup($uid, $group);
 	}
 
-	const DEFAULT_WHITELIST = ',core,settings,avatar,files,files_trashbin,files_versions,files_sharing,files_texteditor,activity,firstrunwizard,gallery';
+	const DEFAULT_WHITELIST = ',core,settings,avatar,files,files_trashbin,files_versions,files_sharing,files_texteditor,activity,firstrunwizard,gallery,notifications';
 	//TODO add reset button
 	public function getGuestApps () {
 		$apps = $this->config->getAppValue('guests', 'apps', self::DEFAULT_WHITELIST);
