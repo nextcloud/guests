@@ -3,7 +3,7 @@
 	<id>guests</id>
 	<name>Guests</name>
 	<description>Allow classifying users or contacts as guests</description>
-	<version>0.0.2</version>
+	<version>0.0.3</version>
 	<licence>agpl</licence>
 	<author>Jörn Friedrich Dreyer</author>
 	<dependencies>

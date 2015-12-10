@@ -14,6 +14,7 @@ namespace OCA\Guests;
 use OCA\Guests\Db\Guest;
 use OCA\Guests\Db\GuestMapper;
 use OCP\AppFramework\Db\DoesNotExistException;
+use OCP\Security\ISecureRandom;
 
 class Hooks {
 
@@ -78,12 +79,16 @@ class Hooks {
 
 	public static function generatePasswordIfNotExists ($uid) {
 
+		$config = \OC::$server->getConfig();
 		$logger = \OC::$server->getLogger();
+		$coreL10n = \OC::$server->getL10N('core');
 
 		$mapper = new GuestMapper(
 			\OC::$server->getDatabaseConnection(),
 			\OC::$server->getLogger()
 		);
+
+		$email = $config->getUserValue($uid, 'settings', 'email');
 
 		try {
 			$logger->debug("checking if '$uid' has a password",
@@ -91,19 +96,45 @@ class Hooks {
 			$guest = $mapper->findByUid($uid);
 			if ($guest->getHash() === null) {
 
-				// no quota
-				$config = \OC::$server->getConfig();
-				$config->setUserValue($uid, 'files', 'quota', 0);
+				if (empty($email)) {
+					throw new \Exception(
+							$coreL10n->t('Couldn\'t send reset email because there is no ' .
+									'email address for this username. Please ' .
+									'contact your administrator.')
+					);
+				}
 
-				$password = \OC::$server->getSecureRandom()->generate(16);
-				$hash = \OC::$server->getHasher()->hash($password);
-				$guest->setHash($hash);
-				$mapper->update($guest);
+				$token = \OC::$server->getSecureRandom()->getMediumStrengthGenerator()->generate(21,
+						ISecureRandom::CHAR_DIGITS .
+						ISecureRandom::CHAR_LOWER .
+						ISecureRandom::CHAR_UPPER);
+				$config->setUserValue($uid, 'owncloud', 'lostpassword', time() . ':' . $token);
 
-				\OC::$server->getLogger()->debug("generated password '$password' for '$uid'",
-					['app'=>'guests']);
+				$link = \OC::$server->getURLGenerator()->linkToRouteAbsolute('core.lost.resetform', array('userId' => $uid, 'token' => $token));
+				$logger->debug("password reset link: $link",
+						['app'=>'guests']);
 
-				//TODO send mail? cant we call existing code here?
+				$tmpl = new \OC_Template('core/lostpassword', 'email');
+				$tmpl->assign('link', $link);
+				$msg = $tmpl->fetchPage();
+
+				$from = \OCP\Util::getDefaultEmailAddress('lostpassword-noreply');
+				$defaults = new \OCP\Defaults();
+				$fromName = $defaults->getName();
+				try {
+					$mailer = \OC::$server->getMailer();
+					$message = $mailer->createMessage();
+					$message->setTo([$email => $uid]);
+					$message->setSubject($coreL10n->t('%s password reset', [$fromName]));
+					$message->setPlainBody($msg);
+					$message->setFrom([$from => $fromName]);
+					$mailer->send($message);
+				} catch (\Exception $e) {
+					throw new \Exception($coreL10n->t(
+							'Couldn\'t send reset email. Please contact your administrator.'
+					));
+				}
+
 			} else {
 				\OC::$server->getLogger()->debug("guest '$uid' already has a password",
 					['app'=>'guests']);
@@ -113,4 +144,5 @@ class Hooks {
 				['app'=>'guests']);
 		}
 	}
+
 }

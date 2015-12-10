@@ -20,7 +20,9 @@ use OCP\IGroupManager;
 use OCP\ILogger;
 use OCP\IUserBackend;
 use OCP\IUserManager;
+use OCP\IUserSession;
 use OCP\Security\IHasher;
+use OCP\Share;
 use OCP\UserInterface;
 
 
@@ -44,6 +46,9 @@ class Backend implements UserInterface, IUserBackend {
 	/** @var IUserManager */
 	private $userManager;
 
+	/** @var IUserSession */
+	private $userSession;
+
 	/** @var IGroupManager */
 	private $groupManager;
 
@@ -54,6 +59,7 @@ class Backend implements UserInterface, IUserBackend {
 		IHasher $hasher,
 		IManager $contactsManager,
 		IUserManager $userManager,
+		IUserSession $userSession,
 		IGroupManager $groupManager
 	) {
 		$this->config = $config;
@@ -62,6 +68,7 @@ class Backend implements UserInterface, IUserBackend {
 		$this->hasher = $hasher;
 		$this->contactsManager = $contactsManager;
 		$this->userManager = $userManager;
+		$this->userSession = $userSession;
 		$this->groupManager = $groupManager;
 	}
 
@@ -85,6 +92,7 @@ class Backend implements UserInterface, IUserBackend {
 				\OC::$server->getHasher(),
 				\OC::$server->getContactsManager(),
 				\OC::$server->getUserManager(),
+				\OC::$server->getUserSession(),
 				\OC::$server->getGroupManager()
 			);
 		}
@@ -141,7 +149,6 @@ class Backend implements UserInterface, IUserBackend {
 		$this->logger->debug("getUsers '$search'",
 			['app'=>'guests']);
 		$guests = $this->mapper->search($search, $limit, $offset);
-		// TODO check if uid is still a recipient for shares?
 		$results = [];
 		if ($guests) {
 			foreach ($guests as $guest) {
@@ -162,17 +169,29 @@ class Backend implements UserInterface, IUserBackend {
 	* @return boolean
 	*/
 	public function userExists($uid) {
+		/* TODO fetch guest from contacts app
 		$guests = $this->contactsManager->search($uid, ['EMAIL']);
 		if ($guests) {
 			return true;
 		}
+		*/
 		try {
 			$guest = $this->mapper->findByUid($uid);
-			// TODO check if uid is still a recipient for shares?
 			return true;
 		} catch (DoesNotExistException $ex) {
 			return false;
 		}
+	}
+
+	public function hasValidIncomingShares($uid) {
+		$shares = Share::getItemsSharedWithUser('file', $uid);
+		foreach ($shares as $share) {
+			if (empty($share['expiration'])) {
+				return true;
+			}
+			//TODO check expiration when internal shares can have en expiration
+		}
+		return false;
 	}
 
 	/**
@@ -230,7 +249,12 @@ class Backend implements UserInterface, IUserBackend {
 					$guest->setHash($newHash);
 					$this->mapper->update($guest);
 				}
-				return $guest->getUid();
+				// guests should not receive the skeleton
+				$this->createEmptyUserFolder($guest->getUid());
+
+				if ($this->hasValidIncomingShares($uid)) {
+					return $guest->getUid();
+				}
 			}
 			return false;
 		} catch (DoesNotExistException $ex) {
@@ -238,6 +262,19 @@ class Backend implements UserInterface, IUserBackend {
 		}
 	}
 
+	public function createEmptyUserFolder($uid) {
+		$root = \OC::$server->getRootFolder();
+		if (!$root->nodeExists($uid)) {
+			$folder = $root->newFolder($uid);
+		} else {
+			$folder = $root->get($uid);
+		}
+
+		$dir = '/files';
+		if (!$folder->nodeExists($dir)) {
+			$folder->newFolder($dir);
+		}
+	}
 	/**
 	 * Set password
 	 * @param string $uid The username
@@ -264,5 +301,36 @@ class Backend implements UserInterface, IUserBackend {
 	 */
 	public function getBackendName() {
 		return 'Guests';
+	}
+
+	/**
+	 * HACK to add contact before sharing code checks if the user exists
+	 */
+	public function interceptShareRequest() {
+		if (isset($_SERVER['PATH_INFO'])
+			&& $_SERVER['PATH_INFO'] === '/core/ajax/share.php'
+			&& isset($_POST['action']) && $_POST['action'] === 'share'
+			&& isset($_POST['shareType']) && $_POST['shareType'] == '0'
+			&& isset($_POST['shareWith'])
+			&& filter_var($_POST['shareWith'], FILTER_VALIDATE_EMAIL)
+			&& $this->userSession->isLoggedIn()
+			&& !$this->userExists($_POST['shareWith'])
+		) {
+			$user = $this->userSession->getUser();
+			if ($user) {
+				$this->logger->info(
+					"Creating guest account '{$_POST['shareWith']}', triggered "
+					."by '{$user->getDisplayName()} ({$user->getUID()})' ");
+			} else {
+				$this->logger->error(
+					"Not creating guest account '{$_POST['shareWith']}', "
+					."uid is unknown");
+				return;
+			}
+			$guest = new \OCA\Guests\Db\Guest($_POST['shareWith'], null);
+			$this->mapper->insert($guest);
+			$this->config->setUserValue($_POST['shareWith'], 'files', 'quota', 0);
+			$this->config->setUserValue($_POST['shareWith'], 'settings', 'email', $_POST['shareWith']);
+		}
 	}
 }
