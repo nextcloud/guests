@@ -12,12 +12,7 @@ Furthermore, the administrator has to whitelist the applications that guests can
 By default ',core,settings,avatar,files,files_trashbin,files_versions,files_sharing,files_texteditor,activity,firstrunwizard,gallery' are allowed.
 The initial `,` is necessary to allow access to root resources.
 
-# FIXME
-
-- When generating a password for a contact send it to the user instead of logging it ;)
-- Hide navigation entries for forbidden apps.
-- skeleton files cannot be deleted ... duh ... readonly storage. that also means guests cannot unshare files ...
-- add notifications app to whitelist
-
 # TODO
-- provide groups from contacts
+- fetch guests from contacts app
+- better differentiate between email based on the fly contacts and guests based on the contacts app
+- provide groups from contacts app
