@@ -10,9 +10,16 @@
  */
 
 $config = \OC::$server->getConfig();
+
+// TODO fix load order or introduce hook in core
+// force loading of ldap user backend if it is enabled
+if (\OCP\App::isEnabled('user_ldap')) {
+	\OC_App::loadApp('user_ldap');
+}
+
 // Only register guest user backend if contacts should be treated as guests
 $conditions = $config->getAppValue('guests', 'conditions', 'quota');
-$conditions = explode(',',$conditions);
+$conditions = explode(',', $conditions);
 if (in_array('contact', $conditions)) {
 	$guestBackend = \OCA\Guests\Backend::createForStaticLegacyCode();
 	\OC::$server->getUserManager()->registerBackend($guestBackend);
