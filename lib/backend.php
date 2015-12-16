@@ -52,6 +52,12 @@ class Backend implements UserInterface, IUserBackend {
 	/** @var IGroupManager */
 	private $groupManager;
 
+	/**
+	 * @var bool
+	 * used to allow searching in other user backends via the user manager
+	 */
+	private $catchAllEmails = true;
+
 	public function __construct(
 		IConfig $config,
 		ILogger $logger,
@@ -214,10 +220,16 @@ class Backend implements UserInterface, IUserBackend {
 	 * Get a list of all display names and user ids.
 	 */
 	public function getDisplayNames($search = '', $limit = null, $offset = null) {
-		$this->logger->debug("getUsers '$search'", ['app'=>'guests']);
-		if (filter_var($search, FILTER_VALIDATE_EMAIL)) {
-			$l = \OC::$server->getL10N('guests');
-			return [$search => "$search ({$l->t('Guest')})"];
+		$this->logger->debug("getDisplayNames '$search'", ['app'=>'guests']);
+		if (filter_var($search, FILTER_VALIDATE_EMAIL) && $this->catchAllEmails) {
+			//disable catchall and make sure no other user backend can handle the uid
+			$this->catchAllEmails = false;
+			$others = $this->userManager->searchDisplayName($search, 1);
+			$this->catchAllEmails = true;
+			if (count($others) === 0) {
+				$l = \OC::$server->getL10N('guests');
+				return [$search => "$search ({$l->t('Guest')})"];
+			}
 		}
 		return [];
 	}
