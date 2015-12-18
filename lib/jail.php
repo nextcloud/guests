@@ -58,7 +58,7 @@ class Jail {
 	}
 
 	/**
-	 * @var Backend
+	 * @var Jail
 	 */
 	private static $instance;
 

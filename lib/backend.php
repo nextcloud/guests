@@ -11,8 +11,8 @@
 
 namespace OCA\Guests;
 
+use OC\User\LoginException;
 use OCA\Guests\Db\GuestMapper;
-use OCA\Guests\Files\Storage\Wrapper\DirMask;
 use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\Contacts\IManager;
 use OCP\IConfig;
@@ -175,6 +175,9 @@ class Backend implements UserInterface, IUserBackend {
 	* @return boolean
 	*/
 	public function userExists($uid) {
+		if (!filter_var($uid, FILTER_VALIDATE_EMAIL)) {
+			return false;
+		}
 		/* TODO fetch guest from contacts app
 		$guests = $this->contactsManager->search($uid, ['EMAIL']);
 		if ($guests) {
@@ -197,7 +200,7 @@ class Backend implements UserInterface, IUserBackend {
 			}
 			//TODO check expiration when internal shares can have en expiration
 		}
-		return false;
+		false;
 	}
 
 	/**
@@ -244,14 +247,19 @@ class Backend implements UserInterface, IUserBackend {
 
 	/**
 	 * Check if the password is correct
+	 *
 	 * @param string $uid The username
 	 * @param string $password The password
-	 * @return string
+	 * @return false|string Check if the password is correct without logging in the user
+	 * @throws LoginException
 	 *
 	 * Check if the password is correct without logging in the user
 	 * returns the user id or false
 	 */
 	public function checkPassword($uid, $password) {
+		if (!filter_var($uid, FILTER_VALIDATE_EMAIL)) {
+			return false;
+		}
 		try {
 			$guest = $this->mapper->findByUid($uid);
 			$storedHash = $guest->getHash();
@@ -264,9 +272,14 @@ class Backend implements UserInterface, IUserBackend {
 				// guests should not receive the skeleton
 				$this->createEmptyUserFolder($guest->getUid());
 
-				if ($this->hasValidIncomingShares($uid)) {
-					return $guest->getUid();
+				//TODO add config ui
+				if ($this->config->getAppValue('guests', 'denyLoginIfNothingIsShared', true)
+					&& !$this->hasValidIncomingShares($uid)
+				) {
+					$l = \OC::$server->getL10N('guests');
+					throw new LoginException($l->t('Nothing is currently shared with you. Login denied.'));
 				}
+				return $guest->getUid();
 			}
 			return false;
 		} catch (DoesNotExistException $ex) {
@@ -287,6 +300,7 @@ class Backend implements UserInterface, IUserBackend {
 			$folder->newFolder($dir);
 		}
 	}
+
 	/**
 	 * Set password
 	 * @param string $uid The username
@@ -339,10 +353,15 @@ class Backend implements UserInterface, IUserBackend {
 					."uid is unknown");
 				return;
 			}
-			$guest = new \OCA\Guests\Db\Guest($_POST['shareWith'], null);
-			$this->mapper->insert($guest);
-			$this->config->setUserValue($_POST['shareWith'], 'files', 'quota', 0);
-			$this->config->setUserValue($_POST['shareWith'], 'settings', 'email', $_POST['shareWith']);
+			$this->createGuest($_POST['shareWith']);
 		}
 	}
+
+	public function createGuest($uid) {
+		$guest = new \OCA\Guests\Db\Guest($uid, null);
+		$this->mapper->insert($guest);
+		$this->config->setUserValue($uid, 'files', 'quota', 0);
+		$this->config->setUserValue($uid, 'settings', 'email', $uid);
+	}
+
 }
