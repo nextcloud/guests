@@ -11,7 +11,6 @@
 namespace OCA\Guests;
 
 
-use OCA\Guests\Db\GuestMapper;
 use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\Defaults;
 use OCP\IConfig;
@@ -27,9 +26,6 @@ class Mail {
 	/** @var ILogger */
 	private $logger;
 
-	/** @var GuestMapper */
-	private $mapper;
-
 	/** @var IMailer */
 	private $mailer;
 
@@ -39,13 +35,11 @@ class Mail {
 	public function __construct(
 		IConfig $config,
 		ILogger $logger,
-		GuestMapper $mapper,
 		IMailer $mailer,
 		Defaults $defaults
 	) {
 		$this->config = $config;
 		$this->logger = $logger;
-		$this->mapper = $mapper;
 		$this->mailer = $mailer;
 		$this->defaults = $defaults;
 	}
@@ -61,15 +55,9 @@ class Mail {
 	 */
 	public static function createForStaticLegacyCode() {
 		if (!self::$instance) {
-			$logger = \OC::$server->getLogger();
-
 			self::$instance = new Mail (
 				\OC::$server->getConfig(),
-				$logger,
-				new GuestMapper(
-					\OC::$server->getDatabaseConnection(),
-					$logger
-				),
+				\OC::$server->getLogger(),
 				\OC::$server->getMailer(),
 				new Defaults()
 			);
@@ -136,13 +124,19 @@ class Mail {
 		}
 	}
 
-	public function sendShareNotification ($sender, $shareType, $recipient, $itemType, $itemSource) {
-
-		if ($shareType === \OCP\Share::SHARE_TYPE_USER) {
-			$recipientList[] = $recipient;
-		} elseif ($shareType === \OCP\Share::SHARE_TYPE_GROUP) {
-			$recipientList = \OC_Group::usersInGroup($recipient);
-		}
+	/**
+	 * @param $sender
+	 * @param $recipient
+	 * @param $itemType
+	 * @param $itemSource
+	 */
+	public function sendShareNotification (
+		$sender,
+		$recipient,
+		$itemType,
+		$itemSource
+	) {
+		$recipientList[] = $recipient;
 		// don't send a mail to the user who shared the file
 		$recipientList = array_diff($recipientList, array($sender));
 
@@ -154,9 +148,13 @@ class Mail {
 			$this->logger,
 			$this->defaults
 		);
-		$result = $mailNotification->sendInternalShareMail($recipientList, $itemSource, $itemType);
+		$result = $mailNotification->sendInternalShareMail(
+			$recipientList, $itemSource, $itemType
+		);
 
-		\OCP\Share::setSendMailStatus($itemType, $itemSource, $shareType, $recipient, true);
+		\OCP\Share::setSendMailStatus(
+			$itemType, $itemSource, \OCP\Share::SHARE_TYPE_USER, $recipient, true
+		);
 
 	}
 }
