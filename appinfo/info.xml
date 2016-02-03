@@ -4,8 +4,8 @@
 	<name>Guests</name>
 	<description>Allow classifying users or contacts as guests</description>
 	<version>0.0.4</version>
-	<licence>agpl</licence>
-	<author>Jörn Friedrich Dreyer</author>
+	<licence>Commercial</licence>
+	<author>ownCloud Inc.</author>
 	<dependencies>
 		<owncloud min-version="8.2" max-version="9.0" />
 		<php min-version="5.4" />

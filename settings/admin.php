@@ -2,11 +2,14 @@
 /**
  * ownCloud
  *
- * This file is licensed under the Affero General Public License version 3 or
- * later. See the COPYING-AGPL file.
+ * @author Jörn Friedrich Dreyer <jfd@owncloud.com>
+ * @copyright (C) 2015-2016 ownCloud, Inc.
  *
- * @author Jörn Friedrich Dreyer <jfd@butonic.de>
- * @copyright Jörn Friedrich Dreyer 2015
+ * This code is covered by the ownCloud Commercial License.
+ *
+ * You should have received a copy of the ownCloud Commercial License
+ * along with this program. If not, see <https://owncloud.com/licenses/owncloud-commercial/>.
+ *
  */
 
 \OCP\Util::addScript('guests', 'guests');
