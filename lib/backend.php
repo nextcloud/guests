@@ -349,11 +349,12 @@ class Backend implements UserInterface, IUserBackend {
 			if ($user) {
 				$this->logger->info(
 					"Creating guest account '{$_POST['shareWith']}', triggered "
-					."by '{$user->getDisplayName()} ({$user->getUID()})' ");
+					."by '{$user->getDisplayName()} ({$user->getUID()})'",
+					['app' => 'guests']);
 			} else {
 				$this->logger->error(
 					"Not creating guest account '{$_POST['shareWith']}', "
-					."uid is unknown");
+					."uid is unknown", ['app' => 'guests']);
 				return;
 			}
 			$this->createGuest($_POST['shareWith']);

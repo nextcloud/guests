@@ -181,21 +181,25 @@ class Hooks {
 			}
 
 			if ($this->jail->isGuest($shareWith)) {
-				$this->logger->debug("sending mail(s) to '$shareWith'",
-						['app'=>'guests']);
-
+				$this->logger->debug("checking if '$shareWith' has a password",
+					['app'=>'guests']);
 				try {
-					$guest = $this->mapper->findByUid($uid);
+					$guest = $this->mapper->findByUid($shareWith);
 					if ($guest->getHash() === null) {
-						$this->mail->sendPasswordResetMail($shareWith);
+						// send invitation
+						$this->mail->sendGuestInviteMail(
+							$uid, $shareWith, $itemType, $itemSource
+						);
+					} else {
+						// always notify guests of new files
+						$this->mail->sendShareNotification(
+							$uid, $shareWith, $itemType, $itemSource
+						);
 					}
-				} catch (DoesNotExistException $ex) {
-					$this->logger->error("'$uid' does not exist", ['app'=>'guests']);
-				}
 
-				$this->mail->sendShareNotification(
-						$uid, $shareWith, $itemType, $itemSource
-				);
+				} catch (DoesNotExistException $ex) {
+					$this->logger->error("'$shareWith' does not exist", ['app'=>'guests']);
+				}
 			} else {
 				$this->logger->debug("ignoring user '$shareWith', not a guest",
 						['app'=>'guests']);

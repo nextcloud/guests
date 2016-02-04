@@ -34,17 +34,25 @@ if (in_array('contact', $conditions)) {
 	\OCP\Util::connectHook('OCP\Share', 'post_shared', '\OCA\Guests\Hooks', 'postShareHook');
 }
 
-// if the whitelist is used
-if ($config->getAppValue('guests', 'usewhitelist', true)) {
-	// hide navigation entries for guests
-	$user = \OC::$server->getUserSession()->getUser();
-	$jail = \OCA\Guests\Jail::createForStaticLegacyCode();
-	if ($user && $jail->isGuest($user->getUID())) {
-		\OCP\Util::addScript('guests', 'navigation');
-	}
-}
-
-\OCP\App::registerAdmin('guests', 'settings/admin');
 
 \OCP\Util::connectHook('OC_Filesystem', 'preSetup', '\OCA\Guests\Hooks', 'preSetup');
 
+// --- register js for user management------------------------------------------
+$user = \OC::$server->getUserSession()->getUser();
+if ($user) {
+    // if the whitelist is used
+	if ($config->getAppValue('guests', 'usewhitelist', true)) {
+		// hide navigation entries for guests
+		$jail = \OCA\Guests\Jail::createForStaticLegacyCode();
+		if ($jail->isGuest($user->getUID())) {
+			\OCP\Util::addScript('guests', 'navigation');
+		}
+	}
+
+	// hide email change field via css
+	\OCP\Util::addStyle('guests', 'personal');
+
+	if (\OC::$server->getGroupManager()->isAdmin($user->getUID())) {
+		\OCP\App::registerAdmin('guests', 'settings/admin');
+	}
+}

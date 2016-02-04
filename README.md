@@ -16,3 +16,4 @@ The initial `,` is necessary to allow access to root resources.
 - fetch guests from contacts app
 - better differentiate between email based on the fly contacts and guests based on the contacts app
 - provide groups from contacts app
+- hide email and sharing notification options in personal settings?

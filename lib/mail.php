@@ -17,7 +17,9 @@ namespace OCA\Guests;
 use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\Defaults;
 use OCP\IConfig;
+use OCP\IL10N;
 use OCP\ILogger;
+use OCP\IUser;
 use OCP\Mail\IMailer;
 use OCP\Security\ISecureRandom;
 
@@ -29,22 +31,32 @@ class Mail {
 	/** @var ILogger */
 	private $logger;
 
+	/** @var IUser */
+	private $user;
+
 	/** @var IMailer */
 	private $mailer;
 
 	/** @var Defaults */
 	private $defaults;
 
+	/** @var IL10N */
+	private $l10n;
+
 	public function __construct(
 		IConfig $config,
 		ILogger $logger,
+		IUser $user,
 		IMailer $mailer,
-		Defaults $defaults
+		Defaults $defaults,
+		IL10N $l10n
 	) {
 		$this->config = $config;
 		$this->logger = $logger;
+		$this->user = $user;
 		$this->mailer = $mailer;
 		$this->defaults = $defaults;
+		$this->l10n = $l10n;
 	}
 
 	/**
@@ -61,8 +73,10 @@ class Mail {
 			self::$instance = new Mail (
 				\OC::$server->getConfig(),
 				\OC::$server->getLogger(),
+				\OC::$server->getUserSession()->getUser(),
 				\OC::$server->getMailer(),
-				new Defaults()
+				new Defaults(),
+				\OC::$server->getL10N('guests')
 			);
 
 		}
@@ -75,55 +89,83 @@ class Mail {
 	 * @param $uid
 	 * @throws \Exception
 	 */
-	public function sendPasswordResetMail ($uid) {
+	public function sendGuestInviteMail ($uid, $shareWith, $itemType, $itemSource) {
 
-		if (!filter_var($uid, FILTER_VALIDATE_EMAIL)) {
-			// ignore non email guest accounts. They are handled by an admin
-			return;
+		$this->logger->debug("generating password reset link for $shareWith'",
+			['app' => 'guests']);
+		$token = \OC::$server->getSecureRandom()->getMediumStrengthGenerator()->generate(21,
+			ISecureRandom::CHAR_DIGITS .
+			ISecureRandom::CHAR_LOWER .
+			ISecureRandom::CHAR_UPPER);
+		$this->config->setUserValue($shareWith, 'owncloud', 'lostpassword', time() . ':' . $token);
+
+		$passwordLink = \OC::$server->getURLGenerator()->linkToRouteAbsolute('core.lost.resetform', array('userId' => $shareWith, 'token' => $token));
+
+		$this->logger->debug("sending invite to $shareWith'", ['app' => 'guests']);
+
+		$replyTo = $this->config->getUserValue($uid, 'settings', 'email', null);
+		$senderDisplayName = $this->user->getDisplayName();
+
+		$items = \OCP\Share::getItemSharedWithUser($itemType, $itemSource, $shareWith);
+		$filename = trim($items[0]['file_target'], '/');
+		$subject = (string) $this->l10n->t('%s shared »%s« with you', array($senderDisplayName, $filename));
+		$expiration = null;
+		if (isset($items[0]['expiration'])) {
+			try {
+				$date = new \DateTime($items[0]['expiration']);
+				$expiration = $date->getTimestamp();
+			} catch (\Exception $e) {
+				$this->logger->error("Couldn't read date: ".$e->getMessage(), ['app' => 'sharing']);
+			}
 		}
 
+		// Link to folder, or root folder if a file
+
+		if ($itemType === 'folder') {
+			$args = array(
+				'dir' => $filename,
+			);
+		} else if (strpos($filename, '/')) {
+			$args = array(
+				'dir' => '/' . dirname($filename),
+				'scrollto' => basename($filename),
+			);
+		} else {
+			$args = array(
+				'dir' => '/',
+				'scrollto' => $filename,
+			);
+		}
+
+		$link = \OCP\Util::linkToAbsolute('files', 'index.php', $args);
+
+		list($htmlBody, $textBody) = $this->createMailBody(
+			$filename, $link, $passwordLink,
+			$this->defaults->getName(), $senderDisplayName, $expiration
+		);
+
 		try {
-			$this->logger->debug("checking if '$uid' has a password",
-				['app'=>'guests']);
-			$guest = $this->mapper->findByUid($uid);
-			if ($guest->getHash() === null) {
-
-				$coreL10n = \OC::$server->getL10N('core');
-
-				$token = \OC::$server->getSecureRandom()->getMediumStrengthGenerator()->generate(21,
-					ISecureRandom::CHAR_DIGITS .
-					ISecureRandom::CHAR_LOWER .
-					ISecureRandom::CHAR_UPPER);
-				$this->config->setUserValue($uid, 'owncloud', 'lostpassword', time() . ':' . $token);
-
-				$link = \OC::$server->getURLGenerator()->linkToRouteAbsolute('core.lost.resetform', array('userId' => $uid, 'token' => $token));
-				$this->logger->debug("sending password reset link '$link' to $uid'",
-					['app'=>'guests']);
-
-				$tmpl = new \OC_Template('core/lostpassword', 'email');
-				$tmpl->assign('link', $link);
-				$msg = $tmpl->fetchPage();
-
-				$from = \OCP\Util::getDefaultEmailAddress('lostpassword-noreply');
-				$fromName = $this->defaults->getName();
-				try {
-					$message = $this->mailer->createMessage();
-					$message->setTo([$uid => $uid]);
-					$message->setSubject($coreL10n->t('%s password reset', [$fromName]));
-					$message->setPlainBody($msg);
-					$message->setFrom([$from => $fromName]);
-					$this->mailer->send($message);
-				} catch (\Exception $e) {
-					throw new \Exception($coreL10n->t(
-						'Couldn\'t send reset email. Please contact your administrator.'
-					));
-				}
-			} else {
-				$this->logger->debug("guest '$uid' already has a password",
-					['app'=>'guests']);
+			$message = $this->mailer->createMessage();
+			$message->setTo([$shareWith => $shareWith]);
+			$message->setSubject($subject);
+			$message->setHtmlBody($htmlBody);
+			$message->setPlainBody($textBody);
+			$message->setFrom([
+				\OCP\Util::getDefaultEmailAddress('sharing-noreply') =>
+					(string)$this->l10n->t('%s via %s', [
+						$senderDisplayName,
+						$this->defaults->getName()
+					]),
+			]);
+			if(!is_null($replyTo)) {
+				$message->setReplyTo([$replyTo]);
 			}
-		} catch (DoesNotExistException $ex) {
-			$this->logger->debug("'$uid' does not exist", ['app'=>'guests']);
+
+			$this->mailer->send($message);
+		} catch (\Exception $e) {
+			throw new \Exception($this->l10n->t(
+				'Couldn\'t send reset email. Please contact your administrator.'
+			));
 		}
 	}
 
@@ -140,6 +182,7 @@ class Mail {
 		$itemSource
 	) {
 		$recipientList[] = $recipient;
+
 		// don't send a mail to the user who shared the file
 		$recipientList = array_diff($recipientList, array($sender));
 
@@ -151,13 +194,53 @@ class Mail {
 			$this->logger,
 			$this->defaults
 		);
+		$this->logger->debug("sending share notification for '$itemType'"
+			." '$itemSource' to $recipient'",
+			['app'=>'guests']);
+
 		$result = $mailNotification->sendInternalShareMail(
 			$recipientList, $itemSource, $itemType
 		);
 
+		// mark mail as sent
+		// TODO do not set if $result contains the recipient
 		\OCP\Share::setSendMailStatus(
 			$itemType, $itemSource, \OCP\Share::SHARE_TYPE_USER, $recipient, true
 		);
 
 	}
+
+	/**
+	 * create mail body for plain text and html mail
+	 *
+	 * @param string $filename the shared file
+	 * @param string $link link to the shared file
+	 * @param int $expiration expiration date (timestamp)
+	 * @return array an array of the html mail body and the plain text mail body
+	 */
+	private function createMailBody($filename, $link, $passwordLink, $cloudName, $displayName, $expiration) {
+
+		$formattedDate = $expiration ? $this->l10n->l('date', $expiration) : null;
+
+		$html = new \OC_Template('guests', 'mail/invite');
+		$html->assign ('link', $link);
+		$html->assign ('password_link', $passwordLink);
+		$html->assign ('cloud_name', $cloudName);
+		$html->assign ('user_displayname', $displayName);
+		$html->assign ('filename', $filename);
+		$html->assign('expiration',  $formattedDate);
+		$htmlMail = $html->fetchPage();
+
+		$plainText = new \OC_Template('guests', 'mail/altinvite');
+		$plainText->assign ('link', $link);
+		$plainText->assign ('password_link', $passwordLink);
+		$plainText->assign ('cloud_name', $cloudName);
+		$plainText->assign ('user_displayname', $displayName);
+		$plainText->assign ('filename', $filename);
+		$plainText->assign('expiration', $formattedDate);
+		$plainTextMail = $plainText->fetchPage();
+
+		return [$htmlMail, $plainTextMail];
+	}
+
 }
