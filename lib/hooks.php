@@ -19,6 +19,8 @@ use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\ILogger;
 use OCP\IRequest;
 use OCP\IUserSession;
+use OCP\Share;
+use OCP\Template;
 
 class Hooks {
 
@@ -126,7 +128,7 @@ class Hooks {
 				header('HTTP/1.0 403 Forbidden');
 
 				$l = \OC::$server->getL10NFactory()->get('guests');
-				\OCP\Template::printErrorPage($l->t(
+				Template::printErrorPage($l->t(
 						'Access to this resource is forbidden for guests.'
 				));
 				exit;
@@ -159,7 +161,7 @@ class Hooks {
 		$itemSource
 	) {
 
-		if ($shareType !== \OCP\Share::SHARE_TYPE_USER ||
+		if ($shareType !== Share::SHARE_TYPE_USER ||
 				!filter_var($shareWith, FILTER_VALIDATE_EMAIL)
 		) {
 			return; // only email guests need to receive password reset and

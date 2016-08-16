@@ -14,14 +14,17 @@
 
 namespace OCA\Guests;
 
+use OC\Files\Filesystem;
 use OCA\Guests\Db\GuestMapper;
 use OCA\Guests\Files\Storage\Wrapper\DirMask;
 use OCP\AppFramework\Db\DoesNotExistException;
+use OCP\Constants;
 use OCP\Contacts\IManager;
 use OCP\IConfig;
 use OCP\IGroupManager;
 use OCP\ILogger;
 use OCP\IUserManager;
+use OCP\Util;
 
 
 class Jail {
@@ -113,7 +116,7 @@ class Jail {
 		if ($userQuota === 'default') {
 			$userQuota = $this->config->getAppValue('files', 'default_quota', 'none');
 		}
-		if ($userQuota !== 'none' && (int)\OCP\Util::computerFileSize($userQuota) === 0) {
+		if ($userQuota !== 'none' && (int)Util::computerFileSize($userQuota) === 0) {
 			return true;
 		}
 		return false;
@@ -161,9 +164,9 @@ class Jail {
 
 		// make root and home storage readonly
 		// root also needs to be readonly for objectstorage
-		\OC\Files\Filesystem::addStorageWrapper('readonly', function ($mountPoint, $storage) use ($uid) {
+		Filesystem::addStorageWrapper('readonly', function ($mountPoint, $storage) use ($uid) {
 			if ($mountPoint === '/' || $mountPoint === "/$uid/") {
-				return new DirMask(array('storage' => $storage, 'mask' => \OCP\Constants::PERMISSION_READ, 'path' => 'files'));
+				return new DirMask(array('storage' => $storage, 'mask' => Constants::PERMISSION_READ, 'path' => 'files'));
 				//return new \OC\Files\Storage\Wrapper\PermissionsMask(array('storage' => $storage, 'mask' => \OCP\Constants::PERMISSION_READ));
 			} else {
 				return $storage;

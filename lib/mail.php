@@ -14,6 +14,7 @@
 namespace OCA\Guests;
 
 
+use OC\Share\MailNotifications;
 use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\Defaults;
 use OCP\IConfig;
@@ -22,6 +23,8 @@ use OCP\ILogger;
 use OCP\IUser;
 use OCP\Mail\IMailer;
 use OCP\Security\ISecureRandom;
+use OCP\Share;
+use OCP\Util;
 
 class Mail {
 
@@ -101,12 +104,12 @@ class Mail {
 
 		$passwordLink = \OC::$server->getURLGenerator()->linkToRouteAbsolute('core.lost.resetform', array('userId' => $shareWith, 'token' => $token));
 
-		$this->logger->debug("sending invite to $shareWith'", ['app' => 'guests']);
+		$this->logger->debug("sending invite to $shareWith: $passwordLink", ['app' => 'guests']);
 
 		$replyTo = $this->config->getUserValue($uid, 'settings', 'email', null);
 		$senderDisplayName = $this->user->getDisplayName();
 
-		$items = \OCP\Share::getItemSharedWithUser($itemType, $itemSource, $shareWith);
+		$items = Share::getItemSharedWithUser($itemType, $itemSource, $shareWith);
 		$filename = trim($items[0]['file_target'], '/');
 		$subject = (string) $this->l10n->t('%s shared »%s« with you', array($senderDisplayName, $filename));
 		$expiration = null;
@@ -137,7 +140,7 @@ class Mail {
 			);
 		}
 
-		$link = \OCP\Util::linkToAbsolute('files', 'index.php', $args);
+		$link = Util::linkToAbsolute('files', 'index.php', $args);
 
 		list($htmlBody, $textBody) = $this->createMailBody(
 			$filename, $link, $passwordLink,
@@ -151,7 +154,7 @@ class Mail {
 			$message->setHtmlBody($htmlBody);
 			$message->setPlainBody($textBody);
 			$message->setFrom([
-				\OCP\Util::getDefaultEmailAddress('sharing-noreply') =>
+				Util::getDefaultEmailAddress('sharing-noreply') =>
 					(string)$this->l10n->t('%s via %s', [
 						$senderDisplayName,
 						$this->defaults->getName()
@@ -186,13 +189,13 @@ class Mail {
 		// don't send a mail to the user who shared the file
 		$recipientList = array_diff($recipientList, array($sender));
 
-		$mailNotification = new \OC\Share\MailNotifications(
+		$mailNotification = new MailNotifications(
 			$sender,
-			$this->config,
 			\OC::$server->getL10N('lib'),
 			$this->mailer,
 			$this->logger,
-			$this->defaults
+			$this->defaults,
+			\OC::$server->getURLGenerator()
 		);
 		$this->logger->debug("sending share notification for '$itemType'"
 			." '$itemSource' to $recipient'",
@@ -204,8 +207,8 @@ class Mail {
 
 		// mark mail as sent
 		// TODO do not set if $result contains the recipient
-		\OCP\Share::setSendMailStatus(
-			$itemType, $itemSource, \OCP\Share::SHARE_TYPE_USER, $recipient, true
+		Share::setSendMailStatus(
+			$itemType, $itemSource, Share::SHARE_TYPE_USER, $recipient, true
 		);
 
 	}

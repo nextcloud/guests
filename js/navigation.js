@@ -21,9 +21,8 @@
 				OC.generateUrl('apps/guests/apps'),
 				'',
 				function (data) {
-					apps = data.apps;
 					$('#navigation li').each(function (i, e){
-						$e = $(e);
+						var $e = $(e);
 						if ( $.inArray($e.data('id'), data.apps) < 0 ) {
 							$e.remove();
 						}

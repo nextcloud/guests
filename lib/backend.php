@@ -203,7 +203,7 @@ class Backend implements UserInterface, IUserBackend {
 			}
 			//TODO check expiration when internal shares can have en expiration
 		}
-		false;
+		return false;
 	}
 
 	/**
@@ -337,12 +337,12 @@ class Backend implements UserInterface, IUserBackend {
 	 */
 	public function interceptShareRequest() {
 		if (isset($_SERVER['PATH_INFO'])
-			&& $_SERVER['PATH_INFO'] === '/core/ajax/share.php'
-			&& isset($_POST['action']) && $_POST['action'] === 'share'
+			&& $_SERVER['PATH_INFO'] === '/apps/files_sharing/api/v1/shares'
 			&& isset($_POST['shareType']) && $_POST['shareType'] == '0'
 			&& isset($_POST['shareWith'])
 			&& filter_var($_POST['shareWith'], FILTER_VALIDATE_EMAIL)
 			&& $this->userSession->isLoggedIn()
+				// FIXME only if federated share is not available
 			&& !$this->userExists($_POST['shareWith'])
 		) {
 			$user = $this->userSession->getUser();
@@ -362,7 +362,7 @@ class Backend implements UserInterface, IUserBackend {
 	}
 
 	public function createGuest($uid) {
-		$guest = new \OCA\Guests\Db\Guest($uid, null);
+		$guest = new Db\Guest($uid, null);
 		$this->mapper->insert($guest);
 		$this->config->setUserValue($uid, 'files', 'quota', 0);
 		$this->config->setUserValue($uid, 'settings', 'email', $uid);
