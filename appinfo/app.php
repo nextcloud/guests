@@ -41,7 +41,7 @@ if (in_array('contact', $conditions)) {
 $user = \OC::$server->getUserSession()->getUser();
 if ($user) {
     // if the whitelist is used
-	if ($config->getAppValue('guests', 'usewhitelist', true)) {
+	if ($config->getAppValue('guests', 'usewhitelist', 'true') === 'true') {
 		// hide navigation entries for guests
 		$jail = \OCA\Guests\Jail::createForStaticLegacyCode();
 		if ($jail->isGuest($user->getUID())) {

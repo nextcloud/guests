@@ -123,7 +123,8 @@ class Hooks {
 			$app = $this->jail->getRequestedApp(
 				$this->request->getRawPathInfo()
 			);
-			if ( ! in_array($app, $this->jail->getGuestApps()) ) {
+			// if the whitelist is used
+			if (\OC::$server->getConfig()->getAppValue('guests', 'usewhitelist', 'true') === 'true' && ! in_array($app, $this->jail->getGuestApps()) ) {
 				// send forbidden and exit
 				header('HTTP/1.0 403 Forbidden');
 
