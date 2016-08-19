@@ -160,7 +160,7 @@ class Jail {
 	public function createJail($uid) {
 		// FIXME without this the cache tries to gc a not existing folder
 		//trigger creation of user home and /files folder
-		//\OC::$server->getUserFolder($uid);
+		\OC::$server->getUserFolder($uid);
 
 		// make root and home storage readonly
 		// root also needs to be readonly for objectstorage
