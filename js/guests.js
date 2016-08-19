@@ -136,6 +136,11 @@
 		});
 		$guestUseWhitelist.on('change', function () {
 			config.useWhitelist = $guestUseWhitelist.prop('checked');
+			if(config.useWhitelist) {
+				$guestWhitelist.show();
+			} else {
+				$guestWhitelist.hide();
+			}
 			saveConfig();
 		});
 		$guestWhitelist.on('change', function () {
