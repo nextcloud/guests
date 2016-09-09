@@ -16,7 +16,6 @@ namespace OCA\Guests\Controller;
 
 use OCA\Guests\Jail;
 use OCP\AppFramework\Controller;
-use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\IConfig;
 use OCP\IRequest;

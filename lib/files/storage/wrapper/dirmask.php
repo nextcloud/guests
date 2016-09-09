@@ -15,17 +15,9 @@
 namespace OCA\Guests\Files\Storage\Wrapper;
 
 use OC\Files\Storage\Wrapper\PermissionsMask;
-use OCP\Constants;
 
 class DirMask extends PermissionsMask {
-/*
- *
-		$roStorage =
-		new \OC\Files\Mount\MountPoint(
-		\OC::$server->getMountManager()->addMount()
-		$rootMount = new \OC\Files\Mount\MountPoint(new Temporary(array()), '/');
-		$this->manager->addMount($rootMount);
-*/
+
 	/**
 	 * @var string the dir that should be masked
 	 */

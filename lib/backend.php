@@ -342,7 +342,7 @@ class Backend implements UserInterface, IUserBackend {
 			&& isset($_POST['shareWith'])
 			&& filter_var($_POST['shareWith'], FILTER_VALIDATE_EMAIL)
 			&& $this->userSession->isLoggedIn()
-				// FIXME only if federated share is not available
+				// FIXME only if federated share is not available?
 			&& !$this->userExists($_POST['shareWith'])
 		) {
 			$user = $this->userSession->getUser();

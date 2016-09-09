@@ -15,7 +15,6 @@ namespace OCA\Guests;
 
 
 use OC\Share\MailNotifications;
-use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\Defaults;
 use OCP\IConfig;
 use OCP\IL10N;
