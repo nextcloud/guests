@@ -20,6 +20,7 @@ use OCP\IConfig;
 use OCP\IL10N;
 use OCP\ILogger;
 use OCP\IUser;
+use OCP\IUserSession;
 use OCP\Mail\IMailer;
 use OCP\Security\ISecureRandom;
 use OCP\Share;
@@ -33,8 +34,8 @@ class Mail {
 	/** @var ILogger */
 	private $logger;
 
-	/** @var IUser */
-	private $user;
+	/** @var IUserSession */
+	private $userSession;
 
 	/** @var IMailer */
 	private $mailer;
@@ -48,14 +49,14 @@ class Mail {
 	public function __construct(
 		IConfig $config,
 		ILogger $logger,
-		IUser $user,
+		IUserSession $userSession,
 		IMailer $mailer,
 		Defaults $defaults,
 		IL10N $l10n
 	) {
 		$this->config = $config;
 		$this->logger = $logger;
-		$this->user = $user;
+		$this->userSession = $userSession;
 		$this->mailer = $mailer;
 		$this->defaults = $defaults;
 		$this->l10n = $l10n;
@@ -75,7 +76,7 @@ class Mail {
 			self::$instance = new Mail (
 				\OC::$server->getConfig(),
 				\OC::$server->getLogger(),
-				\OC::$server->getUserSession()->getUser(),
+				\OC::$server->getUserSession(),
 				\OC::$server->getMailer(),
 				new Defaults(),
 				\OC::$server->getL10N('guests')
@@ -106,7 +107,7 @@ class Mail {
 		$this->logger->debug("sending invite to $shareWith: $passwordLink", ['app' => 'guests']);
 
 		$replyTo = $this->config->getUserValue($uid, 'settings', 'email', null);
-		$senderDisplayName = $this->user->getDisplayName();
+		$senderDisplayName = $this->userSession->getUser()->getDisplayName();
 
 		$items = Share::getItemSharedWithUser($itemType, $itemSource, $shareWith);
 		$filename = trim($items[0]['file_target'], '/');

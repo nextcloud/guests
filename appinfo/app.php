@@ -49,8 +49,10 @@ if ($user) {
 		}
 	}
 
-	// hide email change field via css
-	\OCP\Util::addStyle('guests', 'personal');
+	// hide email change field via css for learned guests
+	if ($user->getBackendClassName() === 'Guests') {
+		\OCP\Util::addStyle('guests', 'personal');
+	}
 
 	if (\OC::$server->getGroupManager()->isAdmin($user->getUID())) {
 		\OCP\App::registerAdmin('guests', 'settings/admin');
