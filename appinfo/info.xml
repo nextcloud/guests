@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<info>
+	<id>guests</id>
+	<name>Guests</name>
+	<description>Allow classifying users or contacts as guests</description>
+	<version>0.0.8</version>
+	<licence>Commercial</licence>
+	<author>ownCloud Inc.</author>
+	<dependencies>
+		<owncloud min-version="8.2" max-version="9.1" />
+		<php min-version="5.4" />
+	</dependencies>
+	<types>
+		<authentication/>
+	</types>
+</info>
