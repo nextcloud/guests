@@ -45,6 +45,8 @@ if (in_array('contact', $conditions)) {
 \OCP\Util::connectHook('OC_Filesystem', 'preSetup', '\OCA\Guests\Hooks', 'preSetup');
 
 // --- register js for user management------------------------------------------
+\OCP\Util::addScript('guests', 'app');
+
 $user = \OC::$server->getUserSession()->getUser();
 if ($user) {
     // if the whitelist is used
