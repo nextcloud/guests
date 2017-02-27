@@ -41,5 +41,10 @@ return [
 			'url' => '/whitelist/reset',
 			'verb' => 'POST',
 		],
+		[
+			'name' => 'users#create',
+			'url' => '/users',
+			'verb' => 'PUT'
+		]
 	],
 ];
