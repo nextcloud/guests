@@ -30,16 +30,16 @@ if (\OCP\App::isEnabled('user_ldap')) {
 // Only register guest user backend if contacts should be treated as guests
 $conditions = $config->getAppValue('guests', 'conditions', 'quota');
 $conditions = explode(',', $conditions);
-if (in_array('contact', $conditions)) {
-	$guestBackend = \OCA\Guests\Backend::createForStaticLegacyCode();
-	\OC::$server->getUserManager()->registerBackend($guestBackend);
+
+$guestBackend = \OCA\Guests\Backend::createForStaticLegacyCode();
+\OC::$server->getUserManager()->registerBackend($guestBackend);
 
 	// TODO add a proper hook to core. pre_shared requires the user to exist,
 	//  so we need to do the ugly hack in $guestBackend->interceptShareRequest();
 	//\OCP\Util::connectHook('OCP\Share', 'pre_shared', '\OCA\Guests\Hooks', 'preShareHook');
 	$guestBackend->interceptShareRequest();
 	\OCP\Util::connectHook('OCP\Share', 'post_shared', '\OCA\Guests\Hooks', 'postShareHook');
-}
+
 
 
 \OCP\Util::connectHook('OC_Filesystem', 'preSetup', '\OCA\Guests\Hooks', 'preSetup');

@@ -6,6 +6,8 @@ namespace OCA\Guests\Controller;
 
 use OC\AppFramework\Http;
 
+use OC\User\User;
+use OCA\Guests\Backend;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\IConfig;
@@ -90,7 +92,18 @@ class UsersController extends Controller {
 	 */
 	public function create($username, $password, $email) {
 
-		if(empty($email) && !$this->mailer->validateMailAddress($email)) {
+		/** @var Backend $backend */
+		$backend = null;
+		foreach ($this->userManager->getBackends() as $be) {
+			if ($be instanceof Backend) {
+				$backend = $be;
+				break;
+			}
+		}
+
+
+
+		if (empty($email) && !$this->mailer->validateMailAddress($email)) {
 			return new DataResponse(
 				[
 					'message' => (string)$this->l10n->t('Invalid mail address')
@@ -122,15 +135,18 @@ class UsersController extends Controller {
 			$group = $this->groupManager->createGroup($guestGroup);
 		}
 
-		$user = $this->userManager->createUser($username, $password);
-		$user->setEMailAddress($email);
+
+
+		$backend->createGuest($username, $email);
+		#$user = $this->userManager->createUser($username, $password);
+		#$user->setEMailAddress($email);
 
 		$readOnlyGroups = json_decode(
 			$this->config->getAppValue('core', 'read_only_groups', [])
 		);
 
 		$group = $this->groupManager->get($readOnlyGroups[0]);
-		$group->addUser($user);
+		$group->addUser(new User($username, $backend));
 
 		return new DataResponse(
 			[
