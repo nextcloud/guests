@@ -1,6 +1,33 @@
-OC.Plugins.register('OCA.Share.ShareDialogView', {
+/*
+ * Copyright (c) 2017 Felix Heidecke <felix.heidecke@owncloud.com>
+ *
+ * This file is licensed under the Affero General Public License version 3
+ * or later.
+ *
+ * See the COPYING-README file.
+ *
+ */
+
+if (!OCA.Guests) {
+	/**
+	 * @namespace OCA.Guests
+	 */
+	OCA.Guests = {};
+}
+/**
+ * @namespace
+ */
+OCA.Guests.App = {
+
+};
+
+
+OC.Plugins.register('OC.Share.ShareDialogView', {
 	attach: function (obj) {
-		obj.autocompleteHandler = function(search, response) {
+
+		// Override ShareDigalogView
+
+		obj.autocompleteHandler = function (search, response) {
 			var view = obj;
 			var $loading = obj.$el.find('.shareWithLoading');
 			$loading.removeClass('hidden');
@@ -18,16 +45,16 @@ OC.Plugins.register('OCA.Share.ShareDialogView', {
 					$loading.removeClass('inlineblock');
 					if (result.ocs.meta.statuscode == 100) {
 						var searchTerm = search.term.trim();
-						var users      = result.ocs.data.exact.users.concat(result.ocs.data.users);
-						var groups     = result.ocs.data.exact.groups.concat(result.ocs.data.groups);
-						var remotes    = result.ocs.data.exact.remotes.concat(result.ocs.data.remotes);
+						var users = result.ocs.data.exact.users.concat(result.ocs.data.users);
+						var groups = result.ocs.data.exact.groups.concat(result.ocs.data.groups);
+						var remotes = result.ocs.data.exact.remotes.concat(result.ocs.data.remotes);
 
 						// Potential guests
-						var unknown    = [{
+						var unknown = [{
 							label: searchTerm,
 							value: {
-								shareType :4,
-								shareWith : searchTerm.toLowerCase()
+								shareType: 4,
+								shareWith: searchTerm.toLowerCase()
 							}
 						}];
 
@@ -124,6 +151,69 @@ OC.Plugins.register('OCA.Share.ShareDialogView', {
 				OC.Notification.show(t('core', 'An error occurred. Please try again'));
 				window.setTimeout(OC.Notification.hide, 5000);
 			});
+		};
+
+		// Override _onSelectRecipient
+
+		obj._onSelectRecipient = function (e, s) {
+			e.preventDefault();
+			$(e.target).attr('disabled', true)
+				.val(s.item.label);
+			var $loading = obj.$el.find('.shareWithLoading');
+			$loading.removeClass('hidden')
+				.addClass('inlineblock');
+
+			if (s.item.value.shareType === OC.Share.SHARE_TYPE_GUEST) {
+				var type = 'PUT';
+				var url = '/index.php' + OC.linkTo('guests', 'users');
+				var data = {
+					username: s.item.value.shareWith,
+					password: '12345',
+					email: s.item.value.shareWith + '@foo.bar'
+				};
+
+				$.ajax({
+					type: type,
+					url: url,
+					data: data,
+					dataType: 'text'
+				}).done(function (xhr) {
+
+					response = JSON.parse(xhr);
+
+					OC.dialogs.alert(response.message, t('core', 'Tadaa'));
+
+					$(e.target).val('')
+						.attr('disabled', false);
+					$loading.addClass('hidden')
+						.removeClass('inlineblock');
+
+				}).fail(function (xhr) {
+					var msg = t('core', 'Error');
+					var result = xhr.responseJSON;
+					if (result && result.ocs && result.ocs.meta) {
+						msg = result.ocs.meta.message;
+					}
+
+					OC.dialogs.alert(msg, t('core', 'Error while sharing'));
+				});
+			}
+			else {
+				obj.model.addShare(s.item.value, {
+					success: function () {
+						$(e.target).val('')
+							.attr('disabled', false);
+						$loading.addClass('hidden')
+							.removeClass('inlineblock');
+					}, error: function (obj, msg) {
+						OC.Notification.showTemporary(msg);
+						$(e.target).attr('disabled', false)
+							.autocomplete('search', $(e.target).val());
+						$loading.addClass('hidden')
+							.removeClass('inlineblock');
+					}
+				});
+			}
 		}
 	}
 });
