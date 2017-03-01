@@ -27,18 +27,9 @@ if (\OCP\App::isEnabled('user_ldap')) {
 	\OC_App::loadApp('user_ldap');
 }
 
-// Only register guest user backend if contacts should be treated as guests
-$conditions = $config->getAppValue('guests', 'conditions', 'quota');
-$conditions = explode(',', $conditions);
-
 $guestBackend = \OCA\Guests\Backend::createForStaticLegacyCode();
 \OC::$server->getUserManager()->registerBackend($guestBackend);
-
-	// TODO add a proper hook to core. pre_shared requires the user to exist,
-	//  so we need to do the ugly hack in $guestBackend->interceptShareRequest();
-	//\OCP\Util::connectHook('OCP\Share', 'pre_shared', '\OCA\Guests\Hooks', 'preShareHook');
-	$guestBackend->interceptShareRequest();
-	\OCP\Util::connectHook('OCP\Share', 'post_shared', '\OCA\Guests\Hooks', 'postShareHook');
+\OCP\Util::connectHook('OCP\Share', 'post_shared', '\OCA\Guests\Hooks', 'postShareHook');
 
 
 
@@ -49,11 +40,7 @@ $user = \OC::$server->getUserSession()->getUser();
 if ($user) {
     // if the whitelist is used
 	if ($config->getAppValue('guests', 'usewhitelist', 'true') === 'true') {
-		// hide navigation entries for guests
-		$jail = \OCA\Guests\Jail::createForStaticLegacyCode();
-		if ($jail->isGuest($user->getUID())) {
-			\OCP\Util::addScript('guests', 'navigation');
-		}
+
 	}
 
 	// hide email change field via css for learned guests

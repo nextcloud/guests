@@ -6,8 +6,8 @@ namespace OCA\Guests\Controller;
 
 use OC\AppFramework\Http;
 
-use OC\User\User;
 use OCA\Guests\Backend;
+use OCA\Guests\Mail;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\IConfig;
@@ -17,6 +17,7 @@ use OCP\IL10N;
 use OCP\IRequest;
 use OCP\IUserManager;
 use OCP\Mail\IMailer;
+use Punic\Data;
 
 class UsersController extends Controller {
 	/**
@@ -43,10 +44,6 @@ class UsersController extends Controller {
 	 * @var IGroupManager
 	 */
 	private $groupManager;
-	/**
-	 * @var IDBConnection
-	 */
-	private $dbConnection;
 
 
 	/**
@@ -59,7 +56,6 @@ class UsersController extends Controller {
 	 * @param IL10N $l10n
 	 * @param IConfig $config
 	 * @param IMailer $mailer
-	 * @param IDBConnection $dbConnection
 	 */
 	public function __construct($appName,
 								IRequest $request,
@@ -67,8 +63,7 @@ class UsersController extends Controller {
 								IGroupManager $groupManager,
 								IL10N $l10n,
 								IConfig $config,
-								IMailer $mailer,
-								IDBConnection $dbConnection
+								IMailer $mailer
 	) {
 		parent::__construct($appName, $request);
 
@@ -78,7 +73,6 @@ class UsersController extends Controller {
 		$this->config = $config;
 		$this->mailer = $mailer;
 		$this->groupManager = $groupManager;
-		$this->dbConnection = $dbConnection;
 	}
 
 	/**
@@ -91,17 +85,6 @@ class UsersController extends Controller {
 	 * @return DataResponse
 	 */
 	public function create($username, $password, $email) {
-
-		/** @var Backend $backend */
-		$backend = null;
-		foreach ($this->userManager->getBackends() as $be) {
-			if ($be instanceof Backend) {
-				$backend = $be;
-				break;
-			}
-		}
-
-
 
 		if (empty($email) && !$this->mailer->validateMailAddress($email)) {
 			return new DataResponse(
@@ -124,39 +107,43 @@ class UsersController extends Controller {
 			);
 		}
 
-		$guestGroup = $this->config->getAppValue(
+		$guestGroupName = $this->config->getAppValue(
 			'guests',
 			'group',
-			null
+			'guests'
 		);
-
-
-		if (!$this->groupManager->groupExists($guestGroup)) {
-			$group = $this->groupManager->createGroup($guestGroup);
-		}
-
-
-
-		$backend->createGuest($username, $email);
-		#$user = $this->userManager->createUser($username, $password);
-		#$user->setEMailAddress($email);
 
 		$readOnlyGroups = json_decode(
-			$this->config->getAppValue('core', 'read_only_groups', [])
+			$this->config->getAppValue('core', 'read_only_groups', []),
+			true
 		);
 
-		$group = $this->groupManager->get($readOnlyGroups[0]);
-		$group->addUser(new User($username, $backend));
+
+		if (!$this->groupManager->groupExists($guestGroupName)) {
+			$this->groupManager->createGroup($guestGroupName);
+		}
+
+		if (!in_array($guestGroupName, $readOnlyGroups)) {
+			$readOnlyGroups[] = $guestGroupName;
+			$this->config->setAppValue(
+				'core', 'read_only_groups', json_encode($readOnlyGroups)
+			);
+		}
+
+		$user = $this->userManager->createUser($username, $password);
+		$user->setEMailAddress($email);
+
+		$guestGroup = $this->groupManager->get($guestGroupName);
+		$guestGroup->addUser($user);
 
 		return new DataResponse(
 			[
 				'message' => (string)$this->l10n->t(
-					'User sucessfully created'
+					'User successfully created'
 				)
 			],
 			Http::STATUS_CREATED
 		);
-
 	}
 
 }
