@@ -23,8 +23,11 @@ namespace OCA\Guests;
 
 use OCA\Guests\Db\GuestMapper;
 use OCP\AppFramework\Db\DoesNotExistException;
+use OCP\IConfig;
+use OCP\IGroupManager;
 use OCP\ILogger;
 use OCP\IRequest;
+use OCP\IUserManager;
 use OCP\IUserSession;
 use OCP\Share;
 use OCP\Template;
@@ -51,14 +54,13 @@ class Hooks {
 	private $mail;
 
 	/**
-	 * @var Jail
+	 * @var IGroupManager
 	 */
-	private $jail;
-
+	private $groupManager;
 	/**
-	 * @var GuestMapper
+	 * @var IUserManager
 	 */
-	private $mapper;
+	private $userManager;
 
 	/**
 	 * Hooks constructor.
@@ -67,27 +69,30 @@ class Hooks {
 	 * @param IUserSession $userSession
 	 * @param IRequest $request
 	 * @param Mail $mail
-	 * @param Jail $jail
-	 * @param GuestMapper $mapper
+	 * @param IGroupManager $groupManager
+	 * @param IConfig $config
+	 * @internal param GuestMapper $mapper
 	 */
 	public function __construct(
 		ILogger $logger,
 		IUserSession $userSession,
 		IRequest $request,
 		Mail $mail,
-		Jail $jail,
-		GuestMapper $mapper
+		IGroupManager $groupManager,
+		IUserManager $userManager,
+		IConfig $config
 	) {
 		$this->logger = $logger;
 		$this->userSession = $userSession;
 		$this->request = $request;
 		$this->mail = $mail;
-		$this->jail = $jail;
-		$this->mapper = $mapper;
+		$this->groupManager = $groupManager;
+		$this->userManager = $userManager;
+		$this->config = $config;
 	}
 
 	/**
-	 * @var Jail
+	 * @var Hooks
 	 */
 	private static $instance;
 
@@ -104,11 +109,9 @@ class Hooks {
 				\OC::$server->getUserSession(),
 				\OC::$server->getRequest(),
 				Mail::createForStaticLegacyCode(),
-				Jail::createForStaticLegacyCode(),
-				new GuestMapper(
-					\OC::$server->getDatabaseConnection(),
-					$logger
-				)
+				\OC::$server->getGroupManager(),
+				\OC::$server->getUserManager(),
+				\OC::$server->getConfig()
 			);
 		}
 		return self::$instance;
@@ -126,24 +129,7 @@ class Hooks {
 	}
 
 	public function handlePreSetup($uid) {
-		if ($this->jail->isGuest($uid)) {
-			$app = $this->jail->getRequestedApp(
-				$this->request->getRawPathInfo()
-			);
-			// if the whitelist is used
-			if (\OC::$server->getConfig()->getAppValue('guests', 'usewhitelist', 'true') === 'true' && ! in_array($app, $this->jail->getGuestApps()) ) {
-				// send forbidden and exit
-				header('HTTP/1.0 403 Forbidden');
 
-				$l = \OC::$server->getL10NFactory()->get('guests');
-				Template::printErrorPage($l->t(
-						'Access to this resource is forbidden for guests.'
-				));
-				exit;
-			}
-			$this->jail->createJail($uid);
-			return;
-		}
 	}
 
 	/**
@@ -169,6 +155,7 @@ class Hooks {
 		$itemSource
 	) {
 
+		/*
 		if ($shareType !== Share::SHARE_TYPE_USER ||
 				!filter_var($shareWith, FILTER_VALIDATE_EMAIL)
 		) {
@@ -178,46 +165,61 @@ class Hooks {
 			// yet be part of a group, so we only need to take action
 			// when an email guest is receiving a share
 		}
+		*/
 
-		if ($itemType === 'folder' || $itemType === 'file') {
 
-			$user = $this->userSession->getUser();
-			if ($user) {
-				$uid = $user->getUID();
+		if (!($itemType === 'folder' || $itemType === 'file')) {
+			$this->logger->debug(
+				"ignoring share for itemType '$itemType'",
+				['app'=>'guests']
+			);
+
+			return;
+		}
+
+
+		$user = $this->userSession->getUser();
+
+		if (!$user) {
+			throw new \Exception(
+				'post_share hook triggered without user in session'
+			);
+		}
+
+		$uid = $user->getUID();
+		$guestGroup = $this->config->getAppValue('guests', 'group');
+
+		if (!$this->groupManager->isInGroup($shareWith, $guestGroup)) {
+			$this->logger->debug(
+				"ignoring user '$shareWith', not a guest",
+				['app'=>'guests']
+			);
+
+			return;
+		}
+
+
+		$this->logger->debug("checking if '$shareWith' has a password",
+			['app'=>'guests']);
+
+		try {
+			$guest = $this->userManager->get($shareWith);
+			if (!$guest->getLastLogin()) {
+				// send invitation
+				$this->mail->sendGuestInviteMail(
+					$uid, $shareWith, $itemType, $itemSource
+				);
 			} else {
-				throw new \Exception(
-						'post_share hook triggered without user in session'
+				// always notify guests of new files
+				$this->mail->sendShareNotification(
+					$uid, $shareWith, $itemType, $itemSource
 				);
 			}
 
-			if ($this->jail->isGuest($shareWith)) {
-				$this->logger->debug("checking if '$shareWith' has a password",
-					['app'=>'guests']);
-				try {
-					$guest = $this->mapper->findByUid($shareWith);
-					if ($guest->getHash() === null) {
-						// send invitation
-						$this->mail->sendGuestInviteMail(
-							$uid, $shareWith, $itemType, $itemSource
-						);
-					} else {
-						// always notify guests of new files
-						$this->mail->sendShareNotification(
-							$uid, $shareWith, $itemType, $itemSource
-						);
-					}
-
-				} catch (DoesNotExistException $ex) {
-					$this->logger->error("'$shareWith' does not exist", ['app'=>'guests']);
-				}
-			} else {
-				$this->logger->debug("ignoring user '$shareWith', not a guest",
-						['app'=>'guests']);
-			}
-		} else {
-			$this->logger->debug("ignoring share for itemType '$itemType'",
-					['app'=>'guests']);
+		} catch (DoesNotExistException $ex) {
+			$this->logger->error("'$shareWith' does not exist", ['app'=>'guests']);
 		}
+
 	}
 
 }

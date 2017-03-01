@@ -113,6 +113,7 @@ class Mail {
 
 		$this->logger->debug("sending invite to $shareWith: $passwordLink", ['app' => 'guests']);
 
+		$shareWithEmail = $this->config->getUserValue($shareWith, 'settings', 'email', null);
 		$replyTo = $this->config->getUserValue($uid, 'settings', 'email', null);
 		$senderDisplayName = $this->userSession->getUser()->getDisplayName();
 
@@ -156,7 +157,7 @@ class Mail {
 
 		try {
 			$message = $this->mailer->createMessage();
-			$message->setTo([$shareWith => $shareWith]);
+			$message->setTo([$shareWithEmail => $shareWith]);
 			$message->setSubject($subject);
 			$message->setHtmlBody($htmlBody);
 			$message->setPlainBody($textBody);
