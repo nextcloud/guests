@@ -1,0 +1,61 @@
+// Use .guests to establish a namespace
+
+#app-guests {
+
+  @modal-width: 500px;
+  @modal-height: 360px;
+  @modal-gutter: 20px;
+
+  .modal {
+    box-sizing: border-box;
+    position: absolute;
+    z-index: 20;
+    left: ~"calc(50% - "(@modal-width / 2)~")";
+    top: ~"calc(50% - "(@modal-height / 2)~")";
+
+    width: @modal-width;
+    height: @modal-height;
+
+    background: white;
+    padding: @modal-gutter;
+
+    &-title,
+    &-body {
+      margin-bottom: @modal-gutter * 2;
+    }
+
+    .form {
+      &-group {
+        margin: @modal-gutter / 2 0;
+      }
+
+      &-label,
+      &-input {
+        box-sizing: border-box;
+        display: block;
+        width: 100%;
+      }
+
+    }
+
+    &-backdrop {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, .5);
+      z-index: 9;
+      content: '';
+      width: 100vw;
+      height: 100vh;
+      display: block;
+    }
+  }
+
+  // Mods
+
+  &.-animate-to {
+    opacity: 1;
+  }
+}

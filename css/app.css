@@ -1,0 +1,40 @@
+#app-guests .modal {
+  box-sizing: border-box;
+  position: absolute;
+  z-index: 20;
+  left: calc(50% -  250px );
+  top: calc(50% -  180px );
+  width: 500px;
+  height: 360px;
+  background: white;
+  padding: 20px;
+}
+#app-guests .modal-title,
+#app-guests .modal-body {
+  margin-bottom: 40px;
+}
+#app-guests .modal .form-group {
+  margin: 10px 0;
+}
+#app-guests .modal .form-label,
+#app-guests .modal .form-input {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+}
+#app-guests .modal-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9;
+  content: '';
+  width: 100vw;
+  height: 100vh;
+  display: block;
+}
+#app-guests.-animate-to {
+  opacity: 1;
+}

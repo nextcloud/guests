@@ -31,12 +31,12 @@ $guestBackend = \OCA\Guests\Backend::createForStaticLegacyCode();
 \OC::$server->getUserManager()->registerBackend($guestBackend);
 \OCP\Util::connectHook('OCP\Share', 'post_shared', '\OCA\Guests\Hooks', 'postShareHook');
 
-
-
 \OCP\Util::connectHook('OC_Filesystem', 'preSetup', '\OCA\Guests\Hooks', 'preSetup');
 
 // --- register js for user management------------------------------------------
+\OCP\Util::addScript('guests', 'vue');
 \OCP\Util::addScript('guests', 'app');
+\OCP\Util::addStyle('guests', 'app');
 
 $user = \OC::$server->getUserSession()->getUser();
 if ($user) {
