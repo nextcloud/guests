@@ -87,11 +87,10 @@ class UsersController extends Controller {
 	 * @NoCSRFRequired
 	 *
 	 * @param $username
-	 * @param $password
 	 * @param $email
 	 * @return DataResponse
 	 */
-	public function create($username, $password, $email) {
+	public function create($username, $email) {
 
 		if (empty($email) && !$this->mailer->validateMailAddress($email)) {
 			return new DataResponse(
@@ -137,7 +136,11 @@ class UsersController extends Controller {
 			);
 		}
 
-		$user = $this->userManager->createUser($username, $password);
+		$user = $this->userManager->createUser(
+			$username,
+			$this->secureRandom->generate(20)
+		);
+
 		$user->setEMailAddress($email);
 
 		$guestGroup = $this->groupManager->get($guestGroupName);
