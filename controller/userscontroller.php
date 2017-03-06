@@ -1,6 +1,5 @@
 <?php
 
-
 namespace OCA\Guests\Controller;
 
 
@@ -17,6 +16,7 @@ use OCP\IL10N;
 use OCP\IRequest;
 use OCP\IUserManager;
 use OCP\Mail\IMailer;
+use OCP\Security\ISecureRandom;
 use Punic\Data;
 
 class UsersController extends Controller {
@@ -44,6 +44,10 @@ class UsersController extends Controller {
 	 * @var IGroupManager
 	 */
 	private $groupManager;
+	/**
+	 * @var ISecureRandom
+	 */
+	private $secureRandom;
 
 
 	/**
@@ -56,6 +60,7 @@ class UsersController extends Controller {
 	 * @param IL10N $l10n
 	 * @param IConfig $config
 	 * @param IMailer $mailer
+	 * @param ISecureRandom $secureRandom
 	 */
 	public function __construct($appName,
 								IRequest $request,
@@ -63,7 +68,8 @@ class UsersController extends Controller {
 								IGroupManager $groupManager,
 								IL10N $l10n,
 								IConfig $config,
-								IMailer $mailer
+								IMailer $mailer,
+								ISecureRandom $secureRandom
 	) {
 		parent::__construct($appName, $request);
 
@@ -73,6 +79,7 @@ class UsersController extends Controller {
 		$this->config = $config;
 		$this->mailer = $mailer;
 		$this->groupManager = $groupManager;
+		$this->secureRandom = $secureRandom;
 	}
 
 	/**
@@ -80,11 +87,10 @@ class UsersController extends Controller {
 	 * @NoCSRFRequired
 	 *
 	 * @param $username
-	 * @param $password
 	 * @param $email
 	 * @return DataResponse
 	 */
-	public function create($username, $password, $email) {
+	public function create($username, $email) {
 
 		if (empty($email) && !$this->mailer->validateMailAddress($email)) {
 			return new DataResponse(
@@ -130,11 +136,31 @@ class UsersController extends Controller {
 			);
 		}
 
-		$user = $this->userManager->createUser($username, $password);
+		$user = $this->userManager->createUser(
+			$username,
+			$this->secureRandom->generate(20)
+		);
+
 		$user->setEMailAddress($email);
 
 		$guestGroup = $this->groupManager->get($guestGroupName);
 		$guestGroup->addUser($user);
+
+
+		$token = $this->secureRandom->getMediumStrengthGenerator()->generate(
+			21,
+			ISecureRandom::CHAR_DIGITS .
+			ISecureRandom::CHAR_LOWER .
+			ISecureRandom::CHAR_UPPER);
+
+		$token = sprintf('%s:%s', time(), $token);
+
+		$this->config->setUserValue(
+			$user->getUID(),
+			'owncloud',
+			'lostpassword',
+			$token
+		);
 
 		return new DataResponse(
 			[
