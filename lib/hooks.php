@@ -21,7 +21,6 @@
 
 namespace OCA\Guests;
 
-use OCA\Guests\Db\GuestMapper;
 use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\IConfig;
 use OCP\IGroupManager;
@@ -29,8 +28,8 @@ use OCP\ILogger;
 use OCP\IRequest;
 use OCP\IUserManager;
 use OCP\IUserSession;
-use OCP\Share;
-use OCP\Template;
+
+
 
 class Hooks {
 
@@ -129,7 +128,6 @@ class Hooks {
 	}
 
 	public function handlePreSetup($uid) {
-
 	}
 
 	/**
@@ -202,24 +200,32 @@ class Hooks {
 		$this->logger->debug("checking if '$shareWith' has a password",
 			['app'=>'guests']);
 
+
+		$passwordToken = $this->config->getUserValue(
+			$shareWith,
+			'owncloud',
+			'lostpassword',
+			null
+		);
+
 		try {
-			$guest = $this->userManager->get($shareWith);
-			if (!$guest->getLastLogin()) {
+			if ($passwordToken) {
+				$exploded = explode(':', $passwordToken);
 				// send invitation
 				$this->mail->sendGuestInviteMail(
-					$uid, $shareWith, $itemType, $itemSource
+					$uid, $shareWith, $itemType, $itemSource, $exploded[1]
 				);
 			} else {
 				// always notify guests of new files
+				$guest = $this->userManager->get($shareWith);
 				$this->mail->sendShareNotification(
-					$uid, $shareWith, $itemType, $itemSource
+					$this->userSession->getUser(), $guest, $itemType, $itemSource
 				);
 			}
 
+			#165
 		} catch (DoesNotExistException $ex) {
 			$this->logger->error("'$shareWith' does not exist", ['app'=>'guests']);
 		}
-
 	}
-
 }
