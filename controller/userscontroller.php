@@ -92,7 +92,7 @@ class UsersController extends Controller {
 	 */
 	public function create($username, $email) {
 
-		if (empty($email) && !$this->mailer->validateMailAddress($email)) {
+		if (empty($email) || !$this->mailer->validateMailAddress($email)) {
 			return new DataResponse(
 				[
 					'message' => (string)$this->l10n->t('Invalid mail address')
