@@ -99,16 +99,7 @@ class Mail {
 	 * @param $uid
 	 * @throws \Exception
 	 */
-	public function sendGuestInviteMail ($uid, $shareWith, $itemType, $itemSource) {
-
-		$this->logger->debug("generating password reset link for $shareWith'",
-			['app' => 'guests']);
-		$token = \OC::$server->getSecureRandom()->getMediumStrengthGenerator()->generate(21,
-			ISecureRandom::CHAR_DIGITS .
-			ISecureRandom::CHAR_LOWER .
-			ISecureRandom::CHAR_UPPER);
-		$this->config->setUserValue($shareWith, 'owncloud', 'lostpassword', time() . ':' . $token);
-
+	public function sendGuestInviteMail ($uid, $shareWith, $itemType, $itemSource, $token) {
 		$passwordLink = \OC::$server->getURLGenerator()->linkToRouteAbsolute('core.lost.resetform', array('userId' => $shareWith, 'token' => $token));
 
 		$this->logger->debug("sending invite to $shareWith: $passwordLink", ['app' => 'guests']);
@@ -188,14 +179,12 @@ class Mail {
 	 */
 	public function sendShareNotification (
 		$sender,
-		$recipient,
+		IUser $recipient,
 		$itemType,
 		$itemSource
 	) {
 		$recipientList[] = $recipient;
 
-		// don't send a mail to the user who shared the file
-		$recipientList = array_diff($recipientList, array($sender));
 
 		$mailNotification = new MailNotifications(
 			$sender,
