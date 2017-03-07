@@ -95,6 +95,12 @@ class UsersController extends Controller {
 			);
 		}
 
+		if (empty($username)) {
+			$errorMessages['username'] = (string)$this->l10n->t(
+				'Username required'
+			);
+		}
+
 
 		if ($this->userManager->userExists($username)) {
 			$errorMessages['username'] = (string)$this->l10n->t(
