@@ -4,20 +4,15 @@ namespace OCA\Guests\Controller;
 
 
 use OC\AppFramework\Http;
-
-use OCA\Guests\Backend;
-use OCA\Guests\Mail;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\IConfig;
-use OCP\IDBConnection;
 use OCP\IGroupManager;
 use OCP\IL10N;
 use OCP\IRequest;
 use OCP\IUserManager;
 use OCP\Mail\IMailer;
 use OCP\Security\ISecureRandom;
-use Punic\Data;
 
 class UsersController extends Controller {
 	/**
@@ -92,24 +87,27 @@ class UsersController extends Controller {
 	 */
 	public function create($username, $email) {
 
+		$errorMessages = [];
+
 		if (empty($email) || !$this->mailer->validateMailAddress($email)) {
-			return new DataResponse(
-				[
-					'message' => (string)$this->l10n->t('Invalid mail address')
-				],
-				Http::STATUS_UNPROCESSABLE_ENTITY
+			$errorMessages['email'] = (string)$this->l10n->t(
+				'Invalid mail address'
 			);
 		}
 
 
 		if ($this->userManager->userExists($username)) {
+			$errorMessages['username'] = (string)$this->l10n->t(
+				'A user with that name already exists.'
+			);
+		}
+
+		if (!empty($errorMessages)) {
 			return new DataResponse(
 				[
-					'message' => (string)$this->l10n->t(
-						'A user with that name already exists.'
-					)
+					'errorMessages' => $errorMessages
 				],
-				Http::STATUS_CONFLICT
+				Http::STATUS_UNPROCESSABLE_ENTITY
 			);
 		}
 
