@@ -1,4 +1,4 @@
-// Use .guests to establish a namespace
+// Use #app-guest to establish a namespace
 
 #app-guests {
 
@@ -6,16 +6,16 @@
   @modal-height: 360px;
   @modal-gutter: 20px;
 
+  @moda-z-index: 500;
+
   .modal {
     box-sizing: border-box;
     position: absolute;
-    z-index: 20;
+    z-index: @moda-z-index + 1;
     left: ~"calc(50% - "(@modal-width / 2)~")";
-    top: ~"calc(50% - "(@modal-height / 2)~")";
+    top: 20%;
 
     width: @modal-width;
-    height: @modal-height;
-
     background: white;
     padding: @modal-gutter;
 
@@ -34,6 +34,15 @@
         box-sizing: border-box;
         display: block;
         width: 100%;
+        transition:
+          background .333s ease-out,
+          border .333s ease-out;
+
+        &._error {
+          background: fade(red, 10%);
+          border: 1px solid fade(red, 20%);
+          color: red;
+        }
       }
 
     }
@@ -45,7 +54,7 @@
       right: 0;
       bottom: 0;
       background-color: rgba(0, 0, 0, .5);
-      z-index: 9;
+      z-index: @moda-z-index;
       content: '';
       width: 100vw;
       height: 100vh;
