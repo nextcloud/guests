@@ -208,6 +208,14 @@ class Hooks {
 			null
 		);
 
+		\OCP\Share::setPermissions(
+			$itemType,
+			$itemSource,
+			$shareType,
+			$shareWith,
+		    3
+		);
+
 		try {
 			if ($passwordToken) {
 				$exploded = explode(':', $passwordToken);
