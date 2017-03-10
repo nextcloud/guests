@@ -3,7 +3,7 @@
 	<id>guests</id>
 	<name>Guests</name>
 	<description>Allow classifying users or contacts as guests</description>
-	<version>0.0.8</version>
+	<version>0.1</version>
 	<licence>AGPL</licence>
 	<author>ownCloud Inc.</author>
 	<dependencies>
