@@ -124,7 +124,7 @@ class UsersController extends Controller {
 		);
 
 		$readOnlyGroups = json_decode(
-			$this->config->getAppValue('core', 'read_only_groups', []),
+			$this->config->getAppValue('core', 'read_only_groups', '[]'),
 			true
 		);
 
