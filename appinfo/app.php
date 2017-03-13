@@ -27,8 +27,6 @@ if (\OCP\App::isEnabled('user_ldap')) {
 	\OC_App::loadApp('user_ldap');
 }
 
-$guestBackend = \OCA\Guests\Backend::createForStaticLegacyCode();
-\OC::$server->getUserManager()->registerBackend($guestBackend);
 \OCP\Util::connectHook('OCP\Share', 'post_shared', '\OCA\Guests\Hooks', 'postShareHook');
 
 \OCP\Util::connectHook('OC_Filesystem', 'preSetup', '\OCA\Guests\Hooks', 'preSetup');
