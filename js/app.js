@@ -173,21 +173,25 @@ OC.Plugins.register('OC.Share.ShareDialogView', {
 						var users = result.ocs.data.exact.users.concat(result.ocs.data.users);
 						var groups = result.ocs.data.exact.groups.concat(result.ocs.data.groups);
 						var remotes = result.ocs.data.exact.remotes.concat(result.ocs.data.remotes);
-
-						// Potential guests
-						var unknown = [{
-							label: t('core', 'Add {unknown} (guest)', {unknown: searchTerm}),
-							value: {
-								shareType: 4,
-								shareWith: searchTerm
-							}
-						}];
+						var unknown = [];
 
 						var usersLength;
 						var groupsLength;
 						var remotesLength;
 
 						var i, j;
+
+						// Add potential guests to the suggestions
+						if (searchTerm.search("@") === -1) {
+
+							unknown = [{
+								label: t('core', 'Add {unknown} (guest)', {unknown: searchTerm}),
+								value: {
+									shareType: 4,
+									shareWith: searchTerm
+								}
+							}];
+						}
 
 						//Filter out the current user
 						usersLength = users.length;
