@@ -26,7 +26,7 @@ $config = \OC::$server->getConfig();
 if (\OCP\App::isEnabled('user_ldap')) {
 	\OC_App::loadApp('user_ldap');
 }
-
+\OC::$server->getGroupManager()->addBackend(new \OCA\Guests\GroupBackend());
 \OCP\Util::connectHook('OCP\Share', 'post_shared', '\OCA\Guests\Hooks', 'postShareHook');
 
 

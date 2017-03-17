@@ -1,5 +1,6 @@
 <?php
 /**
+ * @author Ilja Neumann <ineumann@owncloud.com>
  * @author Jörn Friedrich Dreyer <jfd@butonic.de>
  *
  * @copyright Copyright (c) 2017, ownCloud GmbH
@@ -52,10 +53,6 @@ class Hooks {
 	 */
 	private $mail;
 
-	/**
-	 * @var IGroupManager
-	 */
-	private $groupManager;
 	/**
 	 * @var IUserManager
 	 */
