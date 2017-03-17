@@ -86,7 +86,6 @@ class UsersController extends Controller {
 	 * @return DataResponse
 	 */
 	public function create($username, $email) {
-
 		$errorMessages = [];
 
 		if (empty($email) || !$this->mailer->validateMailAddress($email)) {
@@ -117,28 +116,6 @@ class UsersController extends Controller {
 			);
 		}
 
-		$guestGroupName = $this->config->getAppValue(
-			'guests',
-			'group',
-			'guests'
-		);
-
-		$readOnlyGroups = json_decode(
-			$this->config->getAppValue('core', 'read_only_groups', '[]'),
-			true
-		);
-
-
-		if (!$this->groupManager->groupExists($guestGroupName)) {
-			$this->groupManager->createGroup($guestGroupName);
-		}
-
-		if (!in_array($guestGroupName, $readOnlyGroups)) {
-			$readOnlyGroups[] = $guestGroupName;
-			$this->config->setAppValue(
-				'core', 'read_only_groups', json_encode($readOnlyGroups)
-			);
-		}
 
 		$user = $this->userManager->createUser(
 			$username,
@@ -146,10 +123,6 @@ class UsersController extends Controller {
 		);
 
 		$user->setEMailAddress($email);
-
-		$guestGroup = $this->groupManager->get($guestGroupName);
-		$guestGroup->addUser($user);
-
 
 		$token = $this->secureRandom->getMediumStrengthGenerator()->generate(
 			21,
@@ -159,12 +132,23 @@ class UsersController extends Controller {
 
 		$token = sprintf('%s:%s', time(), $token);
 
+		$userId = $user->getUID();
+
 		$this->config->setUserValue(
 			$user->getUID(),
 			'owncloud',
 			'lostpassword',
 			$token
 		);
+
+
+		$this->config->setUserValue(
+			$userId,
+			'owncloud',
+			'isGuest',
+			'1'
+		);
+
 
 		return new DataResponse(
 			[
