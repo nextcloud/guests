@@ -61,6 +61,7 @@ class Hooks {
 	 */
 	private $userManager;
 
+
 	/**
 	 * Hooks constructor.
 	 *
@@ -68,16 +69,14 @@ class Hooks {
 	 * @param IUserSession $userSession
 	 * @param IRequest $request
 	 * @param Mail $mail
-	 * @param IGroupManager $groupManager
+	 * @param IUserManager $userManager
 	 * @param IConfig $config
-	 * @internal param GuestMapper $mapper
 	 */
 	public function __construct(
 		ILogger $logger,
 		IUserSession $userSession,
 		IRequest $request,
 		Mail $mail,
-		IGroupManager $groupManager,
 		IUserManager $userManager,
 		IConfig $config
 	) {
@@ -85,7 +84,6 @@ class Hooks {
 		$this->userSession = $userSession;
 		$this->request = $request;
 		$this->mail = $mail;
-		$this->groupManager = $groupManager;
 		$this->userManager = $userManager;
 		$this->config = $config;
 	}
@@ -108,26 +106,11 @@ class Hooks {
 				\OC::$server->getUserSession(),
 				\OC::$server->getRequest(),
 				Mail::createForStaticLegacyCode(),
-				\OC::$server->getGroupManager(),
 				\OC::$server->getUserManager(),
 				\OC::$server->getConfig()
 			);
 		}
 		return self::$instance;
-	}
-
-	/**
-	 * jail into readonly storage
-	 * @param array $params
-	 */
-	static public function preSetup($params) {
-		if (!empty($params['user'])) {
-			$hook = self::createForStaticLegacyCode();
-			$hook->handlePreSetup($params['user']);
-		}
-	}
-
-	public function handlePreSetup($uid) {
 	}
 
 	/**
@@ -153,18 +136,22 @@ class Hooks {
 		$itemSource
 	) {
 
-		/*
-		if ($shareType !== Share::SHARE_TYPE_USER ||
-				!filter_var($shareWith, FILTER_VALIDATE_EMAIL)
-		) {
-			return; // only email guests need to receive password reset and
-			// share notification mails. other guest types can configure
-			// notification behavior themselves. email guests cannot
-			// yet be part of a group, so we only need to take action
-			// when an email guest is receiving a share
-		}
-		*/
 
+		$isGuest = $this->config->getUserValue(
+			$shareWith,
+			'owncloud',
+			'isGuest',
+			false
+		);
+
+		if (!$isGuest) {
+			$this->logger->debug(
+				"ignoring user '$shareWith', not a guest",
+				['app'=>'guests']
+			);
+
+			return;
+		}
 
 		if (!($itemType === 'folder' || $itemType === 'file')) {
 			$this->logger->debug(
@@ -184,19 +171,6 @@ class Hooks {
 			);
 		}
 
-		$uid = $user->getUID();
-		$guestGroup = $this->config->getAppValue('guests', 'group');
-
-		if (!$this->groupManager->isInGroup($shareWith, $guestGroup)) {
-			$this->logger->debug(
-				"ignoring user '$shareWith', not a guest",
-				['app'=>'guests']
-			);
-
-			return;
-		}
-
-
 		$this->logger->debug("checking if '$shareWith' has a password",
 			['app'=>'guests']);
 
@@ -208,30 +182,29 @@ class Hooks {
 			null
 		);
 
-		\OCP\Share::setPermissions(
-			$itemType,
-			$itemSource,
-			$shareType,
-			$shareWith,
-		    3
-		);
+		$uid = $user->getUID();
 
 		try {
 			if ($passwordToken) {
 				$exploded = explode(':', $passwordToken);
 				// send invitation
 				$this->mail->sendGuestInviteMail(
-					$uid, $shareWith, $itemType, $itemSource, $exploded[1]
+					$uid,
+					$shareWith,
+					$itemType,
+					$itemSource,
+					$exploded[1]
 				);
 			} else {
 				// always notify guests of new files
 				$guest = $this->userManager->get($shareWith);
 				$this->mail->sendShareNotification(
-					$this->userSession->getUser(), $guest, $itemType, $itemSource
+					$this->userSession->getUser(),
+					$guest,
+					$itemType,
+					$itemSource
 				);
 			}
-
-			#165
 		} catch (DoesNotExistException $ex) {
 			$this->logger->error("'$shareWith' does not exist", ['app'=>'guests']);
 		}

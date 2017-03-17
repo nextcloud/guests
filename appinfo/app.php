@@ -29,7 +29,6 @@ if (\OCP\App::isEnabled('user_ldap')) {
 
 \OCP\Util::connectHook('OCP\Share', 'post_shared', '\OCA\Guests\Hooks', 'postShareHook');
 
-\OCP\Util::connectHook('OC_Filesystem', 'preSetup', '\OCA\Guests\Hooks', 'preSetup');
 
 // --- register js for user management------------------------------------------
 \OCP\Util::addScript('guests', 'vue');
