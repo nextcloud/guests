@@ -130,9 +130,15 @@ $(document).ready(function () {
 					if (self.model)
 						self.model.fetch();
 
-				}).fail(function (xhr) {
-					// TODO: This needs be done propperly
-					alert('kaputt');
+				}).fail(function () {
+
+					// @NOTE: will be expendable in the near future
+					OCdialogs.alert(
+						t('core', 'Error while sharing'), // text
+						t('core', 'Error'), // title
+						false, // callback
+						true // modal
+					);
 				});
 			},
 
