@@ -195,6 +195,11 @@ class Hooks {
 			} else {
 				// always notify guests of new files
 				$guest = $this->userManager->get($shareWith);
+
+				if (!$guest) {
+					throw new DoesNotExistException("$shareWith does not exist");
+				}
+
 				$this->mail->sendShareNotification(
 					$this->userSession->getUser(),
 					$guest,
