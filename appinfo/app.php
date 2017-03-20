@@ -21,14 +21,8 @@
 
 $config = \OC::$server->getConfig();
 
-// TODO fix load order or introduce hook in core
-// force loading of ldap user backend if it is enabled
-if (\OCP\App::isEnabled('user_ldap')) {
-	\OC_App::loadApp('user_ldap');
-}
 \OC::$server->getGroupManager()->addBackend(new \OCA\Guests\GroupBackend());
 \OCP\Util::connectHook('OCP\Share', 'post_shared', '\OCA\Guests\Hooks', 'postShareHook');
-
 
 // --- register js for user management------------------------------------------
 \OCP\Util::addScript('guests', 'vue');
