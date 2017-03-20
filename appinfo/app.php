@@ -39,7 +39,7 @@ $user = \OC::$server->getUserSession()->getUser();
 if ($user) {
     // if the whitelist is used
 	if ($config->getAppValue('guests', 'usewhitelist', 'true') === 'true') {
-
+		\OCP\Util::connectHook('OC_Filesystem', 'preSetup', '\OCA\Guests\AppWhitelist', 'preSetup');
 	}
 
 	// hide email change field via css for learned guests
