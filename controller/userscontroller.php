@@ -83,9 +83,10 @@ class UsersController extends Controller {
 	 *
 	 * @param $username
 	 * @param $email
+	 * @param $displayName
 	 * @return DataResponse
 	 */
-	public function create($username, $email) {
+	public function create($username, $email, $displayName) {
 		$errorMessages = [];
 
 		if (empty($email) || !$this->mailer->validateMailAddress($email)) {
@@ -123,6 +124,10 @@ class UsersController extends Controller {
 		);
 
 		$user->setEMailAddress($email);
+
+		if (!empty($displayName)) {
+			$user->setDisplayName($displayName);
+		}
 
 		$token = $this->secureRandom->getMediumStrengthGenerator()->generate(
 			21,
