@@ -57,18 +57,15 @@ class SettingsController extends Controller {
 	 * @return DataResponse with the current config
 	 */
 	public function getConfig() {
-		$conditions = $this->config->getAppValue('guests', 'conditions', 'quota');
-		$conditions = explode(',', $conditions);
 		$useWhitelist = $this->config->getAppValue('guests', 'usewhitelist', true);
 		if ($useWhitelist === 'true' || $useWhitelist === true) {
 			$useWhitelist = true;
 		} else {
 			$useWhitelist = false;
 		}
-		$whitelist = $this->config->getAppValue('guests', 'whitelist', Jail::DEFAULT_WHITELIST);
+		$whitelist = $this->config->getAppValue('guests', 'whitelist', AppWhitelist::DEFAULT_WHITELIST);
 		$whitelist = explode(',', $whitelist);
 		return new DataResponse([
-			'conditions' => $conditions,
 			'group' => $this->config->getAppValue('guests', 'group', 'guests'),
 			'useWhitelist' => $useWhitelist,
 			'whitelist' => $whitelist,
@@ -84,13 +81,11 @@ class SettingsController extends Controller {
 	 * @return DataResponse
 	 */
 	public function setConfig($conditions, $group, $useWhitelist, $whitelist) {
-		$conditions = join(',', $conditions);
 		$newWhitelist = [];
 		foreach ($whitelist as $app) {
 			$newWhitelist[] = trim($app);
 		}
 		$newWhitelist = join(',', $newWhitelist);
-		$this->config->setAppValue('guests', 'conditions', $conditions);
 		$this->config->setAppValue('guests', 'group', $group);
 		$this->config->setAppValue('guests', 'usewhitelist', $useWhitelist);
 		$this->config->setAppValue('guests', 'whitelist', $newWhitelist);
