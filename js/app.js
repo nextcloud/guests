@@ -92,6 +92,7 @@ $(document).ready(function () {
 					url: '/index.php' + OC.linkTo('guests', 'users'),
 					dataType: 'text',
 					data: {
+						displayName: this.guest.fullname,
 						username: this.guest.username,
 						email: this.guest.email
 					}
