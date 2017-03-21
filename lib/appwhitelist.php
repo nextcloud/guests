@@ -64,10 +64,10 @@ class AppWhitelist {
 	}
 
 	/**
-	 * TODO Core has \OC::$REQUESTEDAPP but it isn't set until the routes are matched
+	 * Core has \OC::$REQUESTEDAPP but it isn't set until the routes are matched
 	 * taken from \OC\Route\Router::match()
 	 */
-	public function getRequestedApp($url) {
+	private static function getRequestedApp($url) {
 		if (substr($url, 0, 6) === '/apps/') {
 			// empty string / 'apps' / $app / rest of the route
 			list(, , $app,) = explode('/', $url, 4);
