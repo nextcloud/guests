@@ -13,4 +13,7 @@
 	<types>
 		<authentication/>
 	</types>
+	<settings>
+		<admin>OCA\Guests\Settings\Admin</admin>
+	</settings>
 </info>

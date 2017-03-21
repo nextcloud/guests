@@ -30,13 +30,17 @@ use OCP\GroupInterface;
  */
 class GroupBackend implements GroupInterface {
 
-	const GUEST_APP_GROUP_NAME = 'guest_app';
-
 	private $guestMembers = [];
 
 	protected $possibleActions = [
 		self::COUNT_USERS => 'countUsersInGroup',
 	];
+	private $groupName;
+
+
+	public function __construct($groupName = 'guest_app') {
+		$this->groupName = $groupName;
+	}
 
 
 	private function getMembers() {
@@ -94,7 +98,7 @@ class GroupBackend implements GroupInterface {
 	 * Checks whether the user is member of a group or not.
 	 */
 	public function inGroup($uid, $gid) {
-		return in_array($uid, $this->guestMembers) && $gid === self::GUEST_APP_GROUP_NAME;
+		return in_array($uid, $this->guestMembers) && $gid === $this->groupName;
 
 	}
 
@@ -110,7 +114,7 @@ class GroupBackend implements GroupInterface {
 	 */
 	public function getUserGroups($uid) {
 		if (in_array($uid, $this->getMembers())) {
-			return [self::GUEST_APP_GROUP_NAME];
+			return [$this->groupName];
 		}
 
 		return [];
@@ -128,7 +132,7 @@ class GroupBackend implements GroupInterface {
 	 * Returns a list with all groups
 	 */
 	public function getGroups($search = '', $limit = -1, $offset = 0) {
-		return [self::GUEST_APP_GROUP_NAME];
+		return [$this->groupName];
 	}
 
 	/**
@@ -139,7 +143,7 @@ class GroupBackend implements GroupInterface {
 	 * @since 4.5.0
 	 */
 	public function groupExists($gid) {
-		return $gid === self::GUEST_APP_GROUP_NAME;
+		return $gid === $this->groupName;
 	}
 
 	/**
@@ -153,7 +157,7 @@ class GroupBackend implements GroupInterface {
 	 * @since 4.5.0
 	 */
 	public function usersInGroup($gid, $search = '', $limit = -1, $offset = 0) {
-		if ($gid === self::GUEST_APP_GROUP_NAME) {
+		if ($gid === $this->groupName) {
 			return $this->getMembers();
 		}
 
