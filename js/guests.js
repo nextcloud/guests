@@ -22,10 +22,8 @@
 
 		// variables
 		var $section = $('#guests');
-		var $guestsByQuota = $section.find('#guestsByQuota');
 		var $guestsByGroup = $section.find('#guestsByGroup');
 		var $guestGroup = $section.find('#guestGroup');
-		var $guestsByContact = $section.find('#guestsByContact');
 		var $guestUseWhitelist = $section.find('#guestUseWhitelist');
 		var $guestWhitelist = $section.find('#guestWhitelist');
 		var $resetWhitelist = $section.find('#guestResetWhitelist');
@@ -47,21 +45,6 @@
 					// update model
 					config = data;
 					// update ui
-					if($.inArray('quota', config.conditions) > -1) {
-						$guestsByQuota.prop('checked', true);
-					} else {
-						$guestsByQuota.prop('checked', false);
-					}
-					if($.inArray('group', config.conditions) > -1) {
-						$guestsByGroup.prop('checked', true);
-					} else {
-						$guestsByGroup.prop('checked', false);
-					}
-					if($.inArray('contact', config.conditions) > -1) {
-						$guestsByContact.prop('checked', true);
-					} else {
-						$guestsByContact.prop('checked', false);
-					}
 					if(config.useWhitelist) {
 						$guestUseWhitelist.prop('checked', true);
 						$guestWhitelist.show();
@@ -111,31 +94,19 @@
 
 		var updateConditions = function () {
 			var conditions = [];
-			if ($guestsByQuota.prop('checked')) {
-				conditions.push('quota');
-			}
+
 			if ($guestsByGroup.prop('checked')) {
 				conditions.push('group');
-			}
-			if ($guestsByContact.prop('checked')) {
-				conditions.push('contact');
 			}
 			config.conditions = conditions;
 		};
 
 		// listen to ui changes
-		$guestsByQuota.on('change', function () {
-			updateConditions();
-			saveConfig();
-		});
 		$guestsByGroup.on('change', function () {
 			updateConditions();
 			saveConfig();
 		});
-		$guestsByContact.on('change', function () {
-			updateConditions();
-			saveConfig();
-		});
+
 		$guestGroup.on('change', function () {
 			config.group = $guestGroup.val();
 			saveConfig();

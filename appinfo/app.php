@@ -1,6 +1,7 @@
 <?php
 /**
  * @author Jörn Friedrich Dreyer <jfd@butonic.de>
+ * @author Ilja Neumann <ineumann@owncloud.com>
  *
  * @copyright Copyright (c) 2017, ownCloud GmbH
  * @license AGPL-3.0
@@ -21,7 +22,10 @@
 
 $config = \OC::$server->getConfig();
 
-\OC::$server->getGroupManager()->addBackend(new \OCA\Guests\GroupBackend());
+
+$groupName = $config->getAppValue('guests', 'group', 'guest_app');
+
+\OC::$server->getGroupManager()->addBackend(new \OCA\Guests\GroupBackend($groupName));
 \OCP\Util::connectHook('OCP\Share', 'post_shared', '\OCA\Guests\Hooks', 'postShareHook');
 
 // --- register js for user management------------------------------------------
@@ -39,9 +43,5 @@ if ($user) {
 	// hide email change field via css for learned guests
 	if ($user->getBackendClassName() === 'Guests') {
 		\OCP\Util::addStyle('guests', 'personal');
-	}
-
-	if (\OC::$server->getGroupManager()->isAdmin($user->getUID())) {
-		\OCP\App::registerAdmin('guests', 'settings/admin');
 	}
 }
