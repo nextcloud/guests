@@ -35,6 +35,12 @@ class GuestsContext implements Context, SnippetAcceptingContext {
 	/** @var array */
 	private $createdGuests = [];
 
+	public function prepareUserNameAsFrontend($guestDisplayName, $guestEmail) {
+		$emailDomain = preg_split('/\./', preg_split('/@/', $guestEmail, null, null)[1], null, null);
+		$userName = $guestDisplayName . '_' . $emailDomain[0] . '_' . $emailDomain[1];
+		return $userName;
+	}
+
 	/**
 	 * @Given user :user creates guest user :guestDisplayName with email :guestEmail
 	 * @param string $user
@@ -44,8 +50,7 @@ class GuestsContext implements Context, SnippetAcceptingContext {
 	public function userCreatedAGuestUser($user, $guestDisplayName, $guestEmail) {
 		$fullUrl = substr($this->baseUrl, 0, -4) . '/index.php/apps/guests/users';
 		//Replicating frontend behaviour
-		$emailDomain = preg_split('/\./', preg_split('/@/', $guestEmail, null, null)[1], null, null);
-		$userName = $guestDisplayName . '_' . $emailDomain[0] . '_' . $emailDomain[1];
+		$userName = $this->prepareUserNameAsFrontend($guestDisplayName, $guestEmail);
 		$fullUrl = $fullUrl . '?displayName=' . $guestDisplayName . '&email=' . $guestEmail . '&username=' . $userName;
 		$client = new Client();
 		$options = [];
@@ -66,53 +71,34 @@ class GuestsContext implements Context, SnippetAcceptingContext {
 		$this->createdGuests[$guestDisplayName] = $guestEmail;
 	}
 
-	public function getGuests($user) {
-		$fullUrl = substr($this->baseUrl, 0, -4) . '/index.php/apps/guests/users';
-
-		$client = new Client();
-
-		$options = [];
-		if ($user === 'admin') {
-			$options['auth'] = $this->adminUser;
-		} else {
-			$options['auth'] = [$user, $this->regularUser];
-		}
-
-		$request = $client->createRequest("GET", $fullUrl, $options);
-
-		try {
-			$this->response = $client->send($request);
-		} catch (\GuzzleHttp\Exception\BadResponseException $e) {
-			// 4xx and 5xx responses cause an exception
-			$this->response = $e->getResponse();
-		}
-
-		return $this->response->xml()->data;
+	/**
+	 * @Then check that user :user is a guest
+	 * @param string $guestDisplayName
+	 */
+	public function checkGuestUser($guestDisplayName) {
+		$userName = $this->prepareUserNameAsFrontend($guestDisplayName, $this->createdGuests[$guestDisplayName]);
+		$this->checkThatUserBelongsToGroup($userName, 'guest_app');
 	}
 
 	/**
-	 * @Then user :user gets guests users they are
-	 * @param string $user
-	 * @param \Behat\Gherkin\Node\TableNode|null $tablenode
+	 * @Then guest user :user is deleted
+	 * @param string $guestDisplayName
 	 */
-	public function getGuestUsers($user, $tablenode) {
-		$guestsList = $this->getGuests($user);
-		print_r($guestsList);
-
-
-		// if ($memberList instanceof \Behat\Gherkin\Node\TableNode) {
-		// 	$members = $memberList->getRows();
-		// 	$membersSimplified = $this->simplifyArray($members);
-		// 	$respondedArray = $this->getCustomGroupMembers($user, $customGroup);
-		// 	foreach ($membersSimplified as $member) {
-		// 		$memberPath = '/' . $this->davPath . $appPath . $customGroup . '/' . $member;
-		// 		if (!array_key_exists($memberPath, $respondedArray)){
-		// 			PHPUnit_Framework_Assert::fail("$member path" . " is not in report answer");
-		// 		}
-		// 	}
-		// }
+	public function deleteGuestUser($guestDisplayName) {
+		$userName = $this->prepareUserNameAsFrontend($guestDisplayName, $this->createdGuests[$guestDisplayName]);
+		$this->deleteUser($userName);
 	}
 
+	/**
+	 * @BeforeScenario
+	 * @AfterScenario
+	 */
+	public function cleanupGuests()
+	{
+		foreach($this->createdGuests as $displayName => $email) {
+			$this->deleteGuestUser($displayName);
+		}
+	}
 
 }
 

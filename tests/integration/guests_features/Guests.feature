@@ -1,15 +1,14 @@
-Feature: Custom Groups
+Feature: Guests
 
 Background:
-		Given using api version "1"
-		And using new dav path
+	Given using api version "1"
+	And using new dav path
 
 Scenario: Creating a guest user works fine
 	Given As an "admin"
 	When user "admin" creates guest user "guest" with email "guest@example.com"
 	Then the HTTP status code should be "201"
-	And user "admin" gets guests users they are
-		| guest | guest@example.com |
+	And check that user "guest" is a guest
 
 Scenario: Check that skeleton is properly set
 	Given As an "admin"
