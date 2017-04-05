@@ -27,6 +27,7 @@ use OCP\IConfig;
 use OCP\IL10N;
 use OCP\ILogger;
 use OCP\IUser;
+use OCP\IUserManager;
 use OCP\IUserSession;
 use OCP\Mail\IMailer;
 use OCP\Security\ISecureRandom;
@@ -59,7 +60,8 @@ class Mail {
 		IUserSession $userSession,
 		IMailer $mailer,
 		Defaults $defaults,
-		IL10N $l10n
+		IL10N $l10n,
+		IUserManager $userManager
 	) {
 		$this->config = $config;
 		$this->logger = $logger;
@@ -67,6 +69,7 @@ class Mail {
 		$this->mailer = $mailer;
 		$this->defaults = $defaults;
 		$this->l10n = $l10n;
+		$this->userManager = $userManager;
 	}
 
 	/**
@@ -86,7 +89,8 @@ class Mail {
 				\OC::$server->getUserSession(),
 				\OC::$server->getMailer(),
 				new Defaults(),
-				\OC::$server->getL10N('guests')
+				\OC::$server->getL10N('guests'),
+				\OC::$server->getUserManager()
 			);
 
 		}
@@ -104,8 +108,9 @@ class Mail {
 
 		$this->logger->debug("sending invite to $shareWith: $passwordLink", ['app' => 'guests']);
 
-		$shareWithEmail = $this->config->getUserValue($shareWith, 'settings', 'email', null);
-		$replyTo = $this->config->getUserValue($uid, 'settings', 'email', null);
+		$shareWithEmail = $this->userManager->get($shareWith)->getEMailAddress();
+		$replyTo = $this->userManager->get($uid)->getEMailAddress();
+
 		$senderDisplayName = $this->userSession->getUser()->getDisplayName();
 
 		$items = Share::getItemSharedWithUser($itemType, $itemSource, $shareWith);
@@ -195,7 +200,7 @@ class Mail {
 			\OC::$server->getURLGenerator()
 		);
 		$this->logger->debug("sending share notification for '$itemType'"
-			." '$itemSource' to $recipient'",
+			." '$itemSource' to {$recipient->getUID()}'",
 			['app'=>'guests']);
 
 		$result = $mailNotification->sendInternalShareMail(
