@@ -52,7 +52,7 @@ $(document).ready(function () {
 			'guest.email': function () {
 				if (this.guest.email) {
 					username = this.guest.email.toLowerCase();
-					username = username.match(/\w+/g);
+					username = username.match(/[\w]+/g);
 					this.guest.username = username.join('_');
 				}
 				else {
@@ -89,7 +89,7 @@ $(document).ready(function () {
 				var self = this;
 				xhrObject = {
 					type: 'PUT',
-					url: '/index.php' + OC.linkTo('guests', 'users'),
+					url: OC.generateUrl('/apps/guests/users'),
 					dataType: 'text',
 					data: {
 						displayName: this.guest.fullname,
