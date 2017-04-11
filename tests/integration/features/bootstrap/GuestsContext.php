@@ -90,6 +90,16 @@ class GuestsContext implements Context, SnippetAcceptingContext {
 	}
 
 	/**
+	 * @Given guest user :user sets its password
+	 * @param string $guestDisplayName
+	 */
+	public function guestUserSetsItsPassword($guestDisplayName) {
+		$userName = $this->prepareUserNameAsFrontend($guestDisplayName, $this->createdGuests[$guestDisplayName]);
+		$emails = $this->getEmails();
+		print_r($emails);
+	}
+
+	/**
 	 * @BeforeScenario
 	 * @AfterScenario
 	 */

@@ -31,3 +31,10 @@ Scenario: Check that skeleton is properly set
 		| /textfile3.txt |
 		| /textfile4.txt |
 		| /welcome.txt |
+
+ Scenario: A created guest user can log in
+	Given As an "admin"
+	When user "admin" creates guest user "guest" with email "guest@example.com"
+	Then the HTTP status code should be "201"
+	And check that user "guest" is a guest
+	And guest user "guest" sets its password
