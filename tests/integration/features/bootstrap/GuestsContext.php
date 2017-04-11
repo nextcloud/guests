@@ -96,7 +96,17 @@ class GuestsContext implements Context, SnippetAcceptingContext {
 	public function guestUserSetsItsPassword($guestDisplayName) {
 		$userName = $this->prepareUserNameAsFrontend($guestDisplayName, $this->createdGuests[$guestDisplayName]);
 		$emails = $this->getEmails();
-		print_r($emails);
+		$lastEmailBody = $emails->items[0]->Content->Body;
+		$knownString = 'Activate your guest account at ownCloud by setting a password: ';
+		$posKnownString = strpos($lastEmailBody, $knownString);
+		$posNextString = strpos($lastEmailBody, "Then view it", $posKnownString + strlen($knownString));
+		$urlResetPasswd = substr($lastEmailBody,
+								 $posKnownString + strlen($knownString),
+								 $posNextString - ($posKnownString + strlen($knownString)));
+		$urlResetPasswd = preg_replace('/[\s]+/mu', ' ', $urlResetPasswd);
+		$urlResetPasswd = str_replace('=', '', $urlResetPasswd);
+		$urlResetPasswd = str_replace(' ', '', $urlResetPasswd);
+		print_r($urlResetPasswd);
 	}
 
 	/**

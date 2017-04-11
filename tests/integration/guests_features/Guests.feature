@@ -34,7 +34,9 @@ Scenario: Check that skeleton is properly set
 
  Scenario: A created guest user can log in
 	Given As an "admin"
-	When user "admin" creates guest user "guest" with email "guest@example.com"
-	Then the HTTP status code should be "201"
+	And user "user0" exists
+	And user "admin" creates guest user "guest" with email "guest@example.com"
+	And the HTTP status code should be "201"
 	And check that user "guest" is a guest
+	When file "/textfile1.txt" of user "user0" is shared with user "guest_example_com"
 	And guest user "guest" sets its password
