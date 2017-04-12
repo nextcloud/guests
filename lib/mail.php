@@ -147,8 +147,7 @@ class Mail {
 		$link = Util::linkToAbsolute('files', 'index.php', $args);
 
 		list($htmlBody, $textBody) = $this->createMailBody(
-			$filename, $link, $passwordLink,
-			$this->defaults->getName(), $senderDisplayName, $expiration
+			$filename, $link, $passwordLink, $this->defaults->getName(), $senderDisplayName, $expiration, $shareWithEmail
 		);
 
 		try {
@@ -221,9 +220,10 @@ class Mail {
 	 * @param string $filename the shared file
 	 * @param string $link link to the shared file
 	 * @param int $expiration expiration date (timestamp)
+	 * @param string $guestEmail
 	 * @return array an array of the html mail body and the plain text mail body
 	 */
-	private function createMailBody($filename, $link, $passwordLink, $cloudName, $displayName, $expiration) {
+	private function createMailBody($filename, $link, $passwordLink, $cloudName, $displayName, $expiration, $guestEmail) {
 
 		$formattedDate = $expiration ? $this->l10n->l('date', $expiration) : null;
 
@@ -234,6 +234,7 @@ class Mail {
 		$html->assign ('user_displayname', $displayName);
 		$html->assign ('filename', $filename);
 		$html->assign('expiration',  $formattedDate);
+		$html->assign('guestEmail', $guestEmail);
 		$htmlMail = $html->fetchPage();
 
 		$plainText = new \OC_Template('guests', 'mail/altinvite');
@@ -243,6 +244,7 @@ class Mail {
 		$plainText->assign ('user_displayname', $displayName);
 		$plainText->assign ('filename', $filename);
 		$plainText->assign('expiration', $formattedDate);
+		$plainText->assign('guestEmail', $guestEmail);
 		$plainTextMail = $plainText->fetchPage();
 
 		return [$htmlMail, $plainTextMail];
