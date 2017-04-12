@@ -1,0 +1,25 @@
+OC.L10N.register(
+    "guests",
+    {
+    "Invalid mail address" : "Nieprawidłowy adres email",
+    "Username required" : "Wymagane podanie nazwy użytkownika",
+    "A user with that name already exists." : "Użytkownik z taką nazwą już istnieje.",
+    "User successfully created" : "Stworzono nowego uytkownika",
+    "Error while sharing" : "Błąd podczas współdzielenia",
+    "Error" : "Błąd",
+    "No users or groups found for {search}" : "Nie znaleziono użytkowników lub grup dla {search}",
+    "No users found for {search}" : "Nie znaleziono użytkowników dla {search}",
+    "An error occurred. Please try again" : "Wystąpił błąd. Proszę spróbować ponownie.",
+    "Loading…" : "Wczytywanie...",
+    "Loaded" : "Wczytano",
+    "Saved" : "Zapisano",
+    "Reset" : "Resetuj",
+    "Access to this resource is forbidden for guests." : "Dostęp do zasobów jest zabroniony dla gości",
+    "%s shared »%s« with you" : "%s Współdzielone »%s« z tobą",
+    "Couldn't send reset email. Please contact your administrator." : "Nie mogę wysłać maila resetującego. Skontaktuj się z administratorem.",
+    "The share will expire on %s." : "Ten zasób wygaśnie %s",
+    "Cheers!" : "Dzięki!",
+    "Group name" : "Nazwa grupy",
+    "Reset whitelist" : "Zresetuj białą listę"
+},
+"nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>=14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);");

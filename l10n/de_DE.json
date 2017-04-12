@@ -5,6 +5,7 @@
     "User successfully created" : "Benutzer wurde erfolgreich erstellt",
     "Error while sharing" : "Fehler beim Teilen",
     "Error" : "Fehler",
+    "Add {unknown} (guest)" : "{unknown} hinzufügen (Gast)",
     "No users or groups found for {search}" : "Keine Benutzer oder Gruppen für {search} gefunden",
     "No users found for {search}" : "Keine Benutzer für {search} gefunden",
     "An error occurred. Please try again" : "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es noch einmal",
@@ -18,7 +19,9 @@
     "Couldn't send reset email. Please contact your administrator." : "Die E-Mail zum Zurücksetzen konnte nicht versendet werden. Bitte kontaktieren Sie Ihren Administrator.",
     "The share will expire on %s." : "Die Freigabe wird am %s ablaufen.",
     "Cheers!" : "Noch einen schönen Tag!",
+    "Guest users are grouped under a virtual group in the user manager" : "Gäste sind unter einer virtuellen Gruppe im  Nutzermanager zusammengefasst",
     "Group name" : "Gruppenname",
+    "Limit guest access to an app whitelist" : "Gastzugriff auf eine App-Whitelist beschränken",
     "Reset whitelist" : "Whitelist zurücksetzen"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
