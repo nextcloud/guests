@@ -1,0 +1,24 @@
+{ "translations": {
+    "Invalid mail address" : "Ungültige E-Mail-Adresse",
+    "Username required" : "Benutzername erforderlich",
+    "A user with that name already exists." : "Ein Benutzer mit diesem Namen existiert bereits.",
+    "User successfully created" : "Benutzer wurde erfolgreich erstellt",
+    "Error while sharing" : "Fehler beim Teilen",
+    "Error" : "Fehler",
+    "No users or groups found for {search}" : "Keine Benutzer oder Gruppen für {search} gefunden",
+    "No users found for {search}" : "Keine Benutzer für {search} gefunden",
+    "An error occurred. Please try again" : "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es noch einmal",
+    "Loading…" : "Lade…",
+    "Loaded" : "Geladen",
+    "Saved" : "Gespeichert",
+    "Reset" : "Zurücksetzen",
+    "Access to this resource is forbidden for guests." : "Der Zugriff auf diese Ressource ist für Gastnutzer untersagt. ",
+    "%s shared »%s« with you" : "%s hat „%s“ mit Ihnen geteilt",
+    "%s via %s" : "%s via %s",
+    "Couldn't send reset email. Please contact your administrator." : "Die E-Mail zum Zurücksetzen konnte nicht versendet werden. Bitte kontaktieren Sie Ihren Administrator.",
+    "The share will expire on %s." : "Die Freigabe wird am %s ablaufen.",
+    "Cheers!" : "Noch einen schönen Tag!",
+    "Group name" : "Gruppenname",
+    "Reset whitelist" : "Whitelist zurücksetzen"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}
