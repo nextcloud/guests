@@ -80,6 +80,7 @@ class UsersController extends Controller {
 	/**
 	 *
 	 * @NoCSRFRequired
+	 * @NoAdminRequired
 	 *
 	 * @param $username
 	 * @param $email
