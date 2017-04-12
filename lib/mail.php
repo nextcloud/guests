@@ -18,6 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  *
  */
+
 namespace OCA\Guests;
 
 
@@ -26,6 +27,7 @@ use OCP\Defaults;
 use OCP\IConfig;
 use OCP\IL10N;
 use OCP\ILogger;
+use OCP\IURLGenerator;
 use OCP\IUser;
 use OCP\IUserManager;
 use OCP\IUserSession;
@@ -54,6 +56,9 @@ class Mail {
 	/** @var IL10N */
 	private $l10n;
 
+	/** @var  IURLGenerator */
+	private $urlGenerator;
+
 	public function __construct(
 		IConfig $config,
 		ILogger $logger,
@@ -61,7 +66,8 @@ class Mail {
 		IMailer $mailer,
 		Defaults $defaults,
 		IL10N $l10n,
-		IUserManager $userManager
+		IUserManager $userManager,
+		IURLGenerator $urlGenerator
 	) {
 		$this->config = $config;
 		$this->logger = $logger;
@@ -70,6 +76,7 @@ class Mail {
 		$this->defaults = $defaults;
 		$this->l10n = $l10n;
 		$this->userManager = $userManager;
+		$this->urlGenerator = $urlGenerator;
 	}
 
 	/**
@@ -90,7 +97,8 @@ class Mail {
 				\OC::$server->getMailer(),
 				new Defaults(),
 				\OC::$server->getL10N('guests'),
-				\OC::$server->getUserManager()
+				\OC::$server->getUserManager(),
+				\OC::$server->getURLGenerator()
 			);
 
 		}
@@ -100,51 +108,39 @@ class Mail {
 	/**
 	 * Sends out a reset password mail if the user is a guest and does not have
 	 * a password set, yet.
+	 *
 	 * @param $uid
 	 * @throws \Exception
 	 */
-	public function sendGuestInviteMail ($uid, $shareWith, $itemType, $itemSource, $token) {
-		$passwordLink = \OC::$server->getURLGenerator()->linkToRouteAbsolute('core.lost.resetform', array('userId' => $shareWith, 'token' => $token));
+	public function sendGuestInviteMail($uid, $shareWith, $itemType, $itemSource, $token) {
+		$passwordLink = $this->urlGenerator->linkToRouteAbsolute(
+			'core.lost.resetform',
+			['userId' => $shareWith, 'token' => $token]
+		);
 
 		$this->logger->debug("sending invite to $shareWith: $passwordLink", ['app' => 'guests']);
 
 		$shareWithEmail = $this->userManager->get($shareWith)->getEMailAddress();
 		$replyTo = $this->userManager->get($uid)->getEMailAddress();
-
 		$senderDisplayName = $this->userSession->getUser()->getDisplayName();
 
 		$items = Share::getItemSharedWithUser($itemType, $itemSource, $shareWith);
 		$filename = trim($items[0]['file_target'], '/');
-		$subject = (string) $this->l10n->t('%s shared »%s« with you', array($senderDisplayName, $filename));
+		$subject = (string)$this->l10n->t('%s shared »%s« with you', array($senderDisplayName, $filename));
 		$expiration = null;
 		if (isset($items[0]['expiration'])) {
 			try {
 				$date = new \DateTime($items[0]['expiration']);
 				$expiration = $date->getTimestamp();
 			} catch (\Exception $e) {
-				$this->logger->error("Couldn't read date: ".$e->getMessage(), ['app' => 'sharing']);
+				$this->logger->error("Couldn't read date: " . $e->getMessage(), ['app' => 'sharing']);
 			}
 		}
 
-		// Link to folder, or root folder if a file
 
-		if ($itemType === 'folder') {
-			$args = array(
-				'dir' => $filename,
-			);
-		} else if (strpos($filename, '/')) {
-			$args = array(
-				'dir' => '/' . dirname($filename),
-				'scrollto' => basename($filename),
-			);
-		} else {
-			$args = array(
-				'dir' => '/',
-				'scrollto' => $filename,
-			);
-		}
-
-		$link = Util::linkToAbsolute('files', 'index.php', $args);
+		$link = $this->urlGenerator->linkToRouteAbsolute(
+			'files.viewcontroller.showFile', ['fileId' => $itemSource]
+		);
 
 		list($htmlBody, $textBody) = $this->createMailBody(
 			$filename, $link, $passwordLink, $this->defaults->getName(), $senderDisplayName, $expiration, $shareWithEmail
@@ -163,7 +159,8 @@ class Mail {
 						$this->defaults->getName()
 					]),
 			]);
-			if(!is_null($replyTo)) {
+
+			if (!is_null($replyTo)) {
 				$message->setReplyTo([$replyTo]);
 			}
 
@@ -181,7 +178,7 @@ class Mail {
 	 * @param $itemType
 	 * @param $itemSource
 	 */
-	public function sendShareNotification (
+	public function sendShareNotification(
 		$sender,
 		IUser $recipient,
 		$itemType,
@@ -199,8 +196,8 @@ class Mail {
 			\OC::$server->getURLGenerator()
 		);
 		$this->logger->debug("sending share notification for '$itemType'"
-			." '$itemSource' to {$recipient->getUID()}'",
-			['app'=>'guests']);
+			. " '$itemSource' to {$recipient->getUID()}'",
+			['app' => 'guests']);
 
 		$result = $mailNotification->sendInternalShareMail(
 			$recipientList, $itemSource, $itemType
@@ -228,21 +225,21 @@ class Mail {
 		$formattedDate = $expiration ? $this->l10n->l('date', $expiration) : null;
 
 		$html = new \OC_Template('guests', 'mail/invite');
-		$html->assign ('link', $link);
-		$html->assign ('password_link', $passwordLink);
-		$html->assign ('cloud_name', $cloudName);
-		$html->assign ('user_displayname', $displayName);
-		$html->assign ('filename', $filename);
-		$html->assign('expiration',  $formattedDate);
+		$html->assign('link', $link);
+		$html->assign('password_link', $passwordLink);
+		$html->assign('cloud_name', $cloudName);
+		$html->assign('user_displayname', $displayName);
+		$html->assign('filename', $filename);
+		$html->assign('expiration', $formattedDate);
 		$html->assign('guestEmail', $guestEmail);
 		$htmlMail = $html->fetchPage();
 
 		$plainText = new \OC_Template('guests', 'mail/altinvite');
-		$plainText->assign ('link', $link);
-		$plainText->assign ('password_link', $passwordLink);
-		$plainText->assign ('cloud_name', $cloudName);
-		$plainText->assign ('user_displayname', $displayName);
-		$plainText->assign ('filename', $filename);
+		$plainText->assign('link', $link);
+		$plainText->assign('password_link', $passwordLink);
+		$plainText->assign('cloud_name', $cloudName);
+		$plainText->assign('user_displayname', $displayName);
+		$plainText->assign('filename', $filename);
 		$plainText->assign('expiration', $formattedDate);
 		$plainText->assign('guestEmail', $guestEmail);
 		$plainTextMail = $plainText->fetchPage();
