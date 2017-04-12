@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  *
  */
-print_unescaped($l->t("Hey there,\n\njust letting you know that %s shared %s with you.\n\nActivate your guest account at %s by setting a password: %s\n\nThen view it: %s\n\nYou can login using the email address "%s".\n\n", array($_['user_displayname'], $_['filename'], $_['cloud_name'], $_['password_link'],  $_['link'], $_['guestEmail'])));
+print_unescaped($l->t("Hey there,\n\njust letting you know that %s shared %s with you.\n\nActivate your guest account at %s by setting a password: %s\n\nThen view it: %s\n\nYou can login using the email address \"%s\".\n\n", array($_['user_displayname'], $_['filename'], $_['cloud_name'], $_['password_link'],  $_['link'], $_['guestEmail'])));
 if ( isset($_['expiration']) ) {
 	print_unescaped($l->t("The share will expire on %s.", array($_['expiration'])));
 	print_unescaped("\n\n");
