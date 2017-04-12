@@ -134,8 +134,6 @@ class GuestsContext implements Context, SnippetAcceptingContext {
 		} catch (\GuzzleHttp\Exception\ClientException $ex) {
 			$this->response = $ex->getResponse();
 		}
-
-		print_r($this->response);
 	}
 
 	/**
