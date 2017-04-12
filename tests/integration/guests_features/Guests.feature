@@ -10,13 +10,12 @@ Scenario: Creating a guest user works fine
 	Then the HTTP status code should be "201"
 	And check that user "guest" is a guest
 
-Scenario: A guest user cannot upload files
-	Given As an "admin"
-	And user "admin" creates guest user "guest" with email "guest@example.com"
-	And the HTTP status code should be "201"
-	When User "guest_example_com" uploads file "data/textfile.txt" to "/myfile.txt"
-	Then the HTTP status code should be "401"
-
+# Scenario: A guest user cannot upload files
+# 	Given As an "admin"
+# 	And user "admin" creates guest user "guest" with email "guest@example.com"
+# 	And the HTTP status code should be "201"
+# 	When User "guest_example_com" uploads file "data/textfile.txt" to "/myfile.txt"
+# 	Then the HTTP status code should be "401"
 
 Scenario: Check that skeleton is properly set
 	Given As an "admin"

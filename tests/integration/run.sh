@@ -31,6 +31,15 @@ export TEST_SERVER_URL="http://localhost:$PORT/ocs/"
 #Set up personalized skeleton
 $OCC config:system:set skeletondirectory --value="$(pwd)/$OC_PATH""$CORE_INT_TESTS_PATH""skeleton"
 
+#Set up mailhog to send emails
+$OCC config:system:set mail_domain --value="foobar.com"
+$OCC config:system:set mail_from_address --value="owncloud"
+$OCC config:system:set mail_smtpmode --value="smtp"
+$OCC config:system:set mail_smtphost --value="127.0.0.1"
+$OCC config:system:set mail_smtpport --value="1025"
+#We cannot set password with csrf enabled
+$OCC config:system:set csrf.disabled --value="true"
+
 #Enable needed app
 $OCC app:enable files_external
 $OCC app:enable guests
