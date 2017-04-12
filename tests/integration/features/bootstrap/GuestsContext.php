@@ -89,6 +89,30 @@ class GuestsContext implements Context, SnippetAcceptingContext {
 		$this->deleteUser($userName);
 	}
 
+	/*Processes the body of an email sent and gets the reset password url
+	  It depends on the content of the email*/
+	public function extractResetPasswordUrl($emailBody) {
+		$knownString = 'Activate your guest account at ownCloud by setting a password: ';
+		$nextString = 'Then view it';
+		$posKnownString = strpos($emailBody, $knownString);
+		$posNextString = strpos($emailBody, $nextString, $posKnownString + strlen($knownString));
+		$urlResetPasswd = substr($emailBody,
+								 $posKnownString + strlen($knownString),
+								 $posNextString - ($posKnownString + strlen($knownString)));
+		$urlResetPasswd = preg_replace('/[\s]+/mu', ' ', $urlResetPasswd);
+		$urlResetPasswd = str_replace('=', '', $urlResetPasswd);
+		$urlResetPasswd = str_replace(' ', '', $urlResetPasswd);
+		return $urlResetPasswd;
+	}
+
+	/*Function to prepare the set password url from the reset password form one*/
+	public function getSetPasswordUrl($urlResetPasswd) {
+		$resetUrlParts = explode('/', $urlResetPasswd);
+		array_splice($resetUrlParts, 5, 2, 'set');
+		$urlSetPasswd = implode('/', $resetUrlParts);
+		return $urlSetPasswd;
+	}
+
 	/**
 	 * @Given guest user :user sets its password
 	 * @param string $guestDisplayName
@@ -97,16 +121,21 @@ class GuestsContext implements Context, SnippetAcceptingContext {
 		$userName = $this->prepareUserNameAsFrontend($guestDisplayName, $this->createdGuests[$guestDisplayName]);
 		$emails = $this->getEmails();
 		$lastEmailBody = $emails->items[0]->Content->Body;
-		$knownString = 'Activate your guest account at ownCloud by setting a password: ';
-		$posKnownString = strpos($lastEmailBody, $knownString);
-		$posNextString = strpos($lastEmailBody, "Then view it", $posKnownString + strlen($knownString));
-		$urlResetPasswd = substr($lastEmailBody,
-								 $posKnownString + strlen($knownString),
-								 $posNextString - ($posKnownString + strlen($knownString)));
-		$urlResetPasswd = preg_replace('/[\s]+/mu', ' ', $urlResetPasswd);
-		$urlResetPasswd = str_replace('=', '', $urlResetPasswd);
-		$urlResetPasswd = str_replace(' ', '', $urlResetPasswd);
-		print_r($urlResetPasswd);
+		$resetPwUrl = $this->extractResetPasswordUrl($lastEmailBody);
+		$urlSetPasswd = $this->getSetPasswordUrl($resetPwUrl);
+
+		$client = new Client();
+		$options['body'] = [
+							'password' => $this->regularUser,
+							'proceed' => 'false'
+							];
+		try {
+			$this->response = $client->send($client->createRequest('POST', $urlSetPasswd, $options));
+		} catch (\GuzzleHttp\Exception\ClientException $ex) {
+			$this->response = $ex->getResponse();
+		}
+
+		print_r($this->response);
 	}
 
 	/**
