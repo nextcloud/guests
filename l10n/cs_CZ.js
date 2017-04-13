@@ -1,0 +1,28 @@
+OC.L10N.register(
+    "guests",
+    {
+    "Invalid mail address" : "Neplatná emailová adresa",
+    "Username required" : "Uživatelské jméno je vyžadováno",
+    "A user with that name already exists." : "Uživatel tohoto jména již existuje.",
+    "User successfully created" : "Uživatel vytvořen",
+    "Error while sharing" : "Chyba při sdílení",
+    "Error" : "Chyba",
+    "No users or groups found for {search}" : "Nebyli nalezeni žádní členové ani skupiny pro {search}",
+    "No users found for {search}" : "Nebyli nalezeni žádní uživatelé pro {search}",
+    "An error occurred. Please try again" : "Došlo k chybě. Zkuste to prosím znovu",
+    "Loading…" : "Načítání...",
+    "Loaded" : "Načteno",
+    "Saved" : "Uloženo",
+    "Reset" : "Reset",
+    "Access to this resource is forbidden for guests." : "Přístup k tomuto zdroji je pro hosty zamítnut.",
+    "%s shared »%s« with you" : "%s s vámi sdílí »%s«",
+    "%s via %s" : "%s pomocí %s",
+    "Couldn't send reset email. Please contact your administrator." : "Nepodařilo se odeslat email pro změnu hesla. Kontaktujte svého správce systému.",
+    "The share will expire on %s." : "Sdílení vyprší %s.",
+    "Cheers!" : "Ať slouží!",
+    "Guest users are grouped under a virtual group in the user manager" : "Uživatelé jsou ve správci uživatelů seskupeni pod virtuální skupinou",
+    "Group name" : "Název skupiny",
+    "Limit guest access to an app whitelist" : "Omezte přístup hosta do seznamu povolených aplikací",
+    "Reset whitelist" : "Inicializace seznamu povolených aplikací"
+},
+"nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;");

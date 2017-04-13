@@ -1,0 +1,23 @@
+{ "translations": {
+    "Invalid mail address" : "Ógilt tölvupóstfang",
+    "Username required" : "Notandanafns er krafist",
+    "A user with that name already exists." : "Nú þegar til notandi með þetta nafn.",
+    "User successfully created" : "Það tókst að búa til notandann",
+    "Error while sharing" : "Villa við deilingu",
+    "Error" : "Villa",
+    "Add {unknown} (guest)" : "Bæta við {unknown} (guest)",
+    "No users or groups found for {search}" : "Engir notendur eða hópar fundust í {search}",
+    "No users found for {search}" : "Engir notendur fundust með {search}",
+    "An error occurred. Please try again" : "Villa kom upp. Endilega reyndu aftur",
+    "Loading…" : "Hleð inn…",
+    "Loaded" : "Hlaðið",
+    "Saved" : "Vistað",
+    "Reset" : "Endurstilla",
+    "%s shared »%s« with you" : "%s deildi »%s« með þér",
+    "%s via %s" : "%s með %s",
+    "Couldn't send reset email. Please contact your administrator." : "Gat ekki sent endurstillingu í tölvupósti. Hafðu samband við kerfisstjóra.",
+    "The share will expire on %s." : "Gildistími sameignar rennur út %s.",
+    "Cheers!" : "Til hamingju!",
+    "Group name" : "Heiti hóps"
+},"pluralForm" :"nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);"
+}
