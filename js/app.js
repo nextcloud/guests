@@ -115,7 +115,7 @@ $(document).ready(function () {
 				var attributes = {
 					shareType: 0,
 					shareWith: this.guest.username,
-					permissions: 3,
+					permissions: 15,
 					path: this.model.fileInfoModel.getFullPath()
 				}
 
