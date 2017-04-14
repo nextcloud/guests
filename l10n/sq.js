@@ -1,0 +1,26 @@
+OC.L10N.register(
+    "guests",
+    {
+    "Invalid mail address" : "Adresë email e pavlefshme",
+    "Username required" : "Lypset emër përdoruesi",
+    "A user with that name already exists." : "Ka tashmë një përdorues me këtë emër.",
+    "User successfully created" : "Përdoruesi u krijua me sukses",
+    "Error while sharing" : "Gabim gjatë ndarjes",
+    "Error" : "Gabim",
+    "Add {unknown} (guest)" : "Shto {unknown} (vizitor)",
+    "No users or groups found for {search}" : "S’u gjetën përdorues ose grupe për {search}",
+    "No users found for {search}" : "S’u gjet përdorues për {search}",
+    "An error occurred. Please try again" : "Ndodhi një gabim. Ju lutemi, riprovoni",
+    "Loading…" : "Po ngarkohet…",
+    "Loaded" : "U ngarkua",
+    "Saved" : "U ruajt",
+    "Reset" : "Ricaktoje",
+    "Access to this resource is forbidden for guests." : "Hyrja në këtë burim është e ndaluar për vizitorët.",
+    "%s shared »%s« with you" : "%s ndau me ju »%s«",
+    "%s via %s" : "%s përmes %s",
+    "Couldn't send reset email. Please contact your administrator." : "S’u dërgua dot email-i i ricaktimit. Ju lutemi, lidhuni me përgjegjësin tuaj.",
+    "The share will expire on %s." : "Ndarja do të skadojë më %s.",
+    "Cheers!" : "Gëzuar!",
+    "Group name" : "Emër grupi"
+},
+"nplurals=2; plural=(n != 1);");
