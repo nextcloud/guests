@@ -1,0 +1,27 @@
+{ "translations": {
+    "Invalid mail address" : "Dirección de correo inválida",
+    "Username required" : "Nombre de usuario requerido",
+    "A user with that name already exists." : "Ya existe un usuario con ese nombre.",
+    "User successfully created" : "Usuario creado con éxito",
+    "Error while sharing" : "Error al compartir",
+    "Error" : "Error",
+    "Add {unknown} (guest)" : "Añadir {desconocido} invitado",
+    "No users or groups found for {search}" : "No se han encontrado usuarios ni grupos para {search}",
+    "No users found for {search}" : "No se han encontrado usuarios para {search}",
+    "An error occurred. Please try again" : "Ha ocurrido un error. Por favor inténtelo de nuevo",
+    "Loading…" : "Cargando...",
+    "Loaded" : "Cargado",
+    "Saved" : "Guardado",
+    "Reset" : "Restablecer",
+    "Access to this resource is forbidden for guests." : "Acceso a este recurso está prohibido para invitados",
+    "%s shared »%s« with you" : "%s ha compartido »%s« contigo",
+    "%s via %s" : "%s vía %s",
+    "Couldn't send reset email. Please contact your administrator." : "No pudo enviarse el correo para restablecer la contraseña. Por favor, contacte con su administrador.",
+    "The share will expire on %s." : "El objeto dejará de ser compartido el %s.",
+    "Cheers!" : "¡Saludos!",
+    "Guest users are grouped under a virtual group in the user manager" : "Los invitados se agrupan bajo un grupo virtual en el gestor de usuarios",
+    "Group name" : "Nombre de grupo",
+    "Limit guest access to an app whitelist" : "Limitar acceso de invitados a una lista blanca de aplicaciones",
+    "Reset whitelist" : "Restablecer lista blanca"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}
