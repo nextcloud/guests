@@ -1,22 +1,13 @@
 guests 
 =======
 
-WORK IN PROGRESS - DO NOT USE
+Create a guest user by typing his name in to the sharing dialog. The guest
+will receive an email invite with a link to create an account. He has only access
+to files which are shared with him.
 
-
-Allow classifying users or contacts as guests
-
-Jails a user into a readonly home storage
-
-* If he is member of a configurable group
-* If he is a contact of another user and has been shared a file
 
 Furthermore, the administrator has to whitelist the applications that guests can use.
 By default ',core,settings,avatar,files,files_trashbin,files_versions,files_sharing,files_texteditor,activity,firstrunwizard,gallery' are allowed.
 The initial `,` is necessary to allow access to root resources.
 
-# TODO
-- fetch guests from contacts app
-- better differentiate between email based on the fly contacts and guests based on the contacts app
-- provide groups from contacts app
 
