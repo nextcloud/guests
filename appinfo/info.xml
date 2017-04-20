@@ -6,13 +6,14 @@
 		Allow classifying users or contacts as guests.
 		NOTE: Currently only compatible with ownCloud 10.0 beta2 and higher.
 	</description>
-	<version>0.2</version>
+	<version>0.3</version>
 	<licence>AGPL</licence>
 	<author>owncloud.org</author>
 	<dependencies>
 		<owncloud min-version="10.0" max-version="10.0" />
 		<php min-version="5.4" />
 	</dependencies>
+	<category>collaboration</category>
 	<types>
 		<authentication/>
 	</types>
