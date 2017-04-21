@@ -19,8 +19,13 @@ OC.L10N.register(
     "%s shared »%s« with you" : "%s ndau me ju »%s«",
     "%s via %s" : "%s përmes %s",
     "Couldn't send reset email. Please contact your administrator." : "S’u dërgua dot email-i i ricaktimit. Ju lutemi, lidhuni me përgjegjësin tuaj.",
+    "Hey there,\n\njust letting you know that %s shared %s with you.\n\nActivate your guest account at %s by setting a password: %s\n\nThen view it: %s\n\nYou can login using the email address \"%s\".\n\n" : "Njatjeta,\n\nsa për t’ju bërë të ditur që %s ndau me ju %s.\n\nAktivizoni llogarinë tuaj prej vizitori te %s duke caktuar një fjalëkalim: %s\n\nMandej shiheni: %s\n\nMund të hyni me adresën email \"%s\".\n\n",
     "The share will expire on %s." : "Ndarja do të skadojë më %s.",
     "Cheers!" : "Gëzuar!",
-    "Group name" : "Emër grupi"
+    "Hey there,<br><br>\n         \n         just letting you know that %s shared <strong>%s</strong> with you.<br><br>\n         Activate your guest account at %s by <a href=\"%s\">setting a password</a>.<br><br>\n         Then <a href=\"%s\">view it!</a><br><br>You can login using the email address <strong>\"%s\"</strong> .<br><br>" : "Njatjeta,<br><br>\n         \n         sa për t’ju bërë të ditur që %s ndau me ju <strong>%s</strong>.<br><br>\n         Aktivizoni llogarinë tuaj prej vizitori te %s <a href=\"%s\">duke caktuar një fjalëkalim</a>.<br><br>\n         Mandej <a href=\"%s\">shiheni!</a><br><br>Mund të hyni me adresën email <strong>\"%s\"</strong> .<br><br>",
+    "Guest users are grouped under a virtual group in the user manager" : "Përdoruesit vizitorë grupohen nën një grup virtual te përgjegjësi i përdoruesve",
+    "Group name" : "Emër grupi",
+    "Limit guest access to an app whitelist" : "Kufizoni hyrje përdoruesish vizitorë sipas një liste lejimesh tëaplikacionit",
+    "Reset whitelist" : "Zerojeni listën e lejimeve"
 },
 "nplurals=2; plural=(n != 1);");
