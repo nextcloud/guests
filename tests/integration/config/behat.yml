@@ -1,0 +1,30 @@
+default:
+  autoload:
+     - %paths.base%/../vendor/autoload.php
+
+  suites:
+    default:
+      paths:
+        - %paths.base%/../features
+      contexts:
+        - FeatureContext:
+            baseUrl:  http://localhost:8080/ocs/
+            admin:
+              - admin
+              - admin
+            regular_user_password: 123456
+    Guests:
+      paths:
+        - %paths.base%/../guests_features
+      contexts:
+        - GuestsContext:
+            baseUrl:  http://localhost:8080/ocs/
+            admin:
+              - admin
+              - admin
+            regular_user_password: 123456
+            mailhog_url: http://127.0.0.1:8025/api/v2/messages
+  extensions:
+      jarnaiz\JUnitFormatter\JUnitFormatterExtension:
+          filename: report.xml
+          outputDir: %paths.base%/../output/
