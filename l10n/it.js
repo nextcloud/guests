@@ -1,0 +1,25 @@
+OC.L10N.register(
+    "guests",
+    {
+    "Invalid mail address" : "Indirizzo email non valido",
+    "Username required" : "Nome utente richiesto",
+    "A user with that name already exists." : "Un utente con quel nome esiste già.",
+    "User successfully created" : "Utente creato correttamente",
+    "Error while sharing" : "Errore durante la condivisione",
+    "Error" : "Errore",
+    "Add {unknown} (guest)" : "Add {unknown} (ospite)",
+    "No users or groups found for {search}" : "Nessun utente o gruppo trovato per {search}",
+    "No users found for {search}" : "Nessun utente trovato per {search}",
+    "An error occurred. Please try again" : "Si è verificato un errore. Prova ancora",
+    "Loading…" : "Caricamento in corso...",
+    "Loaded" : "Caricato",
+    "Saved" : "Salvato",
+    "Reset" : "Ripristina",
+    "%s shared »%s« with you" : "%s ha condiviso «%s» con te",
+    "%s via %s" : "%s tramite %s",
+    "Couldn't send reset email. Please contact your administrator." : "Impossibile inviare l'email di reimpostazione. Contatta il tuo amministratore.",
+    "The share will expire on %s." : "La condivisione scadrà il %s.",
+    "Cheers!" : "Saluti!",
+    "Group name" : "Nome gruppo"
+},
+"nplurals=2; plural=(n != 1);");
