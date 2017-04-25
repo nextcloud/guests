@@ -4,9 +4,8 @@
 	<name>Guests</name>
 	<description>
 		Allow classifying users or contacts as guests.
-		NOTE: Currently only compatible with ownCloud 10.0 beta2 and higher.
 	</description>
-	<version>0.3</version>
+	<version>0.4</version>
 	<licence>AGPL</licence>
 	<author>owncloud.org</author>
 	<dependencies>
