@@ -5,7 +5,7 @@
 	<description>
 		Allow classifying users or contacts as guests.
 	</description>
-	<version>0.4</version>
+	<version>0.4.1</version>
 	<licence>AGPL</licence>
 	<author>owncloud.org</author>
 	<dependencies>
