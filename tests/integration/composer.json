@@ -9,7 +9,7 @@
 
   "autoload": {
     "psr-0": {
-      "": ["../../../../tests/integration/features/bootstrap/","features/bootstrap"]
+      "": ["../../../../build/integration/features/bootstrap/","features/bootstrap"]
 
     }
   }
