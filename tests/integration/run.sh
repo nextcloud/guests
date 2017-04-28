@@ -4,17 +4,17 @@ mkdir -p output
 
 composer install
 
-OC_PATH=../../../../
+NC_PATH=../../../../
 CORE_INT_TESTS_PATH=tests/integration/
 
-cd "$OC_PATH""$CORE_INT_TESTS_PATH"
+cd "$NC_PATH""$CORE_INT_TESTS_PATH"
 composer install
 cd -
 
-OCC=${OC_PATH}occ
+OCC=${NC_PATH}occ
 
 SCENARIO_TO_RUN=$1
-HIDE_OC_LOGS=$2
+HIDE_NC_LOGS=$2
 
 # avoid port collision on jenkins - use $EXECUTOR_NUMBER
 if [ -z "$EXECUTOR_NUMBER" ]; then
@@ -29,7 +29,7 @@ echo $PHPPID
 export TEST_SERVER_URL="http://localhost:$PORT/ocs/"
 
 #Set up personalized skeleton
-$OCC config:system:set skeletondirectory --value="$(pwd)/$OC_PATH""$CORE_INT_TESTS_PATH""skeleton"
+$OCC config:system:set skeletondirectory --value="$(pwd)/$NC_PATH""$CORE_INT_TESTS_PATH""skeleton"
 
 #Set up mailhog to send emails
 $OCC config:system:set mail_domain --value="foobar.com"
@@ -53,8 +53,8 @@ kill $PHPPID
 $OCC app:disable files_external
 $OCC app:disable guests
 
-if [ -z $HIDE_OC_LOGS ]; then
-	tail "${OC_PATH}/data/owncloud.log"
+if [ -z $HIDE_NC_LOGS ]; then
+	tail "${NC_PATH}/data/nextcloud.log"
 fi
 
 echo "runsh: Exit code: $RESULT"
