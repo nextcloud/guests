@@ -40,7 +40,7 @@ class AppWhitelist {
 		}
 
 		$config = \OC::$server->getConfig();
-		$isGuest = $config->getUserValue($uid, 'owncloud', 'isGuest', false);
+		$isGuest = $config->getUserValue($uid, 'nextcloud', 'isGuest', false);
 		$whitelistEnabled = $config->getAppValue('guests', 'usewhitelist', 'true') === 'true';
 
 		if ($isGuest && $whitelistEnabled) {
