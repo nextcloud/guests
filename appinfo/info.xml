@@ -17,6 +17,7 @@
 	</types>
 	<settings>
 		<admin>OCA\Guests\Settings\Admin</admin>
+		<admin-section>OCA\Guests\Settings\Section</admin-section>
 	</settings>
 	<screenshot>https://raw.githubusercontent.com/owncloud/screenshots/ea949ddd1d35ea22aceb68609587c5536aeda5f6/guests/new_guest.png</screenshot>
 </info>
