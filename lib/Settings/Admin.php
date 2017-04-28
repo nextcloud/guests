@@ -21,36 +21,26 @@
 
 namespace OCA\Guests\Settings;
 
-use OCP\Template;
+use OCP\AppFramework\Http\TemplateResponse;
 
 class Admin implements \OCP\Settings\ISettings
 {
-
 	/**
-	 * The panel controller method that returns a template to the UI
-	 *
-	 * @since 10.0
-	 * @return \OCP\AppFramework\Http\TemplateResponse | \OCP\Template
+	 * {@inheritdoc}
 	 */
 	public function getForm() {
-		return new Template('guests', 'settings/admin');
+		return new TemplateResponse('guests', 'settings/admin');
 	}
 
 	/**
-	 * A string to identify the section in the UI / HTML and URL
-	 *
-	 * @since 10.0
-	 * @return string
+	 * {@inheritdoc}
 	 */
 	public function getSection() {
 		return 'guests';
 	}
 
 	/**
-	 * The number used to order the section in the UI.
-	 *
-	 * @since 10.0
-	 * @return int between 0 and 100, with 100 being the highest priority
+	 * {@inheritdoc}
 	 */
 	public function getPriority() {
 		return 0;

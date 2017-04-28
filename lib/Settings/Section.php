@@ -43,31 +43,21 @@ class Section implements IIconSection {
 	}
 
 	/**
-	 * returns the ID of the section. It is supposed to be a lower case string,
-	 * e.g. 'ldap'
-	 *
-	 * @returns string
+	 * {@inheritdoc}
 	 */
 	public function getID() {
 		return 'guests';
 	}
 
 	/**
-	 * returns the translated name as it should be displayed, e.g. 'LDAP / AD
-	 * integration'. Use the L10N service to translate it.
-	 *
-	 * @return string
+	 * {@inheritdoc}
 	 */
 	public function getName() {
 		return $this->l->t('Guests');
 	}
 
 	/**
-	 * @return int whether the form should be rather on the top or bottom of
-	 * the settings navigation. The sections are arranged in ascending order of
-	 * the priority values. It is required to return a value between 0 and 99.
-	 *
-	 * E.g.: 70
+	 * {@inheritdoc}
 	 */
 	public function getPriority() {
 		return 30;
