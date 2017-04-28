@@ -136,7 +136,7 @@ class Hooks {
 
 		$isGuest = $this->config->getUserValue(
 			$shareWith,
-			'owncloud',
+			'nextcloud',
 			'isGuest',
 			false
 		);
@@ -174,7 +174,7 @@ class Hooks {
 
 		$passwordToken = $this->config->getUserValue(
 			$shareWith,
-			'owncloud',
+			'nextcloud',
 			'lostpassword',
 			null
 		);

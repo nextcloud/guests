@@ -142,7 +142,7 @@ class UsersController extends Controller {
 
 		$this->config->setUserValue(
 			$user->getUID(),
-			'owncloud',
+			'nextcloud',
 			'lostpassword',
 			$token
 		);
@@ -150,7 +150,7 @@ class UsersController extends Controller {
 
 		$this->config->setUserValue(
 			$userId,
-			'owncloud',
+			'nextcloud',
 			'isGuest',
 			'1'
 		);

@@ -47,7 +47,7 @@ class GroupBackend implements GroupInterface {
 		if (empty($this->guestMembers)) {
 			$cfg = \OC::$server->getConfig();
 			$this->guestMembers = $cfg->getUsersForUserValue(
-				'owncloud',
+				'nextcloud',
 				'isGuest',
 				'1'
 			);
