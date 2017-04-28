@@ -36,8 +36,28 @@ pipeline:
     when:
       matrix:
         TESTS: signed-off-check
+  integration:
+    image: nextcloudci/php7.0:php7.0-2
+    environment:
+      - APP_NAME=guests
+      - CORE_BRANCH=master
+      - DB=sqlite
+    commands:
+      # Pre-setup steps
+      - wget https://raw.githubusercontent.com/nextcloud/travis_ci/master/before_install.sh
+      - bash ./before_install.sh $APP_NAME $CORE_BRANCH $DB
+      - cd ../server
+
+      # Run integration
+      - cd apps/$APP_NAME/
+      - cd tests/integration
+      - bash ./run.sh
+    when:
+      matrix:
+        TESTS: integration
 
 matrix:
   include:
     - TESTS: check-app-compatbility
     - TESTS: signed-off-check
+    - TESTS: integration
