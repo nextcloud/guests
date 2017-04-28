@@ -194,7 +194,7 @@ OC.Plugins.register('OC.Share.ShareDialogView', {
 							unknown = [{
 								label: t('core', 'Add {unknown} (guest)', {unknown: searchTerm}),
 								value: {
-									shareType: 4,
+									shareType: OC.Share.SHARE_TYPE_GUEST,
 									shareWith: searchTerm
 								}
 							}];
