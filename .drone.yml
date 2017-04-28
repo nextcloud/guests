@@ -1,0 +1,43 @@
+pipeline:
+  clone:
+    image: plugins/git
+    depth: 1
+  check-app-compatbility:
+    image: nextcloudci/php5.6:php5.6-3
+    environment:
+      - APP_NAME=guests
+      - CORE_BRANCH=master
+      - DB=sqlite
+    commands:
+      # Pre-setup steps
+      - wget https://raw.githubusercontent.com/nextcloud/travis_ci/master/before_install.sh
+      - bash ./before_install.sh $APP_NAME $CORE_BRANCH $DB
+      - cd ../server
+
+      # Code checker
+      - ./occ app:check-code $APP_NAME -c strong-comparison
+      - ./occ app:check-code $APP_NAME -c deprecation
+      - cd apps/$APP_NAME/
+    when:
+      matrix:
+        TESTS: check-app-compatbility
+  signed-off-check:
+    image: nextcloudci/php7.0:php7.0-2
+    environment:
+      - APP_NAME=guests
+      - CORE_BRANCH=master
+      - DB=sqlite
+    commands:
+      # Pre-setup steps
+      - wget https://raw.githubusercontent.com/nextcloud/travis_ci/master/before_install.sh
+      - bash ./before_install.sh $APP_NAME $CORE_BRANCH $DB
+      - cd ../server
+      - php ./build/signed-off-checker.php
+    when:
+      matrix:
+        TESTS: signed-off-check
+
+matrix:
+  include:
+    - TESTS: check-app-compatbility
+    - TESTS: signed-off-check
