@@ -68,6 +68,6 @@ class Section implements IIconSection {
 	 */
 	public function getIcon() {
 		// TODO: Jan needs to create a proper icon
-		return $this->url->imagePath('logreader', 'app-dark.svg');
+		return $this->url->imagePath('guests', 'app-dark.svg');
 	}
 }
