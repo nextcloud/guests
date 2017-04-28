@@ -32,7 +32,7 @@ class Admin implements \OCP\Settings\ISettings
 	 * @since 10.0
 	 * @return \OCP\AppFramework\Http\TemplateResponse | \OCP\Template
 	 */
-	public function getPanel() {
+	public function getForm() {
 		return new Template('guests', 'settings/admin');
 	}
 
@@ -42,7 +42,7 @@ class Admin implements \OCP\Settings\ISettings
 	 * @since 10.0
 	 * @return string
 	 */
-	public function getSectionID() {
+	public function getSection() {
 		return 'guests';
 	}
 
