@@ -2,20 +2,26 @@ OC.L10N.register(
     "guests",
     {
     "Invalid mail address" : "Geçersiz posta adresi",
+    "Username required" : "Kullanıcı adı gereklidir",
     "A user with that name already exists." : "Bu isimde bir kullanıcı adı zaten mevcut.",
+    "User successfully created" : "Kullanıcı başarı şekilde oluşturuldu",
     "Error while sharing" : "Paylaşım sırasında hata",
     "Error" : "Hata",
+    "Add {unknown} (guest)" : "Ekle {unknown} (guest)",
     "No users or groups found for {search}" : "{search} için kullanıcı veya grup bulunamadı",
     "No users found for {search}" : "{search} için hiç bir kullanıcı bulunamadı",
     "An error occurred. Please try again" : "Bir hata oluştu. Lütfen yeniden deneyin",
     "Loading…" : "Yükleniyor...",
+    "Loaded" : "Yüklendi",
     "Saved" : "Kaydedildi",
     "Reset" : "Sıfırla",
+    "Access to this resource is forbidden for guests." : "Misafirler için bu kaynağın erişimini engelle.",
     "%s shared »%s« with you" : "%s sizinle »%s« paylaşımında bulundu",
     "%s via %s" : "%s, %s aracılığıyla",
     "Couldn't send reset email. Please contact your administrator." : "Sıfırlama e-postası gönderilemedi. Lütfen yöneticiniz ile iletişime geçin.",
     "The share will expire on %s." : "Bu paylaşım %s tarihinde sona erecek.",
     "Cheers!" : "Hoşçakalın!",
-    "Group name" : "Grup adı"
+    "Group name" : "Grup adı",
+    "Reset whitelist" : "beyaz listeyi resetle"
 },
 "nplurals=2; plural=(n > 1);");

@@ -23,7 +23,7 @@ OC.L10N.register(
     "The share will expire on %s." : "Die Freigabe wird am %s ablaufen.",
     "Cheers!" : "Noch einen schönen Tag!",
     "Hey there,<br><br>\n         \n         just letting you know that %s shared <strong>%s</strong> with you.<br><br>\n         Activate your guest account at %s by <a href=\"%s\">setting a password</a>.<br><br>\n         Then <a href=\"%s\">view it!</a><br><br>You can login using the email address <strong>\"%s\"</strong> .<br><br>" : "Hallo,<br><br>\n\n%s hat gerade <strong>%s</strong> mit Ihnen geteilt.<br><br>\nAktivieren Sie Ihr Gastkonto %s indem Sie <a href=\"%s\">ein Passwort vergeben:</a>.<br><br>\n<a href=\"%s\">Sehen Sie es sich danach an:</a><br><br>\nSie können sich mit Ihrer E-Mail Adresse einloggen <strong>\"%s\".</strong> .<br><br>",
-    "Guest users are grouped under a virtual group in the user manager" : "Gäste sind unter einer virtuellen Gruppe im  Nutzermanager zusammengefasst",
+    "Guest users are grouped under a virtual group in the user manager" : "Gäste sind unter einer virtuellen Gruppe im Benutzermanager zusammengefasst",
     "Group name" : "Gruppenname",
     "Limit guest access to an app whitelist" : "Gastzugriff auf eine App-Whitelist beschränken",
     "Reset whitelist" : "Whitelist zurücksetzen"

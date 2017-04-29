@@ -13,11 +13,17 @@
     "Loaded" : "Caricato",
     "Saved" : "Salvato",
     "Reset" : "Ripristina",
+    "Access to this resource is forbidden for guests." : "L'accesso a questa risorsa è proibito per gli ospiti.",
     "%s shared »%s« with you" : "%s ha condiviso «%s» con te",
     "%s via %s" : "%s tramite %s",
     "Couldn't send reset email. Please contact your administrator." : "Impossibile inviare l'email di reimpostazione. Contatta il tuo amministratore.",
+    "Hey there,\n\njust letting you know that %s shared %s with you.\n\nActivate your guest account at %s by setting a password: %s\n\nThen view it: %s\n\nYou can login using the email address \"%s\".\n\n" : "Ciao,\n\nti informiamo che %s ha condiviso %s con te.\n\nAttiva il tuo account ospite su %s impostando una password: %s\n\nPoi visualizzala: %s\n\nPuoi accedere utilizzando il tuo indirizzo email \"%s\".\n",
     "The share will expire on %s." : "La condivisione scadrà il %s.",
     "Cheers!" : "Saluti!",
-    "Group name" : "Nome gruppo"
+    "Hey there,<br><br>\n         \n         just letting you know that %s shared <strong>%s</strong> with you.<br><br>\n         Activate your guest account at %s by <a href=\"%s\">setting a password</a>.<br><br>\n         Then <a href=\"%s\">view it!</a><br><br>You can login using the email address <strong>\"%s\"</strong> .<br><br>" : "Ciao,<br><br>\n \n ti informiamo che %s ha condiviso <strong>%s</strong> con te<br><br>.\n Attiva il tuo account ospite su %s <a href=\"%s\">impostando una password</a>.<br><br>\n Poi <a href=\"%s\">visualizzala!</a><br><br>Puoi accedere utilizzando il tuo indirizzo email <strong>\"%s\"</strong> .<br><br>",
+    "Guest users are grouped under a virtual group in the user manager" : "Gli utenti ospiti sono raggruppati sotto un gruppo virtuale nel gestore degli utenti",
+    "Group name" : "Nome gruppo",
+    "Limit guest access to an app whitelist" : "Limita l'accesso degli ospiti a una lista bianca dell'applicazione",
+    "Reset whitelist" : "Ripristina la lista bianca"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
