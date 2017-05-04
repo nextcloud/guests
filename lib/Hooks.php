@@ -22,14 +22,19 @@
 
 namespace OCA\Guests;
 
+use OC\Files\Filesystem;
+use OCA\Guests\Storage\ReadOnlyJail;
 use OCP\AppFramework\Db\DoesNotExistException;
+use OCP\Constants;
+use OCP\Files\IHomeStorage;
+use OCP\Files\Storage\IStorage;
 use OCP\IConfig;
 use OCP\IGroupManager;
 use OCP\ILogger;
 use OCP\IRequest;
 use OCP\IUserManager;
 use OCP\IUserSession;
-
+use OCP\Security\ICrypto;
 
 
 class Hooks {
@@ -58,24 +63,23 @@ class Hooks {
 	 */
 	private $userManager;
 
-
 	/**
-	 * Hooks constructor.
-	 *
-	 * @param ILogger $logger
-	 * @param IUserSession $userSession
-	 * @param IRequest $request
-	 * @param Mail $mail
-	 * @param IUserManager $userManager
-	 * @param IConfig $config
+	 * @var ICrypto
 	 */
+	private $crypto;
+
+	/** @var GuestManager */
+	private $guestManager;
+
 	public function __construct(
 		ILogger $logger,
 		IUserSession $userSession,
 		IRequest $request,
 		Mail $mail,
 		IUserManager $userManager,
-		IConfig $config
+		IConfig $config,
+		ICrypto $crypto,
+		GuestManager $guestManager
 	) {
 		$this->logger = $logger;
 		$this->userSession = $userSession;
@@ -83,31 +87,8 @@ class Hooks {
 		$this->mail = $mail;
 		$this->userManager = $userManager;
 		$this->config = $config;
-	}
-
-	/**
-	 * @var Hooks
-	 */
-	private static $instance;
-
-	/**
-	 * @deprecated use DI
-	 * @return Hooks
-	 */
-	public static function createForStaticLegacyCode() {
-		if (!self::$instance) {
-			$logger = \OC::$server->getLogger();
-
-			self::$instance = new Hooks(
-				$logger,
-				\OC::$server->getUserSession(),
-				\OC::$server->getRequest(),
-				Mail::createForStaticLegacyCode(),
-				\OC::$server->getUserManager(),
-				\OC::$server->getConfig()
-			);
-		}
-		return self::$instance;
+		$this->crypto = $crypto;
+		$this->guestManager = $guestManager;
 	}
 
 	/**
@@ -116,13 +97,12 @@ class Hooks {
 	 * @param array $params
 	 * @throws \Exception
 	 */
-	static public function postShareHook($params) {
-		$hook = self::createForStaticLegacyCode();
-		$hook->handlePostShare(
-				$params['shareType'],
-				$params['shareWith'],
-				$params['itemType'],
-				$params['itemSource']
+	public function postShareHook($params) {
+		$this->handlePostShare(
+			$params['shareType'],
+			$params['shareWith'],
+			$params['itemType'],
+			$params['itemSource']
 		);
 	}
 
@@ -144,7 +124,7 @@ class Hooks {
 		if (!$isGuest) {
 			$this->logger->debug(
 				"ignoring user '$shareWith', not a guest",
-				['app'=>'guests']
+				['app' => 'guests']
 			);
 
 			return;
@@ -153,7 +133,7 @@ class Hooks {
 		if (!($itemType === 'folder' || $itemType === 'file')) {
 			$this->logger->debug(
 				"ignoring share for itemType '$itemType'",
-				['app'=>'guests']
+				['app' => 'guests']
 			);
 
 			return;
@@ -161,6 +141,7 @@ class Hooks {
 
 
 		$user = $this->userSession->getUser();
+		$targetUser = $this->userManager->get($shareWith);
 
 		if (!$user) {
 			throw new \Exception(
@@ -169,12 +150,12 @@ class Hooks {
 		}
 
 		$this->logger->debug("checking if '$shareWith' has a password",
-			['app'=>'guests']);
+			['app' => 'guests']);
 
 
 		$passwordToken = $this->config->getUserValue(
 			$shareWith,
-			'nextcloud',
+			'core',
 			'lostpassword',
 			null
 		);
@@ -183,14 +164,17 @@ class Hooks {
 
 		try {
 			if ($passwordToken) {
-				$exploded = explode(':', $passwordToken);
+				// user has not yet activated his account
+
+				$decryptedToken = $this->crypto->decrypt($passwordToken, $targetUser->getEMailAddress() . $this->config->getSystemValue('secret'));
+				list(, $token) = explode(':', $decryptedToken);
 				// send invitation
 				$this->mail->sendGuestInviteMail(
 					$uid,
 					$shareWith,
 					$itemType,
 					$itemSource,
-					$exploded[1]
+					$token
 				);
 			} else {
 				// always notify guests of new files
@@ -208,7 +192,25 @@ class Hooks {
 				);
 			}
 		} catch (DoesNotExistException $ex) {
-			$this->logger->error("'$shareWith' does not exist", ['app'=>'guests']);
+			$this->logger->error("'$shareWith' does not exist", ['app' => 'guests']);
+		}
+	}
+
+	public function setupReadonlyFilesystem(array $params) {
+		$user = $params['user'];
+
+		if ($this->guestManager->isReadOnlyUser($user)) {
+			Filesystem::addStorageWrapper('readonly', function ($mountPoint, IStorage $storage) use ($user) {
+				if ($mountPoint === '/' || $mountPoint === "/$user/") {
+					return new ReadOnlyJail([
+						'storage' => $storage,
+						'mask' => Constants::PERMISSION_READ,
+						'path' => 'files'
+					]);
+				} else {
+					return $storage;
+				}
+			});
 		}
 	}
 }

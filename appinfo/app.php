@@ -20,32 +20,6 @@
  *
  */
 
-\OC::$server->getEventDispatcher()->addListener(
-	'OCA\Files::loadAdditionalScripts',
-	function() {
-		\OCP\Util::addScript('guests', 'vue');
-		\OCP\Util::addScript('guests', 'app');
-		\OCP\Util::addStyle('guests', 'app');
-	}
-);
+use OCA\Guests\AppInfo\Application;
 
-$config = \OC::$server->getConfig();
-$groupName = $config->getAppValue('guests', 'group', 'guest_app');
-
-\OC::$server->getGroupManager()->addBackend(new \OCA\Guests\GroupBackend($groupName));
-\OCP\Util::connectHook('OCP\Share', 'post_shared', '\OCA\Guests\Hooks', 'postShareHook');
-
-
-$user = \OC::$server->getUserSession()->getUser();
-
-if ($user) {
-    // if the whitelist is used
-	if ($config->getAppValue('guests', 'usewhitelist', 'true') === 'true') {
-		\OCP\Util::connectHook('OC_Filesystem', 'preSetup', '\OCA\Guests\AppWhitelist', 'preSetup');
-	}
-
-	// hide email change field via css for learned guests
-	if ($user->getBackendClassName() === 'Guests') {
-		\OCP\Util::addStyle('guests', 'personal');
-	}
-}
+(new Application())->setup();

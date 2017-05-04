@@ -19,13 +19,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  *
  */
+/** @var \OCP\Defaults $theme */
 ?>
 <table cellspacing="0" cellpadding="0" border="0" width="100%">
 <tr><td>
 <table cellspacing="0" cellpadding="0" border="0" width="600px">
 <tr>
-<td bgcolor="<?php p($theme->getMailHeaderColor());?>" width="20px">&nbsp;</td>
-<td bgcolor="<?php p($theme->getMailHeaderColor());?>">
+<td bgcolor="<?php p($theme->getColorPrimary());?>" width="20px">&nbsp;</td>
+<td bgcolor="<?php p($theme->getColorPrimary());?>">
 <img src="<?php p(\OC::$server->getURLGenerator()->getAbsoluteURL(image_path('', 'logo-mail.gif'))); ?>" alt="<?php p($theme->getName()); ?>"/>
 </td>
 </tr>

@@ -80,32 +80,6 @@ class Mail {
 	}
 
 	/**
-	 * @var Mail
-	 */
-	private static $instance;
-
-	/**
-	 * @deprecated use DI
-	 * @return Mail
-	 */
-	public static function createForStaticLegacyCode() {
-		if (!self::$instance) {
-			self::$instance = new Mail (
-				\OC::$server->getConfig(),
-				\OC::$server->getLogger(),
-				\OC::$server->getUserSession(),
-				\OC::$server->getMailer(),
-				new Defaults(),
-				\OC::$server->getL10N('guests'),
-				\OC::$server->getUserManager(),
-				\OC::$server->getURLGenerator()
-			);
-
-		}
-		return self::$instance;
-	}
-
-	/**
 	 * Sends out a reset password mail if the user is a guest and does not have
 	 * a password set, yet.
 	 *
@@ -139,7 +113,7 @@ class Mail {
 
 
 		$link = $this->urlGenerator->linkToRouteAbsolute(
-			'files.viewcontroller.showFile', ['fileId' => $itemSource]
+			'files.viewcontroller.showFile', ['fileid' => $itemSource]
 		);
 
 		list($htmlBody, $textBody) = $this->createMailBody(

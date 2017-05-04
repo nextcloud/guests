@@ -4,6 +4,7 @@ namespace OCA\Guests\Controller;
 
 
 use OC\AppFramework\Http;
+use OCA\Guests\GuestManager;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\IConfig;
@@ -28,21 +29,13 @@ class UsersController extends Controller {
 	 */
 	private $l10n;
 	/**
-	 * @var IConfig
-	 */
-	private $config;
-	/**
 	 * @var IMailer
 	 */
 	private $mailer;
 	/**
-	 * @var IGroupManager
+	 * @var GuestManager
 	 */
-	private $groupManager;
-	/**
-	 * @var ISecureRandom
-	 */
-	private $secureRandom;
+	private $guestManager;
 
 
 	/**
@@ -51,30 +44,25 @@ class UsersController extends Controller {
 	 * @param string $appName
 	 * @param IRequest $request
 	 * @param IUserManager $userManager
-	 * @param IGroupManager $groupManager
 	 * @param IL10N $l10n
 	 * @param IConfig $config
 	 * @param IMailer $mailer
-	 * @param ISecureRandom $secureRandom
 	 */
 	public function __construct($appName,
 								IRequest $request,
 								IUserManager $userManager,
-								IGroupManager $groupManager,
 								IL10N $l10n,
 								IConfig $config,
 								IMailer $mailer,
-								ISecureRandom $secureRandom
+								GuestManager $guestManager
 	) {
 		parent::__construct($appName, $request);
 
 		$this->request = $request;
 		$this->userManager = $userManager;
 		$this->l10n = $l10n;
-		$this->config = $config;
 		$this->mailer = $mailer;
-		$this->groupManager = $groupManager;
-		$this->secureRandom = $secureRandom;
+		$this->guestManager = $guestManager;
 	}
 
 	/**
@@ -118,43 +106,7 @@ class UsersController extends Controller {
 			);
 		}
 
-
-		$user = $this->userManager->createUser(
-			$username,
-			$this->secureRandom->generate(20)
-		);
-
-		$user->setEMailAddress($email);
-
-		if (!empty($displayName)) {
-			$user->setDisplayName($displayName);
-		}
-
-		$token = $this->secureRandom->getMediumStrengthGenerator()->generate(
-			21,
-			ISecureRandom::CHAR_DIGITS .
-			ISecureRandom::CHAR_LOWER .
-			ISecureRandom::CHAR_UPPER);
-
-		$token = sprintf('%s:%s', time(), $token);
-
-		$userId = $user->getUID();
-
-		$this->config->setUserValue(
-			$user->getUID(),
-			'nextcloud',
-			'lostpassword',
-			$token
-		);
-
-
-		$this->config->setUserValue(
-			$userId,
-			'nextcloud',
-			'isGuest',
-			'1'
-		);
-
+		$this->guestManager->createGuest($username, $email, $displayName);
 
 		return new DataResponse(
 			[

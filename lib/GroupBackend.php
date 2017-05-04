@@ -17,6 +17,7 @@
  * You should have received a copy of the GNU Affero General Public License, version 3,
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
+
 namespace OCA\Guests;
 
 
@@ -29,6 +30,8 @@ use OCP\GroupInterface;
  * @package OCA\Guests
  */
 class GroupBackend implements GroupInterface {
+	/** @var GuestManager */
+	private $guestManager;
 
 	private $guestMembers = [];
 
@@ -38,19 +41,15 @@ class GroupBackend implements GroupInterface {
 	private $groupName;
 
 
-	public function __construct($groupName = 'guest_app') {
+	public function __construct(GuestManager $guestManager, $groupName = 'guest_app') {
 		$this->groupName = $groupName;
+		$this->guestManager = $guestManager;
 	}
 
 
 	private function getMembers() {
 		if (empty($this->guestMembers)) {
-			$cfg = \OC::$server->getConfig();
-			$this->guestMembers = $cfg->getUsersForUserValue(
-				'nextcloud',
-				'isGuest',
-				'1'
-			);
+			$this->guestMembers = $this->guestManager->listGuests();
 		}
 
 		return $this->guestMembers;
@@ -58,6 +57,7 @@ class GroupBackend implements GroupInterface {
 
 	/**
 	 * Get all supported actions
+	 *
 	 * @return int bitwise-or'ed actions
 	 *
 	 * Returns the supported actions as int to be
@@ -65,7 +65,7 @@ class GroupBackend implements GroupInterface {
 	 */
 	public function getSupportedActions() {
 		$actions = 0;
-		foreach($this->possibleActions AS $action => $methodName) {
+		foreach ($this->possibleActions AS $action => $methodName) {
 			if (method_exists($this, $methodName)) {
 				$actions |= $action;
 			}
@@ -76,6 +76,7 @@ class GroupBackend implements GroupInterface {
 
 	/**
 	 * Check if backend implements actions
+	 *
 	 * @param int $actions bitwise-or'ed actions
 	 * @return bool
 	 *
