@@ -53,7 +53,8 @@ class Application extends App {
 			return new AppWhitelist(
 				$server->getConfig(),
 				$c->query(GuestManager::class),
-				$server->getL10N('guests')
+				$server->getL10N('guests'),
+				$server->getAppManager()
 			);
 		});
 

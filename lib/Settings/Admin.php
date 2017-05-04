@@ -21,15 +21,24 @@
 
 namespace OCA\Guests\Settings;
 
+use OCA\Guests\AppWhitelist;
 use OCP\AppFramework\Http\TemplateResponse;
 
-class Admin implements \OCP\Settings\ISettings
-{
+class Admin implements \OCP\Settings\ISettings {
+	/** @var AppWhitelist */
+	private $appWhitelist;
+
+	public function __construct(AppWhitelist $appWhitelist) {
+		$this->appWhitelist = $appWhitelist;
+	}
+
 	/**
 	 * {@inheritdoc}
 	 */
 	public function getForm() {
-		return new TemplateResponse('guests', 'settings/admin');
+		return new TemplateResponse('guests', 'settings/admin', [
+			'whitelistableApps' => $this->appWhitelist->getWhitelistAbleApps()
+		]);
 	}
 
 	/**
@@ -44,4 +53,5 @@ class Admin implements \OCP\Settings\ISettings
 	 */
 	public function getPriority() {
 		return 0;
-}}
+	}
+}

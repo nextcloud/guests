@@ -20,18 +20,34 @@
  *
  */
 script('guests', 'guests');
+style('guests', 'admin');
 /** @var $l OC_L10N */
 /** @var $_ array */
 ?>
 <div class="section" id="guests">
-	<h2>Guests</h2>
+	<h2>Guests <span class="msg"></span></h2>
 	<div>
-		<span class="inlineblock user-info-label"><?php p($l->t('Guest users are grouped under a virtual group in the user manager'));?></span><br/><br/>
-		<label for="guestGroup"><?php p($l->t('Group name'));?>
-		</label><input type="text" id="guestGroup" value="" /><br/>
-		<br/>
-		<input type="checkbox" id="guestUseWhitelist" value="useWhitelist"/><label for="guestUseWhitelist"><?php p($l->t('Limit guest access to an app whitelist'));?></label><br/>
-		<input type="text" id="guestWhitelist" value="" style="display:none; width:99%;"/><br/>
-		<button type="button" id="guestResetWhitelist"><?php p($l->t('Reset whitelist'));?></button><span class="msg"></span>
+		<p>
+			<span class="inlineblock user-info-label"><?php p($l->t('Guest users are grouped under a virtual group in the user manager')); ?></span><br/><br/>
+			<label for="guestGroup"><?php p($l->t('Group name')); ?>
+			</label><input type="text" id="guestGroup" value=""/>
+		</p>
+		<p class="whitelist-toggle">
+			<input type="checkbox" id="guestUseWhitelist" class="checkbox"
+				   value="useWhitelist"/>
+			<label for="guestUseWhitelist">
+				<?php p($l->t('Limit guest access to an app whitelist')); ?>
+			</label>
+		</p>
+		<p class="whitelist" style="display: none">
+			<select multiple="multiple" id="guestWhitelist">
+				<?php foreach ($_['whitelistableApps'] as $app): ?>
+					<option value="<?php p($app); ?>"><?php p($app); ?></option>
+				<?php endforeach; ?>
+			</select>
+			<button title="<?php p($l->t('Reset')) ?>" type="button"
+					class="icon-history icon"
+					id="guestResetWhitelist"></button>
+		</p>
 	</div>
 </div>

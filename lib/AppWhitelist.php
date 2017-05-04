@@ -22,6 +22,7 @@
 namespace OCA\Guests;
 
 
+use OCP\App\IAppManager;
 use OCP\IConfig;
 use OCP\IL10N;
 use OCP\Template;
@@ -38,8 +39,10 @@ class AppWhitelist {
 	private $guestManager;
 	/** @var IL10N */
 	private $l10n;
+	/** @var IAppManager */
+	private $appManager;
 
-	const WHITELIST_ALWAYS = ',core,theming,settings,avatar,files';
+	const WHITELIST_ALWAYS = ',core,theming,settings,avatar,files,heartbeat,dav';
 
 	const DEFAULT_WHITELIST = 'files_external,files_trashbin,files_versions,files_sharing,files_texteditor,activity,firstrunwizard,gallery,notifications';
 
@@ -50,10 +53,11 @@ class AppWhitelist {
 	 * @param GuestManager $guestManager
 	 * @param IL10N $l10n
 	 */
-	public function __construct(IConfig $config, GuestManager $guestManager, IL10N $l10n) {
+	public function __construct(IConfig $config, GuestManager $guestManager, IL10N $l10n, IAppManager $appManager) {
 		$this->config = $config;
 		$this->guestManager = $guestManager;
 		$this->l10n = $l10n;
+		$this->appManager = $appManager;
 	}
 
 	private function isAppWhitelisted($appId) {
@@ -110,7 +114,7 @@ class AppWhitelist {
 		} else if (substr($url, 0, 3) === '/f/') {
 			return 'files';
 		} else if (substr($url, 0, 12) === '/webdav/') {
-			return 'core';
+			return 'dav';
 		} else if (substr($url, 0, 10) === '/settings/') {
 			return 'settings';
 		} else if (substr($url, 0, 8) === '/avatar/') {
@@ -119,5 +123,12 @@ class AppWhitelist {
 			return 'heartbeat';
 		}
 		return false;
+	}
+
+	public function getWhitelistAbleApps() {
+		return array_diff(
+			$this->appManager->getInstalledApps(),
+			explode(',', self::WHITELIST_ALWAYS)
+		);
 	}
 }

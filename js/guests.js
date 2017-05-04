@@ -26,13 +26,17 @@
 		var $guestGroup = $section.find('#guestGroup');
 		var $guestUseWhitelist = $section.find('#guestUseWhitelist');
 		var $guestWhitelist = $section.find('#guestWhitelist');
+		var $guestWhitelistContainer = $section.find('.whitelist');
 		var $resetWhitelist = $section.find('#guestResetWhitelist');
 		var $msg = $section.find('.msg');
+		var loading = true;
 
 		var config = { conditions: ['quota'], group: 'guests',
 			useWhitelist: true, whitelist:[
 				'','core','settings','avatar','files','files_trashbin','files_sharing'
 			]};
+
+		$guestWhitelist.select2();
 
 		// functions
 
@@ -47,10 +51,10 @@
 					// update ui
 					if(config.useWhitelist) {
 						$guestUseWhitelist.prop('checked', true);
-						$guestWhitelist.show();
+						$guestWhitelistContainer.show();
 					} else {
 						$guestUseWhitelist.prop('checked', false);
-						$guestWhitelist.hide();
+						$guestWhitelistContainer.hide();
 					}
 					if (config.group) {
 						$guestGroup.val(config.group);
@@ -58,10 +62,9 @@
 						$guestGroup.val('');
 					}
 					if ($.isArray(config.whitelist)) {
-						$guestWhitelist.val(config.whitelist.join());
-					} else {
-						$guestWhitelist.val('');
+						$guestWhitelist.val(config.whitelist).trigger("change");
 					}
+					loading = false;
 				},
 				'json'
 			).then(function() {
@@ -74,6 +77,9 @@
 		};
 
 		var saveConfig = function () {
+			if (loading) {
+				return;
+			}
 			OC.msg.startSaving($msg);
 			$.ajax({
 				type: 'PUT',
@@ -114,14 +120,14 @@
 		$guestUseWhitelist.on('change', function () {
 			config.useWhitelist = $guestUseWhitelist.prop('checked');
 			if(config.useWhitelist) {
-				$guestWhitelist.show();
+				$guestWhitelistContainer.show();
 			} else {
-				$guestWhitelist.hide();
+				$guestWhitelistContainer.hide();
 			}
 			saveConfig();
 		});
 		$guestWhitelist.on('change', function () {
-			var apps = $guestWhitelist.val().split(',');
+			var apps = $guestWhitelist.val();
 			config.whitelist = [];
 			$.each(apps, function( index, value ) {
 				config.whitelist.push(value.trim());
@@ -135,12 +141,19 @@
 				url: OC.generateUrl('apps/guests/whitelist/reset')
 			}).success(function(response) {
 				config.whitelist = response.whitelist;
+
+				// prevent it saving again
+				loading = true;
+
 				//update ui
 				if ($.isArray(config.whitelist)) {
-					$guestWhitelist.val(config.whitelist.join());
+					$guestWhitelist.val(config.whitelist).trigger("change");
 				} else {
-					$guestWhitelist.val('');
+					$guestWhitelist.val([]).trigger("change");
 				}
+
+				loading = false;
+
 				OC.msg.finishedSaving($msg, {
 					status:'success',
 					data: { message:t('guests', 'Reset') }
