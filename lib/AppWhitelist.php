@@ -39,7 +39,9 @@ class AppWhitelist {
 	/** @var IL10N */
 	private $l10n;
 
-	const DEFAULT_WHITELIST = ',core,theming,settings,avatar,files,files_external,files_trashbin,files_versions,files_sharing,files_texteditor,activity,firstrunwizard,gallery,notifications';
+	const WHITELIST_ALWAYS = ',core,theming,settings,avatar,files';
+
+	const DEFAULT_WHITELIST = 'files_external,files_trashbin,files_versions,files_sharing,files_texteditor,activity,firstrunwizard,gallery,notifications';
 
 	/**
 	 * AppWhitelist constructor.
@@ -60,8 +62,10 @@ class AppWhitelist {
 			'whitelist',
 			self::DEFAULT_WHITELIST
 		));
+		$alwaysEnabled = explode(',', self::WHITELIST_ALWAYS);
 
-		return in_array($appId, $whitelist, true);
+
+		return in_array($appId, array_merge($whitelist, $alwaysEnabled), true);
 	}
 
 	public function isWhitelistEnabled() {
