@@ -19,7 +19,7 @@ if (!OCA.Guests) {
  */
 
 $(document).ready(function () {
-	$('body').append('<div id="app-guests"><div class="modal" v-if="state.modalIsOpen"><h2 class="modal-title">Add <span class="placeholder-name">{{guest.fullname}}</span> to guests</h2><div class="modal-body"><div class="form-group"><label class="form-label" >Username:</label><input class="form-input" disabled type="text" v-model="guest.username"></div><div class="form-group"><label class="form-label" for="app-guests-input-name">Name:</label><input class="form-input" id="app-guests-input-name" type="text" v-model="guest.fullname"></div><div class="form-group"><label class="form-label" for="app-guests-input-email">E-Mail:</label><input class="form-input" id="app-guests-input-email" type="email" v-model="guest.email" :class="{ _error : error.email }"> <span v-if="error.email">{{error.email}}</span></div></div><div class="modal-footer"><button class="button-close" @click="closeModal">Cancel</button><button class="button-save" @click="addGuest">Save and Share</button></div></div><div class="modal-backdrop" v-if="state.modalIsOpen"></div></div>');
+	$('body').append('<div id="app-guests"><div class="modal" v-if="state.modalIsOpen"><h2 class="modal-title">Create guest account for <span class="placeholder-name">{{guest.fullname}}</span></h2><div class="modal-body"><div class="form-group"><label class="form-label" for="app-guests-input-name">Name:</label><input class="form-input" id="app-guests-input-name" type="text" v-model="guest.fullname"></div><div class="form-group"><label class="form-label" for="app-guests-input-email">E-Mail:</label><input class="form-input" id="app-guests-input-email" type="email" v-model="guest.email" :class="{ _error : error.email }"> <span v-if="error.email">{{error.email}}</span></div></div><div class="modal-footer"><button class="button-close" @click="closeModal">Cancel</button><button class="button-save" @click="addGuest">Save and Share</button></div></div><div class="modal-backdrop" v-if="state.modalIsOpen"></div></div>');
 
 	OCA.Guests.App = new Vue({
 		el: '#app-guests',
@@ -53,7 +53,7 @@ $(document).ready(function () {
 				if (this.guest.email) {
 					username = this.guest.email.toLowerCase();
 					username = username.match(/[\w]+/g);
-					this.guest.username = username.join('_');
+					this.guest.username = 'guest_' + username.join('_');
 				}
 				else {
 					this.guest.username = '';
