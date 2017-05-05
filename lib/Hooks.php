@@ -201,7 +201,7 @@ class Hooks {
 
 		if ($this->guestManager->isReadOnlyUser($user)) {
 			Filesystem::addStorageWrapper('readonly', function ($mountPoint, IStorage $storage) use ($user) {
-				if ($mountPoint === '/' || $mountPoint === "/$user/") {
+				if ($mountPoint === "/$user/") {
 					return new ReadOnlyJail([
 						'storage' => $storage,
 						'mask' => Constants::PERMISSION_READ,
