@@ -22,7 +22,10 @@
 namespace OCA\Guests\AppInfo;
 
 use OC\Files\Filesystem;
+use OC\NavigationManager;
+use OC\Server;
 use OCA\Guests\AppWhitelist;
+use OCA\Guests\FilteredNavigationManager;
 use OCA\Guests\GroupBackend;
 use OCA\Guests\GuestManager;
 use OCA\Guests\Hooks;
@@ -89,6 +92,7 @@ class Application extends App {
 
 	public function setup() {
 		$container = $this->getContainer();
+		/** @var Server $server */
 		$server = $container->getServer();
 
 		$server->getEventDispatcher()->addListener(
@@ -116,10 +120,10 @@ class Application extends App {
 		$user = $server->getUserSession()->getUser();
 
 		if ($user) {
-			// if the whitelist is used
 			/** @var AppWhitelist $whiteList */
 			$whiteList = $container->query(AppWhitelist::class);
-			$whiteList->verifyAccess($user->getUID());
+			// if the whitelist is used
+			$whiteList->verifyAccess($user->getUID(), $server->getRequest());
 
 			/** @var GuestManager $guestManager */
 			$guestManager = $container->query(GuestManager::class);
@@ -127,9 +131,14 @@ class Application extends App {
 			// hide email change field via css for learned guests
 			if ($guestManager->isGuest($user->getUID())) {
 				\OCP\Util::addStyle('guests', 'personal');
-				\OCP\Util::addScript('guests', 'navigation');
 			}
 
+			/** @var NavigationManager $navManager */
+			$navManager = $server->getNavigationManager();
+
+			$server->registerService('NavigationManager', function () use ($navManager, $user, $whiteList) {
+				return new FilteredNavigationManager($user, $navManager, $whiteList);
+			});
 		}
 	}
 }

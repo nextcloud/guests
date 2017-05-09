@@ -25,6 +25,7 @@ namespace OCA\Guests;
 use OCP\App\IAppManager;
 use OCP\IConfig;
 use OCP\IL10N;
+use OCP\IRequest;
 use OCP\Template;
 
 /**
@@ -42,7 +43,7 @@ class AppWhitelist {
 	/** @var IAppManager */
 	private $appManager;
 
-	const WHITELIST_ALWAYS = ',core,theming,settings,avatar,files,heartbeat,dav';
+	const WHITELIST_ALWAYS = ',core,theming,settings,avatar,files,heartbeat,dav,guests';
 
 	const DEFAULT_WHITELIST = 'files_external,files_trashbin,files_versions,files_sharing,files_texteditor,activity,firstrunwizard,gallery,notifications';
 
@@ -76,21 +77,27 @@ class AppWhitelist {
 		return $this->config->getAppValue('guests', 'usewhitelist', 'true') === 'true';
 	}
 
-	public function verifyAccess($uid) {
+	public function isUrlAllowed($uid, $url) {
+		if ($this->guestManager->isGuest($uid) && $this->isWhitelistEnabled()) {
+			$app = $this->getRequestedApp($url);
+
+			return $this->isAppWhitelisted($app);
+		} else {
+			return false;
+		}
+	}
+
+	public function verifyAccess($uid, IRequest $request) {
 		if (empty($uid)) {
 			return;
 		}
 
-		if ($this->guestManager->isGuest($uid) && $this->isWhitelistEnabled()) {
-			$app = $this->getRequestedApp();
-
-			if (!$this->isAppWhitelisted($app)) {
-				header('HTTP/1.0 403 Forbidden');;
-				Template::printErrorPage($this->l10n->t(
-					'Access to this resource is forbidden for guests.'
-				));
-				exit;
-			}
+		if (!$this->isUrlAllowed($uid, $request->getRawPathInfo())) {
+			header('HTTP/1.0 403 Forbidden');
+			Template::printErrorPage($this->l10n->t(
+				'Access to this resource is forbidden for guests.'
+			));
+			exit;
 		}
 	}
 
@@ -98,9 +105,7 @@ class AppWhitelist {
 	 * Core has \OC::$REQUESTEDAPP but it isn't set until the routes are matched
 	 * taken from \OC\Route\Router::match()
 	 */
-	private function getRequestedApp() {
-		// TODO: inject request?
-		$url = \OC::$server->getRequest()->getRawPathInfo();
+	private function getRequestedApp($url) {
 		if (substr($url, 0, 6) === '/apps/') {
 			// empty string / 'apps' / $app / rest of the route
 			list(, , $app,) = explode('/', $url, 4);
