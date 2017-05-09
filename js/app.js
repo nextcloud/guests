@@ -192,7 +192,7 @@ OC.Plugins.register('OC.Share.ShareDialogView', {
 						if (searchTerm.search("@") === -1) {
 
 							unknown = [{
-								label: t('core', 'Add {unknown} (guest)', {unknown: searchTerm}),
+								label: t('core', 'Create guest account for {searchterm}', {searchterm: searchTerm}),
 								value: {
 									shareType: OC.Share.SHARE_TYPE_GUEST,
 									shareWith: searchTerm
