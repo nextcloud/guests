@@ -121,11 +121,14 @@ class Application extends App {
 			$whiteList = $container->query(AppWhitelist::class);
 			$whiteList->verifyAccess($user->getUID());
 
-			// hide email change field via css for learned guests
-			if ($user->getBackendClassName() === 'Guests') {
-				\OCP\Util::addStyle('guests', 'personal');
-			}
+			/** @var GuestManager $guestManager */
+			$guestManager = $container->query(GuestManager::class);
 
+			// hide email change field via css for learned guests
+			if ($guestManager->isGuest($user->getUID())) {
+				\OCP\Util::addStyle('guests', 'personal');
+				\OCP\Util::addScript('guests', 'navigation');
+			}
 
 		}
 	}
