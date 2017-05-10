@@ -178,41 +178,82 @@ class Mail {
 		}
 	}
 
-	/**
-	 * @param $sender
-	 * @param $recipient
-	 * @param $itemType
-	 * @param $itemSource
-	 */
 	public function sendShareNotification(
-		$sender,
+		IUser $sender,
 		IUser $recipient,
-		$itemType,
-		$itemSource
+		$itemSource,
+		$itemType
 	) {
-		$recipientList[] = $recipient;
-
-
-		$mailNotification = new MailNotifications(
-			$sender,
-			\OC::$server->getL10N('lib'),
-			$this->mailer,
-			$this->logger,
-			$this->defaults,
-			\OC::$server->getURLGenerator()
-		);
-		$this->logger->debug("sending share notification for '$itemType'"
-			. " '$itemSource' to {$recipient->getUID()}'",
-			['app' => 'guests']);
-
-		$result = $mailNotification->sendInternalShareMail(
-			$recipientList, $itemSource, $itemType
+		$link = $this->urlGenerator->linkToRouteAbsolute(
+			'files.viewcontroller.showFile', ['fileid' => $itemSource]
 		);
 
-		// mark mail as sent
-		// TODO do not set if $result contains the recipient
-		Share::setSendMailStatus(
-			$itemType, $itemSource, Share::SHARE_TYPE_USER, $recipient, true
+		$items = Share::getItemSharedWithUser($itemType, $itemSource, $recipient->getUID());
+		$filename = trim($items[0]['file_target'], '/');
+
+		$subject = (string)$this->l10n->t('%s shared »%s« with you', array($sender->getDisplayName(), $filename));
+		$expiration = null;
+		if (isset($items[0]['expiration'])) {
+			try {
+				$date = new \DateTime($items[0]['expiration']);
+				$expiration = $date->getTimestamp();
+			} catch (\Exception $e) {
+				$this->logger->error("Couldn't read date: " . $e->getMessage(), ['app' => 'sharing']);
+			}
+		}
+
+		$emailTemplate = $this->mailer->createEMailTemplate();
+
+		$emailTemplate->addHeader();
+		$emailTemplate->addHeading($this->l10n->t('Incoming share'));
+
+		$emailTemplate->addBodyText(
+			$this->l10n->t('Hey there,')
 		);
+
+		$emailTemplate->addBodyText(
+			$this->l10n->t('%s just shared »%s« with you.', [$sender->getDisplayName(), $filename])
+		);
+		$emailTemplate->addBodyText(
+			$this->l10n->t('You can view the share by logging in with %s.', [$recipient->getEMailAddress()])
+		);
+
+		if ($expiration) {
+			$formattedDate = $this->l10n->l('date', $expiration);
+			$emailTemplate->addBodyText(
+				$this->l10n->t('The share will expire at %s.', [$formattedDate])
+			);
+		}
+
+		$emailTemplate->addBodyButton(
+			$this->l10n->t('View share'),
+			$link
+		);
+		$emailTemplate->addFooter();
+
+		try {
+			$message = $this->mailer->createMessage();
+			$message->setTo([$recipient->getEMailAddress() => $recipient->getDisplayName()]);
+			$message->setSubject($subject);
+			$message->setHtmlBody($emailTemplate->renderHtml());
+			$message->setPlainBody($emailTemplate->renderText());
+			$message->setFrom([
+				Util::getDefaultEmailAddress('sharing-noreply') =>
+					(string)$this->l10n->t('%s via %s', [
+						$sender->getDisplayName(),
+						$this->defaults->getName()
+					]),
+			]);
+
+			if ($sender->getEMailAddress()) {
+				$message->setReplyTo([$sender->getEMailAddress()]);
+			}
+
+			$this->mailer->send($message);
+		} catch (\Exception $e) {
+			throw new \Exception($this->l10n->t(
+				'Couldn\'t send reset email. Please contact your administrator.'
+			));
+		}
 	}
 }

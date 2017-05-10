@@ -187,8 +187,8 @@ class Hooks {
 				$this->mail->sendShareNotification(
 					$this->userSession->getUser(),
 					$guest,
-					$itemType,
-					$itemSource
+					$itemSource,
+					$itemType
 				);
 			}
 		} catch (DoesNotExistException $ex) {
