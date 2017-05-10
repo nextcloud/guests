@@ -117,16 +117,47 @@ class Mail {
 			'files.viewcontroller.showFile', ['fileid' => $itemSource]
 		);
 
-		list($htmlBody, $textBody) = $this->createMailBody(
-			$filename, $link, $passwordLink, $this->defaults->getName(), $senderDisplayName, $expiration, $shareWithEmail
+		$emailTemplate = $this->mailer->createEMailTemplate();
+
+		$emailTemplate->addHeader();
+		$emailTemplate->addHeading($this->l10n->t('Incoming share'));
+
+		$emailTemplate->addBodyText(
+			$this->l10n->t('Hey there,')
 		);
+
+		$emailTemplate->addBodyText(
+			$this->l10n->t('%s just shared »%s« with you.', [$senderDisplayName, $filename])
+		);
+
+		$emailTemplate->addBodyText(
+			$this->l10n->t('You can access the shared file by activating your guest account.')
+		);
+		$emailTemplate->addBodyText(
+			$this->l10n->t('After your account is activated you can view the share by logging in with %s.', [$shareWithEmail])
+		);
+
+		if ($expiration) {
+			$formattedDate = $this->l10n->l('date', $expiration);
+			$emailTemplate->addBodyText(
+				$this->l10n->t('The share will expire at %s.', [$formattedDate])
+			);
+		}
+
+		$emailTemplate->addBodyButtonGroup(
+			$this->l10n->t('Activate account'),
+			$passwordLink,
+			$this->l10n->t('View share'),
+			$link
+		);
+		$emailTemplate->addFooter();
 
 		try {
 			$message = $this->mailer->createMessage();
 			$message->setTo([$shareWithEmail => $targetUser->getDisplayName()]);
 			$message->setSubject($subject);
-			$message->setHtmlBody($htmlBody);
-			$message->setPlainBody($textBody);
+			$message->setHtmlBody($emailTemplate->renderHtml());
+			$message->setPlainBody($emailTemplate->renderText());
 			$message->setFrom([
 				Util::getDefaultEmailAddress('sharing-noreply') =>
 					(string)$this->l10n->t('%s via %s', [
@@ -183,43 +214,5 @@ class Mail {
 		Share::setSendMailStatus(
 			$itemType, $itemSource, Share::SHARE_TYPE_USER, $recipient, true
 		);
-
 	}
-
-	/**
-	 * create mail body for plain text and html mail
-	 *
-	 * @param string $filename the shared file
-	 * @param string $link link to the shared file
-	 * @param int $expiration expiration date (timestamp)
-	 * @param string $guestEmail
-	 * @return array an array of the html mail body and the plain text mail body
-	 */
-	private function createMailBody($filename, $link, $passwordLink, $cloudName, $displayName, $expiration, $guestEmail) {
-
-		$formattedDate = $expiration ? $this->l10n->l('date', $expiration) : null;
-
-		$html = new \OC_Template('guests', 'mail/invite');
-		$html->assign('link', $link);
-		$html->assign('password_link', $passwordLink);
-		$html->assign('cloud_name', $cloudName);
-		$html->assign('user_displayname', $displayName);
-		$html->assign('filename', $filename);
-		$html->assign('expiration', $formattedDate);
-		$html->assign('guestEmail', $guestEmail);
-		$htmlMail = $html->fetchPage();
-
-		$plainText = new \OC_Template('guests', 'mail/altinvite');
-		$plainText->assign('link', $link);
-		$plainText->assign('password_link', $passwordLink);
-		$plainText->assign('cloud_name', $cloudName);
-		$plainText->assign('user_displayname', $displayName);
-		$plainText->assign('filename', $filename);
-		$plainText->assign('expiration', $formattedDate);
-		$plainText->assign('guestEmail', $guestEmail);
-		$plainTextMail = $plainText->fetchPage();
-
-		return [$htmlMail, $plainTextMail];
-	}
-
 }
