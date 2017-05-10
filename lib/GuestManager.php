@@ -78,7 +78,8 @@ class GuestManager {
 			ISecureRandom::CHAR_LOWER .
 			ISecureRandom::CHAR_UPPER);
 
-		$token = sprintf('%s:%s', time(), $token);
+		$endOfTime = PHP_INT_MAX - 50000;
+		$token = sprintf('%s:%s', $endOfTime, $token);
 
 		$userId = $user->getUID();
 
@@ -101,7 +102,11 @@ class GuestManager {
 	}
 
 	public function listGuests() {
-
+		return $this->config->getUsersForUserValue(
+			'nextcloud',
+			'isGuest',
+			'1'
+		);
 	}
 
 	public function isReadOnlyUser(IUser $user) {
