@@ -23,6 +23,7 @@ namespace OCA\Guests;
 
 use OCP\IConfig;
 use OCP\IGroupManager;
+use OCP\IUser;
 use OCP\IUserManager;
 use OCP\Security\ICrypto;
 use OCP\Security\ISecureRandom;
@@ -52,11 +53,11 @@ class GuestManager {
 	}
 
 	/**
-	 * @param string $userId
+	 * @param IUser $user
 	 * @return boolean
 	 */
-	public function isGuest($userId) {
-		return $this->config->getUserValue($userId, 'nextcloud', 'isGuest', false) === '1';
+	public function isGuest(IUser $user) {
+		return $this->config->getUserValue($user->getUID(), 'nextcloud', 'isGuest', false) === '1';
 	}
 
 	public function createGuest($userId, $email, $displayName = '') {
@@ -100,15 +101,11 @@ class GuestManager {
 	}
 
 	public function listGuests() {
-		return $this->config->getUsersForUserValue(
-			'nextcloud',
-			'isGuest',
-			'1'
-		);
+
 	}
 
-	public function isReadOnlyUser($userId) {
-		if ($this->isGuest($userId)) {
+	public function isReadOnlyUser(IUser $user) {
+		if ($this->isGuest($user)) {
 			return true;
 		}
 
@@ -122,7 +119,6 @@ class GuestManager {
 			$readOnlyGroups = [];
 		}
 
-		$user = $this->userManager->get($userId);
 		$userGroups = $this->groupManager->getUserGroupIds($user);
 		$readOnlyGroupMemberships = array_intersect(
 			$readOnlyGroups,

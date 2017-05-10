@@ -26,6 +26,7 @@ use OCP\App\IAppManager;
 use OCP\IConfig;
 use OCP\IL10N;
 use OCP\IRequest;
+use OCP\IUser;
 use OCP\Template;
 
 /**
@@ -77,8 +78,8 @@ class AppWhitelist {
 		return $this->config->getAppValue('guests', 'usewhitelist', 'true') === 'true';
 	}
 
-	public function isUrlAllowed($uid, $url) {
-		if ($this->guestManager->isGuest($uid) && $this->isWhitelistEnabled()) {
+	public function isUrlAllowed(IUser $user, $url) {
+		if ($this->guestManager->isGuest($user) && $this->isWhitelistEnabled()) {
 			$app = $this->getRequestedApp($url);
 
 			return $this->isAppWhitelisted($app);
@@ -87,12 +88,8 @@ class AppWhitelist {
 		}
 	}
 
-	public function verifyAccess($uid, IRequest $request) {
-		if (empty($uid)) {
-			return;
-		}
-
-		if (!$this->isUrlAllowed($uid, $request->getRawPathInfo())) {
+	public function verifyAccess(IUser $user, IRequest $request) {
+		if (!$this->isUrlAllowed($user, $request->getRawPathInfo())) {
 			header('HTTP/1.0 403 Forbidden');
 			Template::printErrorPage($this->l10n->t(
 				'Access to this resource is forbidden for guests.'
@@ -119,6 +116,8 @@ class AppWhitelist {
 		} else if (substr($url, 0, 3) === '/f/') {
 			return 'files';
 		} else if (substr($url, 0, 12) === '/webdav/') {
+			return 'dav';
+		} else if (substr($url, 0, 12) === '/dav/') {
 			return 'dav';
 		} else if (substr($url, 0, 10) === '/settings/') {
 			return 'settings';

@@ -197,11 +197,12 @@ class Hooks {
 	}
 
 	public function setupReadonlyFilesystem(array $params) {
-		$user = $params['user'];
+		$uid = $params['user'];
+		$user = $this->userManager->get($uid);
 
-		if ($this->guestManager->isReadOnlyUser($user)) {
-			Filesystem::addStorageWrapper('readonly', function ($mountPoint, IStorage $storage) use ($user) {
-				if ($mountPoint === "/$user/") {
+		if ($user && $this->guestManager->isReadOnlyUser($user)) {
+			Filesystem::addStorageWrapper('readonly', function ($mountPoint, IStorage $storage) use ($uid) {
+				if ($mountPoint === "/$uid/") {
 					return new ReadOnlyJail([
 						'storage' => $storage,
 						'mask' => Constants::PERMISSION_READ,

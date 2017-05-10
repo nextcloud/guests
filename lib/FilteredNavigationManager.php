@@ -44,7 +44,7 @@ class FilteredNavigationManager extends NavigationManager {
 	}
 
 	private function isEntryWhitelisted(array $item) {
-		return $this->whitelist->isUrlAllowed($this->user->getUID(), $item['href']);
+		return $this->whitelist->isUrlAllowed($this->user, $item['href']);
 	}
 
 	public function add($entry) {

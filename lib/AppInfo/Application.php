@@ -118,20 +118,16 @@ class Application extends App {
 
 
 		$user = $server->getUserSession()->getUser();
+		/** @var GuestManager $guestManager */
+		$guestManager = $container->query(GuestManager::class);
 
-		if ($user) {
+		if ($user && $guestManager->isGuest($user)) {
 			/** @var AppWhitelist $whiteList */
 			$whiteList = $container->query(AppWhitelist::class);
 			// if the whitelist is used
-			$whiteList->verifyAccess($user->getUID(), $server->getRequest());
+			$whiteList->verifyAccess($user, $server->getRequest());
 
-			/** @var GuestManager $guestManager */
-			$guestManager = $container->query(GuestManager::class);
-
-			// hide email change field via css for learned guests
-			if ($guestManager->isGuest($user->getUID())) {
-				\OCP\Util::addStyle('guests', 'personal');
-			}
+			\OCP\Util::addStyle('guests', 'personal');
 
 			/** @var NavigationManager $navManager */
 			$navManager = $server->getNavigationManager();
