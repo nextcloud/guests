@@ -67,7 +67,6 @@ class Section implements IIconSection {
 	 * {@inheritdoc}
 	 */
 	public function getIcon() {
-		// TODO: Jan needs to create a proper icon
 		return $this->url->imagePath('guests', 'app-dark.svg');
 	}
 }
