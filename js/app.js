@@ -96,7 +96,7 @@ $(document).ready(function () {
 						username: this.guest.username,
 						email: this.guest.email
 					}
-				}
+				};
 
 				$.ajax(xhrObject).done(function (xhr) {
 					self._addGuestShare();

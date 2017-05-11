@@ -91,7 +91,12 @@ class UsersController extends Controller {
 		}
 
 
-		if ($this->userManager->userExists($username)) {
+		$existingUsers = $this->userManager->getByEmail($email);
+		if (count($existingUsers) > 0) {
+			$errorMessages['email'] = (string)$this->l10n->t(
+				'A user with that email already exists.'
+			);
+		} else if ($this->userManager->userExists($username)) {
 			$errorMessages['username'] = (string)$this->l10n->t(
 				'A user with that name already exists.'
 			);
@@ -106,7 +111,16 @@ class UsersController extends Controller {
 			);
 		}
 
-		$this->guestManager->createGuest($username, $email, $displayName);
+		try {
+			$this->guestManager->createGuest($username, $email, $displayName);
+		} catch (\Exception $e) {
+			return new DataResponse(
+				[
+					'errorMessages' => ['email' => $e->getMessage()]
+				],
+				Http::STATUS_UNPROCESSABLE_ENTITY
+			);
+		}
 
 		return new DataResponse(
 			[
