@@ -19,6 +19,7 @@ OC.L10N.register(
     "%s shared »%s« with you" : "%s deildi »%s« með þér",
     "%s via %s" : "%s með %s",
     "Couldn't send reset email. Please contact your administrator." : "Gat ekki sent endurstillingu í tölvupósti. Hafðu samband við kerfisstjóra.",
+    "Guests" : "Gestir",
     "Hey there,\n\njust letting you know that %s shared %s with you.\n\nActivate your guest account at %s by setting a password: %s\n\nThen view it: %s\n\nYou can login using the email address \"%s\".\n\n" : "Hæ,\n\nbara að láta þig vita að %s deildi %s með þér.\n\nVirkjaðu gestaaðganginn þinn á %s með því að setja lykilorð: %s\n\nSíðan geturðu skoðað það: %s\n\nÞú getur skráð þig inn með póstfanginu \"%s\".\n",
     "The share will expire on %s." : "Gildistími sameignar rennur út %s.",
     "Cheers!" : "Til hamingju!",

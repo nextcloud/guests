@@ -9,6 +9,7 @@ OC.L10N.register(
     "No users found for {search}" : "没有找到 {search} 用户",
     "An error occurred. Please try again" : "发生错误。请重试。",
     "Loading…" : "加载中...",
+    "Loaded" : "已加载",
     "Saved" : "已保存",
     "Reset" : "重置",
     "%s shared »%s« with you" : "%s 向您分享了 »%s«",

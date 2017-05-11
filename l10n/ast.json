@@ -15,6 +15,7 @@
     "Access to this resource is forbidden for guests." : "L'accesu d'esti recursu ta prohibíu pa convidaos.",
     "%s shared »%s« with you" : "%s compartió «%s» contigo",
     "%s via %s" : "%s per %s",
+    "Couldn't send reset email. Please contact your administrator." : "Nun pudo unviase'l corréu de reafitamientu. Contauta col to alministrador, por favor.",
     "Guests" : "Convidaos",
     "Hey there,\n\njust letting you know that %s shared %s with you.\n\nActivate your guest account at %s by setting a password: %s\n\nThen view it: %s\n\nYou can login using the email address \"%s\".\n\n" : "Hola bones,\n\nyera pa dicite namái que %s compartió %s contigo.\n\nActiva la to cuenta de convidáu en %s afitando una contraseña: %s\n\nDempués míralo: %s\n\nPues aniciar sesión usando la direición de corréu «%s».\n",
     "The share will expire on %s." : "La compartición caducará'l %s.",
