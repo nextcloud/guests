@@ -19,6 +19,7 @@ OC.L10N.register(
     "%s shared »%s« with you" : "%s Współdzielone »%s« z tobą",
     "%s via %s" : "%s przez %s",
     "Couldn't send reset email. Please contact your administrator." : "Nie mogę wysłać maila resetującego. Skontaktuj się z administratorem.",
+    "Guests" : "Goście",
     "The share will expire on %s." : "Ten zasób wygaśnie %s",
     "Cheers!" : "Dzięki!",
     "Group name" : "Nazwa grupy",

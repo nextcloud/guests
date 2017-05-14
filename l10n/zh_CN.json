@@ -1,8 +1,11 @@
 { "translations": {
     "Invalid mail address" : "无效的电子邮件地址",
+    "Username required" : "要求用户名",
     "A user with that name already exists." : "使用该名称的用户已存在。",
+    "User successfully created" : "用户成功创建",
     "Error while sharing" : "共享时出错",
     "Error" : "错误",
+    "Add {unknown} (guest)" : "添加 {unknown} (guest)",
     "No users or groups found for {search}" : "{search} 条件下没有找到用户或用户组",
     "No users found for {search}" : "没有找到 {search} 用户",
     "An error occurred. Please try again" : "发生错误。请重试。",
@@ -10,11 +13,14 @@
     "Loaded" : "已加载",
     "Saved" : "已保存",
     "Reset" : "重置",
+    "Access to this resource is forbidden for guests." : "此资源不可被游客访问",
     "%s shared »%s« with you" : "%s 向您分享了 »%s«",
     "%s via %s" : "%s 通过 %s",
     "Couldn't send reset email. Please contact your administrator." : "未能成功发送重置邮件，请联系管理员。",
+    "Guests" : "游客",
     "The share will expire on %s." : "此分享将在 %s 过期。",
     "Cheers!" : "干杯！",
+    "Guest users are grouped under a virtual group in the user manager" : "游客用户在用户管理中被归为虚拟分组",
     "Group name" : "群组名称"
 },"pluralForm" :"nplurals=1; plural=0;"
 }
