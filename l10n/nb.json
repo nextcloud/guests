@@ -17,6 +17,7 @@
     "%s shared »%s« with you" : "%s delte »%s« med deg",
     "%s via %s" : "%s via %s",
     "Couldn't send reset email. Please contact your administrator." : "Klarte ikke å sende e-post for tilbakestilling. Kontakt administratoren.",
+    "Guests" : "Gjester",
     "Hey there,\n\njust letting you know that %s shared %s with you.\n\nActivate your guest account at %s by setting a password: %s\n\nThen view it: %s\n\nYou can login using the email address \"%s\".\n\n" : "Hei,\n\nvil bare informere om at %s har delt %s med deg.\n\nAktiver gjestekontoen din på %s ved å sette et passord: %s\n\nDeretter kan du vise den: %s\n\nDu kan logge på med e-postadressen \"%s\".\n\n",
     "The share will expire on %s." : "Delingen vil opphøre %s.",
     "Cheers!" : "Ha det!",

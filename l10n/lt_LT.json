@@ -1,8 +1,11 @@
 { "translations": {
     "Invalid mail address" : "Neteisingas pašto adresas",
+    "Username required" : "Reikalingas naudotojo vardas",
     "A user with that name already exists." : "Naudotojas tokiu vardu jau egzistuoja.",
+    "User successfully created" : "Naudotojas sėkmingai sukurtas",
     "Error while sharing" : "Klaida, dalijimosi metu",
     "Error" : "Klaida",
+    "An error occurred. Please try again" : "Įvyko klaida. Bandykite dar kartą",
     "Loading…" : "Įkeliama...",
     "Saved" : "Išsaugoti",
     "Reset" : "Atstatyti",
