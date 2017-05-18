@@ -4,7 +4,7 @@ OC.L10N.register(
     "Invalid mail address" : "Nieprawidłowy adres email",
     "Username required" : "Wymagane podanie nazwy użytkownika",
     "A user with that name already exists." : "Użytkownik z taką nazwą już istnieje.",
-    "User successfully created" : "Stworzono nowego uytkownika",
+    "User successfully created" : "Stworzono nowego użytkownika",
     "Error while sharing" : "Błąd podczas współdzielenia",
     "Error" : "Błąd",
     "Add {unknown} (guest)" : "Dodaj {nieznany} (gość)",

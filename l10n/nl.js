@@ -19,6 +19,7 @@ OC.L10N.register(
     "%s shared »%s« with you" : "%s deelde »%s« met u",
     "%s via %s" : "%s via %s",
     "Couldn't send reset email. Please contact your administrator." : "Kon herstel e-mail niet versturen. Neem contact op met uw beheerder.",
+    "Guests" : "Gasten",
     "Hey there,\n\njust letting you know that %s shared %s with you.\n\nActivate your guest account at %s by setting a password: %s\n\nThen view it: %s\n\nYou can login using the email address \"%s\".\n\n" : "Hallo daar,\n\nwe willen even laten weten dat %s %s met u deelde.\n\nActiveer uw gastenaccount voor %s door een wachtwoord in te stellen: %s\n\nBekijk het daarna: %s\n\nU kunt inloggen met e-mailadres \"%s\".\n\n",
     "The share will expire on %s." : "De share vervalt op %s.",
     "Cheers!" : "Proficiat!",
