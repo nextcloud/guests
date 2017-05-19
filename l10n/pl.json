@@ -5,7 +5,7 @@
     "User successfully created" : "Stworzono nowego użytkownika",
     "Error while sharing" : "Błąd podczas współdzielenia",
     "Error" : "Błąd",
-    "Add {unknown} (guest)" : "Dodaj {nieznany} (gość)",
+    "Add {unknown} (guest)" : "Dodaj {unknown} (gość)",
     "No users or groups found for {search}" : "Nie znaleziono użytkowników lub grup dla {search}",
     "No users found for {search}" : "Nie znaleziono użytkowników dla {search}",
     "An error occurred. Please try again" : "Wystąpił błąd. Proszę spróbować ponownie.",
