@@ -111,11 +111,13 @@ class AppWhitelist {
 			return 'core';
 		} else if (substr($url, 0, 6) === '/core/') {
 			return 'core';
+		} else if (substr($url, 0, 4) === '/js/') {
+			return 'core';
 		} else if (substr($url, 0, 5) === '/css/') {
 			return 'core';
 		} else if (substr($url, 0, 3) === '/f/') {
 			return 'files';
-		} else if (substr($url, 0, 12) === '/webdav/') {
+		} else if (substr($url, 0, 8) === '/webdav/') {
 			return 'dav';
 		} else if (substr($url, 0, 12) === '/dav/') {
 			return 'dav';
