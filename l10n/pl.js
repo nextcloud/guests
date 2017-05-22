@@ -20,8 +20,11 @@ OC.L10N.register(
     "%s via %s" : "%s przez %s",
     "Couldn't send reset email. Please contact your administrator." : "Nie mogę wysłać maila resetującego. Skontaktuj się z administratorem.",
     "Guests" : "Goście",
+    "Hey there,\n\njust letting you know that %s shared %s with you.\n\nActivate your guest account at %s by setting a password: %s\n\nThen view it: %s\n\nYou can login using the email address \"%s\".\n\n" : "Witaj,\n\ndajemy Ci znać, że %s udostępnił Ci %s.\n\nAktywuj swoje konto gościa %s poprzez utworzenie hasła: %s\n\nNastępnie przejrzyj udostępnione pliki: %s\n\nAby się zalogować skorzystać z adresu e-mail \"%s\".\n\n",
     "The share will expire on %s." : "Ten zasób wygaśnie %s",
     "Cheers!" : "Dzięki!",
+    "Hey there,<br><br>\n         \n         just letting you know that %s shared <strong>%s</strong> with you.<br><br>\n         Activate your guest account at %s by <a href=\"%s\">setting a password</a>.<br><br>\n         Then <a href=\"%s\">view it!</a><br><br>You can login using the email address <strong>\"%s\"</strong> .<br><br>" : "Witaj,<br><br>\n         \n         dajemy Ci znać, że %s udostępnił Ci <strong>%s</strong>.<br><br>\n         Aktywuj swoje konto gościa %s poprzez <a href=\"%s\">utworzenie hasła</a>.<br><br>\n         Następnie <a href=\"%s\">przejrzyj udostępnione pliki!</a><br><br>Aby się zalogować skorzystaj z adresu e-mail <strong>\"%s\"</strong> .<br><br>",
+    "Guest users are grouped under a virtual group in the user manager" : "Goście są grupowani w wirtualnej grupie w zarządzaniu użytkownikami",
     "Group name" : "Nazwa grupy",
     "Reset whitelist" : "Zresetuj białą listę"
 },
