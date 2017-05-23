@@ -2,7 +2,9 @@ OC.L10N.register(
     "guests",
     {
     "Invalid mail address" : "Ogiltig e-postadress",
+    "Username required" : "Användarnamn krävs",
     "A user with that name already exists." : "En användare med det namnet existerar redan.",
+    "User successfully created" : "Användare skapad",
     "Error while sharing" : "Fel vid delning",
     "Error" : "Fel",
     "No users or groups found for {search}" : "Inga användare eller grupper funna för {search}",
