@@ -26,6 +26,7 @@ OC.L10N.register(
     "Hey there,<br><br>\n         \n         just letting you know that %s shared <strong>%s</strong> with you.<br><br>\n         Activate your guest account at %s by <a href=\"%s\">setting a password</a>.<br><br>\n         Then <a href=\"%s\">view it!</a><br><br>You can login using the email address <strong>\"%s\"</strong> .<br><br>" : "Witaj,<br><br>\n         \n         dajemy Ci znać, że %s udostępnił Ci <strong>%s</strong>.<br><br>\n         Aktywuj swoje konto gościa %s poprzez <a href=\"%s\">utworzenie hasła</a>.<br><br>\n         Następnie <a href=\"%s\">przejrzyj udostępnione pliki!</a><br><br>Aby się zalogować skorzystaj z adresu e-mail <strong>\"%s\"</strong> .<br><br>",
     "Guest users are grouped under a virtual group in the user manager" : "Goście są grupowani w wirtualnej grupie w zarządzaniu użytkownikami",
     "Group name" : "Nazwa grupy",
+    "Limit guest access to an app whitelist" : "Ogranicz dostęp gości do białej listy aplikacji",
     "Reset whitelist" : "Zresetuj białą listę"
 },
 "nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>=14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);");
