@@ -1,19 +1,30 @@
 { "translations": {
     "Invalid mail address" : "Invalid mail address",
+    "Username required" : "Username required",
     "A user with that name already exists." : "A user with that name already exists.",
+    "User successfully created" : "User successfully created",
     "Error while sharing" : "Error whilst sharing",
     "Error" : "Error",
+    "Add {unknown} (guest)" : "Add {unknown} (guest)",
     "No users or groups found for {search}" : "No users or groups found for {search}",
     "No users found for {search}" : "No users found for {search}",
     "An error occurred. Please try again" : "An error occurred. Please try again",
     "Loading…" : "Loading…",
+    "Loaded" : "Loaded",
     "Saved" : "Saved",
     "Reset" : "Reset",
+    "Access to this resource is forbidden for guests." : "Access to this resource is forbidden for guests.",
     "%s shared »%s« with you" : "%s shared \"%s\" with you",
     "%s via %s" : "%s via %s",
     "Couldn't send reset email. Please contact your administrator." : "Couldn't send reset email. Please contact your administrator.",
+    "Guests" : "Guests",
+    "Hey there,\n\njust letting you know that %s shared %s with you.\n\nActivate your guest account at %s by setting a password: %s\n\nThen view it: %s\n\nYou can login using the email address \"%s\".\n\n" : "Hey there,\n\njust letting you know that %s shared %s with you.\n\nActivate your guest account at %s by setting a password: %s\n\nThen view it: %s\n\nYou can login using the email address \"%s\".\n\n",
     "The share will expire on %s." : "The share will expire on %s.",
     "Cheers!" : "Cheers!",
-    "Group name" : "Group name"
+    "Hey there,<br><br>\n         \n         just letting you know that %s shared <strong>%s</strong> with you.<br><br>\n         Activate your guest account at %s by <a href=\"%s\">setting a password</a>.<br><br>\n         Then <a href=\"%s\">view it!</a><br><br>You can login using the email address <strong>\"%s\"</strong> .<br><br>" : "Hey there,<br><br>\n         \n         just letting you know that %s shared <strong>%s</strong> with you.<br><br>\n         Activate your guest account at %s by <a href=\"%s\">setting a password</a>.<br><br>\n         Then <a href=\"%s\">view it!</a><br><br>You can login using the email address <strong>\"%s\"</strong> .<br><br>",
+    "Guest users are grouped under a virtual group in the user manager" : "Guest users are grouped under a virtual group in the user manager",
+    "Group name" : "Group name",
+    "Limit guest access to an app whitelist" : "Limit guest access to an app whitelist",
+    "Reset whitelist" : "Reset whitelist"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
