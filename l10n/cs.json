@@ -17,6 +17,7 @@
     "%s shared »%s« with you" : "%s s vámi sdílí »%s«",
     "%s via %s" : "%s pomocí %s",
     "Couldn't send reset email. Please contact your administrator." : "Nepodařilo se odeslat email pro změnu hesla. Kontaktujte svého správce systému.",
+    "Guests" : "Hosté",
     "Hey there,\n\njust letting you know that %s shared %s with you.\n\nActivate your guest account at %s by setting a password: %s\n\nThen view it: %s\n\nYou can login using the email address \"%s\".\n\n" : "Dobrý den,\n\njen vám chceme sdělit, že %s s vámi sdílel %s.\n\nAktivujte svůj účet hosta na %s tím, že si nastavíte heslo: %s\n\nPak si můžete sdílený soubor prohlédnout: %s\n\nMůžete se přihlásit pomocí emailové adresy \"%s\".\n\n",
     "The share will expire on %s." : "Sdílení vyprší %s.",
     "Cheers!" : "Ať slouží!",
