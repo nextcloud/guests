@@ -17,6 +17,7 @@
     "%s shared »%s« with you" : "%s ha condiviso «%s» con te",
     "%s via %s" : "%s tramite %s",
     "Couldn't send reset email. Please contact your administrator." : "Impossibile inviare l'email di reimpostazione. Contatta il tuo amministratore.",
+    "Guests" : "Ospiti",
     "Hey there,\n\njust letting you know that %s shared %s with you.\n\nActivate your guest account at %s by setting a password: %s\n\nThen view it: %s\n\nYou can login using the email address \"%s\".\n\n" : "Ciao,\n\nti informiamo che %s ha condiviso %s con te.\n\nAttiva il tuo account ospite su %s impostando una password: %s\n\nPoi visualizzala: %s\n\nPuoi accedere utilizzando il tuo indirizzo email \"%s\".\n",
     "The share will expire on %s." : "La condivisione scadrà il %s.",
     "Cheers!" : "Saluti!",
