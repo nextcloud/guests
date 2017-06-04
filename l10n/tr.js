@@ -2,9 +2,9 @@ OC.L10N.register(
     "guests",
     {
     "Invalid mail address" : "Geçersiz posta adresi",
-    "Username required" : "Kullanıcı adı gereklidir",
+    "Username required" : "Kullanıcı adı gerekli",
     "A user with that name already exists." : "Bu isimde bir kullanıcı adı zaten mevcut.",
-    "User successfully created" : "Kullanıcı başarı şekilde oluşturuldu",
+    "User successfully created" : "Kullanıcı oluşturuldu",
     "Error while sharing" : "Paylaşım sırasında sorun çıktı",
     "Error" : "Hata",
     "Add {unknown} (guest)" : "Ekle {unknown} (guest)",
@@ -27,6 +27,6 @@ OC.L10N.register(
     "Guest users are grouped under a virtual group in the user manager" : "Konuk kullanıcılar kullanıcı yönetimi bölümünde sanal bir grup altında toplanır",
     "Group name" : "Grup adı",
     "Limit guest access to an app whitelist" : "Konuk erişimini bir uygulama beyaz listesi ile sınırlayın",
-    "Reset whitelist" : "beyaz listeyi resetle"
+    "Reset whitelist" : "Beyaz listeyi sıfırla"
 },
 "nplurals=2; plural=(n > 1);");

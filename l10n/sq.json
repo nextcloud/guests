@@ -17,6 +17,7 @@
     "%s shared »%s« with you" : "%s ndau me ju »%s«",
     "%s via %s" : "%s përmes %s",
     "Couldn't send reset email. Please contact your administrator." : "S’u dërgua dot email-i i ricaktimit. Ju lutemi, lidhuni me përgjegjësin tuaj.",
+    "Guests" : "Të ftuarit",
     "Hey there,\n\njust letting you know that %s shared %s with you.\n\nActivate your guest account at %s by setting a password: %s\n\nThen view it: %s\n\nYou can login using the email address \"%s\".\n\n" : "Njatjeta,\n\nsa për t’ju bërë të ditur që %s ndau me ju %s.\n\nAktivizoni llogarinë tuaj prej vizitori te %s duke caktuar një fjalëkalim: %s\n\nMandej shiheni: %s\n\nMund të hyni me adresën email \"%s\".\n\n",
     "The share will expire on %s." : "Ndarja do të skadojë më %s.",
     "Cheers!" : "Gëzuar!",
