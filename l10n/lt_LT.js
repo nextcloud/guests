@@ -8,7 +8,7 @@ OC.L10N.register(
     "Error while sharing" : "Klaida, dalijimosi metu",
     "Error" : "Klaida",
     "An error occurred. Please try again" : "Įvyko klaida. Bandykite dar kartą",
-    "Loading…" : "Įkeliama...",
+    "Loading…" : "Įkeliama…",
     "Saved" : "Išsaugoti",
     "Reset" : "Atstatyti",
     "%s shared »%s« with you" : "%s pasidalino »%s« su tavimi",
