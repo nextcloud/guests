@@ -18,6 +18,7 @@ OC.L10N.register(
     "Access to this resource is forbidden for guests." : "Tämän resurssin käyttö on kielletty vierailta.",
     "%s shared »%s« with you" : "%s jakoi kohteen »%s« kanssasi",
     "Couldn't send reset email. Please contact your administrator." : "Palautussähköpostin lähettäminen ei onnistunut. Ota yhteys ylläpitäjään.",
+    "Guests" : "Vieraat",
     "Hey there,\n\njust letting you know that %s shared %s with you.\n\nActivate your guest account at %s by setting a password: %s\n\nThen view it: %s\n\nYou can login using the email address \"%s\".\n\n" : "Hei,\n\n%s jakoi kohteen %s kanssasi.\n\nAktivoi vierastilisi osoitteessa %s asettamalla salasana: %s\n\nSitten käytä kanssasi jaettua kohdetta: %s\n\nVoit kirjautua sisään käyttämällä sähköpostiosoitetta \"%s\".\n\n",
     "The share will expire on %s." : "Jakaminen päättyy %s.",
     "Cheers!" : "Kiitos!",
