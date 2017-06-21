@@ -1,0 +1,27 @@
+OC.L10N.register(
+    "guests",
+    {
+    "Invalid mail address" : "Ongeldige posadres",
+    "Username required" : "Gebruikersnaam vereis",
+    "A user with that name already exists." : "’n Gelyknamige gebruiker bestaan reeds.",
+    "User successfully created" : "ebruiker suksesvol geskep",
+    "Error while sharing" : "Fout tydens deling",
+    "Error" : "Fout",
+    "Add {unknown} (guest)" : "Voeg {unknown} toe (gas)",
+    "No users or groups found for {search}" : "Geen gebruikers of groepe vir {search} gevind",
+    "No users found for {search}" : "Geen gebruikers vir {search} gevind",
+    "An error occurred. Please try again" : "’n Fout het voorgekom. Probeer weer",
+    "Loading…" : "Laai…",
+    "Loaded" : "Gelaai",
+    "Saved" : "Bewaar",
+    "Reset" : "Herstel",
+    "Access to this resource is forbidden for guests." : "Toegang tot hierdie hulpbron is vir gaste verbode.",
+    "%s shared »%s« with you" : "%s het »%s« met u gedeel",
+    "%s via %s" : "%s d.m.v. %s",
+    "Guests" : "Gaste",
+    "Guest users are grouped under a virtual group in the user manager" : "Gasgebruikers word onder ’n virtuele groep in die gebruikerbestuurder gegroepeer",
+    "Group name" : "Groepnaam",
+    "Limit guest access to an app whitelist" : "Beperk gastetoegang tot ’n toepwitlys",
+    "Reset whitelist" : "Herstel witlys"
+},
+"nplurals=2; plural=(n != 1);");
