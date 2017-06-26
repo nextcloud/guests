@@ -2,6 +2,7 @@ OC.L10N.register(
     "guests",
     {
     "Invalid mail address" : "Ugyldig mailadresse",
+    "Username required" : "Brugernavn er nødvendigt",
     "A user with that name already exists." : "Dette brugernavn eksistere allerede.",
     "Error while sharing" : "Fejl under deling",
     "Error" : "Fejl",
