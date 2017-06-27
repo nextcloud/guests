@@ -2,6 +2,7 @@
     "Invalid mail address" : "Ugyldig mailadresse",
     "Username required" : "Brugernavn er nødvendigt",
     "A user with that name already exists." : "Dette brugernavn eksistere allerede.",
+    "User successfully created" : "Bruger oprettet korrekt",
     "Error while sharing" : "Fejl under deling",
     "Error" : "Fejl",
     "No users or groups found for {search}" : "Ingen brugere eller grupper fundet for {search}",
