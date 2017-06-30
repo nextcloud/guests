@@ -20,6 +20,7 @@ OC.L10N.register(
     "%s via %s" : "%s 通过 %s",
     "Couldn't send reset email. Please contact your administrator." : "未能成功发送重置邮件，请联系管理员。",
     "Guests" : "游客",
+    "Hey there,\n\njust letting you know that %s shared %s with you.\n\nActivate your guest account at %s by setting a password: %s\n\nThen view it: %s\n\nYou can login using the email address \"%s\".\n\n" : "嗨，朋友！\n告诉你个好消息，%s分享了%s给你。\n只需在%s设置密码%s即可激活你的账户\n然后查看%s\n你可以使用这个这个邮箱%s。\n\n",
     "The share will expire on %s." : "此分享将在 %s 过期。",
     "Cheers!" : "干杯！",
     "Guest users are grouped under a virtual group in the user manager" : "游客用户在用户管理中被归为虚拟分组",
