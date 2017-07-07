@@ -10,6 +10,7 @@ OC.L10N.register(
     "Add {unknown} (guest)" : "Afegeix {unknown} (convidat)",
     "No users found for {search}" : "No s'han trobat grups per {search}",
     "Loading…" : "Carregant...",
+    "Loaded" : "Carregat",
     "Saved" : "Desat",
     "Reset" : "Estableix de nou",
     "%s shared »%s« with you" : "%s ha compartit »%s« amb tu",
