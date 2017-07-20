@@ -1,5 +1,6 @@
 { "translations": {
     "Invalid mail address" : "無效的 email 地址",
+    "Username required" : "需要輸入用戶名",
     "A user with that name already exists." : "同名的使用者已經存在",
     "Error while sharing" : "分享時發生錯誤",
     "Error" : "錯誤",

@@ -2,7 +2,9 @@ OC.L10N.register(
     "guests",
     {
     "Invalid mail address" : "無効なメールアドレスです",
+    "Username required" : "ユーザー名が必要です。",
     "A user with that name already exists." : "そのユーザー名はすでに存在します。",
+    "User successfully created" : "ユーザーアカウントの作成ができました。",
     "Error while sharing" : "共有でエラー発生",
     "Error" : "エラー",
     "No users or groups found for {search}" : "{search} の検索でユーザー、グループが見つかりません",
