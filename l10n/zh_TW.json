@@ -2,18 +2,25 @@
     "Invalid mail address" : "無效的 email 地址",
     "Username required" : "需要輸入用戶名",
     "A user with that name already exists." : "同名的使用者已經存在",
+    "User successfully created" : "成功創建用戶",
     "Error while sharing" : "分享時發生錯誤",
     "Error" : "錯誤",
+    "Add {unknown} (guest)" : "新增 {unknown} (訪客)",
     "No users or groups found for {search}" : "沒有群組或使用者符合 {search}",
     "No users found for {search}" : "沒有使用者符合 {search}",
+    "An error occurred. Please try again" : "發生錯誤，請再試一次",
     "Loading…" : "載入中…",
+    "Loaded" : "已載入",
     "Saved" : "已儲存",
     "Reset" : "重設",
+    "Access to this resource is forbidden for guests." : "已禁止訪客存取",
     "%s shared »%s« with you" : "%s 與您分享了 %s",
     "%s via %s" : "%s 經由 %s",
     "Couldn't send reset email. Please contact your administrator." : "無法寄送重設 email ，請聯絡系統管理員",
+    "Guests" : "訪客",
     "The share will expire on %s." : "這個分享將會於 %s 過期",
     "Cheers!" : "太棒了！",
-    "Group name" : "群組名稱"
+    "Group name" : "群組名稱",
+    "Reset whitelist" : "重設白名單"
 },"pluralForm" :"nplurals=1; plural=0;"
 }
