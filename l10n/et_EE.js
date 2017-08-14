@@ -2,6 +2,7 @@ OC.L10N.register(
     "guests",
     {
     "Invalid mail address" : "Vigane e-posti aadress",
+    "Username required" : "Kasutajanimi nõutud",
     "A user with that name already exists." : "Selle nimega kasutaja on juba olemas.",
     "Error while sharing" : "Viga jagamisel",
     "Error" : "Tõrge",
