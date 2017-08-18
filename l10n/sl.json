@@ -17,6 +17,7 @@
     "%s shared »%s« with you" : "%s je omogočil souporabo »%s«",
     "%s via %s" : "%s prek %s",
     "Couldn't send reset email. Please contact your administrator." : "Ni mogoče poslati elektronskega naslova za ponastavitev. Stopite v stik s skrbnikom sistema.",
+    "Guests" : "Gostje",
     "Hey there,\n\njust letting you know that %s shared %s with you.\n\nActivate your guest account at %s by setting a password: %s\n\nThen view it: %s\n\nYou can login using the email address \"%s\".\n\n" : "Pozdravljeni,\n\nobveščamo vas, da vam je uporabnik %s omogočil souporabo %s.\nZačasni račun lahko omogočite na %s z določitvijo gesla: %s\nNato si lahko mapo ogledate: %s\n\nPrijava je mogoče z elektronskim naslovom »%s«.\n\n",
     "The share will expire on %s." : "Povezava souporabe bo potekla %s.",
     "Cheers!" : "Lep pozdrav!",
