@@ -16,6 +16,7 @@ OC.L10N.register(
     "%s shared »%s« with you" : "%sが あなたと »%s«を共有しました",
     "%s via %s" : "%s に %s から",
     "Couldn't send reset email. Please contact your administrator." : "リセットメールを送信できませんでした。管理者に問い合わせてください。",
+    "Guests" : "ゲスト",
     "The share will expire on %s." : "共有は %s で有効期限が切れます。",
     "Cheers!" : "それでは！",
     "Group name" : "グループ名"
