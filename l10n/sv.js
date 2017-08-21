@@ -20,8 +20,11 @@ OC.L10N.register(
     "%s via %s" : "%s via %s",
     "Couldn't send reset email. Please contact your administrator." : "Kunde inte skicka återställningsmail. Vänligen kontakta din administratör.",
     "Guests" : "Gäster",
+    "Hey there,\n\njust letting you know that %s shared %s with you.\n\nActivate your guest account at %s by setting a password: %s\n\nThen view it: %s\n\nYou can login using the email address \"%s\".\n\n" : "Hallå där,\n\ntänkte bara informera att %s delade %s med dig.\n\nAktivera ditt gästkonto på %s genom att sätta ett lösenord: %s\n\nKolla det sedan på: %s\n\nDu kan logga in med email-adressen \"%s\".\n\n",
     "The share will expire on %s." : "Utdelningen kommer att upphöra %s.",
     "Cheers!" : "Ha de fint!",
+    "Hey there,<br><br>\n         \n         just letting you know that %s shared <strong>%s</strong> with you.<br><br>\n         Activate your guest account at %s by <a href=\"%s\">setting a password</a>.<br><br>\n         Then <a href=\"%s\">view it!</a><br><br>You can login using the email address <strong>\"%s\"</strong> .<br><br>" : "Hallå där,<br><br>\n         \n         tänkte bara meddela att %s delade <strong>%s</strong> med dig.<br><br>\n         Aktivera ditt gästkonto på %s genom att <a href=\"%s\">sätta ett lösenord.<br><br>\n         Och därefter <a href=\"%s\">kolla det!</a><br><br>Du kan logga in med email-adressen <strong>\"%s\"</strong> .<br><br>",
+    "Guest users are grouped under a virtual group in the user manager" : "Gästanvändare är grupperade under en virtuell grupp i användarhanteraren",
     "Group name" : "Gruppnamn",
     "Limit guest access to an app whitelist" : "Begränsa gästtillgång till en app vitlista",
     "Reset whitelist" : "Återställ vitlista"
