@@ -2,6 +2,7 @@ OC.L10N.register(
     "guests",
     {
     "Invalid mail address" : "Érvénytelen e-mail cím",
+    "Username required" : "Felhasználónév szükséges",
     "A user with that name already exists." : "Ilyen névvel már létezik felhasználó!",
     "Error while sharing" : "Nem sikerült létrehozni a megosztást",
     "Error" : "Hiba",
@@ -15,6 +16,7 @@ OC.L10N.register(
     "%s shared »%s« with you" : "%s megosztotta Önnel ezt:  »%s«",
     "%s via %s" : "%s - %s",
     "Couldn't send reset email. Please contact your administrator." : "Visszaállítási e-mail nem küldhető. Kérjük, lépjen kapcsolatba a rendszergazdával.",
+    "Guests" : "Vendégek",
     "The share will expire on %s." : "A megosztás lejár ekkor: %s.",
     "Cheers!" : "Üdv.",
     "Group name" : "Csoport neve"
