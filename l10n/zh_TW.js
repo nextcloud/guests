@@ -20,6 +20,7 @@ OC.L10N.register(
     "%s via %s" : "%s 經由 %s",
     "Couldn't send reset email. Please contact your administrator." : "無法寄送重設 email ，請聯絡系統管理員",
     "Guests" : "訪客",
+    "Hey there,\n\njust letting you know that %s shared %s with you.\n\nActivate your guest account at %s by setting a password: %s\n\nThen view it: %s\n\nYou can login using the email address \"%s\".\n\n" : "你好\n\n只是讓你知道%s與你分享%s\n\n透過設定%s的密碼以啟用您在%s的來賓帳戶\n\n然後就可以開始查看%s，\n\n您也可以使用Email信箱登入「%s」\n\n",
     "The share will expire on %s." : "這個分享將會於 %s 過期",
     "Cheers!" : "太棒了！",
     "Group name" : "群組名稱",

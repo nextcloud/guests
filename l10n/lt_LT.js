@@ -7,6 +7,9 @@ OC.L10N.register(
     "User successfully created" : "Naudotojas sėkmingai sukurtas",
     "Error while sharing" : "Klaida, dalijimosi metu",
     "Error" : "Klaida",
+    "Add {unknown} (guest)" : "Pridėti {unknown} (svečią)",
+    "No users or groups found for {search}" : "Nerasta naudotojų ar grupių pagal paiešką {search}",
+    "No users found for {search}" : "Nerasta vartotojų pagal paiešką {search}",
     "An error occurred. Please try again" : "Įvyko klaida. Bandykite dar kartą",
     "Loading…" : "Įkeliama…",
     "Loaded" : "Įkelta",
@@ -22,6 +25,7 @@ OC.L10N.register(
     "Cheers!" : "Sveikinimai!",
     "Hey there,<br><br>\n         \n         just letting you know that %s shared <strong>%s</strong> with you.<br><br>\n         Activate your guest account at %s by <a href=\"%s\">setting a password</a>.<br><br>\n         Then <a href=\"%s\">view it!</a><br><br>You can login using the email address <strong>\"%s\"</strong> .<br><br>" : "Sveiki,<br><br>\n         \n         tiesiog pranešame, kad %s pradėjo su jumis bendrinti <strong>%s</strong>.<br><br>\n         Aktyvuokite savo svečio paskyrą ties %s, <a href=\"%s\">nusistatydami slaptažodį</a>.<br><br>\n         O tuomet, <a href=\"%s\">peržiūrėkite failą!</a><br><br>Jūs galite prisijungti, naudodami el. pašto adresą <strong>\"%s\"</strong> .<br><br>",
     "Group name" : "Grupės pavadinimas",
+    "Limit guest access to an app whitelist" : "Ribota svečio prieiga prie programėlių sąrašo",
     "Reset whitelist" : "Atstatyti baltąjį sąrašą"
 },
 "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);");
