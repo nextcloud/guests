@@ -24,6 +24,7 @@ OC.L10N.register(
     "The share will expire on %s." : "Bendrinimo laikas baigsis %s.",
     "Cheers!" : "Sveikinimai!",
     "Hey there,<br><br>\n         \n         just letting you know that %s shared <strong>%s</strong> with you.<br><br>\n         Activate your guest account at %s by <a href=\"%s\">setting a password</a>.<br><br>\n         Then <a href=\"%s\">view it!</a><br><br>You can login using the email address <strong>\"%s\"</strong> .<br><br>" : "Sveiki,<br><br>\n         \n         tiesiog pranešame, kad %s pradėjo su jumis bendrinti <strong>%s</strong>.<br><br>\n         Aktyvuokite savo svečio paskyrą ties %s, <a href=\"%s\">nusistatydami slaptažodį</a>.<br><br>\n         O tuomet, <a href=\"%s\">peržiūrėkite failą!</a><br><br>Jūs galite prisijungti, naudodami el. pašto adresą <strong>\"%s\"</strong> .<br><br>",
+    "Guest users are grouped under a virtual group in the user manager" : "Svečio naudotojai yra suskirstyti į virtualią grupę naudotojo administravimo vadove",
     "Group name" : "Grupės pavadinimas",
     "Limit guest access to an app whitelist" : "Ribota svečio prieiga prie programėlių sąrašo",
     "Reset whitelist" : "Atstatyti baltąjį sąrašą"
