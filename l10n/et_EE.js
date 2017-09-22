@@ -4,6 +4,7 @@ OC.L10N.register(
     "Invalid mail address" : "Vigane e-posti aadress",
     "Username required" : "Kasutajanimi nõutud",
     "A user with that name already exists." : "Selle nimega kasutaja on juba olemas.",
+    "User successfully created" : "Kasutaja edukalt loodud",
     "Error while sharing" : "Viga jagamisel",
     "Error" : "Tõrge",
     "Loading…" : "Laadimine...",
