@@ -7,7 +7,7 @@ OC.L10N.register(
     "User successfully created" : "Utilisateur créé avec succès",
     "Error while sharing" : "Erreur lors du partage",
     "Error" : "Erreur",
-    "Add {unknown} (guest)" : "Ajouter {unknown} (invité)",
+    "Add {unknown} (guest)" : "Ajouter {inconnu} (invité)",
     "No users or groups found for {search}" : "Aucun utilisateur ou groupe trouvé pour {search}",
     "No users found for {search}" : "Aucun utilisateur trouvé pour {search}",
     "An error occurred. Please try again" : "Une erreur est survenue. Merci de réessayer",
