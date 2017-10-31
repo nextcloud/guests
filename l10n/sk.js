@@ -7,6 +7,7 @@ OC.L10N.register(
     "User successfully created" : "Používateľ úspešne vytvorený",
     "Error while sharing" : "Chyba počas zdieľania",
     "Error" : "Chyba",
+    "Add {unknown} (guest)" : "Pridať {unknown} (hosť)",
     "No users or groups found for {search}" : "{search} nenašlo žiadnych používateľov alebo skupiny",
     "No users found for {search}" : "{search} nenašlo žiadnych používateľov",
     "An error occurred. Please try again" : "Nastala chyba. Prosím, skúste to znovu.",
@@ -18,9 +19,13 @@ OC.L10N.register(
     "%s shared »%s« with you" : "%s s vami zdieľa »%s«",
     "%s via %s" : "%s cez %s",
     "Couldn't send reset email. Please contact your administrator." : "Nemožno poslať email pre obnovu. Kontaktujte prosím vášho administrátora.",
+    "Guests" : "Hostia",
+    "Hey there,\n\njust letting you know that %s shared %s with you.\n\nActivate your guest account at %s by setting a password: %s\n\nThen view it: %s\n\nYou can login using the email address \"%s\".\n\n" : "Dobrý deň,\n\nradi by sme vás informovali o tom, že %s vám sprístupnil %s.\n\nAktivujte si svoj hosťovský účet na %s nastavením hesla: %s\n\nPotom si môžete danú položku pozrieť: %s\n\nMôžete sa prihlásiť pomocou e-mailovej adresy \"%s\".\n",
     "The share will expire on %s." : "Zdieľanie vyprší %s.",
     "Cheers!" : "Pekný deň!",
     "Guest users are grouped under a virtual group in the user manager" : "Hostia sú zoskupení vo virtuálnej skupine v manažéri používateľov",
-    "Group name" : "Názov skupiny"
+    "Group name" : "Názov skupiny",
+    "Limit guest access to an app whitelist" : "Obmedzte prístup hostí do zoznamu povolených aplikácii",
+    "Reset whitelist" : "Obnoviť zoznam povolených aplikácií"
 },
 "nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;");
