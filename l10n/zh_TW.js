@@ -24,6 +24,7 @@ OC.L10N.register(
     "The share will expire on %s." : "這個分享將會於 %s 過期",
     "Cheers!" : "太棒了！",
     "Group name" : "群組名稱",
+    "Limit guest access to an app whitelist" : "限制訪客存取app白名單",
     "Reset whitelist" : "重設白名單"
 },
 "nplurals=1; plural=0;");
