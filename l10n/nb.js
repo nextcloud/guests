@@ -11,7 +11,7 @@ OC.L10N.register(
     "No users or groups found for {search}" : "Ingen brukere eller grupper funnet for {search}",
     "No users found for {search}" : "Ingen brukere funnet for {search}",
     "An error occurred. Please try again" : "Det oppstod en feil. Prøv igjen",
-    "Loading…" : "Laster...",
+    "Loading…" : "Laster…",
     "Loaded" : "Innlastet",
     "Saved" : "Lagret",
     "Reset" : "Tilbakestill",
