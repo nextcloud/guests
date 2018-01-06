@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Invalid mail address" : "Adresa mail invalidă",
     "A user with that name already exists." : "Există deja un utilizator cu acest nume.",
+    "User successfully created" : "Utilizator creat cu succes",
     "Error while sharing" : "Eroare la partajare",
     "Error" : "Eroare",
     "No users or groups found for {search}" : "Nu au fost găsiți utilizatori sau grupuri pentru {search}",
