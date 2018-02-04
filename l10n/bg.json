@@ -1,19 +1,26 @@
 { "translations": {
     "Invalid mail address" : "невалиден адрес на електронна поща",
+    "Username required" : "Потребителско име е задължително",
     "A user with that name already exists." : "Потребител с това име вече съществува",
+    "User successfully created" : "Успешно създаден потребител",
     "Error while sharing" : "Грешка при споделяне",
     "Error" : "Грешка",
     "No users or groups found for {search}" : "Не са отркити потребители или групи за {search}",
     "No users found for {search}" : "Не са открити потребители за {search}",
     "An error occurred. Please try again" : "Възникна грешка. Моля, опитайте отново",
     "Loading…" : "Зарежда…",
+    "Loaded" : "Готово",
     "Saved" : "Запазено",
     "Reset" : "Възстановяване",
+    "Access to this resource is forbidden for guests." : "Достъпа до този ресурс не е възможен за потребител с ново \"гост\".",
     "%s shared »%s« with you" : "%s сподели »%s« с теб",
     "%s via %s" : "%s през %s",
     "Couldn't send reset email. Please contact your administrator." : "Изпращането на електронна поща е неуспешно. Моля, свържете се с вашия администратор.",
+    "Guests" : "Гости",
+    "Hey there,\n\njust letting you know that %s shared %s with you.\n\nActivate your guest account at %s by setting a password: %s\n\nThen view it: %s\n\nYou can login using the email address \"%s\".\n\n" : "Здравей,\n\nТова е известие към, че %s сподели с теб %s.\n\nАктивирай \"гост\" акаунта си на %s като настроиш парола: %s\n\nЗа да го видиш: %s\n\nМожеш да се логнеш с Е-Мейл адреса си \"%s\".\n\n",
     "The share will expire on %s." : "Споделянето ще изтече на %s.",
     "Cheers!" : "Поздрави!",
-    "Group name" : "Име на групата"
+    "Group name" : "Име на групата",
+    "Reset whitelist" : "Изчистване на позволителния списък"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
