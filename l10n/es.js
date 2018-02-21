@@ -1,7 +1,7 @@
 OC.L10N.register(
     "guests",
     {
-    "Invalid mail address" : "Dirección de correo inválida",
+    "Invalid mail address" : "Dirección de correo no válida",
     "Username required" : "Nombre de usuario requerido",
     "A user with that name already exists." : "Ya existe un usuario con ese nombre.",
     "User successfully created" : "Usuario creado con éxito",
@@ -15,7 +15,7 @@ OC.L10N.register(
     "Loaded" : "Cargado",
     "Saved" : "Guardado",
     "Reset" : "Restablecer",
-    "Access to this resource is forbidden for guests." : "Acceso a este recurso está prohibido para invitados",
+    "Access to this resource is forbidden for guests." : "El acceso a este recurso está prohibido para invitados",
     "%s shared »%s« with you" : "%s ha compartido »%s« contigo",
     "%s via %s" : "%s vía %s",
     "Couldn't send reset email. Please contact your administrator." : "No pudo enviarse el correo para restablecer la contraseña. Por favor, contacte con su administrador.",
