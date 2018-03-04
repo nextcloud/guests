@@ -18,7 +18,7 @@ OC.L10N.register(
     "Access to this resource is forbidden for guests." : "El acceso a este recurso está prohibido para invitados",
     "%s shared »%s« with you" : "%s ha compartido »%s« contigo",
     "%s via %s" : "%s vía %s",
-    "Couldn't send reset email. Please contact your administrator." : "No pudo enviarse el correo para restablecer la contraseña. Por favor, contacte con su administrador.",
+    "Couldn't send reset email. Please contact your administrator." : "No se ha podido enviar el correo para restablecer la contraseña. Por favor, contacte con un administrador.",
     "Guests" : "Invitados",
     "Hey there,\n\njust letting you know that %s shared %s with you.\n\nActivate your guest account at %s by setting a password: %s\n\nThen view it: %s\n\nYou can login using the email address \"%s\".\n\n" : "Hola,\n\nSolo comentarte que %s ha compartido contigo %s\n\nActiva tu cuenta de invitado %s definiendo un pass: %s\n\nEntonces podras verlo: %s\n\nPuedes logarte con tu dirección de e-mail \"%s\".\n\n",
     "The share will expire on %s." : "El objeto dejará de ser compartido el %s.",
