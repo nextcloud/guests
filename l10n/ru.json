@@ -9,7 +9,7 @@
     "No users or groups found for {search}" : "Не найдено пользователей или групп по запросу {search}",
     "No users found for {search}" : "Не найдено пользователей по запросу {search}",
     "An error occurred. Please try again" : "Произошла ошибка. Попробуйте ещё раз",
-    "Loading…" : "Загрузка...",
+    "Loading…" : "Загрузка…",
     "Loaded" : "Загружено",
     "Saved" : "Сохранено",
     "Reset" : "Сброс",
