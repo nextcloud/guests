@@ -3,7 +3,7 @@ OC.L10N.register(
     {
     "Invalid mail address" : "Adreça de correu invàlida",
     "Username required" : "El nom d'usuari és obilgatori",
-    "A user with that name already exists." : "Ja existeix un usuari amb est nom.",
+    "A user with that name already exists." : "Ja existeix un usuari amb aquest nom.",
     "User successfully created" : "L'usuari s'ha creat correctament",
     "Error while sharing" : "Error en compartir",
     "Error" : "Error",
