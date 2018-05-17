@@ -29,4 +29,4 @@ OC.L10N.register(
     "Limit guest access to an app whitelist" : "Omezte přístup hosta do seznamu povolených aplikací",
     "Reset whitelist" : "Inicializace seznamu povolených aplikací"
 },
-"nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;");
+"nplurals=4; plural=(n < 10 && n % 1 == 0) ? 1 : (n < 9999 && n >= 10 && n % 1 == 0) ? 3 : (n % 1 != 0) : 4;");

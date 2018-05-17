@@ -14,4 +14,4 @@ OC.L10N.register(
     "Cheers!" : "سلامتی!",
     "Group name" : "نام گروه"
 },
-"nplurals=1; plural=0;");
+"nplurals=2; plural=((n<=1 && n>= 0) ? 1);");

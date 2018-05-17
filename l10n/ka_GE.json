@@ -26,5 +26,5 @@
     "Group name" : "ჯგუფის სახელი",
     "Limit guest access to an app whitelist" : "დააწესეთ ლიმიტი სტუმრების წვდომაზე",
     "Reset whitelist" : "თეთრი-სიის საწყის მდგომარეობაში დაბრუნება"
-},"pluralForm" :"nplurals=1; plural=0;"
+},"pluralForm" :"nplurals=2; plural=(n==1);"
 }
