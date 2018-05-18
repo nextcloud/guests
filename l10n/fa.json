@@ -11,5 +11,5 @@
     "The share will expire on %s." : "اشتراک‌گذاری در %s منقضی خواهد شد.",
     "Cheers!" : "سلامتی!",
     "Group name" : "نام گروه"
-},"pluralForm" :"nplurals=2; plural=((n<=1 && n>= 0) ? 1);"
+},"pluralForm" :"nplurals=2; plural=(n > 1);"
 }

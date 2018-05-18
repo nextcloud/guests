@@ -29,4 +29,4 @@ OC.L10N.register(
     "Limit guest access to an app whitelist" : "מגביל גישת משתמשים ברמת אורח לרשימת יישום לבנה",
     "Reset whitelist" : "מאפס רשימה לבנה"
 },
-"nplurals=4; plural=(n==1 ? 1: n == 2 ? 2 : (n % 10 == 0 and n > 10) ? 4);");
+"nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;");

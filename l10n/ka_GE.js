@@ -29,4 +29,4 @@ OC.L10N.register(
     "Limit guest access to an app whitelist" : "დააწესეთ ლიმიტი სტუმრების წვდომაზე",
     "Reset whitelist" : "თეთრი-სიის საწყის მდგომარეობაში დაბრუნება"
 },
-"nplurals=2; plural=(n==1);");
+"nplurals=2; plural=(n!=1);");
