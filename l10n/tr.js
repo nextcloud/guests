@@ -20,6 +20,7 @@ OC.L10N.register(
     "%s via %s" : "%s, %s aracılığıyla",
     "Couldn't send reset email. Please contact your administrator." : "Sıfırlama e-postası gönderilemedi. Lütfen yöneticiniz ile iletişime geçin.",
     "Guests" : "Konuklar",
+    "Allow classifying users or contacts as guests." : "Kullanıcı ve kişilerin misafir olarak sınıflandırılmasını sağlar.",
     "Hey there,\n\njust letting you know that %s shared %s with you.\n\nActivate your guest account at %s by setting a password: %s\n\nThen view it: %s\n\nYou can login using the email address \"%s\".\n\n" : "Merhaba,\n\n%s kullanıcısının sizinle %s paylaştığını bildirmek istedilk.\n\n%s üzerindeki konuk hesabınızı bir parola ayarlayarak etkinleştirebilirsiniz: %s\n\nArdından paylaşıma şuradan bakabiliirsiniz.: %s\n\nOturum açmak için \"%s\" e-posta adresini kullanın.\n",
     "The share will expire on %s." : "Bu paylaşım %s tarihinde sona erecek.",
     "Cheers!" : "Hoşçakalın!",

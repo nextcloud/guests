@@ -20,6 +20,7 @@ OC.L10N.register(
     "%s via %s" : "%s через %s",
     "Couldn't send reset email. Please contact your administrator." : "Не удалось отправить письмо для сброса пароля, свяжитесь с системным администратором.",
     "Guests" : "Гости",
+    "Allow classifying users or contacts as guests." : "Разрешить классификацию пользователей или контактов в качестве гостей.",
     "Hey there,\n\njust letting you know that %s shared %s with you.\n\nActivate your guest account at %s by setting a password: %s\n\nThen view it: %s\n\nYou can login using the email address \"%s\".\n\n" : "Здравствуйте!\n\n%s предоставил(а) Вам доступ к «%s».\n\nАктивируйте вашу гостевую учётную запись на сервере %s используя пароль: %s\n\nПотом посмотрите это: %s\n\nДля входа в систему используйте адрес электронной почты «%s».\n\n",
     "The share will expire on %s." : "Доступ к общему ресурсу будет закрыт %s.",
     "Cheers!" : "Всего наилучшего!",

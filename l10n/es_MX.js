@@ -20,6 +20,7 @@ OC.L10N.register(
     "%s via %s" : "%s vía %s",
     "Couldn't send reset email. Please contact your administrator." : "No fue posible enviar el correo electrónico de restauración. Por favor contacta a tu adminstrador. ",
     "Guests" : "Invitados",
+    "Allow classifying users or contacts as guests." : "Permitir clasificar usuarios o contactos como invitados.",
     "Hey there,\n\njust letting you know that %s shared %s with you.\n\nActivate your guest account at %s by setting a password: %s\n\nThen view it: %s\n\nYou can login using the email address \"%s\".\n\n" : "Hola,\n\nsólo te queríamos hacer saber que %s compartió %s contigo. \n\nActiva tu cuenta de invitado en %s al establecer su contraseña:%s\n\nDespués velo: %s\n\nPuedes iniciar sesión usando la dirección de correo electrónico \"%s\".\n",
     "The share will expire on %s." : "El elemento compartido expirará el %s. ",
     "Cheers!" : "¡Saludos!",
