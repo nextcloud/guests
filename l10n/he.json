@@ -18,6 +18,7 @@
     "%s via %s" : "%s על בסיס %s",
     "Couldn't send reset email. Please contact your administrator." : "לא ניתן היה לשלוח דואר אלקטרוני לאיפוס. יש לפנות למנהל שלך.",
     "Guests" : "אורחים",
+    "Allow classifying users or contacts as guests." : "לאפשר לסווג משתמשים או אנשי קשר כאורחים.",
     "Hey there,\n\njust letting you know that %s shared %s with you.\n\nActivate your guest account at %s by setting a password: %s\n\nThen view it: %s\n\nYou can login using the email address \"%s\".\n\n" : "שלום רב,\n\nרק רצינו להודיע לך ש- %s משתף אתך %s.\n\nניתן להפעיל חשבון אורח ב- %s על ידי הכנסת סיסמא: %s\n\nלאחר מכן ניתן לצפות בזה: %s\n\nניתן להתחבר באמצעות כתובת הדואר האלקטרוני \"%s\".\n\n",
     "The share will expire on %s." : "השיתוף יפוג תוקף ב- %s.",
     "Cheers!" : "לחיים!",
