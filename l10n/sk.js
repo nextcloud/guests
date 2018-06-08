@@ -20,6 +20,7 @@ OC.L10N.register(
     "%s via %s" : "%s cez %s",
     "Couldn't send reset email. Please contact your administrator." : "Nemožno poslať email pre obnovu. Kontaktujte prosím vášho administrátora.",
     "Guests" : "Hostia",
+    "Allow classifying users or contacts as guests." : "Umožniť klasifikovať používateľov alebo kontakty ako hostí.",
     "Hey there,\n\njust letting you know that %s shared %s with you.\n\nActivate your guest account at %s by setting a password: %s\n\nThen view it: %s\n\nYou can login using the email address \"%s\".\n\n" : "Dobrý deň,\n\nradi by sme vás informovali o tom, že %s vám sprístupnil %s.\n\nAktivujte si svoj hosťovský účet na %s nastavením hesla: %s\n\nPotom si môžete danú položku pozrieť: %s\n\nMôžete sa prihlásiť pomocou e-mailovej adresy \"%s\".\n",
     "The share will expire on %s." : "Zdieľanie vyprší %s.",
     "Cheers!" : "Pekný deň!",
