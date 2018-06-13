@@ -9,7 +9,7 @@
 	<licence>AGPL</licence>
 	<author>Nextcloud</author>
 	<dependencies>
-		<nextcloud min-version="12" max-version="13" />
+		<nextcloud min-version="12" max-version="14" />
 	</dependencies>
 	<category>collaboration</category>
 	<types>
