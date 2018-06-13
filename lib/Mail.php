@@ -117,7 +117,7 @@ class Mail {
 			'files.viewcontroller.showFile', ['fileid' => $itemSource]
 		);
 
-		$emailTemplate = $this->mailer->createEMailTemplate();
+		$emailTemplate = $this->mailer->createEMailTemplate('guest.invite');
 
 		$emailTemplate->addHeader();
 		$emailTemplate->addHeading($this->l10n->t('Incoming share'));

@@ -37,7 +37,7 @@ class FilteredNavigationManager extends NavigationManager {
 		$this->navigationManager = $navigationManager;
 	}
 
-	public function getAll($type = 'link') {
+	public function getAll(string $type = 'link'): array {
 		$items = $this->navigationManager->getAll($type);
 
 		return array_filter($items, [$this, 'isEntryWhitelisted']);

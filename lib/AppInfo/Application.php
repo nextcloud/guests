@@ -113,24 +113,31 @@ class Application extends App {
 		\OCP\Util::connectHook('OCP\Share', 'post_shared', $hooks, 'postShareHook');
 		\OCP\Util::connectHook('OC_Filesystem', 'preSetup', $hooks, 'setupReadonlyFilesystem');
 
-
-		$user = $server->getUserSession()->getUser();
+		$userSession = $server->getUserSession();
+		$user = $userSession->getUser();
 		/** @var GuestManager $guestManager */
 		$guestManager = $container->query(GuestManager::class);
 
-		if ($user && $guestManager->isGuest($user)) {
-			/** @var AppWhitelist $whiteList */
-			$whiteList = $container->query(AppWhitelist::class);
-			// if the whitelist is used
-			$whiteList->verifyAccess($user, $server->getRequest());
+		/** @var AppWhitelist $whiteList */
+		$whiteList = $container->query(AppWhitelist::class);
 
-			\OCP\Util::addStyle('guests', 'personal');
+		if ($user) {
+			if ($guestManager->isGuest($user)) {
+				// if the whitelist is used
+				$whiteList->verifyAccess($user, $server->getRequest());
 
-			/** @var NavigationManager $navManager */
-			$navManager = $server->getNavigationManager();
+				\OCP\Util::addStyle('guests', 'personal');
 
-			$server->registerService('NavigationManager', function () use ($navManager, $user, $whiteList) {
-				return new FilteredNavigationManager($user, $navManager, $whiteList);
+				/** @var NavigationManager $navManager */
+				$navManager = $server->getNavigationManager();
+
+				$server->registerService('NavigationManager', function () use ($navManager, $user, $whiteList) {
+					return new FilteredNavigationManager($user, $navManager, $whiteList);
+				});
+			}
+		} else {
+			$userSession->listen('\OC\User', 'postLogin', function () use ($userSession, $server, $whiteList) {
+				$whiteList->verifyAccess($userSession->getUser(), $server->getRequest());
 			});
 		}
 	}

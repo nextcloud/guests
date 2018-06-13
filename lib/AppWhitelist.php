@@ -119,7 +119,7 @@ class AppWhitelist {
 			return 'files';
 		} else if (substr($url, 0, 8) === '/webdav/') {
 			return 'dav';
-		} else if (substr($url, 0, 12) === '/dav/') {
+		} else if (substr($url, 0, 5) === '/dav/') {
 			return 'dav';
 		} else if (substr($url, 0, 10) === '/settings/') {
 			return 'settings';
