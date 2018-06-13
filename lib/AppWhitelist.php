@@ -115,6 +115,8 @@ class AppWhitelist {
 			return 'core';
 		} else if (substr($url, 0, 5) === '/css/') {
 			return 'core';
+		} else if (substr($url, 0, 6) === '/login') {
+			return 'core';
 		} else if (substr($url, 0, 3) === '/f/') {
 			return 'files';
 		} else if (substr($url, 0, 8) === '/webdav/') {
