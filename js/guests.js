@@ -23,7 +23,6 @@
 		// variables
 		var $section = $('#guests');
 		var $guestsByGroup = $section.find('#guestsByGroup');
-		var $guestGroup = $section.find('#guestGroup');
 		var $guestUseWhitelist = $section.find('#guestUseWhitelist');
 		var $guestWhitelist = $section.find('#guestWhitelist');
 		var $guestWhitelistContainer = $section.find('.whitelist');
@@ -55,11 +54,6 @@
 					} else {
 						$guestUseWhitelist.prop('checked', false);
 						$guestWhitelistContainer.hide();
-					}
-					if (config.group) {
-						$guestGroup.val(config.group);
-					} else {
-						$guestGroup.val('');
 					}
 					if ($.isArray(config.whitelist)) {
 						$guestWhitelist.val(config.whitelist).trigger("change");
@@ -113,10 +107,6 @@
 			saveConfig();
 		});
 
-		$guestGroup.on('change', function () {
-			config.group = $guestGroup.val();
-			saveConfig();
-		});
 		$guestUseWhitelist.on('change', function () {
 			config.useWhitelist = $guestUseWhitelist.prop('checked');
 			if(config.useWhitelist) {

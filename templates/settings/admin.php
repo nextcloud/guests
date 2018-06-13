@@ -29,8 +29,6 @@ style('guests', 'admin');
 	<div>
 		<p>
 			<span class="inlineblock user-info-label"><?php p($l->t('Guest users are grouped under a virtual group in the user manager')); ?></span><br/><br/>
-			<label for="guestGroup"><?php p($l->t('Group name')); ?>
-			</label><input type="text" id="guestGroup" value=""/>
 		</p>
 		<p class="whitelist-toggle">
 			<input type="checkbox" id="guestUseWhitelist" class="checkbox"

@@ -66,7 +66,6 @@ class SettingsController extends Controller {
 		$whitelist = $this->config->getAppValue('guests', 'whitelist', AppWhitelist::DEFAULT_WHITELIST);
 		$whitelist = explode(',', $whitelist);
 		return new DataResponse([
-			'group' => $this->config->getAppValue('guests', 'group', 'guests'),
 			'useWhitelist' => $useWhitelist,
 			'whitelist' => $whitelist,
 		]);
@@ -86,7 +85,6 @@ class SettingsController extends Controller {
 			$newWhitelist[] = trim($app);
 		}
 		$newWhitelist = join(',', $newWhitelist);
-		$this->config->setAppValue('guests', 'group', $group);
 		$this->config->setAppValue('guests', 'usewhitelist', $useWhitelist);
 		$this->config->setAppValue('guests', 'whitelist', $newWhitelist);
 		return new DataResponse();

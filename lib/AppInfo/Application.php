@@ -104,12 +104,9 @@ class Application extends App {
 			}
 		);
 
-		$config = $server->getConfig();
-		$groupName = $config->getAppValue('guests', 'group', 'guest_app');
-
 		$server->getGroupManager()->addBackend(new GroupBackend(
 			$container->query(GuestManager::class),
-			$groupName
+			'guest_app'
 		));
 		/** @var Hooks $hooks */
 		$hooks = $container->query(Hooks::class);
