@@ -5,7 +5,7 @@
 	<description>
 		Allow classifying users or contacts as guests.
 	</description>
-	<version>0.5.0</version>
+	<version>1.0.0</version>
 	<licence>AGPL</licence>
 	<author>Nextcloud</author>
 	<dependencies>

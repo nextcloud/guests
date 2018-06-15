@@ -30,6 +30,7 @@ use OCA\Guests\GroupBackend;
 use OCA\Guests\GuestManager;
 use OCA\Guests\Hooks;
 use OCA\Guests\Mail;
+use OCA\Guests\UserBackend;
 use OCP\AppFramework\App;
 use OCP\AppFramework\IAppContainer;
 use OCP\Defaults;
@@ -40,60 +41,62 @@ class Application extends App {
 
 		$container = $this->getContainer();
 
-		$container->registerService(GuestManager::class, function (IAppContainer $c) {
-			$server = $c->getServer();
-			return new GuestManager(
-				$server->getConfig(),
-				$server->getUserManager(),
-				$server->getSecureRandom(),
-				$server->getCrypto(),
-				$server->getGroupManager()
-			);
-		});
+//		$container->registerService(GuestManager::class, function (IAppContainer $c) {
+//			$server = $c->getServer();
+//			return new GuestManager(
+//				$server->getConfig(),
+//				$server->getUserManager(),
+//				$server->getSecureRandom(),
+//				$server->getCrypto(),
+//				$server->getGroupManager()
+//			);
+//		});
 
-		$container->registerService(AppWhitelist::class, function (IAppContainer $c) {
-			$server = $c->getServer();
-			return new AppWhitelist(
-				$server->getConfig(),
-				$c->query(GuestManager::class),
-				$server->getL10N('guests'),
-				$server->getAppManager()
-			);
-		});
-
-		$container->registerService(Mail::class, function (IAppContainer $c) {
-			$server = $c->getServer();
-			return new Mail(
-				$server->getConfig(),
-				$server->getLogger(),
-				$server->getUserSession(),
-				$server->getMailer(),
-				new Defaults(),
-				$server->getL10N('guests'),
-				$server->getUserManager(),
-				$server->getURLGenerator()
-			);
-		});
-
-		$container->registerService(Hooks::class, function (IAppContainer $c) {
-			$server = $c->getServer();
-			return new Hooks(
-				$server->getLogger(),
-				$server->getUserSession(),
-				$server->getRequest(),
-				$c->query(Mail::class),
-				$server->getUserManager(),
-				$server->getConfig(),
-				$server->getCrypto(),
-				$c->query(GuestManager::class)
-			);
-		});
+//		$container->registerService(AppWhitelist::class, function (IAppContainer $c) {
+//			$server = $c->getServer();
+//			return new AppWhitelist(
+//				$server->getConfig(),
+//				$c->query(GuestManager::class),
+//				$server->getL10N('guests'),
+//				$server->getAppManager()
+//			);
+//		});
+//
+//		$container->registerService(Mail::class, function (IAppContainer $c) {
+//			$server = $c->getServer();
+//			return new Mail(
+//				$server->getConfig(),
+//				$server->getLogger(),
+//				$server->getUserSession(),
+//				$server->getMailer(),
+//				new Defaults(),
+//				$server->getL10N('guests'),
+//				$server->getUserManager(),
+//				$server->getURLGenerator()
+//			);
+//		});
+//
+//		$container->registerService(Hooks::class, function (IAppContainer $c) {
+//			$server = $c->getServer();
+//			return new Hooks(
+//				$server->getLogger(),
+//				$server->getUserSession(),
+//				$server->getRequest(),
+//				$c->query(Mail::class),
+//				$server->getUserManager(),
+//				$server->getConfig(),
+//				$server->getCrypto(),
+//				$c->query(GuestManager::class)
+//			);
+//		});
 	}
 
 	public function setup() {
 		$container = $this->getContainer();
 		/** @var Server $server */
 		$server = $container->getServer();
+
+		$server->getUserManager()->registerBackend($container->query(UserBackend::class));
 
 		$server->getEventDispatcher()->addListener(
 			'OCA\Files::loadAdditionalScripts',

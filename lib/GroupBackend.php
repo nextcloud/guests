@@ -21,23 +21,21 @@
 namespace OCA\Guests;
 
 
-use OCP\GroupInterface;
+use OCP\Group\Backend\ABackend;
+use OCP\Group\Backend\ICountUsersBackend;
+use OCP\Group\Backend\IGroupDetailsBackend;
 
 /**
  * Provides a virtual (not existing in the database) group for guest users.
- * Members of this group are determined by the user value "isGuest" in oc_preferences.
  *
  * @package OCA\Guests
  */
-class GroupBackend implements GroupInterface {
+class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetailsBackend {
 	/** @var GuestManager */
 	private $guestManager;
 
 	private $guestMembers = [];
 
-	protected $possibleActions = [
-		self::COUNT_USERS => 'countUsersInGroup',
-	];
 	private $groupName;
 
 
@@ -46,7 +44,6 @@ class GroupBackend implements GroupInterface {
 		$this->guestManager = $guestManager;
 	}
 
-
 	private function getMembers() {
 		if (empty($this->guestMembers)) {
 			$this->guestMembers = $this->guestManager->listGuests();
@@ -54,39 +51,6 @@ class GroupBackend implements GroupInterface {
 
 		return $this->guestMembers;
 	}
-
-	/**
-	 * Get all supported actions
-	 *
-	 * @return int bitwise-or'ed actions
-	 *
-	 * Returns the supported actions as int to be
-	 * compared with \OC\Group\Backend::CREATE_GROUP etc.
-	 */
-	public function getSupportedActions() {
-		$actions = 0;
-		foreach ($this->possibleActions AS $action => $methodName) {
-			if (method_exists($this, $methodName)) {
-				$actions |= $action;
-			}
-		}
-
-		return $actions;
-	}
-
-	/**
-	 * Check if backend implements actions
-	 *
-	 * @param int $actions bitwise-or'ed actions
-	 * @return bool
-	 *
-	 * Returns the supported actions as int to be
-	 * compared with \OC\Group\Backend::CREATE_GROUP etc.
-	 */
-	public function implementsActions($actions) {
-		return (bool)($this->getSupportedActions() & $actions);
-	}
-
 
 	/**
 	 * is user in group?
@@ -99,7 +63,7 @@ class GroupBackend implements GroupInterface {
 	 * Checks whether the user is member of a group or not.
 	 */
 	public function inGroup($uid, $gid) {
-		return in_array($uid, $this->guestMembers) && $gid === $this->groupName;
+		return $gid === $this->groupName && in_array($uid, $this->getMembers());
 
 	}
 
@@ -165,12 +129,12 @@ class GroupBackend implements GroupInterface {
 		return [];
 	}
 
-
-	/**
-	 * @return int
-	 */
-	public function countUsersInGroup() {
-		return count($this->getMembers());
+	public function countUsersInGroup(string $gid, string $search = ''): int {
+		if ($gid === $this->groupName) {
+			return count($this->getMembers());
+		} else {
+			return 0;
+		}
 	}
 
 	/**
@@ -183,5 +147,13 @@ class GroupBackend implements GroupInterface {
 	 */
 	public function isVisibleForScope($scope) {
 		return $scope !== 'sharing';
+	}
+
+	public function getGroupDetails(string $gid): array {
+		if ($gid === $this->groupName) {
+			return ['displayName' => 'Guests'];
+		} else {
+			return [];
+		}
 	}
 }

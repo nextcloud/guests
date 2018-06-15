@@ -114,12 +114,7 @@ class Hooks {
 	) {
 
 
-		$isGuest = $this->config->getUserValue(
-			$shareWith,
-			'nextcloud',
-			'isGuest',
-			false
-		);
+		$isGuest = $this->guestManager->isGuest($shareWith);
 
 		if (!$isGuest) {
 			$this->logger->debug(

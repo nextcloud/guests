@@ -24,6 +24,7 @@ namespace OCA\Guests;
 use OCP\IConfig;
 use OCP\IGroupManager;
 use OCP\IUser;
+use OCP\IUserBackend;
 use OCP\IUserManager;
 use OCP\Security\ICrypto;
 use OCP\Security\ISecureRandom;
@@ -32,8 +33,8 @@ class GuestManager {
 	/** @var IConfig */
 	private $config;
 
-	/** @var IUserManager */
-	private $userManager;
+	/** @var UserBackend */
+	private $userBackend;
 
 	/** @var ISecureRandom */
 	private $secureRandom;
@@ -44,32 +45,37 @@ class GuestManager {
 	/** @var IGroupManager */
 	private $groupManager;
 
-	public function __construct(IConfig $config, IUserManager $userManager, ISecureRandom $secureRandom, ICrypto $crypto, IGroupManager $groupManager) {
+	public function __construct(IConfig $config, UserBackend $userBackend, ISecureRandom $secureRandom, ICrypto $crypto, IGroupManager $groupManager) {
 		$this->config = $config;
-		$this->userManager = $userManager;
+		$this->userBackend = $userBackend;
 		$this->secureRandom = $secureRandom;
 		$this->crypto = $crypto;
 		$this->groupManager = $groupManager;
 	}
 
 	/**
-	 * @param IUser $user
+	 * @param IUser|string $user
 	 * @return boolean
 	 */
-	public function isGuest(IUser $user) {
-		return $this->config->getUserValue($user->getUID(), 'nextcloud', 'isGuest', false) === '1';
+	public function isGuest($user) {
+		if (is_string($user)) {
+			return $this->userBackend->userExists($user);
+		} else if ($user instanceof IUser) {
+			return $this->userBackend->userExists($user->getUID());
+		}
+		return false;
 	}
 
 	public function createGuest($userId, $email, $displayName = '') {
-		$user = $this->userManager->createUser(
+		$this->userBackend->createUser(
 			$userId,
 			$this->secureRandom->generate(20)
 		);
 
-		$user->setEMailAddress($email);
+		$this->config->setUserValue($userId, 'settings', 'email', $email);
 
 		if ($displayName) {
-			$user->setDisplayName($displayName);
+			$this->userBackend->setDisplayName($userId, $displayName);
 		}
 
 		$token = $this->secureRandom->generate(
@@ -81,32 +87,18 @@ class GuestManager {
 		$endOfTime = PHP_INT_MAX - 50000;
 		$token = sprintf('%s:%s', $endOfTime, $token);
 
-		$userId = $user->getUID();
-
 		$encryptedValue = $this->crypto->encrypt($token, $email . $this->config->getSystemValue('secret'));
 
 		$this->config->setUserValue(
-			$user->getUID(),
+			$userId,
 			'core',
 			'lostpassword',
 			$encryptedValue
 		);
-
-
-		$this->config->setUserValue(
-			$userId,
-			'nextcloud',
-			'isGuest',
-			'1'
-		);
 	}
 
 	public function listGuests() {
-		return $this->config->getUsersForUserValue(
-			'nextcloud',
-			'isGuest',
-			'1'
-		);
+		return $this->userBackend->getUsers();
 	}
 
 	public function isReadOnlyUser(IUser $user) {
