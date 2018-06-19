@@ -51,9 +51,7 @@ $(document).ready(function () {
 		watch: {
 			'guest.email': function () {
 				if (this.guest.email) {
-					username = this.guest.email.toLowerCase();
-					username = username.match(/[\w]+/g);
-					this.guest.username = 'guest_' + username.join('_');
+					this.guest.username = 'guest ' + this.guest.email;
 				}
 				else {
 					this.guest.username = '';
@@ -93,7 +91,6 @@ $(document).ready(function () {
 					dataType: 'text',
 					data: {
 						displayName: this.guest.fullname,
-						username: this.guest.username,
 						email: this.guest.email
 					}
 				};

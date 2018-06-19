@@ -70,12 +70,11 @@ class UsersController extends Controller {
 	 * @NoCSRFRequired
 	 * @NoAdminRequired
 	 *
-	 * @param $username
 	 * @param $email
 	 * @param $displayName
 	 * @return DataResponse
 	 */
-	public function create($username, $email, $displayName) {
+	public function create($email, $displayName) {
 		$errorMessages = [];
 
 		if (empty($email) || !$this->mailer->validateMailAddress($email)) {
@@ -84,12 +83,7 @@ class UsersController extends Controller {
 			);
 		}
 
-		if (empty($username)) {
-			$errorMessages['username'] = (string)$this->l10n->t(
-				'Username required'
-			);
-		}
-
+		$username = 'guest ' . $email;
 
 		$existingUsers = $this->userManager->getByEmail($email);
 		if (count($existingUsers) > 0) {
