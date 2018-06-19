@@ -51,7 +51,7 @@ $(document).ready(function () {
 		watch: {
 			'guest.email': function () {
 				if (this.guest.email) {
-					this.guest.username = 'guest ' + this.guest.email;
+					this.guest.username = this.guest.email;
 				}
 				else {
 					this.guest.username = '';

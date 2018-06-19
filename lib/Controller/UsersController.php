@@ -83,7 +83,7 @@ class UsersController extends Controller {
 			);
 		}
 
-		$username = 'guest ' . $email;
+		$username = $email;
 
 		$existingUsers = $this->userManager->getByEmail($email);
 		if (count($existingUsers) > 0) {
