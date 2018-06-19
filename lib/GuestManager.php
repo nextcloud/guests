@@ -95,6 +95,8 @@ class GuestManager {
 			'lostpassword',
 			$encryptedValue
 		);
+
+		$this->config->setUserValue($userId, 'files', 'quota', '0 B');
 	}
 
 	public function listGuests() {
