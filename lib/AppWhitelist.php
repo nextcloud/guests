@@ -26,6 +26,7 @@ use OCP\App\IAppManager;
 use OCP\IConfig;
 use OCP\IL10N;
 use OCP\IRequest;
+use OCP\IURLGenerator;
 use OCP\IUser;
 use OCP\Template;
 
@@ -43,6 +44,10 @@ class AppWhitelist {
 	private $l10n;
 	/** @var IAppManager */
 	private $appManager;
+	/** @var string */
+	private $baseUrl;
+	/** @var int */
+	private $baseUrlLength;
 
 	const WHITELIST_ALWAYS = ',core,theming,settings,avatar,files,heartbeat,dav,guests';
 
@@ -54,12 +59,17 @@ class AppWhitelist {
 	 * @param IConfig $config
 	 * @param GuestManager $guestManager
 	 * @param IL10N $l10n
+	 * @param IAppManager $appManager
+	 * @param IURLGenerator $urlGenerator
 	 */
-	public function __construct(IConfig $config, GuestManager $guestManager, IL10N $l10n, IAppManager $appManager) {
+	public function __construct(IConfig $config, GuestManager $guestManager, IL10N $l10n, IAppManager $appManager, IURLGenerator $urlGenerator) {
 		$this->config = $config;
 		$this->guestManager = $guestManager;
 		$this->l10n = $l10n;
 		$this->appManager = $appManager;
+		$this->baseUrl = $urlGenerator->getBaseUrl();
+		$this->baseUrlLength = strlen($this->baseUrl);
+
 	}
 
 	private function isAppWhitelisted($appId) {
@@ -103,6 +113,9 @@ class AppWhitelist {
 	 * taken from \OC\Route\Router::match()
 	 */
 	private function getRequestedApp($url) {
+		if (substr($url, 0, $this->baseUrlLength) === $this->baseUrl) {
+			$url = substr($url, $this->baseUrlLength);
+		}
 		if (substr($url, 0, 6) === '/apps/') {
 			// empty string / 'apps' / $app / rest of the route
 			list(, , $app,) = explode('/', $url, 4);
@@ -116,6 +129,8 @@ class AppWhitelist {
 		} else if (substr($url, 0, 5) === '/css/') {
 			return 'core';
 		} else if (substr($url, 0, 6) === '/login') {
+			return 'core';
+		} else if (substr($url, 0, 7) === '/logout') {
 			return 'core';
 		} else if (substr($url, 0, 3) === '/f/') {
 			return 'files';
