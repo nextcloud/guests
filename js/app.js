@@ -19,7 +19,7 @@ if (!OCA.Guests) {
  */
 
 $(document).ready(function () {
-	$('body').append('<div id="app-guests"><div class="modal" v-if="state.modalIsOpen"><h2 class="modal-title">Create guest account for <span class="placeholder-name">{{guest.fullname}}</span></h2><div class="modal-body"><div class="form-group"><label class="form-label" for="app-guests-input-name">Name:</label><input class="form-input" id="app-guests-input-name" type="text" v-model="guest.fullname"></div><div class="form-group"><label class="form-label" for="app-guests-input-email">E-Mail:</label><input class="form-input" id="app-guests-input-email" type="email" v-model="guest.email" :class="{ _error : error.email }"> <span v-if="error.email">{{error.email}}</span></div></div><div class="modal-footer"><button class="button-close" @click="closeModal">Cancel</button><button class="button-save" @click="addGuest">Save and Share</button></div></div><div class="modal-backdrop" v-if="state.modalIsOpen"></div></div>');
+	$('body').append('<div id="app-guests">\n\t<div class="modal" v-if="state.modalIsOpen" @keyup.esc="closeModal">\n\t\t<h2 class="modal-title oc-dialog-title">Create guest account for\n\t\t\t<span class="placeholder-name">{{guest.fullname}}</span>\n\t\t</h2>\n\t\t<a class="button-close oc-dialog-close" @click="closeModal"></a>\n\t\t<form @submit.prevent="addGuest">\n\t\t\t<div class="modal-body">\n\t\t\t\t<div class="form-group">\n\t\t\t\t\t<label class="form-label" for="app-guests-input-name">\n\t\t\t\t\t\tName:\n\t\t\t\t\t</label>\n\t\t\t\t\t<input\n\t\t\t\t\t\t\tclass="form-input" id="app-guests-input-name"\n\t\t\t\t\t\t\ttype="text"\n\t\t\t\t\t\t\tv-model="guest.fullname">\n\t\t\t\t</div>\n\t\t\t\t<div class="form-group">\n\t\t\t\t\t<label class="form-label" for="app-guests-input-email">\n\t\t\t\t\t\tE-Mail:\n\t\t\t\t\t</label>\n\t\t\t\t\t<input\n\t\t\t\t\t\t\tclass="form-input" id="app-guests-input-email"\n\t\t\t\t\t\t\ttype="email"\n\t\t\t\t\t\t\tv-model="guest.email"\n\t\t\t\t\t\t\t:class="{ _error : error.email }">\n\t\t\t\t\t<span v-if="error.email">{{error.email}}</span>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class="modal-footer">\n\t\t\t\t<button type="submit" class="button-save">\n\t\t\t\t\tSave and Share\n\t\t\t\t</button>\n\t\t\t</div>\n\t\t</form>\n\t</div>\n\t<div class="modal-backdrop" v-if="state.modalIsOpen"></div>\n</div>');
 
 	OCA.Guests.App = new Vue({
 		el: '#app-guests',
@@ -73,6 +73,9 @@ $(document).ready(function () {
 
 			openModal: function () {
 				this.state.modalIsOpen = true;
+				setTimeout(function() {
+					$('#app-guests-input-email').focus();
+				}, 100);
 			},
 
 			closeModal: function () {
