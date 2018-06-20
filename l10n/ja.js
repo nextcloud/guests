@@ -13,7 +13,7 @@ OC.L10N.register(
     "An error occurred. Please try again" : "エラーが発生しました。もう一度実行してください。",
     "Loading…" : "読込中...",
     "Loaded" : "読み込まれました",
-    "Saved" : "保存されました",
+    "Saved" : "保存しました",
     "Reset" : "リセット",
     "Access to this resource is forbidden for guests." : "ゲストからのアクセスは禁止されています",
     "%s shared »%s« with you" : "%sが あなたと »%s«を共有しました",
