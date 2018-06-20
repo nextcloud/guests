@@ -38,57 +38,6 @@ use OCP\Defaults;
 class Application extends App {
 	public function __construct(array $urlParams = array()) {
 		parent::__construct('guests', $urlParams);
-
-		$container = $this->getContainer();
-
-//		$container->registerService(GuestManager::class, function (IAppContainer $c) {
-//			$server = $c->getServer();
-//			return new GuestManager(
-//				$server->getConfig(),
-//				$server->getUserManager(),
-//				$server->getSecureRandom(),
-//				$server->getCrypto(),
-//				$server->getGroupManager()
-//			);
-//		});
-
-//		$container->registerService(AppWhitelist::class, function (IAppContainer $c) {
-//			$server = $c->getServer();
-//			return new AppWhitelist(
-//				$server->getConfig(),
-//				$c->query(GuestManager::class),
-//				$server->getL10N('guests'),
-//				$server->getAppManager()
-//			);
-//		});
-//
-//		$container->registerService(Mail::class, function (IAppContainer $c) {
-//			$server = $c->getServer();
-//			return new Mail(
-//				$server->getConfig(),
-//				$server->getLogger(),
-//				$server->getUserSession(),
-//				$server->getMailer(),
-//				new Defaults(),
-//				$server->getL10N('guests'),
-//				$server->getUserManager(),
-//				$server->getURLGenerator()
-//			);
-//		});
-//
-//		$container->registerService(Hooks::class, function (IAppContainer $c) {
-//			$server = $c->getServer();
-//			return new Hooks(
-//				$server->getLogger(),
-//				$server->getUserSession(),
-//				$server->getRequest(),
-//				$c->query(Mail::class),
-//				$server->getUserManager(),
-//				$server->getConfig(),
-//				$server->getCrypto(),
-//				$c->query(GuestManager::class)
-//			);
-//		});
 	}
 
 	public function setup() {
@@ -113,7 +62,7 @@ class Application extends App {
 		));
 		/** @var Hooks $hooks */
 		$hooks = $container->query(Hooks::class);
-		\OCP\Util::connectHook('OCP\Share', 'post_shared', $hooks, 'postShareHook');
+		$server->getEventDispatcher()->addListener('OCP\Share::postShare', [$hooks, 'handlePostShare']);
 		\OCP\Util::connectHook('OC_Filesystem', 'preSetup', $hooks, 'setupReadonlyFilesystem');
 
 		$userSession = $server->getUserSession();

@@ -35,6 +35,8 @@ use OCP\IRequest;
 use OCP\IUserManager;
 use OCP\IUserSession;
 use OCP\Security\ICrypto;
+use OCP\Share\IShare;
+use Symfony\Component\EventDispatcher\GenericEvent;
 
 
 class Hooks {
@@ -91,29 +93,11 @@ class Hooks {
 		$this->guestManager = $guestManager;
 	}
 
-	/**
-	 * generate guest password if new
-	 *
-	 * @param array $params
-	 * @throws \Exception
-	 */
-	public function postShareHook($params) {
-		$this->handlePostShare(
-			$params['shareType'],
-			$params['shareWith'],
-			$params['itemType'],
-			$params['itemSource']
-		);
-	}
+	public function handlePostShare(GenericEvent $event) {
+		/** @var IShare $share */
+		$share = $event->getSubject();
 
-	public function handlePostShare(
-		$shareType,
-		$shareWith,
-		$itemType,
-		$itemSource
-	) {
-
-
+		$shareWith = $share->getSharedWith();
 		$isGuest = $this->guestManager->isGuest($shareWith);
 
 		if (!$isGuest) {
@@ -125,9 +109,9 @@ class Hooks {
 			return;
 		}
 
-		if (!($itemType === 'folder' || $itemType === 'file')) {
+		if (!($share->getNodeType() === 'folder' || $share->getNodeType() === 'file')) {
 			$this->logger->debug(
-				"ignoring share for itemType '$itemType'",
+				"ignoring share for itemType " . $share->getNodeType(),
 				['app' => 'guests']
 			);
 
@@ -167,24 +151,11 @@ class Hooks {
 				$this->mail->sendGuestInviteMail(
 					$uid,
 					$shareWith,
-					$itemType,
-					$itemSource,
+					$share->getNodeType(),
+					$share->getNodeId(),
 					$token
 				);
-			} else {
-				// always notify guests of new files
-				$guest = $this->userManager->get($shareWith);
-
-				if (!$guest) {
-					throw new DoesNotExistException("$shareWith does not exist");
-				}
-
-				$this->mail->sendShareNotification(
-					$this->userSession->getUser(),
-					$guest,
-					$itemSource,
-					$itemType
-				);
+				$share->setMailSend(false);
 			}
 		} catch (DoesNotExistException $ex) {
 			$this->logger->error("'$shareWith' does not exist", ['app' => 'guests']);
