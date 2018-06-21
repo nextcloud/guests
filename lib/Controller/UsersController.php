@@ -8,12 +8,11 @@ use OCA\Guests\GuestManager;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\IConfig;
-use OCP\IGroupManager;
 use OCP\IL10N;
 use OCP\IRequest;
 use OCP\IUserManager;
+use OCP\IUserSession;
 use OCP\Mail\IMailer;
-use OCP\Security\ISecureRandom;
 
 class UsersController extends Controller {
 	/**
@@ -36,25 +35,18 @@ class UsersController extends Controller {
 	 * @var GuestManager
 	 */
 	private $guestManager;
+	/** @var IUserSession */
+	private $userSession;
 
-
-	/**
-	 * UsersController constructor.
-	 *
-	 * @param string $appName
-	 * @param IRequest $request
-	 * @param IUserManager $userManager
-	 * @param IL10N $l10n
-	 * @param IConfig $config
-	 * @param IMailer $mailer
-	 */
-	public function __construct($appName,
-								IRequest $request,
-								IUserManager $userManager,
-								IL10N $l10n,
-								IConfig $config,
-								IMailer $mailer,
-								GuestManager $guestManager
+	public function __construct(
+		$appName,
+		IRequest $request,
+		IUserManager $userManager,
+		IL10N $l10n,
+		IConfig $config,
+		IMailer $mailer,
+		GuestManager $guestManager,
+		IUserSession $userSession
 	) {
 		parent::__construct($appName, $request);
 
@@ -63,6 +55,7 @@ class UsersController extends Controller {
 		$this->l10n = $l10n;
 		$this->mailer = $mailer;
 		$this->guestManager = $guestManager;
+		$this->userSession = $userSession;
 	}
 
 	/**
@@ -76,6 +69,15 @@ class UsersController extends Controller {
 	 */
 	public function create($email, $displayName) {
 		$errorMessages = [];
+
+		if ($this->guestManager->isGuest($this->userSession->getUser())) {
+			return new DataResponse(
+				[
+					'errorMessages' => ['Guests are not allowed to create guests']
+				],
+				Http::STATUS_FORBIDDEN
+			);
+		}
 
 		if (empty($email) || !$this->mailer->validateMailAddress($email)) {
 			$errorMessages['email'] = (string)$this->l10n->t(

@@ -21,19 +21,13 @@
 
 namespace OCA\Guests\AppInfo;
 
-use OC\Files\Filesystem;
-use OC\NavigationManager;
 use OC\Server;
-use OCA\Guests\AppWhitelist;
-use OCA\Guests\FilteredNavigationManager;
 use OCA\Guests\GroupBackend;
 use OCA\Guests\GuestManager;
 use OCA\Guests\Hooks;
-use OCA\Guests\Mail;
+use OCA\Guests\RestrictionManager;
 use OCA\Guests\UserBackend;
 use OCP\AppFramework\App;
-use OCP\AppFramework\IAppContainer;
-use OCP\Defaults;
 
 class Application extends App {
 	public function __construct(array $urlParams = array()) {
@@ -41,55 +35,86 @@ class Application extends App {
 	}
 
 	public function setup() {
+		$this->setupGuestManagement();
+		$this->setupGuestRestrictions();
+	}
+
+	/**
+	 * @return GuestManager
+	 */
+	private function getGuestManager() {
+		return $this->getContainer()->query(GuestManager::class);;
+	}
+
+	/**
+	 * @return RestrictionManager
+	 */
+	private function getRestrictionManager() {
+		return $this->getContainer()->query(RestrictionManager::class);
+	}
+
+	/**
+	 * @return UserBackend
+	 */
+	private function getUserBackend() {
+		return $this->getContainer()->query(UserBackend::class);
+	}
+
+	/**
+	 * @return Hooks
+	 */
+	private function getHookManager() {
+		return $this->getContainer()->query(Hooks::class);
+	}
+
+	private function setupGuestManagement() {
 		$container = $this->getContainer();
 		/** @var Server $server */
 		$server = $container->getServer();
 
-		$server->getUserManager()->registerBackend($container->query(UserBackend::class));
-
-		$server->getEventDispatcher()->addListener(
-			'OCA\Files::loadAdditionalScripts',
-			function () {
-				\OCP\Util::addScript('guests', 'vue');
-				\OCP\Util::addScript('guests', 'app');
-				\OCP\Util::addStyle('guests', 'app');
-			}
-		);
-
-		$server->getGroupManager()->addBackend(new GroupBackend(
-			$container->query(GuestManager::class),
-			'guest_app'
-		));
-		/** @var Hooks $hooks */
-		$hooks = $container->query(Hooks::class);
-		$server->getEventDispatcher()->addListener('OCP\Share::postShare', [$hooks, 'handlePostShare']);
-		\OCP\Util::connectHook('OC_Filesystem', 'preSetup', $hooks, 'setupReadonlyFilesystem');
+		$server->getUserManager()->registerBackend($this->getUserBackend());
 
 		$userSession = $server->getUserSession();
 		$user = $userSession->getUser();
-		/** @var GuestManager $guestManager */
-		$guestManager = $container->query(GuestManager::class);
 
-		/** @var AppWhitelist $whiteList */
-		$whiteList = $container->query(AppWhitelist::class);
+		if (!$this->getGuestManager()->isGuest($user)) {
+			$server->getEventDispatcher()->addListener(
+				'OCA\Files::loadAdditionalScripts',
+				function () {
+					\OCP\Util::addScript('guests', 'vue');
+					\OCP\Util::addScript('guests', 'app');
+					\OCP\Util::addStyle('guests', 'app');
+				}
+			);
+		}
+
+		$server->getGroupManager()->addBackend(new GroupBackend(
+			$this->getGuestManager(),
+			'guest_app'
+		));
+		/** @var Hooks $hooks */
+		$server->getEventDispatcher()->addListener('OCP\Share::postShare', [$this->getHookManager(), 'handlePostShare']);
+	}
+
+	private function setupGuestRestrictions() {
+		$container = $this->getContainer();
+		/** @var Server $server */
+		$server = $container->getServer();
+
+		$userSession = $server->getUserSession();
+		$user = $userSession->getUser();
+		/** @var RestrictionManager $restrictionManager */
+		$restrictionManager = $this->getRestrictionManager();
+
 
 		if ($user) {
-			if ($guestManager->isGuest($user)) {
-				// if the whitelist is used
-				$whiteList->verifyAccess($user, $server->getRequest());
-
-				\OCP\Util::addStyle('guests', 'personal');
-
-				/** @var NavigationManager $navManager */
-				$navManager = $server->getNavigationManager();
-
-				$server->registerService('NavigationManager', function () use ($navManager, $user, $whiteList) {
-					return new FilteredNavigationManager($user, $navManager, $whiteList);
-				});
+			if ($this->getGuestManager()->isGuest($user)) {
+				$restrictionManager->verifyAccess();
+				$restrictionManager->setupRestrictions();
 			}
 		} else {
-			$userSession->listen('\OC\User', 'postLogin', function () use ($userSession, $server, $whiteList) {
-				$whiteList->verifyAccess($userSession->getUser(), $server->getRequest());
+			$userSession->listen('\OC\User', 'postLogin', function () use ($restrictionManager) {
+				$restrictionManager->verifyAccess();
 			});
 		}
 	}
