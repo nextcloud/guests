@@ -94,7 +94,7 @@ class AppWhitelist {
 
 			return $this->isAppWhitelisted($app);
 		} else {
-			return false;
+			return true;
 		}
 	}
 
