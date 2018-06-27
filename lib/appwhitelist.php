@@ -53,11 +53,10 @@ class AppWhitelist {
 			));
 
 			if (!in_array($app, $whitelist)) {
-				header('HTTP/1.0 403 Forbidden');
 				$l = \OC::$server->getL10NFactory()->get('guests');
 				Template::printErrorPage($l->t(
 					'Access to this resource is forbidden for guests.'
-				));
+				), '', 403);
 				exit;
 			}
 		}
