@@ -18,6 +18,7 @@
     "%s via %s" : "%s - %s",
     "Couldn't send reset email. Please contact your administrator." : "Visszaállítási e-mail nem küldhető. Kérjük, lépjen kapcsolatba a rendszergazdával.",
     "Guests" : "Vendégek",
+    "Allow classifying users or contacts as guests." : "Felhasználók és névjegyek vendégként való besorolásának engedélyezése.",
     "Hey there,\n\njust letting you know that %s shared %s with you.\n\nActivate your guest account at %s by setting a password: %s\n\nThen view it: %s\n\nYou can login using the email address \"%s\".\n\n" : "Üdv,\n\ncsak tudatjuk, hogy %s megosztotta ezt: %s veled.\n\nAktiváld a vendég fiókodat itt %s A(z) %sjelszó megadásával.\n\nMajd tekintsd meg itt: %s\n\nEzzel az e-mail címmel léphetsz be: \"%s\".\n\n",
     "The share will expire on %s." : "A megosztás lejár ekkor: %s.",
     "Cheers!" : "Üdv.",
