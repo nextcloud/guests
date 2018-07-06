@@ -66,16 +66,25 @@ $(document).ready(function () {
 		},
 		methods: {
 
-			populate: function (model, name) {
-				this.guest.fullname = (name) ? name : '';
+			populate: function (model, shareWith) {
+				if (shareWith.indexOf('@') !== -1 && shareWith.indexOf('.') > shareWith.indexOf('@')) {
+					this.guest.email = (shareWith) ? shareWith : '';
+				} else {
+					this.guest.fullname = (shareWith) ? shareWith : '';
+				}
+
 				this.model = (model) ? model : false;
 			},
 
 			openModal: function () {
 				this.state.modalIsOpen = true;
 				setTimeout(function() {
-					$('#app-guests-input-email').focus();
-				}, 100);
+					if (this.guest.fullname) {
+						$('#app-guests-input-email').focus();
+					} else {
+						$('#app-guests-input-name').focus();
+					}
+				}.bind(this), 100);
 			},
 
 			closeModal: function () {
@@ -189,16 +198,13 @@ OC.Plugins.register('OC.Share.ShareDialogView', {
 						var i, j;
 
 						// Add potential guests to the suggestions
-						if (searchTerm.search("@") === -1) {
-
-							unknown = [{
-								label: t('core', 'Create guest account for {searchterm}', {searchterm: searchTerm}),
-								value: {
-									shareType: OC.Share.SHARE_TYPE_GUEST,
-									shareWith: searchTerm
-								}
-							}];
-						}
+						unknown = [{
+							label: t('core', 'Create guest account for {searchterm}', {searchterm: searchTerm}),
+							value: {
+								shareType: OC.Share.SHARE_TYPE_GUEST,
+								shareWith: searchTerm
+							}
+						}];
 
 						//Filter out the current user
 						usersLength = users.length;
