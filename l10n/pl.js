@@ -11,7 +11,7 @@ OC.L10N.register(
     "No users or groups found for {search}" : "Nie znaleziono użytkowników lub grup dla {search}",
     "No users found for {search}" : "Nie znaleziono użytkowników dla {search}",
     "An error occurred. Please try again" : "Wystąpił błąd. Proszę spróbować ponownie.",
-    "Loading…" : "Wczytywanie...",
+    "Loading…" : "Wczytywanie…",
     "Loaded" : "Wczytano",
     "Saved" : "Zapisano",
     "Reset" : "Resetuj",
