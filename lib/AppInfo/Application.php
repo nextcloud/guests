@@ -108,13 +108,12 @@ class Application extends App {
 
 
 		if ($user) {
-			if ($this->getGuestManager()->isGuest($user)) {
-				$restrictionManager->verifyAccess();
-				$restrictionManager->setupRestrictions();
-			}
+			$restrictionManager->verifyAccess();
+			$restrictionManager->setupRestrictions();
 		} else {
 			$userSession->listen('\OC\User', 'postLogin', function () use ($restrictionManager) {
 				$restrictionManager->verifyAccess();
+				$restrictionManager->setupRestrictions();
 			});
 		}
 	}

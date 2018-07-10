@@ -43,12 +43,23 @@ class RestrictionManager {
 	/** @var Hooks */
 	private $hooks;
 
-	public function __construct(AppWhitelist $whitelist, IRequest $request, IUserSession $userSession, IServerContainer $server, Hooks $hooks) {
+	/** @var GuestManager */
+	private $guestManager;
+
+	public function __construct(
+		AppWhitelist $whitelist,
+		IRequest $request,
+		IUserSession $userSession,
+		IServerContainer $server,
+		Hooks $hooks,
+		GuestManager $guestManager
+	) {
 		$this->whitelist = $whitelist;
 		$this->request = $request;
 		$this->userSession = $userSession;
 		$this->server = $server;
 		$this->hooks = $hooks;
+		$this->guestManager = $guestManager;
 	}
 
 	public function verifyAccess() {
@@ -56,15 +67,17 @@ class RestrictionManager {
 	}
 
 	public function setupRestrictions() {
-		\OCP\Util::connectHook('OC_Filesystem', 'preSetup', $this->hooks, 'setupReadonlyFilesystem');
+		if ($this->guestManager->isGuest($this->userSession->getUser())) {
+			\OCP\Util::connectHook('OC_Filesystem', 'preSetup', $this->hooks, 'setupReadonlyFilesystem');
 
-		/** @var NavigationManager $navManager */
-		$navManager = $this->server->getNavigationManager();
+			/** @var NavigationManager $navManager */
+			$navManager = $this->server->getNavigationManager();
 
-		\OCP\Util::addStyle('guests', 'personal');
+			\OCP\Util::addStyle('guests', 'personal');
 
-		$this->server->registerService('NavigationManager', function () use ($navManager) {
-			return new FilteredNavigationManager($this->userSession->getUser(), $navManager, $this->whitelist);
-		});
+			$this->server->registerService('NavigationManager', function () use ($navManager) {
+				return new FilteredNavigationManager($this->userSession->getUser(), $navManager, $this->whitelist);
+			});
+		}
 	}
 }
