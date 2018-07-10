@@ -30,6 +30,13 @@ style('guests', 'admin');
 		<p>
 			<span class="inlineblock user-info-label"><?php p($l->t('Guest users are grouped under a virtual group in the user manager')); ?></span><br/><br/>
 		</p>
+		<p class="external-storage-toggle">
+			<input type="checkbox" id="allowExternalStorage" class="checkbox"
+				   value="allowExternalStorage"/>
+			<label for="allowExternalStorage">
+				<?php p($l->t('Guest users can access mounted external storages')); ?>
+			</label>
+		</p>
 		<p class="whitelist-toggle">
 			<input type="checkbox" id="guestUseWhitelist" class="checkbox"
 				   value="useWhitelist"/>

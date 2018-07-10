@@ -23,6 +23,7 @@
 		// variables
 		var $section = $('#guests');
 		var $guestsByGroup = $section.find('#guestsByGroup');
+		var $allowExternalStorage = $section.find('#allowExternalStorage');
 		var $guestUseWhitelist = $section.find('#guestUseWhitelist');
 		var $guestWhitelist = $section.find('#guestWhitelist');
 		var $guestWhitelistContainer = $section.find('.whitelist');
@@ -55,6 +56,7 @@
 						$guestUseWhitelist.prop('checked', false);
 						$guestWhitelistContainer.hide();
 					}
+					$allowExternalStorage.prop('checked', config.allowExternalStorage);
 					if ($.isArray(config.whitelist)) {
 						$guestWhitelist.val(config.whitelist).trigger("change");
 					}
@@ -62,12 +64,12 @@
 				},
 				'json'
 			).then(function() {
-					var data = { status: 'success',	data: {message: t('guests', 'Loaded')} };
-					OC.msg.finishedAction($msg, data);
-				}, function(result) {
-					var data = { status: 'error', data:{message:result.responseJSON.message} };
-					OC.msg.finishedAction($msg, data);
-				});
+				var data = { status: 'success',	data: {message: t('guests', 'Loaded')} };
+				OC.msg.finishedAction($msg, data);
+			}, function(result) {
+				var data = { status: 'error', data:{message:result.responseJSON.message} };
+				OC.msg.finishedAction($msg, data);
+			});
 		};
 
 		var saveConfig = function () {
@@ -122,6 +124,10 @@
 			$.each(apps, function( index, value ) {
 				config.whitelist.push(value.trim());
 			});
+			saveConfig();
+		});
+		$allowExternalStorage.on('change', function () {
+			config.allowExternalStorage = $allowExternalStorage.prop('checked');
 			saveConfig();
 		});
 		$resetWhitelist.on('click', function () {

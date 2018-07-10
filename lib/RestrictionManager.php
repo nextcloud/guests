@@ -22,9 +22,17 @@
 namespace OCA\Guests;
 
 
+use OC\Files\Filesystem;
+use OC\Files\Storage\FailedStorage;
 use OC\NavigationManager;
+use OCA\Files_External\Config\ExternalMountPoint;
+use OCP\Files\Config\IMountProviderCollection;
+use OCP\Files\Mount\IMountPoint;
+use OCP\Files\Storage\IStorage;
+use OCP\IConfig;
 use OCP\IRequest;
 use OCP\IServerContainer;
+use OCP\IUser;
 use OCP\IUserSession;
 
 class RestrictionManager {
@@ -46,13 +54,21 @@ class RestrictionManager {
 	/** @var GuestManager */
 	private $guestManager;
 
+	/** @var IMountProviderCollection */
+	private $mountProviderCollection;
+
+	/** @var IConfig */
+	private $config;
+
 	public function __construct(
 		AppWhitelist $whitelist,
 		IRequest $request,
 		IUserSession $userSession,
 		IServerContainer $server,
 		Hooks $hooks,
-		GuestManager $guestManager
+		GuestManager $guestManager,
+		IMountProviderCollection $mountProviderCollection,
+		IConfig $config
 	) {
 		$this->whitelist = $whitelist;
 		$this->request = $request;
@@ -60,6 +76,8 @@ class RestrictionManager {
 		$this->server = $server;
 		$this->hooks = $hooks;
 		$this->guestManager = $guestManager;
+		$this->mountProviderCollection = $mountProviderCollection;
+		$this->config = $config;
 	}
 
 	public function verifyAccess() {
@@ -69,6 +87,11 @@ class RestrictionManager {
 	public function setupRestrictions() {
 		if ($this->guestManager->isGuest($this->userSession->getUser())) {
 			\OCP\Util::connectHook('OC_Filesystem', 'preSetup', $this->hooks, 'setupReadonlyFilesystem');
+			if ($this->config->getAppValue('guests', 'allow_external_storage', 'false') !== 'true') {
+				$this->mountProviderCollection->registerMountFilter(function (IMountPoint $mountPoint, IUser $user) {
+					return !($mountPoint instanceof ExternalMountPoint && $this->guestManager->isGuest($user));
+				});
+			}
 
 			/** @var NavigationManager $navManager */
 			$navManager = $this->server->getNavigationManager();
