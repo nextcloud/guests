@@ -20,6 +20,7 @@ OC.L10N.register(
     "%s via %s" : "%s via %s",
     "Couldn't send reset email. Please contact your administrator." : "Kon herstel e-mail niet versturen. Neem contact op met je beheerder.",
     "Guests" : "Gasten",
+    "Allow classifying users or contacts as guests." : "Sta toe dat gebruiker of contactpersonen als gast kunnen worden geclassificeerd.",
     "Hey there,\n\njust letting you know that %s shared %s with you.\n\nActivate your guest account at %s by setting a password: %s\n\nThen view it: %s\n\nYou can login using the email address \"%s\".\n\n" : "Hallo daar,\n\nwe willen even laten weten dat %s %s met je deelde.\n\nActiveer je gastenaccount voor %s door een wachtwoord in te stellen: %s\n\nBekijk het daarna: %s\n\nJe kunt inloggen met e-mailadres \"%s\".\n\n",
     "The share will expire on %s." : "De share vervalt op %s.",
     "Cheers!" : "Proficiat!",
