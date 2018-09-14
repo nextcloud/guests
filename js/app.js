@@ -107,7 +107,7 @@ $(document).ready(function () {
 					}
 				};
 
-				$.ajax(xhrObject).done(function (xhr) {
+				$.ajax(xhrObject).done(function () {
 					self._addGuestShare();
 
 				}).fail(function (xhr) {
@@ -126,7 +126,7 @@ $(document).ready(function () {
 					shareWith: this.guest.username,
 					permissions: OC.PERMISSION_CREATE | OC.PERMISSION_UPDATE | OC.PERMISSION_READ | OC.PERMISSION_DELETE,
 					path: this.model.fileInfoModel.getFullPath()
-				}
+				};
 
 				return $.ajax({
 					type: 'POST',
@@ -140,11 +140,15 @@ $(document).ready(function () {
 					if (self.model)
 						self.model.fetch();
 
-				}).fail(function () {
+				}).fail(function (response) {
+					var message = '';
+					if (response.responseJSON && response.responseJSON&& response.responseJSON.ocs && response.responseJSON.ocs.meta && response.responseJSON.ocs.meta.message) {
+						message = response.responseJSON.ocs.meta.message;
+					}
 
 					// @NOTE: will be expendable in the near future
 					OCdialogs.alert(
-						t('core', 'Error while sharing'), // text
+						t('core', 'Error while sharing\n' + message), // text
 						t('core', 'Error'), // title
 						false, // callback
 						true // modal
