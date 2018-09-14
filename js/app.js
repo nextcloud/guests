@@ -67,7 +67,7 @@ $(document).ready(function () {
 		methods: {
 
 			populate: function (model, shareWith) {
-				if (shareWith.indexOf('@') !== -1 && shareWith.indexOf('.') > shareWith.indexOf('@')) {
+				if (shareWith.indexOf('@') !== -1 && shareWith.lastIndexOf('.') > shareWith.indexOf('@')) {
 					this.guest.email = (shareWith) ? shareWith : '';
 				} else {
 					this.guest.fullname = (shareWith) ? shareWith : '';
