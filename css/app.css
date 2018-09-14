@@ -1,7 +1,7 @@
 #app-guests .modal {
   box-sizing: border-box;
   position: absolute;
-  z-index: 501;
+  z-index: 1001;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -41,7 +41,7 @@
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.2);
-  z-index: 500;
+  z-index: 1000;
   content: '';
   width: 100vw;
   height: 100vh;
