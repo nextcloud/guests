@@ -171,19 +171,22 @@ OC.Plugins.register('OC.Share.ShareDialogView', {
 	attach: function (obj) {
 
 		var originalAutocompleteHandler = obj.autocompleteHandler;
+		var lastSearch = '';
 
 		obj.autocompleteHandler = function (search, response) {
 			originalAutocompleteHandler(search, function(suggestions) {
 
 				var searchTerm = search.term.trim();
-
-				suggestions.push({
-					label: t('core', 'Create guest account for {searchterm}', { searchterm: searchTerm }),
-					value: {
-						shareType: OC.Share.SHARE_TYPE_GUEST,
-						shareWith: searchTerm
-					}
-				});
+				if (lastSearch !== searchTerm) {
+					lastSearch = searchTerm;
+					suggestions.push({
+						label: t('core', 'Create guest account for {searchterm}', {searchterm: searchTerm}),
+						value: {
+							shareType: OC.Share.SHARE_TYPE_GUEST,
+							shareWith: searchTerm
+						}
+					});
+				}
 
 				response(suggestions);
 			});
