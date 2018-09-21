@@ -20,6 +20,7 @@ OC.L10N.register(
     "%s via %s" : "%s per %s",
     "Couldn't send reset email. Please contact your administrator." : "Nepavyko išsiųsti atstatymo laiško, susisiekite su savo administratoriumi.",
     "Guests" : "Svečiai",
+    "Allow classifying users or contacts as guests." : "Leidžia klasifikuoti naudotojus ar kontaktus kaip svečius.",
     "Hey there,\n\njust letting you know that %s shared %s with you.\n\nActivate your guest account at %s by setting a password: %s\n\nThen view it: %s\n\nYou can login using the email address \"%s\".\n\n" : "Sveiki,\n\ntiesiog pranešame, kad %s pradėjo su jumis bendrinti %s.\n\nAktyvuokite savo svečio paskyrą ties %s, nusistatydami slaptažodį: %s\n\nO tuomet, peržiūrėkite failą: %s\n\nJūs galite prisijungti, naudodami el. pašto adresą \"%s\".\n\n",
     "The share will expire on %s." : "Bendrinimo laikas baigsis %s.",
     "Cheers!" : "Sveikinimai!",

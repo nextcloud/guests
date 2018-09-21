@@ -3,7 +3,7 @@ OC.L10N.register(
     {
     "Invalid mail address" : "Neplatná e-mailová adresa",
     "Username required" : "Vyžadováno uživatelské jméno",
-    "A user with that name already exists." : "Uživatel tohoto jména již existuje.",
+    "A user with that name already exists." : "Uživatel tohoto jména už existuje.",
     "User successfully created" : "Uživatel vytvořen",
     "Error while sharing" : "Chyba při sdílení",
     "Error" : "Chyba",
