@@ -19,10 +19,12 @@ OC.L10N.register(
     "%s shared »%s« with you" : "%s je omogočil souporabo »%s«",
     "%s via %s" : "%s prek %s",
     "Couldn't send reset email. Please contact your administrator." : "Ni mogoče poslati elektronskega naslova za ponastavitev. Stopite v stik s skrbnikom sistema.",
-    "Guests" : "Gostje",
+    "Guests" : "Gosti",
+    "Allow classifying users or contacts as guests." : "Dovoli opredeljevanje uporabnikov kot gostov.",
     "Hey there,\n\njust letting you know that %s shared %s with you.\n\nActivate your guest account at %s by setting a password: %s\n\nThen view it: %s\n\nYou can login using the email address \"%s\".\n\n" : "Pozdravljeni,\n\nobveščamo vas, da vam je uporabnik %s omogočil souporabo %s.\nZačasni račun lahko omogočite na %s z določitvijo gesla: %s\nNato si lahko mapo ogledate: %s\n\nPrijava je mogoče z elektronskim naslovom »%s«.\n\n",
-    "The share will expire on %s." : "Povezava souporabe bo potekla %s.",
+    "The share will expire on %s." : "Povezava za souporabo bo potekla %s.",
     "Cheers!" : "Lep pozdrav!",
-    "Group name" : "Ime skupine"
+    "Group name" : "Ime skupine",
+    "Reset whitelist" : "Ponastavi beli seznam"
 },
 "nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);");
