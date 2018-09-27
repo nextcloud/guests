@@ -8,7 +8,7 @@ OC.L10N.register(
     "Error while sharing" : "Chyba při sdílení",
     "Error" : "Chyba",
     "Add {unknown} (guest)" : "Přidat {unknown} (host)",
-    "No users or groups found for {search}" : "Nebyli nalezeni žádní členové ani skupiny pro {search}",
+    "No users or groups found for {search}" : "Nebyli nalezeni žádní uživatelé ani skupiny pro {search}",
     "No users found for {search}" : "Nebyli nalezeni žádní uživatelé pro {search}",
     "An error occurred. Please try again" : "Došlo k chybě. Zkuste to znovu",
     "Loading…" : "Načítání…",
