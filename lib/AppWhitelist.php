@@ -145,7 +145,7 @@ class AppWhitelist {
 		} else if (substr($url, 0, 10) === '/heartbeat') {
 			return 'heartbeat';
 		}
-		return false;
+		return 'core';
 	}
 
 	public function getWhitelistAbleApps() {
