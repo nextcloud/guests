@@ -16,7 +16,7 @@ OC.L10N.register(
     "Saved" : "Uložené",
     "Reset" : "Resetovať",
     "Access to this resource is forbidden for guests." : "Prístup k tomuto zdroju je zakázaný pre hosťa.",
-    "%s shared »%s« with you" : "%s s vami zdieľa »%s«",
+    "%s shared »%s« with you" : "%s Vám sprístupnil »%s«",
     "%s via %s" : "%s cez %s",
     "Couldn't send reset email. Please contact your administrator." : "Nemožno poslať email pre obnovu. Kontaktujte prosím vášho administrátora.",
     "Guests" : "Hostia",
