@@ -18,6 +18,7 @@
     "%s via %s" : "%s via %s",
     "Couldn't send reset email. Please contact your administrator." : "Kunde inte skicka återställningsmail. Vänligen kontakta din administratör.",
     "Guests" : "Gäster",
+    "Allow classifying users or contacts as guests." : "Tillåt klassificering av användare eller kontakter som gäster.",
     "Hey there,\n\njust letting you know that %s shared %s with you.\n\nActivate your guest account at %s by setting a password: %s\n\nThen view it: %s\n\nYou can login using the email address \"%s\".\n\n" : "Hallå där,\n\ntänkte bara informera att %s delade %s med dig.\n\nAktivera ditt gästkonto på %s genom att sätta ett lösenord: %s\n\nKolla det sedan på: %s\n\nDu kan logga in med email-adressen \"%s\".\n\n",
     "The share will expire on %s." : "Utdelningen kommer att upphöra %s.",
     "Cheers!" : "Ha de fint!",
