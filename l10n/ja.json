@@ -18,6 +18,7 @@
     "%s via %s" : "%s に %s から",
     "Couldn't send reset email. Please contact your administrator." : "リセットメールを送信できませんでした。管理者に問い合わせてください。",
     "Guests" : "ゲスト",
+    "Allow classifying users or contacts as guests." : "ユーザーまたは連絡先をゲストとして分類できるようにする。",
     "Hey there,\n\njust letting you know that %s shared %s with you.\n\nActivate your guest account at %s by setting a password: %s\n\nThen view it: %s\n\nYou can login using the email address \"%s\".\n\n" : "こんにちは\n\n%s から %s が共有されました。\n\nあなたのゲストアカウントを有効にするには、%s から パスワードを設定してください：%s\n\nそして次を確認してください：%s\n\nログインするには、メールアドレス \"%s\" を使ってください。\n\n",
     "The share will expire on %s." : "共有は %s で有効期限が切れます。",
     "Cheers!" : "それでは！",
