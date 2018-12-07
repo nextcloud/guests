@@ -130,7 +130,7 @@ class UsersController extends Controller {
 			$user->setDisplayName($displayName);
 		}
 
-		$token = $this->secureRandom->getMediumStrengthGenerator()->generate(
+		$token = $this->secureRandom->generate(
 			21,
 			ISecureRandom::CHAR_DIGITS .
 			ISecureRandom::CHAR_LOWER .
