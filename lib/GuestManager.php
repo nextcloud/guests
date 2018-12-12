@@ -66,13 +66,14 @@ class GuestManager {
 		return false;
 	}
 
-	public function createGuest($userId, $email, $displayName = '') {
+	public function createGuest(IUser $createdBy, $userId, $email, $displayName = '') {
 		$this->userBackend->createUser(
 			$userId,
 			$this->secureRandom->generate(20)
 		);
 
 		$this->config->setUserValue($userId, 'settings', 'email', $email);
+		$this->config->setUserValue($userId, 'guests', 'created_by', $createdBy->getUID());
 
 		if ($displayName) {
 			$this->userBackend->setDisplayName($userId, $displayName);

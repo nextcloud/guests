@@ -108,7 +108,7 @@ class UsersController extends Controller {
 		}
 
 		try {
-			$this->guestManager->createGuest($username, $email, $displayName);
+			$this->guestManager->createGuest($this->userSession->getUser(), $username, $email, $displayName);
 		} catch (\Exception $e) {
 			return new DataResponse(
 				[
