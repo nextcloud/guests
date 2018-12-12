@@ -118,7 +118,7 @@
 
 			addGuest: function () {
 				var self = this;
-				xhrObject = {
+				const xhrObject = {
 					type: 'PUT',
 					url: OC.generateUrl('/apps/guests/users'),
 					dataType: 'text',
