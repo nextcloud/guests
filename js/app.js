@@ -19,7 +19,7 @@ if (!OCA.Guests) {
  */
 
 $(document).ready(function () {
-	$('body').append('<div id="app-guests"><div class="modal" v-if="state.modalIsOpen"><h2 class="modal-title">Add <span class="placeholder-name">{{guest.fullname}}</span> to guests</h2><div class="modal-body"><div class="form-group"><label class="form-label" >Username:</label><input class="form-input" disabled type="text" v-model="guest.username"></div><div class="form-group"><label class="form-label" for="app-guests-input-name">Name:</label><input class="form-input" id="app-guests-input-name" type="text" v-model="guest.fullname"></div><div class="form-group"><label class="form-label" for="app-guests-input-email">E-Mail:</label><input class="form-input" id="app-guests-input-email" type="email" v-model="guest.email" :class="{ _error : error.email }"> <span v-if="error.email">{{error.email}}</span></div></div><div class="modal-footer"><button class="button-close" @click="closeModal">Cancel</button><button class="button-save" @click="addGuest">Save and Share</button></div></div><div class="modal-backdrop" v-if="state.modalIsOpen"></div></div>');
+	$('body').append('<div id="app-guests">\n\t<div class="modal" v-if="state.modalIsOpen" @keyup.esc="closeModal">\n\t\t<h2 class="modal-title oc-dialog-title">Create guest account for\n\t\t\t<span class="placeholder-name">{{guest.fullname}}</span>\n\t\t</h2>\n\t\t<a class="button-close oc-dialog-close" @click="closeModal"></a>\n\t\t<form @submit.prevent="addGuest">\n\t\t\t<div class="modal-body">\n\t\t\t\t<div class="form-group">\n\t\t\t\t\t<label class="form-label" for="app-guests-input-name">\n\t\t\t\t\t\tName:\n\t\t\t\t\t</label>\n\t\t\t\t\t<input\n\t\t\t\t\t\t\tclass="form-input" id="app-guests-input-name"\n\t\t\t\t\t\t\ttype="text"\n\t\t\t\t\t\t\tv-model="guest.fullname">\n\t\t\t\t</div>\n\t\t\t\t<div class="form-group">\n\t\t\t\t\t<label class="form-label" for="app-guests-input-email">\n\t\t\t\t\t\tE-Mail:\n\t\t\t\t\t</label>\n\t\t\t\t\t<input\n\t\t\t\t\t\t\tclass="form-input" id="app-guests-input-email"\n\t\t\t\t\t\t\ttype="email"\n\t\t\t\t\t\t\tv-model="guest.email"\n\t\t\t\t\t\t\t:class="{ _error : error.email }">\n\t\t\t\t\t<span v-if="error.email">{{error.email}}</span>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class="modal-footer">\n\t\t\t\t<button type="submit" class="button-save">\n\t\t\t\t\tSave and Share\n\t\t\t\t</button>\n\t\t\t</div>\n\t\t</form>\n\t</div>\n\t<div class="modal-backdrop" v-if="state.modalIsOpen"></div>\n</div>');
 
 	OCA.Guests.App = new Vue({
 		el: '#app-guests',
@@ -51,9 +51,7 @@ $(document).ready(function () {
 		watch: {
 			'guest.email': function () {
 				if (this.guest.email) {
-					username = this.guest.email.toLowerCase();
-					username = username.match(/[\w]+/g);
-					this.guest.username = username.join('_');
+					this.guest.username = this.guest.email;
 				}
 				else {
 					this.guest.username = '';
@@ -68,13 +66,25 @@ $(document).ready(function () {
 		},
 		methods: {
 
-			populate: function (model, name) {
-				this.guest.fullname = (name) ? name : '';
+			populate: function (model, shareWith) {
+				if (shareWith.indexOf('@') !== -1 && shareWith.lastIndexOf('.') > shareWith.indexOf('@')) {
+					this.guest.email = (shareWith) ? shareWith : '';
+				} else {
+					this.guest.fullname = (shareWith) ? shareWith : '';
+				}
+
 				this.model = (model) ? model : false;
 			},
 
 			openModal: function () {
 				this.state.modalIsOpen = true;
+				setTimeout(function() {
+					if (this.guest.fullname) {
+						$('#app-guests-input-email').focus();
+					} else {
+						$('#app-guests-input-name').focus();
+					}
+				}.bind(this), 100);
 			},
 
 			closeModal: function () {
@@ -93,12 +103,11 @@ $(document).ready(function () {
 					dataType: 'text',
 					data: {
 						displayName: this.guest.fullname,
-						username: this.guest.username,
 						email: this.guest.email
 					}
-				}
+				};
 
-				$.ajax(xhrObject).done(function (xhr) {
+				$.ajax(xhrObject).done(function () {
 					self._addGuestShare();
 
 				}).fail(function (xhr) {
@@ -117,7 +126,7 @@ $(document).ready(function () {
 					shareWith: this.guest.username,
 					permissions: OC.PERMISSION_CREATE | OC.PERMISSION_UPDATE | OC.PERMISSION_READ | OC.PERMISSION_DELETE,
 					path: this.model.fileInfoModel.getFullPath()
-				}
+				};
 
 				return $.ajax({
 					type: 'POST',
@@ -131,11 +140,15 @@ $(document).ready(function () {
 					if (self.model)
 						self.model.fetch();
 
-				}).fail(function () {
+				}).fail(function (response) {
+					var message = '';
+					if (response.responseJSON && response.responseJSON&& response.responseJSON.ocs && response.responseJSON.ocs.meta && response.responseJSON.ocs.meta.message) {
+						message = response.responseJSON.ocs.meta.message;
+					}
 
 					// @NOTE: will be expendable in the near future
 					OCdialogs.alert(
-						t('core', 'Error while sharing'), // text
+						t('core', 'Error while sharing\n' + message), // text
 						t('core', 'Error'), // title
 						false, // callback
 						true // modal
@@ -157,167 +170,42 @@ $(document).ready(function () {
 OC.Plugins.register('OC.Share.ShareDialogView', {
 	attach: function (obj) {
 
-		// Override ShareDigalogView
+		var originalAutocompleteHandler = obj.autocompleteHandler;
+		var lastSearch = '';
 
 		obj.autocompleteHandler = function (search, response) {
-			var view = obj;
-			var $loading = obj.$el.find('.shareWithLoading');
-			$loading.removeClass('hidden');
-			$loading.addClass('inlineblock');
-			$.get(
-				OC.linkToOCS('apps/files_sharing/api/v1') + 'sharees',
-				{
-					format: 'json',
-					search: search.term.trim(),
-					perPage: 200,
-					itemType: view.model.get('itemType')
-				},
-				function (result) {
-					$loading.addClass('hidden');
-					$loading.removeClass('inlineblock');
-					if (result.ocs.meta.statuscode == 100) {
-						var searchTerm = search.term.trim();
-						var users = result.ocs.data.exact.users.concat(result.ocs.data.users);
-						var groups = result.ocs.data.exact.groups.concat(result.ocs.data.groups);
-						var remotes = result.ocs.data.exact.remotes.concat(result.ocs.data.remotes);
-						var unknown = [];
+			originalAutocompleteHandler(search, function(suggestions) {
 
-						var usersLength;
-						var groupsLength;
-						var remotesLength;
-
-						var i, j;
-
-						// Add potential guests to the suggestions
-						if (searchTerm.search("@") === -1) {
-
-							unknown = [{
-								label: t('core', 'Add {unknown} (guest)', {unknown: searchTerm}),
-								value: {
-									shareType: 4,
-									shareWith: searchTerm
-								}
-							}];
+				var searchTerm = search.term.trim();
+				if (lastSearch !== searchTerm) {
+					lastSearch = searchTerm;
+					suggestions.push({
+						label: t('core', 'Create guest account for {searchterm}', {searchterm: searchTerm}),
+						value: {
+							shareType: OC.Share.SHARE_TYPE_GUEST,
+							shareWith: searchTerm
 						}
-
-						//Filter out the current user
-						usersLength = users.length;
-						for (i = 0; i < usersLength; i++) {
-							if (users[i].value.shareWith === OC.currentUser) {
-								users.splice(i, 1);
-								break;
-							}
-						}
-
-						// Filter out the owner of the share
-						if (view.model.hasReshare()) {
-							usersLength = users.length;
-							for (i = 0; i < usersLength; i++) {
-								if (users[i].value.shareWith === view.model.getReshareOwner()) {
-									users.splice(i, 1);
-									break;
-								}
-							}
-						}
-
-						var shares = view.model.get('shares');
-						var sharesLength = shares.length;
-
-						// Now filter out all sharees that are already shared with
-						for (i = 0; i < sharesLength; i++) {
-							var share = shares[i];
-
-							if (share.share_type === OC.Share.SHARE_TYPE_USER) {
-								usersLength = users.length;
-								for (j = 0; j < usersLength; j++) {
-									if (users[j].value.shareWith === share.share_with) {
-										users.splice(j, 1);
-										break;
-									}
-								}
-							} else if (share.share_type === OC.Share.SHARE_TYPE_GROUP) {
-								groupsLength = groups.length;
-								for (j = 0; j < groupsLength; j++) {
-									if (groups[j].value.shareWith === share.share_with) {
-										groups.splice(j, 1);
-										break;
-									}
-								}
-							} else if (share.share_type === OC.Share.SHARE_TYPE_REMOTE) {
-								remotesLength = remotes.length;
-								for (j = 0; j < remotesLength; j++) {
-									if (remotes[j].value.shareWith === share.share_with) {
-										remotes.splice(j, 1);
-										break;
-									}
-								}
-							}
-						}
-
-						var suggestions = users.concat(groups).concat(remotes).concat(unknown);
-
-						if (suggestions.length > 0) {
-							$('.shareWithField').removeClass('error')
-								.tooltip('hide')
-								.autocomplete("option", "autoFocus", true);
-							response(suggestions);
-						} else {
-							var title = t('core', 'No users or groups found for {search}', {search: $('.shareWithField').val()});
-							if (!view.configModel.get('allowGroupSharing')) {
-								title = t('core', 'No users found for {search}', {search: $('.shareWithField').val()});
-							}
-							$('.shareWithField').addClass('error')
-								.attr('data-original-title', title)
-								.tooltip('hide')
-								.tooltip({
-									placement: 'bottom',
-									trigger: 'manual'
-								})
-								.tooltip('fixTitle')
-								.tooltip('show');
-							response();
-						}
-					} else {
-						response();
-					}
+					});
 				}
-			).fail(function () {
-				$loading.addClass('hidden');
-				$loading.removeClass('inlineblock');
-				OC.Notification.show(t('core', 'An error occurred. Please try again'));
-				window.setTimeout(OC.Notification.hide, 5000);
+
+				response(suggestions);
 			});
+
 		};
 
-		obj._onSelectRecipient = function (e, s) {
-			e.preventDefault();
+		var original_onSelectRecipient = obj._onSelectRecipient;
 
-			// vars starting with $ are jQuery DOM objects
-			// ---
-			var $this = $(e.target),
-				$loading = obj.$el.find('.shareWithLoading');
+		obj._onSelectRecipient = function(e, s) {
 
-			$this.attr('disabled', true).val(s.item.label);
-			$loading.removeClass('hidden').addClass('inlineblock');
-
-			// Init OCA.Guests.App if share is of type guest
-			// ---
 			if (s.item.value.shareType === OC.Share.SHARE_TYPE_GUEST) {
+				e.preventDefault();
+				e.stopImmediatePropagation();
 				OCA.Guests.App.populate(obj.model, s.item.value.shareWith);
 				OCA.Guests.App.openModal();
+			} else {
+				original_onSelectRecipient(e, s);
 			}
-			else {
-				obj.model.addShare(s.item.value, {
-					success: function () {
-						$this.val('').attr('disabled', false);
-						$loading.addClass('hidden').removeClass('inlineblock');
-					}, error: function (obj, msg) {
-						OC.Notification.showTemporary(msg);
-						$this.attr('disabled', false).autocomplete('search', $this.val());
-						$loading.addClass('hidden').removeClass('inlineblock');
-					}
-				});
-			}
-		}
+
+		};
 	}
 });

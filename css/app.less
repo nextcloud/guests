@@ -4,20 +4,27 @@
 
   @modal-width: 500px;
   @modal-height: 360px;
-  @modal-gutter: 20px;
+  @modal-gutter: 15px;
 
-  @moda-z-index: 500;
+  @modal-z-index: 1000;
 
   .modal {
     box-sizing: border-box;
     position: absolute;
-    z-index: @moda-z-index + 1;
-    left: ~"calc(50% - "(@modal-width / 2)~")";
-    top: 20%;
+    z-index: @modal-z-index + 1;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 
     width: @modal-width;
     background: white;
     padding: @modal-gutter;
+
+    color: #000;
+    border-radius: 3px;
+    box-shadow: 0 0 7px rgba(77, 77, 77, 0.75);
+    font-size: 100%;
+    min-width: 200px;
 
     &-title,
     &-body {
@@ -53,8 +60,8 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background-color: rgba(0, 0, 0, .5);
-      z-index: @moda-z-index;
+      background-color: rgba(0, 0, 0, .2);
+      z-index: @modal-z-index;
       content: '';
       width: 100vw;
       height: 100vh;
@@ -67,4 +74,8 @@
   &.-animate-to {
     opacity: 1;
   }
+}
+
+#header .header-right > div > .icon-contacts.menutoggle {
+  display: none;
 }

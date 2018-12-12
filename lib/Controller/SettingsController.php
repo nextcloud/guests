@@ -63,12 +63,13 @@ class SettingsController extends Controller {
 		} else {
 			$useWhitelist = false;
 		}
+		$allowExternalStorage = $this->config->getAppValue('guests', 'allow_external_storage', 'false') === 'true';
 		$whitelist = $this->config->getAppValue('guests', 'whitelist', AppWhitelist::DEFAULT_WHITELIST);
 		$whitelist = explode(',', $whitelist);
 		return new DataResponse([
-			'group' => $this->config->getAppValue('guests', 'group', 'guests'),
 			'useWhitelist' => $useWhitelist,
 			'whitelist' => $whitelist,
+			'allowExternalStorage' => $allowExternalStorage
 		]);
 	}
 	/**
@@ -78,17 +79,18 @@ class SettingsController extends Controller {
 	 * @param $group string
 	 * @param $useWhitelist bool
 	 * @param $whitelist string[]
+	 * @param $allowExternalStorage bool
 	 * @return DataResponse
 	 */
-	public function setConfig($conditions, $group, $useWhitelist, $whitelist) {
+	public function setConfig($conditions, $group, $useWhitelist, $whitelist, $allowExternalStorage) {
 		$newWhitelist = [];
 		foreach ($whitelist as $app) {
 			$newWhitelist[] = trim($app);
 		}
 		$newWhitelist = join(',', $newWhitelist);
-		$this->config->setAppValue('guests', 'group', $group);
 		$this->config->setAppValue('guests', 'usewhitelist', $useWhitelist);
 		$this->config->setAppValue('guests', 'whitelist', $newWhitelist);
+		$this->config->setAppValue('guests', 'allow_external_storage', $allowExternalStorage);
 		return new DataResponse();
 	}
 

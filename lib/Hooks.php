@@ -22,14 +22,21 @@
 
 namespace OCA\Guests;
 
+use OC\Files\Filesystem;
+use OCA\Guests\Storage\ReadOnlyJail;
 use OCP\AppFramework\Db\DoesNotExistException;
+use OCP\Constants;
+use OCP\Files\IHomeStorage;
+use OCP\Files\Storage\IStorage;
 use OCP\IConfig;
 use OCP\IGroupManager;
 use OCP\ILogger;
 use OCP\IRequest;
 use OCP\IUserManager;
 use OCP\IUserSession;
-
+use OCP\Security\ICrypto;
+use OCP\Share\IShare;
+use Symfony\Component\EventDispatcher\GenericEvent;
 
 
 class Hooks {
@@ -58,24 +65,23 @@ class Hooks {
 	 */
 	private $userManager;
 
-
 	/**
-	 * Hooks constructor.
-	 *
-	 * @param ILogger $logger
-	 * @param IUserSession $userSession
-	 * @param IRequest $request
-	 * @param Mail $mail
-	 * @param IUserManager $userManager
-	 * @param IConfig $config
+	 * @var ICrypto
 	 */
+	private $crypto;
+
+	/** @var GuestManager */
+	private $guestManager;
+
 	public function __construct(
 		ILogger $logger,
 		IUserSession $userSession,
 		IRequest $request,
 		Mail $mail,
 		IUserManager $userManager,
-		IConfig $config
+		IConfig $config,
+		ICrypto $crypto,
+		GuestManager $guestManager
 	) {
 		$this->logger = $logger;
 		$this->userSession = $userSession;
@@ -83,77 +89,30 @@ class Hooks {
 		$this->mail = $mail;
 		$this->userManager = $userManager;
 		$this->config = $config;
+		$this->crypto = $crypto;
+		$this->guestManager = $guestManager;
 	}
 
-	/**
-	 * @var Hooks
-	 */
-	private static $instance;
+	public function handlePostShare(GenericEvent $event) {
+		/** @var IShare $share */
+		$share = $event->getSubject();
 
-	/**
-	 * @deprecated use DI
-	 * @return Hooks
-	 */
-	public static function createForStaticLegacyCode() {
-		if (!self::$instance) {
-			$logger = \OC::$server->getLogger();
-
-			self::$instance = new Hooks(
-				$logger,
-				\OC::$server->getUserSession(),
-				\OC::$server->getRequest(),
-				Mail::createForStaticLegacyCode(),
-				\OC::$server->getUserManager(),
-				\OC::$server->getConfig()
-			);
-		}
-		return self::$instance;
-	}
-
-	/**
-	 * generate guest password if new
-	 *
-	 * @param array $params
-	 * @throws \Exception
-	 */
-	static public function postShareHook($params) {
-		$hook = self::createForStaticLegacyCode();
-		$hook->handlePostShare(
-				$params['shareType'],
-				$params['shareWith'],
-				$params['itemType'],
-				$params['itemSource']
-		);
-	}
-
-	public function handlePostShare(
-		$shareType,
-		$shareWith,
-		$itemType,
-		$itemSource
-	) {
-
-
-		$isGuest = $this->config->getUserValue(
-			$shareWith,
-			'owncloud',
-			'isGuest',
-			false
-		);
+		$shareWith = $share->getSharedWith();
+		$isGuest = $this->guestManager->isGuest($shareWith);
 
 		if (!$isGuest) {
 			$this->logger->debug(
 				"ignoring user '$shareWith', not a guest",
-				['app'=>'guests']
+				['app' => 'guests']
 			);
 
 			return;
 		}
 
-		if (!($itemType === 'folder' || $itemType === 'file')) {
+		if (!($share->getNodeType() === 'folder' || $share->getNodeType() === 'file')) {
 			$this->logger->debug(
-				"ignoring share for itemType '$itemType'",
-				['app'=>'guests']
+				"ignoring share for itemType " . $share->getNodeType(),
+				['app' => 'guests']
 			);
 
 			return;
@@ -161,6 +120,7 @@ class Hooks {
 
 
 		$user = $this->userSession->getUser();
+		$targetUser = $this->userManager->get($shareWith);
 
 		if (!$user) {
 			throw new \Exception(
@@ -169,12 +129,12 @@ class Hooks {
 		}
 
 		$this->logger->debug("checking if '$shareWith' has a password",
-			['app'=>'guests']);
+			['app' => 'guests']);
 
 
 		$passwordToken = $this->config->getUserValue(
 			$shareWith,
-			'owncloud',
+			'core',
 			'lostpassword',
 			null
 		);
@@ -183,32 +143,41 @@ class Hooks {
 
 		try {
 			if ($passwordToken) {
-				$exploded = explode(':', $passwordToken);
+				// user has not yet activated his account
+
+				$decryptedToken = $this->crypto->decrypt($passwordToken, $targetUser->getEMailAddress() . $this->config->getSystemValue('secret'));
+				list(, $token) = explode(':', $decryptedToken);
 				// send invitation
 				$this->mail->sendGuestInviteMail(
 					$uid,
 					$shareWith,
-					$itemType,
-					$itemSource,
-					$exploded[1]
+					$share->getNodeType(),
+					$share->getNodeId(),
+					$token
 				);
-			} else {
-				// always notify guests of new files
-				$guest = $this->userManager->get($shareWith);
-
-				if (!$guest) {
-					throw new DoesNotExistException("$shareWith does not exist");
-				}
-
-				$this->mail->sendShareNotification(
-					$this->userSession->getUser(),
-					$guest,
-					$itemType,
-					$itemSource
-				);
+				$share->setMailSend(false);
 			}
 		} catch (DoesNotExistException $ex) {
-			$this->logger->error("'$shareWith' does not exist", ['app'=>'guests']);
+			$this->logger->error("'$shareWith' does not exist", ['app' => 'guests']);
+		}
+	}
+
+	public function setupReadonlyFilesystem(array $params) {
+		$uid = $params['user'];
+		$user = $this->userManager->get($uid);
+
+		if ($user && $this->guestManager->isReadOnlyUser($user)) {
+			Filesystem::addStorageWrapper('guests.readonly', function ($mountPoint, IStorage $storage) use ($uid) {
+				if ($mountPoint === "/$uid/") {
+					return new ReadOnlyJail([
+						'storage' => $storage,
+						'mask' => Constants::PERMISSION_READ,
+						'path' => 'files'
+					]);
+				} else {
+					return $storage;
+				}
+			});
 		}
 	}
 }

@@ -5,7 +5,7 @@ mkdir -p output
 composer install
 
 NC_PATH=../../../../
-CORE_INT_TESTS_PATH=tests/integration/
+CORE_INT_TESTS_PATH=build/integration/
 
 cd "$NC_PATH""$CORE_INT_TESTS_PATH"
 composer install

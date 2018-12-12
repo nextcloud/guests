@@ -7,7 +7,6 @@ to files which are shared with them.
 
 
 Furthermore, the administrator has to whitelist the applications that guests can use.
-By default ',core,settings,avatar,files,files_trashbin,files_versions,files_sharing,files_texteditor,activity,firstrunwizard,gallery' are allowed.
-The initial `,` is necessary to allow access to root resources.
+By default files_trashbin, files_versions, files_sharing, files_texteditor, activity, firstrunwizard and gallery are allowed.
 
 

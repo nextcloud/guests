@@ -1,19 +1,25 @@
 #app-guests .modal {
   box-sizing: border-box;
   position: absolute;
-  z-index: 501;
-  left: calc(50% -  250px );
-  top: 20%;
+  z-index: 1001;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   width: 500px;
   background: white;
-  padding: 20px;
+  padding: 15px;
+  color: #000;
+  border-radius: 3px;
+  box-shadow: 0 0 7px rgba(77, 77, 77, 0.75);
+  font-size: 100%;
+  min-width: 200px;
 }
 #app-guests .modal-title,
 #app-guests .modal-body {
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 #app-guests .modal .form-group {
-  margin: 10px 0;
+  margin: 7.5px 0;
 }
 #app-guests .modal .form-label,
 #app-guests .modal .form-input {
@@ -34,8 +40,8 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 500;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 1000;
   content: '';
   width: 100vw;
   height: 100vh;
@@ -43,4 +49,7 @@
 }
 #app-guests.-animate-to {
   opacity: 1;
+}
+#header .header-right > div > .icon-contacts.menutoggle {
+  display: none;
 }

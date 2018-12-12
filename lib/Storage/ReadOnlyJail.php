@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @author Ilja Neumann <ineumann@owncloud.com>
  *
@@ -19,39 +20,51 @@
  *
  */
 
-namespace OCA\Guests\Settings;
+namespace OCA\Guests\Storage;
 
-use OCP\Template;
+use OCP\Constants;
 
-class Admin implements \OCP\Settings\ISettings
-{
+/**
+ * read only mask for home storages
+ */
+class ReadOnlyJail extends DirMask {
 
 	/**
-	 * The panel controller method that returns a template to the UI
-	 *
-	 * @since 10.0
-	 * @return \OCP\AppFramework\Http\TemplateResponse | \OCP\Template
+	 * @param $path
+	 * @return bool
 	 */
-	public function getPanel() {
-		return new Template('guests', 'settings/admin');
+	protected function checkPath($path) {
+		if ($path === 'files') {
+			return true;
+		}
+
+		return parent::checkPath($path);
+	}
+
+
+	/**
+	 * @param string $path
+	 * @return bool
+	 */
+	public function isDeletable($path) {
+		if (pathinfo($path, PATHINFO_EXTENSION) === 'part') {
+			return true;
+		}
+
+		return $this->getWrapperStorage()->isDeletable($path);
 	}
 
 	/**
-	 * A string to identify the section in the UI / HTML and URL
-	 *
-	 * @since 10.0
-	 * @return string
+	 * @param string $path
+	 * @return bool
 	 */
-	public function getSectionID() {
-		return 'guests';
+	public function mkdir($path) {
+		// Lift restrictions if files dir is created (at first login)
+		if ($path === 'files') {
+			return $this->storage->mkdir($path);
+		} else {
+			return parent::mkdir($path);
+		}
 	}
 
-	/**
-	 * The number used to order the section in the UI.
-	 *
-	 * @since 10.0
-	 * @return int between 0 and 100, with 100 being the highest priority
-	 */
-	public function getPriority() {
-		return 0;
-}}
+}

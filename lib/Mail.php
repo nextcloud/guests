@@ -80,32 +80,6 @@ class Mail {
 	}
 
 	/**
-	 * @var Mail
-	 */
-	private static $instance;
-
-	/**
-	 * @deprecated use DI
-	 * @return Mail
-	 */
-	public static function createForStaticLegacyCode() {
-		if (!self::$instance) {
-			self::$instance = new Mail (
-				\OC::$server->getConfig(),
-				\OC::$server->getLogger(),
-				\OC::$server->getUserSession(),
-				\OC::$server->getMailer(),
-				new Defaults(),
-				\OC::$server->getL10N('guests'),
-				\OC::$server->getUserManager(),
-				\OC::$server->getURLGenerator()
-			);
-
-		}
-		return self::$instance;
-	}
-
-	/**
 	 * Sends out a reset password mail if the user is a guest and does not have
 	 * a password set, yet.
 	 *
@@ -120,7 +94,8 @@ class Mail {
 
 		$this->logger->debug("sending invite to $shareWith: $passwordLink", ['app' => 'guests']);
 
-		$shareWithEmail = $this->userManager->get($shareWith)->getEMailAddress();
+		$targetUser = $this->userManager->get($shareWith);
+		$shareWithEmail = $targetUser->getEMailAddress();
 		$replyTo = $this->userManager->get($uid)->getEMailAddress();
 		$senderDisplayName = $this->userSession->getUser()->getDisplayName();
 
@@ -139,19 +114,50 @@ class Mail {
 
 
 		$link = $this->urlGenerator->linkToRouteAbsolute(
-			'files.viewcontroller.showFile', ['fileId' => $itemSource]
+			'files.viewcontroller.showFile', ['fileid' => $itemSource]
 		);
 
-		list($htmlBody, $textBody) = $this->createMailBody(
-			$filename, $link, $passwordLink, $this->defaults->getName(), $senderDisplayName, $expiration, $shareWithEmail
+		$emailTemplate = $this->mailer->createEMailTemplate('guest.invite');
+
+		$emailTemplate->addHeader();
+		$emailTemplate->addHeading($this->l10n->t('Incoming share'));
+
+		$emailTemplate->addBodyText(
+			$this->l10n->t('Hey there,')
 		);
+
+		$emailTemplate->addBodyText(
+			$this->l10n->t('%s just shared »%s« with you.', [$senderDisplayName, $filename])
+		);
+
+		$emailTemplate->addBodyText(
+			$this->l10n->t('You can access the shared file by activating your guest account.')
+		);
+		$emailTemplate->addBodyText(
+			$this->l10n->t('After your account is activated you can view the share by logging in with %s.', [$shareWithEmail])
+		);
+
+		if ($expiration) {
+			$formattedDate = $this->l10n->l('date', $expiration);
+			$emailTemplate->addBodyText(
+				$this->l10n->t('The share will expire at %s.', [$formattedDate])
+			);
+		}
+
+		$emailTemplate->addBodyButtonGroup(
+			$this->l10n->t('Activate account'),
+			$passwordLink,
+			$this->l10n->t('View share'),
+			$link
+		);
+		$emailTemplate->addFooter();
 
 		try {
 			$message = $this->mailer->createMessage();
-			$message->setTo([$shareWithEmail => $shareWith]);
+			$message->setTo([$shareWithEmail => $targetUser->getDisplayName()]);
 			$message->setSubject($subject);
-			$message->setHtmlBody($htmlBody);
-			$message->setPlainBody($textBody);
+			$message->setHtmlBody($emailTemplate->renderHtml());
+			$message->setPlainBody($emailTemplate->renderText());
 			$message->setFrom([
 				Util::getDefaultEmailAddress('sharing-noreply') =>
 					(string)$this->l10n->t('%s via %s', [
@@ -172,79 +178,82 @@ class Mail {
 		}
 	}
 
-	/**
-	 * @param $sender
-	 * @param $recipient
-	 * @param $itemType
-	 * @param $itemSource
-	 */
 	public function sendShareNotification(
-		$sender,
+		IUser $sender,
 		IUser $recipient,
-		$itemType,
-		$itemSource
+		$itemSource,
+		$itemType
 	) {
-		$recipientList[] = $recipient;
-
-
-		$mailNotification = new MailNotifications(
-			$sender,
-			\OC::$server->getL10N('lib'),
-			$this->mailer,
-			$this->logger,
-			$this->defaults,
-			\OC::$server->getURLGenerator()
-		);
-		$this->logger->debug("sending share notification for '$itemType'"
-			. " '$itemSource' to {$recipient->getUID()}'",
-			['app' => 'guests']);
-
-		$result = $mailNotification->sendInternalShareMail(
-			$recipientList, $itemSource, $itemType
+		$link = $this->urlGenerator->linkToRouteAbsolute(
+			'files.viewcontroller.showFile', ['fileid' => $itemSource]
 		);
 
-		// mark mail as sent
-		// TODO do not set if $result contains the recipient
-		Share::setSendMailStatus(
-			$itemType, $itemSource, Share::SHARE_TYPE_USER, $recipient, true
+		$items = Share::getItemSharedWithUser($itemType, $itemSource, $recipient->getUID());
+		$filename = trim($items[0]['file_target'], '/');
+
+		$subject = (string)$this->l10n->t('%s shared »%s« with you', array($sender->getDisplayName(), $filename));
+		$expiration = null;
+		if (isset($items[0]['expiration'])) {
+			try {
+				$date = new \DateTime($items[0]['expiration']);
+				$expiration = $date->getTimestamp();
+			} catch (\Exception $e) {
+				$this->logger->error("Couldn't read date: " . $e->getMessage(), ['app' => 'sharing']);
+			}
+		}
+
+		$emailTemplate = $this->mailer->createEMailTemplate();
+
+		$emailTemplate->addHeader();
+		$emailTemplate->addHeading($this->l10n->t('Incoming share'));
+
+		$emailTemplate->addBodyText(
+			$this->l10n->t('Hey there,')
 		);
 
+		$emailTemplate->addBodyText(
+			$this->l10n->t('%s just shared »%s« with you.', [$sender->getDisplayName(), $filename])
+		);
+		$emailTemplate->addBodyText(
+			$this->l10n->t('You can view the share by logging in with %s.', [$recipient->getEMailAddress()])
+		);
+
+		if ($expiration) {
+			$formattedDate = $this->l10n->l('date', $expiration);
+			$emailTemplate->addBodyText(
+				$this->l10n->t('The share will expire at %s.', [$formattedDate])
+			);
+		}
+
+		$emailTemplate->addBodyButton(
+			$this->l10n->t('View share'),
+			$link
+		);
+		$emailTemplate->addFooter();
+
+		try {
+			$message = $this->mailer->createMessage();
+			$message->setTo([$recipient->getEMailAddress() => $recipient->getDisplayName()]);
+			$message->setSubject($subject);
+			$message->setHtmlBody($emailTemplate->renderHtml());
+			$message->setPlainBody($emailTemplate->renderText());
+			$message->setFrom([
+				Util::getDefaultEmailAddress('sharing-noreply') =>
+					(string)$this->l10n->t('%s via %s', [
+						$sender->getDisplayName(),
+						$this->defaults->getName()
+					]),
+			]);
+
+			if ($sender->getEMailAddress()) {
+				$message->setReplyTo([$sender->getEMailAddress()]);
+			}
+
+			$this->mailer->send($message);
+		} catch (\Exception $e) {
+			throw new \Exception($this->l10n->t(
+				'Couldn\'t send reset email. Please contact your administrator.'
+			));
+		}
 	}
-
-	/**
-	 * create mail body for plain text and html mail
-	 *
-	 * @param string $filename the shared file
-	 * @param string $link link to the shared file
-	 * @param int $expiration expiration date (timestamp)
-	 * @param string $guestEmail
-	 * @return array an array of the html mail body and the plain text mail body
-	 */
-	private function createMailBody($filename, $link, $passwordLink, $cloudName, $displayName, $expiration, $guestEmail) {
-
-		$formattedDate = $expiration ? $this->l10n->l('date', $expiration) : null;
-
-		$html = new \OC_Template('guests', 'mail/invite');
-		$html->assign('link', $link);
-		$html->assign('password_link', $passwordLink);
-		$html->assign('cloud_name', $cloudName);
-		$html->assign('user_displayname', $displayName);
-		$html->assign('filename', $filename);
-		$html->assign('expiration', $formattedDate);
-		$html->assign('guestEmail', $guestEmail);
-		$htmlMail = $html->fetchPage();
-
-		$plainText = new \OC_Template('guests', 'mail/altinvite');
-		$plainText->assign('link', $link);
-		$plainText->assign('password_link', $passwordLink);
-		$plainText->assign('cloud_name', $cloudName);
-		$plainText->assign('user_displayname', $displayName);
-		$plainText->assign('filename', $filename);
-		$plainText->assign('expiration', $formattedDate);
-		$plainText->assign('guestEmail', $guestEmail);
-		$plainTextMail = $plainText->fetchPage();
-
-		return [$htmlMail, $plainTextMail];
-	}
-
 }

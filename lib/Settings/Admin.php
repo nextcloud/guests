@@ -1,6 +1,5 @@
 <?php
 /**
- * @author Jörn Friedrich Dreyer <jfd@butonic.de>
  * @author Ilja Neumann <ineumann@owncloud.com>
  *
  * @copyright Copyright (c) 2017, ownCloud GmbH
@@ -20,6 +19,39 @@
  *
  */
 
-use OCA\Guests\AppInfo\Application;
+namespace OCA\Guests\Settings;
 
-(new Application())->setup();
+use OCA\Guests\AppWhitelist;
+use OCP\AppFramework\Http\TemplateResponse;
+
+class Admin implements \OCP\Settings\ISettings {
+	/** @var AppWhitelist */
+	private $appWhitelist;
+
+	public function __construct(AppWhitelist $appWhitelist) {
+		$this->appWhitelist = $appWhitelist;
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function getForm() {
+		return new TemplateResponse('guests', 'settings/admin', [
+			'whitelistableApps' => $this->appWhitelist->getWhitelistAbleApps()
+		]);
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function getSection() {
+		return 'guests';
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function getPriority() {
+		return 0;
+	}
+}

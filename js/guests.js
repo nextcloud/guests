@@ -23,16 +23,20 @@
 		// variables
 		var $section = $('#guests');
 		var $guestsByGroup = $section.find('#guestsByGroup');
-		var $guestGroup = $section.find('#guestGroup');
+		var $allowExternalStorage = $section.find('#allowExternalStorage');
 		var $guestUseWhitelist = $section.find('#guestUseWhitelist');
 		var $guestWhitelist = $section.find('#guestWhitelist');
+		var $guestWhitelistContainer = $section.find('.whitelist');
 		var $resetWhitelist = $section.find('#guestResetWhitelist');
 		var $msg = $section.find('.msg');
+		var loading = true;
 
 		var config = { conditions: ['quota'], group: 'guests',
 			useWhitelist: true, whitelist:[
 				'','core','settings','avatar','files','files_trashbin','files_sharing'
 			]};
+
+		$guestWhitelist.select2();
 
 		// functions
 
@@ -47,33 +51,31 @@
 					// update ui
 					if(config.useWhitelist) {
 						$guestUseWhitelist.prop('checked', true);
-						$guestWhitelist.show();
+						$guestWhitelistContainer.show();
 					} else {
 						$guestUseWhitelist.prop('checked', false);
-						$guestWhitelist.hide();
+						$guestWhitelistContainer.hide();
 					}
-					if (config.group) {
-						$guestGroup.val(config.group);
-					} else {
-						$guestGroup.val('');
-					}
+					$allowExternalStorage.prop('checked', config.allowExternalStorage);
 					if ($.isArray(config.whitelist)) {
-						$guestWhitelist.val(config.whitelist.join());
-					} else {
-						$guestWhitelist.val('');
+						$guestWhitelist.val(config.whitelist).trigger("change");
 					}
+					loading = false;
 				},
 				'json'
 			).then(function() {
-					var data = { status: 'success',	data: {message: t('guests', 'Loaded')} };
-					OC.msg.finishedAction($msg, data);
-				}, function(result) {
-					var data = { status: 'error', data:{message:result.responseJSON.message} };
-					OC.msg.finishedAction($msg, data);
-				});
+				var data = { status: 'success',	data: {message: t('guests', 'Loaded')} };
+				OC.msg.finishedAction($msg, data);
+			}, function(result) {
+				var data = { status: 'error', data:{message:result.responseJSON.message} };
+				OC.msg.finishedAction($msg, data);
+			});
 		};
 
 		var saveConfig = function () {
+			if (loading) {
+				return;
+			}
 			OC.msg.startSaving($msg);
 			$.ajax({
 				type: 'PUT',
@@ -107,25 +109,25 @@
 			saveConfig();
 		});
 
-		$guestGroup.on('change', function () {
-			config.group = $guestGroup.val();
-			saveConfig();
-		});
 		$guestUseWhitelist.on('change', function () {
 			config.useWhitelist = $guestUseWhitelist.prop('checked');
 			if(config.useWhitelist) {
-				$guestWhitelist.show();
+				$guestWhitelistContainer.show();
 			} else {
-				$guestWhitelist.hide();
+				$guestWhitelistContainer.hide();
 			}
 			saveConfig();
 		});
 		$guestWhitelist.on('change', function () {
-			var apps = $guestWhitelist.val().split(',');
+			var apps = $guestWhitelist.val();
 			config.whitelist = [];
 			$.each(apps, function( index, value ) {
 				config.whitelist.push(value.trim());
 			});
+			saveConfig();
+		});
+		$allowExternalStorage.on('change', function () {
+			config.allowExternalStorage = $allowExternalStorage.prop('checked');
 			saveConfig();
 		});
 		$resetWhitelist.on('click', function () {
@@ -135,12 +137,19 @@
 				url: OC.generateUrl('apps/guests/whitelist/reset')
 			}).success(function(response) {
 				config.whitelist = response.whitelist;
+
+				// prevent it saving again
+				loading = true;
+
 				//update ui
 				if ($.isArray(config.whitelist)) {
-					$guestWhitelist.val(config.whitelist.join());
+					$guestWhitelist.val(config.whitelist).trigger("change");
 				} else {
-					$guestWhitelist.val('');
+					$guestWhitelist.val([]).trigger("change");
 				}
+
+				loading = false;
+
 				OC.msg.finishedSaving($msg, {
 					status:'success',
 					data: { message:t('guests', 'Reset') }
