@@ -7,7 +7,9 @@ appstore_dir=$(build_dir)/appstore
 package_name=$(app_name)
 cert_dir=$(HOME)/.nextcloud/certificates
 
-all: css/app.css
+jssources=$(wildcard js/*) $(wildcard js/*/*) $(wildcard css/*/*)  $(wildcard css/*)
+
+all: dist/index.js
 
 clean:
 	rm -rf $(build_dir)
@@ -16,6 +18,9 @@ clean:
 node_modules: package.json
 	npm install --deps
 
+dist/index.js: node_modules $(jssources)
+	node_modules/.bin/webpack --mode production --progress
+
 %.css: %.less node_modules
 	node_modules/.bin/lessc $< $@
 
@@ -23,6 +28,7 @@ appstore: clean package
 
 package: build/appstore/$(package_name).tar.gz
 build/appstore/$(package_name).tar.gz: css/app.css
+	dist/index.js
 	mkdir -p $(appstore_dir)
 	tar --exclude-vcs \
 	--exclude=$(appstore_dir) \

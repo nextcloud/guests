@@ -81,8 +81,7 @@ class Application extends App {
 			$server->getEventDispatcher()->addListener(
 				'OCA\Files::loadAdditionalScripts',
 				function () {
-					\OCP\Util::addScript('guests', 'vue');
-					\OCP\Util::addScript('guests', 'app');
+					\OCP\Util::addScript('guests', '../dist/main');
 					\OCP\Util::addStyle('guests', 'app');
 				}
 			);
