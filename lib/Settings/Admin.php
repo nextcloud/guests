@@ -36,9 +36,7 @@ class Admin implements \OCP\Settings\ISettings {
 	 * {@inheritdoc}
 	 */
 	public function getForm() {
-		return new TemplateResponse('guests', 'settings/admin', [
-			'whitelistableApps' => $this->appWhitelist->getWhitelistAbleApps()
-		]);
+		return new TemplateResponse('guests', 'settings/admin');
 	}
 
 	/**

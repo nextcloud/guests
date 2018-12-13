@@ -149,9 +149,9 @@ class AppWhitelist {
 	}
 
 	public function getWhitelistAbleApps() {
-		return array_diff(
+		return array_values(array_diff(
 			$this->appManager->getInstalledApps(),
 			explode(',', self::WHITELIST_ALWAYS)
-		);
+		));
 	}
 }

@@ -45,10 +45,13 @@ class SettingsController extends Controller {
 	 */
 	private $config;
 
-	public function __construct($AppName, IRequest $request, $UserId, IConfig $config) {
+	private $appWhitelist;
+
+	public function __construct($AppName, IRequest $request, $UserId, IConfig $config, AppWhitelist $appWhitelist) {
 		parent::__construct($AppName, $request);
 		$this->userId = $UserId;
 		$this->config = $config;
+		$this->appWhitelist = $appWhitelist;
 	}
 
 	/**
@@ -69,7 +72,8 @@ class SettingsController extends Controller {
 		return new DataResponse([
 			'useWhitelist' => $useWhitelist,
 			'whitelist' => $whitelist,
-			'allowExternalStorage' => $allowExternalStorage
+			'allowExternalStorage' => $allowExternalStorage,
+			'whiteListableApps' => $this->appWhitelist->getWhitelistAbleApps()
 		]);
 	}
 	/**

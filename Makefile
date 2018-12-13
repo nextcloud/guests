@@ -11,6 +11,11 @@ jssources=$(wildcard js/*) $(wildcard js/*/*) $(wildcard css/*/*)  $(wildcard cs
 
 all: dist/index.js
 
+.PHONY: watch
+
+watch:
+	node node_modules/.bin/webpack-dev-server --watch --hot --inline --port 3000 --public localcloud.icewind.me:444 --mode development --config webpack.config.js
+
 clean:
 	rm -rf $(build_dir)
 	rm -rf node_modules
