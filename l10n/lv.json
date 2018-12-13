@@ -1,27 +1,16 @@
 { "translations": {
-    "Invalid mail address" : "Nepareiza e-pasta adrese",
-    "Username required" : "Lietotājvārds vajadzīgs",
-    "A user with that name already exists." : "Jau pastāv lietotājs ar šo vārdu.",
-    "User successfully created" : "Lietotājs veiksmīgi izveidots",
-    "Error while sharing" : "Kļūda, daloties",
     "Error" : "Kļūda",
-    "Add {unknown} (guest)" : "Pievienot {unknown} (guest)",
-    "No users or groups found for {search}" : "Pēc  {search} netika atrasts neviens lietotājs vai grupa",
-    "No users found for {search}" : "Pēc  {search} netika atrasts neviens lietotājs",
-    "An error occurred. Please try again" : "Notika kļūda. Mēģini vēlreiz.",
     "Loading…" : "Ielādē…",
     "Loaded" : "Ielādēts",
     "Saved" : "Saglabāts",
     "Reset" : "Atiestatīt",
     "Access to this resource is forbidden for guests." : "Šim resursam viesu piekļuve ir aizliegta.",
+    "Invalid mail address" : "Nepareiza e-pasta adrese",
+    "A user with that name already exists." : "Jau pastāv lietotājs ar šo vārdu.",
+    "User successfully created" : "Lietotājs veiksmīgi izveidots",
     "%s shared »%s« with you" : "%s kopīgots »%s« ar jums",
     "%s via %s" : "%s ar %s",
     "Couldn't send reset email. Please contact your administrator." : "Nevarēja nosūtīt maiņas e-pastu. Lūdzu sazinies ar savu administratoru.",
-    "Guests" : "Viesi",
-    "Allow classifying users or contacts as guests." : "Ļauj klasificēt lietotājus vai kontaktpersonas kā viesus.",
-    "The share will expire on %s." : "Koplietošana beigsies %s.",
-    "Cheers!" : "Priekā!",
-    "Group name" : "Grupas nosaukums",
-    "Reset whitelist" : "Atiestatīt atļauto sarakstu"
+    "Guests" : "Viesi"
 },"pluralForm" :"nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);"
 }
