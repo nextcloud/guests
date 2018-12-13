@@ -2,7 +2,7 @@
 	<div id="app-guests" v-if="state.modalIsOpen">
 		<div class="modal" @keyup.esc="closeModal">
 			<h2 class="modal-title oc-dialog-title">
-				{{ t('guests', 'Create guest account for {fullName}', {fullName: guest.fullname}) }}
+				{{ t('guests', 'Create guest account for {fullName}', guest) }}
 			</h2>
 			<a class="button-close oc-dialog-close" @click="closeModal"></a>
 			<form @submit.prevent="addGuest">
@@ -15,7 +15,7 @@
 								ref="name"
 								class="form-input" id="app-guests-input-name"
 								type="text"
-								v-model="guest.fullname">
+								v-model="guest.fullName">
 					</div>
 					<div class="form-group">
 						<label class="form-label" for="app-guests-input-email">
@@ -37,7 +37,7 @@
 				</div>
 			</form>
 		</div>
-		<div class="modal-backdrop" v-if="state.modalIsOpen"></div>
+		<div class="modal-backdrop"></div>
 	</div>
 </template>
 
@@ -60,7 +60,7 @@
 				// guest data
 				// ----------
 				guest: {
-					fullname: null,
+					fullName: null,
 					username: null,
 					email: null
 				},
@@ -79,11 +79,9 @@
 					this.guest.username = '';
 				}
 
-				var self = this;
-
-				_.delay(function () {
-					self._resetErrors();
-				}, 250);
+				this.$nextTick(() => {
+					this._resetErrors();
+				});
 			}
 		},
 		methods: {
@@ -91,7 +89,7 @@
 				if (shareWith.indexOf('@') !== -1 && shareWith.lastIndexOf('.') > shareWith.indexOf('@')) {
 					this.guest.email = (shareWith) ? shareWith : '';
 				} else {
-					this.guest.fullname = (shareWith) ? shareWith : '';
+					this.guest.fullName = (shareWith) ? shareWith : '';
 				}
 
 				this.model = (model) ? model : false;
@@ -100,7 +98,7 @@
 			openModal: function () {
 				this.state.modalIsOpen = true;
 				this.$nextTick(() => {
-					if (this.guest.fullname) {
+					if (this.guest.fullName) {
 						this.$refs.email.focus();
 					} else {
 						this.$refs.name.focus();
@@ -113,36 +111,33 @@
 				this._resetForm();
 
 				$('#shareTabView .shareWithField').val('').removeAttr('disabled');
-				$('#shareTabView .shareWithLoading').toggleClass('hidden inlineblock');
 			},
 
 			addGuest: function () {
-				var self = this;
 				const xhrObject = {
 					type: 'PUT',
 					url: OC.generateUrl('/apps/guests/users'),
 					dataType: 'text',
 					data: {
-						displayName: this.guest.fullname,
+						displayName: this.guest.fullName,
 						email: this.guest.email
 					}
 				};
 
-				$.ajax(xhrObject).done(function () {
-					self._addGuestShare();
+				$.ajax(xhrObject).done(() => {
+					this._addGuestShare();
 
-				}).fail(function (xhr) {
-					response = JSON.parse(xhr.responseText);
-					error = response.errorMessages;
+				}).fail((xhr) => {
+					const response = JSON.parse(xhr.responseText);
+					const error = response.errorMessages;
 
-					self.error.email = (error.email) ? error.email : false;
-					self.error.username = (error.username) ? error.username : false;
+					this.error.email = (error.email) ? error.email : false;
+					this.error.username = (error.username) ? error.username : false;
 				});
 			},
 
 			_addGuestShare: function () {
-				var self = this;
-				var attributes = {
+				const attributes = {
 					shareType: 0,
 					shareWith: this.guest.username,
 					permissions: OC.PERMISSION_CREATE | OC.PERMISSION_UPDATE | OC.PERMISSION_READ | OC.PERMISSION_DELETE,
@@ -154,15 +149,16 @@
 					url: OC.linkToOCS('apps/files_sharing/api/v1', 2) + 'shares?format=json',
 					data: attributes,
 					dataType: 'json'
-				}).done(function () {
+				}).done(() => {
 
-					self.closeModal();
+					this.closeModal();
 
-					if (self.model)
-						self.model.fetch();
+					if (this.model) {
+						this.model.fetch();
+					}
 
-				}).fail(function (response) {
-					var message = '';
+				}).fail((response) => {
+					let message = '';
 					if (response.responseJSON && response.responseJSON && response.responseJSON.ocs && response.responseJSON.ocs.meta && response.responseJSON.ocs.meta.message) {
 						message = response.responseJSON.ocs.meta.message;
 					}
@@ -178,7 +174,7 @@
 			},
 
 			_resetForm: function () {
-				this.guest.fullname = this.guest.username = this.guest.email = null;
+				this.guest.fullName = this.guest.username = this.guest.email = null;
 			},
 
 			_resetErrors: function () {
