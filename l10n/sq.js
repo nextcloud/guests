@@ -1,11 +1,6 @@
 OC.L10N.register(
     "guests",
     {
-    "Error" : "Gabim",
-    "Loading…" : "Po ngarkohet…",
-    "Loaded" : "U ngarkua",
-    "Saved" : "U ruajt",
-    "Reset" : "Ricaktoje",
     "Access to this resource is forbidden for guests." : "Hyrja në këtë burim është e ndaluar për vizitorët.",
     "Invalid mail address" : "Adresë email e pavlefshme",
     "A user with that name already exists." : "Ka tashmë një përdorues me këtë emër.",
@@ -14,7 +9,10 @@ OC.L10N.register(
     "%s via %s" : "%s përmes %s",
     "Couldn't send reset email. Please contact your administrator." : "S’u dërgua dot email-i i rivendosjes. Ju lutemi, lidhuni me përgjegjësin tuaj.",
     "Guests" : "Të ftuarit",
+    "Error" : "Gabim",
     "Guest users are grouped under a virtual group in the user manager" : "Përdoruesit vizitorë grupohen nën një grup virtual te përgjegjësi i përdoruesve",
-    "Limit guest access to an app whitelist" : "Kufizoni hyrje përdoruesish vizitorë sipas një liste lejimesh tëaplikacionit"
+    "Limit guest access to an app whitelist" : "Kufizoni hyrje përdoruesish vizitorë sipas një liste lejimesh tëaplikacionit",
+    "Reset" : "Ricaktoje",
+    "Saved" : "U ruajt"
 },
 "nplurals=2; plural=(n != 1);");
