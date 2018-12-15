@@ -1,6 +1,7 @@
 OC.L10N.register(
     "guests",
     {
+    "Create guest account for {searchTerm}" : "Erstelle Gastkonto für {searchterm}",
     "Access to this resource is forbidden for guests." : "Der Zugriff auf diese Ressource ist für Gastnutzer untersagt. ",
     "Invalid mail address" : "Ungültige E-Mail-Adresse",
     "A user with that email already exists." : "Ein Benutzer mit dieser E-Mail-Adresse existiert bereits.",
@@ -21,6 +22,7 @@ OC.L10N.register(
     "Guests" : "Gäste",
     "Create guest accounts for easier collaboration" : "Gast-Konten für einfachere Zusammenarbeit erstellen",
     "Allows for better collaboration with external users by allowing users to create guests account.\n\n\t\tGuests accounts can be created from the share menu by entering either the recipients email or name and choosing \"create guest account\",\n\t\tonce the share is created the guest user will receive an email notification about the mail with a link to set their password.\n\n\t\tGuests users can only access files shared to them and can't create any files outside of shares, additionally, the apps accessible to guest\n\t\taccounts is whitelisted." : "Ermöglicht eine bessere Zusammenarbeit mit externen Benutzern, indem Benutzer ein Gastkonto erstellen können.\n\n\t\tGästekonten können über das Freigabemenü erstellt werden, indem Sie entweder die E-Mail-Adresse oder den Namen des Empfängers eingeben und \"Gastkonto erstellen\" wählen.\n\t\tSobald die Freigabe erstellt wurde, erhält der Gastbenutzer eine E-Mail-Benachrichtigung mit einem Link zum Festlegen des Passworts.\n\n\t\tGast-Nutzer können nur auf Dateien zugreifen, die für sie freigegeben sind, und sie können keine Dateien außerhalb von Freigaben erstellen, mit AUsnahme der Apps, auf die der Gast zugreifen kann\n\t\tKonten werden auf die Positivliste gesetzt.",
+    "Create guest account for {fullName}" : "Erstelle Gastkonto für {fullName}",
     "Error while sharing\n" : "Fehler beim Teilen\n",
     "Error" : "Fehler",
     "Guest users are grouped under a virtual group in the user manager" : "Gäste sind unter einer virtuellen Gruppe im Benutzermanager zusammengefasst",

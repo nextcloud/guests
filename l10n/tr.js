@@ -1,6 +1,7 @@
 OC.L10N.register(
     "guests",
     {
+    "Create guest account for {searchTerm}" : "{searchterm} için konuk hesabı aç",
     "Access to this resource is forbidden for guests." : "Konuklar bu kaynağa erişemesin.",
     "Invalid mail address" : "Geçersiz posta adresi",
     "A user with that email already exists." : "Bu e-posta adresinin kayıtlı olduğu bir kullanıcı hesabı zaten var.",
@@ -21,6 +22,7 @@ OC.L10N.register(
     "Guests" : "Konuklar",
     "Create guest accounts for easier collaboration" : "Daha kolay iş birliği yapmak için konuk hesapları aç",
     "Allows for better collaboration with external users by allowing users to create guests account.\n\n\t\tGuests accounts can be created from the share menu by entering either the recipients email or name and choosing \"create guest account\",\n\t\tonce the share is created the guest user will receive an email notification about the mail with a link to set their password.\n\n\t\tGuests users can only access files shared to them and can't create any files outside of shares, additionally, the apps accessible to guest\n\t\taccounts is whitelisted." : "Dış kullanıcıların konuk hesabı açmasını sağlayarak daha iyi iş birliği yapılmasını sağlar.\n\n\t\tKonuk hesapları, paylaş menüsünden alıcının e-posta adresini ya da adını yazıp \"konuk hesabı aç\" üzerine tıklayarak açılabilir,\n\t\tPaylaşım oluşturulduktan sonra konuk kullanıcıya bir e-posta bildirimi gönderilerek posta içindeki bağlantıyı kullanarak parolasını ayarlaması istenir.\n\n\t\tKonuk kullanıcılar yalnız kendileri ile paylaşılan dosyalara erişebilir ve paylaşılan klasörler dışında herhangi bir dosya oluşturamaz. Ek olarak konuk hesabı konuklar için\n\t\tbeyaz listeye alınmış uygulamalara da erişebilir.",
+    "Create guest account for {fullName}" : "{fullName} için konuk hesabı aç",
     "Error while sharing\n" : "Paylaşılırken sorun çıktı\n",
     "Error" : "Hata",
     "Guest users are grouped under a virtual group in the user manager" : "Konuk kullanıcılar kullanıcı yönetimi bölümünde sanal bir grup altında toplanır",
