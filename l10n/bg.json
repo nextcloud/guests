@@ -4,6 +4,7 @@
     "A user with that name already exists." : "Потребител с това име вече съществува",
     "User successfully created" : "Успешно създаден потребител",
     "%s shared »%s« with you" : "%s сподели »%s« с вас",
+    "Hey there," : "Здравейте,",
     "%s via %s" : "%s през %s",
     "Couldn't send reset email. Please contact your administrator." : "Изпращането на електронна поща е неуспешно. Моля, свържете се с вашия администратор.",
     "Guests" : "Гости",
