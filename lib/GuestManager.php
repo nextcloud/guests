@@ -104,6 +104,19 @@ class GuestManager {
 		return $this->userBackend->getUsers();
 	}
 
+	public function getGuestsInfo() {
+		$displayNames = $this->userBackend->getDisplayNames();
+		$guests = array_keys($displayNames);
+		$createdBy = $this->config->getUserValueForUsers('guests', 'created_by', $guests);
+		return array_map(function ($uid) use ($createdBy, $displayNames) {
+			return [
+				'email' => $uid,
+				'display_name' => $displayNames[$uid],
+				'created_by' => $createdBy[$uid],
+			];
+		}, $guests);
+	}
+
 	public function isReadOnlyUser(IUser $user) {
 		if ($this->isGuest($user)) {
 			return true;
