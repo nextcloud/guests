@@ -11,7 +11,7 @@ OC.L10N.register(
     "Guests" : "Convidado",
     "Error" : "Erro",
     "Guest users are grouped under a virtual group in the user manager" : "Os convidados están agrupados dentro de un grupo virtual no xestor de usuarios",
-    "Limit guest access to an app whitelist" : "Limitar o acceso dos convidados a unha lista branca de aplicacións",
+    "Limit guest access to an app whitelist" : "Limitar o acceso dos convidados a unha lista branca de aplicativos",
     "Reset" : "Restabelecer",
     "Saved" : "Gardado"
 },
