@@ -1,4 +1,5 @@
 { "translations": {
+    "Create guest account for {searchTerm}" : "Создать гостевой аккаунт для {searchTerm}",
     "Access to this resource is forbidden for guests." : "Гостям не разрешён доступ к этому ресурсу.",
     "Invalid mail address" : "Некорректный адрес электронной почты",
     "A user with that name already exists." : "Пользователь с таким именем уже существует.",
