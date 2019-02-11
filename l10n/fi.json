@@ -15,6 +15,7 @@
     "%s via %s" : "%s (palvelun %s kautta)",
     "Couldn't send reset email. Please contact your administrator." : "Palautussähköpostin lähettäminen ei onnistunut. Ota yhteys ylläpitäjään.",
     "Guests" : "Vieraat",
+    "Create guest accounts for easier collaboration" : "Luo vierastilejä entistä helpomman yhteistyön mahdollistamiseksi",
     "Error while sharing\n" : "Virhe jaettaessa\n",
     "Error" : "Virhe",
     "Guest users are grouped under a virtual group in the user manager" : "Vieraskäyttäjät asetetaan virtuaaliryhmään käyttäjähallinnassa",
