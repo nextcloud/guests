@@ -24,13 +24,14 @@ namespace OCA\Guests;
 use OCP\Group\Backend\ABackend;
 use OCP\Group\Backend\ICountUsersBackend;
 use OCP\Group\Backend\IGroupDetailsBackend;
+use OCP\Group\Backend\IHideFromCollaborationBackend;
 
 /**
  * Provides a virtual (not existing in the database) group for guest users.
  *
  * @package OCA\Guests
  */
-class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetailsBackend {
+class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetailsBackend, IHideFromCollaborationBackend {
 	/** @var GuestManager */
 	private $guestManager;
 
@@ -137,23 +138,15 @@ class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetails
 		}
 	}
 
-	/**
-	 * Returns whether the groups are visible for a given scope.
-	 *
-	 * @param string|null $scope scope string
-	 * @return bool true if searchable, false otherwise
-	 *
-	 * @since 10.0.0
-	 */
-	public function isVisibleForScope($scope) {
-		return $scope !== 'sharing';
-	}
-
 	public function getGroupDetails(string $gid): array {
 		if ($gid === $this->groupName) {
 			return ['displayName' => 'Guests'];
 		} else {
 			return [];
 		}
+	}
+
+	public function hideGroup(string $groupId): bool {
+		return true;
 	}
 }
