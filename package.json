@@ -17,5 +17,8 @@
     "webpack": "^4.28.1",
     "webpack-cli": "^3.2.1",
     "webpack-dev-server": "^3.1.14"
+  },
+  "dependencies": {
+    "deep-equal": "^1.0.1"
   }
 }

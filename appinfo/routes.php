@@ -45,6 +45,11 @@ return [
 			'name' => 'users#create',
 			'url' => '/users',
 			'verb' => 'PUT'
+		],
+		[
+			'name' => 'users#list',
+			'url' => '/users',
+			'verb' => 'GET'
 		]
 	],
 ];

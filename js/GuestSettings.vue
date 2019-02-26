@@ -36,15 +36,19 @@
 		<div v-if="!loaded">
 			<div class="loading"/>
 		</div>
+		<guest-list/>
 	</div>
 </template>
 
 <script>
+	import deepEqual from 'deep-equal';
+
 	export default {
 		name: 'guest-settings',
 		data () {
 			return {
 				loaded: false,
+				enable_save: false,
 				config: {
 					useWhitelist: false,
 					allowExternalStorage: false,
@@ -58,13 +62,14 @@
 				$.get(OC.generateUrl('apps/guests/config'))
 					.then(data => {
 						this.config = data;
+						this.loaded = true;
 						this.$nextTick(() => {
-							this.loaded = true;
+							this.enable_save = true;
 						});
 					});
 			},
 			saveConfig () {
-				if (!this.loaded) {
+				if (!this.loaded || !this.enable_save) {
 					return;
 				}
 				OC.msg.startSaving(this.$refs.msg);

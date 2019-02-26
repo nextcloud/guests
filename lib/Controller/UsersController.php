@@ -59,8 +59,6 @@ class UsersController extends Controller {
 	}
 
 	/**
-	 *
-	 * @NoCSRFRequired
 	 * @NoAdminRequired
 	 *
 	 * @param $email
@@ -128,4 +126,9 @@ class UsersController extends Controller {
 		);
 	}
 
+	public function list() {
+		$guests = $this->guestManager->getGuestsInfo();
+
+		return new DataResponse($guests);
+	}
 }
