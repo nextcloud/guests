@@ -11,7 +11,7 @@ OC.L10N.register(
     "Guests" : "Gjester",
     "Error" : "Feil",
     "Guest users are grouped under a virtual group in the user manager" : "Gjestebrukere grupperes under en virtuell gruppe i brukeradministrasjon",
-    "Limit guest access to an app whitelist" : "Begrens gjestetilgang til en liste av tillatte programmer",
+    "Limit guest access to an app whitelist" : "Begrens gjestetilgang til en liste av tillatte apper",
     "Reset" : "Tilbakestill",
     "Saved" : "Lagret"
 },
