@@ -131,4 +131,10 @@ class UsersController extends Controller {
 
 		return new DataResponse($guests);
 	}
+
+	public function get(string $userId) {
+		$guests = $this->guestManager->getGuestInfo($userId);
+
+		return new DataResponse($guests);
+	}
 }

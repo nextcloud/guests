@@ -14,14 +14,25 @@
 					<th :class="getSortClass('created_by')" @click="setSort('created_by')">
 						{{ t('guests', 'Invited by') }}
 					</th>
+					<th :class="getSortClass('share_count')" @click="setSort('share_count')">
+						{{ t('guests', 'Received shares') }}
+					</th>
 				</tr>
 				</thead>
 				<tbody>
-				<tr v-for="guest in guests">
-					<td class="email">{{guest.email}}</td>
-					<td class="display_name">{{guest.display_name}}</td>
-					<td class="created_by">{{guest.created_by}}</td>
-				</tr>
+				<template v-for="guest in guests">
+					<tr @click="toggleDetails(guest.email)">
+						<td class="email">{{guest.email}}</td>
+						<td class="display_name">{{guest.display_name}}</td>
+						<td class="created_by">{{guest.created_by}}</td>
+						<td class="share_count">{{guest.share_count}}</td>
+					</tr>
+					<tr v-if="guest.email === details_for">
+						<td colspan="4">
+							<guest-details :guest-id="guest.email"/>
+						</td>
+					</tr>
+				</template>
 				</tbody>
 			</table>
 			<div v-if="!guests.length">
@@ -39,6 +50,7 @@
 		name: 'guest-list',
 		data () {
 			return {
+				details_for: '',
 				sort: 'email',
 				sort_direction: 1,
 				loaded: false,
@@ -69,6 +81,9 @@
 					return (a[this.sort]).localeCompare(b[this.sort]) * this.sort_direction;
 				});
 			},
+			toggleDetails (email) {
+				this.details_for = email;
+			}
 		},
 		beforeMount () {
 			this.loadGuests();
@@ -99,6 +114,10 @@
 				content: '▲';
 				position: absolute;
 				right: 10px;
+			}
+
+			.share_count {
+				text-align: right;
 			}
 
 			th {

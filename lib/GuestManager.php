@@ -21,13 +21,18 @@
 
 namespace OCA\Guests;
 
+use OC\Share\Share;
+use OCP\DB\QueryBuilder\IQueryBuilder;
 use OCP\IConfig;
+use OCP\IDBConnection;
 use OCP\IGroupManager;
 use OCP\IUser;
 use OCP\IUserBackend;
 use OCP\IUserManager;
 use OCP\Security\ICrypto;
 use OCP\Security\ISecureRandom;
+use OCP\Share\IManager;
+use OCP\Share\IShare;
 
 class GuestManager {
 	/** @var IConfig */
@@ -45,12 +50,26 @@ class GuestManager {
 	/** @var IGroupManager */
 	private $groupManager;
 
-	public function __construct(IConfig $config, UserBackend $userBackend, ISecureRandom $secureRandom, ICrypto $crypto, IGroupManager $groupManager) {
+	private $shareManager;
+
+	private $connection;
+
+	public function __construct(
+		IConfig $config,
+		UserBackend $userBackend,
+		ISecureRandom $secureRandom,
+		ICrypto $crypto,
+		IGroupManager $groupManager,
+		IManager $shareManager,
+		IDBConnection $connection
+	) {
 		$this->config = $config;
 		$this->userBackend = $userBackend;
 		$this->secureRandom = $secureRandom;
 		$this->crypto = $crypto;
 		$this->groupManager = $groupManager;
+		$this->shareManager = $shareManager;
+		$this->connection = $connection;
 	}
 
 	/**
@@ -107,14 +126,44 @@ class GuestManager {
 	public function getGuestsInfo() {
 		$displayNames = $this->userBackend->getDisplayNames();
 		$guests = array_keys($displayNames);
+		$shareCounts = $this->getShareCountForUsers($guests);
 		$createdBy = $this->config->getUserValueForUsers('guests', 'created_by', $guests);
-		return array_map(function ($uid) use ($createdBy, $displayNames) {
+		return array_map(function ($uid) use ($createdBy, $displayNames, $shareCounts) {
 			return [
 				'email' => $uid,
 				'display_name' => $displayNames[$uid],
 				'created_by' => $createdBy[$uid],
+				'share_count' => $shareCounts[$uid]
 			];
 		}, $guests);
+	}
+
+	private function getShareCountForUsers(array $guests) {
+		$query = $this->connection->getQueryBuilder();
+		$query->select('share_with', $query->func()->count('*', 'count'))
+			->from('share')
+			->where($query->expr()->in('share_with', $query->createNamedParameter($guests, IQueryBuilder::PARAM_STR_ARRAY)))
+			->groupBy('share_with');
+		return $query->execute()->fetchAll(\PDO::FETCH_KEY_PAIR);
+	}
+
+	public function getGuestInfo($userId) {
+		$shares = array_merge(
+			$this->shareManager->getSharedWith($userId, Share::SHARE_TYPE_USER, null, -1, 0),
+			$this->shareManager->getSharedWith($userId, Share::SHARE_TYPE_GROUP, null, -1, 0),
+			$this->shareManager->getSharedWith($userId, Share::SHARE_TYPE_CIRCLE, null, -1, 0),
+			$this->shareManager->getSharedWith($userId, Share::SHARE_TYPE_GUEST, null, -1, 0),
+			$this->shareManager->getSharedWith($userId, Share::SHARE_TYPE_ROOM, null, -1, 0)
+		);
+		return [
+			'shares' => array_map(function (IShare $share) {
+				return [
+					'shared_by' => $share->getSharedBy(),
+					'mime_type' => $share->getNodeCacheEntry()->getMimeType(),
+					'name' => $share->getNodeCacheEntry()->getName()
+				];
+			}, $shares)
+		];
 	}
 
 	public function isReadOnlyUser(IUser $user) {

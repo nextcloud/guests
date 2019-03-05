@@ -50,6 +50,11 @@ return [
 			'name' => 'users#list',
 			'url' => '/users',
 			'verb' => 'GET'
+		],
+		[
+			'name' => 'users#get',
+			'url' => '/users/{userId}',
+			'verb' => 'GET'
 		]
 	],
 ];
