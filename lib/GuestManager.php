@@ -160,7 +160,8 @@ class GuestManager {
 				return [
 					'shared_by' => $share->getSharedBy(),
 					'mime_type' => $share->getNodeCacheEntry()->getMimeType(),
-					'name' => $share->getNodeCacheEntry()->getName()
+					'name' => $share->getNodeCacheEntry()->getName(),
+					'time' => $share->getShareTime()->getTimestamp()
 				];
 			}, $shares)
 		];

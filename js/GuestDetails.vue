@@ -4,20 +4,24 @@
 			<table>
 				<thead>
 				<tr>
-					<th>
+					<th colspan="2">
 						{{ t('guests', 'Name') }}
 					</th>
 					<th>
 						{{ t('guests', 'Shared By') }}
 					</th>
+					<th>
+						{{ t('guests', 'Shared At') }}
+					</th>
 				</tr>
 				</thead>
 				<tbody>
 				<tr v-for="share in details[activeUser].shares">
-					<td class="name" :style="{ backgroundImage: 'url(' + getMimeIcon(share.mime_type) + ')'}">
+					<td colspan="2" class="name" :style="{ backgroundImage: 'url(' + getMimeIcon(share.mime_type) + ')'}">
 						{{share.name}}
 					</td>
 					<td class="shared_by">{{share.shared_by}}</td>
+					<td class="shared_at">{{formatTime(share.time)}}</td>
 				</tr>
 				</tbody>
 			</table>
@@ -55,6 +59,9 @@
 			},
 			getMimeIcon(mime) {
 				return OC.MimeType.getIconUrl(mime);
+			},
+			formatTime(time) {
+				return OC.Util.formatDate(new Date(time));
 			}
 		},
 		beforeMount () {
@@ -74,15 +81,17 @@
 			height: 50px;
 		}
 
-		table tr th.name {
-			padding-left: 68px;
-		}
+		table tr {
+			th.name {
+				padding-left: 68px;
+			}
 
-		table tr td.name {
-			background-repeat: no-repeat;
-			background-size: 32px;
-			padding-left: 68px;
-			background-position: 33px 3px;
+			td.name {
+				background-repeat: no-repeat;
+				background-size: 32px;
+				padding-left: 68px;
+				background-position: 33px 3px;
+			}
 		}
 	}
 </style>

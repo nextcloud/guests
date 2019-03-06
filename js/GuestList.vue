@@ -20,14 +20,14 @@
 				</tr>
 				</thead>
 				<tbody>
-				<template v-for="guest in guests">
-					<tr @click="toggleDetails(guest.email)">
+				<template v-for="guest in guests" >
+					<tr @click="toggleDetails(guest.email)" :class="guest.email === details_for ? 'active': ''">
 						<td class="email">{{guest.email}}</td>
 						<td class="display_name">{{guest.display_name}}</td>
 						<td class="created_by">{{guest.created_by}}</td>
 						<td class="share_count">{{guest.share_count}}</td>
 					</tr>
-					<tr v-if="guest.email === details_for">
+					<tr class="details" v-if="guest.email === details_for">
 						<td colspan="4">
 							<guest-details :guest-id="guest.email"/>
 						</td>
@@ -102,6 +102,10 @@
 
 			tr {
 				height: 32px;
+
+				&.active, &.details {
+					background-color: var(--color-background-dark);
+				}
 			}
 
 			.sort-desc::after {
@@ -114,10 +118,6 @@
 				content: '▲';
 				position: absolute;
 				right: 10px;
-			}
-
-			.share_count {
-				text-align: right;
 			}
 
 			th {
@@ -137,6 +137,7 @@
 
 				&:last-child {
 					padding-right: 30px;
+					text-align: right;
 				}
 
 				padding: 10px;
