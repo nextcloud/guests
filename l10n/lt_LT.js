@@ -1,6 +1,7 @@
 OC.L10N.register(
     "guests",
     {
+    "Create guest account for {searchTerm}" : "Sukurti svečio paskyrą, skirtą {searchTerm}",
     "Access to this resource is forbidden for guests." : "Prieiga prie šio ištekliaus svečiams yra uždrausta.",
     "Invalid mail address" : "Neteisingas pašto adresas",
     "A user with that email already exists." : "Naudotojas su tokiu el. paštu jau yra.",
@@ -8,9 +9,15 @@ OC.L10N.register(
     "User successfully created" : "Naudotojas sėkmingai sukurtas",
     "%s shared »%s« with you" : "%s pradėjo bendrinti su jumis »%s«",
     "Hey there," : "Sveiki,",
+    "You can access the shared file by activating your guest account." : "Galite gauti prieigą prie bendrinamo failo, aktyvuodami savo svečio paskyrą.",
+    "The share will expire at %s." : "Viešinys galioja iki %s.",
+    "Activate account" : "Aktyvuoti paskyrą",
+    "View share" : "Rodyti viešinį",
     "%s via %s" : "%s per %s",
     "Couldn't send reset email. Please contact your administrator." : "Nepavyko išsiųsti atstatymo laiško, susisiekite su savo administratoriumi.",
     "Guests" : "Svečiai",
+    "Create guest account for {fullName}" : "Sukurti svečio paskyrą, skirtą {fullName}",
+    "Error while sharing\n" : "Klaida bendrinant\n",
     "Error" : "Klaida",
     "Invited by" : "Pakvietė",
     "No guest accounts created" : "Nesukurta jokių svečio paskyrų",
