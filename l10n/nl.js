@@ -30,6 +30,7 @@ OC.L10N.register(
     "Error" : "Fout",
     "Email" : "Email",
     "Invited by" : "Uitgenodigd door",
+    "Received shares" : "Ontvangen shares",
     "No guest accounts created" : "Geen gastaccount aangemaakt",
     "Guest users are grouped under a virtual group in the user manager" : "Gasten worden gegroepeerd in een virtuele groep binnen gebruikersbeheer",
     "Guest users can access mounted external storages" : "Gastgebruikers kunnen aangekoppelde externe opslag benaderen",
