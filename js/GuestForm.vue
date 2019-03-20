@@ -60,7 +60,7 @@
 				// guest data
 				// ----------
 				guest: {
-					fullName: null,
+					fullName: "",
 					username: null,
 					email: null
 				},
