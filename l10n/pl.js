@@ -3,7 +3,7 @@ OC.L10N.register(
     {
     "Create guest account for {searchTerm}" : "Utwórz konto gościa dla {searchTerm}",
     "Access to this resource is forbidden for guests." : "Dostęp do zasobów jest zabroniony dla gości",
-    "Invalid mail address" : "Nieprawidłowy adres email",
+    "Invalid mail address" : "Nieprawidłowy adres e-mail",
     "A user with that email already exists." : "Użytkownik o tym e-mailu już istnieje.",
     "A user with that name already exists." : "Użytkownik z taką nazwą już istnieje.",
     "User successfully created" : "Stworzono nowego użytkownika",
