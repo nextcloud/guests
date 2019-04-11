@@ -7,6 +7,13 @@ to files which are shared with them.
 
 
 Furthermore, the administrator has to whitelist the applications that guests can use.
-By default files_trashbin, files_versions, files_sharing, files_texteditor, activity, firstrunwizard and gallery are allowed.
-
-
+By default the following are allowed:
+* activity
+* files_external
+* files_sharing
+* files_texteditor
+* files_trashbin
+* files_versions
+* firstrunwizard
+* gallery
+* notifications
