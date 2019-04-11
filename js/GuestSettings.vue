@@ -1,6 +1,6 @@
 <template>
 	<div class="section" id="guests">
-		<h2>Guests <span class="msg" ref="msg"></span></h2>
+		<h2>{{ t('guests', 'Guests') }} <span class="msg" ref="msg"></span></h2>
 		<div v-if="loaded">
 			<p>
 				<span class="user-info-label">
