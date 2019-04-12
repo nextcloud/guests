@@ -5,9 +5,9 @@ steps:
   - name: check-app-compatbility
     image: nextcloudci/php5.6:php5.6-3
     environment:
-      - APP_NAME=guests
-      - CORE_BRANCH=master
-      - DB=sqlite
+      APP_NAME: guests
+      CORE_BRANCH: master
+      DB: sqlite
     commands:
       # Pre-setup steps
       - wget https://raw.githubusercontent.com/nextcloud/travis_ci/master/before_install.sh
@@ -34,9 +34,9 @@ steps:
   - name: integration
     image: nextcloudci/php7.0:php7.0-2
     environment:
-      - APP_NAME=guests
-      - CORE_BRANCH=master
-      - DB=sqlite
+      APP_NAME: guests
+      CORE_BRANCH: master
+      DB: sqlite
     commands:
       # Pre-setup steps
       - wget https://raw.githubusercontent.com/nextcloud/travis_ci/master/before_install.sh
