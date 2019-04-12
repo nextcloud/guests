@@ -1,5 +1,5 @@
 kind: pipeline
-name: check-app-compatbility
+name: check-app-compatbility2
 
 steps:
   - name: check-app-compatbility
