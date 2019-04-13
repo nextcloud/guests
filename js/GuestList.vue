@@ -1,6 +1,6 @@
 <template>
 	<div class="section" id="guests-list">
-		<h2>Guests accounts</h2>
+		<h2>{{ t('guests', 'Guests accounts') }}</h2>
 		<div v-if="loaded">
 			<table class="table" v-if="guests.length">
 				<thead>

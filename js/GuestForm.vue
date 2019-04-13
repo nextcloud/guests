@@ -32,7 +32,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="submit" class="button-save">
-						Save and Share
+						{{ t('guests', 'Save and Share') }}
 					</button>
 				</div>
 			</form>
