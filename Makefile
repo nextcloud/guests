@@ -37,7 +37,7 @@ build/appstore/$(package_name).tar.gz: css/app.css dist/index.js
 	tar --exclude-vcs \
 	--exclude=$(appstore_dir) \
 	--exclude=$(project_dir)/node_modules \
-	--exclude=$(project_dir)/webpack \
+	--exclude=$(project_dir)/webpack* \
 	--exclude=$(project_dir)/.gitattributes \
 	--exclude=$(project_dir)/.gitignore \
 	--exclude=$(project_dir)/.travis.yml \
@@ -47,7 +47,10 @@ build/appstore/$(package_name).tar.gz: css/app.css dist/index.js
 	--exclude=$(project_dir)/package.json \
 	--exclude=$(project_dir)/screenshots \
 	--exclude=$(project_dir)/Makefile \
-	--exclude=$(project_dir)/tests\
+	--exclude=$(project_dir)/tests \
+	--exclude=$(project_dir)/build \
 	-cvzf $(appstore_dir)/$(package_name).tar.gz $(project_dir)
-	openssl dgst -sha512 -sign $(cert_dir)/$(app_name).key $(appstore_dir)/$(app_name).tar.gz | openssl base64
+	@if [ -f $(cert_dir)/$(app_name).key ]; then \
+		openssl dgst -sha512 -sign $(cert_dir)/$(app_name).key $(appstore_dir)/$(app_name).tar.gz | openssl base64; \
+	fi
 
