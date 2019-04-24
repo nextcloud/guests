@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
-<info>
+<info xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance"
+	  xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
 	<id>guests</id>
 	<name>Guests</name>
 	<summary>Create guest accounts for easier collaboration</summary>
@@ -13,26 +14,22 @@
 		accounts is whitelisted.
 	</description>
 	<version>1.0.0</version>
-	<licence>AGPL</licence>
+	<licence>agpl</licence>
 	<author>Nextcloud</author>
-	<dependencies>
-		<nextcloud min-version="16" max-version="16" />
-	</dependencies>
-	<category>collaboration</category>
 	<types>
 		<authentication/>
 	</types>
-
+	<category>security</category>
+	<bugs>https://github.com/nextcloud/guests/issues</bugs>
+	<repository>https://github.com/nextcloud/guests/issues</repository>
+	<dependencies>
+		<nextcloud min-version="16" max-version="16" />
+	</dependencies>
 	<commands>
 		<command>OCA\Guests\Command\ListCommand</command>
 	</commands>
-
 	<settings>
 		<admin>OCA\Guests\Settings\Admin</admin>
 		<admin-section>OCA\Guests\Settings\Section</admin-section>
 	</settings>
-
-	<screenshot>https://raw.githubusercontent.com/nextcloud/guests/make-compatible-with-nextcloud/screenshots/dropdown.png</screenshot>
-	<screenshot>https://raw.githubusercontent.com/nextcloud/guests/make-compatible-with-nextcloud/screenshots/dialog.png</screenshot>
-	<screenshot>https://raw.githubusercontent.com/nextcloud/guests/make-compatible-with-nextcloud/screenshots/settings.png</screenshot>
 </info>
