@@ -32,8 +32,7 @@ dist/index.js: node_modules $(jssources)
 appstore: clean package
 
 package: build/appstore/$(package_name).tar.gz
-build/appstore/$(package_name).tar.gz: css/app.css
-	dist/index.js
+build/appstore/$(package_name).tar.gz: css/app.css dist/index.js
 	mkdir -p $(appstore_dir)
 	tar --exclude-vcs \
 	--exclude=$(appstore_dir) \
@@ -48,6 +47,7 @@ build/appstore/$(package_name).tar.gz: css/app.css
 	--exclude=$(project_dir)/package.json \
 	--exclude=$(project_dir)/screenshots \
 	--exclude=$(project_dir)/Makefile \
+	--exclude=$(project_dir)/tests\
 	-cvzf $(appstore_dir)/$(package_name).tar.gz $(project_dir)
 	openssl dgst -sha512 -sign $(cert_dir)/$(app_name).key $(appstore_dir)/$(app_name).tar.gz | openssl base64
 
