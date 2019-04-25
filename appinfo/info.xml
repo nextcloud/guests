@@ -4,15 +4,11 @@
 	<id>guests</id>
 	<name>Guests</name>
 	<summary>Create guest accounts for easier collaboration</summary>
-	<description>
-		Allows for better collaboration with external users by allowing users to create guests account.
+	<description><![CDATA[👥 Allows for better collaboration with external users by allowing users to create guests account.
 
-		Guests accounts can be created from the share menu by entering either the recipients email or name and choosing "create guest account",
-		once the share is created the guest user will receive an email notification about the mail with a link to set their password.
+Guests accounts can be created from the share menu by entering either the recipients email or name and choosing "create guest account", once the share is created the guest user will receive an email notification about the mail with a link to set their password.
 
-		Guests users can only access files shared to them and can't create any files outside of shares, additionally, the apps accessible to guest
-		accounts is whitelisted.
-	</description>
+Guests users can only access files shared to them and can't create any files outside of shares, additionally, the apps accessible to guest accounts is whitelisted.]]></description>
 	<version>1.0.0</version>
 	<licence>agpl</licence>
 	<author>Nextcloud</author>
@@ -22,6 +18,9 @@
 	<category>security</category>
 	<bugs>https://github.com/nextcloud/guests/issues</bugs>
 	<repository>https://github.com/nextcloud/guests/issues</repository>
+	<screenshot>https://github.com/nextcloud/guests/raw/master/screenshots/dialog.png</screenshot>
+	<screenshot>https://raw.githubusercontent.com/nextcloud/guests/master/screenshots/settings.png</screenshot>
+	<screenshot>https://raw.githubusercontent.com/nextcloud/guests/master/screenshots/dropdown.png</screenshot>
 	<dependencies>
 		<nextcloud min-version="16" max-version="16" />
 	</dependencies>
