@@ -1,6 +1,6 @@
 language: php
 php:
-  - 7.0
+  - 7.1
 
 sudo: required
 dist: trusty
@@ -18,7 +18,7 @@ cache:
 
 env:
   global:
-    - CORE_BRANCH=master
+    - CORE_BRANCH=stable16
     - APP_NAME=guests
   matrix:
     - DB=sqlite
@@ -28,13 +28,13 @@ branches:
     - master
 
 before_install:
-  - wget https://raw.githubusercontent.com/owncloud/administration/master/travis-ci/before_install.sh
+  - wget https://raw.githubusercontent.com/nextcloud/travis_ci/master/before_install.sh
   - bash ./before_install.sh $APP_NAME $CORE_BRANCH $DB
+  - cd ../server
   - docker pull mailhog/mailhog
   - docker run -d -i -p 8025:8025 -p 1025:1025 -t mailhog/mailhog
 
   # Add some output debugging information
-  - cd ../core
   - ./occ check
   - ./occ status
   - ./occ app:list
