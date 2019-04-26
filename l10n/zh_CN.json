@@ -19,7 +19,6 @@
     "You can view the share by logging in with %s." : "您可使用%s 登录并查看共享文件。",
     "Guests" : "访客",
     "Create guest accounts for easier collaboration" : "创建访客账户进行轻松协作",
-    "Allows for better collaboration with external users by allowing users to create guests account.\n\n\t\tGuests accounts can be created from the share menu by entering either the recipients email or name and choosing \"create guest account\",\n\t\tonce the share is created the guest user will receive an email notification about the mail with a link to set their password.\n\n\t\tGuests users can only access files shared to them and can't create any files outside of shares, additionally, the apps accessible to guest\n\t\taccounts is whitelisted." : "为更好地外部协作，可允许用户创建访客账户。\n\n\t\t访客账号可在共享菜单中通过输入接收人电子邮箱或姓名，并选择“创建访客账户”创建。\n\t\t创建共享后，访客用户将收到电子邮件通知，内含设置密码的链接。\n\n\t\t访客用户仅可访问共享给他们的邮件，且不能在共享之外创建文件，另外，应用程序对访客可用，\n\t\t账户在白名单中。",
     "Name" : "姓名",
     "Shared By" : "共享人",
     "Shared At" : "共享于",

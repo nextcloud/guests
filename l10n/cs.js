@@ -21,7 +21,6 @@ OC.L10N.register(
     "You can view the share by logging in with %s." : "Sdílení je možné si prohlížet přihlášením se pomocí %s.",
     "Guests" : "Hosté",
     "Create guest accounts for easier collaboration" : "Vytvořit účty hostů pro snazší spolupráci",
-    "Allows for better collaboration with external users by allowing users to create guests account.\n\n\t\tGuests accounts can be created from the share menu by entering either the recipients email or name and choosing \"create guest account\",\n\t\tonce the share is created the guest user will receive an email notification about the mail with a link to set their password.\n\n\t\tGuests users can only access files shared to them and can't create any files outside of shares, additionally, the apps accessible to guest\n\t\taccounts is whitelisted." : "Umožňuje lepší spolupráci s uživateli zvenčí tím, že si mohou vytvářet účet hosta.\n\n\t\tÚčty hostů je možné vytvářet z nabídky sdílení zadáním buď e-mailu příjemce nebo jména a volbou „vytvořit účet hosta\",\n\t\tjakmile je sdílení vytvořeno, uživatel-host o tom obdrží oznámení e-mailem společně s odkazem pro nastavení svého hesla.\n\n\t\tUživatelé-hosté mohou přistupovat pouze k souborům, které jsou jim nasdíleny a nemohou vytvářet žádné soubory mimo sdílení. Dále, aplikace přístupné účtům hostů jsou\n\t\tjsou řízeny seznamem povolených.",
     "Name" : "Jméno",
     "Shared By" : "Sdílí",
     "Shared At" : "Sdíleno v",

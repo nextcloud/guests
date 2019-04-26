@@ -21,7 +21,6 @@ OC.L10N.register(
     "You can view the share by logging in with %s." : "Можете видети дељење пријављивањем са %s.",
     "Guests" : "Гости",
     "Create guest accounts for easier collaboration" : "Направи гостински налог за лакшу сарадњу",
-    "Allows for better collaboration with external users by allowing users to create guests account.\n\n\t\tGuests accounts can be created from the share menu by entering either the recipients email or name and choosing \"create guest account\",\n\t\tonce the share is created the guest user will receive an email notification about the mail with a link to set their password.\n\n\t\tGuests users can only access files shared to them and can't create any files outside of shares, additionally, the apps accessible to guest\n\t\taccounts is whitelisted." : "Боља сарадња са спољашњим корисницима тако што им се дозвољава да направе гостински налог.\n\n\t\tГостински налог се може креирати из менија дељења тако што се унесе адреса е-поште или име примаоца и одабирањем „направи гостински налог“,\n\t\tа када се дељење направи, потенцијални гост ће добити обавештење на мејл са линком да постави лозинку.\n\n\t\tГостински корисници могу само да приступају фајловима који су дељени са њима и не могу да праве налоге ван тих дељења,\n\t\tа само омогућене апликације су доступне гостима.",
     "Name" : "Име",
     "Shared By" : "Поделио",
     "Shared At" : "Подељено у",

@@ -19,7 +19,6 @@
     "You can view the share by logging in with %s." : "Je kunt de share bekijken door in te loggen met %s.",
     "Guests" : "Gasten",
     "Create guest accounts for easier collaboration" : "Maak gastaccount voor makkelijker samenwerken",
-    "Allows for better collaboration with external users by allowing users to create guests account.\n\n\t\tGuests accounts can be created from the share menu by entering either the recipients email or name and choosing \"create guest account\",\n\t\tonce the share is created the guest user will receive an email notification about the mail with a link to set their password.\n\n\t\tGuests users can only access files shared to them and can't create any files outside of shares, additionally, the apps accessible to guest\n\t\taccounts is whitelisted." : "Maakt samenwerking met externe personen mogelijk door gebruikers gastaccounts te laten aanmaken.\n\n\t\tGastaccounts kunnen worden aangemaakt vanaf het deelmenu door ofwel het e-mailadres van de ontvanger op te geven of de naam en dan \"Creëren gastaccount\" te selecteren,\n\t\tAls de share is gecreëerd, zal de gastgebruiker een e-mailbericht ontvangen met een link om het wachtwoord in te stellen.\n\n\t\tGastgebruikers kunnen alleen de met hen gedeelde bestanden benaderen en daarbuiten geen bestanden creëren, daarnaast zijn de app die beschikbaar zijn voor \n\t\tgastaccounts op de whitelisted geplaatst.",
     "Name" : "Naam",
     "Shared By" : "Gedeeld door",
     "Shared At" : "Gedeeld om",

@@ -21,7 +21,6 @@ OC.L10N.register(
     "You can view the share by logging in with %s." : "Puedes compartir el recurso compartido entrando con %s.",
     "Guests" : "Invitados",
     "Create guest accounts for easier collaboration" : "Crea cuentas de invitado para una colaboración más sencilla",
-    "Allows for better collaboration with external users by allowing users to create guests account.\n\n\t\tGuests accounts can be created from the share menu by entering either the recipients email or name and choosing \"create guest account\",\n\t\tonce the share is created the guest user will receive an email notification about the mail with a link to set their password.\n\n\t\tGuests users can only access files shared to them and can't create any files outside of shares, additionally, the apps accessible to guest\n\t\taccounts is whitelisted." : "Permite una mejor colaboración con usuarios externos permitiendo a los usuarios crear cuentas de invitados.\n\n\t\tLas cuentas de invitados se pueden crear desde el menú de cmopartir introduciendo el correo de los receptores o el nombre y escogiendo \"crear cuenta de invitado\",\n\tuna vez se crea el recurso compartido, el usuario invitado recibirá una notificación por correo con un enlace para crear su contraseña.\n\tLos usuarios invitados solo pueden acceder a los archivos compartidos con ellos y no pueden crear ningún archivo fuera de estos. Además, las apps accesibles a las cuentas de usuarios se introducen en la lista blanca.",
     "Name" : "Nombre",
     "Shared By" : "Compartido por",
     "Shared At" : "Compartido en",

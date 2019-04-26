@@ -21,7 +21,6 @@ OC.L10N.register(
     "You can view the share by logging in with %s." : "%s oturumu açarak paylaşılan dosyayı görebilirsiniz.",
     "Guests" : "Konuklar",
     "Create guest accounts for easier collaboration" : "Daha kolay iş birliği yapmak için konuk hesapları aç",
-    "Allows for better collaboration with external users by allowing users to create guests account.\n\n\t\tGuests accounts can be created from the share menu by entering either the recipients email or name and choosing \"create guest account\",\n\t\tonce the share is created the guest user will receive an email notification about the mail with a link to set their password.\n\n\t\tGuests users can only access files shared to them and can't create any files outside of shares, additionally, the apps accessible to guest\n\t\taccounts is whitelisted." : "Dış kullanıcıların konuk hesabı açmasını sağlayarak daha iyi iş birliği yapılmasını sağlar.\n\n\t\tKonuk hesapları, paylaş menüsünden alıcının e-posta adresini ya da adını yazıp \"konuk hesabı aç\" üzerine tıklayarak açılabilir,\n\t\tPaylaşım oluşturulduktan sonra konuk kullanıcıya bir e-posta bildirimi gönderilerek posta içindeki bağlantıyı kullanarak parolasını ayarlaması istenir.\n\n\t\tKonuk kullanıcılar yalnız kendileri ile paylaşılan dosyalara erişebilir ve paylaşılan klasörler dışında herhangi bir dosya oluşturamaz. Ek olarak konuk hesabı konuklar için\n\t\tbeyaz listeye alınmış uygulamalara da erişebilir.",
     "Name" : "Ad",
     "Shared By" : "Paylaşan",
     "Shared At" : "Paylaşılan",
