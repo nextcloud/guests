@@ -21,6 +21,7 @@ OC.L10N.register(
     "You can view the share by logging in with %s." : "Vous pouvez afficher le partage en vous connectant avec %s.",
     "Guests" : "Invités",
     "Create guest accounts for easier collaboration" : "Créez des compte invités pour faciliter la collaboration",
+    "👥 Allows for better collaboration with external users by allowing users to create guests account.\n\nGuests accounts can be created from the share menu by entering either the recipients email or name and choosing \"create guest account\", once the share is created the guest user will receive an email notification about the mail with a link to set their password.\n\nGuests users can only access files shared to them and can't create any files outside of shares, additionally, the apps accessible to guest accounts is whitelisted." : "Permet une meilleure collaboration avec des utilisateurs externes en autorisant la création de comptes invité.\n\nLes comptes invité peuvent être créés à partir du menu de partage en saisissant l'adresse e-mail ou le nom des destinataires puis en choisissant \"Créer un compte invité\". Une fois le partage créé l'utilisateur invité recevra un e-mail contenant un lien lui permettant de définir son mot de passe.\n\nLes utilisateurs invité peuvent accéder aux fichiers partagés avec eux et ne peuvent pas créer de fichiers en-dehors des répertoires partagés . De plus, les applications accessibles par les comptes invité sont indiquées.",
     "Name" : "Nom",
     "Shared By" : "Partagé par",
     "Shared At" : "Partagé à",

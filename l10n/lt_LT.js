@@ -27,6 +27,7 @@ OC.L10N.register(
     "Received shares" : "Gauti viešiniai",
     "No guest accounts created" : "Nesukurta jokių svečio paskyrų",
     "Guest users are grouped under a virtual group in the user manager" : "Svečio naudotojai yra suskirstyti į virtualią grupę naudotojo administravimo vadove",
+    "Guest users can access mounted external storages" : "Svečio naudotojai gali gauti prieigą prie prijungtų išorinių saugyklų",
     "Limit guest access to an app whitelist" : "Ribota svečio prieiga prie programėlių sąrašo",
     "Reset" : "Atstatyti",
     "Saved" : "Įrašyta"
