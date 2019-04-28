@@ -21,7 +21,6 @@ OC.L10N.register(
     "You can view the share by logging in with %s." : "Podeu veure la compartició iniciant la sessió amb %s.",
     "Guests" : "Convidats",
     "Create guest accounts for easier collaboration" : "Crea comptes de convidats per facilitar la col·laboració",
-    "👥 Allows for better collaboration with external users by allowing users to create guests account.\n\nGuests accounts can be created from the share menu by entering either the recipients email or name and choosing \"create guest account\", once the share is created the guest user will receive an email notification about the mail with a link to set their password.\n\nGuests users can only access files shared to them and can't create any files outside of shares, additionally, the apps accessible to guest accounts is whitelisted." : "👥 Permet una millor col·laboració amb usuaris externs permetent als usuaris crear un compte de convidats.\n\nEls comptes dels convidats es poden crear des del menú de participació introduint el correu electrònic del destinatari o seleccionant \"crea un compte de convidat\". Un cop creat el recurs, l’usuari convidat rebrà una notificació per correu electrònic amb un enllaç per establir la seva contrasenya.\n\nEls usuaris convidats només poden accedir a fitxers compartits i no poden crear fitxers fora de les comparticions, a més, les aplicacions accessibles als comptes dels convidats són a la llista blanca.",
     "Name" : "Nom",
     "Shared By" : "Compartit per",
     "Shared At" : "Compartit a",
