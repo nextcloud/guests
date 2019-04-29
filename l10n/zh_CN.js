@@ -21,6 +21,7 @@ OC.L10N.register(
     "You can view the share by logging in with %s." : "您可使用%s 登录并查看共享文件。",
     "Guests" : "访客",
     "Create guest accounts for easier collaboration" : "创建访客账户进行轻松协作",
+    "👥 Allows for better collaboration with external users by allowing users to create guests account.\n\nGuests accounts can be created from the share menu by entering either the recipients email or name and choosing \"create guest account\", once the share is created the guest user will receive an email notification about the mail with a link to set their password.\n\nGuests users can only access files shared to them and can't create any files outside of shares, additionally, the apps accessible to guest accounts are whitelisted." : "👥 允许用户创建访客账号以更好地与外部用户进行协作\n\n访客账号可在共享菜单中通过输入接收人电子邮箱或姓名，并选择“创建访客账户”创建。创建共享后，访客用户将收到电子邮件通知，内含设置密码的链接。\n\n访客用户仅可访问共享给他们的文件，且不能在共享之外创建文件，另外，访客账号可以访问的应用将被列入白名单。",
     "Name" : "姓名",
     "Shared By" : "共享人",
     "Shared At" : "共享于",
