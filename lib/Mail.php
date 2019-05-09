@@ -56,6 +56,8 @@ class Mail {
 	/** @var IL10N */
 	private $l10n;
 
+	private $userManager;
+
 	/** @var  IURLGenerator */
 	private $urlGenerator;
 
