@@ -2,8 +2,6 @@
 
 mkdir -p output
 
-composer install
-
 NC_PATH=../../../../
 CORE_INT_TESTS_PATH=build/integration/
 
@@ -44,7 +42,7 @@ $OCC config:system:set csrf.disabled --value="true"
 $OCC app:enable files_external
 $OCC app:enable guests
 
-vendor/bin/behat --strict -f junit -f pretty $SCENARIO_TO_RUN
+../vendor/bin/behat --strict -f junit -f pretty $SCENARIO_TO_RUN
 RESULT=$?
 
 kill $PHPPID

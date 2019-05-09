@@ -39,7 +39,12 @@ before_install:
   - ./occ status
   - ./occ app:list
 
+  - cd apps/$APP_NAME/tests
+  - composer install
+
 script:
-  - cd apps/$APP_NAME/tests/integration
+  - vendor/bin/parallel-lint --exclude app --exclude vendor .
+
+  - cd integration
   - ./run.sh
 
