@@ -147,13 +147,15 @@ class Hooks {
 
 				$decryptedToken = $this->crypto->decrypt($passwordToken, $targetUser->getEMailAddress() . $this->config->getSystemValue('secret'));
 				list(, $token) = explode(':', $decryptedToken);
+				$lang = $this->config->getUserValue($targetUser->getUID(), 'core', 'lang', '');
 				// send invitation
 				$this->mail->sendGuestInviteMail(
 					$uid,
 					$shareWith,
 					$share->getNodeType(),
 					$share->getNodeId(),
-					$token
+					$token,
+					$lang
 				);
 				$share->setMailSend(false);
 			}

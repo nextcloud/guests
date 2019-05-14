@@ -29,6 +29,12 @@
 								:class="{ _error : error.email }">
 						<span v-if="error.email">{{error.email}}</span>
 					</div>
+					<div class="form-lang">
+						<label class="form-label" for="app-guests-input-lang">
+							Language:
+						</label>
+						<LanguageSelect v-model="guest.language"/>
+					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="submit" class="button-save">
@@ -62,7 +68,8 @@
 				guest: {
 					fullName: "",
 					username: null,
-					email: null
+					email: null,
+					language: "",
 				},
 
 				error: {
@@ -120,7 +127,8 @@
 					dataType: 'text',
 					data: {
 						displayName: this.guest.fullName,
-						email: this.guest.email
+						email: this.guest.email,
+						language: this.guest.language
 					}
 				};
 

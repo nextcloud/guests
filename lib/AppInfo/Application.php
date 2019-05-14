@@ -83,6 +83,7 @@ class Application extends App {
 				function () {
 					\OCP\Util::addScript('guests', '../dist/main');
 					\OCP\Util::addStyle('guests', 'app');
+					\OCP\Util::addStyle('guests', '../dist/main');
 				}
 			);
 		}

@@ -119,11 +119,11 @@
 		.whitelist {
 			display: flex;
 
-			.dropdown {
+			.v-select {
 				width: calc(100% - 48px);
 				margin-right: 0;
 
-				.dropdown-toggle {
+				.vs__dropdown-toggle {
 					border-top-right-radius: 0;
 					border-bottom-right-radius: 0;
 					border-right: 0;
@@ -132,10 +132,12 @@
 					input {
 						min-height: auto;
 
-						&:hover, &:active, &:focus {
-							border-color: transparent;
-						}
+						border-color: transparent;
 					}
+				}
+
+				.vs__deselect {
+					display:inline-block;
 				}
 			}
 

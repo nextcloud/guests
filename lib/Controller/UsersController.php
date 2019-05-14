@@ -63,9 +63,10 @@ class UsersController extends Controller {
 	 *
 	 * @param $email
 	 * @param $displayName
+	 * @param $language
 	 * @return DataResponse
 	 */
-	public function create($email, $displayName) {
+	public function create($email, $displayName, $language) {
 		$errorMessages = [];
 
 		if ($this->guestManager->isGuest($this->userSession->getUser())) {
@@ -106,7 +107,7 @@ class UsersController extends Controller {
 		}
 
 		try {
-			$this->guestManager->createGuest($this->userSession->getUser(), $username, $email, $displayName);
+			$this->guestManager->createGuest($this->userSession->getUser(), $username, $email, $displayName, $language);
 		} catch (\Exception $e) {
 			return new DataResponse(
 				[

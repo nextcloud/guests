@@ -55,6 +55,11 @@ return [
 			'name' => 'users#get',
 			'url' => '/users/{userId}',
 			'verb' => 'GET'
+		],
+		[
+			'name' => 'settings#languages',
+			'url' => '/config/languages',
+			'verb' => 'GET'
 		]
 	],
 ];

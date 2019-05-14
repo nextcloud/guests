@@ -85,7 +85,7 @@ class GuestManager {
 		return false;
 	}
 
-	public function createGuest(IUser $createdBy, $userId, $email, $displayName = '') {
+	public function createGuest(IUser $createdBy, $userId, $email, $displayName = '', $language = '') {
 		$this->userBackend->createUser(
 			$userId,
 			$this->secureRandom->generate(20)
@@ -96,6 +96,10 @@ class GuestManager {
 
 		if ($displayName) {
 			$this->userBackend->setDisplayName($userId, $displayName);
+		}
+
+		if ($language) {
+			$this->config->setUserValue($userId, 'core', 'lang', $language);
 		}
 
 		$token = $this->secureRandom->generate(
