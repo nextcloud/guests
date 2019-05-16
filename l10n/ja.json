@@ -15,7 +15,6 @@
     "View share" : "シェアを見る",
     "%s via %s" : "%s に %s から",
     "Couldn't send reset email. Please contact your administrator." : "リセットメールを送信できませんでした。管理者に問い合わせてください。",
-    "You can view the share by logging in with %s." : " %s でログインすればシェアを閲覧できます。",
     "Guests" : "ゲスト",
     "Create guest accounts for easier collaboration" : "よりシンプルなコラボレーションのためにゲストアカウントを作成",
     "Name" : "名前",

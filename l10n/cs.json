@@ -16,7 +16,6 @@
     "View share" : "Zobrazit sdílení",
     "%s via %s" : "%s pomocí %s",
     "Couldn't send reset email. Please contact your administrator." : "Nepodařilo se odeslat email pro změnu hesla. Kontaktujte prosím svého administrátora.",
-    "You can view the share by logging in with %s." : "Sdílení je možné si prohlížet přihlášením se pomocí %s.",
     "Guests" : "Hosté",
     "Create guest accounts for easier collaboration" : "Vytvořit účty hostů pro snazší spolupráci",
     "Name" : "Jméno",

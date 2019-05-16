@@ -18,7 +18,6 @@ OC.L10N.register(
     "View share" : "Vidi kunhavon",
     "%s via %s" : "%s per %s",
     "Couldn't send reset email. Please contact your administrator." : "Ne eblas sendi retpoŝton pri restarigo. Bonvolu kontakti vian administranton.",
-    "You can view the share by logging in with %s." : "Vi povas vidi la kunhavon per ensaluto je %s.",
     "Guests" : "Gastoj",
     "Create guest accounts for easier collaboration" : "Krei gastkontojn por pli facila kunlaboro",
     "👥 Allows for better collaboration with external users by allowing users to create guests account.\n\nGuests accounts can be created from the share menu by entering either the recipients email or name and choosing \"create guest account\", once the share is created the guest user will receive an email notification about the mail with a link to set their password.\n\nGuests users can only access files shared to them and can't create any files outside of shares, additionally, the apps accessible to guest accounts are whitelisted." : "Ebligi pli bonan kunlaboron kun eksteraj uzantoj per kreo de gastkontoj.\n\nGastkontoj kreiĝas per la kunhava menuo: vi povas entajpi retpoŝtadreson aŭ nomon kaj elekti „Krei gastkonton“. Kiam la kunhavo kreiĝos, la gasto ricevos retmesaĝon kun ligilo por elekti sian pasvorton.\n\nGastoj povas nur aliri al dosieroj jam kunhavigitaj kun ili, kaj ili ne povas krei dosieron ekster la kunhavoj. Krome, la aplikaĵoj alireblaj de gastoj estas en blankaj listoj.",

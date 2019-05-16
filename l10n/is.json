@@ -16,7 +16,6 @@
     "View share" : "Skoða sameign",
     "%s via %s" : "%s með %s",
     "Couldn't send reset email. Please contact your administrator." : "Gat ekki sent endurstillingu í tölvupósti. Hafðu samband við kerfisstjóra.",
-    "You can view the share by logging in with %s." : "Þú getur skoðað sameignina með því að skrá þig inn með %s.",
     "Guests" : "Gestir",
     "Create guest accounts for easier collaboration" : "Stofnaðu gestaaðganga til að einfalda samstarf",
     "Name" : "Nafn",

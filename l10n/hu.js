@@ -11,7 +11,6 @@ OC.L10N.register(
     "View share" : "Megosztás megnézése",
     "%s via %s" : "%s - %s",
     "Couldn't send reset email. Please contact your administrator." : "Visszaállítási e-mail nem küldhető. Kérjük, lépjen kapcsolatba a rendszergazdával.",
-    "You can view the share by logging in with %s." : "Megnézheted a megosztást, ha %s-ként lépsz be.",
     "Guests" : "Vendégek",
     "Name" : "Név",
     "Shared By" : "Megosztotta",

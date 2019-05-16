@@ -18,7 +18,6 @@ OC.L10N.register(
     "View share" : "Visa delning",
     "%s via %s" : "%s via %s",
     "Couldn't send reset email. Please contact your administrator." : "Kunde inte skicka återställningsmeddelande via e-post. Vänligen kontakta din administratör.",
-    "You can view the share by logging in with %s." : "Du kan se delningen genom att logga in med %s.",
     "Guests" : "Gäster",
     "Create guest accounts for easier collaboration" : "Skapa gästkonton för enklare samarbete",
     "Name" : "Namn",

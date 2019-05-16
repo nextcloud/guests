@@ -18,7 +18,6 @@ OC.L10N.register(
     "View share" : "Wyświetl współdzielenie",
     "%s via %s" : "%s przez %s",
     "Couldn't send reset email. Please contact your administrator." : "Nie mogę wysłać maila resetującego. Skontaktuj się z administratorem.",
-    "You can view the share by logging in with %s." : "Możesz wyświetlić współdzielenie, logując się przy pomocy %s.",
     "Guests" : "Goście",
     "Create guest accounts for easier collaboration" : "Utwórz konta dla gości dla łatwiejszej współpracy",
     "Name" : "Nazwa",
