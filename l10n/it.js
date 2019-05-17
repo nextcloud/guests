@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Create guest account for {searchTerm}" : "Crea account ospite per {searchterm}",
     "Access to this resource is forbidden for guests." : "L'accesso a questa risorsa è proibito per gli ospiti.",
+    "__language_name__" : "Italiano",
     "Invalid mail address" : "Indirizzo email non valido",
     "A user with that email already exists." : "Un utente con quell'indirizzo email esiste già.",
     "A user with that name already exists." : "Un utente con quel nome esiste già.",
@@ -37,6 +38,7 @@ OC.L10N.register(
     "Guest users can access mounted external storages" : "Gli utenti ospite possono accedere alle archiviazioni esterne montate",
     "Limit guest access to an app whitelist" : "Limita l'accesso degli ospiti a una lista bianca dell'applicazione",
     "Reset" : "Ripristina",
-    "Saved" : "Salvato"
+    "Saved" : "Salvato",
+    "Default" : "Predefinita"
 },
 "nplurals=2; plural=(n != 1);");

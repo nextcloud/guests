@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Create guest account for {searchTerm}" : "{searchterm} için konuk hesabı aç",
     "Access to this resource is forbidden for guests." : "Konuklar bu kaynağa erişemesin.",
+    "__language_name__" : "__language_name__",
     "Invalid mail address" : "Geçersiz posta adresi",
     "A user with that email already exists." : "Bu e-posta adresinin kayıtlı olduğu bir kullanıcı hesabı zaten var.",
     "A user with that name already exists." : "Bu isimde bir kullanıcı adı zaten mevcut.",
@@ -37,6 +38,7 @@ OC.L10N.register(
     "Guest users can access mounted external storages" : "Konuk kullanıcılar takılı dış depolama birimlerine erişebilir",
     "Limit guest access to an app whitelist" : "Konuk erişimini bir uygulama beyaz listesi ile sınırlayın",
     "Reset" : "Sıfırla",
-    "Saved" : "Kaydedildi"
+    "Saved" : "Kaydedildi",
+    "Default" : "Varsayılan"
 },
 "nplurals=2; plural=(n > 1);");
