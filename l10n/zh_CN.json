@@ -1,6 +1,7 @@
 { "translations": {
     "Create guest account for {searchTerm}" : "为 {searchTerm} 创建访客账号",
     "Access to this resource is forbidden for guests." : "此资源不可被访客访问",
+    "__language_name__" : "简体中文",
     "Invalid mail address" : "无效的电子邮件地址",
     "A user with that email already exists." : "使用该电子邮件的用户已存在。",
     "A user with that name already exists." : "使用该名称的用户已存在。",
@@ -35,6 +36,7 @@
     "Guest users can access mounted external storages" : "访客可访问挂载的外部储存设备",
     "Limit guest access to an app whitelist" : "限制访客访问应用白名单",
     "Reset" : "重置",
-    "Saved" : "已保存"
+    "Saved" : "已保存",
+    "Default" : "默认"
 },"pluralForm" :"nplurals=1; plural=0;"
 }

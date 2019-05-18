@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Create guest account for {searchTerm}" : "Krei gastkonton por {searchTerm}",
     "Access to this resource is forbidden for guests." : "Aliro al tiu ero ne eblas por gastoj.",
+    "__language_name__" : "Esperanto",
     "Invalid mail address" : "Retpoŝtadreso nevalida",
     "A user with that email already exists." : "Uzanto kun tiu retpoŝtadreso jam ekzistas.",
     "A user with that name already exists." : "Uzanto kun tiu nomo jam ekzistas",
@@ -37,6 +38,7 @@ OC.L10N.register(
     "Guest users can access mounted external storages" : "Gastkontoj povas aliri al eksteraj konservejoj",
     "Limit guest access to an app whitelist" : "Limigi gastan aliron al blanka listo de aplikaĵoj",
     "Reset" : "Restarigi",
-    "Saved" : "Konservita"
+    "Saved" : "Konservita",
+    "Default" : "Defaŭlta"
 },
 "nplurals=2; plural=(n != 1);");
