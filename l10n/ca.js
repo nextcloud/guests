@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Create guest account for {searchTerm}" : "Crea un compte de convidat per a {searchTerm}",
     "Access to this resource is forbidden for guests." : "L'accés a aquest recurs està prohibit per als convidats.",
+    "__language_name__" : "Català",
     "Invalid mail address" : "Adreça de correu no vàlida",
     "A user with that email already exists." : "Ja existeix un usuari amb aquesta adreça electrònica.",
     "A user with that name already exists." : "Ja existeix un usuari amb aquest nom.",
@@ -37,6 +38,7 @@ OC.L10N.register(
     "Guest users can access mounted external storages" : "Els usuaris convidats poden accedir a emmagatzematges externs muntats",
     "Limit guest access to an app whitelist" : "Limiteu l'accés de convidat a la llista blanca de l'aplicació",
     "Reset" : "Restableix",
-    "Saved" : "S'ha desat"
+    "Saved" : "S'ha desat",
+    "Default" : "Per defecte"
 },
 "nplurals=2; plural=(n != 1);");
