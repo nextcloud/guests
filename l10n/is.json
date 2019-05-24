@@ -1,6 +1,7 @@
 { "translations": {
     "Create guest account for {searchTerm}" : "Stofnaðu gestaaðgang fyrir {searchTerm}",
     "Access to this resource is forbidden for guests." : "Gestum er bannaður aðgangur að þessum tilföngum.",
+    "__language_name__" : "Íslenska",
     "Invalid mail address" : "Ógilt tölvupóstfang",
     "A user with that email already exists." : "Notandi með þessu tölvupóstfangi er þegar til.",
     "A user with that name already exists." : "Nú þegar til notandi með þetta nafn.",
@@ -18,12 +19,15 @@
     "Couldn't send reset email. Please contact your administrator." : "Gat ekki sent endurstillingu í tölvupósti. Hafðu samband við kerfisstjóra.",
     "Guests" : "Gestir",
     "Create guest accounts for easier collaboration" : "Stofnaðu gestaaðganga til að einfalda samstarf",
+    "👥 Allows for better collaboration with external users by allowing users to create guests account.\n\nGuests accounts can be created from the share menu by entering either the recipients email or name and choosing \"create guest account\", once the share is created the guest user will receive an email notification about the mail with a link to set their password.\n\nGuests users can only access files shared to them and can't create any files outside of shares, additionally, the apps accessible to guest accounts are whitelisted." : "👥 Auðveldar samstarf við utanaðkomandi notendur með því að gera notendum kelift að stofna gestaaðganga.\n\nGestaaðganga er hægt að útbúa með því að fara í deilingarvalmyndina og setja inn annað hvort nafn eða tölvupóstfang viðtakandans og að velja \"útbúa gestaaðgang\", um leið og sameignin er útbúin mun gestanotandinn fá tölvupóst með áminningu um póstinn sem inniheldur tengil til að stilla lykilorðið hans.\n\nGestanotendur hafa einungis aðgang að skrám sem deilt er til þeirra og geta ekki útbúið neinar skrár utan sameignarinnar, auk þess sem þau forrit sem gestir hafa aðgang að eru sett á lista yfir leyfileg forrit.",
     "Name" : "Nafn",
     "Shared By" : "Deilt af",
     "Shared At" : "Deilt á",
     "Create guest account for {fullName}" : "Stofnaðu gestaaðgang fyrir {fullName}",
+    "Save and Share" : "Vista og deila",
     "Error while sharing\n" : "Villa við deilingu\n",
     "Error" : "Villa",
+    "Guests accounts" : "Gestaaðgangar:",
     "Email" : "Tölvupóstur",
     "Invited by" : "Boðið af",
     "Received shares" : "Tók á móti sameignum",
@@ -32,6 +36,7 @@
     "Guest users can access mounted external storages" : "Gestanotendur hafa aðgang að utanáliggjandi tengdum gagnageymslum",
     "Limit guest access to an app whitelist" : "Takmarka aðgang gesta við lista yfir leyfð forrit (whitelist)",
     "Reset" : "Endurstilla",
-    "Saved" : "Vistað"
+    "Saved" : "Vistað",
+    "Default" : "Sjálfgefið"
 },"pluralForm" :"nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);"
 }
