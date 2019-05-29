@@ -9,9 +9,9 @@ export default class ShareDialogPlugin {
 
 		obj.autocompleteHandler = (search, response) => {
 			originalAutocompleteHandler(search, function (suggestions) {
-
 				const searchTerm = search.term.trim();
-				if (lastSearch !== searchTerm) {
+				const exists = suggestions.some(suggestion => suggestion.value.shareType === OC.Share.SHARE_TYPE_USER);
+				if (!exists && lastSearch !== searchTerm) {
 					lastSearch = searchTerm;
 					suggestions.push({
 						label: t('core', 'Create guest account for {searchTerm}', {searchTerm}),
