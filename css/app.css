@@ -6,9 +6,8 @@
   top: 50%;
   transform: translate(-50%, -50%);
   width: 500px;
-  background: white;
+  background: var(--color-main-background);
   padding: 15px;
-  color: #000;
   border-radius: 3px;
   box-shadow: 0 0 7px rgba(77, 77, 77, 0.75);
   font-size: 100%;
