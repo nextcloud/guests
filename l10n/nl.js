@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Create guest account for {searchTerm}" : "Maak gastaccount voor {searchTerm}",
     "Access to this resource is forbidden for guests." : "Toegang tot dit object is verboden voor gasten.",
+    "__language_name__" : "Nederlands",
     "Invalid mail address" : "Ongeldig e-mailadres",
     "A user with that email already exists." : "Er bestaat al een gebruiker met dat e-mailadres.",
     "A user with that name already exists." : "Er bestaat al een gebruiker met die naam.",
