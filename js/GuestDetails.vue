@@ -61,7 +61,7 @@
 				return OC.MimeType.getIconUrl(mime);
 			},
 			formatTime(time) {
-				return OC.Util.formatDate(new Date(time));
+				return OC.Util.formatDate(new Date(time * 1000));
 			}
 		},
 		beforeMount () {
