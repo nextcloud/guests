@@ -19,6 +19,12 @@
  *
  */
 
+// routes are loaded after all apps are setup, thus we can abuse this file to do some delayed setup
+
+use OCA\Guests\AppInfo\Application;
+
+(new Application())->lateSetup();
+
 return [
 	'routes' => [
 		[

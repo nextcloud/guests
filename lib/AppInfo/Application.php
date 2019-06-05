@@ -39,6 +39,10 @@ class Application extends App {
 		$this->setupGuestRestrictions();
 	}
 
+	public function lateSetup() {
+		$this->getRestrictionManager()->lateSetupRestrictions();
+	}
+
 	/**
 	 * @return GuestManager
 	 */

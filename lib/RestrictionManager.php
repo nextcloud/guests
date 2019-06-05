@@ -103,4 +103,10 @@ class RestrictionManager {
 			});
 		}
 	}
+
+	public function lateSetupRestrictions() {
+		if ($this->guestManager->isGuest($this->userSession->getUser())) {
+			$this->server->getContactsManager()->clear();
+		}
+	}
 }

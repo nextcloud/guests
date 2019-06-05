@@ -22,7 +22,7 @@ Guests users can only access files shared to them and can't create any files out
 	<screenshot>https://raw.githubusercontent.com/nextcloud/guests/master/screenshots/settings.png</screenshot>
 	<screenshot>https://raw.githubusercontent.com/nextcloud/guests/master/screenshots/dropdown.png</screenshot>
 	<dependencies>
-		<nextcloud min-version="16" max-version="16" />
+		<nextcloud min-version="16" max-version="17" />
 	</dependencies>
 	<commands>
 		<command>OCA\Guests\Command\ListCommand</command>

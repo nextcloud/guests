@@ -9,7 +9,7 @@ cert_dir=$(HOME)/.nextcloud/certificates
 
 jssources=$(wildcard js/*) $(wildcard js/*/*) $(wildcard css/*/*)  $(wildcard css/*)
 
-all: dist/index.js
+all: dist/index.js css/app.css
 
 .PHONY: watch
 
