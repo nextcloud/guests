@@ -36,6 +36,7 @@ OC.L10N.register(
     "Guest users can access mounted external storages" : "Hosté mohou přistupovat k připojeným externím úložištím",
     "Limit guest access to an app whitelist" : "Omezte přístup hosta do seznamu povolených aplikací",
     "Reset" : "Reset",
-    "Saved" : "Uloženo"
+    "Saved" : "Uloženo",
+    "Default" : "Výchozí"
 },
 "nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;");
