@@ -25,6 +25,7 @@ use OCP\Group\Backend\ABackend;
 use OCP\Group\Backend\ICountUsersBackend;
 use OCP\Group\Backend\IGroupDetailsBackend;
 use OCP\Group\Backend\IHideFromCollaborationBackend;
+use OCP\IUserSession;
 
 /**
  * Provides a virtual (not existing in the database) group for guest users.
@@ -39,10 +40,21 @@ class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetails
 
 	private $groupName;
 
+	private $config;
 
-	public function __construct(GuestManager $guestManager, $groupName = 'guest_app') {
-		$this->groupName = $groupName;
+	private $userSession;
+
+
+	public function __construct(
+		GuestManager $guestManager,
+		Config $config,
+		IUserSession $userSession,
+		string $groupName = 'guest_app'
+	) {
 		$this->guestManager = $guestManager;
+		$this->config = $config;
+		$this->userSession = $userSession;
+		$this->groupName = $groupName;
 	}
 
 	private function getMembers() {
@@ -124,7 +136,11 @@ class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetails
 	 */
 	public function usersInGroup($gid, $search = '', $limit = -1, $offset = 0) {
 		if ($gid === $this->groupName) {
-			return $offset === 0 ? $this->getMembers() : [];
+			if ($this->guestManager->isGuest() && $this->config->hideOtherUsers()) {
+				return [$this->userSession->getUser()->getUID()];
+			} else {
+				return $offset === 0 ? $this->getMembers() : [];
+			}
 		}
 
 		return [];
@@ -132,7 +148,11 @@ class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetails
 
 	public function countUsersInGroup(string $gid, string $search = ''): int {
 		if ($gid === $this->groupName) {
-			return count($this->getMembers());
+			if ($this->guestManager->isGuest() && $this->config->hideOtherUsers()) {
+				return 1;
+			} else {
+				return count($this->getMembers());
+			}
 		} else {
 			return 0;
 		}

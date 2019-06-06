@@ -17,6 +17,19 @@
 					{{ t('guests', 'Guest users can access mounted external storages') }}
 				</label>
 			</p>
+			<p class="hide-users-toggle">
+				<input type="checkbox"
+					   id="hideUsers"
+					   class="checkbox"
+					   @change="saveConfig"
+					   v-model="config.hideUsers"/>
+				<label for="hideUsers">
+					{{ t('guests', 'Hide other users from guests') }}
+				</label>
+			</p>
+			<p class="note" v-if="config.hideUsers">
+				{{ t('guests', 'Guests will still be able to see users from any group they are added to') }}
+			</p>
 			<p class="whitelist-toggle">
 				<input type="checkbox"
 					   id="guestUseWhitelist"
@@ -52,6 +65,7 @@
 				config: {
 					useWhitelist: false,
 					allowExternalStorage: false,
+					hideUsers: false,
 					whitelist: [],
 					whiteListableApps: [],
 				}
@@ -116,6 +130,14 @@
 
 <style>
 	#guests {
+		.note {
+			margin: 5px;
+			padding: 10px;
+			background: var(--color-background-dark);
+			border-radius: var(--border-radius);
+			border: 1px solid var(--color-border);
+		}
+
 		.whitelist {
 			display: flex;
 

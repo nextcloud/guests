@@ -92,10 +92,7 @@ class Application extends App {
 			);
 		}
 
-		$server->getGroupManager()->addBackend(new GroupBackend(
-			$this->getGuestManager(),
-			'guest_app'
-		));
+		$server->getGroupManager()->addBackend($container->query(GroupBackend::class));
 		/** @var Hooks $hooks */
 		$server->getEventDispatcher()->addListener('OCP\Share::postShare', [$this->getHookManager(), 'handlePostShare']);
 	}

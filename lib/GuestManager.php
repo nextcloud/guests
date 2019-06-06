@@ -29,6 +29,7 @@ use OCP\IGroupManager;
 use OCP\IUser;
 use OCP\IUserBackend;
 use OCP\IUserManager;
+use OCP\IUserSession;
 use OCP\Security\ICrypto;
 use OCP\Security\ISecureRandom;
 use OCP\Share\IManager;
@@ -54,6 +55,8 @@ class GuestManager {
 
 	private $connection;
 
+	private $userSession;
+
 	public function __construct(
 		IConfig $config,
 		UserBackend $userBackend,
@@ -61,7 +64,8 @@ class GuestManager {
 		ICrypto $crypto,
 		IGroupManager $groupManager,
 		IManager $shareManager,
-		IDBConnection $connection
+		IDBConnection $connection,
+		IUserSession $userSession
 	) {
 		$this->config = $config;
 		$this->userBackend = $userBackend;
@@ -70,13 +74,18 @@ class GuestManager {
 		$this->groupManager = $groupManager;
 		$this->shareManager = $shareManager;
 		$this->connection = $connection;
+		$this->userSession = $userSession;
 	}
 
 	/**
 	 * @param IUser|string $user
 	 * @return boolean
 	 */
-	public function isGuest($user) {
+	public function isGuest($user = null) {
+		if (is_null($user)) {
+			$user = $this->userSession->getUser();
+			return ($user !== null) && $this->userBackend->userExists($user->getUID());
+		}
 		if (is_string($user)) {
 			return $this->userBackend->userExists($user);
 		} else if ($user instanceof IUser) {
@@ -137,7 +146,7 @@ class GuestManager {
 				'email' => $uid,
 				'display_name' => $displayNames[$uid],
 				'created_by' => $createdBy[$uid],
-				'share_count' => $shareCounts[$uid]
+				'share_count' => $shareCounts[$uid],
 			];
 		}, $guests);
 	}
@@ -165,9 +174,9 @@ class GuestManager {
 					'shared_by' => $share->getSharedBy(),
 					'mime_type' => $share->getNodeCacheEntry()->getMimeType(),
 					'name' => $share->getNodeCacheEntry()->getName(),
-					'time' => $share->getShareTime()->getTimestamp()
+					'time' => $share->getShareTime()->getTimestamp(),
 				];
-			}, $shares)
+			}, $shares),
 		];
 	}
 

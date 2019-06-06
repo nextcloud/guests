@@ -47,33 +47,29 @@ class UserBackend extends ABackend
 	ICheckPasswordBackend,
 	IGetHomeBackend,
 	ICountUsersBackend {
-	/** @var CappedMemoryCache */
+
 	private $cache;
-
-	/** @var EventDispatcher */
 	private $eventDispatcher;
-
-	/** @var IDBConnection */
 	private $dbConn;
-
-	/** @var IConfig */
 	private $config;
-
-	/** @var IHasher */
 	private $hasher;
+	private $allowListing = true;
 
-	/**
-	 * @param EventDispatcher $eventDispatcher
-	 * @param IDBConnection $connection
-	 * @param IConfig $config
-	 * @param IHasher $hasher
-	 */
-	public function __construct(EventDispatcher $eventDispatcher, IDBConnection $connection, IConfig $config, IHasher $hasher) {
+	public function __construct(
+		EventDispatcher $eventDispatcher,
+		IDBConnection $connection,
+		Config $config,
+		IHasher $hasher
+	) {
 		$this->cache = new CappedMemoryCache();
 		$this->eventDispatcher = $eventDispatcher;
 		$this->dbConn = $connection;
 		$this->config = $config;
 		$this->hasher = $hasher;
+	}
+
+	public function setAllowListing(bool $allow) {
+		$this->allowListing = $allow;
 	}
 
 	/**
@@ -206,31 +202,36 @@ class UserBackend extends ABackend
 	 * @return array an array of all displayNames (value) and the corresponding uids (key)
 	 */
 	public function getDisplayNames($search = '', $limit = null, $offset = null) {
-		$query = $this->dbConn->getQueryBuilder();
+		if (!$this->allowListing) {
+			return [];
+		} else {
 
-		$query->select('uid', 'displayname')
-			->from('guests_users', 'u')
-			->leftJoin('u', 'preferences', 'p', $query->expr()->andX(
-				$query->expr()->eq('userid', 'uid'),
-				$query->expr()->eq('appid', $query->expr()->literal('settings')),
-				$query->expr()->eq('configkey', $query->expr()->literal('email')))
-			)
-			// sqlite doesn't like re-using a single named parameter here
-			->where($query->expr()->iLike('uid', $query->createPositionalParameter('%' . $this->dbConn->escapeLikeParameter($search) . '%')))
-			->orWhere($query->expr()->iLike('displayname', $query->createPositionalParameter('%' . $this->dbConn->escapeLikeParameter($search) . '%')))
-			->orWhere($query->expr()->iLike('configvalue', $query->createPositionalParameter('%' . $this->dbConn->escapeLikeParameter($search) . '%')))
-			->orderBy($query->func()->lower('displayname'), 'ASC')
-			->orderBy('uid_lower', 'ASC')
-			->setMaxResults($limit)
-			->setFirstResult($offset);
+			$query = $this->dbConn->getQueryBuilder();
 
-		$result = $query->execute();
-		$displayNames = [];
-		while ($row = $result->fetch()) {
-			$displayNames[(string)$row['uid']] = (string)$row['displayname'];
+			$query->select('uid', 'displayname')
+				->from('guests_users', 'u')
+				->leftJoin('u', 'preferences', 'p', $query->expr()->andX(
+					$query->expr()->eq('userid', 'uid'),
+					$query->expr()->eq('appid', $query->expr()->literal('settings')),
+					$query->expr()->eq('configkey', $query->expr()->literal('email')))
+				)
+				// sqlite doesn't like re-using a single named parameter here
+				->where($query->expr()->iLike('uid', $query->createPositionalParameter('%' . $this->dbConn->escapeLikeParameter($search) . '%')))
+				->orWhere($query->expr()->iLike('displayname', $query->createPositionalParameter('%' . $this->dbConn->escapeLikeParameter($search) . '%')))
+				->orWhere($query->expr()->iLike('configvalue', $query->createPositionalParameter('%' . $this->dbConn->escapeLikeParameter($search) . '%')))
+				->orderBy($query->func()->lower('displayname'), 'ASC')
+				->orderBy('uid_lower', 'ASC')
+				->setMaxResults($limit)
+				->setFirstResult($offset);
+
+			$result = $query->execute();
+			$displayNames = [];
+			while ($row = $result->fetch()) {
+				$displayNames[(string)$row['uid']] = (string)$row['displayname'];
+			}
+
+			return $displayNames;
 		}
-
-		return $displayNames;
 	}
 
 	/**
@@ -348,7 +349,7 @@ class UserBackend extends ABackend
 	 */
 	public function getHome(string $uid) {
 		if ($this->userExists($uid)) {
-			return $this->config->getSystemValue('datadirectory', \OC::$SERVERROOT . '/data') . '/' . $uid;
+			return $this->config->getHome($uid);
 		}
 
 		return false;

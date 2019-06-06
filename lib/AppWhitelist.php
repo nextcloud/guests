@@ -23,7 +23,6 @@ namespace OCA\Guests;
 
 
 use OCP\App\IAppManager;
-use OCP\IConfig;
 use OCP\IL10N;
 use OCP\IRequest;
 use OCP\IURLGenerator;
@@ -36,7 +35,7 @@ use OCP\Template;
  * @package OCA\Guests
  */
 class AppWhitelist {
-	/** @var IConfig */
+	/** @var Config */
 	private $config;
 	/** @var GuestManager */
 	private $guestManager;
@@ -56,13 +55,13 @@ class AppWhitelist {
 	/**
 	 * AppWhitelist constructor.
 	 *
-	 * @param IConfig $config
+	 * @param Config $config
 	 * @param GuestManager $guestManager
 	 * @param IL10N $l10n
 	 * @param IAppManager $appManager
 	 * @param IURLGenerator $urlGenerator
 	 */
-	public function __construct(IConfig $config, GuestManager $guestManager, IL10N $l10n, IAppManager $appManager, IURLGenerator $urlGenerator) {
+	public function __construct(Config $config, GuestManager $guestManager, IL10N $l10n, IAppManager $appManager, IURLGenerator $urlGenerator) {
 		$this->config = $config;
 		$this->guestManager = $guestManager;
 		$this->l10n = $l10n;
@@ -73,11 +72,7 @@ class AppWhitelist {
 	}
 
 	private function isAppWhitelisted($appId) {
-		$whitelist = explode(',', $this->config->getAppValue(
-			'guests',
-			'whitelist',
-			self::DEFAULT_WHITELIST
-		));
+		$whitelist = $this->config->getAppWhitelist();
 		$alwaysEnabled = explode(',', self::WHITELIST_ALWAYS);
 
 
@@ -85,7 +80,7 @@ class AppWhitelist {
 	}
 
 	public function isWhitelistEnabled() {
-		return $this->config->getAppValue('guests', 'usewhitelist', 'true') === 'true';
+		return $this->config->useWhitelist();
 	}
 
 	public function isUrlAllowed(IUser $user, $url) {

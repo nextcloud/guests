@@ -23,6 +23,7 @@ namespace OCA\Guests\Controller;
 
 use OC\L10N\Factory;
 use OCA\Guests\AppWhitelist;
+use OCA\Guests\Config;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\IConfig;
@@ -43,7 +44,7 @@ class SettingsController extends Controller {
 	private $userId;
 
 	/**
-	 * @var IConfig
+	 * @var Config
 	 */
 	private $config;
 
@@ -55,7 +56,7 @@ class SettingsController extends Controller {
 		$AppName,
 		IRequest $request,
 		$UserId,
-		IConfig $config,
+		Config $config,
 		AppWhitelist $appWhitelist,
 		IFactory $l10nFactory
 	) {
@@ -136,41 +137,34 @@ class SettingsController extends Controller {
 	 * @return DataResponse with the current config
 	 */
 	public function getConfig() {
-		$useWhitelist = $this->config->getAppValue('guests', 'usewhitelist', true);
-		if ($useWhitelist === 'true' || $useWhitelist === true) {
-			$useWhitelist = true;
-		} else {
-			$useWhitelist = false;
-		}
-		$allowExternalStorage = $this->config->getAppValue('guests', 'allow_external_storage', 'false') === 'true';
-		$whitelist = $this->config->getAppValue('guests', 'whitelist', AppWhitelist::DEFAULT_WHITELIST);
-		$whitelist = explode(',', $whitelist);
+		$useWhitelist = $this->config->useWhitelist();
+		$allowExternalStorage = $this->config->allowExternalStorage();
+		$hideUsers = $this->config->hideOtherUsers();
+		$whitelist = $this->config->getAppWhitelist();
 		return new DataResponse([
 			'useWhitelist' => $useWhitelist,
 			'whitelist' => $whitelist,
 			'allowExternalStorage' => $allowExternalStorage,
+			'hideUsers' => $hideUsers,
 			'whiteListableApps' => $this->appWhitelist->getWhitelistAbleApps()
 		]);
 	}
 	/**
-	 * AJAX handler for setting the config
-	 *
-	 * @param $conditions string[]
-	 * @param $group string
 	 * @param $useWhitelist bool
 	 * @param $whitelist string[]
 	 * @param $allowExternalStorage bool
+	 * @param $hideUsers bool
 	 * @return DataResponse
 	 */
-	public function setConfig($conditions, $group, $useWhitelist, $whitelist, $allowExternalStorage) {
+	public function setConfig($useWhitelist, $whitelist, $allowExternalStorage, $hideUsers) {
 		$newWhitelist = [];
 		foreach ($whitelist as $app) {
 			$newWhitelist[] = trim($app);
 		}
-		$newWhitelist = join(',', $newWhitelist);
-		$this->config->setAppValue('guests', 'usewhitelist', $useWhitelist);
-		$this->config->setAppValue('guests', 'whitelist', $newWhitelist);
-		$this->config->setAppValue('guests', 'allow_external_storage', $allowExternalStorage);
+		$this->config->setUseWhitelist($useWhitelist);
+		$this->config->setAppWhitelist($newWhitelist);
+		$this->config->setAllowExternalStorage($allowExternalStorage);
+		$this->config->setHideOtherUsers($hideUsers);
 		return new DataResponse();
 	}
 
@@ -183,13 +177,8 @@ class SettingsController extends Controller {
 	 * @return DataResponse with the current whitelist config
 	 */
 	public function getWhitelist() {
-		$useWhitelist = $this->config->getAppValue('guests', 'useWhitelist', true);
-		if ($useWhitelist === 'true' || $useWhitelist === true) {
-			$useWhitelist = true;
-		} else {
-			$useWhitelist = false;
-		}
-		$whitelist = $this->config->getAppValue('guests', 'whitelist', AppWhitelist::DEFAULT_WHITELIST);
+		$useWhitelist = $this->config->useWhitelist();
+		$whitelist = $this->config->getAppWhitelist();
 		$whitelist = explode(',', $whitelist);
 		return new DataResponse([
 			'useWhitelist' => $useWhitelist,
@@ -204,7 +193,7 @@ class SettingsController extends Controller {
 	 * @return DataResponse with the reset whitelist
 	 */
 	public function resetWhitelist() {
-		$this->config->setAppValue('guests', 'whitelist', AppWhitelist::DEFAULT_WHITELIST);
+		$this->config->setAppWhitelist(AppWhitelist::DEFAULT_WHITELIST);
 		return new DataResponse([
 			'whitelist' => explode(',', AppWhitelist::DEFAULT_WHITELIST),
 		]);

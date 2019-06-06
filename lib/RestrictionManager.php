@@ -22,6 +22,7 @@
 namespace OCA\Guests;
 
 
+use OC\AppConfig;
 use OC\Files\Filesystem;
 use OC\Files\Storage\FailedStorage;
 use OC\NavigationManager;
@@ -57,8 +58,10 @@ class RestrictionManager {
 	/** @var IMountProviderCollection */
 	private $mountProviderCollection;
 
-	/** @var IConfig */
+	/** @var Config */
 	private $config;
+
+	private $userBackend;
 
 	public function __construct(
 		AppWhitelist $whitelist,
@@ -68,7 +71,8 @@ class RestrictionManager {
 		Hooks $hooks,
 		GuestManager $guestManager,
 		IMountProviderCollection $mountProviderCollection,
-		IConfig $config
+		Config $config,
+		UserBackend $userBackend
 	) {
 		$this->whitelist = $whitelist;
 		$this->request = $request;
@@ -78,6 +82,7 @@ class RestrictionManager {
 		$this->guestManager = $guestManager;
 		$this->mountProviderCollection = $mountProviderCollection;
 		$this->config = $config;
+		$this->userBackend = $userBackend;
 	}
 
 	public function verifyAccess() {
@@ -87,7 +92,7 @@ class RestrictionManager {
 	public function setupRestrictions() {
 		if ($this->guestManager->isGuest($this->userSession->getUser())) {
 			\OCP\Util::connectHook('OC_Filesystem', 'preSetup', $this->hooks, 'setupReadonlyFilesystem');
-			if ($this->config->getAppValue('guests', 'allow_external_storage', 'false') !== 'true') {
+			if (!$this->config->allowExternalStorage()) {
 				$this->mountProviderCollection->registerMountFilter(function (IMountPoint $mountPoint, IUser $user) {
 					return !($mountPoint instanceof ExternalMountPoint && $this->guestManager->isGuest($user));
 				});
@@ -106,7 +111,21 @@ class RestrictionManager {
 
 	public function lateSetupRestrictions() {
 		if ($this->guestManager->isGuest($this->userSession->getUser())) {
-			$this->server->getContactsManager()->clear();
+			if ($this->config->hideOtherUsers()) {
+				$this->server->getContactsManager()->clear();
+
+				$this->userBackend->setAllowListing(false);
+
+				$originalAppConfig = $this->server->getAppConfig();
+
+				$this->server->registerService(AppConfig::class, function() use ($originalAppConfig) {
+					return new AppConfigOverwrite($originalAppConfig, [
+						'core' => [
+							'shareapi_only_share_with_group_members' => 'yes'
+						]
+					]);
+				});
+			}
 		}
 	}
 }
