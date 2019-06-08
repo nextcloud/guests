@@ -31,6 +31,8 @@ OC.L10N.register(
     "No guest accounts created" : "Nesukurta jokių svečio paskyrų",
     "Guest users are grouped under a virtual group in the user manager" : "Svečio naudotojai yra suskirstyti į virtualią grupę naudotojo administravimo vadove",
     "Guest users can access mounted external storages" : "Svečio naudotojai gali gauti prieigą prie prijungtų išorinių saugyklų",
+    "Hide other users from guests" : "Slėpti nuo svečių kitus naudotojus",
+    "Guests will still be able to see users from any group they are added to" : "Svečiai vis dar galės matyti naudotojus iš bet kurių grupių, prie kurių svečiai yra pridėti",
     "Limit guest access to an app whitelist" : "Ribota svečio prieiga prie programėlių sąrašo",
     "Reset" : "Atstatyti",
     "Saved" : "Įrašyta"

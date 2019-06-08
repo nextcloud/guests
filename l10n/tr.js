@@ -36,6 +36,8 @@ OC.L10N.register(
     "No guest accounts created" : "Henüz bir misafir hesabı eklenmemiş",
     "Guest users are grouped under a virtual group in the user manager" : "Konuk kullanıcılar kullanıcı yönetimi bölümünde sanal bir grup altında toplanır",
     "Guest users can access mounted external storages" : "Konuk kullanıcılar takılı dış depolama birimlerine erişebilir",
+    "Hide other users from guests" : "Diğer kullanıcılar konuklardan gizlensin",
+    "Guests will still be able to see users from any group they are added to" : "Bu seçeneğe rağmen konuklar eklendikleri gruplardaki kullanıcıları görebilir",
     "Limit guest access to an app whitelist" : "Konuk erişimini bir uygulama beyaz listesi ile sınırlayın",
     "Reset" : "Sıfırla",
     "Saved" : "Kaydedildi",

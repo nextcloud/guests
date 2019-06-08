@@ -36,6 +36,8 @@ OC.L10N.register(
     "No guest accounts created" : "Aucun compte invité",
     "Guest users are grouped under a virtual group in the user manager" : "Dans la gestion des utilisateurs, les utilisateurs invités sont regroupés dans un groupe virtuel",
     "Guest users can access mounted external storages" : " Les invités ont accès aux espaces de stockage externes",
+    "Hide other users from guests" : "Masquer les utilisateurs aux invités",
+    "Guests will still be able to see users from any group they are added to" : "Les invités continueront à voir les utilisateurs membres des groupes auxquels ils appartiennent.",
     "Limit guest access to an app whitelist" : "Réduire l'accès invité à une liste blanche d'applications",
     "Reset" : "Réinitialiser",
     "Saved" : "Enregistré",
