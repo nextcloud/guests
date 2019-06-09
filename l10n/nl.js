@@ -38,6 +38,7 @@ OC.L10N.register(
     "Guest users can access mounted external storages" : "Gastgebruikers kunnen aangekoppelde externe opslag benaderen",
     "Limit guest access to an app whitelist" : "Beperk gastentoegang tot apps op de whitelist",
     "Reset" : "Reset",
-    "Saved" : "Bewaard"
+    "Saved" : "Bewaard",
+    "Default" : "Standaard"
 },
 "nplurals=2; plural=(n != 1);");
