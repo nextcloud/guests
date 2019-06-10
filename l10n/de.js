@@ -36,6 +36,8 @@ OC.L10N.register(
     "No guest accounts created" : "Keine Gastkonten erstellt",
     "Guest users are grouped under a virtual group in the user manager" : "Gäste sind unter einer virtuellen Gruppe im Benutzermanager zusammengefasst",
     "Guest users can access mounted external storages" : "Gast-Nutzer können auf eingebundene externe Speicher zugreifen",
+    "Hide other users from guests" : "Weitere Benutzer für Gäste nicht anzeigen",
+    "Guests will still be able to see users from any group they are added to" : "Gäste können weiterhin andere Benutzer von jeder Gruppe sehen, von der sie Mitglied sind",
     "Limit guest access to an app whitelist" : "Gastzugriff auf eine App-Whitelist beschränken",
     "Reset" : "Zurücksetzen",
     "Saved" : "Gespeichert",
