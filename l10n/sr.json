@@ -1,6 +1,7 @@
 { "translations": {
     "Create guest account for {searchTerm}" : "Направи гостински налог за {searchTerm}",
     "Access to this resource is forbidden for guests." : "Приступ овом ресурсу је забрањен за госте.",
+    "__language_name__" : "Српски",
     "Invalid mail address" : "Неисправна адреса е-поште",
     "A user with that email already exists." : "Корисник са том адресом е-поште већ постоји.",
     "A user with that name already exists." : "Корисник са тим именом већ постоји.",
@@ -33,8 +34,11 @@
     "No guest accounts created" : "Није направљен гостински налог",
     "Guest users are grouped under a virtual group in the user manager" : "Гости су груписани као виртуелна група у менаџеру корисника",
     "Guest users can access mounted external storages" : "Дозволи гостима да монтирају спољашња складишта",
+    "Hide other users from guests" : "Сакриј остале кориснике од гостију",
+    "Guests will still be able to see users from any group they are added to" : "Гости и даље могу да виде кориснике са било које групе на које су додати",
     "Limit guest access to an app whitelist" : "Ограничи приступ гостима само за одабране апликације",
     "Reset" : "Ресетуј",
-    "Saved" : "Сачувано"
+    "Saved" : "Сачувано",
+    "Default" : "Подразумевано"
 },"pluralForm" :"nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);"
 }
