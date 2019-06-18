@@ -4,9 +4,11 @@ import ShareDialogPlugin from './ShareDialogPlugin';
 import LanguageSelect from './LanguageSelect.vue';
 import Nextcloud from './mixins/Nextcloud'
 import vSelect from "vue-select";
+import {Modal} from 'nextcloud-vue'
 
 Vue.mixin(Nextcloud);
 Vue.component('LanguageSelect', LanguageSelect);
+Vue.component('Modal', Modal);
 Vue.component('v-select', vSelect);
 
 import 'vue-select/dist/vue-select.css';

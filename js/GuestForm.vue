@@ -1,6 +1,6 @@
 <template>
-	<div id="app-guests" v-if="state.modalIsOpen">
-		<div class="modal" @keyup.esc="closeModal">
+	<Modal id="app-guests" v-show="state.modalIsOpen" @close="closeModal">
+		<div class="guest_model_content">
 			<h2 class="modal-title oc-dialog-title">
 				{{ t('guests', 'Create guest account for {fullName}', guest) }}
 			</h2>
@@ -43,8 +43,7 @@
 				</div>
 			</form>
 		</div>
-		<div class="modal-backdrop"></div>
-	</div>
+	</Modal>
 </template>
 
 <script>
@@ -191,3 +190,43 @@
 		}
 	};
 </script>
+
+<style>
+	.guest_model_content {
+
+		--modal-width: 500px;
+		--modal-height: 360px;
+		--modal-gutter: 15px;
+
+		width: var(--modal-width);
+
+		border-radius: 3px;
+		font-size: 100%;
+		min-width: 200px;
+		margin: var(--modal-gutter);
+
+		.model-title,
+		.model-body {
+			margin-bottom: var(--modal-gutter) *2;
+		}
+
+		.form-group {
+			margin: var(--modal-gutter) / 2 0;
+		}
+
+		.form-label,
+		.form-input {
+			box-sizing: border-box;
+			display: block;
+			width: 100%;
+			transition: background .333s ease-out,
+			border .333s ease-out;
+
+			&._error {
+				border: 1px solid var(--color-error);
+				color: var(--color-error);
+			}
+		}
+	}
+
+</style>
