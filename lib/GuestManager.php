@@ -48,9 +48,6 @@ class GuestManager {
 	/** @var ICrypto */
 	private $crypto;
 
-	/** @var IGroupManager */
-	private $groupManager;
-
 	private $shareManager;
 
 	private $connection;
@@ -62,7 +59,6 @@ class GuestManager {
 		UserBackend $userBackend,
 		ISecureRandom $secureRandom,
 		ICrypto $crypto,
-		IGroupManager $groupManager,
 		IManager $shareManager,
 		IDBConnection $connection,
 		IUserSession $userSession
@@ -71,7 +67,6 @@ class GuestManager {
 		$this->userBackend = $userBackend;
 		$this->secureRandom = $secureRandom;
 		$this->crypto = $crypto;
-		$this->groupManager = $groupManager;
 		$this->shareManager = $shareManager;
 		$this->connection = $connection;
 		$this->userSession = $userSession;
@@ -178,28 +173,5 @@ class GuestManager {
 				];
 			}, $shares),
 		];
-	}
-
-	public function isReadOnlyUser(IUser $user) {
-		if ($this->isGuest($user)) {
-			return true;
-		}
-
-		$readOnlyGroups = json_decode($this->config->getAppValue(
-			'core',
-			'read_only_groups',
-			'[]'
-		), true);
-
-		if (!is_array($readOnlyGroups)) {
-			$readOnlyGroups = [];
-		}
-
-		$userGroups = $this->groupManager->getUserGroupIds($user);
-		$readOnlyGroupMemberships = array_intersect(
-			$readOnlyGroups,
-			$userGroups
-		);
-		return count($readOnlyGroupMemberships) > 0;
 	}
 }
