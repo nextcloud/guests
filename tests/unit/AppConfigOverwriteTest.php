@@ -22,7 +22,7 @@
 namespace OCA\Guests\Test\Unit;
 
 use OC\AppConfig;
-use OCA\Activity\Tests\TestCase;
+use Test\TestCase;
 use OCA\Guests\AppConfigOverwrite;
 use OCP\IAppConfig;
 
