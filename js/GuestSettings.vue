@@ -41,8 +41,8 @@
 				</label>
 			</p>
 			<p class="whitelist" v-if="config.useWhitelist">
-				<v-select :options="config.whiteListableApps" multiple v-model="config.whitelist"
-						  :on-change="saveConfig"></v-select>
+				<Multiselect :options="config.whiteListableApps" :multiple="true" v-model="config.whitelist"
+							 @input="saveConfig" :close-on-select="false" :clear-on-select="false" :tagWidth="75"></Multiselect>
 				<button :title="t('guests', 'Reset')" type="button" class="icon-history icon" @click="reset"></button>
 			</p>
 		</div>
@@ -141,31 +141,23 @@
 		.whitelist {
 			display: flex;
 
-			.v-select {
+			.multiselect {
 				width: calc(100% - 48px);
 				margin-right: 0;
 
-				.vs__dropdown-toggle {
+				.multiselect__tags {
 					border-top-right-radius: 0;
 					border-bottom-right-radius: 0;
 					border-right: 0;
 					flex-wrap: nowrap;
 
-					input {
-						min-height: auto;
-
-						border-color: transparent;
-					}
-				}
-
-				.vs__deselect {
-					display:inline-block;
 				}
 			}
 
 			button {
 				border-top-left-radius: 0;
 				border-bottom-left-radius: 0;
+				margin: 0;
 			}
 
 			.whitelist-toggle {
