@@ -99,7 +99,7 @@ class DirMask extends PermissionsMask {
 	}
 
 	public function rename($path1, $path2) {
-		if (!$this->isReadable($path1)) {
+		if (!$this->isUpdatable($path1)) {
 			return false;
 		}
 		if ($this->file_exists($path2)) {
@@ -107,7 +107,11 @@ class DirMask extends PermissionsMask {
 				return $this->storage->rename($path1, $path2);
 			}
 		} else {
-			if ($this->isCreatable($path2)) {
+			$parent = dirname($path2);
+			if ($parent === '.') {
+				$parent = '';
+			}
+			if ($this->isCreatable($parent)) {
 				return $this->storage->rename($path1, $path2);
 			}
 		}
@@ -123,7 +127,11 @@ class DirMask extends PermissionsMask {
 				return $this->storage->copy($path1, $path2);
 			}
 		} else {
-			if ($this->isCreatable($path2)) {
+			$parent = dirname($path2);
+			if ($parent === '.') {
+				$parent = '';
+			}
+			if ($this->isCreatable($parent)) {
 				return $this->storage->copy($path1, $path2);
 			}
 		}

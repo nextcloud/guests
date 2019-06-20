@@ -22,8 +22,6 @@
 
 namespace OCA\Guests\Storage;
 
-use OCP\Constants;
-
 /**
  * read only mask for home storages
  */
