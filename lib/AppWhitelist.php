@@ -95,7 +95,7 @@ class AppWhitelist {
 					echo "[]";
 					exit;
 				}
-				return true;
+				return false;
 			}
 		} else {
 			return true;
