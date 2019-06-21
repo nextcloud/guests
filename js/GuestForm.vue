@@ -1,10 +1,9 @@
 <template>
-	<Modal id="app-guests" v-show="state.modalIsOpen" @close="closeModal">
+	<Modal id="app-guests" v-if="state.modalIsOpen" @close="closeModal">
 		<div class="guest_model_content">
 			<h2 class="modal-title oc-dialog-title">
 				{{ t('guests', 'Create guest account for {fullName}', guest) }}
 			</h2>
-			<a class="button-close oc-dialog-close" @click="closeModal"></a>
 			<form @submit.prevent="addGuest">
 				<div class="modal-body">
 					<div class="form-group">
