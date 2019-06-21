@@ -192,6 +192,10 @@
 </script>
 
 <style>
+	#app-guests .modal-container {
+		overflow: visible;
+	}
+
 	.guest_model_content {
 
 		--modal-width: 500px;
@@ -226,6 +230,10 @@
 				border: 1px solid var(--color-error);
 				color: var(--color-error);
 			}
+		}
+
+		.vs__dropdown-menu {
+			z-index: 99999;
 		}
 	}
 
