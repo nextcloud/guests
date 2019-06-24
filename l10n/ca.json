@@ -34,6 +34,8 @@
     "No guest accounts created" : "No s’ha creat cap compte de convidat",
     "Guest users are grouped under a virtual group in the user manager" : "Els usuaris convidats s'agrupen sota un grup virtual al gestor d'usuaris",
     "Guest users can access mounted external storages" : "Els usuaris convidats poden accedir a emmagatzematges externs muntats",
+    "Hide other users from guests" : "Amagar els altres usuaris als convidats",
+    "Guests will still be able to see users from any group they are added to" : "Encara i així els convidats podran veure els usuaris de qualsevol dels grups als que pertanyin",
     "Limit guest access to an app whitelist" : "Limiteu l'accés de convidat a la llista blanca de l'aplicació",
     "Reset" : "Restableix",
     "Saved" : "S'ha desat",

@@ -1,6 +1,7 @@
 OC.L10N.register(
     "guests",
     {
+    "Create guest account for {searchTerm}" : "Luo vierastili nimellä {searchTerm}",
     "Access to this resource is forbidden for guests." : "Tämän resurssin käyttö on kielletty vierailta.",
     "Invalid mail address" : "Virheellinen sähköpostiosoite",
     "A user with that email already exists." : "Käyttäjä samalla sähköpostiosoitteella on jo olemassa.",
@@ -19,14 +20,20 @@ OC.L10N.register(
     "Guests" : "Vieraat",
     "Create guest accounts for easier collaboration" : "Luo vierastilejä entistä helpomman yhteistyön mahdollistamiseksi",
     "Name" : "Nimi",
+    "Create guest account for {fullName}" : "Luo vierastili nimellä {fullName}",
+    "Save and Share" : "Tallenna ja jaa",
     "Error while sharing\n" : "Virhe jaettaessa\n",
     "Error" : "Virhe",
+    "Guests accounts" : "Vierastilit",
     "Email" : "Sähhköposti",
     "Invited by" : "Kutsunut",
+    "Received shares" : "Vastaanotetut jaot",
     "No guest accounts created" : "Vierastiliä ei luotu",
     "Guest users are grouped under a virtual group in the user manager" : "Vieraskäyttäjät asetetaan virtuaaliryhmään käyttäjähallinnassa",
     "Guest users can access mounted external storages" : "Vieraskäyttäjillä on pääsy liitettyihin erillisiin tallennustiloihin",
+    "Hide other users from guests" : "Piilota muut käyttäjät vierailta",
     "Reset" : "Nollaa",
-    "Saved" : "Tallennettu"
+    "Saved" : "Tallennettu",
+    "Default" : "Oletus"
 },
 "nplurals=2; plural=(n != 1);");
