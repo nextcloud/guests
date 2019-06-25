@@ -1,6 +1,7 @@
 { "translations": {
     "Create guest account for {searchTerm}" : "Vytvořit účet hosta pro {searchTerm}",
     "Access to this resource is forbidden for guests." : "Přístup k tomuto zdroji je pro hosty zamítnut.",
+    "__language_name__" : "čeština",
     "Invalid mail address" : "Neplatná emailová adresa",
     "A user with that email already exists." : "Uživatel s takovým emailem už existuje.",
     "A user with that name already exists." : "Uživatel tohoto jména už existuje.",
