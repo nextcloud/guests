@@ -1,7 +1,7 @@
 {
   "devDependencies": {
     "@babel/core": "^7.4.5",
-    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-env": "^7.5.0",
     "babel-loader": "^8.0.6",
     "browserslist-config-nextcloud": "0.0.1",
     "css-loader": "^3.0.0",
