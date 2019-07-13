@@ -1,0 +1,7 @@
+{ "translations": {
+    "%s shared »%s« with you" : "%s đã chia sẻ »%s« với bạn",
+    "Error" : "Lỗi",
+    "Reset" : "Khởi động lại",
+    "Saved" : "Đã lưu"
+},"pluralForm" :"nplurals=1; plural=0;"
+}

@@ -1,0 +1,7 @@
+{ "translations": {
+    "%s shared »%s« with you" : "%s আপনার সাথে »%s« ভাগাভাগি করেছে",
+    "Error" : "সমস্যা",
+    "Reset" : "পূণঃনির্ধানণ",
+    "Saved" : "সংরক্ষণ করা হলো"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}
