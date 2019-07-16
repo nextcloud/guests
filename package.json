@@ -22,6 +22,6 @@
   },
   "dependencies": {
     "deep-equal": "^1.0.1",
-    "nextcloud-vue": "^0.11.4"
+    "nextcloud-vue": "^0.11.5"
   }
 }
