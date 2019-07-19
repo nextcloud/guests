@@ -4,7 +4,7 @@
     "@babel/preset-env": "^7.4.5",
     "babel-loader": "^8.0.6",
     "browserslist-config-nextcloud": "0.0.1",
-    "css-loader": "^3.0.0",
+    "css-loader": "^3.1.0",
     "cssnano": "^4.1.10",
     "less": "^3.9.0",
     "mini-css-extract-plugin": "^0.7.0",
