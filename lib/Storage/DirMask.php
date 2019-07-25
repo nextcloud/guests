@@ -21,6 +21,7 @@
 
 namespace OCA\Guests\Storage;
 
+use OC\Files\Cache\Wrapper\CachePermissionsMask;
 use OC\Files\Storage\Wrapper\PermissionsMask;
 
 
@@ -41,6 +42,8 @@ class DirMask extends PermissionsMask {
 	 */
 	private $pathLength;
 
+	private $mask;
+
 	/**
 	 * @param array $arguments ['storage' => $storage, 'mask' => $mask, 'path' => $path]
 	 *
@@ -52,6 +55,7 @@ class DirMask extends PermissionsMask {
 		parent::__construct($arguments);
 		$this->path = $arguments['path'];
 		$this->pathLength = strlen($arguments['path']);
+		$this->mask = $arguments['mask'];
 	}
 
 	protected function checkPath($path) {
@@ -184,5 +188,13 @@ class DirMask extends PermissionsMask {
 		} else {
 			return $this->storage->fopen($path, $mode);
 		}
+	}
+
+	public function getCache($path = '', $storage = null) {
+		if (!$storage) {
+			$storage = $this;
+		}
+		$sourceCache = $this->storage->getCache($path, $storage);
+		return new DirMaskCache($sourceCache, $this->mask, [$this, 'checkPath']);
 	}
 }
