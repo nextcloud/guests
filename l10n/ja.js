@@ -36,6 +36,8 @@ OC.L10N.register(
     "No guest accounts created" : "ゲストアカウントはまだ作成されていません",
     "Guest users are grouped under a virtual group in the user manager" : "ゲストユーザーは、ユーザー管理の仮想グループにまとめられます",
     "Guest users can access mounted external storages" : "ゲストユーザはマウントした外部ストレージにアクセスできます",
+    "Hide other users from guests" : "他のユーザーをゲストから非表示にする",
+    "Guests will still be able to see users from any group they are added to" : "ゲストは、自分が追加されているグループのユーザーを引き続き表示できます",
     "Limit guest access to an app whitelist" : "ゲストのアクセスをアプリのホワイトリストに制限",
     "Reset" : "リセット",
     "Saved" : "保存しました",
