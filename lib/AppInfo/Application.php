@@ -85,9 +85,8 @@ class Application extends App {
 			$server->getEventDispatcher()->addListener(
 				'OCA\Files::loadAdditionalScripts',
 				function () {
-					\OCP\Util::addScript('guests', '../dist/main');
+					\OCP\Util::addScript('guests', 'main');
 					\OCP\Util::addStyle('guests', 'app');
-					\OCP\Util::addStyle('guests', '../dist/main');
 				}
 			);
 		}

@@ -75,23 +75,23 @@
 	};
 </script>
 
-<style>
-	#guests-details {
-		.loading {
-			height: 50px;
+<style lang="scss">
+#guests-details {
+	.loading {
+		height: 50px;
+	}
+
+	table tr {
+		th.name {
+			padding-left: 68px;
 		}
 
-		table tr {
-			th.name {
-				padding-left: 68px;
-			}
-
-			td.name {
-				background-repeat: no-repeat;
-				background-size: 32px;
-				padding-left: 68px;
-				background-position: 33px 3px;
-			}
+		td.name {
+			background-repeat: no-repeat;
+			background-size: 32px;
+			padding-left: 68px;
+			background-position: 33px 3px;
 		}
 	}
+}
 </style>

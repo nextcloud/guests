@@ -26,6 +26,7 @@ trigger:
     - pull_request
     - push
 ---
+
 kind: pipeline
 name: frontend
 steps:
@@ -34,6 +35,7 @@ steps:
     commands:
       - apk add --no-cache make
       - make
+
 trigger:
   branch:
     - master
@@ -41,3 +43,4 @@ trigger:
   event:
     - pull_request
     - push
+
