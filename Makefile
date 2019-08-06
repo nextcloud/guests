@@ -57,7 +57,7 @@ build/appstore/$(package_name).tar.gz: dev-setup build-js-production
 	--exclude=$(project_dir)/screenshots \
 	--exclude=$(project_dir)/Makefile \
 	--exclude=$(project_dir)/tests \
-	--exclude=$(project_dir)/build \
+	--exclude=$(project_dir)/src \
 	-cvzf $(appstore_dir)/$(package_name).tar.gz $(project_dir)
 	@if [ -f $(cert_dir)/$(app_name).key ]; then \
 		openssl dgst -sha512 -sign $(cert_dir)/$(app_name).key $(appstore_dir)/$(app_name).tar.gz | openssl base64; \
