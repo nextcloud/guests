@@ -91,71 +91,71 @@
 	};
 </script>
 
-<style>
-	#guests-list {
-		padding: 20px 0 0;
+<style lang="scss">
+#guests-list {
+	padding: 20px 0 0;
 
-		table {
-			margin: 0 -30px;
-			table-layout: fixed;
-			width: calc(100% + 60px);
+	table {
+		margin: 0 -30px;
+		table-layout: fixed;
+		width: calc(100% + 60px);
 
-			tr {
-				height: 32px;
+		tr {
+			height: 32px;
 
-				&.active, &.details {
-					background-color: var(--color-background-dark);
-				}
+			&.active, &.details {
+				background-color: var(--color-background-dark);
+			}
+		}
+
+		.sort-desc::after {
+			content: '▼';
+			position: absolute;
+			right: 10px;
+		}
+
+		.sort-asc::after {
+			content: '▲';
+			position: absolute;
+			right: 10px;
+		}
+
+		th {
+			border-bottom: 1px #ddd solid;
+			cursor: pointer;
+
+			.sort_arrow {
+				float: right;
+				color: #888;
+			}
+		}
+
+		td, th {
+			&:first-child {
+				padding-left: 30px;
 			}
 
-			.sort-desc::after {
-				content: '▼';
-				position: absolute;
-				right: 10px;
+			&:last-child {
+				padding-right: 30px;
+				text-align: right;
 			}
 
-			.sort-asc::after {
-				content: '▲';
-				position: absolute;
-				right: 10px;
+			padding: 10px;
+			position: relative;
+			display: table-cell;
+
+			&.groups {
+				width: 400px;
 			}
 
-			th {
-				border-bottom: 1px #ddd solid;
-				cursor: pointer;
-
-				.sort_arrow {
-					float: right;
-					color: #888;
-				}
+			&.remove {
+				width: 32px;
 			}
 
-			td, th {
-				&:first-child {
-					padding-left: 30px;
-				}
-
-				&:last-child {
-					padding-right: 30px;
-					text-align: right;
-				}
-
-				padding: 10px;
-				position: relative;
-				display: table-cell;
-
-				&.groups {
-					width: 400px;
-				}
-
-				&.remove {
-					width: 32px;
-				}
-
-				a.icon {
-					margin-left: 5px;
-				}
+			a.icon {
+				margin-left: 5px;
 			}
 		}
 	}
+}
 </style>

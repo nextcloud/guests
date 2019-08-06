@@ -128,41 +128,41 @@
 	};
 </script>
 
-<style>
-	#guests {
-		.note {
-			margin: 5px;
-			padding: 10px;
-			background: var(--color-background-dark);
-			border-radius: var(--border-radius);
-			border: 1px solid var(--color-border);
+<style lang="scss">
+#guests {
+	.note {
+		margin: 5px;
+		padding: 10px;
+		background: var(--color-background-dark);
+		border-radius: var(--border-radius);
+		border: 1px solid var(--color-border);
+	}
+
+	.whitelist {
+		display: flex;
+
+		.multiselect {
+			width: calc(100% - 48px);
+			margin-right: 0;
+
+			.multiselect__tags {
+				border-top-right-radius: 0;
+				border-bottom-right-radius: 0;
+				border-right: 0;
+				flex-wrap: nowrap;
+
+			}
 		}
 
-		.whitelist {
-			display: flex;
+		button {
+			border-top-left-radius: 0;
+			border-bottom-left-radius: 0;
+			margin: 0;
+		}
 
-			.multiselect {
-				width: calc(100% - 48px);
-				margin-right: 0;
-
-				.multiselect__tags {
-					border-top-right-radius: 0;
-					border-bottom-right-radius: 0;
-					border-right: 0;
-					flex-wrap: nowrap;
-
-				}
-			}
-
-			button {
-				border-top-left-radius: 0;
-				border-bottom-left-radius: 0;
-				margin: 0;
-			}
-
-			.whitelist-toggle {
-				margin: 1em 0;
-			}
+		.whitelist-toggle {
+			margin: 1em 0;
 		}
 	}
+}
 </style>

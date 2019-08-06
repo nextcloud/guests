@@ -9,30 +9,39 @@ cert_dir=$(HOME)/.nextcloud/certificates
 
 jssources=$(wildcard js/*) $(wildcard js/*/*) $(wildcard css/*/*)  $(wildcard css/*)
 
-all: dist/index.js css/app.css
+all: dev-setup build-js-production
 
-.PHONY: watch
+# Dev env management
+dev-setup: clean clean-dev npm-init
 
-watch:
-	node node_modules/.bin/webpack-dev-server --watch --hot --inline --port 3000 --public localcloud.icewind.me:444 --mode development --config webpack.config.js
+npm-init:
+	npm install
 
+npm-update:
+	npm update
+
+# Building
+build-js:
+	npm run dev
+
+build-js-production:
+	npm run build
+
+watch-js:
+	npm run watch
+
+# Cleaning
 clean:
-	rm -rf $(build_dir)
+	rm -rf js
+
+clean-dev:
 	rm -rf node_modules
 
-node_modules: package.json
-	npm install --deps
-
-dist/index.js: node_modules $(jssources)
-	node_modules/.bin/webpack --mode production --progress
-
-%.css: %.less node_modules
-	node_modules/.bin/lessc $< $@
 
 appstore: clean package
 
 package: build/appstore/$(package_name).tar.gz
-build/appstore/$(package_name).tar.gz: css/app.css dist/index.js
+build/appstore/$(package_name).tar.gz: dev-setup build-js-production
 	mkdir -p $(appstore_dir)
 	tar --exclude-vcs \
 	--exclude=$(appstore_dir) \
@@ -48,7 +57,7 @@ build/appstore/$(package_name).tar.gz: css/app.css dist/index.js
 	--exclude=$(project_dir)/screenshots \
 	--exclude=$(project_dir)/Makefile \
 	--exclude=$(project_dir)/tests \
-	--exclude=$(project_dir)/build \
+	--exclude=$(project_dir)/src \
 	-cvzf $(appstore_dir)/$(package_name).tar.gz $(project_dir)
 	@if [ -f $(cert_dir)/$(app_name).key ]; then \
 		openssl dgst -sha512 -sign $(cert_dir)/$(app_name).key $(appstore_dir)/$(app_name).tar.gz | openssl base64; \
