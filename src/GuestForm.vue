@@ -146,7 +146,6 @@
 				const attributes = {
 					shareType: 0,
 					shareWith: this.guest.username,
-					permissions: OC.PERMISSION_CREATE | OC.PERMISSION_UPDATE | OC.PERMISSION_READ | OC.PERMISSION_DELETE,
 					path: this.model.fileInfoModel.getFullPath()
 				};
 
