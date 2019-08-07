@@ -1,7 +1,6 @@
 OC.L10N.register(
     "guests",
     {
-    "Create guest account for {searchTerm}" : "Stofnaðu gestaaðgang fyrir {searchTerm}",
     "Access to this resource is forbidden for guests." : "Gestum er bannaður aðgangur að þessum tilföngum.",
     "__language_name__" : "Íslenska",
     "Invalid mail address" : "Ógilt tölvupóstfang",
@@ -39,6 +38,7 @@ OC.L10N.register(
     "Limit guest access to an app whitelist" : "Takmarka aðgang gesta við lista yfir leyfð forrit (whitelist)",
     "Reset" : "Endurstilla",
     "Saved" : "Vistað",
-    "Default" : "Sjálfgefið"
+    "Default" : "Sjálfgefið",
+    "Create guest account for {searchTerm}" : "Stofnaðu gestaaðgang fyrir {searchTerm}"
 },
 "nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);");

@@ -1,7 +1,6 @@
 OC.L10N.register(
     "guests",
     {
-    "Create guest account for {searchTerm}" : "{searchterm} için konuk hesabı aç",
     "Access to this resource is forbidden for guests." : "Konuklar bu kaynağa erişemesin.",
     "__language_name__" : "__language_name__",
     "Invalid mail address" : "Geçersiz posta adresi",
@@ -41,6 +40,7 @@ OC.L10N.register(
     "Limit guest access to an app whitelist" : "Konuk erişimini bir uygulama beyaz listesi ile sınırlayın",
     "Reset" : "Sıfırla",
     "Saved" : "Kaydedildi",
-    "Default" : "Varsayılan"
+    "Default" : "Varsayılan",
+    "Create guest account for {searchTerm}" : "{searchterm} için konuk hesabı aç"
 },
 "nplurals=2; plural=(n > 1);");

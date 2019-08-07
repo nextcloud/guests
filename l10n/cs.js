@@ -1,7 +1,6 @@
 OC.L10N.register(
     "guests",
     {
-    "Create guest account for {searchTerm}" : "Vytvořit účet hosta pro {searchTerm}",
     "Access to this resource is forbidden for guests." : "Přístup k tomuto zdroji je pro hosty zamítnut.",
     "__language_name__" : "čeština",
     "Invalid mail address" : "Neplatná emailová adresa",
@@ -39,6 +38,7 @@ OC.L10N.register(
     "Limit guest access to an app whitelist" : "Omezte přístup hosta do seznamu povolených aplikací",
     "Reset" : "Reset",
     "Saved" : "Uloženo",
-    "Default" : "Výchozí"
+    "Default" : "Výchozí",
+    "Create guest account for {searchTerm}" : "Vytvořit účet hosta pro {searchTerm}"
 },
 "nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;");

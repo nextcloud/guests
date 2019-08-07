@@ -1,7 +1,6 @@
 OC.L10N.register(
     "guests",
     {
-    "Create guest account for {searchTerm}" : "Luo vierastili nimellä {searchTerm}",
     "Access to this resource is forbidden for guests." : "Tämän resurssin käyttö on kielletty vierailta.",
     "Invalid mail address" : "Virheellinen sähköpostiosoite",
     "A user with that email already exists." : "Käyttäjä samalla sähköpostiosoitteella on jo olemassa.",
@@ -34,6 +33,7 @@ OC.L10N.register(
     "Hide other users from guests" : "Piilota muut käyttäjät vierailta",
     "Reset" : "Nollaa",
     "Saved" : "Tallennettu",
-    "Default" : "Oletus"
+    "Default" : "Oletus",
+    "Create guest account for {searchTerm}" : "Luo vierastili nimellä {searchTerm}"
 },
 "nplurals=2; plural=(n != 1);");

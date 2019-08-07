@@ -1,7 +1,6 @@
 OC.L10N.register(
     "guests",
     {
-    "Create guest account for {searchTerm}" : "Skapa gästkonto för {searchTerm}",
     "Access to this resource is forbidden for guests." : "Tillgång till resurs förbjuden för gäster.",
     "Invalid mail address" : "Ogiltig e-postadress",
     "A user with that email already exists." : "En användare med den e-postadressen finns redan.",
@@ -39,6 +38,7 @@ OC.L10N.register(
     "Limit guest access to an app whitelist" : "Begränsa gästtillgång till en app vitlista",
     "Reset" : "Återställ",
     "Saved" : "Sparad",
-    "Default" : "Standard"
+    "Default" : "Standard",
+    "Create guest account for {searchTerm}" : "Skapa gästkonto för {searchTerm}"
 },
 "nplurals=2; plural=(n != 1);");

@@ -1,7 +1,6 @@
 OC.L10N.register(
     "guests",
     {
-    "Create guest account for {searchTerm}" : "Créer un compte invité pour {searchTerm}",
     "Access to this resource is forbidden for guests." : "L'accès à cet élément n'est pas autorisé pour les invités.",
     "__language_name__" : "Français",
     "Invalid mail address" : "Adresse e-mail non valide",
@@ -41,6 +40,7 @@ OC.L10N.register(
     "Limit guest access to an app whitelist" : "Réduire l'accès invité à une liste blanche d'applications",
     "Reset" : "Réinitialiser",
     "Saved" : "Enregistré",
-    "Default" : "Par défaut"
+    "Default" : "Par défaut",
+    "Create guest account for {searchTerm}" : "Créer un compte invité pour {searchTerm}"
 },
 "nplurals=2; plural=(n > 1);");

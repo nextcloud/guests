@@ -1,5 +1,4 @@
 { "translations": {
-    "Create guest account for {searchTerm}" : "Stofnaðu gestaaðgang fyrir {searchTerm}",
     "Access to this resource is forbidden for guests." : "Gestum er bannaður aðgangur að þessum tilföngum.",
     "__language_name__" : "Íslenska",
     "Invalid mail address" : "Ógilt tölvupóstfang",
@@ -37,6 +36,7 @@
     "Limit guest access to an app whitelist" : "Takmarka aðgang gesta við lista yfir leyfð forrit (whitelist)",
     "Reset" : "Endurstilla",
     "Saved" : "Vistað",
-    "Default" : "Sjálfgefið"
+    "Default" : "Sjálfgefið",
+    "Create guest account for {searchTerm}" : "Stofnaðu gestaaðgang fyrir {searchTerm}"
 },"pluralForm" :"nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);"
 }

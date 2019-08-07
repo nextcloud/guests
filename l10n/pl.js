@@ -1,7 +1,6 @@
 OC.L10N.register(
     "guests",
     {
-    "Create guest account for {searchTerm}" : "Utwórz konto gościa dla {searchTerm}",
     "Access to this resource is forbidden for guests." : "Dostęp do zasobów jest zabroniony dla gości",
     "__language_name__" : "Polski",
     "Invalid mail address" : "Nieprawidłowy adres e-mail",
@@ -41,6 +40,7 @@ OC.L10N.register(
     "Limit guest access to an app whitelist" : "Ogranicz dostęp gości do białej listy aplikacji",
     "Reset" : "Resetuj",
     "Saved" : "Zapisano",
-    "Default" : "Domyślny"
+    "Default" : "Domyślny",
+    "Create guest account for {searchTerm}" : "Utwórz konto gościa dla {searchTerm}"
 },
 "nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);");

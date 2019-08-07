@@ -1,7 +1,6 @@
 OC.L10N.register(
     "guests",
     {
-    "Create guest account for {searchTerm}" : "为 {searchTerm} 创建访客账号",
     "Access to this resource is forbidden for guests." : "此资源不可被访客访问",
     "__language_name__" : "简体中文",
     "Invalid mail address" : "无效的电子邮件地址",
@@ -41,6 +40,7 @@ OC.L10N.register(
     "Limit guest access to an app whitelist" : "限制访客访问应用白名单",
     "Reset" : "重置",
     "Saved" : "已保存",
-    "Default" : "默认"
+    "Default" : "默认",
+    "Create guest account for {searchTerm}" : "为 {searchTerm} 创建访客账号"
 },
 "nplurals=1; plural=0;");

@@ -1,7 +1,6 @@
 OC.L10N.register(
     "guests",
     {
-    "Create guest account for {searchTerm}" : "Sukurti svečio paskyrą, skirtą {searchTerm}",
     "Access to this resource is forbidden for guests." : "Prieiga prie šio ištekliaus svečiams yra uždrausta.",
     "__language_name__" : "Lietuvių",
     "Invalid mail address" : "Neteisingas pašto adresas",
@@ -35,6 +34,7 @@ OC.L10N.register(
     "Guests will still be able to see users from any group they are added to" : "Svečiai vis dar galės matyti naudotojus iš bet kurių grupių, prie kurių svečiai yra pridėti",
     "Limit guest access to an app whitelist" : "Ribota svečio prieiga prie programėlių sąrašo",
     "Reset" : "Atstatyti",
-    "Saved" : "Įrašyta"
+    "Saved" : "Įrašyta",
+    "Create guest account for {searchTerm}" : "Sukurti svečio paskyrą, skirtą {searchTerm}"
 },
 "nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);");

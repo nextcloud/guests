@@ -1,7 +1,6 @@
 OC.L10N.register(
     "guests",
     {
-    "Create guest account for {searchTerm}" : "Vendégfiók létrehozása ehhez: {searchTerm}",
     "Access to this resource is forbidden for guests." : "Ehhez az erőforráshoz vendégek nem férhetnek hozzá.",
     "__language_name__" : "Magyar",
     "Invalid mail address" : "Érvénytelen e-mail cím",
@@ -41,6 +40,7 @@ OC.L10N.register(
     "Limit guest access to an app whitelist" : "Vendéghozzáférés korlátozása az alkalmazás fehérlistára",
     "Reset" : "Helyreállítás",
     "Saved" : "Mentve",
-    "Default" : "Alapértelmezett"
+    "Default" : "Alapértelmezett",
+    "Create guest account for {searchTerm}" : "Vendégfiók létrehozása ehhez: {searchTerm}"
 },
 "nplurals=2; plural=(n != 1);");

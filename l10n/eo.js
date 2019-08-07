@@ -1,7 +1,6 @@
 OC.L10N.register(
     "guests",
     {
-    "Create guest account for {searchTerm}" : "Krei gastkonton por {searchTerm}",
     "Access to this resource is forbidden for guests." : "Aliro al tiu ero ne eblas por gastoj.",
     "__language_name__" : "Esperanto",
     "Invalid mail address" : "Retpoŝtadreso nevalida",
@@ -39,6 +38,7 @@ OC.L10N.register(
     "Limit guest access to an app whitelist" : "Limigi gastan aliron al blanka listo de aplikaĵoj",
     "Reset" : "Restarigi",
     "Saved" : "Konservita",
-    "Default" : "Defaŭlta"
+    "Default" : "Defaŭlta",
+    "Create guest account for {searchTerm}" : "Krei gastkonton por {searchTerm}"
 },
 "nplurals=2; plural=(n != 1);");

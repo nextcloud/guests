@@ -1,5 +1,4 @@
 { "translations": {
-    "Create guest account for {searchTerm}" : "Направи гостински налог за {searchTerm}",
     "Access to this resource is forbidden for guests." : "Приступ овом ресурсу је забрањен за госте.",
     "__language_name__" : "Српски",
     "Invalid mail address" : "Неисправна адреса е-поште",
@@ -39,6 +38,7 @@
     "Limit guest access to an app whitelist" : "Ограничи приступ гостима само за одабране апликације",
     "Reset" : "Ресетуј",
     "Saved" : "Сачувано",
-    "Default" : "Подразумевано"
+    "Default" : "Подразумевано",
+    "Create guest account for {searchTerm}" : "Направи гостински налог за {searchTerm}"
 },"pluralForm" :"nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);"
 }

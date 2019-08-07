@@ -1,7 +1,6 @@
 OC.L10N.register(
     "guests",
     {
-    "Create guest account for {searchTerm}" : "{searchTerm} 用にゲストアカウントを作成",
     "Access to this resource is forbidden for guests." : "ゲストからのアクセスは禁止されています",
     "__language_name__" : "__language_name__",
     "Invalid mail address" : "無効なメールアドレスです",
@@ -41,6 +40,7 @@ OC.L10N.register(
     "Limit guest access to an app whitelist" : "ゲストのアクセスをアプリのホワイトリストに制限",
     "Reset" : "リセット",
     "Saved" : "保存しました",
-    "Default" : "デフォルト"
+    "Default" : "デフォルト",
+    "Create guest account for {searchTerm}" : "{searchTerm} 用にゲストアカウントを作成"
 },
 "nplurals=1; plural=0;");

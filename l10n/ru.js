@@ -1,7 +1,6 @@
 OC.L10N.register(
     "guests",
     {
-    "Create guest account for {searchTerm}" : "Создать гостевой аккаунт для {searchTerm}",
     "Access to this resource is forbidden for guests." : "Гостям не разрешён доступ к этому ресурсу.",
     "Invalid mail address" : "Некорректный адрес электронной почты",
     "A user with that name already exists." : "Пользователь с таким именем уже существует.",
@@ -14,6 +13,7 @@ OC.L10N.register(
     "Guest users are grouped under a virtual group in the user manager" : "Гостевые пользователи сгруппированы в виртуальную группу в менеджере пользователей",
     "Limit guest access to an app whitelist" : "Ограничить гостям доступ к приложениям белым списком",
     "Reset" : "Сброс",
-    "Saved" : "Сохранено"
+    "Saved" : "Сохранено",
+    "Create guest account for {searchTerm}" : "Создать гостевой аккаунт для {searchTerm}"
 },
 "nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);");
