@@ -1,31 +1,42 @@
-import Vue from 'vue';
-import GuestForm from './GuestForm.vue';
-import ShareDialogPlugin from './ShareDialogPlugin';
-import LanguageSelect from './LanguageSelect.vue';
+import { validate } from 'email-validator'
+import Vue from 'vue'
+
+import GuestForm from './views/GuestForm.vue'
 import Nextcloud from './mixins/Nextcloud'
-import vSelect from "vue-select";
-import {Modal} from 'nextcloud-vue/dist/Components/Modal'
 
-import 'vue-select/dist/vue-select.css';
-
-
-Vue.mixin(Nextcloud);
-Vue.component('LanguageSelect', LanguageSelect);
-Vue.component('Modal', Modal);
-Vue.component('v-select', vSelect);
+Vue.mixin(Nextcloud)
 
 if (!OCA.Guests) {
 	/**
 	 * @namespace OCA.Guests
 	 */
-	OCA.Guests = {};
+	OCA.Guests = {}
 }
 
-const guestForm = new Vue(GuestForm);
+// Init guests modal
+const guestForm = new Vue(GuestForm)
+const guestRoot = document.createElement('div')
+guestRoot.setAttribute('id', 'guest-root')
+document.body.appendChild(guestRoot)
+guestForm.$mount('#guest-root')
 
-const root = document.createElement('div');
-root.setAttribute('id', 'guest-root');
-document.body.appendChild(root);
-guestForm.$mount('#guest-root');
+// entry in the sharing input search results
+const result = {
+	icon: 'icon-guests',
+	displayName: t('core', 'Create guest account'),
+	handler: async self => {
+		return guestForm.populate(self.fileInfo, self.query)
+	},
+	condition: self => {
+		return validate(self.query)
+	}
+}
 
-OC.Plugins.register('OC.Share.ShareDialogView', new ShareDialogPlugin(guestForm));
+// await page loading and init ShareSearch
+window.addEventListener('DOMContentLoaded', () => {
+	if (OCA.Sharing && OCA.Sharing.ShareSearch) {
+		OCA.Sharing.ShareSearch.addNewResult(result)
+	} else {
+		console.error('OCA.Sharing.ShareSearch not ready')
+	}
+})

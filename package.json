@@ -1,53 +1,77 @@
 {
- "name": "guests",
- "description": "Create guest users which can only see files shared with them",
- "version": "1.0.0",
- "author": "Robin Appelman <robin@icewind.nl>",
- "contributors": [
-  "Robin Appelman <robin@icewind.nl>"
- ],
- "keywords": [
-  "nextcloud",
-  "guests",
-  "app",
-  "vuejs"
- ],
- "bugs": {
-  "url": "https://github.com/nextcloud/guests/issues"
- },
- "repository": {
-  "url": "https://github.com/nextcloud/guests",
-  "type": "git"
- },
- "homepage": "https://github.com/nextcloud/guests",
- "license": "agpl",
- "private": true,
- "scripts": {
-  "dev": "webpack --config webpack.dev.js",
-  "watch": "webpack --progress --watch --config webpack.dev.js",
-  "build": "webpack --progress --hide-modules --config webpack.prod.js"
- },
- "devDependencies": {
-  "@babel/core": "^7.7.4",
-  "@babel/preset-env": "^7.7.4",
-  "@nextcloud/browserslist-config": "^1.0.0",
-  "babel-loader": "^8.0.6",
-  "browserslist-config-nextcloud": "0.1.0",
-  "css-loader": "^3.2.0",
-  "node-sass": "^4.13.0",
-  "sass-loader": "^8.0.0",
-  "style-loader": "^1.0.0",
-  "vue": "^2.6.10",
-  "vue-loader": "^15.7.2",
-  "vue-select": "^3.2.0",
-  "vue-template-compiler": "^2.6.10",
-  "webpack": "^4.41.2",
-  "webpack-cli": "^3.3.10",
-  "webpack-dev-server": "^3.8.2",
-  "webpack-merge": "^4.2.2"
- },
- "dependencies": {
-  "deep-equal": "^1.1.1",
-  "nextcloud-vue": "^0.12.7"
- }
+  "name": "guests",
+  "description": "Create guest users which can only see files shared with them",
+  "version": "1.0.0",
+  "author": "Robin Appelman <robin@icewind.nl>",
+  "contributors": [
+    "Robin Appelman <robin@icewind.nl>",
+    "John Molakvoæ <skjnldsv@protonmail.com>"
+  ],
+  "keywords": [
+    "nextcloud",
+    "guests",
+    "app",
+    "vuejs"
+  ],
+  "bugs": {
+    "url": "https://github.com/nextcloud/guests/issues"
+  },
+  "repository": {
+    "url": "https://github.com/nextcloud/guests",
+    "type": "git"
+  },
+  "homepage": "https://github.com/nextcloud/guests",
+  "license": "agpl",
+  "private": true,
+  "scripts": {
+    "build": "NODE_ENV=production webpack --progress --hide-modules --config webpack.prod.js",
+    "dev": "NODE_ENV=development webpack --progress --config webpack.dev.js",
+    "watch": "NODE_ENV=development webpack --progress --watch --config webpack.dev.js",
+    "lint": "eslint --ext .js,.vue src",
+    "lint:fix": "eslint --ext .js,.vue src --fix",
+    "stylelint": "stylelint src/**/*.vue src/**/*.scss src/**/*.css",
+    "stylelint:fix": "stylelint src/**/*.vue src/**/*.scss src/**/*.css --fix"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
+    "@nextcloud/browserslist-config": "^1.0.0",
+    "babel-eslint": "^10.0.3",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.2.0",
+    "eslint": "^5.14.1",
+    "eslint-config-nextcloud": "0.0.6",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-import-resolver-webpack": "^0.11.1",
+    "eslint-loader": "^3.0.2",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-nextcloud": "^0.3.0",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "eslint-plugin-vue": "^5.2.2",
+    "node-sass": "^4.13.0",
+    "sass-loader": "^7.2.0",
+    "style-loader": "^1.0.0",
+    "stylelint": "^8.0.0",
+    "stylelint-config-recommended-scss": "^3.2.0",
+    "stylelint-scss": "^3.12.1",
+    "stylelint-webpack-plugin": "^0.10.5",
+    "vue-loader": "^15.7.2",
+    "vue-template-compiler": "^2.6.10",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-merge": "^4.2.2"
+  },
+  "dependencies": {
+    "@nextcloud/axios": "^0.4.2",
+    "@nextcloud/router": "^0.1.0",
+    "deep-equal": "^1.1.1",
+    "email-validator": "^2.0.4",
+    "nextcloud-vue": "^0.12.7",
+    "vue": "^2.6.10"
+  },
+  "browserslist": [
+    "extends @nextcloud/browserslist-config"
+  ]
 }

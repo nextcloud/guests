@@ -26,7 +26,6 @@ use OCA\Guests\AppWhitelist;
 use OCA\Guests\Config;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\DataResponse;
-use OCP\IConfig;
 use OCP\IRequest;
 use OCP\L10N\IFactory;
 
