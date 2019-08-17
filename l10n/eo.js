@@ -35,6 +35,8 @@ OC.L10N.register(
     "No guest accounts created" : "Neniu gastkonto kreita",
     "Guest users are grouped under a virtual group in the user manager" : "Gastoj grupiĝas sub virtuala grupo en la uzant-mastrumilo.",
     "Guest users can access mounted external storages" : "Gastkontoj povas aliri al eksteraj konservejoj",
+    "Hide other users from guests" : "Kaŝi la aliajn uzantojn el gastoj",
+    "Guests will still be able to see users from any group they are added to" : "Gastoj plu povos vidi la uzantojn el iu ajn grupo, en kiu ili estas aldonitaj",
     "Limit guest access to an app whitelist" : "Limigi gastan aliron al blanka listo de aplikaĵoj",
     "Reset" : "Restarigi",
     "Saved" : "Konservita",
