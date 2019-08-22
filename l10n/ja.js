@@ -29,7 +29,7 @@ OC.L10N.register(
     "Error while sharing\n" : "シェア中にエラーが発生\n",
     "Error" : "エラー",
     "Guests accounts" : "ゲストアカウント",
-    "Email" : "Eメール",
+    "Email" : "メール",
     "Invited by" : "招待した人",
     "Received shares" : "共有を受け取りました",
     "No guest accounts created" : "ゲストアカウントはまだ作成されていません",
