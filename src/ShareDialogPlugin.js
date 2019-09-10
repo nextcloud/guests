@@ -10,10 +10,12 @@ export default class ShareDialogPlugin {
 		obj.autocompleteHandler = (search, response) => {
 
 			const existingShares = obj.shareeListView.model.get('shares');
-			originalAutocompleteHandler(search, function (suggestions) {
+			originalAutocompleteHandler(search, function(suggestions) {
 				const searchTerm = search.term.trim();
 				const existing = existingShares.some(existing => existing.share_with === searchTerm);
-				const exists = suggestions.some(suggestion => suggestion.value.shareType === OC.Share.SHARE_TYPE_USER);
+				const exists = suggestions && Array.isArray(suggestions)
+					? suggestions.some(suggestion => suggestion.value.shareType === OC.Share.SHARE_TYPE_USER)
+					: null;
 				if (!exists && !existing && lastSearch !== searchTerm) {
 					lastSearch = searchTerm;
 					suggestions.push({
