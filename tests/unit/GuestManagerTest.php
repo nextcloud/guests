@@ -23,7 +23,6 @@ namespace OCA\Guests\Test\Unit;
 
 use OCA\Guests\GuestManager;
 use OCA\Guests\UserBackend;
-use OCP\EventDispatcher\IEventDispatcher;
 use OCP\IConfig;
 use OCP\IDBConnection;
 use OCP\IUser;
@@ -48,8 +47,6 @@ class GuestManagerTest extends TestCase {
 	private $shareManager;
 	/** @var IDBConnection|\PHPUnit_Framework_MockObject_MockObject */
 	private $conneciton;
-	/** @var IEventDispatcher|\PHPUnit_Framework_MockObject_MockObject */
-	private $eventDispatcher;
 
 	/** @var GuestManager */
 	private $guestManager;
@@ -72,7 +69,6 @@ class GuestManagerTest extends TestCase {
 			});
 		$this->shareManager = $this->createMock(IManager::class);
 		$this->conneciton = $this->createMock(IDBConnection::class);
-		$this->eventDispatcher = $this->createMock(IEventDispatcher::class);
 
 		$this->guestManager = new GuestManager(
 			$this->config,
@@ -81,8 +77,7 @@ class GuestManagerTest extends TestCase {
 			$this->crypto,
 			$this->shareManager,
 			$this->conneciton,
-			$this->userSession,
-			$this->eventDispatcher
+			$this->userSession
 		);
 	}
 
