@@ -4,6 +4,7 @@ namespace OCA\Guests\Controller;
 
 
 use OC\AppFramework\Http;
+use OC\Hooks\PublicEmitter;
 use OCA\Guests\GuestManager;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\DataResponse;
@@ -108,6 +109,9 @@ class UsersController extends Controller {
 
 		try {
 			$this->guestManager->createGuest($this->userSession->getUser(), $username, $email, $displayName, $language);
+			if($this->userManager instanceof PublicEmitter) {
+				$this->userManager->emit('\OC\User', 'assignedUserId', [$username]);
+			}
 		} catch (\Exception $e) {
 			return new DataResponse(
 				[
