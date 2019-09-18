@@ -36,4 +36,7 @@ script:
   # Run phpunit tests
   - cd tests
   - ../vendor/bin/phpunit --configuration phpunit.xml
+  # build js
+  - npm install
+  - npm run build
 
