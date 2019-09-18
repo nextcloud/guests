@@ -150,7 +150,7 @@ class GuestManager {
 				'email' => $uid,
 				'display_name' => $displayNames[$uid],
 				'created_by' => $createdBy[$uid],
-				'share_count' => $shareCounts[$uid],
+				'share_count' => isset($shareCounts[$uid]) ? $shareCounts[$uid] : 0,
 			];
 		}, $guests);
 	}
