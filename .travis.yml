@@ -1,15 +1,26 @@
 language: php
 php:
-  - 7.1
-  - 7.2
   - 7.3
+
+services:
+  - postgresql
+  - mysql
 
 env:
   global:
-    - APP_NAME=guests
-    - DB=sqlite
-  matrix:
-    - CORE_BRANCH=stable16
+  - APP_NAME=guests
+matrix:
+  include:
+    - env: CORE_BRANCH=stable16 DB=sqlite
+    - env: CORE_BRANCH=stable17 DB=sqlite
+      php: 7.1
+    - env: CORE_BRANCH=stable17 DB=sqlite
+      php: 7.2
+    - env: CORE_BRANCH=stable17 DB=sqlite
+      php: 7.3
+    - env: CORE_BRANCH=stable17 DB=mysql
+    - env: CORE_BRANCH=stable17 DB=pgsql
+    - env: CORE_BRANCH=master DB=sqlite
 
 branches:
   only:
@@ -17,6 +28,10 @@ branches:
     - /^stable\d+(\.\d+)?$/
 
 before_install:
+  - if [[ "$DB" == 'pgsql' ]]; then createuser -U travis -s oc_autotest; fi
+  - if [[ "$DB" == 'mysql' ]]; then mysql -u root -e 'create database oc_autotest;'; fi
+  - if [[ "$DB" == 'mysql' ]]; then mysql -u root -e "CREATE USER 'oc_autotest'@'localhost' IDENTIFIED BY '';"; fi
+  - if [[ "$DB" == 'mysql' ]]; then mysql -u root -e "grant all on oc_autotest.* to 'oc_autotest'@'localhost';"; fi
   - cd ../
   - git clone https://github.com/nextcloud/server.git --recursive --depth 1 -b $CORE_BRANCH nextcloud
   - mv $APP_NAME nextcloud/apps/
