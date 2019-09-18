@@ -23,8 +23,6 @@ namespace OCA\Guests;
 
 use OC\Share\Share;
 use OCP\DB\QueryBuilder\IQueryBuilder;
-use OCP\EventDispatcher\Event;
-use OCP\EventDispatcher\IEventDispatcher;
 use OCP\IConfig;
 use OCP\IDBConnection;
 use OCP\IGroupManager;
@@ -36,7 +34,6 @@ use OCP\Security\ICrypto;
 use OCP\Security\ISecureRandom;
 use OCP\Share\IManager;
 use OCP\Share\IShare;
-use Symfony\Component\EventDispatcher\GenericEvent;
 
 class GuestManager {
 	/** @var IConfig */
@@ -57,8 +54,6 @@ class GuestManager {
 
 	private $userSession;
 
-	private $eventDispatcher;
-
 	public function __construct(
 		IConfig $config,
 		UserBackend $userBackend,
@@ -66,8 +61,7 @@ class GuestManager {
 		ICrypto $crypto,
 		IManager $shareManager,
 		IDBConnection $connection,
-		IUserSession $userSession,
-		IEventDispatcher $eventDispatcher
+		IUserSession $userSession
 	) {
 		$this->config = $config;
 		$this->userBackend = $userBackend;
@@ -76,7 +70,6 @@ class GuestManager {
 		$this->shareManager = $shareManager;
 		$this->connection = $connection;
 		$this->userSession = $userSession;
-		$this->eventDispatcher = $eventDispatcher;
 	}
 
 	/**
@@ -97,11 +90,9 @@ class GuestManager {
 	}
 
 	public function createGuest(IUser $createdBy, $userId, $email, $displayName = '', $language = '') {
-		$passwordEvent = new Event(null, ['password' => $this->secureRandom->generate(20)]);
-		$this->eventDispatcher->dispatch('OCP\PasswordPolicy::generate', $passwordEvent);
 		$this->userBackend->createUser(
 			$userId,
-			$passwordEvent->getArgument('password')
+			$this->secureRandom->generate(20)
 		);
 
 		$this->config->setUserValue($userId, 'settings', 'email', $email);
