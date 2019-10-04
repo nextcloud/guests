@@ -28,7 +28,7 @@
   "build": "webpack --progress --hide-modules --config webpack.prod.js"
  },
  "devDependencies": {
-  "@babel/core": "^7.6.0",
+  "@babel/core": "^7.6.2",
   "@babel/preset-env": "^7.6.2",
   "babel-loader": "^8.0.6",
   "browserslist-config-nextcloud": "0.0.1",
