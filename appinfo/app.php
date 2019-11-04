@@ -22,4 +22,4 @@
 
 use OCA\Guests\AppInfo\Application;
 
-(new Application())->setup();
+(\OC::$server->query(Application::class))->setup();
