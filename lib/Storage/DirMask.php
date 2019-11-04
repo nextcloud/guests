@@ -195,6 +195,8 @@ class DirMask extends PermissionsMask {
 			$storage = $this;
 		}
 		$sourceCache = $this->storage->getCache($path, $storage);
-		return new DirMaskCache($sourceCache, $this->mask, [$this, 'checkPath']);
+		return new DirMaskCache($sourceCache, $this->mask, function(string $path) {
+			return $this->checkPath($path);
+		});
 	}
 }

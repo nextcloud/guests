@@ -28,25 +28,25 @@
   "build": "webpack --progress --hide-modules --config webpack.prod.js"
  },
  "devDependencies": {
-  "@babel/core": "^7.6.0",
-  "@babel/preset-env": "^7.6.0",
+  "@babel/core": "^7.6.2",
+  "@babel/preset-env": "^7.6.3",
   "babel-loader": "^8.0.6",
-  "browserslist-config-nextcloud": "0.0.1",
+  "browserslist-config-nextcloud": "0.1.0",
   "css-loader": "^3.2.0",
-  "node-sass": "^4.12.0",
+  "node-sass": "^4.13.0",
   "sass-loader": "^8.0.0",
   "style-loader": "^1.0.0",
   "vue": "^2.6.10",
   "vue-loader": "^15.7.1",
   "vue-select": "^3.2.0",
   "vue-template-compiler": "^2.6.10",
-  "webpack": "^4.40.2",
+  "webpack": "^4.41.2",
   "webpack-cli": "^3.3.9",
-  "webpack-dev-server": "^3.8.1",
+  "webpack-dev-server": "^3.8.2",
   "webpack-merge": "^4.2.2"
  },
  "dependencies": {
   "deep-equal": "^1.1.0",
-  "nextcloud-vue": "^0.12.3"
+  "nextcloud-vue": "^0.12.7"
  }
 }
