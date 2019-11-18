@@ -5,7 +5,7 @@ OC.L10N.register(
     "Invalid mail address" : "Neveljaven elektronski naslov",
     "A user with that name already exists." : "Uporabnik s tem imenom že obstaja.",
     "User successfully created" : "Uporabniški račun je uspešno ustvarjen.",
-    "%s shared »%s« with you" : "%s je omogočil souporabo »%s«",
+    "%s shared »%s« with you" : "%s omogoči souporabo »%s«",
     "%s via %s" : "%s prek %s",
     "Couldn't send reset email. Please contact your administrator." : "Ni mogoče poslati elektronskega naslova za ponastavitev. Stopite v stik s skrbnikom sistema.",
     "Guests" : "Gosti",

@@ -33,6 +33,7 @@
     "Guest users are grouped under a virtual group in the user manager" : "Uživatelé jsou ve správci uživatelů seskupeni pod virtuální skupinou",
     "Guest users can access mounted external storages" : "Hosté mohou přistupovat k připojeným externím úložištím",
     "Hide other users from guests" : "Skrýt před hosty ostatní uživatele",
+    "Guests will still be able to see users from any group they are added to" : "Hosté pořád budou moci vidět uživatele ze skupiny, do které jsou přidáni",
     "Limit guest access to an app whitelist" : "Omezte přístup hosta do seznamu povolených aplikací",
     "Reset" : "Reset",
     "Saved" : "Uloženo",
