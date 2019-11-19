@@ -23,18 +23,16 @@ declare(strict_types=1);
 namespace OCA\Guests;
 
 use OC\Cache\CappedMemoryCache;
-use OCP\IConfig;
 use OCP\IDBConnection;
 use OCP\Security\IHasher;
 use OCP\User\Backend\ABackend;
 use OCP\User\Backend\ICheckPasswordBackend;
 use OCP\User\Backend\ICountUsersBackend;
-use OCP\User\Backend\ICreateUserBackend;
 use OCP\User\Backend\IGetDisplayNameBackend;
 use OCP\User\Backend\IGetHomeBackend;
 use OCP\User\Backend\ISetDisplayNameBackend;
 use OCP\User\Backend\ISetPasswordBackend;
-use Symfony\Component\EventDispatcher\EventDispatcher;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
 
 /**
@@ -56,7 +54,7 @@ class UserBackend extends ABackend
 	private $allowListing = true;
 
 	public function __construct(
-		EventDispatcher $eventDispatcher,
+		EventDispatcherInterface $eventDispatcher,
 		IDBConnection $connection,
 		Config $config,
 		IHasher $hasher
