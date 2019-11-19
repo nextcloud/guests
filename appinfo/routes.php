@@ -23,7 +23,7 @@
 
 use OCA\Guests\AppInfo\Application;
 
-(new Application())->lateSetup();
+(\OC::$server->query(Application::class))->lateSetup();
 
 return [
 	'routes' => [
