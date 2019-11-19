@@ -23,55 +23,61 @@
 namespace OCA\Guests;
 
 use OC\Files\Filesystem;
+use OCA\Files\Exception\TransferOwnershipException;
+use OCA\Files\Service\OwnershipTransferService;
+use OCA\Guests\AppInfo\Application;
 use OCA\Guests\Storage\ReadOnlyJail;
 use OCP\AppFramework\Db\DoesNotExistException;
+use OCP\AppFramework\IAppContainer;
+use OCP\AppFramework\QueryException;
 use OCP\Constants;
-use OCP\Files\IHomeStorage;
 use OCP\Files\Storage\IStorage;
 use OCP\IConfig;
-use OCP\IGroupManager;
 use OCP\ILogger;
 use OCP\IRequest;
+use OCP\IUser;
 use OCP\IUserManager;
 use OCP\IUserSession;
+use OCP\Notification\IManager as INotificationManager;
 use OCP\Security\ICrypto;
+use OCP\Share\IManager as IShareManager;
 use OCP\Share\IShare;
 use Symfony\Component\EventDispatcher\GenericEvent;
 
 
 class Hooks {
 
-	/**
-	 * @var ILogger
-	 */
+	/** @var ILogger */
 	private $logger;
 
-	/**
-	 * @var IUserSession
-	 */
+	/** @var IUserSession */
 	private $userSession;
-	/**
-	 * @var IRequest
-	 */
+
+	/** @var IRequest */
 	private $request;
 
-	/**
-	 * @var Mail
-	 */
+	/** @var Mail */
 	private $mail;
 
-	/**
-	 * @var IUserManager
-	 */
+	/** @var IUserManager */
 	private $userManager;
 
-	/**
-	 * @var ICrypto
-	 */
+	/** @var ICrypto */
 	private $crypto;
 
 	/** @var GuestManager */
 	private $guestManager;
+
+	/** @var UserBackend */
+	private $userBackend;
+
+	/** @var IAppContainer */
+	private $container;
+
+	/** @var INotificationManager */
+	private $notificationManager;
+	/** @var IShareManager */
+	private $shareManager;
 
 	public function __construct(
 		ILogger $logger,
@@ -81,7 +87,11 @@ class Hooks {
 		IUserManager $userManager,
 		IConfig $config,
 		ICrypto $crypto,
-		GuestManager $guestManager
+		GuestManager $guestManager,
+		UserBackend $userBackend,
+		IAppContainer $container,
+		INotificationManager $notificationManager,
+		IShareManager $shareManager
 	) {
 		$this->logger = $logger;
 		$this->userSession = $userSession;
@@ -91,6 +101,10 @@ class Hooks {
 		$this->config = $config;
 		$this->crypto = $crypto;
 		$this->guestManager = $guestManager;
+		$this->userBackend = $userBackend;
+		$this->container = $container;
+		$this->notificationManager = $notificationManager;
+		$this->shareManager = $shareManager;
 	}
 
 	public function handlePostShare(GenericEvent $event) {
@@ -103,7 +117,7 @@ class Hooks {
 		if (!$isGuest) {
 			$this->logger->debug(
 				"ignoring user '$shareWith', not a guest",
-				['app' => 'guests']
+				['app' => Application::APP_ID]
 			);
 
 			return;
@@ -112,7 +126,7 @@ class Hooks {
 		if (!($share->getNodeType() === 'folder' || $share->getNodeType() === 'file')) {
 			$this->logger->debug(
 				"ignoring share for itemType " . $share->getNodeType(),
-				['app' => 'guests']
+				['app' => Application::APP_ID]
 			);
 
 			return;
@@ -129,7 +143,7 @@ class Hooks {
 		}
 
 		$this->logger->debug("checking if '$shareWith' has a password",
-			['app' => 'guests']);
+			['app' => Application::APP_ID]);
 
 
 		$passwordToken = $this->config->getUserValue(
@@ -160,7 +174,7 @@ class Hooks {
 				$share->setMailSend(false);
 			}
 		} catch (DoesNotExistException $ex) {
-			$this->logger->error("'$shareWith' does not exist", ['app' => 'guests']);
+			$this->logger->error("'$shareWith' does not exist", ['app' => Application::APP_ID]);
 		}
 	}
 
@@ -182,4 +196,80 @@ class Hooks {
 			});
 		}
 	}
+
+	public function handleFirstLogin(GenericEvent $event): void {
+		if ($this->config->getSystemValue('migrate_guest_user_data', false) === false) {
+			return;
+		}
+
+		/** @var IUser $user */
+		$user = $event->getSubject();
+		$this->logger->debug('User ' . $user->getUID() . ' logged in for the very first time. Checking guests data import.');
+
+		$email = $user->getEMailAddress();
+		if ($email === null) {
+			$this->logger->info('User ' . $user->getUID() . ' does not have an e-mail address set. Skipping guests data import.');
+			return;
+		}
+
+		if (!$this->userBackend->userExists($email)) {
+			$this->logger->info('No guest user for ' . $email . ' found. Skipping guests data import.');
+			return;
+		}
+
+		if ($email === $user->getUID()) {
+			// This is the guest user, logging in for the very first time
+			return;
+		}
+
+		try {
+			/** @var OwnershipTransferService $ownershipTransferService */
+			$ownershipTransferService = $this->container->query(OwnershipTransferService::class);
+		} catch (QueryException $e) {
+			$this->logger->logException($e, [
+				'level' => ILogger::ERROR,
+				'message' => 'Could not resolve ownership transfer service to import guest user data',
+			]);
+			return;
+		}
+
+		$guestUser = $this->userManager->get($email);
+		if ($guestUser === null) {
+			$this->logger->warning("Guest user $email does not exist (anymore)");
+			return;
+		}
+		try {
+			$ownershipTransferService->transfer(
+				$guestUser,
+				$user,
+				'/'
+			);
+		} catch (TransferOwnershipException $e) {
+			$this->logger->logException($e, [
+				'level' => ILogger::ERROR,
+				'message' => 'Could not import guest user data',
+			]);
+			return;
+		}
+
+		// Update incomming shares
+		$shares = $this->shareManager->getSharedWith($guestUser->getUID(), IShare::TYPE_USER);
+		foreach ($shares as $share) {
+			$share->setSharedWith($user->getUID());
+			$this->shareManager->updateShare($share);
+		}
+
+		// Disable previous account
+		$guestUser->setEnabled(false);
+
+		$notification = $this->notificationManager->createNotification();
+		$notification
+			->setApp(Application::APP_ID)
+			->setSubject('data_migrated_to_system_user')
+			->setObject('user', $email)
+			->setDateTime(new \DateTime())
+			->setUser($user->getUID());
+		$this->notificationManager->notify($notification);
+	}
+
 }
