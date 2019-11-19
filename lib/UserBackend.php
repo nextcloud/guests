@@ -23,7 +23,9 @@ declare(strict_types=1);
 namespace OCA\Guests;
 
 use OC\Cache\CappedMemoryCache;
+use OCP\EventDispatcher\IEventDispatcher;
 use OCP\IDBConnection;
+use OCP\Security\Events\ValidatePasswordPolicyEvent;
 use OCP\Security\IHasher;
 use OCP\User\Backend\ABackend;
 use OCP\User\Backend\ICheckPasswordBackend;
@@ -32,8 +34,6 @@ use OCP\User\Backend\IGetDisplayNameBackend;
 use OCP\User\Backend\IGetHomeBackend;
 use OCP\User\Backend\ISetDisplayNameBackend;
 use OCP\User\Backend\ISetPasswordBackend;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Symfony\Component\EventDispatcher\GenericEvent;
 
 /**
  * Class for user management in a SQL Database (e.g. MySQL, SQLite)
@@ -54,7 +54,7 @@ class UserBackend extends ABackend
 	private $allowListing = true;
 
 	public function __construct(
-		EventDispatcherInterface $eventDispatcher,
+		IEventDispatcher $eventDispatcher,
 		IDBConnection $connection,
 		Config $config,
 		IHasher $hasher
@@ -82,8 +82,7 @@ class UserBackend extends ABackend
 	 */
 	public function createUser(string $uid, string $password): bool {
 		if (!$this->userExists($uid)) {
-			$event = new GenericEvent($password);
-			$this->eventDispatcher->dispatch('OCP\PasswordPolicy::validate', $event);
+			$this->eventDispatcher->dispatchTyped(new ValidatePasswordPolicyEvent($password));
 
 			$qb = $this->dbConn->getQueryBuilder();
 			$qb->insert('guests_users')
@@ -137,8 +136,7 @@ class UserBackend extends ABackend
 	 */
 	public function setPassword(string $uid, string $password): bool {
 		if ($this->userExists($uid)) {
-			$event = new GenericEvent($password);
-			$this->eventDispatcher->dispatch('OCP\PasswordPolicy::validate', $event);
+			$this->eventDispatcher->dispatchTyped(new ValidatePasswordPolicyEvent($password));
 
 			$hashedPassword = $this->hasher->hash($password);
 
