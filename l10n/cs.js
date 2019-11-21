@@ -16,7 +16,7 @@ OC.L10N.register(
     "The share will expire at %s." : "Platnost sdílení skončí %s.",
     "Activate account" : "Aktivovat účet",
     "View share" : "Zobrazit sdílení",
-    "%s via %s" : "%s pomocí %s",
+    "%s via %s" : "%s prostřednictvím %s",
     "Couldn't send reset email. Please contact your administrator." : "Nepodařilo se odeslat e-mail pro změnu hesla. Kontaktujte prosím svého administrátora.",
     "Guests" : "Hosté",
     "Create guest accounts for easier collaboration" : "Vytvořit účty hostů pro snazší spolupráci",
