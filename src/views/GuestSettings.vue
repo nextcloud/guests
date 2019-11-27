@@ -69,10 +69,10 @@
 </template>
 
 <script>
-import axios from '@nextcloud/axios'
-import { generateUrl } from '@nextcloud/router'
-import { Multiselect } from 'nextcloud-vue/dist/Components/Multiselect'
 import { clearTimeout, setTimeout } from 'timers'
+import { generateUrl } from '@nextcloud/router'
+import { Multiselect } from '@nextcloud/vue/dist/Components/Multiselect'
+import axios from '@nextcloud/axios'
 import GuestList from '../components/GuestList'
 
 export default {

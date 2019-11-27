@@ -64,8 +64,8 @@
 </template>
 
 <script>
-import axios from '@nextcloud/axios'
 import { generateUrl } from '@nextcloud/router'
+import axios from '@nextcloud/axios'
 import GuestDetails from './GuestDetails'
 
 export default {
