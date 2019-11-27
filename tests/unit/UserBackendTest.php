@@ -24,8 +24,8 @@ namespace OCA\Guests\Test\Unit;
 
 use OCA\Guests\Config;
 use OCA\Guests\UserBackend;
+use OCP\EventDispatcher\IEventDispatcher;
 use PHPUnit\Framework\MockObject\MockObject;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Test\TestCase;
 
 /**
@@ -52,7 +52,7 @@ class UserBackendTest extends TestCase {
 		$this->config = $this->createMock(Config::class);
 
 		$this->backend = new UserBackend(
-			$this->createMock(EventDispatcherInterface::class),
+			$this->createMock(IEventDispatcher::class),
 			\OC::$server->getDatabaseConnection(),
 			$this->config,
 			\OC::$server->getHasher()

@@ -32,6 +32,7 @@ use OCP\IUser;
 use OCP\IUserBackend;
 use OCP\IUserManager;
 use OCP\IUserSession;
+use OCP\Security\Events\GenerateSecurePasswordEvent;
 use OCP\Security\ICrypto;
 use OCP\Security\ISecureRandom;
 use OCP\Share\IManager;
@@ -97,11 +98,11 @@ class GuestManager {
 	}
 
 	public function createGuest(IUser $createdBy, $userId, $email, $displayName = '', $language = '') {
-		$passwordEvent = new Event(null, ['password' => $this->secureRandom->generate(20)]);
-		$this->eventDispatcher->dispatch('OCP\PasswordPolicy::generate', $passwordEvent);
+		$passwordEvent = new GenerateSecurePasswordEvent();
+		$this->eventDispatcher->dispatchTyped($passwordEvent);
 		$this->userBackend->createUser(
 			$userId,
-			$passwordEvent->getArgument('password')
+			$passwordEvent->getPassword() ?? $this->secureRandom->generate(20)
 		);
 
 		$this->config->setUserValue($userId, 'settings', 'email', $email);
