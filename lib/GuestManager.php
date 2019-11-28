@@ -176,6 +176,7 @@ class GuestManager {
 		return [
 			'shares' => array_map(function (IShare $share) {
 				return [
+					'id' => $share->getId(),
 					'shared_by' => $share->getSharedBy(),
 					'mime_type' => $share->getNodeCacheEntry()->getMimeType(),
 					'name' => $share->getNodeCacheEntry()->getName(),

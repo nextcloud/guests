@@ -86,7 +86,6 @@ class Application extends App {
 				'OCA\Files::loadAdditionalScripts',
 				function () {
 					\OCP\Util::addScript('guests', 'main');
-					\OCP\Util::addStyle('guests', 'app');
 				}
 			);
 		}

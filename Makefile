@@ -37,6 +37,19 @@ clean:
 clean-dev:
 	rm -rf node_modules
 
+# Linting
+lint:
+	npm run lint
+
+lint-fix:
+	npm run lint:fix
+
+# Style linting
+stylelint:
+	npm run stylelint
+
+stylelint-fix:
+	npm run stylelint:fix
 
 appstore: clean package
 

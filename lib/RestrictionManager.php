@@ -101,8 +101,6 @@ class RestrictionManager {
 			/** @var NavigationManager $navManager */
 			$navManager = $this->server->getNavigationManager();
 
-			\OCP\Util::addStyle('guests', 'personal');
-
 			$this->server->registerService('NavigationManager', function () use ($navManager) {
 				return new FilteredNavigationManager($this->userSession->getUser(), $navManager, $this->whitelist);
 			});
