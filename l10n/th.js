@@ -8,10 +8,9 @@ OC.L10N.register(
     "%s shared »%s« with you" : "%s ถูกแชร์ »%s« กับคุณ",
     "%s via %s" : "%s ผ่านทาง %s",
     "Couldn't send reset email. Please contact your administrator." : "ไม่สามารถส่งข้อมูลการตั้งค่าไปยังอีเมลของคุณ กรุณาติดต่อผู้ดูแลระบบ",
-    "Error" : "ข้อผิดพลาด",
     "Guest users are grouped under a virtual group in the user manager" : "ผู้ใช้ทั่วไปจะถูกจัดกลุ่มภายใต้กลุ่มเสมือนในการจัดการผู้ใช้",
     "Limit guest access to an app whitelist" : "จำกัดการใช้งานรายการที่อนุญาตในแอพฯ",
     "Reset" : "ตั้งค่าใหม่",
-    "Saved" : "บันทึกแล้ว"
+    "Error" : "ข้อผิดพลาด"
 },
 "nplurals=1; plural=0;");

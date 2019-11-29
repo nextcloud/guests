@@ -9,9 +9,8 @@ OC.L10N.register(
     "%s via %s" : "%s ar %s",
     "Couldn't send reset email. Please contact your administrator." : "Nevarēja nosūtīt maiņas e-pastu. Lūdzu sazinies ar savu administratoru.",
     "Guests" : "Viesi",
-    "Error" : "Kļūda",
+    "Default" : "Noklusējuma",
     "Reset" : "Atiestatīt",
-    "Saved" : "Saglabāts",
-    "Default" : "Noklusējuma"
+    "Error" : "Kļūda"
 },
 "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);");

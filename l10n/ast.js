@@ -9,8 +9,7 @@ OC.L10N.register(
     "%s via %s" : "%s per %s",
     "Couldn't send reset email. Please contact your administrator." : "Nun pudo unviase'l corréu de reafitamientu. Contauta col to alministrador, por favor.",
     "Guests" : "Convidaos",
-    "Error" : "Fallu",
     "Guest users are grouped under a virtual group in the user manager" : "Los usuarios convidaos agrúpense so un grupu virtual na xestión d'usuarios",
-    "Saved" : "Guardóse"
+    "Error" : "Fallu"
 },
 "nplurals=2; plural=(n != 1);");

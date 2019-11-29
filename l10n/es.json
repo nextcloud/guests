@@ -22,23 +22,18 @@
     "Name" : "Nombre",
     "Shared By" : "Compartido por",
     "Shared At" : "Compartido en",
-    "Create guest account for {fullName}" : "Crear cuenta de invitado para {fullName}",
-    "Save and Share" : "Guardar y compartir",
-    "Error while sharing\n" : "Error al compartir\n",
-    "Error" : "Error",
     "Guests accounts" : "Cuentas de invitados",
     "Email" : "Correo electrónico",
     "Invited by" : "Invitado por",
     "Received shares" : "Archivos compartidos recibidos",
     "No guest accounts created" : "No se han creado cuentas de invitados",
+    "Default" : "Predeterminado",
     "Guest users are grouped under a virtual group in the user manager" : "Los invitados se agrupan bajo un grupo virtual en el gestor de usuarios",
     "Guest users can access mounted external storages" : "Los usuarios invitados pueden acceder a almacenamientos externos montados",
     "Hide other users from guests" : "Ocultar los usuarios que no sean del tipo invitados",
     "Guests will still be able to see users from any group they are added to" : "Los invitados todavía serán capaces de ver a los usuarios de cualquier grupo del que hayan sido añadidos",
     "Limit guest access to an app whitelist" : "Limitar acceso de invitados a una lista blanca de aplicaciones",
     "Reset" : "Restablecer",
-    "Saved" : "Guardado",
-    "Default" : "Predeterminado",
-    "Create guest account for {searchTerm}" : "Crear cuenta de invitado para {searchTerm}"
+    "Error" : "Error"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

@@ -22,23 +22,18 @@
     "Name" : "Név",
     "Shared By" : "Megosztotta:",
     "Shared At" : "Megosztva:",
-    "Create guest account for {fullName}" : "Vendégfiók létrehozása {fullName} számára",
-    "Save and Share" : "Mentés és megosztás",
-    "Error while sharing\n" : "Hiba a megosztáskor\n",
-    "Error" : "Hiba",
     "Guests accounts" : "Vendégfiókok",
     "Email" : "E-mail",
     "Invited by" : "Meghívta:",
     "Received shares" : "Fogadott megosztások",
     "No guest accounts created" : "Nincs vendégfiók létrehozva",
+    "Default" : "Alapértelmezett",
     "Guest users are grouped under a virtual group in the user manager" : "A vendégfelhasználók egy virtuális csoportba vannak szervezve a felhasználókezelőben",
     "Guest users can access mounted external storages" : "A vendégfelhasználók elérhetik a csatolt külső tárolókat",
     "Hide other users from guests" : "Más felhasználók elrejtése a vendégek elől",
     "Guests will still be able to see users from any group they are added to" : "A vendégek továbbra is látni fogják azokat a felhasználókat, akikkel egy csoportban vannak",
     "Limit guest access to an app whitelist" : "Vendéghozzáférés korlátozása az alkalmazás fehérlistára",
     "Reset" : "Helyreállítás",
-    "Saved" : "Mentve",
-    "Default" : "Alapértelmezett",
-    "Create guest account for {searchTerm}" : "Vendégfiók létrehozása ehhez: {searchTerm}"
+    "Error" : "Hiba"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

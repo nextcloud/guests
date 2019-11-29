@@ -9,10 +9,9 @@ OC.L10N.register(
     "%s via %s" : "%s përmes %s",
     "Couldn't send reset email. Please contact your administrator." : "S’u dërgua dot email-i i rivendosjes. Ju lutemi, lidhuni me përgjegjësin tuaj.",
     "Guests" : "Të ftuarit",
-    "Error" : "Gabim",
     "Guest users are grouped under a virtual group in the user manager" : "Përdoruesit vizitorë grupohen nën një grup virtual te përgjegjësi i përdoruesve",
     "Limit guest access to an app whitelist" : "Kufizoni hyrje përdoruesish vizitorë sipas një liste lejimesh tëaplikacionit",
     "Reset" : "Ricaktoje",
-    "Saved" : "U ruajt"
+    "Error" : "Gabim"
 },
 "nplurals=2; plural=(n != 1);");

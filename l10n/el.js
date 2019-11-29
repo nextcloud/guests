@@ -14,13 +14,11 @@ OC.L10N.register(
     "Name" : "Όνομα",
     "Shared By" : "Διαμοιράστηκε από",
     "Shared At" : "Διαμοιράστηκε σε",
-    "Error while sharing\n" : "Σφάλμα κατά τον διαμοιρασμό\n",
-    "Error" : "Σφάλμα",
     "Email" : "Ηλ. ταχυδρομείο",
     "Invited by" : "Προσκεκλήμένος από",
     "Guest users are grouped under a virtual group in the user manager" : "Οι λογαριασμοί επισκεπτών ομαδοποιούνται σε μια εικονική ομάδα στη διαχείριση χρηστών",
     "Limit guest access to an app whitelist" : "Περιορίστε την πρόσβαση των επισκεπτών σε μια λίστα επιτρεπόμενων εφαρμογών",
     "Reset" : "Επαναφορά",
-    "Saved" : "Αποθηκεύτηκαν"
+    "Error" : "Σφάλμα"
 },
 "nplurals=2; plural=(n != 1);");

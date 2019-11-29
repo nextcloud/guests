@@ -22,23 +22,18 @@
     "Name" : "Naam",
     "Shared By" : "Gedeeld door",
     "Shared At" : "Gedeeld om",
-    "Create guest account for {fullName}" : "Maak gastaccount voor {fullName}",
-    "Save and Share" : "Bewaren en Delen",
-    "Error while sharing\n" : "Fout bij delen\n",
-    "Error" : "Fout",
     "Guests accounts" : "Gastenaccounts",
     "Email" : "Email",
     "Invited by" : "Uitgenodigd door",
     "Received shares" : "Ontvangen shares",
     "No guest accounts created" : "Geen gastaccount aangemaakt",
+    "Default" : "Standaard",
     "Guest users are grouped under a virtual group in the user manager" : "Gasten worden gegroepeerd in een virtuele groep binnen gebruikersbeheer",
     "Guest users can access mounted external storages" : "Gastgebruikers kunnen aangekoppelde externe opslag benaderen",
     "Hide other users from guests" : "Verberg andere gebruikers van gasten",
     "Guests will still be able to see users from any group they are added to" : "Gasten kunnen nog steeds gebruikers van de groepen zien waarvan ze lid zijn",
     "Limit guest access to an app whitelist" : "Beperk gastentoegang tot apps op de whitelist",
     "Reset" : "Reset",
-    "Saved" : "Bewaard",
-    "Default" : "Standaard",
-    "Create guest account for {searchTerm}" : "Maak gastaccount voor {searchTerm}"
+    "Error" : "Fout"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

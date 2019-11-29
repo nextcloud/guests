@@ -9,10 +9,9 @@ OC.L10N.register(
     "%s via %s" : "%s vía %s",
     "Couldn't send reset email. Please contact your administrator." : "No fue posible enviar el correo electrónico de restauración. Por favor contacta a tu adminstrador. ",
     "Guests" : "Invitados",
-    "Error" : "Error",
     "Guest users are grouped under a virtual group in the user manager" : "Los invitados están agrupados dentro de un grupo virutal en el administrador de usuarios",
     "Limit guest access to an app whitelist" : "Limita el acceso de inivitados a la lista blanca de aplicaciones",
     "Reset" : "Reiniciar",
-    "Saved" : "Guardado"
+    "Error" : "Error"
 },
 "nplurals=2; plural=(n != 1);");

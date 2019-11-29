@@ -12,11 +12,9 @@ OC.L10N.register(
     "%s via %s" : "%s eta %s",
     "Couldn't send reset email. Please contact your administrator." : "Ezin da berrezartzeko eposta bidali. Mesedez jarri harremetan zure administradorearekin.",
     "Guests" : "Gonbidatuak",
-    "Error while sharing\n" : "Errorea partekatzean\n",
-    "Error" : "Errorea",
     "Guest users are grouped under a virtual group in the user manager" : "Gonbidatuak talde birtual batean biltzen dira erabiltzaileen kudeatzailean",
     "Limit guest access to an app whitelist" : "App-en zerrenda txurirako sarbidea mugatu",
     "Reset" : "Berrezarri",
-    "Saved" : "Gordeta"
+    "Error" : "Errorea"
 },
 "nplurals=2; plural=(n != 1);");

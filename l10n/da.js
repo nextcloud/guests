@@ -9,10 +9,9 @@ OC.L10N.register(
     "%s via %s" : "%s via %s",
     "Couldn't send reset email. Please contact your administrator." : "Der opstod et problem under afsending af e-mailen til nulstilling. Kontakt venligst systemadministratoren.",
     "Guests" : "Gæster",
-    "Error" : "Fejl",
     "Guest users are grouped under a virtual group in the user manager" : "Gæster er grupperet under en virtuel gruppe under bruger administrationen",
     "Limit guest access to an app whitelist" : "Begræns gæste adgang to en APP godkendt-liste",
     "Reset" : "Nulstil",
-    "Saved" : "Gemt"
+    "Error" : "Fejl"
 },
 "nplurals=2; plural=(n != 1);");

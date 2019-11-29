@@ -7,8 +7,7 @@ OC.L10N.register(
     "%s shared »%s« with you" : "%s jagas sinuga »%s«",
     "%s via %s" : "%s läbi %s",
     "Couldn't send reset email. Please contact your administrator." : "Ei suutnud lähtestada e-maili. Palun kontakteeru süsteemihalduriga.",
-    "Error" : "Tõrge",
     "Reset" : "Algseaded",
-    "Saved" : "Salvestatud"
+    "Error" : "Tõrge"
 },
 "nplurals=2; plural=(n != 1);");

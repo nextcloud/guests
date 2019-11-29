@@ -6,8 +6,7 @@ OC.L10N.register(
     "%s shared »%s« with you" : "%s a partejat «%s» amb vos",
     "%s via %s" : "%s via %s",
     "Couldn't send reset email. Please contact your administrator." : "Impossible de mandar lo corrièl de reïnicializacion. Contactatz vòstre administrator.",
-    "Error" : "Error",
     "Reset" : "Reïnicializar",
-    "Saved" : "Enregistrat"
+    "Error" : "Error"
 },
 "nplurals=2; plural=(n > 1);");

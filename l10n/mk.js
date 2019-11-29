@@ -22,20 +22,15 @@ OC.L10N.register(
     "Name" : "Име",
     "Shared By" : "Споделено од",
     "Shared At" : "Споделено на",
-    "Create guest account for {fullName}" : "Креирајте гостинска сметка за {fullName}",
-    "Save and Share" : "Зачувај и сподели",
-    "Error while sharing\n" : "Грешка при споделувањето\n",
-    "Error" : "Грешка",
     "Guests accounts" : "Гостински сметки",
     "Email" : "Е-пошта",
     "Invited by" : "Поканет од",
     "Received shares" : "Примени споделувања",
     "No guest accounts created" : "Не е креирана гостинска сметка",
+    "Default" : "Стандардно",
     "Guest users are grouped under a virtual group in the user manager" : "Гостинските корисници ќе бидат групирани во виртуелна група во менаџерот за корисници.",
     "Hide other users from guests" : "Сокриј ги другите корисници од гостите",
     "Reset" : "Поништи",
-    "Saved" : "Снимено",
-    "Default" : "Стандардно",
-    "Create guest account for {searchTerm}" : "Креирајте гостинска сметка за {searchTerm}"
+    "Error" : "Грешка"
 },
 "nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;");

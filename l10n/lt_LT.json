@@ -17,10 +17,6 @@
     "Couldn't send reset email. Please contact your administrator." : "Nepavyko išsiųsti atstatymo laiško, susisiekite su savo administratoriumi.",
     "Guests" : "Svečiai",
     "Shared By" : "Bendrina",
-    "Create guest account for {fullName}" : "Sukurti svečio paskyrą, skirtą {fullName}",
-    "Save and Share" : "Įrašyti ir bendrinti",
-    "Error while sharing\n" : "Klaida bendrinant\n",
-    "Error" : "Klaida",
     "Guests accounts" : "Svečių paskyros",
     "Email" : "El. paštas",
     "Invited by" : "Pakvietė",
@@ -32,7 +28,6 @@
     "Guests will still be able to see users from any group they are added to" : "Svečiai vis dar galės matyti naudotojus iš bet kurių grupių, prie kurių svečiai yra pridėti",
     "Limit guest access to an app whitelist" : "Ribota svečio prieiga prie programėlių sąrašo",
     "Reset" : "Atstatyti",
-    "Saved" : "Įrašyta",
-    "Create guest account for {searchTerm}" : "Sukurti svečio paskyrą, skirtą {searchTerm}"
+    "Error" : "Klaida"
 },"pluralForm" :"nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);"
 }
