@@ -36,6 +36,7 @@ OC.L10N.register(
     "Guests will still be able to see users from any group they are added to" : "Les invités continueront à voir les utilisateurs membres des groupes auxquels ils appartiennent.",
     "Limit guest access to an app whitelist" : "Réduire l'accès invité à une liste blanche d'applications",
     "Reset" : "Réinitialiser",
-    "Error" : "Erreur"
+    "Error" : "Erreur",
+    "Saving..." : "Enregistrement…"
 },
 "nplurals=2; plural=(n > 1);");

@@ -22,18 +22,25 @@
     "Name" : "Nome",
     "Shared By" : "Compartilhado Por",
     "Shared At" : "Compartilhado Em",
+    "An error occured while fetching the shares list" : "Erro ao buscar a lista de compartilhamentos",
     "Guests accounts" : "Contas convidado",
     "Email" : "E-mail",
     "Invited by" : "Convidado por",
     "Received shares" : "Compartilhamentos recebidos",
     "No guest accounts created" : "Nenhuma conta de convidado criada",
     "Default" : "Padrão",
+    "An error occured, try again" : "Ocorreu um erro, tente novamente",
+    "Save and create share" : "Salvar e criar compartilhamento",
+    "Create guest account for {name}" : "Criar uma conta de convidado para {name}",
     "Guest users are grouped under a virtual group in the user manager" : "Usuários convidados são agrupados em um grupo virtual no gerenciador de usuários",
     "Guest users can access mounted external storages" : "Usuários convidados podem acessar armazenamentos externos montados",
     "Hide other users from guests" : "Ocultar usuários dos visitantes",
     "Guests will still be able to see users from any group they are added to" : "Os visitantes ainda poderão ver usuários de qualquer grupo ao qual foram adicionados",
     "Limit guest access to an app whitelist" : "Limitar o acesso de convidados para uma lista branca de aplicativos",
     "Reset" : "Reiniciar",
-    "Error" : "Erro"
+    "Error" : "Erro",
+    "Your settings have been updated" : "Suas configurações foram atualizadas",
+    "Saving..." : "Salvando...",
+    "Create guest account" : "Criar uma conta de convidado"
 },"pluralForm" :"nplurals=2; plural=(n > 1);"
 }

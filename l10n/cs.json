@@ -22,18 +22,25 @@
     "Name" : "Jméno",
     "Shared By" : "Sdílí",
     "Shared At" : "Sdíleno v",
+    "An error occured while fetching the shares list" : "Došlo k chybě při získávání seznamu sdílení",
     "Guests accounts" : "Účty hostů",
     "Email" : "E-mail",
     "Invited by" : "Pozval",
     "Received shares" : "Obdržená sdílení",
     "No guest accounts created" : "Nebyly vytvořeny žádné účty hostů",
     "Default" : "Výchozí",
+    "An error occured, try again" : "Došlo k chybě, zkuste to znovu",
+    "Save and create share" : "Uložit a vytvořit sdílení",
+    "Create guest account for {name}" : "Vytvořit účet hosta pro {name}",
     "Guest users are grouped under a virtual group in the user manager" : "Uživatelé jsou ve správci uživatelů seskupeni pod virtuální skupinou",
     "Guest users can access mounted external storages" : "Hosté mohou přistupovat k připojeným externím úložištím",
     "Hide other users from guests" : "Skrýt před hosty ostatní uživatele",
     "Guests will still be able to see users from any group they are added to" : "Hosté i tak budou moci vidět uživatele ze skupiny, do které jsou přidáni",
     "Limit guest access to an app whitelist" : "Omezte přístup hosta do seznamu povolených aplikací",
     "Reset" : "Reset",
-    "Error" : "Chyba"
+    "Error" : "Chyba",
+    "Your settings have been updated" : "Vaše nastavení byla zaktualizována",
+    "Saving..." : "Ukládání…",
+    "Create guest account" : "Vytvořit účet pro hosta"
 },"pluralForm" :"nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;"
 }
