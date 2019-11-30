@@ -106,7 +106,7 @@ export default {
 				return t('guests', 'Your settings have been updated')
 			}
 			if (this.saving) {
-				return t('guests', 'Saving...')
+				return t('guests', 'Saving …')
 			}
 			return ''
 		}
