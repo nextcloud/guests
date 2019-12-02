@@ -41,7 +41,6 @@ OC.L10N.register(
     "Reset" : "Återställ",
     "Error" : "Fel",
     "Your settings have been updated" : "Dina inställningar har uppdaterats",
-    "Saving..." : "Sparar...",
     "Create guest account" : "Skapa gästkonto"
 },
 "nplurals=2; plural=(n != 1);");

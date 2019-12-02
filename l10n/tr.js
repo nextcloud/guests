@@ -42,7 +42,6 @@ OC.L10N.register(
     "Reset" : "Sıfırla",
     "Error" : "Hata",
     "Your settings have been updated" : "Ayarlarınız güncellendi",
-    "Saving..." : "Kaydediliyor...",
     "Create guest account" : "Konuk hesabı ekle"
 },
 "nplurals=2; plural=(n > 1);");

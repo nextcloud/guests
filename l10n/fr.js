@@ -24,12 +24,16 @@ OC.L10N.register(
     "Name" : "Nom",
     "Shared By" : "Partagé par",
     "Shared At" : "Partagé à",
+    "An error occured while fetching the shares list" : "Une erreur est survenue pendant la mise à jour de la liste des partages",
     "Guests accounts" : " Comptes invités",
     "Email" : "Email",
     "Invited by" : "Invité par",
     "Received shares" : "Partages reçus",
     "No guest accounts created" : "Aucun compte invité",
     "Default" : "Par défaut",
+    "An error occured, try again" : "Une erreur est survenue, merci de réessayer",
+    "Save and create share" : "Enregistrer et créer le partage",
+    "Create guest account for {name}" : "Créer le compte invité pour {name}",
     "Guest users are grouped under a virtual group in the user manager" : "Dans la gestion des utilisateurs, les utilisateurs invités sont regroupés dans un groupe virtuel",
     "Guest users can access mounted external storages" : " Les invités ont accès aux espaces de stockage externes",
     "Hide other users from guests" : "Masquer les utilisateurs aux invités",
@@ -37,6 +41,7 @@ OC.L10N.register(
     "Limit guest access to an app whitelist" : "Réduire l'accès invité à une liste blanche d'applications",
     "Reset" : "Réinitialiser",
     "Error" : "Erreur",
-    "Saving..." : "Enregistrement…"
+    "Your settings have been updated" : "Vos paramètres ont été enregistrés",
+    "Create guest account" : "Créer un compte invité"
 },
 "nplurals=2; plural=(n > 1);");

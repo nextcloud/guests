@@ -42,7 +42,6 @@ OC.L10N.register(
     "Reset" : "Reiniciar",
     "Error" : "Erro",
     "Your settings have been updated" : "Suas configurações foram atualizadas",
-    "Saving..." : "Salvando...",
     "Create guest account" : "Criar uma conta de convidado"
 },
 "nplurals=2; plural=(n > 1);");
