@@ -25,18 +25,25 @@ use OC\Server;
 use OCA\Guests\GroupBackend;
 use OCA\Guests\GuestManager;
 use OCA\Guests\Hooks;
+use OCA\Guests\Notifications\Notifier;
 use OCA\Guests\RestrictionManager;
 use OCA\Guests\UserBackend;
 use OCP\AppFramework\App;
+use OCP\IUser;
+use OCP\Notification\IManager as INotificationManager;
 
 class Application extends App {
+
+	public const APP_ID = 'guests';
+
 	public function __construct(array $urlParams = array()) {
-		parent::__construct('guests', $urlParams);
+		parent::__construct(self::APP_ID, $urlParams);
 	}
 
 	public function setup() {
 		$this->setupGuestManagement();
 		$this->setupGuestRestrictions();
+		$this->setupNotifications();
 	}
 
 	public function lateSetup() {
@@ -71,6 +78,10 @@ class Application extends App {
 		return $this->getContainer()->query(Hooks::class);
 	}
 
+	private function getNotificationManager(): INotificationManager {
+		return $this->getContainer()->query(INotificationManager::class);
+	}
+
 	private function setupGuestManagement() {
 		$container = $this->getContainer();
 		/** @var Server $server */
@@ -85,7 +96,8 @@ class Application extends App {
 			$server->getEventDispatcher()->addListener(
 				'OCA\Files::loadAdditionalScripts',
 				function () {
-					\OCP\Util::addScript('guests', 'main');
+					\OCP\Util::addScript(self::APP_ID, 'main');
+					\OCP\Util::addStyle(self::APP_ID, 'app');
 				}
 			);
 		}
@@ -93,6 +105,7 @@ class Application extends App {
 		$server->getGroupManager()->addBackend($container->query(GroupBackend::class));
 		/** @var Hooks $hooks */
 		$server->getEventDispatcher()->addListener('OCP\Share::postShare', [$this->getHookManager(), 'handlePostShare']);
+		$server->getEventDispatcher()->addListener(IUser::class . '::firstLogin', [$this->getHookManager(), 'handleFirstLogin']);
 	}
 
 	private function setupGuestRestrictions() {
@@ -116,4 +129,10 @@ class Application extends App {
 			});
 		}
 	}
+
+	private function setupNotifications(): void {
+		$notificationManager = $this->getNotificationManager();
+		$notificationManager->registerNotifierService(Notifier::class);
+	}
+
 }

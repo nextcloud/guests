@@ -44,7 +44,7 @@ class UserBackendTest extends TestCase {
 		$query->delete('guests_users')->execute();
 	}
 
-	protected function setUp() {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->clearGuests();
@@ -59,10 +59,10 @@ class UserBackendTest extends TestCase {
 		);
 	}
 
-	protected function tearDown() {
+	protected function tearDown(): void {
 		$this->clearGuests();
 
-		return parent::tearDown();
+		parent::tearDown();
 	}
 
 	public function testCreate() {
