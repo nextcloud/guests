@@ -28,24 +28,25 @@ use OCP\App\IAppManager;
 use OCP\IL10N;
 use OCP\IURLGenerator;
 use OCP\IUser;
+use PHPUnit\Framework\MockObject\MockObject;
 use Test\TestCase;
 
 class AppWhitelistTest extends TestCase {
-	/** @var Config|\PHPUnit_Framework_MockObject_MockObject */
+	/** @var Config|MockObject */
 	private $config;
-	/** @var GuestManager|\PHPUnit_Framework_MockObject_MockObject */
+	/** @var GuestManager|MockObject */
 	private $guestManager;
-	/** @var IL10N|\PHPUnit_Framework_MockObject_MockObject */
+	/** @var IL10N|MockObject */
 	private $l10n;
-	/** @var IAppManager|\PHPUnit_Framework_MockObject_MockObject */
+	/** @var IAppManager|MockObject */
 	private $appManager;
-	/** @var IURLGenerator|\PHPUnit_Framework_MockObject_MockObject */
+	/** @var IURLGenerator|MockObject */
 	private $urlGenerator;
 
 	/** @var AppWhitelist */
 	private $appWhitelist;
 
-	protected function setUp() {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->config = $this->createMock(Config::class);

@@ -26,20 +26,21 @@ use OCA\Guests\GroupBackend;
 use OCA\Guests\GuestManager;
 use OCP\IUser;
 use OCP\IUserSession;
+use PHPUnit\Framework\MockObject\MockObject;
 use Test\TestCase;
 
 class GroupBackendTest extends TestCase {
-	/** @var GuestManager|\PHPUnit_Framework_MockObject_MockObject */
+	/** @var GuestManager|MockObject */
 	private $guestManager;
-	/** @var Config|\PHPUnit_Framework_MockObject_MockObject */
+	/** @var Config|MockObject */
 	private $config;
-	/** @var IUserSession|\PHPUnit_Framework_MockObject_MockObject */
+	/** @var IUserSession|MockObject */
 	private $userSession;
 
 	/** @var GroupBackend */
 	private $backend;
 
-	protected function setUp() {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->guestManager = $this->createMock(GuestManager::class);

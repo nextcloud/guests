@@ -31,30 +31,31 @@ use OCP\IUserSession;
 use OCP\Security\ICrypto;
 use OCP\Security\ISecureRandom;
 use OCP\Share\IManager;
+use PHPUnit\Framework\MockObject\MockObject;
 use Test\TestCase;
 
 class GuestManagerTest extends TestCase {
-	/** @var UserBackend|\PHPUnit_Framework_MockObject_MockObject */
+	/** @var UserBackend|MockObject */
 	private $userBackend;
-	/** @var IUserSession|\PHPUnit_Framework_MockObject_MockObject */
+	/** @var IUserSession|MockObject */
 	private $userSession;
-	/** @var IConfig|\PHPUnit_Framework_MockObject_MockObject */
+	/** @var IConfig|MockObject */
 	private $config;
-	/** @var ISecureRandom|\PHPUnit_Framework_MockObject_MockObject */
+	/** @var ISecureRandom|MockObject */
 	private $random;
-	/** @var ICrypto|\PHPUnit_Framework_MockObject_MockObject */
+	/** @var ICrypto|MockObject */
 	private $crypto;
-	/** @var IManager|\PHPUnit_Framework_MockObject_MockObject */
+	/** @var IManager|MockObject */
 	private $shareManager;
-	/** @var IDBConnection|\PHPUnit_Framework_MockObject_MockObject */
+	/** @var IDBConnection|MockObject */
 	private $conneciton;
-	/** @var IEventDispatcher|\PHPUnit_Framework_MockObject_MockObject */
+	/** @var IEventDispatcher|MockObject */
 	private $eventDispatcher;
 
 	/** @var GuestManager */
 	private $guestManager;
 
-	protected function setUp() {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->userBackend = $this->createMock(UserBackend::class);
