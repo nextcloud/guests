@@ -42,6 +42,7 @@ OC.L10N.register(
     "Reset" : "Berrezarri",
     "Error" : "Errorea",
     "Your settings have been updated" : "Zure ezarpenak eguneratu dira",
+    "Saving …" : "Gordetzen  ...",
     "Create guest account" : "Sortu gonbidatu kontua"
 },
 "nplurals=2; plural=(n != 1);");

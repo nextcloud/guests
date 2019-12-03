@@ -42,6 +42,7 @@ OC.L10N.register(
     "Reset" : "Zurücksetzen",
     "Error" : "Fehler",
     "Your settings have been updated" : "Ihre Einstellungen wurden aktualisiert",
+    "Saving …" : "Speichere …",
     "Create guest account" : "Gastkonto erstellen"
 },
 "nplurals=2; plural=(n != 1);");

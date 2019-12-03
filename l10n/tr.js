@@ -2,7 +2,7 @@ OC.L10N.register(
     "guests",
     {
     "Access to this resource is forbidden for guests." : "Konuklar bu kaynağa erişemesin.",
-    "__language_name__" : "__language_name__",
+    "__language_name__" : "Türkçe",
     "Invalid mail address" : "Geçersiz posta adresi",
     "A user with that email already exists." : "Bu e-posta adresinin kayıtlı olduğu bir kullanıcı hesabı zaten var.",
     "A user with that name already exists." : "Bu isimde bir kullanıcı adı zaten mevcut.",
@@ -42,6 +42,7 @@ OC.L10N.register(
     "Reset" : "Sıfırla",
     "Error" : "Hata",
     "Your settings have been updated" : "Ayarlarınız güncellendi",
+    "Saving …" : "Kaydediliyor …",
     "Create guest account" : "Konuk hesabı ekle"
 },
 "nplurals=2; plural=(n > 1);");
