@@ -19,6 +19,8 @@ OC.L10N.register(
     "%s via %s" : "%s via %s",
     "Couldn't send reset email. Please contact your administrator." : "Kunde inte skicka återställningsmeddelande via e-post. Vänligen kontakta din administratör.",
     "Guests" : "Gäster",
+    "Data imported" : "Data importerad",
+    "Data from your previous guest account was successfully imported into your new account." : "Data från ditt tidigare gästkonto har importerats till ditt nya konto.",
     "Create guest accounts for easier collaboration" : "Skapa gästkonton för enklare samarbete",
     "Name" : "Namn",
     "Shared By" : "Delad av",
@@ -41,6 +43,7 @@ OC.L10N.register(
     "Reset" : "Återställ",
     "Error" : "Fel",
     "Your settings have been updated" : "Dina inställningar har uppdaterats",
+    "Saving …" : "Sparar …",
     "Create guest account" : "Skapa gästkonto"
 },
 "nplurals=2; plural=(n != 1);");
