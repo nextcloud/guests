@@ -97,7 +97,6 @@ class Application extends App {
 				'OCA\Files::loadAdditionalScripts',
 				function () {
 					\OCP\Util::addScript(self::APP_ID, 'main');
-					\OCP\Util::addStyle(self::APP_ID, 'app');
 				}
 			);
 		}
