@@ -38,7 +38,7 @@
     "Guest users can access mounted external storages" : "Erabiltzaile gonbidatuek muntatutako kanpo biltegiratzeak atzitu ditzakete",
     "Hide other users from guests" : "Ezkutatu beste erabiltzaileak gonbidatuei",
     "Guests will still be able to see users from any group they are added to" : "Gonbidatuek gehitzen zaien edozein taldeko erabiltzaileak ikusi ahal izango dituzte edonola ere",
-    "Limit guest access to an app whitelist" : "Mugatu aplikazioen zerrenda zurirako sarbidea",
+    "Limit guest access to an app whitelist" : "Mugatu gonbidatuen sarbidea aplikazioen zerrenda zuri batera",
     "Reset" : "Berrezarri",
     "Error" : "Errorea",
     "Your settings have been updated" : "Zure ezarpenak eguneratu dira",
