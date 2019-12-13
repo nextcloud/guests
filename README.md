@@ -32,3 +32,12 @@ By default the following are allowed:
 
 By default, guests will not be able to list other users in the system, if a guest user gets added to a group he will be able
 to list users within that group (and, for example, share files with those users). 
+
+## Auto-convert guest users into SAML users
+
+Guest users who eventually turn into SAML provided users can be automatically converted on their first SAML login, keeping their shares.
+
+#### Prerequisites
+
+1. SAML user needs the same email address as the guest user
+2. config.php setting `'migrate_guest_user_data' => true,`
