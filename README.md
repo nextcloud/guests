@@ -39,5 +39,6 @@ Guest users who eventually turn into SAML provided users can be automatically co
 
 #### Prerequisites
 
-1. SAML user needs the same email address as the guest user
-2. config.php setting `'migrate_guest_user_data' => true,`
+1. Nextcloud 18 or higher
+2. SAML user needs to have the same email address as the guest user
+3. config.php setting `'migrate_guest_user_data' => true,`
