@@ -16,7 +16,7 @@ OC.L10N.register(
     "The share will expire at %s." : "La compartició caducarà a %s.",
     "Activate account" : "Activa el compte",
     "View share" : "Mostra la compartició",
-    "%s via %s" : "%s via %s",
+    "%s via %s" : "%s mitjançant %s",
     "Couldn't send reset email. Please contact your administrator." : "No s'ha pogut restablir el correu. Si us plau, contacteu amb l'administrador.",
     "Guests" : "Convidats",
     "Create guest accounts for easier collaboration" : "Crea comptes de convidats per facilitar la col·laboració",
