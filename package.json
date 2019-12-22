@@ -67,7 +67,7 @@
     "@nextcloud/axios": "^0.5.0",
     "@nextcloud/router": "^1.0.0",
     "@nextcloud/vue": "^1.2.2",
-    "deep-equal": "^1.1.1",
+    "deep-equal": "^2.0.1",
     "email-validator": "^2.0.4",
     "vue": "^2.6.11"
   },
