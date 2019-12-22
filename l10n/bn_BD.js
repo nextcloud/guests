@@ -1,7 +1,11 @@
 OC.L10N.register(
     "guests",
     {
+    "__language_name__" : "বাংলা ভাষা",
     "%s shared »%s« with you" : "%s আপনার সাথে »%s« ভাগাভাগি করেছে",
+    "Name" : "নাম",
+    "Email" : "ইমেইল",
+    "Default" : "পূর্বনির্ধারিত",
     "Reset" : "পূণঃনির্ধানণ",
     "Error" : "সমস্যা"
 },

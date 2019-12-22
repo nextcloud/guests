@@ -2,6 +2,7 @@ OC.L10N.register(
     "guests",
     {
     "Access to this resource is forbidden for guests." : "Access to this resource is forbidden for guests.",
+    "__language_name__" : "English (British English)",
     "Invalid mail address" : "Invalid mail address",
     "A user with that name already exists." : "A user with that name already exists.",
     "User successfully created" : "User successfully created",
@@ -9,6 +10,9 @@ OC.L10N.register(
     "%s via %s" : "%s via %s",
     "Couldn't send reset email. Please contact your administrator." : "Couldn't send reset email. Please contact your administrator.",
     "Guests" : "Guests",
+    "Name" : "Name",
+    "Email" : "Email",
+    "Default" : "Default",
     "Guest users are grouped under a virtual group in the user manager" : "Guest users are grouped under a virtual group in the user manager",
     "Limit guest access to an app whitelist" : "Limit guest access to an app whitelist",
     "Reset" : "Reset",

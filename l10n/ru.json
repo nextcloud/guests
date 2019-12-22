@@ -1,5 +1,6 @@
 { "translations": {
     "Access to this resource is forbidden for guests." : "Гостям не разрешён доступ к этому ресурсу.",
+    "__language_name__" : "Русский язык",
     "Invalid mail address" : "Некорректный адрес электронной почты",
     "A user with that name already exists." : "Пользователь с таким именем уже существует.",
     "User successfully created" : "Пользователь успешно создан",
@@ -7,6 +8,9 @@
     "%s via %s" : "%s через %s",
     "Couldn't send reset email. Please contact your administrator." : "Не удалось отправить письмо для сброса пароля, свяжитесь с системным администратором.",
     "Guests" : "Гости",
+    "Name" : "Имя",
+    "Email" : "Адрес эл. почты",
+    "Default" : "По умолчанию",
     "Guest users are grouped under a virtual group in the user manager" : "Гостевые пользователи сгруппированы в виртуальную группу в менеджере пользователей",
     "Limit guest access to an app whitelist" : "Ограничить гостям доступ к приложениям белым списком",
     "Reset" : "Сброс",

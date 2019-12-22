@@ -1,6 +1,8 @@
 OC.L10N.register(
     "guests",
     {
+    "__language_name__" : "__language_name__",
+    "Invalid mail address" : "عنوان البريد الإلكتروني خاطئ",
     "%s shared »%s« with you" : "%s شارك »%s« معك",
     "%s via %s" : "%s عبر %s",
     "Couldn't send reset email. Please contact your administrator." : "لم يتم إرسال بريد إعادة الضبط .  فضلاً اتصل بمدير النظام.",

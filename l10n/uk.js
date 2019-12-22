@@ -2,13 +2,18 @@ OC.L10N.register(
     "guests",
     {
     "Access to this resource is forbidden for guests." : "Гостям заборонений доступ до цього ресурсу.",
+    "__language_name__" : "Українська",
     "Invalid mail address" : "Неправильна email адреса",
+    "A user with that email already exists." : "Користувач з такою email адресою вже існує.",
     "A user with that name already exists." : "Користувач з таким іменем вже існує.",
     "User successfully created" : "Користувач успішно створений",
     "%s shared »%s« with you" : "%s поділився »%s« з вами",
     "%s via %s" : "%s за допомогою %s",
     "Couldn't send reset email. Please contact your administrator." : "Не можу надіслати email для скидання. Будь ласка, зверніться до вашого адміністратора.",
     "Guests" : "Гості",
+    "Name" : "Ім'я",
+    "Email" : "Email",
+    "Default" : "За замовчуванням",
     "Reset" : "Скидання",
     "Error" : "Помилка"
 },

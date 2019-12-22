@@ -1,0 +1,9 @@
+{ "translations": {
+    "__language_name__" : "繁體中文（香港）",
+    "Name" : "名稱",
+    "Email" : "電郵",
+    "Default" : "預設",
+    "Reset" : "重設",
+    "Error" : "錯誤"
+},"pluralForm" :"nplurals=1; plural=0;"
+}

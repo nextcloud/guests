@@ -2,6 +2,7 @@ OC.L10N.register(
     "guests",
     {
     "Access to this resource is forbidden for guests." : "Достъпа до този ресурс не е възможен за потребител с ново \"гост\".",
+    "__language_name__" : "Български",
     "Invalid mail address" : "невалиден адрес на електронна поща",
     "A user with that name already exists." : "Потребител с това име вече съществува",
     "User successfully created" : "Успешно създаден потребител",
@@ -12,6 +13,7 @@ OC.L10N.register(
     "Guests" : "Гости",
     "Name" : "Име",
     "Email" : "Имейл",
+    "Default" : "Стандартен",
     "Reset" : "Възстановяване",
     "Error" : "Грешка"
 },

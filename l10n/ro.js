@@ -1,12 +1,16 @@
 OC.L10N.register(
     "guests",
     {
+    "__language_name__" : "Română",
     "Invalid mail address" : "Adresa mail invalidă",
     "A user with that name already exists." : "Există deja un utilizator cu acest nume.",
     "User successfully created" : "Utilizator creat cu succes",
     "%s shared »%s« with you" : "%s Partajat »%s« cu tine de",
     "%s via %s" : "%s via %s",
     "Couldn't send reset email. Please contact your administrator." : "Expedierea email-ului de resetare a eşuat. Vă rugăm să contactaţi administratorul dvs.",
+    "Name" : "Nume",
+    "Email" : "Email",
+    "Default" : "Implicit",
     "Reset" : "Resetare",
     "Error" : "Eroare"
 },

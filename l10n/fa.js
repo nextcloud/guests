@@ -1,10 +1,14 @@
 OC.L10N.register(
     "guests",
     {
+    "__language_name__" : "فارسى",
     "Invalid mail address" : "آدرس ایمیل نامعتبر است",
     "A user with that name already exists." : "کاربری با همین نام در حال حاضر وجود دارد.",
     "%s shared »%s« with you" : "%s به اشتراک گذاشته شده است »%s« توسط شما",
     "Couldn't send reset email. Please contact your administrator." : "ارسال ایمیل مجدد با مشکل مواجه شد . لطفا با مدیر سیستم تماس بگیرید .",
+    "Name" : "نام",
+    "Email" : "email",
+    "Default" : "پیش‌گزیده",
     "Reset" : "تنظیم مجدد",
     "Error" : "خطا"
 },

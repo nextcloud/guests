@@ -2,6 +2,7 @@ OC.L10N.register(
     "guests",
     {
     "Access to this resource is forbidden for guests." : "Tämän resurssin käyttö on kielletty vierailta.",
+    "__language_name__" : "suomi",
     "Invalid mail address" : "Virheellinen sähköpostiosoite",
     "A user with that email already exists." : "Käyttäjä samalla sähköpostiosoitteella on jo olemassa.",
     "A user with that name already exists." : "Käyttäjä samalla nimellä on jo olemassa.",
