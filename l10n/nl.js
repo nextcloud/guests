@@ -30,12 +30,14 @@ OC.L10N.register(
     "Received shares" : "Ontvangen shares",
     "No guest accounts created" : "Geen gastaccount aangemaakt",
     "Default" : "Standaard",
+    "An error occured, try again" : "Er trad een fout op. Probeer het opnieuw",
     "Guest users are grouped under a virtual group in the user manager" : "Gasten worden gegroepeerd in een virtuele groep binnen gebruikersbeheer",
     "Guest users can access mounted external storages" : "Gastgebruikers kunnen aangekoppelde externe opslag benaderen",
     "Hide other users from guests" : "Verberg andere gebruikers van gasten",
     "Guests will still be able to see users from any group they are added to" : "Gasten kunnen nog steeds gebruikers van de groepen zien waarvan ze lid zijn",
     "Limit guest access to an app whitelist" : "Beperk gastentoegang tot apps op de whitelist",
     "Reset" : "Reset",
-    "Error" : "Fout"
+    "Error" : "Fout",
+    "Saving …" : "Opslaan ..."
 },
 "nplurals=2; plural=(n != 1);");
