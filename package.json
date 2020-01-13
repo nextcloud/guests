@@ -33,7 +33,7 @@
     "stylelint:fix": "stylelint src/**/*.vue src/**/*.scss src/**/*.css --fix"
   },
   "devDependencies": {
-    "@babel/core": "^7.7.7",
+    "@babel/core": "^7.8.0",
     "@babel/preset-env": "^7.7.7",
     "@nextcloud/browserslist-config": "^1.0.0",
     "babel-eslint": "^10.0.3",
