@@ -19,6 +19,7 @@ OC.L10N.register(
     "%s via %s" : "%s via %s",
     "Couldn't send reset email. Please contact your administrator." : "Kon herstel e-mail niet versturen. Neem contact op met je beheerder.",
     "Guests" : "Gasten",
+    "Data imported" : "Gegevens geïmporteerd",
     "Create guest accounts for easier collaboration" : "Maak gastaccount voor makkelijker samenwerken",
     "👥 Allows for better collaboration with external users by allowing users to create guests account.\n\nGuests accounts can be created from the share menu by entering either the recipients email or name and choosing \"create guest account\", once the share is created the guest user will receive an email notification about the mail with a link to set their password.\n\nGuests users can only access files shared to them and can't create any files outside of shares, additionally, the apps accessible to guest accounts are whitelisted." : "👥 Maakt samenwerking met externe personen mogelijk door gebruikers gastaccounts te laten aanmaken.\n\nGastaccounts kunnen worden aangemaakt vanaf het deelmenu door ofwel het e-mailadres van de ontvanger op te geven of de naam en dan \"Creëren gastaccount\" te selecteren. Als de share is gecreëerd, zal de gastgebruiker een e-mailbericht ontvangen met een link om het wachtwoord in te stellen.\n\nGastgebruikers kunnen alleen de met hen gedeelde bestanden benaderen en kunnen geen bestanden creëren, daarnaast zijn de apps die beschikbaar zijn voor gastaccounts op de whitelist geplaatst.",
     "Name" : "Naam",
@@ -31,6 +32,7 @@ OC.L10N.register(
     "No guest accounts created" : "Geen gastaccount aangemaakt",
     "Default" : "Standaard",
     "An error occured, try again" : "Er trad een fout op. Probeer het opnieuw",
+    "Save and create share" : "Bewaren en creëer deellink",
     "Guest users are grouped under a virtual group in the user manager" : "Gasten worden gegroepeerd in een virtuele groep binnen gebruikersbeheer",
     "Guest users can access mounted external storages" : "Gastgebruikers kunnen aangekoppelde externe opslag benaderen",
     "Hide other users from guests" : "Verberg andere gebruikers van gasten",
@@ -38,6 +40,7 @@ OC.L10N.register(
     "Limit guest access to an app whitelist" : "Beperk gastentoegang tot apps op de whitelist",
     "Reset" : "Reset",
     "Error" : "Fout",
-    "Saving …" : "Opslaan ..."
+    "Saving …" : "Opslaan ...",
+    "Create guest account" : "Aanmaken gastaccount"
 },
 "nplurals=2; plural=(n != 1);");
