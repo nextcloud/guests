@@ -9,7 +9,7 @@ env:
     - APP_NAME=guests
     - DB=sqlite
   matrix:
-    - CORE_BRANCH=master
+    - CORE_BRANCH=stable18
 
 branches:
   only:
