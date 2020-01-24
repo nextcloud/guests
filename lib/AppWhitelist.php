@@ -50,7 +50,7 @@ class AppWhitelist {
 
 	const WHITELIST_ALWAYS = ',core,theming,settings,avatar,files,heartbeat,dav,guests,impersonate,accessibility,terms_of_service';
 
-	const DEFAULT_WHITELIST = 'files_trashbin,files_versions,files_sharing,files_texteditor,activity,firstrunwizard,gallery,notifications';
+	const DEFAULT_WHITELIST = 'files_trashbin,files_versions,files_sharing,files_texteditor,text,activity,firstrunwizard,photos,notifications';
 
 	/**
 	 * AppWhitelist constructor.
