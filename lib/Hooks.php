@@ -242,7 +242,10 @@ class Hooks {
 			$ownershipTransferService->transfer(
 				$guestUser,
 				$user,
-				'/'
+				'/',
+				null,
+				true,
+				true
 			);
 		} catch (TransferOwnershipException $e) {
 			$this->logger->logException($e, [
