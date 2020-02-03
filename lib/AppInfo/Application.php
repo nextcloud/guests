@@ -25,12 +25,15 @@ use OC\Server;
 use OCA\Guests\GroupBackend;
 use OCA\Guests\GuestManager;
 use OCA\Guests\Hooks;
+use OCA\Guests\Listener\ShareAutoAcceptListener;
 use OCA\Guests\Notifications\Notifier;
 use OCA\Guests\RestrictionManager;
 use OCA\Guests\UserBackend;
 use OCP\AppFramework\App;
+use OCP\EventDispatcher\IEventDispatcher;
 use OCP\IUser;
 use OCP\Notification\IManager as INotificationManager;
+use OCP\Share\Events\ShareCreatedEvent;
 
 class Application extends App {
 
@@ -44,6 +47,7 @@ class Application extends App {
 		$this->setupGuestManagement();
 		$this->setupGuestRestrictions();
 		$this->setupNotifications();
+		$this->setupShareAccepting();
 	}
 
 	public function lateSetup() {
@@ -132,6 +136,12 @@ class Application extends App {
 	private function setupNotifications(): void {
 		$notificationManager = $this->getNotificationManager();
 		$notificationManager->registerNotifierService(Notifier::class);
+	}
+
+	private function setupShareAccepting(): void {
+		/** @var IEventDispatcher $dispatcher */
+		$dispatcher = $this->getContainer()->query(IEventDispatcher::class);
+		$dispatcher->addServiceListener(ShareCreatedEvent::class, ShareAutoAcceptListener::class);
 	}
 
 }
