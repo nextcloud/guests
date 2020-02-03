@@ -1,4 +1,4 @@
-name: Test
+name: Nextcloud app compatibility
 
 on: [push]
 
@@ -23,7 +23,7 @@ jobs:
     - name: Setup Nextcloud
       run: php -f nextcloud/occ maintenance:install --database-name oc_autotest --database-user oc_autotest --admin-user admin --admin-pass admin --database sqlite --database-pass=''
     - name: Checkout
-      uses: actions/checkout@master
+      uses: actions/checkout@v2
       with:
         path: nextcloud/apps/guests
     - name: Run strong comparison check
