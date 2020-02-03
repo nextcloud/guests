@@ -1,0 +1,35 @@
+name: Test
+
+on: [push]
+
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-versions: ['7.3']
+        nextcloud-versions: ['stable18', 'master']
+	app-name: 'guests'
+    name: Nextcloud {{matrix.nextcloud-versions}} app compatibility test
+    steps:
+    - name: Set up php${{ matrix.php-versions }}
+      uses: shivammathur/setup-php@master
+      with:
+        php-version: ${{ matrix.php-versions }}
+        extension-csv: ctype,curl,dom,gd,iconv,intl,json,mbstring,openssl,posix,sqlite,xml,zip
+        coverage: xdebug
+    - name: Checkout Nextcloud
+      run: git clone https://github.com/nextcloud/server.git --recursive --depth 1 -b ${{ matrix.nextcloud-versions }} nextcloud
+    - name: Setup Nextcloud
+      run: php -f nextcloud/occ maintenance:install --database-name oc_autotest --database-user oc_autotest --admin-user admin --admin-pass admin --database sqlite --database-pass=''
+    - name: Checkout
+      uses: actions/checkout@master
+      with:
+        path: nextcloud/apps/guests
+    - name: Run strong comparison check
+      working-directory: nextcloud
+      run: php occ app:check-code ${{ matrix.app-name }} -c strong-comparison
+    - name: Run deprecation check
+      working-directory: nextcloud
+      run: php occ app:check-code ${{ matrix.app-name }} -c deprecation
+
