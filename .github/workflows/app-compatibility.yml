@@ -9,7 +9,7 @@ jobs:
       matrix:
         php-versions: ['7.3']
         nextcloud-versions: ['stable18', 'master']
-	app-name: 'guests'
+	app-name: ['guests']
     name: Nextcloud {{matrix.nextcloud-versions}} app compatibility test
     steps:
     - name: Set up php${{ matrix.php-versions }}
