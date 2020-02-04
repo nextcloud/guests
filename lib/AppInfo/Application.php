@@ -22,6 +22,7 @@
 namespace OCA\Guests\AppInfo;
 
 use OC\Server;
+use OCA\Guests\Config;
 use OCA\Guests\GroupBackend;
 use OCA\Guests\GuestManager;
 use OCA\Guests\Hooks;
@@ -82,6 +83,13 @@ class Application extends App {
 		return $this->getContainer()->query(Hooks::class);
 	}
 
+	/**
+	 * @return Config
+	 */
+	private function getConfig() {
+		return $this->getContainer()->query(Config::class);
+	}
+
 	private function getNotificationManager(): INotificationManager {
 		return $this->getContainer()->query(INotificationManager::class);
 	}
@@ -96,7 +104,7 @@ class Application extends App {
 		$userSession = $server->getUserSession();
 		$user = $userSession->getUser();
 
-		if (!$this->getGuestManager()->isGuest($user)) {
+		if (!$this->getGuestManager()->isGuest($user) && !$this->getConfig()->isSharingRestrictedToGroup()) {
 			$server->getEventDispatcher()->addListener(
 				'OCA\Files::loadAdditionalScripts',
 				function () {

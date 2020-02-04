@@ -6,6 +6,11 @@
 				:class="{error, saving, saved}"
 				class="msg">{{ statusText }}</span>
 		</h2>
+		<div v-if="config.sharingRestrictedToGroup">
+			<p class="warning">
+				{{ t('guests', 'Creating guests users is not possible while "Restrict users to only share with users in their groups" is enabled.') }}
+			</p>
+		</div>
 		<div v-if="loaded">
 			<p>
 				<span class="user-info-label">
@@ -93,7 +98,8 @@ export default {
 				allowExternalStorage: false,
 				hideUsers: false,
 				whitelist: [],
-				whiteListableApps: []
+				whiteListableApps: [],
+				sharingRestrictedToGroup: false,
 			}
 		}
 	},

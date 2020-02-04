@@ -145,7 +145,8 @@ class SettingsController extends Controller {
 			'whitelist' => $whitelist,
 			'allowExternalStorage' => $allowExternalStorage,
 			'hideUsers' => $hideUsers,
-			'whiteListableApps' => $this->appWhitelist->getWhitelistAbleApps()
+			'whiteListableApps' => $this->appWhitelist->getWhitelistAbleApps(),
+			'sharingRestrictedToGroup' => $this->config->isSharingRestrictedToGroup(),
 		]);
 	}
 	/**

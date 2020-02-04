@@ -101,4 +101,8 @@ class Config {
 		}
 		$this->config->setAppValue('guests', 'whitelist', $whitelist);
 	}
+
+	public function isSharingRestrictedToGroup(): bool {
+		return $this->config->getAppValue('core', 'shareapi_only_share_with_group_members', 'no') === 'yes';
+	}
 }
