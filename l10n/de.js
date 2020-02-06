@@ -36,6 +36,7 @@ OC.L10N.register(
     "An error occured, try again" : "Es ist ein Fehler aufgetreten. Bitte versuche es noch einmal",
     "Save and create share" : "Freigabe speichern und teilen",
     "Create guest account for {name}" : "Erstelle ein Gastkonto für {name}",
+    "Creating guests users is not possible while \"Restrict users to only share with users in their groups\" is enabled." : "Erstellen von Gästebenutzern ist nicht möglich, solange \"Benutzer auf das Teilen innerhalb ihrer Gruppen beschränken\" aktiv ist.",
     "Guest users are grouped under a virtual group in the user manager" : "Gäste sind unter einer virtuellen Gruppe im Benutzermanager zusammengefasst",
     "Guest users can access mounted external storages" : "Gast-Nutzer können auf eingebundene externe Speicher zugreifen",
     "Hide other users from guests" : "Weitere Benutzer für Gäste nicht anzeigen",

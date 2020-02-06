@@ -12,6 +12,7 @@ OC.L10N.register(
     "Hey there," : "Sveiki,",
     "%s just shared »%s« with you." : "Ką tik %s pradėjo su jumis bendrinti »%s«.",
     "You can access the shared file by activating your guest account." : "Galite gauti prieigą prie bendrinamo failo, aktyvuodami savo svečio paskyrą.",
+    "After your account is activated you can view the share by logging in with %s." : "Aktyvavę savo paskyrą, galite peržiūrėti viešinį, prisijungdami prie %s.",
     "The share will expire at %s." : "Viešinys galioja iki %s.",
     "Activate account" : "Aktyvuoti paskyrą",
     "View share" : "Rodyti viešinį",
@@ -20,8 +21,11 @@ OC.L10N.register(
     "Guests" : "Svečiai",
     "Data imported" : "Duomenys importuoti",
     "Data from your previous guest account was successfully imported into your new account." : "Duomenys iš jūsų ankstesnės svečio paskyros buvo sėkmingai importuoti į naująją paskyrą.",
+    "Create guest accounts for easier collaboration" : "Sukurti svečio paskyras lengvesniam bendradarbiavimui",
     "Name" : "Vardas",
     "Shared By" : "Bendrina",
+    "Shared At" : "Pradėta bendrinti",
+    "An error occured while fetching the shares list" : "Gaunant viešinių sąrašą, įvyko klaida",
     "Guests accounts" : "Svečių paskyros",
     "Email" : "El. paštas",
     "Invited by" : "Pakvietė",
@@ -30,6 +34,8 @@ OC.L10N.register(
     "Default" : "Numatytoji",
     "An error occured, try again" : "Įvyko klaida, bandykite dar kartą",
     "Save and create share" : "Įrašyti ir sukurti viešinį",
+    "Create guest account for {name}" : "Sukurti svečio paskyrą, skirtą {name}",
+    "Creating guests users is not possible while \"Restrict users to only share with users in their groups\" is enabled." : "Svečių sukūrimas yra neįmanomas tol, kol yra įjungta \"Apriboti naudotojus ir leisti jiems bendrinti tik su naudotojais savo grupėse\".",
     "Guest users are grouped under a virtual group in the user manager" : "Svečio naudotojai yra suskirstyti į virtualią grupę naudotojo administravimo vadove",
     "Guest users can access mounted external storages" : "Svečio naudotojai gali gauti prieigą prie prijungtų išorinių saugyklų",
     "Hide other users from guests" : "Slėpti nuo svečių kitus naudotojus",
@@ -38,6 +44,7 @@ OC.L10N.register(
     "Reset" : "Atstatyti",
     "Error" : "Klaida",
     "Your settings have been updated" : "Jūsų nustatymai atnaujinti",
-    "Saving …" : "Įrašoma…"
+    "Saving …" : "Įrašoma…",
+    "Create guest account" : "Sukurti svečio paskyrą"
 },
 "nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);");

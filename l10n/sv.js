@@ -35,6 +35,7 @@ OC.L10N.register(
     "An error occured, try again" : "Ett fel uppstod, försök igen",
     "Save and create share" : "Spara och skapa delning",
     "Create guest account for {name}" : "Skapa gästkonto för {name}",
+    "Creating guests users is not possible while \"Restrict users to only share with users in their groups\" is enabled." : "Det är inte möjligt att skapa gästanvändare när \"Begränsa användare att bara dela med användare i sina grupper\" är aktiverat.",
     "Guest users are grouped under a virtual group in the user manager" : "Gästanvändare är grupperade under en virtuell grupp i användarhanteraren",
     "Guest users can access mounted external storages" : "Gästanvändare kan komma åt monterade externa lagringar",
     "Hide other users from guests" : "Dölj andra användare från gäster",
