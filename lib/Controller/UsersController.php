@@ -5,10 +5,13 @@ namespace OCA\Guests\Controller;
 
 use OC\AppFramework\Http;
 use OC\Hooks\PublicEmitter;
+use OCA\Guests\Config;
 use OCA\Guests\GuestManager;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\DataResponse;
+use OCP\Group\ISubAdmin;
 use OCP\IConfig;
+use OCP\IGroupManager;
 use OCP\IL10N;
 use OCP\IRequest;
 use OCP\IUserManager;
@@ -38,16 +41,21 @@ class UsersController extends Controller {
 	private $guestManager;
 	/** @var IUserSession */
 	private $userSession;
+	private $config;
+	private $subAdmin;
+	private $groupManager;
 
 	public function __construct(
 		$appName,
 		IRequest $request,
 		IUserManager $userManager,
 		IL10N $l10n,
-		IConfig $config,
+		Config $config,
 		IMailer $mailer,
 		GuestManager $guestManager,
-		IUserSession $userSession
+		IUserSession $userSession,
+		ISubAdmin $subAdmin,
+		IGroupManager $groupManager
 	) {
 		parent::__construct($appName, $request);
 
@@ -57,6 +65,9 @@ class UsersController extends Controller {
 		$this->mailer = $mailer;
 		$this->guestManager = $guestManager;
 		$this->userSession = $userSession;
+		$this->config = $config;
+		$this->subAdmin = $subAdmin;
+		$this->groupManager = $groupManager;
 	}
 
 	/**
@@ -65,18 +76,59 @@ class UsersController extends Controller {
 	 * @param $email
 	 * @param $displayName
 	 * @param $language
+	 * @param $groups
 	 * @return DataResponse
 	 */
-	public function create($email, $displayName, $language) {
+	public function create($email, $displayName, $language, $groups) {
 		$errorMessages = [];
+		$currentUser = $this->userSession->getUser();
 
-		if ($this->guestManager->isGuest($this->userSession->getUser())) {
+		if ($this->guestManager->isGuest($currentUser)) {
 			return new DataResponse(
 				[
-					'errorMessages' => ['Guests are not allowed to create guests']
+					'errorMessages' => ['Guests are not allowed to create guests'],
 				],
 				Http::STATUS_FORBIDDEN
 			);
+		}
+		if (!$this->config->canCreateGuests()) {
+			return new DataResponse(
+				[
+					'errorMessages' => ['This user is not allowed to create guests'],
+				],
+				Http::STATUS_FORBIDDEN
+			);
+		}
+
+		if ($this->config->isSharingRestrictedToGroup() && count($groups) < 1) {
+			return new DataResponse(
+				[
+					'errorMessages' => ['Guest user must be added to at least one group'],
+				],
+				Http::STATUS_FORBIDDEN
+			);
+		}
+
+		$groupObjects = [];
+		foreach ($groups as $groupId) {
+			$group = $this->groupManager->get($groupId);
+			if (!$group) {
+				return new DataResponse(
+					[
+						'errorMessages' => ["Group $groupId not found"],
+					],
+					Http::STATUS_BAD_REQUEST
+				);
+			}
+			if (!($this->subAdmin->isSubAdminOfGroup($currentUser, $group) || $this->groupManager->isAdmin($currentUser->getUID()))) {
+				return new DataResponse(
+					[
+						'errorMessages' => ["This user is not allowed to add users to group $groupId"],
+					],
+					Http::STATUS_FORBIDDEN
+				);
+			}
+			$groupObjects[] = $group;
 		}
 
 		if (empty($email) || !$this->mailer->validateMailAddress($email)) {
@@ -101,7 +153,7 @@ class UsersController extends Controller {
 		if (!empty($errorMessages)) {
 			return new DataResponse(
 				[
-					'errorMessages' => $errorMessages
+					'errorMessages' => $errorMessages,
 				],
 				Http::STATUS_UNPROCESSABLE_ENTITY
 			);
@@ -109,13 +161,17 @@ class UsersController extends Controller {
 
 		try {
 			$this->guestManager->createGuest($this->userSession->getUser(), $username, $email, $displayName, $language);
-			if($this->userManager instanceof PublicEmitter) {
+			$guestUser = $this->userManager->get($username);
+			if ($this->userManager instanceof PublicEmitter) {
 				$this->userManager->emit('\OC\User', 'assignedUserId', [$username]);
+			}
+			foreach ($groupObjects as $group) {
+				$group->addUser($guestUser);
 			}
 		} catch (\Exception $e) {
 			return new DataResponse(
 				[
-					'errorMessages' => ['email' => $e->getMessage()]
+					'errorMessages' => ['email' => $e->getMessage()],
 				],
 				Http::STATUS_UNPROCESSABLE_ENTITY
 			);
@@ -125,7 +181,7 @@ class UsersController extends Controller {
 			[
 				'message' => (string)$this->l10n->t(
 					'User successfully created'
-				)
+				),
 			],
 			Http::STATUS_CREATED
 		);

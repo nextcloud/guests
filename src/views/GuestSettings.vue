@@ -6,9 +6,12 @@
 				:class="{error, saving, saved}"
 				class="msg">{{ statusText }}</span>
 		</h2>
-		<div v-if="config.sharingRestrictedToGroup">
-			<p class="warning">
-				{{ t('guests', 'Creating guests users is not possible while "Restrict users to only share with users in their groups" is enabled.') }}
+		<div v-if="config.sharingRestrictedToGroup" class="warning">
+			<p>
+				{{ t('guests', 'Creating guests users is restricted while "Restrict users to only share with users in their groups" is enabled.') }}
+			</p>
+			<p>
+				{{ t('guests', 'Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for.') }}
 			</p>
 		</div>
 		<div v-if="loaded">
@@ -84,7 +87,7 @@ export default {
 	name: 'GuestSettings',
 	components: {
 		GuestList,
-		Multiselect
+		Multiselect,
 	},
 	data() {
 		return {
@@ -100,7 +103,7 @@ export default {
 				whitelist: [],
 				whiteListableApps: [],
 				sharingRestrictedToGroup: false,
-			}
+			},
 		}
 	},
 	computed: {
@@ -115,7 +118,7 @@ export default {
 				return t('guests', 'Saving …')
 			}
 			return ''
-		}
+		},
 	},
 	beforeMount() {
 		this.loadConfig()
@@ -164,8 +167,8 @@ export default {
 			this.saved = false
 			this.saving = false
 			clearTimeout(this.savingTimeout)
-		}
-	}
+		},
+	},
 }
 </script>
 

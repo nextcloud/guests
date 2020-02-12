@@ -46,6 +46,8 @@ class GuestManager {
 	/** @var UserBackend */
 	private $userBackend;
 
+	private $userManager;
+
 	/** @var ISecureRandom */
 	private $secureRandom;
 
@@ -68,7 +70,8 @@ class GuestManager {
 		IManager $shareManager,
 		IDBConnection $connection,
 		IUserSession $userSession,
-		IEventDispatcher $eventDispatcher
+		IEventDispatcher $eventDispatcher,
+		IUserManager $userManager
 	) {
 		$this->config = $config;
 		$this->userBackend = $userBackend;
@@ -78,6 +81,7 @@ class GuestManager {
 		$this->connection = $connection;
 		$this->userSession = $userSession;
 		$this->eventDispatcher = $eventDispatcher;
+		$this->userManager = $userManager;
 	}
 
 	/**
@@ -100,9 +104,10 @@ class GuestManager {
 	public function createGuest(IUser $createdBy, $userId, $email, $displayName = '', $language = '') {
 		$passwordEvent = new GenerateSecurePasswordEvent();
 		$this->eventDispatcher->dispatchTyped($passwordEvent);
-		$this->userBackend->createUser(
+		$this->userManager->createUserFromBackend(
 			$userId,
-			$passwordEvent->getPassword() ?? $this->secureRandom->generate(20)
+			$passwordEvent->getPassword() ?? $this->secureRandom->generate(20),
+			$this->userBackend
 		);
 
 		$this->config->setUserValue($userId, 'settings', 'email', $email);

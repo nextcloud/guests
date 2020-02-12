@@ -29,7 +29,7 @@ const result = {
 	},
 	condition: self => {
 		return validate(self.query)
-	}
+	},
 }
 
 // await page loading and init ShareSearch

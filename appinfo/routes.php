@@ -66,6 +66,11 @@ return [
 			'name' => 'settings#languages',
 			'url' => '/config/languages',
 			'verb' => 'GET'
+		],
+		[
+			'name' => 'settings#groups',
+			'url' => '/config/groups',
+			'verb' => 'GET'
 		]
 	],
 ];

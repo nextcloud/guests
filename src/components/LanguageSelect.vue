@@ -19,34 +19,34 @@ import axios from '@nextcloud/axios'
 export default {
 	name: 'LanguageSelect',
 	components: {
-		Multiselect
+		Multiselect,
 	},
 	props: {
 		value: {
 			type: String,
-			default: ''
+			default: '',
 		},
 		disabled: {
 			type: Boolean,
-			default: false
-		}
+			default: false,
+		},
 	},
 	data() {
 		return {
 			language: '',
 			defaultLanguage: {
 				code: '',
-				name: t('guests', 'Default')
+				name: t('guests', 'Default'),
 			},
 			commonLanguages: [],
 			languages: [],
-			merged: []
+			merged: [],
 		}
 	},
 	watch: {
 		language: function() {
 			this.$emit('input', this.language.code)
-		}
+		},
 	},
 	beforeMount() {
 		this.loadLanguages()
@@ -61,8 +61,8 @@ export default {
 			} catch (error) {
 				console.error('Failed to retrieve languages', error)
 			}
-		}
-	}
+		},
+	},
 }
 </script>
 

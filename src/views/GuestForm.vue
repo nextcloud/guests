@@ -39,6 +39,16 @@
 						</label>
 						<LanguageSelect v-model="guest.language" :disabled="loading" />
 					</div>
+					<div v-if="groups.length > 0" class="form-group">
+						<label class="form-label" for="app-guests-input-group">
+							Add guest to groups:
+						</label>
+						<GroupSelect v-model="guest.groups"
+							:disabled="loading"
+							:groups="groups"
+							:required="groupRequired" />
+						<span v-if="error.groups">{{ error.groups }}</span>
+					</div>
 				</div>
 				<div class="modal-footer">
 					<span v-if="error.button">{{ t('guests', 'An error occured, try again') }}</span>
@@ -59,12 +69,14 @@ import { generateUrl } from '@nextcloud/router'
 import { Modal } from '@nextcloud/vue/dist/Components/Modal'
 import axios from '@nextcloud/axios'
 import LanguageSelect from '../components/LanguageSelect'
+import GroupSelect from '../components/GroupSelect'
 
 export default {
 	name: 'GuestForm',
 	components: {
+		GroupSelect,
 		LanguageSelect,
-		Modal
+		Modal,
 	},
 	data() {
 		return {
@@ -80,14 +92,19 @@ export default {
 				fullName: '',
 				username: null,
 				email: null,
-				language: ''
+				language: '',
+				groups: [],
 			},
 
 			error: {
 				button: false,
 				email: false,
-				username: false
-			}
+				username: false,
+				groups: false,
+			},
+
+			groupRequired: false,
+			groups: [],
 		}
 	},
 
@@ -96,9 +113,9 @@ export default {
 			return t('guests', 'Create guest account for {name}', {
 				name: this.guest.fullName
 					? this.guest.fullName
-					: this.guest.email
+					: this.guest.email,
 			})
-		}
+		},
 	},
 
 	watch: {
@@ -112,7 +129,11 @@ export default {
 			this.$nextTick(() => {
 				this.resetErrors()
 			})
-		}
+		},
+	},
+
+	beforeMount() {
+		this.loadGroups()
 	},
 
 	methods: {
@@ -152,12 +173,20 @@ export default {
 		},
 
 		async addGuest() {
+			if (this.groupRequired && this.guest.groups.length === 0) {
+				this.error.groups = t('guests', 'Guest user needs to be added to at least one group')
+				return
+			} else {
+				this.error.groups = false
+			}
+
 			this.loading = true
 			try {
 				await axios.put(generateUrl('/apps/guests/users'), {
 					displayName: this.guest.fullName,
 					email: this.guest.email,
-					language: this.guest.language
+					language: this.guest.language,
+					groups: this.guest.groups,
 				})
 				await this.addGuestShare()
 			} catch ({ response }) {
@@ -181,7 +210,7 @@ export default {
 				const result = await axios.post(`${url}shares?format=json`, {
 					shareType: OC.Share.SHARE_TYPE_USER,
 					shareWith: this.guest.username,
-					path
+					path,
 				})
 
 				if (!result.data.ocs) {
@@ -195,6 +224,16 @@ export default {
 			}
 		},
 
+		async loadGroups() {
+			try {
+				const result = await axios.get(generateUrl('apps/guests/config/groups'))
+				this.groups = result.data.groups
+				this.groupRequired = result.data.required
+			} catch (error) {
+				console.error('Failed to retrieve groups', error)
+			}
+		},
+
 		resetForm: function() {
 			this.guest.fullName = this.guest.username = this.guest.email = null
 		},
@@ -203,8 +242,8 @@ export default {
 			this.error.username = false
 			this.error.email = false
 			this.error.button = false
-		}
-	}
+		},
+	},
 }
 </script>
 

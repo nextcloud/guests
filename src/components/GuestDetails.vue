@@ -51,21 +51,21 @@ export default {
 	props: {
 		guestId: {
 			type: String,
-			required: true
-		}
+			required: true,
+		},
 	},
 	data() {
 		return {
 			activeUser: '',
 			details: {},
 			error: false,
-			loaded: false
+			loaded: false,
 		}
 	},
 	watch: {
 		guestId: function() {
 			this.loadGuestDetails()
-		}
+		},
 	},
 	beforeMount() {
 		this.loadGuestDetails()
@@ -93,8 +93,8 @@ export default {
 		},
 		formatTime(time) {
 			return OC.Util.formatDate(new Date(time * 1000))
-		}
-	}
+		},
+	},
 }
 </script>
 

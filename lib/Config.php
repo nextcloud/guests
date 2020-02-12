@@ -22,13 +22,19 @@
 namespace OCA\Guests;
 
 
+use OCP\Group\ISubAdmin;
 use OCP\IConfig;
+use OCP\IUserSession;
 
 class Config {
 	private $config;
+	private $subAdmin;
+	private $userSession;
 
-	public function __construct(IConfig $config) {
+	public function __construct(IConfig $config, ISubAdmin $subAdmin, IUserSession $userSession) {
 		$this->config = $config;
+		$this->subAdmin = $subAdmin;
+		$this->userSession = $userSession;
 	}
 
 	/**
@@ -104,5 +110,9 @@ class Config {
 
 	public function isSharingRestrictedToGroup(): bool {
 		return $this->config->getAppValue('core', 'shareapi_only_share_with_group_members', 'no') === 'yes';
+	}
+
+	public function canCreateGuests() {
+		return (!$this->isSharingRestrictedToGroup()) || $this->subAdmin->isSubAdmin($this->userSession->getUser());
 	}
 }

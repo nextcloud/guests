@@ -71,7 +71,7 @@ import GuestDetails from './GuestDetails'
 export default {
 	name: 'GuestList',
 	components: {
-		GuestDetails
+		GuestDetails,
 	},
 	data() {
 		return {
@@ -80,7 +80,7 @@ export default {
 			sort_direction: 1,
 			error: false,
 			loaded: false,
-			guests: []
+			guests: [],
 		}
 	},
 	beforeMount() {
@@ -114,8 +114,8 @@ export default {
 		},
 		toggleDetails(email) {
 			this.details_for = email
-		}
-	}
+		},
+	},
 }
 </script>
 

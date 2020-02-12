@@ -104,7 +104,7 @@ class Application extends App {
 		$userSession = $server->getUserSession();
 		$user = $userSession->getUser();
 
-		if (!$this->getGuestManager()->isGuest($user) && !$this->getConfig()->isSharingRestrictedToGroup()) {
+		if (!$this->getGuestManager()->isGuest($user) && $this->getConfig()->canCreateGuests()) {
 			$server->getEventDispatcher()->addListener(
 				'OCA\Files::loadAdditionalScripts',
 				function () {
