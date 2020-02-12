@@ -27,6 +27,7 @@ use OCP\EventDispatcher\IEventDispatcher;
 use OCP\IConfig;
 use OCP\IDBConnection;
 use OCP\IUser;
+use OCP\IUserManager;
 use OCP\IUserSession;
 use OCP\Security\ICrypto;
 use OCP\Security\ISecureRandom;
@@ -39,6 +40,8 @@ class GuestManagerTest extends TestCase {
 	private $userBackend;
 	/** @var IUserSession|MockObject */
 	private $userSession;
+	/** @var IUserManager|MockObject */
+	private $userManager;
 	/** @var IConfig|MockObject */
 	private $config;
 	/** @var ISecureRandom|MockObject */
@@ -60,6 +63,7 @@ class GuestManagerTest extends TestCase {
 
 		$this->userBackend = $this->createMock(UserBackend::class);
 		$this->userSession = $this->createMock(IUserSession::class);
+		$this->userManager = $this->createMock(IUserManager::class);
 		$this->config = $this->createMock(IConfig::class);
 		$this->random = $this->createMock(ISecureRandom::class);
 		$this->random->method('generate')
@@ -83,7 +87,8 @@ class GuestManagerTest extends TestCase {
 			$this->shareManager,
 			$this->conneciton,
 			$this->userSession,
-			$this->eventDispatcher
+			$this->eventDispatcher,
+			$this->userManager
 		);
 	}
 
@@ -157,9 +162,9 @@ class GuestManagerTest extends TestCase {
 		$createdByUser->method('getUID')
 			->willReturn('creator');
 
-		$this->userBackend->expects($this->once())
-			->method('createUser')
-			->with('guest@example.com', str_repeat('4', 20));
+		$this->userManager->expects($this->once())
+			->method('createUserFromBackend')
+			->with('guest@example.com', str_repeat('4', 20), $this->userBackend);
 
 		$this->userBackend->expects($this->once())
 			->method('setDisplayName')
