@@ -10,6 +10,7 @@ OC.L10N.register(
     "%s via %s" : "%s përmes %s",
     "Couldn't send reset email. Please contact your administrator." : "S’u dërgua dot email-i i rivendosjes. Ju lutemi, lidhuni me përgjegjësin tuaj.",
     "Guests" : "Të ftuarit",
+    "None" : "Asnjë",
     "Name" : "Emri",
     "Email" : "email",
     "Default" : "E paracaktuar",

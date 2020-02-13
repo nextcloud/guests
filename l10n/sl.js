@@ -13,6 +13,7 @@ OC.L10N.register(
     "Couldn't send reset email. Please contact your administrator." : "Ni mogoče poslati elektronskega naslova za ponastavitev. Stopite v stik s skrbnikom sistema.",
     "Guests" : "Gosti",
     "Data imported" : "Podatki so uvoženi",
+    "None" : "Brez",
     "Name" : "Ime",
     "Guests accounts" : "Računi gostov",
     "Email" : "Elektronski naslov",

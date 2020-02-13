@@ -11,6 +11,7 @@ OC.L10N.register(
     "%s via %s" : "%s via %s",
     "Couldn't send reset email. Please contact your administrator." : "Klarte ikke å sende e-post for tilbakestilling. Kontakt administratoren.",
     "Guests" : "Gjester",
+    "None" : "Ingen",
     "Name" : "Navn",
     "Email" : "E-post",
     "Invited by" : "Invitert av",

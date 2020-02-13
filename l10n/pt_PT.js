@@ -10,6 +10,7 @@ OC.L10N.register(
     "%s via %s" : "%s via %s",
     "Couldn't send reset email. Please contact your administrator." : "Não foi possível enviar a mensagem de reposição. Por favor, contacte o seu administrador.",
     "Guests" : "Convidados",
+    "None" : "Nenhum",
     "Name" : "Nome",
     "Email" : "Email",
     "Default" : "Predefinida",

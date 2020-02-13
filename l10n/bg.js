@@ -11,6 +11,7 @@ OC.L10N.register(
     "%s via %s" : "%s през %s",
     "Couldn't send reset email. Please contact your administrator." : "Изпращането на електронна поща е неуспешно. Моля, свържете се с вашия администратор.",
     "Guests" : "Гости",
+    "None" : "Без",
     "Name" : "Име",
     "Email" : "Имейл",
     "Default" : "Стандартен",

@@ -10,6 +10,7 @@ OC.L10N.register(
     "%s via %s" : "%s via %s",
     "Couldn't send reset email. Please contact your administrator." : "Couldn't send reset email. Please contact your administrator.",
     "Guests" : "Guests",
+    "None" : "None",
     "Name" : "Name",
     "Email" : "Email",
     "Default" : "Default",

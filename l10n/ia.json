@@ -4,6 +4,7 @@
     "A user with that name already exists." : "Un usator con iste nomine ja existe.",
     "%s shared »%s« with you" : "%s compartiva »%s« con te",
     "Couldn't send reset email. Please contact your administrator." : "Non poteva inviar le message de reinitialisation. Per favor contacta tu administrator.",
+    "None" : "Nulle",
     "Name" : "Nomine",
     "Email" : "E-posta",
     "Reset" : "Re-fixar",

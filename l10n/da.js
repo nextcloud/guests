@@ -10,6 +10,7 @@ OC.L10N.register(
     "%s via %s" : "%s via %s",
     "Couldn't send reset email. Please contact your administrator." : "Der opstod et problem under afsending af e-mailen til nulstilling. Kontakt venligst systemadministratoren.",
     "Guests" : "Gæster",
+    "None" : "Ingen",
     "Name" : "Navn",
     "Email" : "Email",
     "Default" : "Standard",

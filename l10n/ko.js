@@ -10,6 +10,7 @@ OC.L10N.register(
     "%s via %s" : "%s(%s 경유)",
     "Couldn't send reset email. Please contact your administrator." : "재설정 메일을 보낼 수 없습니다. 관리자에게 문의하십시오.",
     "Guests" : "손님",
+    "None" : "없음",
     "Name" : "이름",
     "Email" : "이메일",
     "Default" : "기본값",

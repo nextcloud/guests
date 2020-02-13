@@ -10,6 +10,7 @@ OC.L10N.register(
     "%s via %s" : "%s %s-ით",
     "Couldn't send reset email. Please contact your administrator." : "აღდგენის ელ-წერილი ვერ გაიგზავნა. გთხოვთ დაუკავშირდეთ თქვენს ადმინისტრატორს.",
     "Guests" : "სტუმრები",
+    "None" : "არც ერთი",
     "Name" : "სახელი",
     "Email" : "ელ-ფოსტა",
     "Default" : "საწყისი",

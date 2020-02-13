@@ -17,6 +17,7 @@
     "Couldn't send reset email. Please contact your administrator." : "Palautussähköpostin lähettäminen ei onnistunut. Ota yhteys ylläpitäjään.",
     "Guests" : "Vieraat",
     "Create guest accounts for easier collaboration" : "Luo vierastilejä entistä helpomman yhteistyön mahdollistamiseksi",
+    "None" : "Ei mitään",
     "Name" : "Nimi",
     "Guests accounts" : "Vierastilit",
     "Email" : "Sähhköposti",

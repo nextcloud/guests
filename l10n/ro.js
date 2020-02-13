@@ -8,6 +8,7 @@ OC.L10N.register(
     "%s shared »%s« with you" : "%s Partajat »%s« cu tine de",
     "%s via %s" : "%s via %s",
     "Couldn't send reset email. Please contact your administrator." : "Expedierea email-ului de resetare a eşuat. Vă rugăm să contactaţi administratorul dvs.",
+    "None" : "Niciuna",
     "Name" : "Nume",
     "Email" : "Email",
     "Default" : "Implicit",

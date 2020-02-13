@@ -2,6 +2,7 @@ OC.L10N.register(
     "guests",
     {
     "__language_name__" : "Srpski",
+    "None" : "Ništa",
     "Name" : "naziv",
     "Email" : "email",
     "Default" : "Podrazumevano",

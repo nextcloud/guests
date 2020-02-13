@@ -1,4 +1,5 @@
 { "translations": {
+    "None" : "Dim",
     "Name" : "Enw",
     "Email" : "E-bost",
     "Error" : "Gwall"

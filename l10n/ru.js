@@ -10,6 +10,7 @@ OC.L10N.register(
     "%s via %s" : "%s через %s",
     "Couldn't send reset email. Please contact your administrator." : "Не удалось отправить письмо для сброса пароля, свяжитесь с системным администратором.",
     "Guests" : "Гости",
+    "None" : "Пусто",
     "Name" : "Имя",
     "Email" : "Адрес эл. почты",
     "Default" : "По умолчанию",

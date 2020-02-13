@@ -7,6 +7,7 @@ OC.L10N.register(
     "%s via %s" : "%s عبر %s",
     "Couldn't send reset email. Please contact your administrator." : "لم يتم إرسال بريد إعادة الضبط .  فضلاً اتصل بمدير النظام.",
     "Guests" : "الضيوف",
+    "None" : "لا شيء",
     "Name" : "الاسم",
     "Shared By" : "تمت مشاركته مِن طرف",
     "Email" : "البريد الإلكترونى",

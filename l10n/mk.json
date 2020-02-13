@@ -17,6 +17,7 @@
     "Couldn't send reset email. Please contact your administrator." : "Не можам да истпратам порака за ресетирање. Ве молам контактирајте го вашиот администратор.",
     "Guests" : "Гости",
     "Create guest accounts for easier collaboration" : "Креирајте гостинска сметка за полесна соработка",
+    "None" : "Ништо",
     "Name" : "Име",
     "Shared By" : "Споделено од",
     "Shared At" : "Споделено на",

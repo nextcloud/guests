@@ -10,6 +10,7 @@ OC.L10N.register(
     "%s via %s" : "%s cez %s",
     "Couldn't send reset email. Please contact your administrator." : "Nemožno poslať email pre obnovu. Kontaktujte prosím vášho administrátora.",
     "Guests" : "Hostia",
+    "None" : "Žiadne",
     "Name" : "Názov",
     "Email" : "E-mail",
     "Default" : "Predvolené",

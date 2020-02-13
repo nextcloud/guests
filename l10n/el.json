@@ -34,7 +34,6 @@
     "An error occured, try again" : "Παρουσιάστηκε σφάλμα, δοκιμάστε ξανά",
     "Save and create share" : "Αποθήκευση και δημιουργία κοινόχρηστου",
     "Create guest account for {name}" : "Δημιουργία λογαριασμού επισκέπτη για {name}",
-    "Creating guests users is not possible while \"Restrict users to only share with users in their groups\" is enabled." : "Δεν είναι δυνατή η δημιουργία χρηστών επισκέπτη όταν είναι ενεργοποιημένη το \"Περιορίστε τους χρήστες να μοιράζονται μόνο με χρήστες στις ομάδες τους\"",
     "Guest users are grouped under a virtual group in the user manager" : "Οι λογαριασμοί επισκεπτών ομαδοποιούνται σε μια εικονική ομάδα στη διαχείριση χρηστών",
     "Guest users can access mounted external storages" : "Οι επισκέπτες μπορούν να έχουν πρόσβαση στους εξωτερικούς χώρους αποθήκευσης",
     "Hide other users from guests" : "Απόκρυψη των χρηστών από τους επισκέπτες",

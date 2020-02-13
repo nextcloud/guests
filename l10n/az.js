@@ -5,6 +5,7 @@ OC.L10N.register(
     "Invalid mail address" : "Yalnış mail ünvanı",
     "A user with that name already exists." : "Bu adla istifadəçi artıq mövcuddur.",
     "%s shared »%s« with you" : "%s yayımlandı »%s« sizinlə",
+    "None" : "Heç bir",
     "Name" : "Ad",
     "Email" : "Email",
     "Default" : "Susmaya görə",

@@ -1,6 +1,7 @@
 OC.L10N.register(
     "guests",
     {
+    "None" : "Dim",
     "Name" : "Enw",
     "Email" : "E-bost",
     "Error" : "Gwall"

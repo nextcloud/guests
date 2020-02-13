@@ -23,6 +23,7 @@ OC.L10N.register(
     "Data from your previous guest account was successfully imported into your new account." : "Podaci iz vašeg starog računa gosta uspješno su uvezeni u novi račun.",
     "Create guest accounts for easier collaboration" : "Stvorite račune gostiju za lakšu suradnju",
     "👥 Allows for better collaboration with external users by allowing users to create guests account.\n\nGuests accounts can be created from the share menu by entering either the recipients email or name and choosing \"create guest account\", once the share is created the guest user will receive an email notification about the mail with a link to set their password.\n\nGuests users can only access files shared to them and can't create any files outside of shares, additionally, the apps accessible to guest accounts are whitelisted." : "👥 Omogućuje bolju suradnju s vanjskim korisnicima za koje se stvaraju računi gostiju.\n\nRačuni gostiju mogu se stvoriti iz izbornika dijeljenja unosom adrese e-pošte ili imena primatelja i odabirom „stvori račun gosta”. Nakon što je stvoreno dijeljenje, gost će primiti obavijest e-poštom s poveznicom za postavljanje zaporke.\n\nGostujući korisnici mogu pristupiti samo datotekama koje im se dijele i ne mogu stvarati nijednu datoteku izvan dijeljenja, a aplikacije dostupne računima gostiju nalaze se na popisu dopuštenih aplikacija.",
+    "None" : "Nema",
     "Name" : "Naziv",
     "Shared By" : "Dijeli",
     "Shared At" : "Dijeljeno u",

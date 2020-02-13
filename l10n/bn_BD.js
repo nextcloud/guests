@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "__language_name__" : "বাংলা ভাষা",
     "%s shared »%s« with you" : "%s আপনার সাথে »%s« ভাগাভাগি করেছে",
+    "None" : "কোনটিই নয়",
     "Name" : "নাম",
     "Email" : "ইমেইল",
     "Default" : "পূর্বনির্ধারিত",

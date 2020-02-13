@@ -11,6 +11,7 @@ OC.L10N.register(
     "%s via %s" : "%s за допомогою %s",
     "Couldn't send reset email. Please contact your administrator." : "Не можу надіслати email для скидання. Будь ласка, зверніться до вашого адміністратора.",
     "Guests" : "Гості",
+    "None" : "Відсутній",
     "Name" : "Ім'я",
     "Email" : "Email",
     "Default" : "За замовчуванням",

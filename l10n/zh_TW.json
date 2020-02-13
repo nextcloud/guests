@@ -8,6 +8,7 @@
     "%s via %s" : "%s 經由 %s",
     "Couldn't send reset email. Please contact your administrator." : "無法寄送重設 email ，請聯絡系統管理員",
     "Guests" : "訪客",
+    "None" : "無",
     "Name" : "名稱",
     "Email" : "電子郵件",
     "Default" : "預設",
