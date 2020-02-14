@@ -19,6 +19,7 @@
     "Guests" : "ゲスト",
     "Create guest accounts for easier collaboration" : "よりシンプルなコラボレーションのためにゲストアカウントを作成",
     "👥 Allows for better collaboration with external users by allowing users to create guests account.\n\nGuests accounts can be created from the share menu by entering either the recipients email or name and choosing \"create guest account\", once the share is created the guest user will receive an email notification about the mail with a link to set their password.\n\nGuests users can only access files shared to them and can't create any files outside of shares, additionally, the apps accessible to guest accounts are whitelisted." : "ユーザーがゲストアカウントを作成できるので、外部ユーザーとのスムーズにコラボレーションできます。\n\nゲストアカウントは、共有メニューに受信者の電子メールアドレスまたは名前を入力して”ゲストアカウントを作成”を選択して作成します。共有を作成すると、ゲストユーザーにはパスワードを設定するリンクが入ったメールが届きます。\n\nゲストユーザーは自分に共有されているファイルにのみアクセスでき、共有されているファイル以外は作成できません。さらにゲストアカウントに対してホワイトリストで定義することにより、ゲストがアクセスできるアプリも指定できます。",
+    "None" : "なし",
     "Name" : "名前",
     "Shared By" : "共有者：",
     "Shared At" : "共有先",

@@ -7,6 +7,7 @@ OC.L10N.register(
     "%s shared »%s« with you" : "%s membagikan »%s« dengan anda",
     "%s via %s" : "%s melalui %s",
     "Couldn't send reset email. Please contact your administrator." : "Tidak dapat mengirim email setel ulang. Silakan hubungi administrator Anda.",
+    "None" : "Tidak ada",
     "Name" : "Nama",
     "Email" : "Surel",
     "Default" : "Bawaan",

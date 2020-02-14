@@ -10,6 +10,7 @@ OC.L10N.register(
     "%s via %s" : "%s d.m.v. %s",
     "Couldn't send reset email. Please contact your administrator." : "Kon nie die herstel e-pos stuur nie. Kontak asseblief u administrateur.",
     "Guests" : "Gaste",
+    "None" : "Geen",
     "Name" : "Naam",
     "Shared By" : "Gedeel Deur",
     "Shared At" : "Gedeel Om",

@@ -10,6 +10,7 @@ OC.L10N.register(
     "%s via %s" : "%s על בסיס %s",
     "Couldn't send reset email. Please contact your administrator." : "לא ניתן היה לשלוח דואר אלקטרוני לאיפוס. יש לפנות למנהל שלך.",
     "Guests" : "אורחים",
+    "None" : "אין",
     "Name" : "שם",
     "Email" : "דוא״ל",
     "Default" : "בררת מחדל",

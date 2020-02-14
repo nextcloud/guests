@@ -37,6 +37,7 @@ OC.L10N.register(
     "An error occured, try again" : "Une erreur est survenue, merci de réessayer",
     "Save and create share" : "Enregistrer et créer le partage",
     "Create guest account for {name}" : "Créer le compte invité pour {name}",
+    "Guest user needs to be added to at least one group" : "Les utilisateurs invités doivent être ajoutés à un groupe au moins.",
     "Guest users are grouped under a virtual group in the user manager" : "Dans la gestion des utilisateurs, les utilisateurs invités sont regroupés dans un groupe virtuel",
     "Guest users can access mounted external storages" : " Les invités ont accès aux espaces de stockage externes",
     "Hide other users from guests" : "Masquer les utilisateurs aux invités",
