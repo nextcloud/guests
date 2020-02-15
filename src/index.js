@@ -23,7 +23,7 @@ guestForm.$mount('#guest-root')
 // entry in the sharing input search results
 const result = {
 	icon: 'icon-guests',
-	displayName: t('core', 'Create guest account'),
+	displayName: t('guests', 'Create guest account'),
 	handler: async self => {
 		return guestForm.populate(self.fileInfo, self.query)
 	},
