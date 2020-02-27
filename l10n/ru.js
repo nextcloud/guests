@@ -26,6 +26,7 @@ OC.L10N.register(
     "None" : "Пусто",
     "Name" : "Имя",
     "Shared By" : "Доступ предоставлен",
+    "Shared At" : "Доступно на",
     "An error occured while fetching the shares list" : "Не удалось получить список опубликованных ресурсов",
     "Guests accounts" : "Гостевые учётные записи",
     "Email" : "Адрес эл. почты",
