@@ -24,6 +24,7 @@ namespace OCA\Guests;
 
 use OCP\App\IAppManager;
 use OCP\IL10N;
+use OCP\ILogger;
 use OCP\IRequest;
 use OCP\IURLGenerator;
 use OCP\IUser;
@@ -47,6 +48,7 @@ class AppWhitelist {
 	private $baseUrl;
 	/** @var int */
 	private $baseUrlLength;
+	private $logger;
 
 	const WHITELIST_ALWAYS = ',core,theming,settings,avatar,files,heartbeat,dav,guests,impersonate,accessibility,terms_of_service';
 
@@ -60,21 +62,29 @@ class AppWhitelist {
 	 * @param IL10N $l10n
 	 * @param IAppManager $appManager
 	 * @param IURLGenerator $urlGenerator
+	 * @param ILogger $logger
 	 */
-	public function __construct(Config $config, GuestManager $guestManager, IL10N $l10n, IAppManager $appManager, IURLGenerator $urlGenerator) {
+	public function __construct(
+		Config $config,
+		GuestManager $guestManager,
+		IL10N $l10n,
+		IAppManager $appManager,
+		IURLGenerator $urlGenerator,
+		ILogger $logger
+	) {
 		$this->config = $config;
 		$this->guestManager = $guestManager;
 		$this->l10n = $l10n;
 		$this->appManager = $appManager;
 		$this->baseUrl = $urlGenerator->getBaseUrl();
 		$this->baseUrlLength = strlen($this->baseUrl);
+		$this->logger = $logger;
 
 	}
 
 	private function isAppWhitelisted($appId) {
 		$whitelist = $this->config->getAppWhitelist();
 		$alwaysEnabled = explode(',', self::WHITELIST_ALWAYS);
-
 
 		return in_array($appId, array_merge($whitelist, $alwaysEnabled), true);
 	}
@@ -95,6 +105,7 @@ class AppWhitelist {
 					echo "[]";
 					exit;
 				}
+				$this->logger->info("Blocking access to non-whitelisted app ($app) for guest", ['app' => 'guests']);
 				return false;
 			}
 		} else {
@@ -122,7 +133,7 @@ class AppWhitelist {
 		}
 		if (substr($url, 0, 6) === '/apps/') {
 			// empty string / 'apps' / $app / rest of the route
-			list(, , $app,) = explode('/', $url, 4);
+			[, , $app,] = explode('/', $url, 4);
 			return \OC_App::cleanAppId($app);
 		} else if ($url === '/cron.php') {
 			return 'core';
