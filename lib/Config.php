@@ -113,6 +113,9 @@ class Config {
 	}
 
 	public function canCreateGuests() {
+		if (!$this->userSession->getUser()) {
+			return false;
+		}
 		return (!$this->isSharingRestrictedToGroup()) || $this->subAdmin->isSubAdmin($this->userSession->getUser());
 	}
 }
