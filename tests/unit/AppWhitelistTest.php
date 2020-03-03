@@ -26,6 +26,7 @@ use OCA\Guests\Config;
 use OCA\Guests\GuestManager;
 use OCP\App\IAppManager;
 use OCP\IL10N;
+use OCP\ILogger;
 use OCP\IURLGenerator;
 use OCP\IUser;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -62,7 +63,8 @@ class AppWhitelistTest extends TestCase {
 			$this->guestManager,
 			$this->l10n,
 			$this->appManager,
-			$this->urlGenerator
+			$this->urlGenerator,
+			$this->createMock(ILogger::class)
 		);
 	}
 
