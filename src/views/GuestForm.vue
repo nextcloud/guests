@@ -9,7 +9,7 @@
 				<div class="modal-body">
 					<div class="form-group">
 						<label class="form-label" for="app-guests-input-name">
-							Name:
+							{{ t('guests', 'Name:') }}
 						</label>
 						<input
 							id="app-guests-input-name"
@@ -21,7 +21,7 @@
 					</div>
 					<div class="form-group">
 						<label class="form-label" for="app-guests-input-email">
-							E-Mail:
+							{{ t('guests', 'E-Mail:') }}
 						</label>
 						<input
 							id="app-guests-input-email"
@@ -35,13 +35,13 @@
 					</div>
 					<div class="form-lang">
 						<label class="form-label" for="app-guests-input-lang">
-							Language:
+							{{ t('guests', 'Language:') }}
 						</label>
 						<LanguageSelect v-model="guest.language" :disabled="loading" />
 					</div>
 					<div v-if="groups.length > 0" class="form-group">
 						<label class="form-label" for="app-guests-input-group">
-							Add guest to groups:
+							{{ t('guests', 'Add guest to groups:') }}
 						</label>
 						<GroupSelect v-model="guest.groups"
 							:disabled="loading"
