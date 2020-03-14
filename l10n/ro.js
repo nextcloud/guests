@@ -12,6 +12,7 @@ OC.L10N.register(
     "Name" : "Nume",
     "Email" : "Email",
     "Default" : "Implicit",
+    "Name:" : "Nume:",
     "Reset" : "Resetare",
     "Error" : "Eroare"
 },
