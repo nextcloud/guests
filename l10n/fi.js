@@ -27,6 +27,7 @@ OC.L10N.register(
     "Received shares" : "Vastaanotetut jaot",
     "No guest accounts created" : "Vierastiliä ei luotu",
     "Default" : "Oletus",
+    "Name:" : "Nimi:",
     "Guest users are grouped under a virtual group in the user manager" : "Vieraskäyttäjät asetetaan virtuaaliryhmään käyttäjähallinnassa",
     "Guest users can access mounted external storages" : "Vieraskäyttäjillä on pääsy liitettyihin erillisiin tallennustiloihin",
     "Hide other users from guests" : "Piilota muut käyttäjät vierailta",
