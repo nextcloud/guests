@@ -252,7 +252,6 @@ class Hooks {
 				'level' => ILogger::ERROR,
 				'message' => 'Could not import guest user data',
 			]);
-			return;
 		}
 
 		// Update incomming shares
