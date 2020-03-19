@@ -19,6 +19,7 @@ OC.L10N.register(
     "Email" : "Elektronski naslov",
     "No guest accounts created" : "Ni ustvarjenega nobenega računa za goste",
     "Default" : "Privzeta",
+    "Name:" : "Ime:",
     "An error occured, try again" : "Prišlo je do napake. Poskusite znova.",
     "Save and create share" : "Shrani in omogoči souporabo",
     "Hide other users from guests" : "Pred gostom skrij druge uporabnike",
