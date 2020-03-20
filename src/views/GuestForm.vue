@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import { generateUrl } from '@nextcloud/router'
+import { generateOcsUrl } from '@nextcloud/router'
 import { Modal } from '@nextcloud/vue/dist/Components/Modal'
 import axios from '@nextcloud/axios'
 import LanguageSelect from '../components/LanguageSelect'
@@ -182,7 +182,7 @@ export default {
 
 			this.loading = true
 			try {
-				await axios.put(generateUrl('/apps/guests/users'), {
+				await axios.put(generateOcsUrl('/apps/guests/api/v1/', 2) + 'users', {
 					displayName: this.guest.fullName,
 					email: this.guest.email,
 					language: this.guest.language,
@@ -226,9 +226,9 @@ export default {
 
 		async loadGroups() {
 			try {
-				const result = await axios.get(generateUrl('apps/guests/config/groups'))
-				this.groups = result.data.groups
-				this.groupRequired = result.data.required
+				const result = await axios.get(generateOcsUrl('apps/guests/api/v1/', 2) + 'groups')
+				this.groups = result.data.ocs.data.groups
+				this.groupRequired = result.data.ocs.data.required
 			} catch (error) {
 				console.error('Failed to retrieve groups', error)
 			}

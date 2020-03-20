@@ -9,6 +9,7 @@ use OCA\Guests\Config;
 use OCA\Guests\GuestManager;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\DataResponse;
+use OCP\AppFramework\OCSController;
 use OCP\Group\ISubAdmin;
 use OCP\IConfig;
 use OCP\IGroupManager;
@@ -18,7 +19,7 @@ use OCP\IUserManager;
 use OCP\IUserSession;
 use OCP\Mail\IMailer;
 
-class UsersController extends Controller {
+class UsersController extends OCSController {
 	/**
 	 * @var IRequest
 	 */
@@ -79,7 +80,7 @@ class UsersController extends Controller {
 	 * @param $groups
 	 * @return DataResponse
 	 */
-	public function create($email, $displayName, $language, $groups) {
+	public function create($email, $displayName, $language, $groups): DataResponse {
 		$errorMessages = [];
 		$currentUser = $this->userSession->getUser();
 
@@ -187,13 +188,13 @@ class UsersController extends Controller {
 		);
 	}
 
-	public function list() {
+	public function list(): DataResponse {
 		$guests = $this->guestManager->getGuestsInfo();
 
 		return new DataResponse($guests);
 	}
 
-	public function get(string $userId) {
+	public function get(string $userId): DataResponse {
 		$guests = $this->guestManager->getGuestInfo($userId);
 
 		return new DataResponse($guests);

@@ -47,30 +47,32 @@ return [
 			'url' => '/whitelist/reset',
 			'verb' => 'POST',
 		],
+	],
+	'ocs' => [
 		[
 			'name' => 'users#create',
-			'url' => '/users',
+			'url' => '/api/v1/users',
 			'verb' => 'PUT'
 		],
 		[
 			'name' => 'users#list',
-			'url' => '/users',
+			'url' => '/api/v1/users',
 			'verb' => 'GET'
 		],
 		[
 			'name' => 'users#get',
-			'url' => '/users/{userId}',
+			'url' => '/api/v1/users/{userId}',
 			'verb' => 'GET'
 		],
 		[
-			'name' => 'settings#languages',
-			'url' => '/config/languages',
+			'name' => 'API#languages',
+			'url' => '/api/v1/languages',
 			'verb' => 'GET'
 		],
 		[
-			'name' => 'settings#groups',
-			'url' => '/config/groups',
+			'name' => 'API#groups',
+			'url' => '/api/v1/groups',
 			'verb' => 'GET'
 		]
-	],
+	]
 ];

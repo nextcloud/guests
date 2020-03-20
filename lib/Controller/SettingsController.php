@@ -22,6 +22,7 @@
 namespace OCA\Guests\Controller;
 
 use OC\L10N\Factory;
+use OCA\Guests\AppInfo\Application;
 use OCA\Guests\AppWhitelist;
 use OCA\Guests\Config;
 use OCP\AppFramework\Controller;
@@ -41,127 +42,20 @@ use OCP\L10N\IFactory;
  */
 class SettingsController extends Controller {
 
-	/**
-	 * @var Config
-	 */
+	/** @var Config */
 	private $config;
 
+	/** @var AppWhitelist */
 	private $appWhitelist;
 
-	private $l10nFactory;
-
-	private $userSession;
-
-	private $subAdmin;
-
-	private $groupManager;
-
 	public function __construct(
-		$AppName,
 		IRequest $request,
-		IUserSession $userSession,
 		Config $config,
-		AppWhitelist $appWhitelist,
-		IFactory $l10nFactory,
-		ISubAdmin $subAdmin,
-		IGroupManager $groupManager
+		AppWhitelist $appWhitelist
 	) {
-		parent::__construct($AppName, $request);
-		$this->userSession = $userSession;
+		parent::__construct(Application::APP_ID, $request);
 		$this->config = $config;
 		$this->appWhitelist = $appWhitelist;
-		$this->l10nFactory = $l10nFactory;
-		$this->subAdmin = $subAdmin;
-		$this->groupManager = $groupManager;
-	}
-
-	/**
-	 * @NoAdminRequired
-	 * @NoCSRFRequired
-	 * @return array
-	 */
-	public function languages() {
-		$languageCodes = $this->l10nFactory->findAvailableLanguages('guests');
-
-		$commonLanguages = [];
-		$languages = [];
-
-		foreach ($languageCodes as $lang) {
-			$l = $this->l10nFactory->get('lib', $lang);
-			// TRANSLATORS this is the language name for the language switcher in the personal settings and should be the localized version
-			$potentialName = (string)$l->t('__language_name__');
-			if ($l->getLanguageCode() === $lang && $potentialName[0] !== '_') {//first check if the language name is in the translation file
-				$ln = [
-					'code' => $lang,
-					'name' => $potentialName,
-				];
-			} else if ($lang === 'en') {
-				$ln = [
-					'code' => $lang,
-					'name' => 'English (US)',
-				];
-			} else {//fallback to language code
-				$ln = [
-					'code' => $lang,
-					'name' => $lang,
-				];
-			}
-
-			// put appropriate languages into appropriate arrays, to print them sorted
-			// common languages -> divider -> other languages
-			if (in_array($lang, Factory::COMMON_LANGUAGE_CODES)) {
-				$commonLanguages[array_search($lang, Factory::COMMON_LANGUAGE_CODES)] = $ln;
-			} else {
-				$languages[] = $ln;
-			}
-		}
-
-		ksort($commonLanguages);
-
-		// sort now by displayed language not the iso-code
-		usort($languages, function ($a, $b) {
-			if ($a['code'] === $a['name'] && $b['code'] !== $b['name']) {
-				// If a doesn't have a name, but b does, list b before a
-				return 1;
-			}
-			if ($a['code'] !== $a['name'] && $b['code'] === $b['name']) {
-				// If a does have a name, but b doesn't, list a before b
-				return -1;
-			}
-			// Otherwise compare the names
-			return strcmp($a['name'], $b['name']);
-		});
-
-		return [
-			// reset indexes
-			'commonLanguages' => array_values($commonLanguages),
-			'languages' => $languages,
-		];
-	}
-
-	/**
-	 * @NoAdminRequired
-	 * @NoCSRFRequired
-	 * @return array
-	 */
-	public function groups() {
-		$user = $this->userSession->getUser();
-		if ($this->groupManager->isAdmin($user->getUID())) {
-			$groups = $this->groupManager->search('');
-		} else {
-			$groups = $this->subAdmin->getSubAdminsGroups($user);
-		}
-		$groups = array_values(array_map(function (IGroup $group) {
-			return [
-				'gid' => $group->getGID(),
-				'name' => $group->getDisplayName(),
-			];
-		}, $groups));
-
-		return [
-			'required' => $this->config->isSharingRestrictedToGroup(),
-			'groups' => $groups,
-		];
 	}
 
 	/**

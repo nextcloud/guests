@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { generateUrl } from '@nextcloud/router'
+import { generateOcsUrl } from '@nextcloud/router'
 import { Multiselect } from '@nextcloud/vue/dist/Components/Multiselect'
 import axios from '@nextcloud/axios'
 
@@ -54,10 +54,10 @@ export default {
 	methods: {
 		async loadLanguages() {
 			try {
-				const result = await axios.get(generateUrl('apps/guests/config/languages'))
-				this.commonLanguages = result.data.commonLanguages
-				this.languages = result.data.languages
-				this.merged = [this.defaultLanguage].concat(result.data.commonLanguages).concat(result.data.languages)
+				const result = await axios.get(generateOcsUrl('apps/guests/api/v1/', 2) + 'languages')
+				this.commonLanguages = result.data.ocs.data.commonLanguages
+				this.languages = result.data.ocs.data.languages
+				this.merged = [this.defaultLanguage].concat(result.data.ocs.data.commonLanguages).concat(result.data.ocs.data.languages)
 			} catch (error) {
 				console.error('Failed to retrieve languages', error)
 			}

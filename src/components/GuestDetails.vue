@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { generateUrl } from '@nextcloud/router'
+import { generateOcsUrl } from '@nextcloud/router'
 import axios from '@nextcloud/axios'
 
 export default {
@@ -75,8 +75,8 @@ export default {
 			if (!this.details[this.guestId]) {
 				this.loaded = false
 				try {
-					const { data } = await axios.get(generateUrl(`apps/guests/users/${encodeURIComponent(this.guestId)}`))
-					this.details[this.guestId] = data
+					const { data } = await axios.get(generateOcsUrl('apps/guests/api/v1/users/', 2) + encodeURIComponent(this.guestId))
+					this.details[this.guestId] = data.ocs.data
 					this.activeUser = this.guestId
 				} catch (error) {
 					console.error(error)

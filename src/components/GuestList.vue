@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import { generateUrl } from '@nextcloud/router'
+import { generateOcsUrl } from '@nextcloud/router'
 import axios from '@nextcloud/axios'
 import GuestDetails from './GuestDetails'
 
@@ -89,8 +89,8 @@ export default {
 	methods: {
 		async loadGuests() {
 			try {
-				const { data } = await axios.get(generateUrl('apps/guests/users'))
-				this.guests = data
+				const { data } = await axios.get(generateOcsUrl('apps/guests/api/v1/', 2) + 'users')
+				this.guests = data.ocs.data
 			} catch (error) {
 				this.error = true
 				console.error('Error fetching guests list', error)
