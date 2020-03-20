@@ -20,6 +20,9 @@ If that setting is turned on, guests can only be invited by [group admins](https
 
 Upon invitation, the group admin must select at least one of their adminstrated groups the guest shall be member of.
 
+## Note on share acceptance
+
+Guest users automatically accept all files and folders that are shared with them - other than regular full users, who have to actively accept incoming shares since Nextcloud 18.
 
 ## Restrictions on guest users
 
