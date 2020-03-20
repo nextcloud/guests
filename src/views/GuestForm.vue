@@ -56,7 +56,7 @@
 						:class="{ 'icon-loading-small': loading }"
 						class="primary button-save"
 						:disabled="loading">
-						{{ t('guests', 'Save and create share') }}
+						{{ t('guests', 'Invite user and create share') }}
 					</button>
 				</div>
 			</form>
@@ -110,7 +110,7 @@ export default {
 
 	computed: {
 		formatTitle() {
-			return t('guests', 'Create guest account for {name}', {
+			return t('guests', 'Invite {name}', {
 				name: this.guest.fullName
 					? this.guest.fullName
 					: this.guest.email,
