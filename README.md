@@ -8,8 +8,21 @@ Create guest users which can only see files shared with them
 
 1. Create a guest user by typing their email address in to the sharing dialog. 
 2. [Optionally] Set a display name for the guest user.
-3. [Optionally] Set a language for the invitation email (otherwise the server's [default language](https://docs.nextcloud.com/server/16/admin_manual/configuration_server/config_sample_php_parameters.html#user-experience) will be used).
-4. The guest will receive an email invitation with a link to create an account. They only have access to files which are shared with them.
+3. [Optionally] Set a language for the invitation email (otherwise the server's [default language](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html#user-experience) will be used).
+4. [Optionally, only for group admins] Set the groups to put the guests in (note [further documentation](#Special-behavior-under-sharing-restrictions)).
+5. The guest will receive an email invitation with a link to create an account. They only have access to files which are shared with them.
+
+### Special behavior under sharing restrictions
+
+Nextcloud allows to restrict users to only share within the groups they are members of themselves (_Settings > Administration > Sharing > ```Restrict users to only share with users in their groups```_)
+
+If that setting is turned on, guests can only be invited by [group admins](https://docs.nextcloud.com/server/latest/admin_manual/configuration_user/user_configuration.html).
+
+Upon invitation, the group admin must select at least one of their adminstrated groups the guest shall be member of.
+
+## Note on share acceptance
+
+Guest users automatically accept all files and folders that are shared with them - other than regular full users, who have to actively accept incoming shares since Nextcloud 18.
 
 ## Restrictions on guest users
 
