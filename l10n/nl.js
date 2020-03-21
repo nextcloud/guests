@@ -39,8 +39,6 @@ OC.L10N.register(
     "Language:" : "Taal:",
     "Add guest to groups:" : "Gast toevoegen aan groepen:",
     "An error occured, try again" : "Er trad een fout op. Probeer het opnieuw",
-    "Save and create share" : "Bewaren en creëer deellink",
-    "Create guest account for {name}" : "Maak gastaccount voor {name}",
     "Guest user needs to be added to at least one group" : "Gastgebruiker moet aan tenminste één groep worden toegevoegd",
     "Creating guests users is restricted while \"Restrict users to only share with users in their groups\" is enabled." : "Het aanmaken van gastgebruikers is beperkt wanneer \"Laat gebruikers alleen delen met andere gebruikers in hun groepen\" ingeschakeld is.",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Alleen groepsbeheerders kunnen gastgebruikers aanmaken en gasten moeten aan tenminste één groep toegevoegd worden waarvan de share-eigenaar een groepsbeheerder is.",
@@ -52,7 +50,6 @@ OC.L10N.register(
     "Reset" : "Reset",
     "Error" : "Fout",
     "Your settings have been updated" : "Je instellingen zijn bijgewerkt",
-    "Saving …" : "Opslaan ...",
-    "Create guest account" : "Aanmaken gastaccount"
+    "Saving …" : "Opslaan ..."
 },
 "nplurals=2; plural=(n != 1);");

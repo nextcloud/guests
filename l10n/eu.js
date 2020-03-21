@@ -35,8 +35,6 @@ OC.L10N.register(
     "No guest accounts created" : "Ez da gonbidatu konturik sortu",
     "Default" : "Lehenetsia",
     "An error occured, try again" : "Errore bat gertatu da, saiatu berriro",
-    "Save and create share" : "Gorde eta sortu partekatzea",
-    "Create guest account for {name}" : "Sortu gonbidatu kontua {name} erabiltzailearentzat",
     "Guest users are grouped under a virtual group in the user manager" : "Gonbidatuak talde birtual batean biltzen dira erabiltzaileen kudeatzailean",
     "Guest users can access mounted external storages" : "Erabiltzaile gonbidatuek muntatutako kanpo biltegiratzeak atzitu ditzakete",
     "Hide other users from guests" : "Ezkutatu beste erabiltzaileak gonbidatuei",
@@ -45,7 +43,6 @@ OC.L10N.register(
     "Reset" : "Berrezarri",
     "Error" : "Errorea",
     "Your settings have been updated" : "Zure ezarpenak eguneratu dira",
-    "Saving …" : "Gordetzen  ...",
-    "Create guest account" : "Sortu gonbidatu kontua"
+    "Saving …" : "Gordetzen  ..."
 },
 "nplurals=2; plural=(n != 1);");

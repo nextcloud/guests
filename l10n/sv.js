@@ -38,8 +38,6 @@ OC.L10N.register(
     "Language:" : "Språk:",
     "Add guest to groups:" : "Lägg till gäst i grupper:",
     "An error occured, try again" : "Ett fel uppstod, försök igen",
-    "Save and create share" : "Spara och skapa delning",
-    "Create guest account for {name}" : "Skapa gästkonto för {name}",
     "Guest user needs to be added to at least one group" : "Gästanvändare måste läggas till i minst en grupp",
     "Creating guests users is restricted while \"Restrict users to only share with users in their groups\" is enabled." : "Skapa gästanvändare är begränsat när \"Begränsa användare att bara dela med användare i sina grupper\" är aktiverat.",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Endast gruppadministratörer får skapa gäster och gäster måste läggas till i minst en grupp som den som skapar delningen är gruppadministratör för.",
@@ -51,7 +49,6 @@ OC.L10N.register(
     "Reset" : "Återställ",
     "Error" : "Fel",
     "Your settings have been updated" : "Dina inställningar har uppdaterats",
-    "Saving …" : "Sparar …",
-    "Create guest account" : "Skapa gästkonto"
+    "Saving …" : "Sparar …"
 },
 "nplurals=2; plural=(n != 1);");

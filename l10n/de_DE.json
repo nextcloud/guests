@@ -37,8 +37,6 @@
     "Language:" : "Sprache:",
     "Add guest to groups:" : "Gast zu folgenden Gruppen hinzufügen:",
     "An error occured, try again" : "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es noch einmal",
-    "Save and create share" : "Freigabe speichern und teilen",
-    "Create guest account for {name}" : "Erstelle Gastkonto für {name}",
     "Guest user needs to be added to at least one group" : "Gast-Benutzer müssen zumindest einer Gruppe hinzugefügt werden",
     "Creating guests users is restricted while \"Restrict users to only share with users in their groups\" is enabled." : "Erstellen von Gästebenutzern ist nicht gesperrt, solange \"Benutzer auf das Teilen innerhalb ihrer Gruppen beschränken\" aktiv ist.",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Nur Gruppenadministratoren dürfen Gäste erstellen, und Gäste müssen mindestens einer Gruppe hinzugefügt werden, für die der Freigabeersteller ein Gruppenadministrator ist.",
@@ -50,7 +48,6 @@
     "Reset" : "Zurücksetzen",
     "Error" : "Fehler",
     "Your settings have been updated" : "Ihre Einstellungen wurden aktualisiert",
-    "Saving …" : "Speichere …",
-    "Create guest account" : "Gastkonto erstellen"
+    "Saving …" : "Speichere …"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

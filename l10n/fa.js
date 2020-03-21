@@ -35,8 +35,6 @@ OC.L10N.register(
     "No guest accounts created" : "هیچ حساب مهمان ایجاد نشده است",
     "Default" : "پیش‌گزیده",
     "An error occured, try again" : "خطایی روی داد ، دوباره امتحان کنید",
-    "Save and create share" : "ذخیره و ایجاد اشتراک کنید",
-    "Create guest account for {name}" : "ایجاد حساب مهمان برای {name}",
     "Guest users are grouped under a virtual group in the user manager" : "کاربران مهمان در یک گروه مجازی در مدیر کاربر گروه بندی می شوند",
     "Guest users can access mounted external storages" : "کاربران مهمان می توانند به انبارهای خارجی نصب شده دسترسی پیدا کنند",
     "Hide other users from guests" : "کاربران دیگر را از میهمانان مخفی کنید",
@@ -45,7 +43,6 @@ OC.L10N.register(
     "Reset" : "تنظیم مجدد",
     "Error" : "خطا",
     "Your settings have been updated" : "تنظیمات شما به روز شده است",
-    "Saving …" : "در حال ذخیره",
-    "Create guest account" : "حساب مهمان ایجاد کنید"
+    "Saving …" : "در حال ذخیره"
 },
 "nplurals=2; plural=(n > 1);");

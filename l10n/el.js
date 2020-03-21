@@ -39,8 +39,6 @@ OC.L10N.register(
     "Language:" : "Γλώσσα:",
     "Add guest to groups:" : "Προσθήκη επισκέπτη στις ομάδες:",
     "An error occured, try again" : "Παρουσιάστηκε σφάλμα, δοκιμάστε ξανά",
-    "Save and create share" : "Αποθήκευση και δημιουργία κοινόχρηστου",
-    "Create guest account for {name}" : "Δημιουργία λογαριασμού επισκέπτη για {name}",
     "Guest user needs to be added to at least one group" : "Ένας χρήστης Επισκέπτης πρέπει να προστεθεί τουλάχιστον σε μία ομάδα",
     "Creating guests users is restricted while \"Restrict users to only share with users in their groups\" is enabled." : "Η δημιουργία χρηστών επισκέπτη δεν επιτρέπεται, όταν είναι ενεργοποιημένη το \"Περιορίστε τους χρήστες να μοιράζονται μόνο με χρήστες στις ομάδες τους\"",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Μόνο οι διαχειριστές ομάδας επιτρέπεται να δημιουργούν επισκέπτες και οι επισκέπτες πρέπει να προστεθούν σε τουλάχιστον μία ομάδα που ο δημιουργός κοινόχρηστων είναι διαχειριστής ομάδας.",
@@ -52,7 +50,6 @@ OC.L10N.register(
     "Reset" : "Επαναφορά",
     "Error" : "Σφάλμα",
     "Your settings have been updated" : "Οι ρυθμίσεις σας ενημερώθηκαν",
-    "Saving …" : "Αποθήκευση ...",
-    "Create guest account" : "Δημιουργία λογαριασμού επισκέπτη"
+    "Saving …" : "Αποθήκευση ..."
 },
 "nplurals=2; plural=(n != 1);");

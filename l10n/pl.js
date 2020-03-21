@@ -39,8 +39,6 @@ OC.L10N.register(
     "Language:" : "Język:",
     "Add guest to groups:" : "Dodaj gościa do grup:",
     "An error occured, try again" : "Wystąpił błąd, spróbuj ponownie",
-    "Save and create share" : "Zapisz i udostępnij",
-    "Create guest account for {name}" : "Utwórz konto gościa dla {name}",
     "Guest user needs to be added to at least one group" : "Użytkownik jako gość musi zostać dodany do co najmniej jednej grupy",
     "Creating guests users is restricted while \"Restrict users to only share with users in their groups\" is enabled." : "Dodawanie użytkowników jako gości jest ograniczone, gdy włączona jest opcja \"Ogranicz użytkownikom możliwość udostępniania, pozwól tylko w swoich grupach\".",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Tylko administratorzy grup mogą tworzyć gości, którzy muszą być dodani do co najmniej jednej grupy, dla której jest administratorem grupy utworzonego udostępnienia.",
@@ -52,7 +50,6 @@ OC.L10N.register(
     "Reset" : "Resetuj",
     "Error" : "Błąd",
     "Your settings have been updated" : "Twoje ustawienia zostały zaktualizowane",
-    "Saving …" : "Zapisywanie ...",
-    "Create guest account" : "Utwórz konto gościa"
+    "Saving …" : "Zapisywanie ..."
 },
 "nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);");

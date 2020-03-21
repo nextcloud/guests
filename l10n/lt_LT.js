@@ -38,8 +38,6 @@ OC.L10N.register(
     "Language:" : "Kalba:",
     "Add guest to groups:" : "Pridėti svečią į grupes:",
     "An error occured, try again" : "Įvyko klaida, bandykite dar kartą",
-    "Save and create share" : "Įrašyti ir sukurti viešinį",
-    "Create guest account for {name}" : "Sukurti svečio paskyrą, skirtą {name}",
     "Guest users are grouped under a virtual group in the user manager" : "Svečio naudotojai yra suskirstyti į virtualią grupę naudotojo administravimo vadove",
     "Guest users can access mounted external storages" : "Svečio naudotojai gali gauti prieigą prie prijungtų išorinių saugyklų",
     "Hide other users from guests" : "Slėpti nuo svečių kitus naudotojus",
@@ -48,7 +46,6 @@ OC.L10N.register(
     "Reset" : "Atstatyti",
     "Error" : "Klaida",
     "Your settings have been updated" : "Jūsų nustatymai atnaujinti",
-    "Saving …" : "Įrašoma…",
-    "Create guest account" : "Sukurti svečio paskyrą"
+    "Saving …" : "Įrašoma…"
 },
 "nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);");

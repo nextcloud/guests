@@ -33,8 +33,6 @@ OC.L10N.register(
     "No guest accounts created" : "沒有建立的訪客帳戶",
     "Default" : "預設",
     "An error occured, try again" : "發生錯誤，請重試",
-    "Save and create share" : "儲存並建立分享",
-    "Create guest account for {name}" : "建立 {name} 的訪客帳戶",
     "Guest user needs to be added to at least one group" : "訪客使用者需要先加進最少一個群組",
     "Creating guests users is restricted while \"Restrict users to only share with users in their groups\" is enabled." : "啟用「限制使用者只能分享給群組裡的其他使用者」時，會限制訪客使用者的建立。",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "只有群組管理員才能建立訪客帳戶，且訪客帳戶必須加進至少一個「分享建立者是群組管理員」的群組。",
@@ -45,7 +43,6 @@ OC.L10N.register(
     "Reset" : "重設",
     "Error" : "錯誤",
     "Your settings have been updated" : "已更新您的設定",
-    "Saving …" : "正在儲存 …",
-    "Create guest account" : "建立訪客帳戶"
+    "Saving …" : "正在儲存 …"
 },
 "nplurals=1; plural=0;");

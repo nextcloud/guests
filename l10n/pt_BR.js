@@ -39,8 +39,6 @@ OC.L10N.register(
     "Language:" : "Idioma:",
     "Add guest to groups:" : "Adicionar convidado aos grupos:",
     "An error occured, try again" : "Ocorreu um erro, tente novamente",
-    "Save and create share" : "Salvar e criar compartilhamento",
-    "Create guest account for {name}" : "Criar uma conta de convidado para {name}",
     "Guest user needs to be added to at least one group" : "O usuário convidado precisa ser adicionado a pelo menos um grupo",
     "Creating guests users is restricted while \"Restrict users to only share with users in their groups\" is enabled." : "A criação de usuários convidados é restrita enquanto \"Restringir usuários para compartilhar somente com usuários em seus grupos\" estiver ativado.",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Somente administradores de grupo têm permissão para criar convidados e eles devem ser adicionados a pelo menos um grupo no qual o criador do compartilhamento é administrador do grupo.",
@@ -52,7 +50,6 @@ OC.L10N.register(
     "Reset" : "Reiniciar",
     "Error" : "Erro",
     "Your settings have been updated" : "Suas configurações foram atualizadas",
-    "Saving …" : "Salvando...",
-    "Create guest account" : "Criar uma conta de convidado"
+    "Saving …" : "Salvando..."
 },
 "nplurals=2; plural=(n > 1);");

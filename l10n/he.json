@@ -31,8 +31,6 @@
     "No guest accounts created" : "לא נוצרו חשבונות אורחים",
     "Default" : "בררת מחדל",
     "An error occured, try again" : "אירעה שגיאה, נא לנסות שוב",
-    "Save and create share" : "שמירה ויצירת שיתוף",
-    "Create guest account for {name}" : "יצירת חשבון אורח עבור {name}",
     "Guest user needs to be added to at least one group" : "יש להוסיף את המשתמש אורח לקבוצה אחת לפחות",
     "Creating guests users is restricted while \"Restrict users to only share with users in their groups\" is enabled." : "יצירת חשבונות אורחים מוגבלת בזמן שהאפשרות „הגבלת משתמשים לשתף רק עם משתמשים בקבוצה שלהם” מופעלת.",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "רק מנהלי קבוצות מורשים ליצור חשבונות אורחים ויש לצרף אורחים לפחות לקבוצה אחת ששולח השיתוף מנהל.",
@@ -44,7 +42,6 @@
     "Reset" : "לאפס",
     "Error" : "שגיאה",
     "Your settings have been updated" : "ההגדרות שלך עודכנו",
-    "Saving …" : "מתבצע שמירה…",
-    "Create guest account" : "יצירת חשבון אורח"
+    "Saving …" : "מתבצע שמירה…"
 },"pluralForm" :"nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;"
 }

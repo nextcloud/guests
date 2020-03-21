@@ -39,8 +39,6 @@ OC.L10N.register(
     "Language:" : "Језик:",
     "Add guest to groups:" : "Додај госта у групе:",
     "An error occured, try again" : "Догодила се грешка, покушајте касније",
-    "Save and create share" : "Сачувај и направи дељење",
-    "Create guest account for {name}" : "Направио гостински налог за {name}",
     "Guest user needs to be added to at least one group" : "Гостински корисник мора бити додат на бар једну групу",
     "Creating guests users is restricted while \"Restrict users to only share with users in their groups\" is enabled." : "Креирање гостинских корисника је ограничено док је укључено „Ограничи кориснике да деле само са корисницима унутар својих група”.",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Само администраторима група је дозвољено да креирају госте, а гости морају бити додати на бар једну групу на којој је онај ко је направио дељење и администратор те групе.",
@@ -52,7 +50,6 @@ OC.L10N.register(
     "Reset" : "Ресетуј",
     "Error" : "Грешка",
     "Your settings have been updated" : "Ваше поставке су ажуриране",
-    "Saving …" : "Чувам …",
-    "Create guest account" : "Направи гостински налог"
+    "Saving …" : "Чувам …"
 },
 "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);");
