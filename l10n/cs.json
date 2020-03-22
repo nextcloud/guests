@@ -37,6 +37,8 @@
     "Language:" : "Jazyk:",
     "Add guest to groups:" : "Přidat hosta do skupiny:",
     "An error occured, try again" : "Došlo k chybě, zkuste to znovu",
+    "Invite user and create share" : "Pozvat uživatele a vytvořte sdílení",
+    "Invite {name}" : "Pozvat {name}",
     "Guest user needs to be added to at least one group" : "Uživatele-hosta je třeba přidat do alespoň jedné skupiny",
     "Creating guests users is restricted while \"Restrict users to only share with users in their groups\" is enabled." : "Vytváření uživatelů-hostů je omezeno, pokud je zapnuté „Povolit sdílení pouze mezi uživateli v rámci skupiny“.",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Účty pro hosty mohou vytvářet pouze správci skupiny a hosty je třeba přidat do alespoň jedné ze skupiny, které je tvůrce sdílení správcem.",
@@ -48,6 +50,7 @@
     "Reset" : "Reset",
     "Error" : "Chyba",
     "Your settings have been updated" : "Vaše nastavení byla zaktualizována",
-    "Saving …" : "Ukládání…"
+    "Saving …" : "Ukládání…",
+    "Invite guest" : "Pozvat hosta"
 },"pluralForm" :"nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;"
 }

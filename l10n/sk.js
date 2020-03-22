@@ -14,6 +14,7 @@ OC.L10N.register(
     "Name" : "Názov",
     "Email" : "E-mail",
     "Default" : "Predvolené",
+    "Name:" : "Meno:",
     "Guest users are grouped under a virtual group in the user manager" : "Hostia sú zoskupení vo virtuálnej skupine v manažéri používateľov",
     "Limit guest access to an app whitelist" : "Obmedzte prístup hostí do zoznamu povolených aplikácii",
     "Reset" : "Resetovať",
