@@ -39,6 +39,8 @@ OC.L10N.register(
     "Language:" : "Lingua:",
     "Add guest to groups:" : "Aggiungi ospite a gruppi:",
     "An error occured, try again" : "Si è verificato un errore, prova ancora",
+    "Invite user and create share" : "Invita utente e crea condivisione",
+    "Invite {name}" : "Invita {name}",
     "Guest user needs to be added to at least one group" : "L'utente ospite deve essere aggiunto almeno un gruppo",
     "Creating guests users is restricted while \"Restrict users to only share with users in their groups\" is enabled." : "La creazione di utenti ospiti è limitata mentre \"Limita gli utenti a condividere solo con gli utenti nei loro gruppi\" è abilitata.",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Solo gli amministratori dei gruppi possono creare ospiti e gli ospiti devono essere aggiunti almeno a un gruppo per il quale l'autore della condivisione è amministratore del gruppo.",
@@ -50,6 +52,7 @@ OC.L10N.register(
     "Reset" : "Ripristina",
     "Error" : "Errore",
     "Your settings have been updated" : "Le tue impostazioni sono state aggiornate.",
-    "Saving …" : "Salvataggio…"
+    "Saving …" : "Salvataggio…",
+    "Invite guest" : "Invita ospite"
 },
 "nplurals=2; plural=(n != 1);");
