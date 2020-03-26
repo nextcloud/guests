@@ -104,14 +104,13 @@ class Application extends App {
 		$userSession = $server->getUserSession();
 		$user = $userSession->getUser();
 
-		if (!$this->getGuestManager()->isGuest($user) && $this->getConfig()->canCreateGuests()) {
-			$server->getEventDispatcher()->addListener(
-				'OCA\Files::loadAdditionalScripts',
-				function () {
-					\OCP\Util::addScript(self::APP_ID, 'main');
+		$server->getEventDispatcher()->addListener(
+			'OCA\Files::loadAdditionalScripts', function () use ($user) {
+				if (!$this->getGuestManager()->isGuest($user) && $this->getConfig()->canCreateGuests()) {
+					\OCP\Util::addScript('guests', 'main');
 				}
-			);
-		}
+			}
+		);
 
 		$server->getGroupManager()->addBackend($container->query(GroupBackend::class));
 		/** @var Hooks $hooks */
