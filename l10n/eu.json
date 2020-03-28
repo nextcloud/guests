@@ -32,7 +32,16 @@
     "Received shares" : "Jasotako partekatzeak",
     "No guest accounts created" : "Ez da gonbidatu konturik sortu",
     "Default" : "Lehenetsia",
+    "Name:" : "Izena:",
+    "E-Mail:" : "E-Mail:",
+    "Language:" : "Hizkuntza:",
+    "Add guest to groups:" : "Gehitu gonbidatua taldeetara:",
     "An error occured, try again" : "Errore bat gertatu da, saiatu berriro",
+    "Invite user and create share" : "Gonbidatu erabiltzailea eta sortu partekatzea",
+    "Invite {name}" : "Gonbidatu {name}",
+    "Guest user needs to be added to at least one group" : "Erabiltzaile gonbidatuak gutxienez talde batera gehitu behar dira",
+    "Creating guests users is restricted while \"Restrict users to only share with users in their groups\" is enabled." : "Gonbidatuak sortzea desgaituta dago \"Mugatu erabiltzaileek beren taldekideei bakarrik partekatzea\" aktibatuta dagoen artean.",
+    "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Taldeen kudeatzaileek bakarrik sor ditzakete gonbidatuak eta hauek partekatzea sortu duen erabiltzaileak kudeatzen duen taldeetako batera gehitu behar dira gutxienez.",
     "Guest users are grouped under a virtual group in the user manager" : "Gonbidatuak talde birtual batean biltzen dira erabiltzaileen kudeatzailean",
     "Guest users can access mounted external storages" : "Erabiltzaile gonbidatuek muntatutako kanpo biltegiratzeak atzitu ditzakete",
     "Hide other users from guests" : "Ezkutatu beste erabiltzaileak gonbidatuei",
@@ -41,6 +50,7 @@
     "Reset" : "Berrezarri",
     "Error" : "Errorea",
     "Your settings have been updated" : "Zure ezarpenak eguneratu dira",
-    "Saving …" : "Gordetzen  ..."
+    "Saving …" : "Gordetzen  ...",
+    "Invite guest" : "Gonbidapen berria bidali"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
