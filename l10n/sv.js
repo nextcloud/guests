@@ -19,7 +19,7 @@ OC.L10N.register(
     "%s via %s" : "%s via %s",
     "Couldn't send reset email. Please contact your administrator." : "Kunde inte skicka återställningsmeddelande via e-post. Vänligen kontakta din administratör.",
     "Guests" : "Gäster",
-    "Data imported" : "Data importerad",
+    "Data imported" : "Data importerade",
     "Data from your previous guest account was successfully imported into your new account." : "Data från ditt tidigare gästkonto har importerats till ditt nya konto.",
     "Create guest accounts for easier collaboration" : "Skapa gästkonton för enklare samarbete",
     "👥 Allows for better collaboration with external users by allowing users to create guests account.\n\nGuests accounts can be created from the share menu by entering either the recipients email or name and choosing \"create guest account\", once the share is created the guest user will receive an email notification about the mail with a link to set their password.\n\nGuests users can only access files shared to them and can't create any files outside of shares, additionally, the apps accessible to guest accounts are whitelisted." : "👥 Möjliggör bättre samarbete med externa användare genom att tillåta användare att skapa gästkonton.\n\nGästkonton kan skapas från delningsmenyn genom att ange antingen mottagarens e-post eller namn och välja \"skapa gästkonto\". När den delade resursen är skapad kommer gästanvändaren att få ett e-postmeddelande med en länk för att skapa sitt lösenord.\n\nGästanvändare kan bara komma åt filer som delas med dem och kan inte skapa några filer utanför den delade resursen. Dessutom är programmen tillgängliga för gästkonton vitlistade.",
