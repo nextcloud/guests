@@ -17,6 +17,7 @@
     "%s via %s" : "%s 經由 %s",
     "Couldn't send reset email. Please contact your administrator." : "無法寄送重設 email ，請聯絡系統管理員",
     "Guests" : "訪客",
+    "Data imported" : "已匯入資料",
     "Data from your previous guest account was successfully imported into your new account." : "您先前訪客帳戶的資料已成功匯入進您的新帳戶。",
     "Create guest accounts for easier collaboration" : "建立訪客帳戶，讓協作更簡單",
     "None" : "無",
@@ -30,7 +31,13 @@
     "Received shares" : "收到的分享",
     "No guest accounts created" : "沒有建立的訪客帳戶",
     "Default" : "預設",
+    "Name:" : "姓名：",
+    "E-Mail:" : "電子郵件：",
+    "Language:" : "語言：",
+    "Add guest to groups:" : "將訪客加入群組：",
     "An error occured, try again" : "發生錯誤，請重試",
+    "Invite user and create share" : "邀請使用者及建立分享",
+    "Invite {name}" : "邀請 {name}",
     "Guest user needs to be added to at least one group" : "訪客使用者需要先加進最少一個群組",
     "Creating guests users is restricted while \"Restrict users to only share with users in their groups\" is enabled." : "啟用「限制使用者只能分享給群組裡的其他使用者」時，會限制訪客使用者的建立。",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "只有群組管理員才能建立訪客帳戶，且訪客帳戶必須加進至少一個「分享建立者是群組管理員」的群組。",
@@ -41,6 +48,7 @@
     "Reset" : "重設",
     "Error" : "錯誤",
     "Your settings have been updated" : "已更新您的設定",
-    "Saving …" : "正在儲存 …"
+    "Saving …" : "正在儲存 …",
+    "Invite guest" : "邀請訪客"
 },"pluralForm" :"nplurals=1; plural=0;"
 }
