@@ -190,8 +190,8 @@ export default {
 				})
 				await this.addGuestShare()
 			} catch ({ response }) {
-				const error = response && response.data
-					? response.data.errorMessages
+				const error = response && response.data && response.data.ocs && response.data.ocs.data
+					? response.data.ocs.data.errorMessages
 					: { button: true }
 
 				this.error.email = error.email ? error.email : false
