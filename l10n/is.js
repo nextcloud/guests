@@ -31,6 +31,7 @@ OC.L10N.register(
     "Received shares" : "Tók á móti sameignum",
     "No guest accounts created" : "Engir gestaaðgangar útbúnir",
     "Default" : "Sjálfgefið",
+    "Name:" : "Nafn:",
     "Guest users are grouped under a virtual group in the user manager" : "Gestanotendur eru hópaðir í sýndarhóp í notendastýringu",
     "Guest users can access mounted external storages" : "Gestanotendur hafa aðgang að utanáliggjandi tengdum gagnageymslum",
     "Limit guest access to an app whitelist" : "Takmarka aðgang gesta við lista yfir leyfð forrit (whitelist)",
