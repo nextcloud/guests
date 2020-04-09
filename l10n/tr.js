@@ -39,6 +39,8 @@ OC.L10N.register(
     "Language:" : "Dil:",
     "Add guest to groups:" : "Konuk şu gruplara eklensin:",
     "An error occured, try again" : "Bir sorun çıktı. Yeniden deneyin",
+    "Invite user and create share" : "Kullanıcıyı çağır ve paylaşımı oluştur",
+    "Invite {name}" : "{name} kullanıcısını çağır",
     "Guest user needs to be added to at least one group" : "Konuk kullanıcı en az bir gruba eklenmelidir",
     "Creating guests users is restricted while \"Restrict users to only share with users in their groups\" is enabled." : "\"Kullanıcılar, yalnız kendi gruplarındaki kullanıcılarla paylaşabilsin\" seçeneği etkinleştirilmiş iken konuk ekleme kısıtlanır.",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Yalnız grup yöneticileri konuk ekleyebilir ve konukların paylaşım sahibinin yöneticisi olduğu en az bir gruba eklenmesi gerekir.",
@@ -50,6 +52,7 @@ OC.L10N.register(
     "Reset" : "Sıfırla",
     "Error" : "Hata",
     "Your settings have been updated" : "Ayarlarınız güncellendi",
-    "Saving …" : "Kaydediliyor …"
+    "Saving …" : "Kaydediliyor …",
+    "Invite guest" : "Konuk çağır"
 },
 "nplurals=2; plural=(n > 1);");
