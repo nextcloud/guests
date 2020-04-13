@@ -1,7 +1,7 @@
 OC.L10N.register(
     "guests",
     {
-    "Access to this resource is forbidden for guests." : "Tillgång till resurs förbjuden för gäster.",
+    "Access to this resource is forbidden for guests." : "Tillgång till denna resurs är förbjuden för gäster.",
     "__language_name__" : "Svenska",
     "Invalid mail address" : "Ogiltig e-postadress",
     "A user with that email already exists." : "En användare med den e-postadressen finns redan.",
@@ -48,7 +48,7 @@ OC.L10N.register(
     "Guest users can access mounted external storages" : "Gästanvändare kan komma åt monterade externa lagringar",
     "Hide other users from guests" : "Dölj andra användare från gäster",
     "Guests will still be able to see users from any group they are added to" : "Gäster kan fortfarande se användare från vilken grupp de läggs till",
-    "Limit guest access to an app whitelist" : "Begränsa gästtillgång till en app vitlista",
+    "Limit guest access to an app whitelist" : "Begränsa gäståtkomst till en vitlista över apper",
     "Reset" : "Återställ",
     "Error" : "Fel",
     "Your settings have been updated" : "Dina inställningar har uppdaterats",
