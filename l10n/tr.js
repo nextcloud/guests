@@ -17,7 +17,7 @@ OC.L10N.register(
     "Activate account" : "Hesabı etkinleştir",
     "View share" : "Paylaşımı görüntüle",
     "%s via %s" : "%s, %s aracılığıyla",
-    "Couldn't send reset email. Please contact your administrator." : "Sıfırlama e-postası gönderilemedi. Lütfen yöneticiniz ile iletişime geçin.",
+    "Couldn't send reset email. Please contact your administrator." : "Sıfırlama e-postası gönderilemedi. Lütfen BT yöneticiniz ile görüşün.",
     "Guests" : "Konuklar",
     "Data imported" : "Veriler içe aktarıldı",
     "Data from your previous guest account was successfully imported into your new account." : "Önceki konum hesabınızın verileri yeni hesabınız içine aktarıldı.",
