@@ -32,7 +32,13 @@ OC.L10N.register(
     "Received shares" : "שיתופים שהתקבלו",
     "No guest accounts created" : "לא נוצרו חשבונות אורחים",
     "Default" : "בררת מחדל",
+    "Name:" : "שם:",
+    "E-Mail:" : "דוא״ל:",
+    "Language:" : "שפה:",
+    "Add guest to groups:" : "הוספת אורח לקבוצות:",
     "An error occured, try again" : "אירעה שגיאה, נא לנסות שוב",
+    "Invite user and create share" : "הזמנת משתמשים ויצירת שיתוף",
+    "Invite {name}" : "הזמנת {name}",
     "Guest user needs to be added to at least one group" : "יש להוסיף את המשתמש אורח לקבוצה אחת לפחות",
     "Creating guests users is restricted while \"Restrict users to only share with users in their groups\" is enabled." : "יצירת חשבונות אורחים מוגבלת בזמן שהאפשרות „הגבלת משתמשים לשתף רק עם משתמשים בקבוצה שלהם” מופעלת.",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "רק מנהלי קבוצות מורשים ליצור חשבונות אורחים ויש לצרף אורחים לפחות לקבוצה אחת ששולח השיתוף מנהל.",
@@ -44,6 +50,7 @@ OC.L10N.register(
     "Reset" : "לאפס",
     "Error" : "שגיאה",
     "Your settings have been updated" : "ההגדרות שלך עודכנו",
-    "Saving …" : "מתבצע שמירה…"
+    "Saving …" : "מתבצע שמירה…",
+    "Invite guest" : "הזמנת אורח"
 },
 "nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;");
