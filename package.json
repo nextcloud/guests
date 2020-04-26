@@ -38,7 +38,7 @@
     "@nextcloud/browserslist-config": "^1.0.0",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
-    "css-loader": "^3.5.2",
+    "css-loader": "^3.5.3",
     "eslint": "^6.8.0",
     "eslint-config-nextcloud": "0.1.1",
     "eslint-config-standard": "^14.1.1",
