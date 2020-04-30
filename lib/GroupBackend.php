@@ -76,8 +76,7 @@ class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetails
 	 * Checks whether the user is member of a group or not.
 	 */
 	public function inGroup($uid, $gid) {
-		return $gid === $this->groupName && in_array($uid, $this->getMembers());
-
+		return $gid === $this->groupName && $this->guestManager->isGuest($uid);
 	}
 
 	/**
@@ -91,7 +90,7 @@ class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetails
 	 * if the user exists at all.
 	 */
 	public function getUserGroups($uid) {
-		if (in_array($uid, $this->getMembers())) {
+		if ($this->guestManager->isGuest($uid)) {
 			return [$this->groupName];
 		}
 
