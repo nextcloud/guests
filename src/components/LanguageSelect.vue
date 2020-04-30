@@ -13,7 +13,7 @@
 
 <script>
 import { generateOcsUrl } from '@nextcloud/router'
-import { Multiselect } from '@nextcloud/vue/dist/Components/Multiselect'
+import Multiselect from '@nextcloud/vue/dist/Components/Multiselect'
 import axios from '@nextcloud/axios'
 
 export default {

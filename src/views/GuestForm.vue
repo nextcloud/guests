@@ -66,7 +66,7 @@
 
 <script>
 import { generateOcsUrl } from '@nextcloud/router'
-import { Modal } from '@nextcloud/vue/dist/Components/Modal'
+import Modal from '@nextcloud/vue/dist/Components/Modal'
 import axios from '@nextcloud/axios'
 import LanguageSelect from '../components/LanguageSelect'
 import GroupSelect from '../components/GroupSelect'
