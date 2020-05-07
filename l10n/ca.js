@@ -34,6 +34,7 @@ OC.L10N.register(
     "Received shares" : "Comparticions rebudes",
     "No guest accounts created" : "No s’ha creat cap compte de convidat",
     "Default" : "Per defecte",
+    "Name:" : "Nom:",
     "An error occured, try again" : "S'ha produït un error, torneu-ho a provar",
     "Guest users are grouped under a virtual group in the user manager" : "Els usuaris convidats s'agrupen sota un grup virtual al gestor d'usuaris",
     "Guest users can access mounted external storages" : "Els usuaris convidats poden accedir a emmagatzematges externs muntats",
