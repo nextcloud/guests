@@ -29,6 +29,7 @@
     "Received shares" : "共有を受け取りました",
     "No guest accounts created" : "ゲストアカウントはまだ作成されていません",
     "Default" : "デフォルト",
+    "Name:" : "名前：",
     "Guest users are grouped under a virtual group in the user manager" : "ゲストユーザーは、ユーザー管理の仮想グループにまとめられます",
     "Guest users can access mounted external storages" : "ゲストユーザはマウントした外部ストレージにアクセスできます",
     "Hide other users from guests" : "他のユーザーをゲストから非表示にする",
