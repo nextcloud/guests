@@ -18,6 +18,8 @@
     "No guest accounts created" : "Ni ustvarjenega nobenega računa za goste",
     "Default" : "Privzeta",
     "Name:" : "Ime:",
+    "E-Mail:" : "Elektronski naslov:",
+    "Language:" : "Jezik:",
     "An error occured, try again" : "Prišlo je do napake. Poskusite znova.",
     "Hide other users from guests" : "Pred gostom skrij druge uporabnike",
     "Reset" : "Ponastavi",
