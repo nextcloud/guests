@@ -39,7 +39,7 @@ OC.L10N.register(
     "Language:" : "Jazyk:",
     "Add guest to groups:" : "Přidat hosta do skupiny:",
     "An error occured, try again" : "Došlo k chybě, zkuste to znovu",
-    "Invite user and create share" : "Pozvat uživatele a vytvořte sdílení",
+    "Invite user and create share" : "Pozvat uživatele a vytvořit sdílení",
     "Invite {name}" : "Pozvat {name}",
     "Guest user needs to be added to at least one group" : "Uživatele-hosta je třeba přidat do alespoň jedné skupiny",
     "Creating guests users is restricted while \"Restrict users to only share with users in their groups\" is enabled." : "Vytváření uživatelů-hostů je omezeno, pokud je zapnuté „Povolit sdílení pouze mezi uživateli v rámci skupiny“.",

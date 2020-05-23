@@ -10,6 +10,7 @@ OC.L10N.register(
     "%s shared »%s« with you" : "%s שיתף/שיתפה איתך את »%s«",
     "Incoming share" : "שיתוף נכנס",
     "Hey there," : "היי,",
+    "%s just shared »%s« with you." : "התקבל שיתוף מאת %s של %s עבורך",
     "You can access the shared file by activating your guest account." : "יש לך אפשרות לגשת לקובץ המשותף על ידי הפעלת חשבון האורח שלך.",
     "After your account is activated you can view the share by logging in with %s." : "לאחר הפעלת החשבון שלך, יתאפשר לך לצפות בשיתוף על ידי כניסה עם %s.",
     "The share will expire at %s." : "תוקף השיתוף יפוג ב־%s.",
