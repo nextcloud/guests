@@ -14,6 +14,7 @@ OC.L10N.register(
     "Name" : "이름",
     "Email" : "이메일",
     "Default" : "기본값",
+    "Name:" : "이름:",
     "Guest users are grouped under a virtual group in the user manager" : "손님 사용자는 사용자 관리자의 가상 그룹에 추가됨",
     "Limit guest access to an app whitelist" : "손님 접근을 허용한 앱으로만 제한",
     "Reset" : "초기화",

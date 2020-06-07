@@ -37,6 +37,8 @@
     "Language:" : "语言：",
     "Add guest to groups:" : "添加访客到群组：",
     "An error occured, try again" : "发生错误，请重试",
+    "Invite user and create share" : "邀请用户并创建共享",
+    "Invite {name}" : "邀请 {name}",
     "Guest user needs to be added to at least one group" : "至少需要将访客用户添加到一个群组中",
     "Creating guests users is restricted while \"Restrict users to only share with users in their groups\" is enabled." : "在启用 “限制用户只与他们组中的用户共享” 时，创建访客用户会受到限制。",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "仅允许群组管理员创建访客，并且必须将访客添加到共享创建者所管理的至少一个群组中。",
@@ -48,6 +50,7 @@
     "Reset" : "重置",
     "Error" : "错误",
     "Your settings have been updated" : "您的设置已更新",
-    "Saving …" : "正在保存 …"
+    "Saving …" : "正在保存 …",
+    "Invite guest" : "邀请访客"
 },"pluralForm" :"nplurals=1; plural=0;"
 }
