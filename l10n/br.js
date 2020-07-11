@@ -6,6 +6,7 @@ OC.L10N.register(
     "None" : "Hini ebet",
     "Name" : "Anv",
     "Email" : "Postel",
+    "Default" : "Dre ziouer",
     "Invite {name}" : "Kouviañ {name}",
     "Error" : "Fazi",
     "Invite guest" : "Pedañ kouvidi"
