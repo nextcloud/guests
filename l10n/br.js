@@ -2,7 +2,7 @@ OC.L10N.register(
     "guests",
     {
     "__language_name__" : "Brezhoneg",
-    "Couldn't send reset email. Please contact your administrator." : "N'eo ket posuple kas ar vail adober. M'ar plij, kelaouit o administratour.",
+    "Couldn't send reset email. Please contact your administrator." : "N'eo ket posuple kas ar vail adober. Mar-plij, kelaouit o administratour.",
     "None" : "Hini ebet",
     "Name" : "Anv",
     "Email" : "Postel",
