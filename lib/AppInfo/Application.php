@@ -107,7 +107,7 @@ class Application extends App {
 		$server->getEventDispatcher()->addListener(
 			'OCA\Files::loadAdditionalScripts', function () use ($user) {
 				if (!$this->getGuestManager()->isGuest($user) && $this->getConfig()->canCreateGuests()) {
-					\OCP\Util::addScript('guests', 'main');
+					\OCP\Util::addScript('guests', 'guests-main');
 				}
 			}
 		);

@@ -41,7 +41,7 @@ export default {
 		}
 	},
 	watch: {
-		selected: function() {
+		selected() {
 			this.$emit('input', this.selected.map(group => group.gid))
 		},
 	},

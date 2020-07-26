@@ -7,14 +7,14 @@ module.exports = {
 		'rule-empty-line-before': [
 			'always',
 			{
-				ignore: ['after-comment', 'inside-block']
-			}
+				ignore: ['after-comment', 'inside-block'],
+			},
 		],
 		'declaration-empty-line-before': [
 			'never',
 			{
-				ignore: ['after-declaration']
-			}
+				ignore: ['after-declaration'],
+			},
 		],
 		'comment-empty-line-before': null,
 		'selector-type-case': null,
@@ -24,9 +24,9 @@ module.exports = {
 		'selector-pseudo-element-no-unknown': [
 			true,
 			{
-				ignorePseudoElements: ['v-deep']
-			}
-		]
+				ignorePseudoElements: ['v-deep'],
+			},
+		],
 	},
-	plugins: ['stylelint-scss']
-};
+	plugins: ['stylelint-scss'],
+}

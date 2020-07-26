@@ -63,7 +63,7 @@ export default {
 		}
 	},
 	watch: {
-		guestId: function() {
+		guestId() {
 			this.loadGuestDetails()
 		},
 	},

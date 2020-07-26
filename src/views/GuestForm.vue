@@ -119,7 +119,7 @@ export default {
 	},
 
 	watch: {
-		'guest.email': function() {
+		'guest.email'() {
 			if (this.guest.email) {
 				this.guest.username = this.guest.email
 			} else {
@@ -137,7 +137,7 @@ export default {
 	},
 
 	methods: {
-		populate: function(fileInfo, shareWith) {
+		populate(fileInfo, shareWith) {
 			if (
 				shareWith.indexOf('@') !== -1
 				&& shareWith.lastIndexOf('.') > shareWith.indexOf('@')
@@ -156,7 +156,7 @@ export default {
 			})
 		},
 
-		openModal: function() {
+		openModal() {
 			this.isOpened = true
 			this.$nextTick(() => {
 				if (this.guest.fullName) {
@@ -167,7 +167,7 @@ export default {
 			})
 		},
 
-		closeModal: function() {
+		closeModal() {
 			this.isOpened = false
 			this.resetForm()
 		},
@@ -234,11 +234,11 @@ export default {
 			}
 		},
 
-		resetForm: function() {
+		resetForm() {
 			this.guest.fullName = this.guest.username = this.guest.email = null
 		},
 
-		resetErrors: function() {
+		resetErrors() {
 			this.error.username = false
 			this.error.email = false
 			this.error.button = false
