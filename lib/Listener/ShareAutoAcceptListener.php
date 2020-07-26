@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 /**
  * @copyright Copyright (c) 2020, Roeland Jago Douma <roeland@famdouma.nl>
@@ -79,5 +80,4 @@ class ShareAutoAcceptListener implements IEventListener {
 		$this->logger->debug('Auto accepting direct share ' . $share->getId() . ' to guest user ' . $share->getSharedWith());
 		$this->shareManager->acceptShare($share, $share->getSharedWith());
 	}
-
 }

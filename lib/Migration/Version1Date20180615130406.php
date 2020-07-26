@@ -1,4 +1,5 @@
 <?php
+
 namespace OCA\Guests\Migration;
 
 use OCP\DB\ISchemaWrapper;

@@ -37,10 +37,9 @@ use OCP\Notification\IManager as INotificationManager;
 use OCP\Share\Events\ShareCreatedEvent;
 
 class Application extends App {
-
 	public const APP_ID = 'guests';
 
-	public function __construct(array $urlParams = array()) {
+	public function __construct(array $urlParams = []) {
 		parent::__construct(self::APP_ID, $urlParams);
 	}
 
@@ -59,7 +58,8 @@ class Application extends App {
 	 * @return GuestManager
 	 */
 	private function getGuestManager() {
-		return $this->getContainer()->query(GuestManager::class);;
+		return $this->getContainer()->query(GuestManager::class);
+		;
 	}
 
 	/**
@@ -150,5 +150,4 @@ class Application extends App {
 		$dispatcher = $this->getContainer()->query(IEventDispatcher::class);
 		$dispatcher->addServiceListener(ShareCreatedEvent::class, ShareAutoAcceptListener::class);
 	}
-
 }

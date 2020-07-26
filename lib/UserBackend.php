@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 /**
  * @copyright Copyright (c) 2017 Robin Appelman <robin@icewind.nl>
@@ -38,14 +39,13 @@ use OCP\User\Backend\ISetPasswordBackend;
 /**
  * Class for user management in a SQL Database (e.g. MySQL, SQLite)
  */
-class UserBackend extends ABackend
-	implements ISetPasswordBackend,
+class UserBackend extends ABackend implements
+	ISetPasswordBackend,
 	ISetDisplayNameBackend,
 	IGetDisplayNameBackend,
 	ICheckPasswordBackend,
 	IGetHomeBackend,
 	ICountUsersBackend {
-
 	private $cache;
 	private $eventDispatcher;
 	private $dbConn;
@@ -201,7 +201,6 @@ class UserBackend extends ABackend
 		if (!$this->allowListing) {
 			return [];
 		} else {
-
 			$query = $this->dbConn->getQueryBuilder();
 
 			if ($search === '') {
@@ -270,7 +269,6 @@ class UserBackend extends ABackend
 				}
 				return (string)$row['uid'];
 			}
-
 		}
 
 		return false;

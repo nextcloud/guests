@@ -64,5 +64,4 @@ class ReadOnlyJail extends DirMask {
 			return parent::mkdir($path);
 		}
 	}
-
 }

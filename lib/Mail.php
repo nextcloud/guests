@@ -21,18 +21,14 @@
 
 namespace OCA\Guests;
 
-
-use OC\Share\MailNotifications;
 use OCP\L10N\IFactory;
 use OCP\Defaults;
 use OCP\IConfig;
 use OCP\ILogger;
 use OCP\IURLGenerator;
-use OCP\IUser;
 use OCP\IUserManager;
 use OCP\IUserSession;
 use OCP\Mail\IMailer;
-use OCP\Security\ISecureRandom;
 use OCP\Share;
 use OCP\Util;
 
@@ -108,7 +104,7 @@ class Mail {
 
 		$items = Share::getItemSharedWithUser($itemType, $itemSource, $shareWith);
 		$filename = trim($items[0]['file_target'], '/');
-		$subject = (string)$l10n->t('%s shared »%s« with you', array($senderDisplayName, $filename));
+		$subject = (string)$l10n->t('%s shared »%s« with you', [$senderDisplayName, $filename]);
 		$expiration = null;
 		if (isset($items[0]['expiration'])) {
 			try {
