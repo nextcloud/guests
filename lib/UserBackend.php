@@ -33,6 +33,7 @@ use OCP\User\Backend\ICheckPasswordBackend;
 use OCP\User\Backend\ICountUsersBackend;
 use OCP\User\Backend\IGetDisplayNameBackend;
 use OCP\User\Backend\IGetHomeBackend;
+use OCP\User\Backend\IGetRealUIDBackend;
 use OCP\User\Backend\ISetDisplayNameBackend;
 use OCP\User\Backend\ISetPasswordBackend;
 
@@ -45,7 +46,8 @@ class UserBackend extends ABackend implements
 	IGetDisplayNameBackend,
 	ICheckPasswordBackend,
 	IGetHomeBackend,
-	ICountUsersBackend {
+	ICountUsersBackend,
+	IGetRealUIDBackend {
 	private $cache;
 	private $eventDispatcher;
 	private $dbConn;
@@ -399,5 +401,25 @@ class UserBackend extends ABackend implements
 	 */
 	public function getBackendName() {
 		return 'Guests';
+	}
+
+	public function getRealUID(string $uid): string {
+		$qb = $this->dbConn->getQueryBuilder();
+		$qb->select('uid')
+			->from('guests_users')
+			->where(
+				$qb->expr()->eq(
+					'uid_lower', $qb->createNamedParameter(mb_strtolower($uid))
+				)
+			);
+		$result = $qb->execute();
+		$row = $result->fetch();
+		$result->closeCursor();
+
+		if (!$row) {
+			throw new \RuntimeException($uid . ' does not exist');
+		}
+
+		return $row['uid'];
 	}
 }
