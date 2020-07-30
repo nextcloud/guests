@@ -126,9 +126,9 @@ class GuestsContext implements Context, SnippetAcceptingContext {
 
 		$client = new Client();
 		$options['body'] = [
-							'password' => $this->regularUser,
-							'proceed' => 'false'
-							];
+			'password' => $this->regularUser,
+			'proceed' => 'false'
+		];
 		try {
 			$this->response = $client->send($client->createRequest('POST', $urlSetPasswd, $options));
 		} catch (\GuzzleHttp\Exception\ClientException $ex) {
@@ -140,13 +140,9 @@ class GuestsContext implements Context, SnippetAcceptingContext {
 	 * @BeforeScenario
 	 * @AfterScenario
 	 */
-	public function cleanupGuests()
-	{
-		foreach($this->createdGuests as $displayName => $email) {
+	public function cleanupGuests() {
+		foreach ($this->createdGuests as $displayName => $email) {
 			$this->deleteGuestUser($displayName);
 		}
 	}
-
 }
-
-

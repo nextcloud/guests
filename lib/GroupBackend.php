@@ -20,7 +20,6 @@
 
 namespace OCA\Guests;
 
-
 use OCP\Group\Backend\ABackend;
 use OCP\Group\Backend\ICountUsersBackend;
 use OCP\Group\Backend\IGroupDetailsBackend;

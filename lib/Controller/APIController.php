@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 /**
  * @copyright Copyright (c) 2020, Roeland Jago Douma <roeland@famdouma.nl>
@@ -87,7 +88,7 @@ class APIController extends OCSController {
 					'code' => $lang,
 					'name' => $potentialName,
 				];
-			} else if ($lang === 'en') {
+			} elseif ($lang === 'en') {
 				$ln = [
 					'code' => $lang,
 					'name' => 'English (US)',

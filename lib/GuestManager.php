@@ -23,13 +23,10 @@ namespace OCA\Guests;
 
 use OC\Share\Share;
 use OCP\DB\QueryBuilder\IQueryBuilder;
-use OCP\EventDispatcher\Event;
 use OCP\EventDispatcher\IEventDispatcher;
 use OCP\IConfig;
 use OCP\IDBConnection;
-use OCP\IGroupManager;
 use OCP\IUser;
-use OCP\IUserBackend;
 use OCP\IUserManager;
 use OCP\IUserSession;
 use OCP\Security\Events\GenerateSecurePasswordEvent;
@@ -37,7 +34,6 @@ use OCP\Security\ICrypto;
 use OCP\Security\ISecureRandom;
 use OCP\Share\IManager;
 use OCP\Share\IShare;
-use Symfony\Component\EventDispatcher\GenericEvent;
 
 class GuestManager {
 	/** @var IConfig */
@@ -95,7 +91,7 @@ class GuestManager {
 		}
 		if (is_string($user)) {
 			return $this->userBackend->userExists($user);
-		} else if ($user instanceof IUser) {
+		} elseif ($user instanceof IUser) {
 			return $this->userBackend->userExists($user->getUID());
 		}
 		return false;

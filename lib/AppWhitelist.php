@@ -21,7 +21,6 @@
 
 namespace OCA\Guests;
 
-
 use OCP\App\IAppManager;
 use OCP\IL10N;
 use OCP\ILogger;
@@ -50,9 +49,9 @@ class AppWhitelist {
 	private $baseUrlLength;
 	private $logger;
 
-	const WHITELIST_ALWAYS = ',core,theming,settings,avatar,files,heartbeat,dav,guests,impersonate,accessibility,terms_of_service';
+	public const WHITELIST_ALWAYS = ',core,theming,settings,avatar,files,heartbeat,dav,guests,impersonate,accessibility,terms_of_service';
 
-	const DEFAULT_WHITELIST = 'files_trashbin,files_versions,files_sharing,files_texteditor,text,activity,firstrunwizard,photos,notifications';
+	public const DEFAULT_WHITELIST = 'files_trashbin,files_versions,files_sharing,files_texteditor,text,activity,firstrunwizard,photos,notifications';
 
 	/**
 	 * AppWhitelist constructor.
@@ -79,7 +78,6 @@ class AppWhitelist {
 		$this->baseUrl = $urlGenerator->getBaseUrl();
 		$this->baseUrlLength = strlen($this->baseUrl);
 		$this->logger = $logger;
-
 	}
 
 	private function isAppWhitelisted($appId) {
@@ -135,29 +133,29 @@ class AppWhitelist {
 			// empty string / 'apps' / $app / rest of the route
 			[, , $app,] = explode('/', $url, 4);
 			return \OC_App::cleanAppId($app);
-		} else if ($url === '/cron.php') {
+		} elseif ($url === '/cron.php') {
 			return 'core';
-		} else if (substr($url, 0, 6) === '/core/') {
+		} elseif (substr($url, 0, 6) === '/core/') {
 			return 'core';
-		} else if (substr($url, 0, 4) === '/js/') {
+		} elseif (substr($url, 0, 4) === '/js/') {
 			return 'core';
-		} else if (substr($url, 0, 5) === '/css/') {
+		} elseif (substr($url, 0, 5) === '/css/') {
 			return 'core';
-		} else if (substr($url, 0, 6) === '/login') {
+		} elseif (substr($url, 0, 6) === '/login') {
 			return 'core';
-		} else if (substr($url, 0, 7) === '/logout') {
+		} elseif (substr($url, 0, 7) === '/logout') {
 			return 'core';
-		} else if (substr($url, 0, 3) === '/f/') {
+		} elseif (substr($url, 0, 3) === '/f/') {
 			return 'files';
-		} else if (substr($url, 0, 8) === '/webdav/') {
+		} elseif (substr($url, 0, 8) === '/webdav/') {
 			return 'dav';
-		} else if (substr($url, 0, 5) === '/dav/') {
+		} elseif (substr($url, 0, 5) === '/dav/') {
 			return 'dav';
-		} else if (substr($url, 0, 10) === '/settings/') {
+		} elseif (substr($url, 0, 10) === '/settings/') {
 			return 'settings';
-		} else if (substr($url, 0, 8) === '/avatar/') {
+		} elseif (substr($url, 0, 8) === '/avatar/') {
 			return 'avatar';
-		} else if (substr($url, 0, 10) === '/heartbeat') {
+		} elseif (substr($url, 0, 10) === '/heartbeat') {
 			return 'heartbeat';
 		}
 		return 'core';

@@ -21,9 +21,7 @@
 
 namespace OCA\Guests\Storage;
 
-use OC\Files\Cache\Wrapper\CachePermissionsMask;
 use OC\Files\Storage\Wrapper\PermissionsMask;
-
 
 /**
  * While PermissionMask can mask a whole storage this  can
@@ -195,7 +193,7 @@ class DirMask extends PermissionsMask {
 			$storage = $this;
 		}
 		$sourceCache = $this->storage->getCache($path, $storage);
-		return new DirMaskCache($sourceCache, $this->mask, function(string $path) {
+		return new DirMaskCache($sourceCache, $this->mask, function (string $path) {
 			return $this->checkPath($path);
 		});
 	}

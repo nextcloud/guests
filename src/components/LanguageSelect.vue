@@ -44,7 +44,7 @@ export default {
 		}
 	},
 	watch: {
-		language: function() {
+		language() {
 			this.$emit('input', this.language.code)
 		},
 	},

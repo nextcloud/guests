@@ -2,16 +2,13 @@
 
 namespace OCA\Guests\Controller;
 
-
 use OC\AppFramework\Http;
 use OC\Hooks\PublicEmitter;
 use OCA\Guests\Config;
 use OCA\Guests\GuestManager;
-use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\OCSController;
 use OCP\Group\ISubAdmin;
-use OCP\IConfig;
 use OCP\IGroupManager;
 use OCP\IL10N;
 use OCP\IRequest;
@@ -145,7 +142,7 @@ class UsersController extends OCSController {
 			$errorMessages['email'] = (string)$this->l10n->t(
 				'A user with that email already exists.'
 			);
-		} else if ($this->userManager->userExists($username)) {
+		} elseif ($this->userManager->userExists($username)) {
 			$errorMessages['username'] = (string)$this->l10n->t(
 				'A user with that name already exists.'
 			);

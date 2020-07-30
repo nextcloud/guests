@@ -44,7 +44,6 @@ use OCP\Share\IManager as IShareManager;
 use OCP\Share\IShare;
 use Symfony\Component\EventDispatcher\GenericEvent;
 
-
 class Hooks {
 
 	/** @var ILogger */
@@ -273,5 +272,4 @@ class Hooks {
 			->setUser($user->getUID());
 		$this->notificationManager->notify($notification);
 	}
-
 }

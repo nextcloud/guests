@@ -6,3 +6,4 @@ vendor/
 clover.xml
 js
 .vscode
+.php_cs.cache

@@ -21,16 +21,11 @@
 
 namespace OCA\Guests;
 
-
 use OC\AppConfig;
-use OC\Files\Filesystem;
-use OC\Files\Storage\FailedStorage;
 use OC\NavigationManager;
 use OCA\Files_External\Config\ExternalMountPoint;
 use OCP\Files\Config\IMountProviderCollection;
 use OCP\Files\Mount\IMountPoint;
-use OCP\Files\Storage\IStorage;
-use OCP\IConfig;
 use OCP\IRequest;
 use OCP\IServerContainer;
 use OCP\IUser;
@@ -116,7 +111,7 @@ class RestrictionManager {
 
 				$originalAppConfig = $this->server->getAppConfig();
 
-				$this->server->registerService(AppConfig::class, function() use ($originalAppConfig) {
+				$this->server->registerService(AppConfig::class, function () use ($originalAppConfig) {
 					return new AppConfigOverwrite($originalAppConfig, [
 						'core' => [
 							'shareapi_only_share_with_group_members' => 'yes'

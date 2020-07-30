@@ -21,18 +21,12 @@
 
 namespace OCA\Guests\Controller;
 
-use OC\L10N\Factory;
 use OCA\Guests\AppInfo\Application;
 use OCA\Guests\AppWhitelist;
 use OCA\Guests\Config;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\DataResponse;
-use OCP\Group\ISubAdmin;
-use OCP\IGroup;
-use OCP\IGroupManager;
 use OCP\IRequest;
-use OCP\IUserSession;
-use OCP\L10N\IFactory;
 
 /**
  * Class SettingsController is used to handle configuration changes on the

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 /**
  * @copyright Copyright (c) 2019 Robin Appelman <robin@icewind.nl>
  *
@@ -20,7 +22,6 @@
  */
 
 namespace OCA\Guests;
-
 
 use OCP\Group\ISubAdmin;
 use OCP\IConfig;
@@ -64,7 +65,7 @@ class Config {
 		$this->config->setAppValue('guests', 'allow_external_storage', $this->castToString($allow)) ;
 	}
 
-	public function hideOtherUsers(): bool  {
+	public function hideOtherUsers(): bool {
 		return $this->castToBool($this->config->getAppValue('guests', 'hide_users', 'true'));
 	}
 
