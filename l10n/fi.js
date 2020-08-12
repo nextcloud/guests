@@ -28,10 +28,21 @@ OC.L10N.register(
     "No guest accounts created" : "Vierastiliä ei luotu",
     "Default" : "Oletus",
     "Name:" : "Nimi:",
+    "E-Mail:" : "Sähköposti:",
+    "Language:" : "Kieli:",
+    "Add guest to groups:" : "Lisää vieras ryhmiin:",
+    "An error occured, try again" : "Tapahtui virhe. Yritä uudelleen",
+    "Invite user and create share" : "Kutsu käyttäjä ja luo jako",
+    "Invite {name}" : "Kutsu {name}",
+    "Guest user needs to be added to at least one group" : "Vieraskäyttäjä tulee liittää vähintään yhteen ryhmään",
     "Guest users are grouped under a virtual group in the user manager" : "Vieraskäyttäjät asetetaan virtuaaliryhmään käyttäjähallinnassa",
     "Guest users can access mounted external storages" : "Vieraskäyttäjillä on pääsy liitettyihin erillisiin tallennustiloihin",
     "Hide other users from guests" : "Piilota muut käyttäjät vierailta",
+    "Limit guest access to an app whitelist" : "Rajoita vieraskäyttö sallittujen sovellusten luetteloon",
     "Reset" : "Nollaa",
-    "Error" : "Virhe"
+    "Error" : "Virhe",
+    "Your settings have been updated" : "Asetuksesi on tallennettu",
+    "Saving …" : "Tallennetaan …",
+    "Invite guest" : "Kutsu vieras"
 },
 "nplurals=2; plural=(n != 1);");
