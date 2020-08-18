@@ -26,7 +26,7 @@ OC.L10N.register(
     "Name" : "Име",
     "Shared By" : "Споделено од",
     "Shared At" : "Споделено на",
-    "An error occured while fetching the shares list" : "Настана грешка при обидот за превземање на листата со споделување.",
+    "An error occured while fetching the shares list" : "Настана грешка при обидот за преземање на листата со споделување.",
     "Guests accounts" : "Гостински сметки",
     "Email" : "Е-пошта",
     "Invited by" : "Поканет од",
