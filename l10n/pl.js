@@ -10,7 +10,7 @@ OC.L10N.register(
     "%s shared »%s« with you" : "%s Współdzielone »%s« z tobą",
     "Incoming share" : "Przychodzące udostępnianie",
     "Hey there," : "Hej tam,",
-    "%s just shared »%s« with you." : "%s tylko udostępnił Ci »%s«.",
+    "%s just shared »%s« with you." : "%s właśnie udostępnił Tobie »%s«.",
     "You can access the shared file by activating your guest account." : "Możesz uzyskać dostęp do udostępnionego pliku, aktywując konto gościa.",
     "After your account is activated you can view the share by logging in with %s." : "Po aktywowaniu konta możesz wyświetlić współdzielenie, logując się przy pomocy %s.",
     "The share will expire at %s." : "Udostępnianie wygasa za %s",
