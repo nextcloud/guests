@@ -2,7 +2,10 @@
 	"name": "nextcloud/guests",
 	"config": {
 		"optimize-autoloader": true,
-		"classmap-authoritative": true
+		"classmap-authoritative": true,
+		"platform": {
+			"php": "7.2"
+		}
 	},
 	"scripts": {
 		"cs:fix": "php-cs-fixer fix",
