@@ -26,6 +26,7 @@ use OC\NavigationManager;
 use OCA\Files_External\Config\ExternalMountPoint;
 use OCP\Files\Config\IMountProviderCollection;
 use OCP\Files\Mount\IMountPoint;
+use OCP\INavigationManager;
 use OCP\IRequest;
 use OCP\IServerContainer;
 use OCP\IUser;
@@ -96,7 +97,7 @@ class RestrictionManager {
 			/** @var NavigationManager $navManager */
 			$navManager = $this->server->getNavigationManager();
 
-			$this->server->registerService('NavigationManager', function () use ($navManager) {
+			$this->server->registerService(INavigationManager::class, function () use ($navManager) {
 				return new FilteredNavigationManager($this->userSession->getUser(), $navManager, $this->whitelist);
 			});
 		}
