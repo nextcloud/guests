@@ -129,6 +129,9 @@ class AppWhitelist {
 		if (substr($url, 0, $this->baseUrlLength) === $this->baseUrl) {
 			$url = substr($url, $this->baseUrlLength);
 		}
+		if (strpos($url, '/index.php/') === 0) {
+			$url = substr($url, 10);
+		}
 		if (substr($url, 0, 6) === '/apps/') {
 			// empty string / 'apps' / $app / rest of the route
 			[, , $app,] = explode('/', $url, 4);
