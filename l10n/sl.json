@@ -20,11 +20,13 @@
     "Name:" : "Ime:",
     "E-Mail:" : "Elektronski naslov:",
     "Language:" : "Jezik:",
+    "Add guest to groups:" : "Dodaj gosta v skupino:",
     "An error occured, try again" : "Prišlo je do napake. Poskusite znova.",
     "Hide other users from guests" : "Pred gostom skrij druge uporabnike",
     "Reset" : "Ponastavi",
     "Error" : "Napaka",
     "Your settings have been updated" : "Nastavitve so posodobljene.",
-    "Saving …" : "Poteka shranjevanje …"
+    "Saving …" : "Poteka shranjevanje …",
+    "Invite guest" : "Povabi gosta"
 },"pluralForm" :"nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);"
 }
