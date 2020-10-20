@@ -110,10 +110,8 @@ class RestrictionManager {
 
 				$this->userBackend->setAllowListing(false);
 
-				$originalAppConfig = $this->server->getAppConfig();
-
-				$this->server->registerService(AppConfig::class, function () use ($originalAppConfig) {
-					return new AppConfigOverwrite($originalAppConfig, [
+				$this->server->registerService(AppConfig::class, function () {
+					return new AppConfigOverwrite($this->server->getDatabaseConnection(), [
 						'core' => [
 							'shareapi_only_share_with_group_members' => 'yes'
 						]
