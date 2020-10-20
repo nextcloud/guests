@@ -23,57 +23,27 @@ declare(strict_types=1);
 
 namespace OCA\Guests;
 
-use OCP\IAppConfig;
+use OC\AppConfig;
+use OCP\IDBConnection;
 
-class AppConfigOverwrite implements IAppConfig {
-	private $inner;
+class AppConfigOverwrite extends AppConfig {
+
+	/** @var string[][] */
 	private $overWrite;
 
 	public function __construct(
-		IAppConfig $inner,
+		IDBConnection $conn,
 		array $overWrite
 	) {
-		$this->inner = $inner;
+		parent::__construct($conn);
 		$this->overWrite = $overWrite;
-	}
-
-	public function hasKey($app, $key) {
-		return $this->inner->hasKey($app, $key);
-	}
-
-	public function getValues($app, $key) {
-		return $this->inner->getValues($app, $key);
-	}
-
-	public function getFilteredValues($app) {
-		return $this->inner->getFilteredValues($app);
-	}
-
-	public function getApps() {
-		return $this->inner->getApps();
 	}
 
 	public function getValue($app, $key, $default = null) {
 		if (isset($this->overWrite[$app]) && isset($this->overWrite[$app][$key])) {
 			return $this->overWrite[$app][$key];
-		} else {
-			return $this->inner->getValue($app, $key, $default);
 		}
-	}
 
-	public function deleteKey($app, $key) {
-		return $this->inner->deleteKey($app, $key);
-	}
-
-	public function getKeys($app) {
-		return $this->inner->getKeys($app);
-	}
-
-	public function setValue($app, $key, $value) {
-		return $this->inner->setValue($app, $key, $value);
-	}
-
-	public function deleteApp($app) {
-		return $this->inner->deleteApp($app);
+		return parent::getValue($app, $key, $default);
 	}
 }
