@@ -101,12 +101,9 @@ class Application extends App {
 
 		$server->getUserManager()->registerBackend($this->getUserBackend());
 
-		$userSession = $server->getUserSession();
-		$user = $userSession->getUser();
-
 		$server->getEventDispatcher()->addListener(
-			'OCA\Files::loadAdditionalScripts', function () use ($user) {
-				if (!$this->getGuestManager()->isGuest($user) && $this->getConfig()->canCreateGuests()) {
+			'OCA\Files::loadAdditionalScripts', function () {
+				if (!$this->getGuestManager()->isGuest() && $this->getConfig()->canCreateGuests()) {
 					\OCP\Util::addScript('guests', 'guests-main');
 				}
 			}
