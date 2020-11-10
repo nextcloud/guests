@@ -273,4 +273,4 @@ jobs:
 
       - name: PHPUnit
         working-directory: apps/${{ env.APP_NAME }}
-        run: ./vendor/phpunit/phpunit/phpunit -c phpunit.xml
+        run: phpunit -c phpunit.xml
