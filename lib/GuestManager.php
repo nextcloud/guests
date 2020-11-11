@@ -163,7 +163,14 @@ class GuestManager {
 			->from('share')
 			->where($query->expr()->in('share_with', $query->createNamedParameter($guests, IQueryBuilder::PARAM_STR_ARRAY)))
 			->groupBy('share_with');
-		return $query->execute()->fetchAll(\PDO::FETCH_KEY_PAIR);
+		$result = $query->execute();
+		$data = [];
+		while ($row = $result->fetch()) {
+			$data[$row['share_with']] = $row['count'];
+		}
+		$result->closeCursor();
+
+		return $data;
 	}
 
 	public function getGuestInfo($userId) {
