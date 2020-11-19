@@ -33,6 +33,7 @@ OC.L10N.register(
     "An error occured, try again" : "Prišlo je do napake. Poskusite znova.",
     "Invite user and create share" : "Povabi uporabnika in ustvari mesto souporabe",
     "Hide other users from guests" : "Pred gostom skrij druge uporabnike",
+    "Limit guest access to an app whitelist" : "Omeji dostop gostov do belega seznama programov",
     "Reset" : "Ponastavi",
     "Error" : "Napaka",
     "Your settings have been updated" : "Nastavitve so posodobljene.",
