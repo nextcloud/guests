@@ -150,8 +150,8 @@ class GuestManager {
 		return array_map(function ($uid) use ($createdBy, $displayNames, $shareCounts) {
 			return [
 				'email' => $uid,
-				'display_name' => $displayNames[$uid],
-				'created_by' => $createdBy[$uid],
+				'display_name' => $displayNames[$uid] ?? $uid,
+				'created_by' => $createdBy[$uid] ?? '',
 				'share_count' => isset($shareCounts[$uid]) ? $shareCounts[$uid] : 0,
 			];
 		}, $guests);
