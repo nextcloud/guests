@@ -26,6 +26,7 @@ Guests users can only access files shared to them and can't create any files out
 	</dependencies>
 	<commands>
 		<command>OCA\Guests\Command\ListCommand</command>
+		<command>OCA\Guests\Command\AddCommand</command>
 	</commands>
 	<settings>
 		<admin>OCA\Guests\Settings\Admin</admin>

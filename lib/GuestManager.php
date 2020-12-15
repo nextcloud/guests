@@ -97,12 +97,19 @@ class GuestManager {
 		return false;
 	}
 
-	public function createGuest(IUser $createdBy, $userId, $email, $displayName = '', $language = '') {
-		$passwordEvent = new GenerateSecurePasswordEvent();
-		$this->eventDispatcher->dispatchTyped($passwordEvent);
-		$this->userManager->createUserFromBackend(
+	public function createGuest(IUser $createdBy, $userId, $email, $displayName = '', $language = '', $initialPassword = null) : IUser {
+		if ($initialPassword === null) {
+			$passwordEvent = new GenerateSecurePasswordEvent();
+			$this->eventDispatcher->dispatchTyped($passwordEvent);
+			$password = $passwordEvent->getPassword() ?? $this->secureRandom->generate(20);
+		} else {
+			$password = $initialPassword;
+		}
+
+		/** @var IUser */
+		$user = $this->userManager->createUserFromBackend(
 			$userId,
-			$passwordEvent->getPassword() ?? $this->secureRandom->generate(20),
+			$password,
 			$this->userBackend
 		);
 
@@ -117,25 +124,30 @@ class GuestManager {
 			$this->config->setUserValue($userId, 'core', 'lang', $language);
 		}
 
-		$token = $this->secureRandom->generate(
-			21,
-			ISecureRandom::CHAR_DIGITS .
-			ISecureRandom::CHAR_LOWER .
-			ISecureRandom::CHAR_UPPER);
+		if ($initialPassword === null) {
+			// generate token for lost password so that a link can be sent by email
+			$token = $this->secureRandom->generate(
+				21,
+				ISecureRandom::CHAR_DIGITS .
+				ISecureRandom::CHAR_LOWER .
+				ISecureRandom::CHAR_UPPER);
 
-		$endOfTime = PHP_INT_MAX - 50000;
-		$token = sprintf('%s:%s', $endOfTime, $token);
+			$endOfTime = PHP_INT_MAX - 50000;
+			$token = sprintf('%s:%s', $endOfTime, $token);
 
-		$encryptedValue = $this->crypto->encrypt($token, $email . $this->config->getSystemValue('secret'));
+			$encryptedValue = $this->crypto->encrypt($token, $email . $this->config->getSystemValue('secret'));
 
-		$this->config->setUserValue(
-			$userId,
-			'core',
-			'lostpassword',
-			$encryptedValue
-		);
+			$this->config->setUserValue(
+				$userId,
+				'core',
+				'lostpassword',
+				$encryptedValue
+			);
+		}
 
 		$this->config->setUserValue($userId, 'files', 'quota', '0 B');
+
+		return $user;
 	}
 
 	public function listGuests() {
