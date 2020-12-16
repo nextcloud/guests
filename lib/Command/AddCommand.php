@@ -35,7 +35,11 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
 
 class AddCommand extends Command {
+	/** @var IUserManager */
+	private $userManager;
+	/** @var GuestManager */
 	private $guestManager;
+	/** @var IMailer */
 	private $mailer;
 
 	public function __construct(IUserManager $userManager, IMailer $mailer, GuestManager $guestManager) {
@@ -106,6 +110,12 @@ class AddCommand extends Command {
 			return 1;
 		}
 
+		$email = $input->getArgument('email');
+		if (!$this->mailer->validateMailAddress($email)) {
+			$output->writeln('<error>Invalid email address "' . $email . '".</error>');
+			return 1;
+		}
+
 		$password = null;
 		if (!$input->getOption('generate-password')) {
 			if ($input->getOption('password-from-env')) {
@@ -136,18 +146,13 @@ class AddCommand extends Command {
 			}
 		}
 
-		if (!$this->mailer->validateMailAddress($input->getArgument('email'))) {
-			$output->writeln('<error>Invalid email address</error>');
-			return 1;
-		}
-
 		try {
 			$user = $this->guestManager->createGuest(
 				$creatorUser,
 				$input->getArgument('uid'),
-				$input->getArgument('email'),
-				$input->getOption('display-name'),
-				$input->getOption('language'),
+				$email,
+				$input->getOption('display-name') ?? '',
+				$input->getOption('language') ?? '',
 				$password
 			);
 		} catch (\Exception $e) {
