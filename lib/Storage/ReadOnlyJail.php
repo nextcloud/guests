@@ -31,7 +31,7 @@ class ReadOnlyJail extends DirMask {
 	 * @param $path
 	 * @return bool
 	 */
-	protected function checkPath($path) {
+	protected function checkPath($path): bool {
 		if ($path === 'files') {
 			return true;
 		}
@@ -44,7 +44,7 @@ class ReadOnlyJail extends DirMask {
 	 * @param string $path
 	 * @return bool
 	 */
-	public function isDeletable($path) {
+	public function isDeletable($path): bool {
 		if (pathinfo($path, PATHINFO_EXTENSION) === 'part') {
 			return true;
 		}
@@ -56,7 +56,7 @@ class ReadOnlyJail extends DirMask {
 	 * @param string $path
 	 * @return bool
 	 */
-	public function mkdir($path) {
+	public function mkdir($path): bool {
 		// Lift restrictions if files dir is created (at first login)
 		if ($path === 'files') {
 			return $this->storage->mkdir($path);

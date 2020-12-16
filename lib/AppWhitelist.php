@@ -47,6 +47,7 @@ class AppWhitelist {
 	private $baseUrl;
 	/** @var int */
 	private $baseUrlLength;
+	/** @var ILogger */
 	private $logger;
 
 	public const WHITELIST_ALWAYS = ',core,theming,settings,avatar,files,heartbeat,dav,guests,impersonate,accessibility,terms_of_service,dashboard,weather_status,user_status,apporder';
@@ -80,18 +81,18 @@ class AppWhitelist {
 		$this->logger = $logger;
 	}
 
-	private function isAppWhitelisted($appId) {
+	private function isAppWhitelisted($appId): bool {
 		$whitelist = $this->config->getAppWhitelist();
 		$alwaysEnabled = explode(',', self::WHITELIST_ALWAYS);
 
 		return in_array($appId, array_merge($whitelist, $alwaysEnabled), true);
 	}
 
-	public function isWhitelistEnabled() {
+	public function isWhitelistEnabled(): bool {
 		return $this->config->useWhitelist();
 	}
 
-	public function isUrlAllowed(IUser $user, $url) {
+	public function isUrlAllowed(IUser $user, $url): bool {
 		if ($this->guestManager->isGuest($user) && $this->isWhitelistEnabled()) {
 			$app = $this->getRequestedApp($url);
 
@@ -111,7 +112,7 @@ class AppWhitelist {
 		}
 	}
 
-	public function verifyAccess(IUser $user, IRequest $request) {
+	public function verifyAccess(IUser $user, IRequest $request): void {
 		if (!$this->isUrlAllowed($user, $request->getRawPathInfo())) {
 			header('HTTP/1.0 403 Forbidden');
 			Template::printErrorPage($this->l10n->t(
@@ -125,7 +126,7 @@ class AppWhitelist {
 	 * Core has \OC::$REQUESTEDAPP but it isn't set until the routes are matched
 	 * taken from \OC\Route\Router::match()
 	 */
-	private function getRequestedApp($url) {
+	private function getRequestedApp($url): string {
 		if (substr($url, 0, $this->baseUrlLength) === $this->baseUrl) {
 			$url = substr($url, $this->baseUrlLength);
 		}
@@ -164,7 +165,7 @@ class AppWhitelist {
 		return 'core';
 	}
 
-	public function getWhitelistAbleApps() {
+	public function getWhitelistAbleApps(): array {
 		return array_values(array_diff(
 			$this->appManager->getInstalledApps(),
 			explode(',', self::WHITELIST_ALWAYS)

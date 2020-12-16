@@ -84,7 +84,7 @@ class Mail {
 	 * @param $uid
 	 * @throws \Exception
 	 */
-	public function sendGuestInviteMail($uid, $shareWith, $itemType, $itemSource, $token, $language = '') {
+	public function sendGuestInviteMail(string $uid, string $shareWith, string $itemType, string $itemSource, string $token, string $language = ''): void {
 		if ($language === '') {
 			$language = null;
 		}

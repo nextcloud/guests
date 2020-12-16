@@ -78,6 +78,9 @@ class Hooks {
 	/** @var IShareManager */
 	private $shareManager;
 
+	/** @var IConfig */
+	private $config;
+
 	public function __construct(
 		ILogger $logger,
 		IUserSession $userSession,
@@ -106,7 +109,7 @@ class Hooks {
 		$this->shareManager = $shareManager;
 	}
 
-	public function handlePostShare(GenericEvent $event) {
+	public function handlePostShare(GenericEvent $event): void {
 		/** @var IShare $share */
 		$share = $event->getSubject();
 
@@ -177,7 +180,7 @@ class Hooks {
 		}
 	}
 
-	public function setupReadonlyFilesystem(array $params) {
+	public function setupReadonlyFilesystem(array $params): void {
 		$uid = $params['user'];
 		$user = $this->userManager->get($uid);
 

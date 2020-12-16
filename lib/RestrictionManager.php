@@ -57,6 +57,7 @@ class RestrictionManager {
 	/** @var Config */
 	private $config;
 
+	/** @var UserBackend */
 	private $userBackend;
 
 	public function __construct(
@@ -81,11 +82,11 @@ class RestrictionManager {
 		$this->userBackend = $userBackend;
 	}
 
-	public function verifyAccess() {
+	public function verifyAccess(): void {
 		$this->whitelist->verifyAccess($this->userSession->getUser(), $this->request);
 	}
 
-	public function setupRestrictions() {
+	public function setupRestrictions(): void {
 		if ($this->guestManager->isGuest($this->userSession->getUser())) {
 			\OCP\Util::connectHook('OC_Filesystem', 'preSetup', $this->hooks, 'setupReadonlyFilesystem');
 			if (!$this->config->allowExternalStorage()) {
@@ -103,7 +104,7 @@ class RestrictionManager {
 		}
 	}
 
-	public function lateSetupRestrictions() {
+	public function lateSetupRestrictions(): void {
 		if ($this->guestManager->isGuest($this->userSession->getUser())) {
 			if ($this->config->hideOtherUsers()) {
 				$this->server->getContactsManager()->clear();

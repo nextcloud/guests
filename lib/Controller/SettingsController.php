@@ -57,7 +57,7 @@ class SettingsController extends Controller {
 	 *
 	 * @return DataResponse with the current config
 	 */
-	public function getConfig() {
+	public function getConfig(): DataResponse {
 		$useWhitelist = $this->config->useWhitelist();
 		$allowExternalStorage = $this->config->allowExternalStorage();
 		$hideUsers = $this->config->hideOtherUsers();
@@ -79,7 +79,7 @@ class SettingsController extends Controller {
 	 * @param $hideUsers bool
 	 * @return DataResponse
 	 */
-	public function setConfig($useWhitelist, $whitelist, $allowExternalStorage, $hideUsers) {
+	public function setConfig(bool $useWhitelist, array $whitelist, bool $allowExternalStorage, bool $hideUsers): DataResponse {
 		$newWhitelist = [];
 		foreach ($whitelist as $app) {
 			$newWhitelist[] = trim($app);
@@ -99,7 +99,7 @@ class SettingsController extends Controller {
 	 * @NoAdminRequired
 	 * @return DataResponse with the current whitelist config
 	 */
-	public function getWhitelist() {
+	public function getWhitelist(): DataResponse {
 		$useWhitelist = $this->config->useWhitelist();
 		$whitelist = $this->config->getAppWhitelist();
 		$whitelist = explode(',', $whitelist);
@@ -115,7 +115,7 @@ class SettingsController extends Controller {
 	 * @NoAdminRequired
 	 * @return DataResponse with the reset whitelist
 	 */
-	public function resetWhitelist() {
+	public function resetWhitelist(): DataResponse {
 		$this->config->setAppWhitelist(AppWhitelist::DEFAULT_WHITELIST);
 		return new DataResponse([
 			'whitelist' => explode(',', AppWhitelist::DEFAULT_WHITELIST),

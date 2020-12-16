@@ -1,19 +1,31 @@
 {
 	"name": "nextcloud/guests",
+	"autoload-dev": {
+		"psr-4": {
+			"OCP\\": "vendor/christophwurst/nextcloud/OCP",
+			"OCA\\Guests\\": "lib/"
+		}
+	},
 	"config": {
 		"optimize-autoloader": true,
 		"classmap-authoritative": true,
 		"platform": {
-			"php": "7.2"
+			"php": "7.3"
 		}
 	},
 	"scripts": {
 		"cs:fix": "php-cs-fixer fix",
 		"cs:check": "php-cs-fixer fix --dry-run --diff",
-		"lint": "find . -name \\*.php -not -path './vendor/*' -print0 | xargs -0 -n1 php -l"
+		"lint": "find . -name \\*.php -not -path './vendor/*' -print0 | xargs -0 -n1 php -l",
+		"psalm": "psalm --threads=1",
+		"psalm:update-baseline": "psalm --threads=1 --update-baseline --set-baseline=tests/psalm-baseline.xml",
+		"psalm:clear": "psalm --clear-cache && psalm --clear-global-cache",
+		"psalm:fix": "psalm --alter --issues=InvalidReturnType,InvalidNullableReturnType,MissingParamType,InvalidFalsableReturnType"
 	},
 	"require-dev": {
 		"nextcloud/coding-standard": "^0.3.0",
-		"phpunit/phpunit": "^7"
+		"phpunit/phpunit": "^7",
+		"vimeo/psalm": "^4.1",
+		"christophwurst/nextcloud": "dev-master"
 	}
 }

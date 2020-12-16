@@ -37,14 +37,14 @@ class ListCommand extends Base {
 		$this->guestManager = $guestManager;
 	}
 
-	protected function configure() {
+	protected function configure(): void {
 		$this
 			->setName('guests:list')
 			->setDescription('List created guests');
 		parent::configure();
 	}
 
-	protected function execute(InputInterface $input, OutputInterface $output) {
+	protected function execute(InputInterface $input, OutputInterface $output): void {
 		$guests = $this->guestManager->getGuestsInfo();
 
 		$outputType = $input->getOption('output');

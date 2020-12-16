@@ -113,7 +113,7 @@ class UserBackend extends ABackend implements
 	 *
 	 * Deletes a user
 	 */
-	public function deleteUser($uid) {
+	public function deleteUser($uid): bool {
 		// Delete user-group-relation
 		$query = $this->dbConn->getQueryBuilder();
 		$query->delete('guests_users')
@@ -199,7 +199,7 @@ class UserBackend extends ABackend implements
 	 * @param string|null $offset
 	 * @return array an array of all displayNames (value) and the corresponding uids (key)
 	 */
-	public function getDisplayNames($search = '', $limit = null, $offset = null) {
+	public function getDisplayNames($search = '', $limit = null, $offset = null): array {
 		if (!$this->allowListing) {
 			return [];
 		} else {
@@ -249,7 +249,7 @@ class UserBackend extends ABackend implements
 	 * Check if the password is correct without logging in the user
 	 * returns the user id or false
 	 */
-	public function checkPassword(string $uid, string $password) {
+	public function checkPassword(string $uid, string $password): string {
 		$qb = $this->dbConn->getQueryBuilder();
 		$qb->select('uid', 'password')
 			->from('guests_users')
@@ -280,9 +280,9 @@ class UserBackend extends ABackend implements
 	 * Load an user in the cache
 	 *
 	 * @param string $uid the username
-	 * @return boolean true if user was found, false otherwise
+	 * @return bool true if user was found, false otherwise
 	 */
-	private function loadUser($uid) {
+	private function loadUser($uid): bool {
 		$uid = (string)$uid;
 		if (!isset($this->cache[$uid])) {
 			//guests $uid could be NULL or ''
@@ -325,7 +325,7 @@ class UserBackend extends ABackend implements
 	 * @param null|int $offset
 	 * @return string[] an array of all uids
 	 */
-	public function getUsers($search = '', $limit = null, $offset = null) {
+	public function getUsers($search = '', $limit = null, $offset = null): array {
 		$users = $this->getDisplayNames($search, $limit, $offset);
 		$userIds = array_map(function ($uid) {
 			return (string)$uid;
@@ -338,9 +338,9 @@ class UserBackend extends ABackend implements
 	 * check if a user exists
 	 *
 	 * @param string $uid the username
-	 * @return boolean
+	 * @return bool
 	 */
-	public function userExists($uid) {
+	public function userExists($uid): bool {
 		$this->loadUser($uid);
 		return $this->cache[$uid] !== false;
 	}
@@ -399,7 +399,7 @@ class UserBackend extends ABackend implements
 	 *
 	 * @return string the name of the backend to be shown
 	 */
-	public function getBackendName() {
+	public function getBackendName(): string {
 		return 'Guests';
 	}
 

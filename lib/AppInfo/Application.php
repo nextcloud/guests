@@ -43,21 +43,21 @@ class Application extends App {
 		parent::__construct(self::APP_ID, $urlParams);
 	}
 
-	public function setup() {
+	public function setup(): void {
 		$this->setupGuestManagement();
 		$this->setupGuestRestrictions();
 		$this->setupNotifications();
 		$this->setupShareAccepting();
 	}
 
-	public function lateSetup() {
+	public function lateSetup(): void {
 		$this->getRestrictionManager()->lateSetupRestrictions();
 	}
 
 	/**
 	 * @return GuestManager
 	 */
-	private function getGuestManager() {
+	private function getGuestManager(): GuestManager {
 		return $this->getContainer()->query(GuestManager::class);
 		;
 	}
@@ -65,28 +65,28 @@ class Application extends App {
 	/**
 	 * @return RestrictionManager
 	 */
-	private function getRestrictionManager() {
+	private function getRestrictionManager(): RestrictionManager {
 		return $this->getContainer()->query(RestrictionManager::class);
 	}
 
 	/**
 	 * @return UserBackend
 	 */
-	private function getUserBackend() {
+	private function getUserBackend(): UserBackend {
 		return $this->getContainer()->query(UserBackend::class);
 	}
 
 	/**
 	 * @return Hooks
 	 */
-	private function getHookManager() {
+	private function getHookManager(): Hooks {
 		return $this->getContainer()->query(Hooks::class);
 	}
 
 	/**
 	 * @return Config
 	 */
-	private function getConfig() {
+	private function getConfig(): Config {
 		return $this->getContainer()->query(Config::class);
 	}
 
@@ -94,7 +94,7 @@ class Application extends App {
 		return $this->getContainer()->query(INotificationManager::class);
 	}
 
-	private function setupGuestManagement() {
+	private function setupGuestManagement(): void {
 		$container = $this->getContainer();
 		/** @var Server $server */
 		$server = $container->getServer();
@@ -115,7 +115,7 @@ class Application extends App {
 		$server->getEventDispatcher()->addListener(IUser::class . '::firstLogin', [$this->getHookManager(), 'handleFirstLogin']);
 	}
 
-	private function setupGuestRestrictions() {
+	private function setupGuestRestrictions(): void {
 		$container = $this->getContainer();
 		/** @var Server $server */
 		$server = $container->getServer();
