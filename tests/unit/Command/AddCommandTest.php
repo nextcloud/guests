@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 /**
- * @copyright Copyright (c) 2019 Robin Appelman <robin@icewind.nl>
+ * @copyright Copyright (c) 2020 Vincent Petry <vincent@nextcloud.com>
  *
  * @license GNU AGPL version 3 or any later version
  *
@@ -21,7 +21,7 @@ declare(strict_types=1);
  *
  */
 
-namespace OCA\Guests\Test\Unit;
+namespace OCA\Guests\Test\Command\Unit;
 
 use OCA\Guests\GuestManager;
 use OCA\Guests\Command\AddCommand;
