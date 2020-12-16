@@ -23,18 +23,18 @@ declare(strict_types=1);
 
 namespace OCA\Guests\Command;
 
-use OC\Core\Command\Base;
 use OCA\Guests\GuestManager;
 use OCP\IUser;
 use OCP\IUserManager;
 use OCP\Mail\IMailer;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
 
-class AddCommand extends Base {
+class AddCommand extends Command {
 	private $guestManager;
 	private $mailer;
 

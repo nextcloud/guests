@@ -164,21 +164,26 @@ class GuestManagerTest extends TestCase {
 		$createdByUser->method('getUID')
 			->willReturn('creator');
 
+		$guestUser = $this->createMock(IUser::class);
+
 		$this->userManager->expects($this->once())
 			->method('createUserFromBackend')
-			->with('guest@example.com', str_repeat('4', 20), $this->userBackend);
+			->with('guest@example.com', str_repeat('4', 20), $this->userBackend)
+			->willReturn($guestUser);
 
 		$this->userBackend->expects($this->once())
 			->method('setDisplayName')
 			->with('guest@example.com', 'Example Guest');
 
-		$this->guestManager->createGuest(
+		$returnedUser = $this->guestManager->createGuest(
 			$createdByUser,
 			'guest@example.com',
 			'guest@example.com',
 			'Example Guest',
 			'test'
 		);
+
+		$this->assertSame($guestUser, $returnedUser);
 
 		$token = str_repeat('4', 21);
 		$this->assertEquals([
