@@ -39,12 +39,15 @@ class UsersController extends OCSController {
 	private $guestManager;
 	/** @var IUserSession */
 	private $userSession;
+	/** @var Config */
 	private $config;
+	/** @var ISubAdmin */
 	private $subAdmin;
+	/** @var IGroupManager */
 	private $groupManager;
 
 	public function __construct(
-		$appName,
+		string $appName,
 		IRequest $request,
 		IUserManager $userManager,
 		IL10N $l10n,
@@ -71,13 +74,13 @@ class UsersController extends OCSController {
 	/**
 	 * @NoAdminRequired
 	 *
-	 * @param $email
-	 * @param $displayName
-	 * @param $language
-	 * @param $groups
+	 * @param string $email
+	 * @param string $displayName
+	 * @param string $language
+	 * @param array $groups
 	 * @return DataResponse
 	 */
-	public function create($email, $displayName, $language, $groups): DataResponse {
+	public function create(string $email, string $displayName, string $language, array $groups): DataResponse {
 		$errorMessages = [];
 		$currentUser = $this->userSession->getUser();
 

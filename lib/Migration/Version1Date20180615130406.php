@@ -18,9 +18,6 @@ class Version1Date20180615130406 extends SimpleMigrationStep {
 		return 'Adds table to keep track of guest users';
 	}
 
-	public function preSchemaChange(IOutput $output, \Closure $schemaClosure, array $options) {
-	}
-
 	public function changeSchema(IOutput $output, \Closure $schemaClosure, array $options) {
 		/** @var ISchemaWrapper $schema */
 		$schema = $schemaClosure();
@@ -51,8 +48,5 @@ class Version1Date20180615130406 extends SimpleMigrationStep {
 		}
 
 		return $schema;
-	}
-
-	public function postSchemaChange(IOutput $output, \Closure $schemaClosure, array $options) {
 	}
 }

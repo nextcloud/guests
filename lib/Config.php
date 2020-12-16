@@ -72,7 +72,7 @@ class Config {
 	/**
 	 * @param string|bool $hide
 	 */
-	public function setHideOtherUsers($hide) {
+	public function setHideOtherUsers($hide): void {
 		$this->config->setAppValue('guests', 'hide_users', $this->castToString($hide)) ;
 	}
 
@@ -102,7 +102,7 @@ class Config {
 	/**
 	 * @param array|string $whitelist
 	 */
-	public function setAppWhitelist($whitelist) {
+	public function setAppWhitelist($whitelist): void {
 		if (is_array($whitelist)) {
 			$whitelist = implode(',', $whitelist);
 		}
@@ -113,7 +113,7 @@ class Config {
 		return $this->config->getAppValue('core', 'shareapi_only_share_with_group_members', 'no') === 'yes';
 	}
 
-	public function canCreateGuests() {
+	public function canCreateGuests(): bool {
 		if (!$this->userSession->getUser()) {
 			return false;
 		}

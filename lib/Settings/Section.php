@@ -45,28 +45,28 @@ class Section implements IIconSection {
 	/**
 	 * {@inheritdoc}
 	 */
-	public function getID() {
+	public function getID(): string {
 		return 'guests';
 	}
 
 	/**
 	 * {@inheritdoc}
 	 */
-	public function getName() {
+	public function getName(): string {
 		return $this->l->t('Guests');
 	}
 
 	/**
 	 * {@inheritdoc}
 	 */
-	public function getPriority() {
+	public function getPriority(): int {
 		return 30;
 	}
 
 	/**
 	 * {@inheritdoc}
 	 */
-	public function getIcon() {
+	public function getIcon(): string {
 		return $this->url->imagePath('guests', 'app-dark.svg');
 	}
 }

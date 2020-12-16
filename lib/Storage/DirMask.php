@@ -56,11 +56,11 @@ class DirMask extends PermissionsMask {
 		$this->mask = $arguments['mask'];
 	}
 
-	protected function checkPath($path) {
+	protected function checkPath($path): string {
 		return substr($path, 0, $this->pathLength) === $this->path;
 	}
 
-	public function isUpdatable($path) {
+	public function isUpdatable($path): bool {
 		if ($this->checkPath($path)) {
 			return parent::isUpdatable($path);
 		} else {
@@ -68,7 +68,7 @@ class DirMask extends PermissionsMask {
 		}
 	}
 
-	public function isCreatable($path) {
+	public function isCreatable($path): bool {
 		if ($this->checkPath($path)) {
 			return parent::isCreatable($path);
 		} else {
@@ -76,7 +76,7 @@ class DirMask extends PermissionsMask {
 		}
 	}
 
-	public function isDeletable($path) {
+	public function isDeletable($path): bool {
 		if ($this->checkPath($path)) {
 			return parent::isDeletable($path);
 		} else {
@@ -84,7 +84,7 @@ class DirMask extends PermissionsMask {
 		}
 	}
 
-	public function isSharable($path) {
+	public function isSharable($path): bool {
 		if ($this->checkPath($path)) {
 			return parent::isSharable($path);
 		} else {
@@ -92,7 +92,7 @@ class DirMask extends PermissionsMask {
 		}
 	}
 
-	public function getPermissions($path) {
+	public function getPermissions($path): int {
 		if ($this->checkPath($path)) {
 			return parent::getPermissions($path);
 		} else {
@@ -100,7 +100,7 @@ class DirMask extends PermissionsMask {
 		}
 	}
 
-	public function rename($path1, $path2) {
+	public function rename($path1, $path2): bool {
 		if (!$this->isUpdatable($path1)) {
 			return false;
 		}
@@ -120,7 +120,7 @@ class DirMask extends PermissionsMask {
 		return false;
 	}
 
-	public function copy($path1, $path2) {
+	public function copy($path1, $path2): bool {
 		if (!$this->isReadable($path1)) {
 			return false;
 		}
@@ -140,7 +140,7 @@ class DirMask extends PermissionsMask {
 		return false;
 	}
 
-	public function touch($path, $mtime = null) {
+	public function touch($path, $mtime = null): bool {
 		if ($this->checkPath($path)) {
 			return parent::touch($path);
 		} else {
@@ -148,7 +148,7 @@ class DirMask extends PermissionsMask {
 		}
 	}
 
-	public function mkdir($path) {
+	public function mkdir($path): bool {
 		if ($this->checkPath($path)) {
 			return parent::mkdir($path);
 		} else {
@@ -164,7 +164,7 @@ class DirMask extends PermissionsMask {
 		}
 	}
 
-	public function unlink($path) {
+	public function unlink($path): bool {
 		if ($this->checkPath($path)) {
 			return parent::unlink($path);
 		} else {
@@ -180,7 +180,7 @@ class DirMask extends PermissionsMask {
 		}
 	}
 
-	public function fopen($path, $mode) {
+	public function fopen($path, $mode): resource {
 		if ($this->checkPath($path)) {
 			return parent::fopen($path, $mode);
 		} else {
