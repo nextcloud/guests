@@ -42,6 +42,7 @@ class GuestManager {
 	/** @var UserBackend */
 	private $userBackend;
 
+	/** @var IUserManager */
 	private $userManager;
 
 	/** @var ISecureRandom */
@@ -50,12 +51,16 @@ class GuestManager {
 	/** @var ICrypto */
 	private $crypto;
 
+	/** @var IManager */
 	private $shareManager;
 
+	/** @var IDBConnection */
 	private $connection;
 
+	/** @var IUserSession */
 	private $userSession;
 
+	/** @var IEventDispatcher */
 	private $eventDispatcher;
 
 	public function __construct(

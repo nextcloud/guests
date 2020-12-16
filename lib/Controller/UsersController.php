@@ -2,10 +2,10 @@
 
 namespace OCA\Guests\Controller;
 
-use OC\AppFramework\Http;
 use OC\Hooks\PublicEmitter;
 use OCA\Guests\Config;
 use OCA\Guests\GuestManager;
+use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\OCSController;
 use OCP\Group\ISubAdmin;

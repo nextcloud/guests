@@ -1,3 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <files psalm-version="4.3.1@2feba22a005a18bf31d4c7b9bdb9252c73897476">
+  <file src="lib/AppConfigOverwrite.php">
+    <UndefinedClass occurrences="1">
+      <code>AppConfig</code>
+    </UndefinedClass>
+  </file>
+  <file src="lib/AppInfo/Application.php">
+    <UndefinedDocblockClass occurrences="8">
+      <code>$server</code>
+      <code>$server</code>
+      <code>$server</code>
+      <code>$server</code>
+      <code>$server</code>
+      <code>$server</code>
+      <code>$server</code>
+      <code>$server</code>
+    </UndefinedDocblockClass>
+  </file>
+  <file src="lib/AppWhitelist.php">
+    <MissingDependency occurrences="1">
+      <code>Template</code>
+    </MissingDependency>
+    <UndefinedClass occurrences="1">
+      <code>\OC_App</code>
+    </UndefinedClass>
+  </file>
+  <file src="lib/Command/ListCommand.php">
+    <UndefinedClass occurrences="1">
+      <code>Base</code>
+    </UndefinedClass>
+  </file>
+  <file src="lib/Config.php">
+    <UndefinedClass occurrences="1">
+      <code>\OC</code>
+    </UndefinedClass>
+  </file>
+  <file src="lib/Controller/APIController.php">
+    <UndefinedClass occurrences="2">
+      <code>Factory</code>
+      <code>Factory</code>
+    </UndefinedClass>
+  </file>
+  <file src="lib/GuestManager.php">
+    <UndefinedClass occurrences="5">
+      <code>Share</code>
+      <code>Share</code>
+      <code>Share</code>
+      <code>Share</code>
+      <code>Share</code>
+    </UndefinedClass>
+    <UndefinedDocblockClass occurrences="3">
+      <code>$query-&gt;execute()</code>
+      <code>$result</code>
+      <code>$result</code>
+    </UndefinedDocblockClass>
+  </file>
+  <file src="lib/Mail.php">
+    <MissingDependency occurrences="1">
+      <code>Share</code>
+    </MissingDependency>
+  </file>
+  <file src="lib/RestrictionManager.php">
+    <MissingDependency occurrences="2">
+      <code>AppConfigOverwrite</code>
+      <code>FilteredNavigationManager</code>
+    </MissingDependency>
+  </file>
+  <file src="lib/Storage/DirMask.php">
+    <UndefinedClass occurrences="1">
+      <code>PermissionsMask</code>
+    </UndefinedClass>
+  </file>
+  <file src="lib/Storage/DirMaskCache.php">
+    <UndefinedClass occurrences="1">
+      <code>CachePermissionsMask</code>
+    </UndefinedClass>
+  </file>
+  <file src="lib/Storage/ReadOnlyJail.php">
+    <MissingDependency occurrences="1">
+      <code>DirMask</code>
+    </MissingDependency>
+  </file>
 </files>

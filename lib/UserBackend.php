@@ -342,7 +342,7 @@ class UserBackend extends ABackend implements
 	 * check if a user exists
 	 *
 	 * @param string $uid the username
-	 * @return boon
+	 * @return bool
 	 */
 	public function userExists($uid): bool {
 		$this->loadUser($uid);
