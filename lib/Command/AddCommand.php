@@ -146,19 +146,14 @@ class AddCommand extends Command {
 			}
 		}
 
-		try {
-			$user = $this->guestManager->createGuest(
-				$creatorUser,
-				$input->getArgument('uid'),
-				$email,
-				$input->getOption('display-name') ?? '',
-				$input->getOption('language') ?? '',
-				$password
-			);
-		} catch (\Exception $e) {
-			$output->writeln('<error>' . $e->getMessage() . '</error>');
-			return 1;
-		}
+		$user = $this->guestManager->createGuest(
+			$creatorUser,
+			$input->getArgument('uid'),
+			$email,
+			$input->getOption('display-name') ?? '',
+			$input->getOption('language') ?? '',
+			$password
+		);
 
 		if ($user instanceof IUser) {
 			$output->writeln('<info>The guest account user "' . $user->getUID() . '" was created successfully</info>');
