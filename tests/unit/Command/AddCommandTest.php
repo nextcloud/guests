@@ -66,7 +66,6 @@ class AddCommandTest extends TestCase {
 			[
 				[
 					'created-by' => 'creator',
-					'uid' => 'guestid',
 					'email' => 'guestid@example.com',
 					'--display-name' => 'guest-displayname',
 					'--language' => 'de_DE',
@@ -75,7 +74,6 @@ class AddCommandTest extends TestCase {
 			[
 				[
 					'created-by' => 'creator',
-					'uid' => 'guestid',
 					'email' => 'guestid@example.com',
 					'--generate-password' => true,
 				],
@@ -104,7 +102,7 @@ class AddCommandTest extends TestCase {
 
 		$this->userManager->expects($this->once())
 			->method('userExists')
-			->with('guestid')
+			->with('guestid@example.com')
 			->willReturn(false);
 
 		$this->mailer->expects($this->once())
@@ -116,7 +114,7 @@ class AddCommandTest extends TestCase {
 			 ->method('createGuest')
 			 ->with(
 				 $createdByUser,
-				 'guestid',
+				 'guestid@example.com',
 				 'guestid@example.com',
 				 isset($commandArgs['--display-name']) ? $commandArgs['--display-name'] : '',
 				 isset($commandArgs['--language']) ? $commandArgs['--language'] : '',
@@ -138,7 +136,6 @@ class AddCommandTest extends TestCase {
 
 		$this->commandTester->execute([
 			'created-by' => 'creator',
-			'uid' => 'guestid',
 			'email' => 'guestid@example.com',
 		]);
 
@@ -155,17 +152,16 @@ class AddCommandTest extends TestCase {
 
 		$this->userManager->expects($this->once())
 			->method('userExists')
-			->with('guestid')
+			->with('guestid@example.com')
 			->willReturn(true);
 
 		$this->commandTester->execute([
 			'created-by' => 'creator',
-			'uid' => 'guestid',
 			'email' => 'guestid@example.com',
 		]);
 
 		$output = $this->commandTester->getDisplay();
-		$this->assertStringContainsString('The user "guestid" already exists.', $output);
+		$this->assertStringContainsString('The user "guestid@example.com" already exists.', $output);
 		$this->assertEquals(1, $this->commandTester->getStatusCode());
 	}
 
@@ -177,7 +173,7 @@ class AddCommandTest extends TestCase {
 
 		$this->userManager->expects($this->once())
 			->method('userExists')
-			->with('guestid')
+			->with('guestid@@@')
 			->willReturn(false);
 
 		$this->mailer->expects($this->once())
@@ -187,7 +183,6 @@ class AddCommandTest extends TestCase {
 
 		$this->commandTester->execute([
 			'created-by' => 'creator',
-			'uid' => 'guestid',
 			'email' => 'guestid@@@',
 		]);
 

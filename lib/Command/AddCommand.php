@@ -59,11 +59,6 @@ class AddCommand extends Command {
 				'User ID who is set as creator'
 			)
 			->addArgument(
-				'uid',
-				InputArgument::REQUIRED,
-				'User ID used to login (must only contain a-z, A-Z, 0-9, -, _ and @)'
-			)
-			->addArgument(
 				'email',
 				InputArgument::REQUIRED,
 				'Email address'
@@ -104,7 +99,8 @@ class AddCommand extends Command {
 			return 1;
 		}
 
-		$uid = $input->getArgument('uid');
+		// same behavior like in the UsersController
+		$uid = $input->getArgument('email');
 		if ($this->userManager->userExists($uid)) {
 			$output->writeln('<error>The user "' . $uid . '" already exists.</error>');
 			return 1;
@@ -148,7 +144,7 @@ class AddCommand extends Command {
 
 		$user = $this->guestManager->createGuest(
 			$creatorUser,
-			$input->getArgument('uid'),
+			$uid,
 			$email,
 			$input->getOption('display-name') ?? '',
 			$input->getOption('language') ?? '',
