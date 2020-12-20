@@ -10,7 +10,7 @@ OC.L10N.register(
     "%s shared »%s« with you" : "%s heeft \"%s\" met je gedeeld",
     "Incoming share" : "Inkomende share",
     "Hey there," : "Hallo daar,",
-    "%s just shared »%s« with you." : "%s heeft net »%s« met jou gedeeld.",
+    "%s just shared »%s« with you." : "%s heeft net \"%s\" met jou gedeeld.",
     "You can access the shared file by activating your guest account." : "Je kunt het gedeelde bestand openen door je gastaccount te activeren.",
     "After your account is activated you can view the share by logging in with %s." : "Nadat je account is geactiveerd, kun je de share bekijken door in te loggen met %s.",
     "The share will expire at %s." : "De share vervalt op %s.",
