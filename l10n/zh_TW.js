@@ -46,6 +46,7 @@ OC.L10N.register(
     "Guest users are grouped under a virtual group in the user manager" : "訪客用戶的群組在使用者管理者的虛擬群組之下",
     "Guest users can access mounted external storages" : "訪客使用者能存取掛載的外部儲存區",
     "Hide other users from guests" : "不讓訪客看見其他使用者",
+    "Guests will still be able to see users from any group they are added to" : "訪客仍能看見其所加入群組中的使用者名單",
     "Limit guest access to an app whitelist" : "白名單限制訪客存取部分應用程式",
     "Reset" : "重設",
     "Error" : "錯誤",
