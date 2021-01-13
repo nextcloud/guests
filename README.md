@@ -6,7 +6,7 @@ Create guest users which can only see files shared with them
 
 ## Usage
 
-1. Create a guest user by typing their email address in to the sharing dialog. 
+1. Create a guest user by typing their email address in to the sharing dialog.
 2. [Optionally] Set a display name for the guest user.
 3. [Optionally] Set a language for the invitation email (otherwise the server's [default language](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html#user-experience) will be used).
 4. [Optionally, only for group admins] Set the groups to put the guests in (note [further documentation](#Special-behavior-under-sharing-restrictions)).
@@ -28,7 +28,7 @@ Guest users automatically accept all files and folders that are shared with them
 
 ### Apps
 
-Administrators can set a whitelist of apps that guest users have access to. 
+Administrators can set a whitelist of apps that guest users have access to.
 
 By default the following are allowed:
 * activity
@@ -44,7 +44,7 @@ By default the following are allowed:
 ### Hide other users
 
 By default, guests will not be able to list other users in the system, if a guest user gets added to a group he will be able
-to list users within that group (and, for example, share files with those users). 
+to list users within that group (and, for example, share files with those users).
 
 ## Auto-convert guest users into full users
 
@@ -55,3 +55,36 @@ Guest users who eventually turn into full users (provided by any other user back
 1. Nextcloud 18 or higher
 2. target user needs to have the same email address as the guest user
 3. config.php setting `'migrate_guest_user_data' => true,`
+
+## Available occ commands
+
+### Create a guest user
+
+The command `occ guests:add` can be used to create guest users on the command-line.
+
+```
+php occ guests:add [--generate-password] [--password-from-env] [--display-name [DISPLAY-NAME]] [--language [LANGUAGE]] [--] <created-by> <email>
+```
+
+For example:
+```bash
+OC_PASS=somepassword php occ guests:add --password-from-env --display-name "Max Mustermann" --language "de_DE" admin maxmustermann@example.com
+```
+
+The user will then be able to login with "maxmustermann@example.com" using the given password.
+
+When using `--generate-password` instead of giving a password, a random password will be generated. The guest user should then use the "forgot password" link to reset it.
+
+Please note that this command will only create the guest account, it will not send out any email.
+
+### List existing guest users
+
+The following command will list existing guest users:
+```bash
+% php occ guests:list
++---------------------------+----------------+------------+---+
+| Email                     | Name           | Invited By |   |
++---------------------------+----------------+------------+---+
+| maxmustermann@example.com | Max Mustermann | admin      | 0 |
++---------------------------+----------------+------------+---+
+```
