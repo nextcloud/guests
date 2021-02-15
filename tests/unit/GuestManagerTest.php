@@ -171,9 +171,17 @@ class GuestManagerTest extends TestCase {
 			->with('guest@example.com', str_repeat('4', 20), $this->userBackend)
 			->willReturn($guestUser);
 
-		$this->userBackend->expects($this->once())
+		$guestUser->expects($this->once())
 			->method('setDisplayName')
-			->with('guest@example.com', 'Example Guest');
+			->with('Example Guest');
+		$guestUser->method('setEMailAddress')
+			->willReturnCallback(function ($email) {
+				$this->config->setUserValue('guest@example.com', 'settings', 'email', $email);
+			});
+		$guestUser->method('setQuota')
+			->willReturnCallback(function ($quota) {
+				$this->config->setUserValue('guest@example.com', 'files', 'quota', $quota);
+			});
 
 		$returnedUser = $this->guestManager->createGuest(
 			$createdByUser,
