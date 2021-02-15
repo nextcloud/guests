@@ -113,11 +113,11 @@ class GuestManager {
 			$this->userBackend
 		);
 
-		$this->config->setUserValue($userId, 'settings', 'email', $email);
+		$user->setEMailAddress($email);
 		$this->config->setUserValue($userId, 'guests', 'created_by', $createdBy->getUID());
 
 		if ($displayName) {
-			$this->userBackend->setDisplayName($userId, $displayName);
+			$user->setDisplayName($displayName);
 		}
 
 		if ($language) {
@@ -145,7 +145,7 @@ class GuestManager {
 			);
 		}
 
-		$this->config->setUserValue($userId, 'files', 'quota', '0 B');
+		$user->setQuota('0 B');
 
 		return $user;
 	}
