@@ -3,6 +3,7 @@ import Vue from 'vue'
 
 import GuestForm from './views/GuestForm.vue'
 import Nextcloud from './mixins/Nextcloud'
+import { showError } from '@nextcloud/dialogs'
 
 Vue.mixin(Nextcloud)
 
@@ -25,7 +26,15 @@ const result = {
 	icon: 'icon-guests',
 	displayName: t('guests', 'Invite guest'),
 	handler: async self => {
-		return guestForm.populate(self.fileInfo, self.query)
+		const user = self.suggestions.find(s => s.isNoUser === false && s.shareType === 0)
+		return new Promise((resolve, reject) => {
+			if (user) {
+				showError(t('guests', 'A user with this ID or email address already exists'))
+				reject(new Error('Impossible to create guest, a user with this ID or email address already exists'))
+			} else {
+				resolve(guestForm.populate(self.fileInfo, self.query))
+			}
+		})
 	},
 	condition: self => {
 		return validate(self.query)
