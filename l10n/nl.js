@@ -53,6 +53,7 @@ OC.L10N.register(
     "Error" : "Fout",
     "Your settings have been updated" : "Je instellingen zijn bijgewerkt",
     "Saving …" : "Opslaan ...",
-    "Invite guest" : "Uitnodigen gast"
+    "Invite guest" : "Uitnodigen gast",
+    "A user with this ID or email address already exists" : "Er bestaat al een gebruiker met dit ID of e-mailadres."
 },
 "nplurals=2; plural=(n != 1);");

@@ -53,6 +53,7 @@ OC.L10N.register(
     "Error" : "Chyba",
     "Your settings have been updated" : "Vaše nastavení byla zaktualizována",
     "Saving …" : "Ukládání…",
-    "Invite guest" : "Pozvat hosta"
+    "Invite guest" : "Pozvat hosta",
+    "A user with this ID or email address already exists" : "Uživatel s tímto ID nebo e-mailovou adresou již existuje"
 },
 "nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;");
