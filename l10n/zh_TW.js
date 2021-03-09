@@ -53,6 +53,7 @@ OC.L10N.register(
     "Error" : "錯誤",
     "Your settings have been updated" : "已更新您的設定",
     "Saving …" : "正在儲存 …",
-    "Invite guest" : "邀請訪客"
+    "Invite guest" : "邀請訪客",
+    "A user with this ID or email address already exists" : "有此 ID 或電子郵件地址的使用者已存在"
 },
 "nplurals=1; plural=0;");

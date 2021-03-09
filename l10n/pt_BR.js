@@ -53,6 +53,7 @@ OC.L10N.register(
     "Error" : "Erro",
     "Your settings have been updated" : "Suas configurações foram atualizadas",
     "Saving …" : "Salvando...",
-    "Invite guest" : "Convidar convidado"
+    "Invite guest" : "Convidar convidado",
+    "A user with this ID or email address already exists" : "Já existe um usuário com este ID ou endereço de e-mail"
 },
 "nplurals=2; plural=(n > 1);");

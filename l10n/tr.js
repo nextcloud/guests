@@ -53,6 +53,7 @@ OC.L10N.register(
     "Error" : "Hata",
     "Your settings have been updated" : "Ayarlarınız güncellendi",
     "Saving …" : "Kaydediliyor …",
-    "Invite guest" : "Konuk çağır"
+    "Invite guest" : "Konuk çağır",
+    "A user with this ID or email address already exists" : "Bu kimlik ya da e-posta adresinin kayıtlı olduğu bir kullanıcı hesabı zaten var."
 },
 "nplurals=2; plural=(n > 1);");
