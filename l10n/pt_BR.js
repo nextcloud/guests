@@ -42,7 +42,7 @@ OC.L10N.register(
     "Invite user and create share" : "Convidar usuário e criar compartilhamento",
     "Invite {name}" : "Convidar {name}",
     "Guest user needs to be added to at least one group" : "O usuário convidado precisa ser adicionado a pelo menos um grupo",
-    "Creating guests users is restricted while \"Restrict users to only share with users in their groups\" is enabled." : "A criação de usuários convidados é restrita enquanto \"Restringir usuários para compartilhar somente com usuários em seus grupos\" estiver ativado.",
+    "Creating guests users is restricted while \"Restrict users to only share with users in their groups\" is enabled." : "A criação de usuários convidados é restrita enquanto \"Restringir os usuários para compartilhar apenas com usuários em seus grupos\" estiver ativado.",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Somente administradores de grupo têm permissão para criar convidados e eles devem ser adicionados a pelo menos um grupo no qual o criador do compartilhamento é administrador do grupo.",
     "Guest users are grouped under a virtual group in the user manager" : "Usuários convidados são agrupados em um grupo virtual no gerenciador de usuários",
     "Guest users can access mounted external storages" : "Usuários convidados podem acessar armazenamentos externos montados",
