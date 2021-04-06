@@ -53,6 +53,7 @@ OC.L10N.register(
     "Error" : "Грешка",
     "Your settings have been updated" : "Вашите параметри се ажурирани",
     "Saving …" : "Зачувува  …",
-    "Invite guest" : "Покани гостин"
+    "Invite guest" : "Покани гостин",
+    "A user with this ID or email address already exists" : "Корисник со ова ID или Е-пошта адреса веќе постои"
 },
 "nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;");
