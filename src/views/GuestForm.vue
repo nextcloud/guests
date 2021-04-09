@@ -21,7 +21,7 @@
 					</div>
 					<div class="form-group">
 						<label class="form-label" for="app-guests-input-email">
-							{{ t('guests', 'E-Mail:') }}
+							{{ t('guests', 'Email:') }}
 						</label>
 						<input
 							id="app-guests-input-email"

@@ -207,7 +207,7 @@ class Hooks {
 
 		$email = $user->getEMailAddress();
 		if ($email === null) {
-			$this->logger->info('User ' . $user->getUID() . ' does not have an e-mail address set. Skipping guests data import.');
+			$this->logger->info('User ' . $user->getUID() . ' does not have an email address set. Skipping guests data import.');
 			return;
 		}
 
