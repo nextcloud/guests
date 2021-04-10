@@ -35,7 +35,6 @@ OC.L10N.register(
     "No guest accounts created" : "Inga gästkonton skapade",
     "Default" : "Standard",
     "Name:" : "Namn:",
-    "E-Mail:" : "E-post:",
     "Language:" : "Språk:",
     "Add guest to groups:" : "Lägg till gäst i grupper:",
     "An error occured, try again" : "Ett fel uppstod, försök igen",

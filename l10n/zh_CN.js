@@ -35,7 +35,6 @@ OC.L10N.register(
     "No guest accounts created" : "没有访客账号被创建",
     "Default" : "默认",
     "Name:" : "姓名：",
-    "E-Mail:" : "电子邮箱：",
     "Language:" : "语言：",
     "Add guest to groups:" : "添加访客到群组：",
     "An error occured, try again" : "发生错误，请重试",

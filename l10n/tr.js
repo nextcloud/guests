@@ -35,7 +35,6 @@ OC.L10N.register(
     "No guest accounts created" : "Henüz bir konuk hesabı eklenmemiş",
     "Default" : "Varsayılan",
     "Name:" : "Ad:",
-    "E-Mail:" : "E-posta:",
     "Language:" : "Dil:",
     "Add guest to groups:" : "Konuk şu gruplara eklensin:",
     "An error occured, try again" : "Bir sorun çıktı. Yeniden deneyin",

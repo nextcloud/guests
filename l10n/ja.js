@@ -35,7 +35,6 @@ OC.L10N.register(
     "No guest accounts created" : "ゲストアカウントはまだ作成されていません",
     "Default" : "デフォルト",
     "Name:" : "名前：",
-    "E-Mail:" : "メール:",
     "Language:" : "言語:",
     "Add guest to groups:" : "ゲストをグループに追加:",
     "An error occured, try again" : "エラーが発生しました。再度試行してください。",

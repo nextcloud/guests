@@ -35,7 +35,6 @@ OC.L10N.register(
     "No guest accounts created" : "Δεν δημιουργήθηκαν λογαριασμοί επισκέπτη",
     "Default" : "Προεπιλεγμένο",
     "Name:" : "Όνομα:",
-    "E-Mail:" : "E-Mail:",
     "Language:" : "Γλώσσα:",
     "Add guest to groups:" : "Προσθήκη επισκέπτη στις ομάδες:",
     "An error occured, try again" : "Παρουσιάστηκε σφάλμα, δοκιμάστε ξανά",

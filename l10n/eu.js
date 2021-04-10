@@ -35,7 +35,6 @@ OC.L10N.register(
     "No guest accounts created" : "Ez da gonbidatu konturik sortu",
     "Default" : "Lehenetsia",
     "Name:" : "Izena:",
-    "E-Mail:" : "E-Mail:",
     "Language:" : "Hizkuntza:",
     "Add guest to groups:" : "Gehitu gonbidatua taldeetara:",
     "An error occured, try again" : "Errore bat gertatu da, saiatu berriro",

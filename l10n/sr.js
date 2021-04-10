@@ -35,7 +35,6 @@ OC.L10N.register(
     "No guest accounts created" : "Није направљен гостински налог",
     "Default" : "Подразумевано",
     "Name:" : "Име:",
-    "E-Mail:" : "Е-пошта:",
     "Language:" : "Језик:",
     "Add guest to groups:" : "Додај госта у групе:",
     "An error occured, try again" : "Догодила се грешка, покушајте касније",

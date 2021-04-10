@@ -35,7 +35,6 @@ OC.L10N.register(
     "No guest accounts created" : "Nebyly vytvořeny žádné účty hostů",
     "Default" : "Výchozí",
     "Name:" : "Jméno:",
-    "E-Mail:" : "E-Mail:",
     "Language:" : "Jazyk:",
     "Add guest to groups:" : "Přidat hosta do skupiny:",
     "An error occured, try again" : "Došlo k chybě, zkuste to znovu",

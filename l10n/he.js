@@ -34,7 +34,6 @@ OC.L10N.register(
     "No guest accounts created" : "לא נוצרו חשבונות אורחים",
     "Default" : "בררת מחדל",
     "Name:" : "שם:",
-    "E-Mail:" : "דוא״ל:",
     "Language:" : "שפה:",
     "Add guest to groups:" : "הוספת אורח לקבוצות:",
     "An error occured, try again" : "אירעה שגיאה, נא לנסות שוב",

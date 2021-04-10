@@ -35,7 +35,6 @@ OC.L10N.register(
     "No guest accounts created" : "Nincs vendégfiók létrehozva",
     "Default" : "Alapértelmezett",
     "Name:" : "Név:",
-    "E-Mail:" : "E-mail:",
     "Language:" : "Nyelv:",
     "Add guest to groups:" : "Vendég hozzáadása a csoportokhoz:",
     "An error occured, try again" : "Hiba történt, próbálja újra",
