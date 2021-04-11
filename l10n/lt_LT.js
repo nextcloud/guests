@@ -34,6 +34,7 @@ OC.L10N.register(
     "No guest accounts created" : "Nesukurta jokių svečio paskyrų",
     "Default" : "Numatytoji",
     "Name:" : "Vardas:",
+    "Email:" : "El. paštas:",
     "Language:" : "Kalba:",
     "Add guest to groups:" : "Pridėti svečią į grupes:",
     "An error occured, try again" : "Įvyko klaida, bandykite dar kartą",

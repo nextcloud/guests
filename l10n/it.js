@@ -35,6 +35,7 @@ OC.L10N.register(
     "No guest accounts created" : "Nessun account ospite creato",
     "Default" : "Predefinita",
     "Name:" : "Nome:",
+    "Email:" : "Posta elettronica:",
     "Language:" : "Lingua:",
     "Add guest to groups:" : "Aggiungi ospite a gruppi:",
     "An error occured, try again" : "Si è verificato un errore, prova ancora",
