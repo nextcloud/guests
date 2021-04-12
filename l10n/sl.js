@@ -8,6 +8,7 @@ OC.L10N.register(
     "A user with that name already exists." : "Uporabnik s tem imenom že obstaja.",
     "User successfully created" : "Uporabniški račun je uspešno ustvarjen.",
     "%s shared »%s« with you" : "%s vam omogoča souporabo »%s«",
+    "Incoming share" : "Ponujena delitev",
     "Hey there," : "Pozdravljeni,",
     "%s just shared »%s« with you." : "%s vam omogoča uporabo »%s«.",
     "You can access the shared file by activating your guest account." : "Za dostop do datoteke v souporabi omogočite račun za goste.",
@@ -34,6 +35,7 @@ OC.L10N.register(
     "No guest accounts created" : "Ni ustvarjenega nobenega računa za goste",
     "Default" : "Privzeta",
     "Name:" : "Ime:",
+    "Email:" : "Elektronski naslov:",
     "Language:" : "Jezik:",
     "Add guest to groups:" : "Dodaj gosta v skupino:",
     "An error occured, try again" : "Prišlo je do napake. Poskusite znova.",
@@ -51,6 +53,7 @@ OC.L10N.register(
     "Error" : "Napaka",
     "Your settings have been updated" : "Nastavitve so posodobljene.",
     "Saving …" : "Poteka shranjevanje …",
-    "Invite guest" : "Povabi gosta"
+    "Invite guest" : "Povabi gosta",
+    "A user with this ID or email address already exists" : "Uporabnik s to identifikacijo ali elektronskim naslovom že obstaja."
 },
 "nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);");
