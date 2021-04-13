@@ -20,7 +20,6 @@
     "Data imported" : "已 導入資料",
     "Data from your previous guest account was successfully imported into your new account." : "您先前訪客賬戶的資料已成功導入進您的新賬戶。",
     "Create guest accounts for easier collaboration" : "建立訪客賬戶，讓協作更簡單",
-    "👥 Allows for better collaboration with external users by allowing users to create guests account.\n\nGuests accounts can be created from the share menu by entering either the recipients email or name and choosing \"create guest account\", once the share is created the guest user will receive an email notification about the mail with a link to set their password.\n\nGuests users can only access files shared to them and can't create any files outside of shares, additionally, the apps accessible to guest accounts are whitelisted." : "👥 透過允許用戶建立訪客帳號來與外部用戶有更好的協作。\n\n訪客帳號可以透過在分享選單中輸入收件者電子郵件或名稱並選取「建立訪客帳號」來建立，一旦建立了分享，訪客用戶將會收到設定他們密碼的電子郵件。\n\n訪客用戶僅能存取與他們分享的檔案，且無法在分享之外建立任何檔案，此外，訪客帳號可存取的應用程式也必須放入白名單。",
     "None" : "無",
     "Name" : "名稱",
     "Shared By" : "分享者：",
