@@ -13,13 +13,14 @@
     "After your account is activated you can view the share by logging in with %s." : "Ko je račun omogočen je mesto souporabe na voljo s prijavo z %s.",
     "The share will expire at %s." : "Povezava do souporabe bo potekla %s.",
     "Activate account" : "Omogoči račun",
-    "View share" : "Pokaži souporabo",
+    "View share" : "Pokaži mesto souporabe",
     "%s via %s" : "%s prek %s",
     "Couldn't send reset email. Please contact your administrator." : "Ni mogoče poslati elektronskega naslova za ponastavitev. Stopite v stik s skrbnikom sistema.",
     "Guests" : "Gosti",
     "Data imported" : "Podatki so uvoženi",
     "Data from your previous guest account was successfully imported into your new account." : "Podatki predhodnega računa gosta so bili uspešno uvoženi v nov račun.",
     "Create guest accounts for easier collaboration" : "Ustvarite račun za goste za enostavnejše sodelovanje",
+    "👥 Allows for better collaboration with external users by allowing users to create guests account.\n\nGuests accounts can be created from the share menu by entering either the recipients email or name and choosing \"create guest account\", once the share is created the guest user will receive an email notification about the mail with a link to set their password.\n\nGuests users can only access files shared to them and cannot create any files outside of shares, additionally, the apps accessible to guest accounts are whitelisted." : "👥 Z možnostjo ustvarjanja računov za goste je omogočeno sodelovanje tudi z zunanjimi uporabniki.\n\nRačune gostov je mogoče ustvariti prek menija souporabe. Vpisati je treba elektronski naslov oziroma ime iz potrditi možnost »Ustvari račun za goste«. Uporabnik prejme elektronsko sporočilo s povezavo za nastavitev gesla.\n\nGostom je omogočen dostop le do datotek, ki so jim dodeljene v souporabo, ne morejo pa ustvarjati datotek in map. Omogočena je tudi podpora za uporabo programom, ki so gostom dosegljivi.",
     "None" : "Brez",
     "Name" : "Ime",
     "Shared By" : "Souporabo omogoča:",
@@ -51,6 +52,6 @@
     "Your settings have been updated" : "Nastavitve so posodobljene.",
     "Saving …" : "Poteka shranjevanje …",
     "Invite guest" : "Povabi gosta",
-    "A user with this ID or email address already exists" : "Uporabnik s to identifikacijo ali elektronskim naslovom že obstaja."
+    "A user with this ID or email address already exists" : "Uporabnik s tem določilom ID ali elektronskim naslovom že obstaja."
 },"pluralForm" :"nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);"
 }
