@@ -10,7 +10,7 @@ OC.L10N.register(
     "%s shared »%s« with you" : "%s hat „%s“ mit Ihnen geteilt",
     "Incoming share" : "Eingehende Freigabe",
     "Hey there," : "Hallo,",
-    "%s just shared »%s« with you." : "%s hat mit Ihnen »%s« geteilt.",
+    "%s just shared »%s« with you." : "%s hat soeben »%s« mit Ihnen geteilt.",
     "You can access the shared file by activating your guest account." : "Sie können auf die geteilte Datei zugreifen, indem Sie sich mit Ihrem Gast-Konto anmelden.",
     "After your account is activated you can view the share by logging in with %s." : "Nach Aktivierung Ihres Kontos können Sie die Freigabe ansehen, indem sie sich mit %s anmelden.",
     "The share will expire at %s." : "Die Freigabe wird am %s ablaufen.",
