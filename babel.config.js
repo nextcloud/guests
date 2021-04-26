@@ -1,10 +1,3 @@
-module.exports = {
-	presets: [
-		[
-			'@babel/preset-env',
-			{
-				modules: false
-			}
-		]
-	]
-}
+const babelConfig = require('@nextcloud/babel-config')
+
+module.exports = babelConfig
