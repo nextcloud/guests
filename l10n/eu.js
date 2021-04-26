@@ -22,6 +22,7 @@ OC.L10N.register(
     "Data imported" : "Datuak inportatuta",
     "Data from your previous guest account was successfully imported into your new account." : "Aurreko gonbidatu kontuko datuak behar bezala inportatu dira zure kontu berrira.",
     "Create guest accounts for easier collaboration" : "Sortu gonbidatuen kontuak elkarlan errazago baterako",
+    "👥 Allows for better collaboration with external users by allowing users to create guests account.\n\nGuests accounts can be created from the share menu by entering either the recipients email or name and choosing \"create guest account\", once the share is created the guest user will receive an email notification about the mail with a link to set their password.\n\nGuests users can only access files shared to them and cannot create any files outside of shares, additionally, the apps accessible to guest accounts are whitelisted." : "👥 Kanpoko erabiltzaileekin lankidetza aukera hobetzen du, erabiltzaileari gonbidatuen kontuak sortzeko aukera emanez.\n\nGonbidatu kontuak partekatze menuaren bidez sortu daitezke, jasotzailearen e-posta edo izena sartuz eta \"sortu gonbidatu kontua\" aukeratuz. Partekatze hori egitean erabiltzaile gonbidatuak jakinarazpena jasoko du posta elektronikoz, esteka batekin, bere pasahitza ezar dezan.\n\nErabiltzaile gonbidatuek beraiekin partekatu diren fitxategiak bakarrik atzitu ditzakete eta ezin dute partekatzeez kanpo fitxategirik sortu. Gainera, zerrenda zurian zehazturiko aplikazioak bakarrik daude gonbidatuentzat eskuragarri.",
     "None" : "Bat ere ez",
     "Name" : "Izena",
     "Shared By" : "Nork partekatua",
@@ -52,6 +53,7 @@ OC.L10N.register(
     "Error" : "Errorea",
     "Your settings have been updated" : "Zure ezarpenak eguneratu dira",
     "Saving …" : "Gordetzen  ...",
-    "Invite guest" : "Gonbidapen berria bidali"
+    "Invite guest" : "Gonbidapen berria bidali",
+    "A user with this ID or email address already exists" : "Badago izen edo e-posta hori duen erabiltzaile bat"
 },
 "nplurals=2; plural=(n != 1);");
