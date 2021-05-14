@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.6.3 - 2021-05-14
+
+* [#604](https://github.com/nextcloud/guests/pull/604) Avoid guest creation modal if a user is suggested in the share search
+* [#614](https://github.com/nextcloud/guests/pull/614) Fix inconsistent persistence of guest user properties
+
 ## 1.6.2 - 2020-12-21
 
 * [#479](https://github.com/nextcloud/guests/pull/479) Allow the app to run with NC 21 @PVince81
