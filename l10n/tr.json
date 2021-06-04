@@ -1,9 +1,9 @@
 { "translations": {
     "Access to this resource is forbidden for guests." : "Konuklar bu kaynağa erişemesin.",
     "__language_name__" : "Türkçe",
-    "Invalid mail address" : "Geçersiz posta adresi",
+    "Invalid mail address" : "Geçersiz e-posta adresi",
     "A user with that email already exists." : "Bu e-posta adresinin kayıtlı olduğu bir kullanıcı hesabı zaten var.",
-    "A user with that name already exists." : "Bu isimde bir kullanıcı adı zaten mevcut.",
+    "A user with that name already exists." : "Aynı kullanıcı adlı bir kulanıcı zaten var.",
     "User successfully created" : "Kullanıcı oluşturuldu",
     "%s shared »%s« with you" : "%s sizinle »%s« paylaşımında bulundu",
     "Incoming share" : "Gelen paylaşım",
