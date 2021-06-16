@@ -82,6 +82,10 @@
     "email-validator": "^2.0.4",
     "vue": "^2.6.12"
   },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=7.0.0"
+  },
   "browserslist": [
     "extends @nextcloud/browserslist-config"
   ]
