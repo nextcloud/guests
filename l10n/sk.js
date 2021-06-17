@@ -34,6 +34,7 @@ OC.L10N.register(
     "No guest accounts created" : "Neboli vytvorené žiadne účty hostí",
     "Default" : "Predvolené",
     "Name:" : "Meno:",
+    "Email:" : "Email:",
     "Language:" : "Jazyk:",
     "Add guest to groups:" : "Pridať hosťa do skupín:",
     "An error occured, try again" : "Vyskytla sa chyba, skúste znova",
@@ -51,6 +52,7 @@ OC.L10N.register(
     "Error" : "Chyba",
     "Your settings have been updated" : "Vaše nastavenie bolo aktualizované",
     "Saving …" : "Ukladanie …",
-    "Invite guest" : "Pozviať hosťa"
+    "Invite guest" : "Pozviať hosťa",
+    "A user with this ID or email address already exists" : "Používateľ s takýmto ID alebo e-mailom už existuje."
 },
 "nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);");
