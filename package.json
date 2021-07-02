@@ -33,7 +33,7 @@
     "stylelint:fix": "stylelint css/*.css css/*.scss src/**/*.vue --fix"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.2",
+    "@babel/core": "^7.14.6",
     "@babel/eslint-parser": "^7.13.14",
     "@babel/plugin-proposal-class-properties": "^7.13.0",
     "@babel/plugin-transform-modules-commonjs": "^7.14.0",
