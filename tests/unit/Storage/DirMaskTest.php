@@ -40,7 +40,7 @@ class DirMaskTest extends TestCase {
 			'mask' => Constants::PERMISSION_READ,
 		]);
 
-		$this->assertEquals(Constants::PERMISSION_ALL - Constants::PERMISSION_DELETE, $mask->getPermissions(''));
+		$this->assertEquals($storage->getPermissions(''), $mask->getPermissions(''));
 		$this->assertEquals(Constants::PERMISSION_READ, $mask->getPermissions('readonly'));
 
 		$this->assertFalse($mask->isCreatable('readonly'));
