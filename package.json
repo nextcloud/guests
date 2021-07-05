@@ -57,7 +57,7 @@
     "eslint-plugin-standard": "^4.1.0",
     "eslint-plugin-vue": "^7.9.0",
     "eslint-webpack-plugin": "^2.5.4",
-    "node-polyfill-webpack-plugin": "^1.1.0",
+    "node-polyfill-webpack-plugin": "^1.1.4",
     "node-sass": "^6.0.0",
     "sass": "^1.32.12",
     "sass-loader": "^10.1.1",
