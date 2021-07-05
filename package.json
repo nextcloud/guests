@@ -59,16 +59,16 @@
     "eslint-webpack-plugin": "^2.5.4",
     "node-polyfill-webpack-plugin": "^1.1.0",
     "node-sass": "^6.0.0",
-    "sass": "^1.32.12",
+    "sass": "^1.35.1",
     "sass-loader": "^10.1.1",
     "style-loader": "^2.0.0",
     "stylelint": "^13.13.1",
     "stylelint-config-recommended-scss": "^4.2.0",
     "stylelint-scss": "^3.19.0",
-    "stylelint-webpack-plugin": "^2.1.1",
+    "stylelint-webpack-plugin": "^2.2.2",
     "url-loader": "^4.1.1",
     "vue-loader": "^15.9.6",
-    "vue-template-compiler": "^2.6.12",
+    "vue-template-compiler": "^2.6.14",
     "webpack": "^5.36.2",
     "webpack-cli": "^4.6.0",
     "webpack-merge": "^5.8.0"
@@ -80,7 +80,7 @@
     "@nextcloud/vue": "^3.3.1",
     "deep-equal": "^2.0.5",
     "email-validator": "^2.0.4",
-    "vue": "^2.6.12"
+    "vue": "^2.6.14"
   },
   "engines": {
     "node": ">=14.0.0",
