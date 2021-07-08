@@ -244,12 +244,16 @@ class UserBackend extends ABackend implements
 	 *
 	 * @param string $uid The username
 	 * @param string $password The password
-	 * @return string
+	 * @return string|bool
 	 *
 	 * Check if the password is correct without logging in the user
 	 * returns the user id or false
 	 */
 	public function checkPassword(string $uid, string $password) {
+		if (strpos($uid, '@') === false) {
+			return false;
+		}
+
 		$qb = $this->dbConn->getQueryBuilder();
 		$qb->select('uid', 'password')
 			->from('guests_users')
@@ -284,6 +288,10 @@ class UserBackend extends ABackend implements
 	 */
 	private function loadUser($uid) {
 		$uid = (string)$uid;
+		if (strpos($uid, '@') === false) {
+			return false;
+		}
+
 		if (!isset($this->cache[$uid])) {
 			//guests $uid could be NULL or ''
 			if ($uid === '') {
@@ -404,6 +412,10 @@ class UserBackend extends ABackend implements
 	}
 
 	public function getRealUID(string $uid): string {
+		if (strpos($uid, '@') === false) {
+			throw new \RuntimeException($uid . ' does not exist');
+		}
+
 		$qb = $this->dbConn->getQueryBuilder();
 		$qb->select('uid')
 			->from('guests_users')
