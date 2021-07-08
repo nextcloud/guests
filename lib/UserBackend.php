@@ -288,17 +288,15 @@ class UserBackend extends ABackend implements
 	 */
 	private function loadUser($uid) {
 		$uid = (string)$uid;
+
+		// guests $uid could be NULL or ''
+		// or is not an email anyway
 		if (strpos($uid, '@') === false) {
+			$this->cache[$uid] = false;
 			return false;
 		}
 
 		if (!isset($this->cache[$uid])) {
-			//guests $uid could be NULL or ''
-			if ($uid === '') {
-				$this->cache[$uid] = false;
-				return true;
-			}
-
 			$qb = $this->dbConn->getQueryBuilder();
 			$qb->select('uid', 'displayname')
 				->from('guests_users')
