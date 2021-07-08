@@ -67,17 +67,17 @@ class UserBackendTest extends TestCase {
 	}
 
 	public function testCreate() {
-		$this->backend->createUser('foo', 'bar');
-		$this->assertTrue($this->backend->userExists('foo'));
+		$this->backend->createUser('foo@example.tld', 'bar');
+		$this->assertTrue($this->backend->userExists('foo@example.tld'));
 
-		$this->assertEquals(['foo'], $this->backend->getUsers());
+		$this->assertEquals(['foo@example.tld'], $this->backend->getUsers());
 	}
 
 	public function testNoListing() {
-		$this->backend->createUser('foo', 'bar');
-		$this->assertTrue($this->backend->userExists('foo'));
+		$this->backend->createUser('foo@example.tld', 'bar');
+		$this->assertTrue($this->backend->userExists('foo@example.tld'));
 
-		$this->assertEquals(['foo'], $this->backend->getUsers());
+		$this->assertEquals(['foo@example.tld'], $this->backend->getUsers());
 
 		$this->backend->setAllowListing(false);
 
