@@ -416,22 +416,14 @@ class UserBackend extends ABackend implements
 			throw new \RuntimeException($uid . ' does not exist');
 		}
 
-		$qb = $this->dbConn->getQueryBuilder();
-		$qb->select('uid')
-			->from('guests_users')
-			->where(
-				$qb->expr()->eq(
-					'uid_lower', $qb->createNamedParameter(mb_strtolower($uid))
-				)
-			);
-		$result = $qb->execute();
-		$row = $result->fetch();
-		$result->closeCursor();
+		if (!isset($this->cache[$uid]['uid'])) {
+			$this->loadUser($uid);
+		}
 
-		if (!$row) {
+		if (!isset($this->cache[$uid]['uid'])) {
 			throw new \RuntimeException($uid . ' does not exist');
 		}
 
-		return $row['uid'];
+		return $this->cache[$uid]['uid'];
 	}
 }
