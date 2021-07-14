@@ -55,6 +55,7 @@ Guest users who eventually turn into full users (provided by any other user back
 1. Nextcloud 18 or higher
 2. target user needs to have the same email address as the guest user
 3. config.php setting `'migrate_guest_user_data' => true,`
+4. config.php setting `'remove_guest_account_on_conversion' => true` if you want the old account to also be deleted. By default the old account will just be disabled.
 
 ## Available occ commands
 

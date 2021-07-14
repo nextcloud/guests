@@ -260,8 +260,13 @@ class Hooks {
 			$this->shareManager->updateShare($share);
 		}
 
-		// Disable previous account
-		$guestUser->setEnabled(false);
+		if ($this->config->getSystemValue('remove_guest_account_on_conversion', false) === false) {
+			// Disable previous account
+			$guestUser->setEnabled(false);
+		} else {
+			// Remove previous account
+			$guestUser->delete();
+		}
 
 		$notification = $this->notificationManager->createNotification();
 		$notification
