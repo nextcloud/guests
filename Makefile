@@ -15,7 +15,7 @@ all: dev-setup build-js-production
 dev-setup: clean clean-dev npm-init
 
 npm-init:
-	npm install
+	npm ci
 
 npm-update:
 	npm update
@@ -75,4 +75,3 @@ build/appstore/$(package_name).tar.gz: dev-setup build-js-production
 	@if [ -f $(cert_dir)/$(app_name).key ]; then \
 		openssl dgst -sha512 -sign $(cert_dir)/$(app_name).key $(appstore_dir)/$(app_name).tar.gz | openssl base64; \
 	fi
-

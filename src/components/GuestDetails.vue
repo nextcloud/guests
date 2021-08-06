@@ -75,7 +75,9 @@ export default {
 			if (!this.details[this.guestId]) {
 				this.loaded = false
 				try {
-					const { data } = await axios.get(generateOcsUrl('apps/guests/api/v1/users/', 2) + encodeURIComponent(this.guestId))
+					const { data } = await axios.get(
+						generateOcsUrl('apps/guests/api/v1/users/{guestId}', { guestId: this.guestId })
+					)
 					this.details[this.guestId] = data.ocs.data
 					this.activeUser = this.guestId
 				} catch (error) {
