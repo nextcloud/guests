@@ -22,6 +22,8 @@
 namespace OCA\Guests\AppInfo;
 
 use OC\Server;
+use OCA\Files\Event\LoadAdditionalScriptsEvent;
+use OCA\Guests\Listener\LoadAdditionalScriptsListener;
 use OCA\Guests\Config;
 use OCA\Guests\GroupBackend;
 use OCA\Guests\GuestManager;
@@ -34,7 +36,6 @@ use OCP\AppFramework\App;
 use OCP\AppFramework\Bootstrap\IBootstrap;
 use OCP\AppFramework\Bootstrap\IRegistrationContext;
 use OCP\AppFramework\Bootstrap\IBootContext;
-use OCP\EventDispatcher\IEventDispatcher;
 use OCP\IUser;
 use OCP\Notification\IManager as INotificationManager;
 use OCP\Share\Events\ShareCreatedEvent;
@@ -47,10 +48,10 @@ class Application extends App implements IBootstrap {
 	}
 
 	public function register(IRegistrationContext $context): void {
-		$this->setupGuestManagement();
+		$this->setupGuestManagement($context);
 		$this->setupGuestRestrictions();
 		$this->setupNotifications();
-		$this->setupShareAccepting();
+		$this->setupShareAccepting($context);
 	}
 
 	public function boot(IBootContext $context): void {
@@ -58,24 +59,16 @@ class Application extends App implements IBootstrap {
 	}
 
 	/**
-	 * @return GuestManager
-	 */
-	private function getGuestManager() {
-		return $this->getContainer()->query(GuestManager::class);
-		;
-	}
-
-	/**
 	 * @return RestrictionManager
 	 */
-	private function getRestrictionManager() {
+	private function getRestrictionManager(): RestrictionManager {
 		return $this->getContainer()->query(RestrictionManager::class);
 	}
 
 	/**
 	 * @return UserBackend
 	 */
-	private function getUserBackend() {
+	private function getUserBackend(): UserBackend {
 		return $this->getContainer()->query(UserBackend::class);
 	}
 
@@ -89,7 +82,7 @@ class Application extends App implements IBootstrap {
 	/**
 	 * @return Config
 	 */
-	private function getConfig() {
+	private function getConfig(): Config {
 		return $this->getContainer()->query(Config::class);
 	}
 
@@ -97,25 +90,22 @@ class Application extends App implements IBootstrap {
 		return $this->getContainer()->query(INotificationManager::class);
 	}
 
-	private function setupGuestManagement() {
+	private function setupGuestManagement(IRegistrationContext $context): void {
 		$container = $this->getContainer();
 		/** @var Server $server */
 		$server = $container->getServer();
 
+		// FIXME: use IRegistrationContext once a suitable method is available
 		$server->getUserManager()->registerBackend($this->getUserBackend());
-
-		$server->getEventDispatcher()->addListener(
-			'OCA\Files::loadAdditionalScripts', function () {
-				if (!$this->getGuestManager()->isGuest() && $this->getConfig()->canCreateGuests()) {
-					\OCP\Util::addScript('guests', 'guests-main');
-				}
-			}
-		);
-
 		$server->getGroupManager()->addBackend($container->query(GroupBackend::class));
+
+
+		// FIXME: port to event classes once available in server
 		/** @var Hooks $hooks */
 		$server->getEventDispatcher()->addListener('OCP\Share::postShare', [$this->getHookManager(), 'handlePostShare']);
 		$server->getEventDispatcher()->addListener(IUser::class . '::firstLogin', [$this->getHookManager(), 'handleFirstLogin']);
+
+		$context->registerEventListener(LoadAdditionalScriptsEvent::class, LoadAdditionalScriptsListener::class);
 	}
 
 	private function setupGuestRestrictions() {
@@ -145,9 +135,7 @@ class Application extends App implements IBootstrap {
 		$notificationManager->registerNotifierService(Notifier::class);
 	}
 
-	private function setupShareAccepting(): void {
-		/** @var IEventDispatcher $dispatcher */
-		$dispatcher = $this->getContainer()->query(IEventDispatcher::class);
-		$dispatcher->addServiceListener(ShareCreatedEvent::class, ShareAutoAcceptListener::class);
+	private function setupShareAccepting(IRegistrationContext $context): void {
+		$context->registerEventListener(ShareCreatedEvent::class, ShareAutoAcceptListener::class);
 	}
 }
