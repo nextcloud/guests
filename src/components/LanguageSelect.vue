@@ -54,7 +54,7 @@ export default {
 	methods: {
 		async loadLanguages() {
 			try {
-				const result = await axios.get(generateOcsUrl('apps/guests/api/v1/', 2) + 'languages')
+				const result = await axios.get(generateOcsUrl('apps/guests/api/v1/languages'))
 				this.commonLanguages = result.data.ocs.data.commonLanguages
 				this.languages = result.data.ocs.data.languages
 				this.merged = [this.defaultLanguage].concat(result.data.ocs.data.commonLanguages).concat(result.data.ocs.data.languages)

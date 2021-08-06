@@ -89,7 +89,7 @@ export default {
 	methods: {
 		async loadGuests() {
 			try {
-				const { data } = await axios.get(generateOcsUrl('apps/guests/api/v1/', 2) + 'users')
+				const { data } = await axios.get(generateOcsUrl('apps/guests/api/v1/users'))
 				this.guests = data.ocs.data
 			} catch (error) {
 				this.error = true

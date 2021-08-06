@@ -182,7 +182,7 @@ export default {
 
 			this.loading = true
 			try {
-				await axios.put(generateOcsUrl('/apps/guests/api/v1/', 2) + 'users', {
+				await axios.put(generateOcsUrl('/apps/guests/api/v1/users'), {
 					displayName: this.guest.fullName,
 					email: this.guest.email,
 					language: this.guest.language,
@@ -204,10 +204,10 @@ export default {
 
 		async addGuestShare() {
 			try {
-				const url = OC.linkToOCS('apps/files_sharing/api/v1', 2)
+				const url = generateOcsUrl('/apps/files_sharing/api/v1/shares')
 				const path = (this.fileInfo.path + '/' + this.fileInfo.name).replace('//', '/')
 
-				const result = await axios.post(`${url}shares?format=json`, {
+				const result = await axios.post(url + '?format=json', {
 					shareType: OC.Share.SHARE_TYPE_USER,
 					shareWith: this.guest.username,
 					path,
@@ -226,7 +226,7 @@ export default {
 
 		async loadGroups() {
 			try {
-				const result = await axios.get(generateOcsUrl('apps/guests/api/v1/', 2) + 'groups')
+				const result = await axios.get(generateOcsUrl('apps/guests/api/v1/groups'))
 				this.groups = result.data.ocs.data.groups
 				this.groupRequired = result.data.ocs.data.required
 			} catch (error) {
