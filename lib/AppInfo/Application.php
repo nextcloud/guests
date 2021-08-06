@@ -52,8 +52,8 @@ class Application extends App implements IBootstrap {
 	}
 
 	public function boot(IBootContext $context): void {
-		$this->setupGuestRestrictions($context->getAppContainer(), $context->getServerContainer());
 		$this->setupGuestManagement($context->getAppContainer(), $context->getServerContainer());
+		$this->setupGuestRestrictions($context->getAppContainer(), $context->getServerContainer());
 		$this->setupNotifications($context->getAppContainer());
 		$context->getAppContainer()->query(RestrictionManager::class)->lateSetupRestrictions();
 	}
@@ -67,7 +67,7 @@ class Application extends App implements IBootstrap {
 		$server->getEventDispatcher()->addListener(IUser::class . '::firstLogin', [$hookManager, 'handleFirstLogin']);
 	}
 
-	private function setupGuestRestrictions(IAppContainer $container, IServerContainer $server) {
+	private function setupGuestRestrictions(IAppContainer $container, IServerContainer $server): void {
 		$userSession = $server->getUserSession();
 		$user = $userSession->getUser();
 		/** @var RestrictionManager $restrictionManager */
