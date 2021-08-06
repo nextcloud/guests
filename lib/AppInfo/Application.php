@@ -31,26 +31,29 @@ use OCA\Guests\Notifications\Notifier;
 use OCA\Guests\RestrictionManager;
 use OCA\Guests\UserBackend;
 use OCP\AppFramework\App;
+use OCP\AppFramework\Bootstrap\IBootstrap;
+use OCP\AppFramework\Bootstrap\IRegistrationContext;
+use OCP\AppFramework\Bootstrap\IBootContext;
 use OCP\EventDispatcher\IEventDispatcher;
 use OCP\IUser;
 use OCP\Notification\IManager as INotificationManager;
 use OCP\Share\Events\ShareCreatedEvent;
 
-class Application extends App {
+class Application extends App implements IBootstrap {
 	public const APP_ID = 'guests';
 
 	public function __construct(array $urlParams = []) {
 		parent::__construct(self::APP_ID, $urlParams);
 	}
 
-	public function setup() {
+	public function register(IRegistrationContext $context): void {
 		$this->setupGuestManagement();
 		$this->setupGuestRestrictions();
 		$this->setupNotifications();
 		$this->setupShareAccepting();
 	}
 
-	public function lateSetup() {
+	public function boot(IBootContext $context): void {
 		$this->getRestrictionManager()->lateSetupRestrictions();
 	}
 
