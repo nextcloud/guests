@@ -49,6 +49,12 @@ class Application extends App implements IBootstrap {
 	public function register(IRegistrationContext $context): void {
 		$context->registerEventListener(LoadAdditionalScriptsEvent::class, LoadAdditionalScriptsListener::class);
 		$context->registerEventListener(ShareCreatedEvent::class, ShareAutoAcceptListener::class);
+
+		// need to cheat here since there's no way to register these in IRegistrationContext
+		$container = $this->getContainer();
+		$server = $container->getServer();
+		$server->getUserManager()->registerBackend($container->query(UserBackend::class));
+		$server->getGroupManager()->addBackend($container->query(GroupBackend::class));
 	}
 
 	public function boot(IBootContext $context): void {
@@ -59,9 +65,6 @@ class Application extends App implements IBootstrap {
 	}
 
 	private function setupGuestManagement(IAppContainer $container, IServerContainer $server): void {
-		$server->getUserManager()->registerBackend($container->query(UserBackend::class));
-		$server->getGroupManager()->addBackend($container->query(GroupBackend::class));
-
 		$hookManager = $container->query(Hooks::class);
 		$server->getEventDispatcher()->addListener('OCP\Share::postShare', [$hookManager, 'handlePostShare']);
 		$server->getEventDispatcher()->addListener(IUser::class . '::firstLogin', [$hookManager, 'handleFirstLogin']);
