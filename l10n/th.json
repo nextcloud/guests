@@ -1,6 +1,6 @@
 { "translations": {
     "Access to this resource is forbidden for guests." : "บุคคลทั่วไปไม่สามารถเข้าถึงทรัพยากรนี้ได้",
-    "__language_name__" : "ภาษาไทย - Thai languages",
+    "__language_name__" : "ภาษาไทย - Thai",
     "Invalid mail address" : "ที่อยู่อีเมลไม่ถูกต้อง",
     "A user with that name already exists." : "มีชื้อผู้ใช้นี้อยู่แล้ว",
     "User successfully created" : "สร้างผู้ใช้เรียบร้อยแล้ว",
