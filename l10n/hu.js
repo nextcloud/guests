@@ -27,7 +27,7 @@ OC.L10N.register(
     "Name" : "Név",
     "Shared By" : "Megosztotta:",
     "Shared At" : "Megosztva:",
-    "An error occured while fetching the shares list" : "Hiba történt a megosztási lista lekérése közben",
+    "An error occured while fetching the shares list" : "Hiba történt a megosztási lista lekérése során",
     "Guests accounts" : "Vendégfiókok",
     "Email" : "E-mail",
     "Invited by" : "Meghívta:",
@@ -40,9 +40,9 @@ OC.L10N.register(
     "Add guest to groups:" : "Vendég hozzáadása a csoportokhoz:",
     "An error occured, try again" : "Hiba történt, próbálja újra",
     "Invite user and create share" : "Hívja meg a felhasználót, és hozzon létre megosztást",
-    "Invite {name}" : "{Name} meghívása",
+    "Invite {name}" : "{name} meghívása",
     "Guest user needs to be added to at least one group" : "A vendég felhasználót legalább egy csoporthoz hozzá kell adni ",
-    "Creating guests users is restricted while \"Restrict users to only share with users in their groups\" is enabled." : "A vendégfelhasználók létrehozása korlátozott, míg a \"Korlátozza a felhasználókat, hogy csak a csoportjaikban lévő felhasználókkal osszanak meg\" lehetőség engedélyezve van.",
+    "Creating guests users is restricted while \"Restrict users to only share with users in their groups\" is enabled." : "A vendégfelhasználók létrehozása korlátozott, míg a „A felhasználók korlátozása, hogy csak a csoportjaikban lévő felhasználókkal oszthassanak meg” lehetőség engedélyezve van.",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Csak a csoport rendszergazdái hozhatnak létre vendégeket, és a vendégeket hozzá kell adni legalább egy csoporthoz, amely megosztás létrehozója a csoport rendszergazdája.",
     "Guest users are grouped under a virtual group in the user manager" : "A vendégfelhasználók egy virtuális csoportba vannak szervezve a felhasználókezelőben",
     "Guest users can access mounted external storages" : "A vendégfelhasználók elérhetik a csatolt külső tárolókat",
@@ -54,6 +54,6 @@ OC.L10N.register(
     "Your settings have been updated" : "Beállításai sikeresen frissítve",
     "Saving …" : "Mentés …",
     "Invite guest" : "Vendég meghívása",
-    "A user with this ID or email address already exists" : "Ezzel az azonosítóval vagy e-mail címmel már létezik felhasználó."
+    "A user with this ID or email address already exists" : "Ezzel az azonosítóval vagy e-mail-címmel már létezik felhasználó."
 },
 "nplurals=2; plural=(n != 1);");
