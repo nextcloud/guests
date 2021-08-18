@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2.0.1 - 2021-08-18
+
+* [#649](https://github.com/nextcloud/guests/pull/649) Compare mask root with storage permissions @juliushaertl
+* [#676](https://github.com/nextcloud/guests/pull/676) Don't ask the database for user ids which are not emails @nickvergessen
+* [#677](https://github.com/nextcloud/guests/pull/677) Fix non guests bring blocked @nickvergessen
+* [#682](https://github.com/nextcloud/guests/pull/682) Add option to delete old guest accounts during auto-conversion @CarlSchwan
+* [#594](https://github.com/nextcloud/guests/pull/594) L10n: Unify spelling @Valdnet
+* [#702](https://github.com/nextcloud/guests/pull/702) Move to IBootstrap @PVince81
+* Dependency updates
+
+
 ## 2.0.0 - 2021-04-12
 
 ## Merged PRs:
