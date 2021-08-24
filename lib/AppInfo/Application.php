@@ -54,6 +54,7 @@ class Application extends App implements IBootstrap {
 		$container = $this->getContainer();
 		$server = $container->getServer();
 		$server->getUserManager()->registerBackend($container->query(UserBackend::class));
+		\OC_App::loadApp('theming');
 		$server->getGroupManager()->addBackend($container->query(GroupBackend::class));
 	}
 
