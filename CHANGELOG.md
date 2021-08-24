@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2.0.2 - 2021-08-24
+
+### Fixed
+
+- #724 Force-load theme at the right moment @PVince81
+
+### Dependencies
+
+- #720 Bump webpack from 5.50.0 to 5.51.1 @dependabot[bot]
+- #721 Bump webpack-cli from 4.7.2 to 4.8.0 @dependabot[bot]
+- #722 Bump eslint-plugin-import from 2.24.0 to 2.24.1 @dependabot[bot]
+- #723 Bump sass from 1.37.5 to 1.38.0 @dependabot[bot]
+
+
 ## 2.0.1 - 2021-08-18
 
 * [#649](https://github.com/nextcloud/guests/pull/649) Compare mask root with storage permissions @juliushaertl
