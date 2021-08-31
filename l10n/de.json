@@ -1,6 +1,6 @@
 { "translations": {
     "Access to this resource is forbidden for guests." : "Der Zugriff auf diese Ressource ist für Gastnutzer untersagt. ",
-    "__language_name__" : "__language_name__",
+    "__language_name__" : "Deutsch (Persönlich: Du)",
     "Invalid mail address" : "Ungültige E-Mail-Adresse",
     "A user with that email already exists." : "Ein Benutzer mit dieser E-Mail-Adresse existiert bereits.",
     "A user with that name already exists." : "Ein Benutzer mit diesem Namen existiert bereits.",

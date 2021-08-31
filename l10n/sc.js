@@ -2,7 +2,7 @@ OC.L10N.register(
     "guests",
     {
     "Access to this resource is forbidden for guests." : "S'atzessu a custa resursa est proibidu a is persones invitadas.",
-    "__language_name__" : "__sardu__",
+    "__language_name__" : "sardu",
     "Invalid mail address" : "Indiritzu de posta non bàlidu",
     "A user with that email already exists." : "B'at giai un'utente cun custu indiritzu de posta.",
     "A user with that name already exists." : "B'at giai un'utente cun custu nùmene.",
