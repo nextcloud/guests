@@ -28,6 +28,7 @@ OC.L10N.register(
     "No guest accounts created" : "Vierastiliä ei luotu",
     "Default" : "Oletus",
     "Name:" : "Nimi:",
+    "Email:" : "Sähköpostiosoite:",
     "Language:" : "Kieli:",
     "Add guest to groups:" : "Lisää vieras ryhmiin:",
     "An error occured, try again" : "Tapahtui virhe. Yritä uudelleen",
