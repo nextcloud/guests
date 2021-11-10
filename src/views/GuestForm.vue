@@ -248,6 +248,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use 'sass:math';
+
 .guest_model_content {
 	$modal-gutter: 22px;
 	$modal-button-loading: 16px;
@@ -257,7 +259,7 @@ export default {
 	margin: $modal-gutter;
 
 	.form-group {
-		margin: $modal-gutter / 2 0;
+		margin: math.div($modal-gutter, 2) 0;
 	}
 
 	.form-label,

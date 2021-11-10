@@ -2,12 +2,8 @@
 
 app_name=guests
 project_dir=$(CURDIR)/../$(app_name)
-build_dir=$(project_dir)/build
-appstore_dir=$(build_dir)/appstore
+build_dir=$(CURDIR)/build/artifacts
 package_name=$(app_name)
-cert_dir=$(HOME)/.nextcloud/certificates
-
-jssources=$(wildcard js/*) $(wildcard js/*/*) $(wildcard css/*/*)  $(wildcard css/*)
 
 all: dev-setup build-js-production
 
@@ -36,6 +32,7 @@ clean:
 
 clean-dev:
 	rm -rf node_modules
+	rm -rf vendor
 
 # Linting
 lint:
@@ -51,14 +48,12 @@ stylelint:
 stylelint-fix:
 	npm run stylelint:fix
 
-appstore: clean package
-
-package: build/appstore/$(package_name).tar.gz
-build/appstore/$(package_name).tar.gz: dev-setup build-js-production
-	mkdir -p $(appstore_dir)
+appstore: clean-dev
+	mkdir -p $(build_dir)
 	tar --exclude-vcs \
-	--exclude=$(appstore_dir) \
+	--exclude=$(build_dir) \
 	--exclude=$(project_dir)/node_modules \
+	--exclude=$(project_dir)/vendor \
 	--exclude=$(project_dir)/webpack* \
 	--exclude=$(project_dir)/.gitattributes \
 	--exclude=$(project_dir)/.gitignore \
@@ -71,7 +66,4 @@ build/appstore/$(package_name).tar.gz: dev-setup build-js-production
 	--exclude=$(project_dir)/Makefile \
 	--exclude=$(project_dir)/tests \
 	--exclude=$(project_dir)/src \
-	-cvzf $(appstore_dir)/$(package_name).tar.gz $(project_dir)
-	@if [ -f $(cert_dir)/$(app_name).key ]; then \
-		openssl dgst -sha512 -sign $(cert_dir)/$(app_name).key $(appstore_dir)/$(app_name).tar.gz | openssl base64; \
-	fi
+	-cvzf $(build_dir)/$(package_name).tar.gz $(project_dir)
