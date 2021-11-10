@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2.1.0 - 2021-11-10
+
+### Enhancements
+
+- 23 compatibility
+
 ## 2.0.2 - 2021-08-24
 
 ### Fixed
