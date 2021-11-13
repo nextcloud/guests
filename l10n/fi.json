@@ -16,6 +16,7 @@
     "%s via %s" : "%s (palvelun %s kautta)",
     "Couldn't send reset email. Please contact your administrator." : "Palautussähköpostin lähettäminen ei onnistunut. Ota yhteys ylläpitäjään.",
     "Guests" : "Vieraat",
+    "Data from your previous guest account was successfully imported into your new account." : "Tiedot aiemmasta vierastilistäsi tuotiin onnistuneesti uuteen tiliisi.",
     "Create guest accounts for easier collaboration" : "Luo vierastilejä entistä helpomman yhteistyön mahdollistamiseksi",
     "None" : "Ei mitään",
     "Name" : "Nimi",

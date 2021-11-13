@@ -34,6 +34,7 @@ OC.L10N.register(
     "No guest accounts created" : "Aucun compte invité",
     "Default" : "Par défaut",
     "Name:" : "Nom complet :",
+    "Email:" : "Courriel :",
     "Language:" : "Langue :",
     "Add guest to groups:" : "Ajouter cet invité aux groupes suivants :",
     "An error occured, try again" : "Une erreur est survenue, merci de réessayer",
@@ -51,6 +52,7 @@ OC.L10N.register(
     "Error" : "Erreur",
     "Your settings have been updated" : "Vos paramètres ont été enregistrés",
     "Saving …" : "Enregistrement…",
-    "Invite guest" : "Inviter un invité"
+    "Invite guest" : "Inviter un invité",
+    "A user with this ID or email address already exists" : "Un utilisateur avec cet ID ou cette adresse courriel existe déjà"
 },
 "nplurals=2; plural=(n > 1);");
