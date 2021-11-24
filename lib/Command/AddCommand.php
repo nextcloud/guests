@@ -153,6 +153,7 @@ class AddCommand extends Command {
 
 		if ($user instanceof IUser) {
 			$output->writeln('<info>The guest account user "' . $user->getUID() . '" was created successfully</info>');
+			return 0;
 		} else {
 			$output->writeln('<error>An error occurred while creating the user</error>');
 			return 1;

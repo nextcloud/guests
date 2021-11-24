@@ -54,7 +54,7 @@ class ListCommand extends Base {
 			} else {
 				$output->writeln("<info>No guests created</info>");
 			}
-			return;
+			return 0;
 		}
 
 		if ($outputType === self::OUTPUT_FORMAT_JSON || $outputType === self::OUTPUT_FORMAT_JSON_PRETTY) {
@@ -65,5 +65,6 @@ class ListCommand extends Base {
 			$table->setRows($guests);
 			$table->render();
 		}
+		return 0;
 	}
 }
