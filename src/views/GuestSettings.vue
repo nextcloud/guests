@@ -135,9 +135,9 @@ export default {
 
 			try {
 				await axios.put(generateUrl('apps/guests/config'), this.config)
-			} catch ({ response }) {
+			} catch ({ data }) {
 				this.error = true
-				console.error(response)
+				console.error(data)
 			} finally {
 				this.saved = true
 				this.savingTimeout = setTimeout(() => {
@@ -150,11 +150,11 @@ export default {
 			this.resetSaving()
 
 			try {
-				const { response } = await axios.post(generateUrl('apps/guests/whitelist/reset'))
-				this.config.whitelist = response.whitelist
-			} catch ({ response }) {
+				const { data } = await axios.post(generateUrl('apps/guests/whitelist/reset'))
+				this.config.whitelist = data.whitelist
+			} catch ({ data }) {
 				this.error = true
-				console.error(response)
+				console.error(data)
 			} finally {
 				this.saved = true
 				this.savingTimeout = setTimeout(() => {
@@ -208,7 +208,7 @@ export default {
 		&.error {
 			background-color: var(--color-error)
 		}
-		&.saving {
+		&.saving, &.saved {
 			background-color: var(--color-success)
 		}
 	}
