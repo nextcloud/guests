@@ -1,5 +1,5 @@
 { "translations": {
-    "Access to this resource is forbidden for guests." : "Δεν επιτρέπεται η πρόσβαση επιςκεπτών σε αυτόν τον πόρο.",
+    "Access to this resource is forbidden for guests." : "Δεν επιτρέπεται η πρόσβαση επισκεπτών σε αυτόν τον πόρο.",
     "__language_name__" : "Ελληνικά",
     "Invalid mail address" : "Μη έγκυρη διεύθυνση ταχυδρομείου.",
     "A user with that email already exists." : "Υπάρχει ήδη χρήστης με το ίδιο email",
@@ -20,6 +20,7 @@
     "Data imported" : "Εισαχθέντα δεδομένα",
     "Data from your previous guest account was successfully imported into your new account." : "Τα δεδομένα απο τον προηγούμενο λογαριασμό επισκέπτη μεταφέρθηκαν επιτυχώς στον νέο σας λογαριασμό.",
     "Create guest accounts for easier collaboration" : "Δημιουργήστε λογαριασμούς επισκεπτών για ευκολότερη συνεργασία",
+    "👥 Allows for better collaboration with external users by allowing users to create guests account.\n\nGuests accounts can be created from the share menu by entering either the recipients email or name and choosing \"create guest account\", once the share is created the guest user will receive an email notification about the mail with a link to set their password.\n\nGuests users can only access files shared to them and cannot create any files outside of shares, additionally, the apps accessible to guest accounts are whitelisted." : "👥 Επιτρέπει την καλύτερη συνεργασία με εξωτερικούς χρήστες επιτρέποντας τους χρήστες να δημιουργούν λογαριασμούς επισκεπτών.\n\nΟι λογαριασμοί επισκεπτών μπορούν να δημιουργηθούν από το μενού διαμοιρασμού εισάγοντας είτε τα email ή τα ονόματα των παραληπτών και επιλέγοντας «δημιουργία λογαριασμού επισκέπτη» , μόλις ο διαμοιρασμός δημιουργηθεί ο χρήστης επισκέπτης θα λάβει μία ειδοποίηση ηλεκτρονικού ταχυδρομείου για το μήνυμα με έναν σύνδεσμο για να θέσει τον κωδικό του.\n\nΟι χρήστες επισκέπτες μπορούν να προσπελάσουν μόνο αρχεία διαμοιρασμένα σε αυτούς και δεν μπορούν να δημιουργήσουν οποιαδήποτε αρχεία εκτός των διαμοιρασμένων, επιπρόσθετα, οι εφαρμογές που είναι προσβάσιμες στους χρήστες επισκέπτες εγκρίνονται.",
     "None" : "Κανένα",
     "Name" : "Όνομα",
     "Shared By" : "Διαμοιράστηκε από",
@@ -32,6 +33,7 @@
     "No guest accounts created" : "Δεν δημιουργήθηκαν λογαριασμοί επισκέπτη",
     "Default" : "Προεπιλεγμένο",
     "Name:" : "Όνομα:",
+    "Email:" : "Email:",
     "Language:" : "Γλώσσα:",
     "Add guest to groups:" : "Προσθήκη επισκέπτη στις ομάδες:",
     "An error occured, try again" : "Παρουσιάστηκε σφάλμα, δοκιμάστε ξανά",
@@ -49,6 +51,7 @@
     "Error" : "Σφάλμα",
     "Your settings have been updated" : "Οι ρυθμίσεις σας ενημερώθηκαν",
     "Saving …" : "Αποθήκευση ...",
-    "Invite guest" : "Πρόσκληση επισκέπτη"
+    "Invite guest" : "Πρόσκληση επισκέπτη",
+    "A user with this ID or email address already exists" : "Υπάρχει ήδη χρήστης με αυτό το ID ή την διεύθυνση email"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
