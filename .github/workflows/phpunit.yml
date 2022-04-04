@@ -79,9 +79,19 @@ jobs:
       # do not stop on another job's failure
       fail-fast: false
       matrix:
-        php-versions: ['7.3', '7.4', "8.0", "8.1"]
+        php-versions: ['7.4', "8.0"]
         databases: ['mysql']
         server-versions: ['stable22', 'stable23', 'master']
+        include:
+          - php-versions: '7.3'
+            server-versions: 'stable22'
+            databases: 'mysql'
+          - php-versions: '7.3'
+            server-versions: 'stable23'
+            databases: 'mysql'
+          - php-versions: '8.1'
+            server-versions: 'master'
+            databases: 'mysql'
 
     name: php${{ matrix.php-versions }}-${{ matrix.databases }}-${{ matrix.server-versions }}
 
