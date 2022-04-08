@@ -130,7 +130,7 @@ class AddCommand extends Command {
 
 				$question = new Question('Confirm password: ');
 				$question->setHidden(true);
-				$confirm = $helper->ask($input, $output,$question);
+				$confirm = $helper->ask($input, $output, $question);
 
 				if ($password !== $confirm) {
 					$output->writeln("<error>Passwords did not match!</error>");
