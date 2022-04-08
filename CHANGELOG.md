@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2.2.0 - 2022-04-08
+
+### Fixed
+
+- #879 Configs update before 23+24 release @skjnldsv
+
+### Enhancements
+
+- 23 compatibility
+
 ## 2.1.0 - 2021-11-10
 
 ### Enhancements

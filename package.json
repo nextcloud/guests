@@ -1,7 +1,7 @@
 {
 	"name": "guests",
 	"description": "Create guest users which can only see files shared with them",
-	"version": "2.1.0",
+	"version": "2.2.0",
 	"author": "Robin Appelman <robin@icewind.nl>",
 	"contributors": [
 		"Robin Appelman <robin@icewind.nl>",
@@ -44,7 +44,7 @@
 		"@nextcloud/axios": "^1.9.0",
 		"@nextcloud/dialogs": "^3.1.2",
 		"@nextcloud/router": "^2.0.0",
-		"@nextcloud/vue": "^5.3.0",
+		"@nextcloud/vue": "^5.3.1",
 		"deep-equal": "^2.0.5",
 		"email-validator": "^2.0.4",
 		"vue": "^2.6.14",
