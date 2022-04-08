@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.3.1@2feba22a005a18bf31d4c7b9bdb9252c73897476">
+<files psalm-version="4.x-dev@">
   <file src="lib/AppConfigOverwrite.php">
     <UndefinedClass occurrences="1">
       <code>AppConfig</code>
     </UndefinedClass>
   </file>
   <file src="lib/AppInfo/Application.php">
-    <UndefinedDocblockClass occurrences="8">
-      <code>$server</code>
-      <code>$server</code>
-      <code>$server</code>
-      <code>$server</code>
-      <code>$server</code>
-      <code>$server</code>
-      <code>$server</code>
-      <code>$server</code>
-    </UndefinedDocblockClass>
+    <InvalidArgument occurrences="2">
+      <code>registerEventListener</code>
+      <code>registerEventListener</code>
+    </InvalidArgument>
+    <UndefinedClass occurrences="1">
+      <code>\OC_App</code>
+    </UndefinedClass>
+    <UndefinedInterfaceMethod occurrences="1">
+      <code>listen</code>
+    </UndefinedInterfaceMethod>
   </file>
   <file src="lib/AppWhitelist.php">
     <MissingDependency occurrences="1">
@@ -25,34 +25,68 @@
       <code>\OC_App</code>
     </UndefinedClass>
   </file>
+  <file src="lib/Command/AddCommand.php">
+    <UndefinedDocblockClass occurrences="3">
+      <code>$helper</code>
+      <code>$helper</code>
+      <code>$helper</code>
+    </UndefinedDocblockClass>
+    <UndefinedMethod occurrences="1">
+      <code>isInteractive</code>
+    </UndefinedMethod>
+  </file>
   <file src="lib/Command/ListCommand.php">
-    <UndefinedClass occurrences="1">
-      <code>Base</code>
-    </UndefinedClass>
+    <InvalidReturnStatement occurrences="2">
+      <code>0</code>
+      <code>0</code>
+    </InvalidReturnStatement>
+    <InvalidReturnType occurrences="1">
+      <code>void</code>
+    </InvalidReturnType>
   </file>
   <file src="lib/Config.php">
-    <UndefinedClass occurrences="1">
-      <code>\OC</code>
-    </UndefinedClass>
+    <UndefinedPropertyFetch occurrences="1">
+      <code>\OC::$SERVERROOT</code>
+    </UndefinedPropertyFetch>
   </file>
   <file src="lib/Controller/APIController.php">
+    <RedundantCast occurrences="1">
+      <code>(string)$l-&gt;t('__language_name__')</code>
+    </RedundantCast>
     <UndefinedClass occurrences="2">
       <code>Factory</code>
       <code>Factory</code>
     </UndefinedClass>
   </file>
-  <file src="lib/GuestManager.php">
-    <UndefinedClass occurrences="5">
-      <code>Share</code>
-      <code>Share</code>
-      <code>Share</code>
-      <code>Share</code>
-      <code>Share</code>
+  <file src="lib/Controller/SettingsController.php">
+    <InvalidArgument occurrences="1">
+      <code>$whitelist</code>
+    </InvalidArgument>
+  </file>
+  <file src="lib/Controller/UsersController.php">
+    <UndefinedClass occurrences="1">
+      <code>PublicEmitter</code>
     </UndefinedClass>
-    <UndefinedDocblockClass occurrences="3">
-      <code>$query-&gt;execute()</code>
-      <code>$result</code>
-      <code>$result</code>
+  </file>
+  <file src="lib/FilteredNavigationManager.php">
+    <ParamNameMismatch occurrences="1">
+      <code>$id</code>
+    </ParamNameMismatch>
+  </file>
+  <file src="lib/Hooks.php">
+    <InvalidArgument occurrences="1">
+      <code>$e</code>
+    </InvalidArgument>
+    <InvalidScalarArgument occurrences="1">
+      <code>$share-&gt;getNodeId()</code>
+    </InvalidScalarArgument>
+    <UndefinedClass occurrences="2">
+      <code>OwnershipTransferService</code>
+      <code>TransferOwnershipException</code>
+    </UndefinedClass>
+    <UndefinedDocblockClass occurrences="2">
+      <code>$ownershipTransferService</code>
+      <code>$ownershipTransferService</code>
     </UndefinedDocblockClass>
   </file>
   <file src="lib/Mail.php">
@@ -61,14 +95,12 @@
     </MissingDependency>
   </file>
   <file src="lib/RestrictionManager.php">
-    <MissingDependency occurrences="2">
+    <MissingDependency occurrences="1">
       <code>AppConfigOverwrite</code>
-      <code>FilteredNavigationManager</code>
     </MissingDependency>
-  </file>
-  <file src="lib/Storage/DirMask.php">
-    <UndefinedClass occurrences="1">
-      <code>PermissionsMask</code>
+    <UndefinedClass occurrences="2">
+      <code>AppConfig</code>
+      <code>ExternalMountPoint</code>
     </UndefinedClass>
   </file>
   <file src="lib/Storage/DirMaskCache.php">
@@ -76,9 +108,18 @@
       <code>CachePermissionsMask</code>
     </UndefinedClass>
   </file>
-  <file src="lib/Storage/ReadOnlyJail.php">
-    <MissingDependency occurrences="1">
-      <code>DirMask</code>
-    </MissingDependency>
+  <file src="lib/UserBackend.php">
+    <ImplicitToStringCast occurrences="1">
+      <code>$query-&gt;func()-&gt;lower('displayname')</code>
+    </ImplicitToStringCast>
+    <InvalidArgument occurrences="1"/>
+    <InvalidScalarArgument occurrences="6">
+      <code>$limit</code>
+      <code>$limit</code>
+      <code>$limit</code>
+      <code>$offset</code>
+      <code>$offset</code>
+      <code>$offset</code>
+    </InvalidScalarArgument>
   </file>
 </files>

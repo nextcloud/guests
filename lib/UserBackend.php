@@ -48,11 +48,17 @@ class UserBackend extends ABackend implements
 	IGetHomeBackend,
 	ICountUsersBackend,
 	IGetRealUIDBackend {
+	/** @var CappedMemoryCache */
 	private $cache;
+	/** @var IEventDispatcher */
 	private $eventDispatcher;
+	/** @var IDBConnection */
 	private $dbConn;
+	/** @var Config */
 	private $config;
+	/** @var IHasher */
 	private $hasher;
+	/** @var bool */
 	private $allowListing = true;
 
 	public function __construct(
@@ -186,7 +192,6 @@ class UserBackend extends ABackend implements
 	 * @return string display name
 	 */
 	public function getDisplayName($uid): string {
-		$uid = (string)$uid;
 		$this->loadUser($uid);
 		return empty($this->cache[$uid]['displayname']) ? $uid : $this->cache[$uid]['displayname'];
 	}
@@ -247,8 +252,8 @@ class UserBackend extends ABackend implements
 	 * Check if the password is correct without logging in the user
 	 * returns the user id or false
 	 */
-	public function checkPassword(string $uid, string $password) {
-		if (strpos($uid, '@') === false) {
+	public function checkPassword(string $loginName, string $password) {
+		if (strpos($loginName, '@') === false) {
 			return false;
 		}
 
@@ -257,7 +262,7 @@ class UserBackend extends ABackend implements
 			->from('guests_users')
 			->where(
 				$qb->expr()->eq(
-					'uid_lower', $qb->createNamedParameter(mb_strtolower($uid))
+					'uid_lower', $qb->createNamedParameter(mb_strtolower($loginName))
 				)
 			);
 		$result = $qb->execute();
@@ -269,7 +274,7 @@ class UserBackend extends ABackend implements
 			$newHash = '';
 			if ($this->hasher->verify($password, $storedHash, $newHash)) {
 				if (!empty($newHash)) {
-					$this->setPassword($uid, $password);
+					$this->setPassword($loginName, $password);
 				}
 				return (string)$row['uid'];
 			}
@@ -285,8 +290,6 @@ class UserBackend extends ABackend implements
 	 * @return bool true if user was found, false otherwise
 	 */
 	private function loadUser($uid): bool {
-		$uid = (string)$uid;
-
 		// guests $uid could be NULL or ''
 		// or is not an email anyway
 		if (strpos($uid, '@') === false) {
@@ -311,6 +314,7 @@ class UserBackend extends ABackend implements
 
 			// "uid" is primary key, so there can only be a single result
 			if ($row !== false) {
+				$this->cache[$uid] = [];
 				$this->cache[$uid]['uid'] = (string)$row['uid'];
 				$this->cache[$uid]['displayname'] = (string)$row['displayname'];
 			} else {

@@ -133,7 +133,7 @@ class UsersController extends OCSController {
 		}
 
 		if (empty($email) || !$this->mailer->validateMailAddress($email)) {
-			$errorMessages['email'] = (string)$this->l10n->t(
+			$errorMessages['email'] = $this->l10n->t(
 				'Invalid mail address'
 			);
 		}
@@ -142,11 +142,11 @@ class UsersController extends OCSController {
 
 		$existingUsers = $this->userManager->getByEmail($email);
 		if (count($existingUsers) > 0) {
-			$errorMessages['email'] = (string)$this->l10n->t(
+			$errorMessages['email'] = $this->l10n->t(
 				'A user with that email already exists.'
 			);
 		} elseif ($this->userManager->userExists($username)) {
-			$errorMessages['username'] = (string)$this->l10n->t(
+			$errorMessages['username'] = $this->l10n->t(
 				'A user with that name already exists.'
 			);
 		}
@@ -180,7 +180,7 @@ class UsersController extends OCSController {
 
 		return new DataResponse(
 			[
-				'message' => (string)$this->l10n->t(
+				'message' => $this->l10n->t(
 					'User successfully created'
 				),
 			],

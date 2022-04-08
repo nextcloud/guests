@@ -102,7 +102,7 @@ class GuestManager {
 		return false;
 	}
 
-	public function createGuest(IUser $createdBy, string $userId, string $email, string $displayName = '', string $language = '', ?string = $initialPassword = null) : IUser {
+	public function createGuest(IUser $createdBy, string $userId, string $email, string $displayName = '', string $language = '', ?string $initialPassword = null) : IUser {
 		if ($initialPassword === null) {
 			$passwordEvent = new GenerateSecurePasswordEvent();
 			$this->eventDispatcher->dispatchTyped($passwordEvent);
@@ -192,11 +192,11 @@ class GuestManager {
 
 	public function getGuestInfo($userId): array {
 		$shares = array_merge(
-			$this->shareManager->getSharedWith($userId, Share::SHARE_TYPE_USER, null, -1, 0),
-			$this->shareManager->getSharedWith($userId, Share::SHARE_TYPE_GROUP, null, -1, 0),
-			$this->shareManager->getSharedWith($userId, Share::SHARE_TYPE_CIRCLE, null, -1, 0),
-			$this->shareManager->getSharedWith($userId, Share::SHARE_TYPE_GUEST, null, -1, 0),
-			$this->shareManager->getSharedWith($userId, Share::SHARE_TYPE_ROOM, null, -1, 0)
+			$this->shareManager->getSharedWith($userId, IShare::TYPE_USER, null, -1, 0),
+			$this->shareManager->getSharedWith($userId, IShare::TYPE_GROUP, null, -1, 0),
+			$this->shareManager->getSharedWith($userId, IShare::TYPE_CIRCLE, null, -1, 0),
+			$this->shareManager->getSharedWith($userId, IShare::TYPE_GUEST, null, -1, 0),
+			$this->shareManager->getSharedWith($userId, IShare::TYPE_ROOM, null, -1, 0)
 		);
 		return [
 			'shares' => array_map(function (IShare $share) {

@@ -25,10 +25,13 @@ use OC\NavigationManager;
 use OCP\IUser;
 
 class FilteredNavigationManager extends NavigationManager {
+	/** @var AppWhitelist */
 	private $whitelist;
 
+	/** @var IUser */
 	private $user;
 
+	/** @var NavigationManager */
 	private $navigationManager;
 
 	public function __construct(IUser $user, NavigationManager $navigationManager, AppWhitelist $whitelist) {

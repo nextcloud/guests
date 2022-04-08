@@ -22,7 +22,7 @@
 namespace OCA\Guests;
 
 use OC\AppConfig;
-use OC\DB\Connection;
+use OCP\IDBConnection;
 use OC\NavigationManager;
 use OCA\Files_External\Config\ExternalMountPoint;
 use OCP\Files\Config\IMountProviderCollection;
@@ -119,7 +119,7 @@ class RestrictionManager {
 				$this->userBackend->setAllowListing(false);
 
 				$this->server->registerService(AppConfig::class, function () {
-					return new AppConfigOverwrite($this->server->get(Connection::class), [
+					return new AppConfigOverwrite($this->server->get(IDBConnection::class), [
 						'core' => [
 							'shareapi_only_share_with_group_members' => 'yes'
 						]
