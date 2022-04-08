@@ -4,6 +4,7 @@
 		:clear-view-delay="0"
 		:title="formatTitle"
 		@close="closeModal">
+		<!-- Main guest form -->
 		<div class="guest_model_content">
 			<form @submit.prevent="addGuest">
 				<div class="modal-body">
@@ -11,8 +12,7 @@
 						<label class="form-label" for="app-guests-input-name">
 							{{ t('guests', 'Name:') }}
 						</label>
-						<input
-							id="app-guests-input-name"
+						<input id="app-guests-input-name"
 							ref="name"
 							v-model="guest.fullName"
 							class="form-input"
@@ -23,8 +23,7 @@
 						<label class="form-label" for="app-guests-input-email">
 							{{ t('guests', 'Email:') }}
 						</label>
-						<input
-							id="app-guests-input-email"
+						<input id="app-guests-input-email"
 							ref="email"
 							v-model="guest.email"
 							class="form-input"
@@ -50,14 +49,19 @@
 						<span v-if="error.groups">{{ error.groups }}</span>
 					</div>
 				</div>
+
+				<!-- Footer -->
 				<div class="modal-footer">
 					<span v-if="error.button">{{ t('guests', 'An error occured, try again') }}</span>
-					<button type="submit"
-						:class="{ 'icon-loading-small': loading }"
-						class="primary button-save"
+					<Button type="primary"
+						native-type="submit"
 						:disabled="loading">
+						<template #icon>
+							<AccountPlus v-if="!loading" :size="20" />
+							<div v-else class="icon-loading-small" />
+						</template>
 						{{ t('guests', 'Invite user and create share') }}
-					</button>
+					</Button>
 				</div>
 			</form>
 		</div>
@@ -66,14 +70,19 @@
 
 <script>
 import { generateOcsUrl } from '@nextcloud/router'
-import Modal from '@nextcloud/vue/dist/Components/Modal'
+import AccountPlus from 'vue-material-design-icons/AccountPlus'
 import axios from '@nextcloud/axios'
-import LanguageSelect from '../components/LanguageSelect'
+import Button from '@nextcloud/vue/dist/Components/Button'
+import Modal from '@nextcloud/vue/dist/Components/Modal'
+
 import GroupSelect from '../components/GroupSelect'
+import LanguageSelect from '../components/LanguageSelect'
 
 export default {
 	name: 'GuestForm',
 	components: {
+		AccountPlus,
+		Button,
 		GroupSelect,
 		LanguageSelect,
 		Modal,
@@ -273,10 +282,6 @@ export default {
 			border: 1px solid var(--color-error);
 			color: var(--color-error);
 		}
-	}
-
-	.vs__dropdown-menu {
-		z-index: 99999;
 	}
 
 	.modal-footer {

@@ -1,6 +1,5 @@
 <template>
-	<Multiselect
-		v-model="language"
+	<Multiselect v-model="language"
 		class="lang-multiselect"
 		:placeholder="t('guests', 'Default')"
 		track-by="code"

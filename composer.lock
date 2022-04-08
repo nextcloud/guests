@@ -536,6 +536,10 @@
                 }
             ],
             "description": "Nextcloud coding standards for the php cs fixer",
+            "support": {
+                "issues": "https://github.com/nextcloud/coding-standard/issues",
+                "source": "https://github.com/nextcloud/coding-standard/tree/v0.5.0"
+            },
             "time": "2021-01-11T14:15:58+00:00"
         },
         {
@@ -3223,5 +3227,8 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "platform-overrides": {
+        "php": "7.2"
+    },
+    "plugin-api-version": "2.3.0"
 }
