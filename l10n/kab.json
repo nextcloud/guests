@@ -1,0 +1,8 @@
+{ "translations": {
+    "None" : "Ula d yiwen",
+    "Name" : "Nom",
+    "Email" : "Imayl",
+    "Default" : "Prédéfini(e)",
+    "Error" : "Erreur"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}

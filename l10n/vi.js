@@ -10,6 +10,7 @@ OC.L10N.register(
     "Email" : "Thư điện tử",
     "Default" : "Mặc định",
     "Name:" : "Tên:",
+    "Email:" : "Thư điện tử:",
     "Reset" : "Khởi động lại",
     "Error" : "Lỗi"
 },

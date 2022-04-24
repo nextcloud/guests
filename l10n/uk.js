@@ -16,6 +16,7 @@ OC.L10N.register(
     "Email" : "Email",
     "Default" : "За замовчуванням",
     "Name:" : "Ім'я:",
+    "Email:" : "Ел.пошта:",
     "Reset" : "Скидання",
     "Error" : "Помилка"
 },

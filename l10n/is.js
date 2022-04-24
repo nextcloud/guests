@@ -34,6 +34,7 @@ OC.L10N.register(
     "No guest accounts created" : "Engir gestaaðgangar útbúnir",
     "Default" : "Sjálfgefið",
     "Name:" : "Nafn:",
+    "Email:" : "Tölvupóstur:",
     "Language:" : "Tungumál:",
     "Add guest to groups:" : "Bæta gesti við hópa:",
     "An error occured, try again" : "Villa kom upp, endilega reyndu aftur",

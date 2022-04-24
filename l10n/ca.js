@@ -34,6 +34,7 @@ OC.L10N.register(
     "No guest accounts created" : "No s’ha creat cap compte de convidat",
     "Default" : "Per defecte",
     "Name:" : "Nom:",
+    "Email:" : "Email:",
     "Language:" : "Idioma:",
     "Add guest to groups:" : "Afegiu convidat als grups:",
     "An error occured, try again" : "S'ha produït un error, torneu-ho a provar",

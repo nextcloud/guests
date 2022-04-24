@@ -15,6 +15,7 @@ OC.L10N.register(
     "Email" : "Correo electrónico",
     "Default" : "Predeterminado",
     "Name:" : "Nombre:",
+    "Email:" : "Correo:",
     "Guest users are grouped under a virtual group in the user manager" : "Los invitados están agrupados dentro de un grupo virutal en el administrador de usuarios",
     "Limit guest access to an app whitelist" : "Limita el acceso de inivitados a la lista blanca de aplicaciones",
     "Reset" : "Reiniciar",
