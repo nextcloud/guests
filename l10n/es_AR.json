@@ -16,5 +16,5 @@
     "Limit guest access to an app whitelist" : "Limite el acceso de inivitado a una aplicación de lista blanca",
     "Reset" : "Reiniciar",
     "Error" : "Error"
-},"pluralForm" :"nplurals=2; plural=(n != 1);"
+},"pluralForm" :"nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"
 }

@@ -56,4 +56,4 @@ OC.L10N.register(
     "Invite guest" : "Invita ospite",
     "A user with this ID or email address already exists" : "Un utente con questo ID o indirizzo email esiste già"
 },
-"nplurals=2; plural=(n != 1);");
+"nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");
