@@ -41,6 +41,8 @@ class TalkIntegrationListener implements IEventListener {
 			return;
 		}
 
+		// FIXME use this once Nextcloud 25 is the supported minimum
+		// if ($event->getResponse()->getApp() !== 'spreed') {
 		$params = $event->getResponse()->getParams();
 		if (!isset($params['app']) || $params['app'] !== 'spreed') {
 			return;
