@@ -52,7 +52,7 @@
 
 				<!-- Footer -->
 				<div class="modal-footer">
-					<span v-if="error.button">{{ t('guests', 'An error occured, try again') }}</span>
+					<span v-if="error.button">{{ t('guests', 'An error occurred, try again') }}</span>
 					<Button type="primary"
 						native-type="submit"
 						:disabled="loading">
@@ -60,7 +60,7 @@
 							<AccountPlus v-if="!loading" :size="20" />
 							<div v-else class="icon-loading-small" />
 						</template>
-						{{ t('guests', 'Invite user and create share') }}
+						{{ submitLabel }}
 					</Button>
 				</div>
 			</form>
@@ -89,6 +89,7 @@ export default {
 	},
 	data() {
 		return {
+			integrationApp: null,
 			fileInfo: null,
 			resolve: () => {},
 			reject: () => {},
@@ -125,6 +126,13 @@ export default {
 					: this.guest.email,
 			})
 		},
+
+		submitLabel() {
+			if (this.integrationApp === 'talk') {
+				return t('guests', 'Invite user to conversation')
+			}
+			return t('guests', 'Invite user and create share')
+		},
 	},
 
 	watch: {
@@ -146,7 +154,7 @@ export default {
 	},
 
 	methods: {
-		populate(fileInfo, shareWith) {
+		populate(metaData, shareWith) {
 			if (
 				shareWith.indexOf('@') !== -1
 				&& shareWith.lastIndexOf('.') > shareWith.indexOf('@')
@@ -156,7 +164,8 @@ export default {
 				this.guest.fullName = shareWith || ''
 			}
 
-			this.fileInfo = fileInfo
+			this.integrationApp = metaData?.app || 'files'
+			this.fileInfo = metaData
 			this.openModal()
 
 			return new Promise((resolve, reject) => {
@@ -197,6 +206,16 @@ export default {
 					language: this.guest.language,
 					groups: this.guest.groups,
 				})
+
+				if (this.integrationApp === 'talk') {
+					this.loading = false
+					this.resolve({
+						id: this.guest.email,
+						source: 'users',
+					})
+					this.closeModal()
+					return
+				}
 				await this.addGuestShare()
 			} catch ({ response }) {
 				const error = response && response.data && response.data.ocs && response.data.ocs.data

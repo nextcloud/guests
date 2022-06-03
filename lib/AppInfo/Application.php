@@ -26,6 +26,7 @@ use OCA\Guests\Listener\LoadAdditionalScriptsListener;
 use OCA\Guests\GroupBackend;
 use OCA\Guests\Hooks;
 use OCA\Guests\Listener\ShareAutoAcceptListener;
+use OCA\Guests\Listener\TalkIntegrationListener;
 use OCA\Guests\Notifications\Notifier;
 use OCA\Guests\RestrictionManager;
 use OCA\Guests\UserBackend;
@@ -33,6 +34,7 @@ use OCP\AppFramework\App;
 use OCP\AppFramework\Bootstrap\IBootstrap;
 use OCP\AppFramework\Bootstrap\IRegistrationContext;
 use OCP\AppFramework\Bootstrap\IBootContext;
+use OCP\AppFramework\Http\Events\BeforeTemplateRenderedEvent;
 use OCP\AppFramework\IAppContainer;
 use OCP\IServerContainer;
 use OCP\IUser;
@@ -49,6 +51,7 @@ class Application extends App implements IBootstrap {
 	public function register(IRegistrationContext $context): void {
 		$context->registerEventListener(LoadAdditionalScriptsEvent::class, LoadAdditionalScriptsListener::class);
 		$context->registerEventListener(ShareCreatedEvent::class, ShareAutoAcceptListener::class);
+		$context->registerEventListener(BeforeTemplateRenderedEvent::class, TalkIntegrationListener::class);
 
 		// need to cheat here since there's no way to register these in IRegistrationContext
 		$container = $this->getContainer();
