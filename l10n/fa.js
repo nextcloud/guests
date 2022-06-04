@@ -33,7 +33,6 @@ OC.L10N.register(
     "Received shares" : "اشتراک را دریافت کرد",
     "No guest accounts created" : "هیچ حساب مهمان ایجاد نشده است",
     "Default" : "پیش‌گزیده",
-    "An error occured, try again" : "خطایی روی داد ، دوباره امتحان کنید",
     "Guest users are grouped under a virtual group in the user manager" : "کاربران مهمان در یک گروه مجازی در مدیر کاربر گروه بندی می شوند",
     "Guest users can access mounted external storages" : "کاربران مهمان می توانند به انبارهای خارجی نصب شده دسترسی پیدا کنند",
     "Hide other users from guests" : "کاربران دیگر را از میهمانان مخفی کنید",
