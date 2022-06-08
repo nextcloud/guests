@@ -8,7 +8,7 @@ OC.L10N.register(
     "A user with that name already exists." : "Uporabnik s tem imenom že obstaja.",
     "User successfully created" : "Uporabniški račun je uspešno ustvarjen.",
     "%s shared »%s« with you" : "%s vam omogoča souporabo »%s«",
-    "Incoming share" : "Ponujena delitev",
+    "Incoming share" : "Ponujena souporaba",
     "Hey there," : "Pozdravljeni,",
     "%s just shared »%s« with you." : "%s vam omogoča uporabo »%s«.",
     "You can access the shared file by activating your guest account." : "Za dostop do datoteke v souporabi omogočite račun za goste.",
