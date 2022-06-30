@@ -52,7 +52,7 @@ OC.L10N.register(
     "Error" : "Erreur",
     "Your settings have been updated" : "Vos paramètres ont été enregistrés",
     "Saving …" : "Enregistrement…",
-    "Invite guest" : "Inviter un invité",
+    "Invite guest" : "Créer un compte invité",
     "A user with this ID or email address already exists" : "Un utilisateur avec cet ID ou cette adresse courriel existe déjà"
 },
 "nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");
