@@ -48,7 +48,7 @@
 		"deep-equal": "^2.0.5",
 		"email-validator": "^2.0.4",
 		"vue": "^2.6.14",
-		"vue-material-design-icons": "^5.1.1"
+		"vue-material-design-icons": "^5.1.2"
 	},
 	"engines": {
 		"node": "^14.0.0",
