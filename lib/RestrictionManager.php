@@ -32,6 +32,7 @@ use OCP\IRequest;
 use OCP\IServerContainer;
 use OCP\IUser;
 use OCP\IUserSession;
+use OCP\Settings\IManager;
 
 class RestrictionManager {
 	/** @var AppWhitelist */
@@ -100,6 +101,11 @@ class RestrictionManager {
 
 			$this->server->registerService(INavigationManager::class, function () use ($navManager) {
 				return new FilteredNavigationManager($this->userSession->getUser(), $navManager, $this->whitelist);
+			});
+
+			$settingsManager = $this->server->get(IManager::class);
+			$this->server->registerService(IManager::class, function () use ($settingsManager) {
+				return new FilteredSettingsManager($this->userSession->getUser(), $settingsManager, $this->whitelist);
 			});
 		}
 	}

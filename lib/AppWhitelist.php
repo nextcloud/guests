@@ -80,7 +80,7 @@ class AppWhitelist {
 		$this->logger = $logger;
 	}
 
-	private function isAppWhitelisted($appId) {
+	public function isAppWhitelisted($appId) {
 		$whitelist = $this->config->getAppWhitelist();
 		$alwaysEnabled = explode(',', self::WHITELIST_ALWAYS);
 
