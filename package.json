@@ -1,60 +1,60 @@
 {
-	"name": "guests",
-	"description": "Create guest users which can only see files shared with them",
-	"version": "2.2.0",
-	"author": "Robin Appelman <robin@icewind.nl>",
-	"contributors": [
-		"Robin Appelman <robin@icewind.nl>",
-		"John Molakvoæ <skjnldsv@protonmail.com>"
-	],
-	"keywords": [
-		"nextcloud",
-		"guests",
-		"app",
-		"vuejs"
-	],
-	"bugs": {
-		"url": "https://github.com/nextcloud/guests/issues"
-	},
-	"repository": {
-		"url": "https://github.com/nextcloud/guests",
-		"type": "git"
-	},
-	"homepage": "https://github.com/nextcloud/guests",
-	"license": "agpl",
-	"private": true,
-	"scripts": {
-		"build": "NODE_ENV=production webpack --progress --config webpack.js",
-		"dev": "NODE_ENV=development webpack --progress --config webpack.js",
-		"watch": "NODE_ENV=development webpack --progress --watch --config webpack.js",
-		"lint": "eslint --ext .js,.vue src",
-		"lint:fix": "eslint --ext .js,.vue src --fix",
-		"stylelint": "stylelint css/*.css css/*.scss src/**/*.vue",
-		"stylelint:fix": "stylelint css/*.css css/*.scss src/**/*.vue --fix"
-	},
-	"devDependencies": {
-		"@nextcloud/babel-config": "^1.0.0",
-		"@nextcloud/browserslist-config": "^2.2.0",
-		"@nextcloud/eslint-config": "^8.0.0",
-		"@nextcloud/eslint-plugin": "^2.0.0",
-		"@nextcloud/stylelint-config": "^2.1.2",
-		"@nextcloud/webpack-vue-config": "^5.1.0"
-	},
-	"dependencies": {
-		"@nextcloud/axios": "^1.10.0",
-		"@nextcloud/dialogs": "^3.1.4",
-		"@nextcloud/router": "^2.0.0",
-		"@nextcloud/vue": "^5.4.0",
-		"deep-equal": "^2.0.5",
-		"email-validator": "^2.0.4",
-		"vue": "^2.6.14",
-		"vue-material-design-icons": "^5.1.2"
-	},
-	"engines": {
-		"node": "^14.0.0",
-		"npm": "^7.0.0"
-	},
-	"browserslist": [
-		"extends @nextcloud/browserslist-config"
-	]
+  "name": "guests",
+  "description": "Create guest users which can only see files shared with them",
+  "version": "2.2.0",
+  "author": "Robin Appelman <robin@icewind.nl>",
+  "contributors": [
+    "Robin Appelman <robin@icewind.nl>",
+    "John Molakvoæ <skjnldsv@protonmail.com>"
+  ],
+  "keywords": [
+    "nextcloud",
+    "guests",
+    "app",
+    "vuejs"
+  ],
+  "bugs": {
+    "url": "https://github.com/nextcloud/guests/issues"
+  },
+  "repository": {
+    "url": "https://github.com/nextcloud/guests",
+    "type": "git"
+  },
+  "homepage": "https://github.com/nextcloud/guests",
+  "license": "agpl",
+  "private": true,
+  "scripts": {
+    "build": "NODE_ENV=production webpack --progress --config webpack.js",
+    "dev": "NODE_ENV=development webpack --progress --config webpack.js",
+    "watch": "NODE_ENV=development webpack --progress --watch --config webpack.js",
+    "lint": "eslint --ext .js,.vue src",
+    "lint:fix": "eslint --ext .js,.vue src --fix",
+    "stylelint": "stylelint css/*.css css/*.scss src/**/*.vue",
+    "stylelint:fix": "stylelint css/*.css css/*.scss src/**/*.vue --fix"
+  },
+  "devDependencies": {
+    "@nextcloud/babel-config": "^1.0.0",
+    "@nextcloud/browserslist-config": "^2.2.0",
+    "@nextcloud/eslint-config": "^8.0.0",
+    "@nextcloud/eslint-plugin": "^2.0.0",
+    "@nextcloud/stylelint-config": "^2.1.2",
+    "@nextcloud/webpack-vue-config": "^5.1.0"
+  },
+  "dependencies": {
+    "@nextcloud/axios": "^1.10.0",
+    "@nextcloud/dialogs": "^3.1.4",
+    "@nextcloud/router": "^2.0.0",
+    "@nextcloud/vue": "^5.4.0",
+    "deep-equal": "^2.0.5",
+    "email-validator": "^2.0.4",
+    "vue": "^2.6.14",
+    "vue-material-design-icons": "^5.1.2"
+  },
+  "engines": {
+    "node": "^16.0.0",
+    "npm": "^7.0.0 || ^8.0.0"
+  },
+  "browserslist": [
+    "extends @nextcloud/browserslist-config"
+  ]
 }
