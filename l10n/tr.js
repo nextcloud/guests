@@ -13,7 +13,7 @@ OC.L10N.register(
     "%s just shared »%s« with you." : "%s sizinle »%s« dosyasını paylaştı.",
     "You can access the shared file by activating your guest account." : "Konuk hesabınızı etkinleştirerek paylaşılan dosyaya erişebilirsiniz.",
     "After your account is activated you can view the share by logging in with %s." : "Hesabınız etkinleştirildikten sonra %s oturumu açarak paylaşılan dosyayı görebilirsiniz.",
-    "The share will expire at %s." : "Paylaşım %s tarihinde sona erecek.",
+    "The share will expire at %s." : "Paylaşımın geçerlilk süresi %s tarihinde dolacak.",
     "Activate account" : "Hesabı etkinleştir",
     "View share" : "Paylaşımı görüntüle",
     "%s via %s" : "%s, %s aracılığıyla",
