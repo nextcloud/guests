@@ -1,11 +1,10 @@
 <template>
-	<div id="guests" class="section">
-		<h2>
-			{{ t('guests', 'Guests') }}
+	<NcSettingsSection :title="t('guests', 'Guests')">
+		<div>
 			<span v-if="error || saving || saved"
 				:class="{error, saving, saved}"
 				class="msg">{{ statusText }}</span>
-		</h2>
+		</div>
 		<div v-if="config.sharingRestrictedToGroup" class="warning">
 			<p>
 				{{ t('guests', 'Creating guests users is restricted while "Restrict users to only share with users in their groups" is enabled.') }}
@@ -54,7 +53,7 @@
 				</label>
 			</p>
 			<p v-if="config.useWhitelist" class="whitelist">
-				<Multiselect v-model="config.whitelist"
+				<NcMultiselect v-model="config.whitelist"
 					:options="config.whiteListableApps"
 					:multiple="true"
 					:close-on-select="false"
@@ -73,13 +72,14 @@
 		</div>
 
 		<GuestList />
-	</div>
+	</NcSettingsSection>
 </template>
 
 <script>
 import { clearTimeout, setTimeout } from 'timers'
 import { generateUrl } from '@nextcloud/router'
-import Multiselect from '@nextcloud/vue/dist/Components/Multiselect'
+import NcMultiselect from '@nextcloud/vue/dist/Components/NcMultiselect.js'
+import NcSettingsSection from '@nextcloud/vue/dist/Components/NcSettingsSection.js'
 import axios from '@nextcloud/axios'
 import GuestList from '../components/GuestList'
 
@@ -87,7 +87,8 @@ export default {
 	name: 'GuestSettings',
 	components: {
 		GuestList,
-		Multiselect,
+		NcMultiselect,
+		NcSettingsSection,
 	},
 	data() {
 		return {
