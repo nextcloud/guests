@@ -1,6 +1,5 @@
 <template>
-	<div id="guests-list" class="section">
-		<h2>{{ t('guests', 'Guests accounts') }}</h2>
+	<NcSettingsSection :title="t('guests', 'Guests accounts')">
 		<div v-if="loaded && !error">
 			<table v-if="guests.length" class="table">
 				<thead>
@@ -60,18 +59,20 @@
 		<div v-if="!loaded">
 			<div class="loading" />
 		</div>
-	</div>
+	</NcSettingsSection>
 </template>
 
 <script>
 import { generateOcsUrl } from '@nextcloud/router'
 import axios from '@nextcloud/axios'
-import GuestDetails from './GuestDetails'
+import GuestDetails from './GuestDetails.vue'
+import NcSettingsSection from '@nextcloud/vue/dist/Components/NcSettingsSection.js'
 
 export default {
 	name: 'GuestList',
 	components: {
 		GuestDetails,
+		NcSettingsSection,
 	},
 	data() {
 		return {

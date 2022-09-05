@@ -70,22 +70,22 @@
 
 <script>
 import { generateOcsUrl } from '@nextcloud/router'
-import AccountPlus from 'vue-material-design-icons/AccountPlus'
+import AccountPlus from 'vue-material-design-icons/AccountPlus.vue'
 import axios from '@nextcloud/axios'
 import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
 import NcModal from '@nextcloud/vue/dist/Components/NcModal.js'
 
-import GroupSelect from '../components/GroupSelect'
-import LanguageSelect from '../components/LanguageSelect'
+import GroupSelect from '../components/GroupSelect.vue'
+import LanguageSelect from '../components/LanguageSelect.vue'
 
 export default {
 	name: 'GuestForm',
 	components: {
 		AccountPlus,
-		Button,
+		NcButton,
 		GroupSelect,
 		LanguageSelect,
-		Modal,
+		NcModal,
 	},
 	data() {
 		return {
