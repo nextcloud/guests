@@ -1,8 +1,9 @@
 OC.L10N.register(
     "guests",
     {
-    "Couldn't send reset email. Please contact your administrator." : "Nolga o'rnatish elektron pochta manzili yuborilmadi. Administrator bilan bog'laning.",
-    "Name" : "Ism...",
-    "Error" : "Xato"
+    "Couldn't send reset email. Please contact your administrator." : "Couldn't send reset email. Please contact your administrator.",
+    "None" : "None",
+    "Name" : "Name",
+    "Error" : "Error"
 },
 "nplurals=1; plural=0;");
