@@ -62,7 +62,11 @@ class FilteredNavigationManager extends NavigationManager {
 		return $this->navigationManager->getActiveEntry();
 	}
 
-	public function setActiveEntry($id) {
-		$this->navigationManager->setActiveEntry($id);
+	public function setActiveEntry($appId) {
+		$this->navigationManager->setActiveEntry($appId);
+	}
+
+	public function setUnreadCounter(string $id, int $unreadCounter): void {
+		$this->navigationManager->setUnreadCounter($id, $unreadCounter);
 	}
 }

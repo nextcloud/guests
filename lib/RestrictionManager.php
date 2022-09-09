@@ -106,7 +106,7 @@ class RestrictionManager {
 
 			$settingsManager = $this->server->get(IManager::class);
 			$this->server->registerService(IManager::class, function () use ($settingsManager) {
-				return new FilteredSettingsManager($this->userSession->getUser(), $settingsManager, $this->whitelist);
+				return new FilteredSettingsManager($settingsManager, $this->whitelist);
 			});
 		}
 	}

@@ -21,9 +21,83 @@ declare(strict_types=1);
  *
  */
 
+namespace OC\Cache {
+	use OCP\ICache;
+
+	/**
+	 * @template T
+	 * @deprecated use OCP\Cache\CappedMemoryCache instead
+	 */
+	class CappedMemoryCache implements ICache, \ArrayAccess {
+		public function __construct($capacity = 512) {
+		}
+
+		public function hasKey($key): bool {
+		}
+
+		/**
+		 * @return ?T
+		 */
+		public function get($key) {
+		}
+
+		/**
+		 * @param string $key
+		 * @param T $value
+		 * @param int $ttl
+		 * @return bool
+		 */
+		public function set($key, $value, $ttl = 0): bool {
+		}
+
+		public function remove($key) {
+		}
+
+		public function clear($prefix = '') {
+		}
+
+		public function offsetExists($offset): bool {
+		}
+
+		/**
+		 * @return T
+		 */
+		#[\ReturnTypeWillChange]
+		public function &offsetGet($offset) {
+		}
+
+		/**
+		 * @param string $offset
+		 * @param T $value
+		 * @return void
+		 */
+		public function offsetSet($offset, $value): void {
+		}
+		public function offsetUnset($offset): void {
+		}
+		/** @return T[] */
+		public function getData() {
+		}
+		public static function isAvailable(): bool {
+		}
+	}
+}
+
 namespace OC {
-    class NavigationManager implements \OCP\INavigationManager {
-    }
+	class NavigationManager implements \OCP\INavigationManager {
+	}
+
+	class AppConfig {
+		public function __construct(\OC\DB\Connection $connection) {
+		}
+		public function getValue(string $app, string $key, string $default = null): string {
+		}
+	}
+}
+
+namespace OC\DB {
+	class Connection {
+	}
 }
 
 namespace {
@@ -31,108 +105,161 @@ namespace {
 	use OCP\IServerContainer;
 
 	class OC {
-		static $CLI = false;
+		public static $CLI = false;
 		/** @var IServerContainer */
-		static $server;
+		public static $server;
+		public static $SERVERROOT = '';
+	}
+
+	class OC_App {
+		/**
+		 * @deprecated
+		 */
+		public static function loadApp(string $appName) {
+		}
+		public static function cleanAppId(string $appName): string {
+		}
+	}
+
+	class OC_Template {
+	}
+}
+
+namespace OC\AppFramework {
+	class App {
+		public static function getAppIdForClass(string $class): string {
+		}
 	}
 }
 
 namespace OC\Files\Node {
 	use OCP\Files\FileInfo;
+
 	abstract class Node implements \OCP\Files\Node {
 		/** @return FileInfo|\ArrayAccess */
-		public function getFileInfo() {}
+		public function getFileInfo() {
+		}
 
 		/** @return \OCP\Files\Mount\IMountPoint */
-		public function getMountPoint() {}
+		public function getMountPoint() {
+		}
 	}
 }
 
 namespace OC\Hooks {
 	class Emitter {
-		public function emit(string $class, string $value, array $option) {}
+		public function emit(string $class, string $value, array $option) {
+		}
 		/** Closure $closure */
-		public function listen(string $class, string $value, $closure) {}
+		public function listen(string $class, string $value, $closure) {
+		}
 	}
 	class BasicEmitter extends Emitter {
 	}
+	class PublicEmitter extends Emitter {
+	}
 }
 
-namespace OC\Cache {
-	class CappedMemoryCache implements \ArrayAccess {
-		public function get($key) {}
-		public function set($key, $value, $ttl = '') {}
-		public function offsetSet($key, $value) {}
-		public function offsetGet($key) {}
+namespace OC\L10N {
+	class Factory {
+		public const COMMON_LANGUAGE_CODES = [''];
 	}
 }
 
 namespace OC\Core\Command {
 	use Symfony\Component\Console\Input\InputInterface;
 	use Symfony\Component\Console\Output\OutputInterface;
+
 	class Base {
 		public const OUTPUT_FORMAT_PLAIN = 'plain';
 		public const OUTPUT_FORMAT_JSON = 'json';
 		public const OUTPUT_FORMAT_JSON_PRETTY = 'json_pretty';
 
-		public function __construct() {}
-		protected function configure() {}
-		public function run(InputInterface $input, OutputInterface $output) {}
-		public function setName(string $name) {}
-		public function getHelper(string $name) {}
+		public function __construct() {
+		}
+		protected function configure() {
+		}
+		public function run(InputInterface $input, OutputInterface $output) {
+		}
+		public function setName(string $name) {
+		}
+		public function getHelper(string $name) {
+		}
 		protected function writeArrayInOutputFormat(InputInterface $input, OutputInterface $output, $items, $prefix = '  - ') {
 		}
 	}
 }
 
 namespace OC\Files\ObjectStore {
-	class NoopScanner {}
+	class NoopScanner {
+	}
 }
 
 namespace Symfony\Component\Console\Helper {
 	use Symfony\Component\Console\Output\OutputInterface;
+
 	class Table {
-		public function __construct(OutputInterface $text) {}
-		public function setHeaders(array $header) {}
-		public function setRows(array $rows) {}
-		public function render() {}
+		public function __construct(OutputInterface $text) {
+		}
+		public function setHeaders(array $header) {
+		}
+		public function setRows(array $rows) {
+		}
+		public function render() {
+		}
 	}
 }
 
 namespace Symfony\Component\Console\Input {
 	class InputInterface {
-		public function getOption(string $key) {}
-		public function getArgument(string $key) {}
+		public function getOption(string $key) {
+		}
+		public function getArgument(string $key) {
+		}
+		public function isInteractive(): bool {
+		}
 	}
 	class InputArgument {
-		const REQUIRED = 0;
-		const OPTIONAL = 1;
-		const IS_ARRAY = 1;
+		public const REQUIRED = 0;
+		public const OPTIONAL = 1;
+		public const IS_ARRAY = 1;
 	}
 	class InputOption {
-		const VALUE_NONE = 1;
-		const VALUE_REQUIRED = 1;
-        const VALUE_OPTIONAL = 1;
+		public const VALUE_NONE = 1;
+		public const VALUE_REQUIRED = 1;
+		public const VALUE_OPTIONAL = 1;
+	}
+}
+
+namespace Symfony\Component\Console\Helper {
+	use Symfony\Component\Console\Output\OutputInterface;
+	use Symfony\Component\Console\Input\InputInterface;
+	use Symfony\Component\Console\Question\Question;
+
+	class QuestionHelper {
+		public function ask(InputInterface $input, OutputInterface $output, Question $question): bool {
+		}
 	}
 }
 
 namespace Symfony\Component\Console\Question {
 	class ConfirmationQuestion {
-		public function __construct(string $text, bool $default) {}
+		public function __construct(string $text, bool $default) {
+		}
 	}
 }
 
 namespace Symfony\Component\Console\Output {
 	class OutputInterface {
 		public const VERBOSITY_VERBOSE = 1;
-		public function writeln(string $text, int $flat = 0) {}
+		public function writeln(string $text, int $flat = 0) {
+		}
 	}
 }
 
 namespace OC\Files\Cache {
 	use OCP\Files\Cache\ICache;
 	use OCP\Files\Cache\ICacheEntry;
-	use OCP\Files\Search\ISearchQuery;
 	use OCP\Files\Search\ISearchOperator;
 	use OCP\Files\Search\ISearchQuery;
 	use OCP\Files\IMimeTypeLoader;
@@ -144,46 +271,74 @@ namespace OC\Files\Cache {
 		public function __construct($cache) {
 			$this->cache = $cache;
 		}
-		public function getNumericStorageId() { }
-		public function get() { }
-		public function getIncomplete() {}
-		public function getPathById($id) {}
-		public function getAll() {}
-		public function get($file) {}
-		public function getFolderContents($folder) {}
-		public function getFolderContentsById($fileId) {}
-		public function put($file, array $data) {}
-		public function insert($file, array $data) {}
-		public function update($id, array $data) {}
-		public function getId($file) {}
-		public function getParentId($file) {}
-		public function inCache($file) {}
-		public function remove($file) {}
-		public function move($source, $target) {}
-		public function moveFromCache(ICache $sourceCache, $sourcePath, $targetPath) {}
-		public function clear() {}
-		public function getStatus($file) {}
-		public function search($pattern) {}
-		public function searchByMime($mimetype) {}
-		public function searchQuery(ISearchQuery $query) {}
-		public function correctFolderSize($path, $data = null, $isBackgroundScan = false) {}
-		public function copyFromCache(ICache $sourceCache, ICacheEntry $sourceEntry, string $targetPath): int {}
-		public function normalize($path) {}
-		public function getQueryFilterForStorage(): ISearchOperator {}
-		public function getCacheEntryFromSearchResult(ICacheEntry $rawEntry): ?ICacheEntry {}
-		public static function cacheEntryFromData($data, IMimeTypeLoader $mimetypeLoader) {}
+		public function getNumericStorageId() {
+		}
+		public function getIncomplete() {
+		}
+		public function getPathById($id) {
+		}
+		public function getAll() {
+		}
+		public function get($file) {
+		}
+		public function getFolderContents($folder) {
+		}
+		public function getFolderContentsById($fileId) {
+		}
+		public function put($file, array $data) {
+		}
+		public function insert($file, array $data) {
+		}
+		public function update($id, array $data) {
+		}
+		public function getId($file) {
+		}
+		public function getParentId($file) {
+		}
+		public function inCache($file) {
+		}
+		public function remove($file) {
+		}
+		public function move($source, $target) {
+		}
+		public function moveFromCache(ICache $sourceCache, $sourcePath, $targetPath) {
+		}
+		public function clear() {
+		}
+		public function getStatus($file) {
+		}
+		public function search($pattern) {
+		}
+		public function searchByMime($mimetype) {
+		}
+		public function searchQuery(ISearchQuery $query) {
+		}
+		public function correctFolderSize($path, $data = null, $isBackgroundScan = false) {
+		}
+		public function copyFromCache(ICache $sourceCache, ICacheEntry $sourceEntry, string $targetPath): int {
+		}
+		public function normalize($path) {
+		}
+		public function getQueryFilterForStorage(): ISearchOperator {
+		}
+		public function getCacheEntryFromSearchResult(ICacheEntry $rawEntry): ?ICacheEntry {
+		}
+		public static function cacheEntryFromData($data, IMimeTypeLoader $mimetypeLoader) {
+		}
 	}
 }
 
 namespace OC\Files\Cache\Wrapper {
 	use OC\Files\Cache\Cache;
-	class CacheWrapper extends Cache {}
+
+	class CacheWrapper extends Cache {
+	}
+	class CachePermissionsMask extends CacheWrapper {
+	}
 }
 
 namespace OC\Files {
 	use OCP\Files\Cache\ICacheEntry;
-	use OCP\Files\Mount\IMountPoint;
-	use OCP\IUser;
 
 	class Filesystem {
 		public static function addStorageWrapper(string $wrapperName, callable $wrapper, int $priority = 50) {
@@ -199,11 +354,14 @@ namespace OC\Files {
 		 * @param \OCP\Files\Mount\IMountPoint $mount
 		 * @param \OCP\IUser|null $owner
 		 */
-		public function __construct($path, $storage, $internalPath, $data, $mount, $owner = null) {}
+		public function __construct($path, $storage, $internalPath, $data, $mount, $owner = null) {
+		}
 	}
 	class View {
-		public function __construct(string $path) {}
-		public function unlink($path) {}
+		public function __construct(string $path) {
+		}
+		public function unlink($path) {
+		}
 	}
 }
 
@@ -211,8 +369,10 @@ namespace OC\User {
 	use OCP\UserInterface;
 	use OCP\IUser;
 	use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+
 	class User implements IUser {
-		public function __construct(string $uid, ?UserInterface $backend, EventDispatcherInterface $dispatcher, $emitter = null, IConfig $config = null, $urlGenerator = null) {}
+		public function __construct(string $uid, ?UserInterface $backend, EventDispatcherInterface $dispatcher, $emitter = null, IConfig $config = null, $urlGenerator = null) {
+		}
 	}
 }
 
@@ -220,13 +380,15 @@ namespace OCA\DAV\Upload {
 
 	use Sabre\DAV\File;
 
-	abstract class FutureFile extends File {}
+	abstract class FutureFile extends File {
+	}
 }
 
 namespace OCA\DAV\Connector\Sabre {
 
 	class Node {
-		public function getFileInfo(): \OCP\Files\FileInfo {}
+		public function getFileInfo(): \OCP\Files\FileInfo {
+		}
 	}
 }
 
@@ -263,9 +425,7 @@ namespace OC\BackgroundJob {
 }
 
 namespace OC\Files\Mount {
-	use OC\Files\Filesystem;
 	use OC\Files\Storage\Storage;
-	use OC\Files\Storage\StorageFactory;
 	use OCP\Files\Mount\IMountPoint;
 
 	class MountPoint implements IMountPoint {
@@ -386,22 +546,23 @@ namespace OC\Files\Mount {
 
 namespace OC\Files\Storage\Wrapper{
 
-	use OCP\Files\Cache\ICache;
-	use OCP\Files\Cache\ICacheEntry;
-	use OCP\Files\Search\ISearchQuery;
 	use OCP\Files\Storage\IStorage;
 
 	class Wrapper implements IStorage {
 		public function __construct(array $parameters) {
 		}
 
-		public function getWrapperStorage(): ?IStorage {}
+		public function getWrapperStorage(): ?IStorage {
+		}
 
-		public function getId() {}
+		public function getId() {
+		}
 
-		public function mkdir($path) {}
+		public function mkdir($path) {
+		}
 
-		public function rmdir($path) {}
+		public function rmdir($path) {
+		}
 
 		public function opendir($path) {
 			throw new \Exception('stub');
@@ -564,23 +725,44 @@ namespace OC\Files\Storage\Wrapper{
 		}
 
 		public function getUpdater() {
-			throw new \Exception('stub');
 		}
 
 		public function getWatcher() {
-			throw new \Exception('stub');
 		}
 	}
 
 	class Jail extends Wrapper {
-		public function getUnjailedPath(string $path): string {}
+		public function getUnjailedPath(string $path): string {
+		}
 	}
 
 	class Quota extends Wrapper {
-		public function getQuota() {}
+		public function getQuota() {
+		}
 	}
 
 	class PermissionsMask extends Wrapper {
-		public function getQuota() {}
+		public function getQuota() {
+		}
+	}
+}
+
+namespace OCA\Files\Exception {
+	class TransferOwnershipException extends \Exception {
+	}
+}
+
+namespace OCA\Files\Service {
+	use OCP\IUser;
+
+	class OwnershipTransferService {
+		public function transfer(IUser $sourceUser,
+								 IUser $destinationUser,
+								 string $path,
+								 ?OutputInterface $output = null,
+								 bool $move = false,
+								 bool $firstLogin = false,
+								 bool $transferIncomingShares = false): void {
+		}
 	}
 }

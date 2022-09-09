@@ -82,7 +82,7 @@ class APIController extends OCSController {
 		foreach ($languageCodes as $lang) {
 			$l = $this->l10nFactory->get('lib', $lang);
 			// TRANSLATORS this is the language name for the language switcher in the personal settings and should be the localized version
-			$potentialName = (string)$l->t('__language_name__');
+			$potentialName = $l->t('__language_name__');
 			if ($l->getLanguageCode() === $lang && $potentialName[0] !== '_') {//first check if the language name is in the translation file
 				$ln = [
 					'code' => $lang,

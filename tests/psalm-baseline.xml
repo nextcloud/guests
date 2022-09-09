@@ -1,93 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.x-dev@">
-  <file src="lib/AppConfigOverwrite.php">
-    <UndefinedClass occurrences="1">
-      <code>AppConfig</code>
-    </UndefinedClass>
-  </file>
+<files psalm-version="4.27.0@faf106e717c37b8c81721845dba9de3d8deed8ff">
   <file src="lib/AppInfo/Application.php">
-    <InvalidArgument occurrences="2">
-      <code>registerEventListener</code>
-      <code>registerEventListener</code>
-    </InvalidArgument>
-    <UndefinedClass occurrences="1">
-      <code>\OC_App</code>
-    </UndefinedClass>
     <UndefinedInterfaceMethod occurrences="1">
       <code>listen</code>
     </UndefinedInterfaceMethod>
   </file>
   <file src="lib/AppWhitelist.php">
-    <MissingDependency occurrences="1">
-      <code>Template</code>
-    </MissingDependency>
-    <UndefinedClass occurrences="1">
-      <code>\OC_App</code>
-    </UndefinedClass>
-  </file>
-  <file src="lib/Command/AddCommand.php">
-    <UndefinedDocblockClass occurrences="3">
-      <code>$helper</code>
-      <code>$helper</code>
-      <code>$helper</code>
-    </UndefinedDocblockClass>
-    <UndefinedMethod occurrences="1">
-      <code>isInteractive</code>
-    </UndefinedMethod>
-  </file>
-  <file src="lib/Command/ListCommand.php">
-    <InvalidReturnStatement occurrences="2">
-      <code>0</code>
-      <code>0</code>
-    </InvalidReturnStatement>
-    <InvalidReturnType occurrences="1">
-      <code>void</code>
-    </InvalidReturnType>
-  </file>
-  <file src="lib/Config.php">
-    <UndefinedPropertyFetch occurrences="1">
-      <code>\OC::$SERVERROOT</code>
-    </UndefinedPropertyFetch>
-  </file>
-  <file src="lib/Controller/APIController.php">
-    <RedundantCast occurrences="1">
-      <code>(string)$l-&gt;t('__language_name__')</code>
-    </RedundantCast>
-    <UndefinedClass occurrences="2">
-      <code>Factory</code>
-      <code>Factory</code>
-    </UndefinedClass>
-  </file>
-  <file src="lib/Controller/SettingsController.php">
-    <InvalidArgument occurrences="1">
-      <code>$whitelist</code>
-    </InvalidArgument>
-  </file>
-  <file src="lib/Controller/UsersController.php">
-    <UndefinedClass occurrences="1">
-      <code>PublicEmitter</code>
-    </UndefinedClass>
-  </file>
-  <file src="lib/FilteredNavigationManager.php">
-    <ParamNameMismatch occurrences="1">
-      <code>$id</code>
-    </ParamNameMismatch>
+    <UndefinedMethod occurrences="1"/>
   </file>
   <file src="lib/Hooks.php">
-    <InvalidArgument occurrences="1">
-      <code>$e</code>
-    </InvalidArgument>
     <InvalidScalarArgument occurrences="1">
       <code>$share-&gt;getNodeId()</code>
     </InvalidScalarArgument>
-    <UndefinedClass occurrences="2">
-      <code>OwnershipTransferService</code>
-      <code>TransferOwnershipException</code>
-    </UndefinedClass>
-    <UndefinedDocblockClass occurrences="2">
-      <code>$ownershipTransferService</code>
-      <code>$ownershipTransferService</code>
-    </UndefinedDocblockClass>
   </file>
   <file src="lib/Mail.php">
     <MissingDependency occurrences="1">
@@ -95,31 +19,13 @@
     </MissingDependency>
   </file>
   <file src="lib/RestrictionManager.php">
-    <MissingDependency occurrences="1">
-      <code>AppConfigOverwrite</code>
-    </MissingDependency>
-    <UndefinedClass occurrences="2">
-      <code>AppConfig</code>
-      <code>ExternalMountPoint</code>
-    </UndefinedClass>
-  </file>
-  <file src="lib/Storage/DirMaskCache.php">
     <UndefinedClass occurrences="1">
-      <code>CachePermissionsMask</code>
+      <code>ExternalMountPoint</code>
     </UndefinedClass>
   </file>
   <file src="lib/UserBackend.php">
     <ImplicitToStringCast occurrences="1">
       <code>$query-&gt;func()-&gt;lower('displayname')</code>
     </ImplicitToStringCast>
-    <InvalidArgument occurrences="1"/>
-    <InvalidScalarArgument occurrences="6">
-      <code>$limit</code>
-      <code>$limit</code>
-      <code>$limit</code>
-      <code>$offset</code>
-      <code>$offset</code>
-      <code>$offset</code>
-    </InvalidScalarArgument>
   </file>
 </files>

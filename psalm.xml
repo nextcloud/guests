@@ -8,7 +8,7 @@
 		errorBaseline="tests/psalm-baseline.xml"
 >
 	<stubs>
-		<file name="tests/stub.phpstub" preloadClasses="true"/>
+		<file name="tests/stub.php" preloadClasses="true"/>
 	</stubs>
 	<projectFiles>
 		<directory name="lib" />
@@ -20,7 +20,7 @@
 		<directory name="vendor" />
 		<ignoreFiles>
 			<directory name="vendor/phpunit/php-code-coverage" />
-			<directory name="vendor/psalm" />
+            <directory name="vendor/vimeo/psalm" />
 		</ignoreFiles>
 	</extraFiles>
 	<issueHandlers>

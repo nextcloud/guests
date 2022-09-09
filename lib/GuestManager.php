@@ -21,7 +21,6 @@
 
 namespace OCA\Guests;
 
-use OC\Share\Share;
 use OCP\DB\QueryBuilder\IQueryBuilder;
 use OCP\EventDispatcher\IEventDispatcher;
 use OCP\IConfig;

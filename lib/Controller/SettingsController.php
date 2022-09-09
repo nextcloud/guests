@@ -102,7 +102,6 @@ class SettingsController extends Controller {
 	public function getWhitelist(): DataResponse {
 		$useWhitelist = $this->config->useWhitelist();
 		$whitelist = $this->config->getAppWhitelist();
-		$whitelist = explode(',', $whitelist);
 		return new DataResponse([
 			'useWhitelist' => $useWhitelist,
 			'whitelist' => $whitelist,

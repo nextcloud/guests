@@ -180,7 +180,7 @@ class DirMask extends PermissionsMask {
 		}
 	}
 
-	public function fopen($path, $mode): resource {
+	public function fopen($path, $mode) {
 		if ($this->checkPath($path)) {
 			return parent::fopen($path, $mode);
 		} else {
