@@ -25,10 +25,13 @@ use OC\NavigationManager;
 use OCP\IUser;
 
 class FilteredNavigationManager extends NavigationManager {
+	/** @var AppWhitelist */
 	private $whitelist;
 
+	/** @var IUser */
 	private $user;
 
+	/** @var NavigationManager */
 	private $navigationManager;
 
 	public function __construct(IUser $user, NavigationManager $navigationManager, AppWhitelist $whitelist) {
@@ -43,23 +46,27 @@ class FilteredNavigationManager extends NavigationManager {
 		return array_filter($items, [$this, 'isEntryWhitelisted']);
 	}
 
-	private function isEntryWhitelisted(array $item) {
+	private function isEntryWhitelisted(array $item): bool {
 		return $this->whitelist->isUrlAllowed($this->user, $item['href']);
 	}
 
-	public function add($entry) {
+	public function add($entry): void {
 		$this->navigationManager->add($entry);
 	}
 
-	public function clear($loadDefaultLinks = true) {
+	public function clear($loadDefaultLinks = true): void {
 		$this->navigationManager->clear($loadDefaultLinks);
 	}
 
-	public function getActiveEntry() {
+	public function getActiveEntry(): string {
 		return $this->navigationManager->getActiveEntry();
 	}
 
-	public function setActiveEntry($id) {
-		$this->navigationManager->setActiveEntry($id);
+	public function setActiveEntry($appId) {
+		$this->navigationManager->setActiveEntry($appId);
+	}
+
+	public function setUnreadCounter(string $id, int $unreadCounter): void {
+		$this->navigationManager->setUnreadCounter($id, $unreadCounter);
 	}
 }

@@ -21,7 +21,6 @@
 
 namespace OCA\Guests;
 
-use OC\Share\Share;
 use OCP\DB\QueryBuilder\IQueryBuilder;
 use OCP\EventDispatcher\IEventDispatcher;
 use OCP\IConfig;
@@ -42,6 +41,7 @@ class GuestManager {
 	/** @var UserBackend */
 	private $userBackend;
 
+	/** @var IUserManager */
 	private $userManager;
 
 	/** @var ISecureRandom */
@@ -50,12 +50,16 @@ class GuestManager {
 	/** @var ICrypto */
 	private $crypto;
 
+	/** @var IManager */
 	private $shareManager;
 
+	/** @var IDBConnection */
 	private $connection;
 
+	/** @var IUserSession */
 	private $userSession;
 
+	/** @var IEventDispatcher */
 	private $eventDispatcher;
 
 	public function __construct(
@@ -82,9 +86,9 @@ class GuestManager {
 
 	/**
 	 * @param IUser|string $user
-	 * @return boolean
+	 * @return bool
 	 */
-	public function isGuest($user = null) {
+	public function isGuest($user = null): bool {
 		if (is_null($user)) {
 			$user = $this->userSession->getUser();
 			return ($user !== null) && $this->userBackend->userExists($user->getUID());
@@ -97,7 +101,7 @@ class GuestManager {
 		return false;
 	}
 
-	public function createGuest(IUser $createdBy, $userId, $email, $displayName = '', $language = '', $initialPassword = null) : IUser {
+	public function createGuest(IUser $createdBy, string $userId, string $email, string $displayName = '', string $language = '', ?string $initialPassword = null) : IUser {
 		if ($initialPassword === null) {
 			$passwordEvent = new GenerateSecurePasswordEvent();
 			$this->eventDispatcher->dispatchTyped($passwordEvent);
@@ -150,11 +154,11 @@ class GuestManager {
 		return $user;
 	}
 
-	public function listGuests() {
+	public function listGuests(): array {
 		return $this->userBackend->getUsers();
 	}
 
-	public function getGuestsInfo() {
+	public function getGuestsInfo(): array {
 		$displayNames = $this->userBackend->getDisplayNames();
 		$guests = array_keys($displayNames);
 		$shareCounts = $this->getShareCountForUsers($guests);
@@ -169,7 +173,7 @@ class GuestManager {
 		}, $guests);
 	}
 
-	private function getShareCountForUsers(array $guests) {
+	private function getShareCountForUsers(array $guests): array {
 		$query = $this->connection->getQueryBuilder();
 		$query->select('share_with', $query->func()->count('*', 'count'))
 			->from('share')
@@ -185,13 +189,13 @@ class GuestManager {
 		return $data;
 	}
 
-	public function getGuestInfo($userId) {
+	public function getGuestInfo($userId): array {
 		$shares = array_merge(
-			$this->shareManager->getSharedWith($userId, Share::SHARE_TYPE_USER, null, -1, 0),
-			$this->shareManager->getSharedWith($userId, Share::SHARE_TYPE_GROUP, null, -1, 0),
-			$this->shareManager->getSharedWith($userId, Share::SHARE_TYPE_CIRCLE, null, -1, 0),
-			$this->shareManager->getSharedWith($userId, Share::SHARE_TYPE_GUEST, null, -1, 0),
-			$this->shareManager->getSharedWith($userId, Share::SHARE_TYPE_ROOM, null, -1, 0)
+			$this->shareManager->getSharedWith($userId, IShare::TYPE_USER, null, -1, 0),
+			$this->shareManager->getSharedWith($userId, IShare::TYPE_GROUP, null, -1, 0),
+			$this->shareManager->getSharedWith($userId, IShare::TYPE_CIRCLE, null, -1, 0),
+			$this->shareManager->getSharedWith($userId, IShare::TYPE_GUEST, null, -1, 0),
+			$this->shareManager->getSharedWith($userId, IShare::TYPE_ROOM, null, -1, 0)
 		);
 		return [
 			'shares' => array_map(function (IShare $share) {

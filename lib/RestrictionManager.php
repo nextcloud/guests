@@ -22,7 +22,7 @@
 namespace OCA\Guests;
 
 use OC\AppConfig;
-use OC\DB\Connection;
+use OCP\IDBConnection;
 use OC\NavigationManager;
 use OCA\Files_External\Config\ExternalMountPoint;
 use OCP\Files\Config\IMountProviderCollection;
@@ -59,6 +59,7 @@ class RestrictionManager {
 	/** @var Config */
 	private $config;
 
+	/** @var UserBackend */
 	private $userBackend;
 
 	public function __construct(
@@ -83,11 +84,11 @@ class RestrictionManager {
 		$this->userBackend = $userBackend;
 	}
 
-	public function verifyAccess() {
+	public function verifyAccess(): void {
 		$this->whitelist->verifyAccess($this->userSession->getUser(), $this->request);
 	}
 
-	public function setupRestrictions() {
+	public function setupRestrictions(): void {
 		if ($this->guestManager->isGuest($this->userSession->getUser())) {
 			\OCP\Util::connectHook('OC_Filesystem', 'preSetup', $this->hooks, 'setupReadonlyFilesystem');
 			if (!$this->config->allowExternalStorage()) {
@@ -105,12 +106,12 @@ class RestrictionManager {
 
 			$settingsManager = $this->server->get(IManager::class);
 			$this->server->registerService(IManager::class, function () use ($settingsManager) {
-				return new FilteredSettingsManager($this->userSession->getUser(), $settingsManager, $this->whitelist);
+				return new FilteredSettingsManager($settingsManager, $this->whitelist);
 			});
 		}
 	}
 
-	public function lateSetupRestrictions() {
+	public function lateSetupRestrictions(): void {
 		if ($this->guestManager->isGuest($this->userSession->getUser())) {
 			if ($this->config->hideOtherUsers()) {
 				$this->server->getContactsManager()->clear();
@@ -118,7 +119,7 @@ class RestrictionManager {
 				$this->userBackend->setAllowListing(false);
 
 				$this->server->registerService(AppConfig::class, function () {
-					return new AppConfigOverwrite($this->server->get(Connection::class), [
+					return new AppConfigOverwrite($this->server->get(IDBConnection::class), [
 						'core' => [
 							'shareapi_only_share_with_group_members' => 'yes'
 						]

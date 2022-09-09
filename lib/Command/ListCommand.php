@@ -37,14 +37,14 @@ class ListCommand extends Base {
 		$this->guestManager = $guestManager;
 	}
 
-	protected function configure() {
+	protected function configure(): void {
 		$this
 			->setName('guests:list')
 			->setDescription('List created guests');
 		parent::configure();
 	}
 
-	protected function execute(InputInterface $input, OutputInterface $output) {
+	protected function execute(InputInterface $input, OutputInterface $output): void {
 		$guests = $this->guestManager->getGuestsInfo();
 
 		$outputType = $input->getOption('output');
@@ -54,7 +54,7 @@ class ListCommand extends Base {
 			} else {
 				$output->writeln("<info>No guests created</info>");
 			}
-			return 0;
+			return;
 		}
 
 		if ($outputType === self::OUTPUT_FORMAT_JSON || $outputType === self::OUTPUT_FORMAT_JSON_PRETTY) {
@@ -65,6 +65,6 @@ class ListCommand extends Base {
 			$table->setRows($guests);
 			$table->render();
 		}
-		return 0;
+		return;
 	}
 }

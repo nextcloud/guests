@@ -2,10 +2,10 @@
 
 namespace OCA\Guests\Controller;
 
-use OC\AppFramework\Http;
 use OC\Hooks\PublicEmitter;
 use OCA\Guests\Config;
 use OCA\Guests\GuestManager;
+use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\OCSController;
 use OCP\Group\ISubAdmin;
@@ -39,12 +39,15 @@ class UsersController extends OCSController {
 	private $guestManager;
 	/** @var IUserSession */
 	private $userSession;
+	/** @var Config */
 	private $config;
+	/** @var ISubAdmin */
 	private $subAdmin;
+	/** @var IGroupManager */
 	private $groupManager;
 
 	public function __construct(
-		$appName,
+		string $appName,
 		IRequest $request,
 		IUserManager $userManager,
 		IL10N $l10n,
@@ -71,13 +74,13 @@ class UsersController extends OCSController {
 	/**
 	 * @NoAdminRequired
 	 *
-	 * @param $email
-	 * @param $displayName
-	 * @param $language
-	 * @param $groups
+	 * @param string $email
+	 * @param string $displayName
+	 * @param string $language
+	 * @param array $groups
 	 * @return DataResponse
 	 */
-	public function create($email, $displayName, $language, $groups): DataResponse {
+	public function create(string $email, string $displayName, string $language, array $groups): DataResponse {
 		$errorMessages = [];
 		$currentUser = $this->userSession->getUser();
 
@@ -130,7 +133,7 @@ class UsersController extends OCSController {
 		}
 
 		if (empty($email) || !$this->mailer->validateMailAddress($email)) {
-			$errorMessages['email'] = (string)$this->l10n->t(
+			$errorMessages['email'] = $this->l10n->t(
 				'Invalid mail address'
 			);
 		}
@@ -139,11 +142,11 @@ class UsersController extends OCSController {
 
 		$existingUsers = $this->userManager->getByEmail($email);
 		if (count($existingUsers) > 0) {
-			$errorMessages['email'] = (string)$this->l10n->t(
+			$errorMessages['email'] = $this->l10n->t(
 				'A user with that email already exists.'
 			);
 		} elseif ($this->userManager->userExists($username)) {
-			$errorMessages['username'] = (string)$this->l10n->t(
+			$errorMessages['username'] = $this->l10n->t(
 				'A user with that name already exists.'
 			);
 		}
@@ -177,7 +180,7 @@ class UsersController extends OCSController {
 
 		return new DataResponse(
 			[
-				'message' => (string)$this->l10n->t(
+				'message' => $this->l10n->t(
 					'User successfully created'
 				),
 			],

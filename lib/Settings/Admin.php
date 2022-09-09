@@ -35,21 +35,21 @@ class Admin implements \OCP\Settings\ISettings {
 	/**
 	 * {@inheritdoc}
 	 */
-	public function getForm() {
+	public function getForm(): TemplateResponse {
 		return new TemplateResponse('guests', 'settings/admin');
 	}
 
 	/**
 	 * {@inheritdoc}
 	 */
-	public function getSection() {
+	public function getSection(): string {
 		return 'guests';
 	}
 
 	/**
 	 * {@inheritdoc}
 	 */
-	public function getPriority() {
+	public function getPriority(): int {
 		return 0;
 	}
 }

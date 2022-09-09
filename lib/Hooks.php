@@ -33,7 +33,6 @@ use OCP\AppFramework\QueryException;
 use OCP\Constants;
 use OCP\Files\Storage\IStorage;
 use OCP\IConfig;
-use OCP\ILogger;
 use OCP\IRequest;
 use OCP\IUser;
 use OCP\IUserManager;
@@ -43,10 +42,11 @@ use OCP\Security\ICrypto;
 use OCP\Share\IManager as IShareManager;
 use OCP\Share\IShare;
 use Symfony\Component\EventDispatcher\GenericEvent;
+use Psr\Log\LoggerInterface;
 
 class Hooks {
 
-	/** @var ILogger */
+	/** @var LoggerInterface */
 	private $logger;
 
 	/** @var IUserSession */
@@ -78,8 +78,11 @@ class Hooks {
 	/** @var IShareManager */
 	private $shareManager;
 
+	/** @var IConfig */
+	private $config;
+
 	public function __construct(
-		ILogger $logger,
+		LoggerInterface $logger,
 		IUserSession $userSession,
 		IRequest $request,
 		Mail $mail,
@@ -106,7 +109,7 @@ class Hooks {
 		$this->shareManager = $shareManager;
 	}
 
-	public function handlePostShare(GenericEvent $event) {
+	public function handlePostShare(GenericEvent $event): void {
 		/** @var IShare $share */
 		$share = $event->getSubject();
 
@@ -177,7 +180,7 @@ class Hooks {
 		}
 	}
 
-	public function setupReadonlyFilesystem(array $params) {
+	public function setupReadonlyFilesystem(array $params): void {
 		$uid = $params['user'];
 		$user = $this->userManager->get($uid);
 
@@ -223,11 +226,10 @@ class Hooks {
 
 		try {
 			/** @var OwnershipTransferService $ownershipTransferService */
-			$ownershipTransferService = $this->container->query(OwnershipTransferService::class);
+			$ownershipTransferService = $this->container->get(OwnershipTransferService::class);
 		} catch (QueryException $e) {
-			$this->logger->logException($e, [
-				'level' => ILogger::ERROR,
-				'message' => 'Could not resolve ownership transfer service to import guest user data',
+			$this->logger->error('Could not resolve ownership transfer service to import guest user data', [
+				'exception' => $e,
 			]);
 			return;
 		}
@@ -247,9 +249,8 @@ class Hooks {
 				true
 			);
 		} catch (TransferOwnershipException $e) {
-			$this->logger->logException($e, [
-				'level' => ILogger::ERROR,
-				'message' => 'Could not import guest user data',
+			$this->logger->error('Could not import guest user data', [
+				'exception' => $e,
 			]);
 		}
 

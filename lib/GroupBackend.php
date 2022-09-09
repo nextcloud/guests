@@ -35,14 +35,17 @@ class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetails
 	/** @var GuestManager */
 	private $guestManager;
 
+	/** @var string[] */
 	private $guestMembers = [];
 
+	/** @var string */
 	private $groupName;
 
+	/** @var Config */
 	private $config;
 
+	/** @var IUserSession */
 	private $userSession;
-
 
 	public function __construct(
 		GuestManager $guestManager,
@@ -56,7 +59,7 @@ class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetails
 		$this->groupName = $groupName;
 	}
 
-	private function getMembers() {
+	private function getMembers(): array {
 		if (empty($this->guestMembers)) {
 			$this->guestMembers = $this->guestManager->listGuests();
 		}
@@ -74,7 +77,7 @@ class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetails
 	 *
 	 * Checks whether the user is member of a group or not.
 	 */
-	public function inGroup($uid, $gid) {
+	public function inGroup($uid, $gid): bool {
 		return $gid === $this->groupName && $this->guestManager->isGuest($uid);
 	}
 
@@ -88,7 +91,7 @@ class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetails
 	 * This function fetches all groups a user belongs to. It does not check
 	 * if the user exists at all.
 	 */
-	public function getUserGroups($uid) {
+	public function getUserGroups($uid): array {
 		if ($this->guestManager->isGuest($uid)) {
 			return [$this->groupName];
 		}
@@ -107,7 +110,7 @@ class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetails
 	 *
 	 * Returns a list with all groups
 	 */
-	public function getGroups($search = '', $limit = -1, $offset = 0) {
+	public function getGroups($search = '', $limit = -1, $offset = 0): array {
 		return $offset === 0 ? [$this->groupName] : [];
 	}
 
@@ -118,7 +121,7 @@ class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetails
 	 * @return bool
 	 * @since 4.5.0
 	 */
-	public function groupExists($gid) {
+	public function groupExists($gid): bool {
 		return $gid === $this->groupName;
 	}
 
@@ -132,7 +135,7 @@ class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetails
 	 * @return array an array of user ids
 	 * @since 4.5.0
 	 */
-	public function usersInGroup($gid, $search = '', $limit = -1, $offset = 0) {
+	public function usersInGroup($gid, $search = '', $limit = -1, $offset = 0): array {
 		if ($gid === $this->groupName) {
 			if ($this->guestManager->isGuest() && $this->config->hideOtherUsers()) {
 				return [$this->userSession->getUser()->getUID()];
