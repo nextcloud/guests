@@ -1,5 +1,5 @@
 <template>
-	<Multiselect v-model="selected"
+	<NcMultiselect v-model="selected"
 		class="group-multiselect"
 		:placeholder="t('guests', 'None')"
 		track-by="gid"
@@ -12,12 +12,12 @@
 </template>
 
 <script>
-import Multiselect from '@nextcloud/vue/dist/Components/Multiselect'
+import NcMultiselect from '@nextcloud/vue/dist/Components/NcMultiselect.js'
 
 export default {
 	name: 'GroupSelect',
 	components: {
-		Multiselect,
+		NcMultiselect,
 	},
 	props: {
 		groups: {

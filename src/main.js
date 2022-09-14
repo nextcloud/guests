@@ -2,7 +2,7 @@ import { validate } from 'email-validator'
 import Vue from 'vue'
 
 import GuestForm from './views/GuestForm.vue'
-import Nextcloud from './mixins/Nextcloud'
+import Nextcloud from './mixins/Nextcloud.js'
 import { showError } from '@nextcloud/dialogs'
 
 Vue.mixin(Nextcloud)

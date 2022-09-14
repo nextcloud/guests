@@ -1,5 +1,5 @@
 <template>
-	<Modal v-if="isOpened"
+	<NcModal v-if="isOpened"
 		id="app-guests"
 		:clear-view-delay="0"
 		:title="formatTitle"
@@ -53,7 +53,7 @@
 				<!-- Footer -->
 				<div class="modal-footer">
 					<span v-if="error.button">{{ t('guests', 'An error occurred, try again') }}</span>
-					<Button type="primary"
+					<NcButton type="primary"
 						native-type="submit"
 						:disabled="loading">
 						<template #icon>
@@ -61,31 +61,31 @@
 							<div v-else class="icon-loading-small" />
 						</template>
 						{{ submitLabel }}
-					</Button>
+					</NcButton>
 				</div>
 			</form>
 		</div>
-	</Modal>
+	</NcModal>
 </template>
 
 <script>
 import { generateOcsUrl } from '@nextcloud/router'
-import AccountPlus from 'vue-material-design-icons/AccountPlus'
+import AccountPlus from 'vue-material-design-icons/AccountPlus.vue'
 import axios from '@nextcloud/axios'
-import Button from '@nextcloud/vue/dist/Components/Button'
-import Modal from '@nextcloud/vue/dist/Components/Modal'
+import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
+import NcModal from '@nextcloud/vue/dist/Components/NcModal.js'
 
-import GroupSelect from '../components/GroupSelect'
-import LanguageSelect from '../components/LanguageSelect'
+import GroupSelect from '../components/GroupSelect.vue'
+import LanguageSelect from '../components/LanguageSelect.vue'
 
 export default {
 	name: 'GuestForm',
 	components: {
 		AccountPlus,
-		Button,
+		NcButton,
 		GroupSelect,
 		LanguageSelect,
-		Modal,
+		NcModal,
 	},
 	data() {
 		return {

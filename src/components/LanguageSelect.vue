@@ -1,5 +1,5 @@
 <template>
-	<Multiselect v-model="language"
+	<NcMultiselect v-model="language"
 		class="lang-multiselect"
 		:placeholder="t('guests', 'Default')"
 		track-by="code"
@@ -12,13 +12,13 @@
 
 <script>
 import { generateOcsUrl } from '@nextcloud/router'
-import Multiselect from '@nextcloud/vue/dist/Components/Multiselect'
+import NcMultiselect from '@nextcloud/vue/dist/Components/NcMultiselect.js'
 import axios from '@nextcloud/axios'
 
 export default {
 	name: 'LanguageSelect',
 	components: {
-		Multiselect,
+		NcMultiselect,
 	},
 	props: {
 		value: {
