@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<NcSettingsSection :title="t('guests', 'Guests')"
-			:description="t('guests', 'Guest users are grouped under a virtual group in the user manager')">
+			:description="t('guests', 'Guest accounts are grouped under a virtual group in the account manager')">
 			<div>
 				<span v-if="error || saving || saved"
 					:class="{error, saving, saved}"
@@ -9,7 +9,7 @@
 			</div>
 			<div v-if="config.sharingRestrictedToGroup" class="warning">
 				<p>
-					{{ t('guests', 'Creating guests users is restricted while "Restrict users to only share with users in their groups" is enabled.') }}
+					{{ t('guests', 'Creating guests accoutns is restricted while "Restrict accounts to only share with accounts in their groups" is enabled.') }}
 				</p>
 				<p>
 					{{ t('guests', 'Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for.') }}
@@ -19,26 +19,26 @@
 				<NcCheckboxRadioSwitch :checked.sync="config.allowExternalStorage"
 					type="switch"
 					@updated:checked="saveConfig">
-					{{ t('guests', 'Guest users can access mounted external storages') }}
+					{{ t('guests', 'Guest accounts can access mounted external storages') }}
 				</NcCheckboxRadioSwitch>
 
 				<NcCheckboxRadioSwitch :checked.sync="config.hideUsers"
 					type="switch"
 					@updated:checked="saveConfig">
-					{{ t('guests', 'Hide other users from guests') }}
+					{{ t('guests', 'Hide other accounts from guests') }}
 				</NcCheckboxRadioSwitch>
 
 				<NcNoteCard v-if="config.hideUsers" type="warning">
-					{{ t('guests', 'Guests will still be able to see users from any group they are added to') }}
+					{{ t('guests', 'Guests will still be able to see accounts from any group they are added to') }}
 				</NcNoteCard>
 
 				<NcCheckboxRadioSwitch :checked.sync="config.useWhitelist"
 					type="switch"
 					@updated:checked="saveConfig">
-					{{ t('guests', 'Limit guest access to an app whitelist') }}
+					{{ t('guests', 'Limit guest access to an app allowlist') }}
 				</NcCheckboxRadioSwitch>
 
-				<p v-if="config.useWhitelist" class="whitelist">
+				<p v-if="config.useWhitelist" class="allowlist">
 					<NcMultiselect v-model="config.whitelist"
 						:options="config.whiteListableApps"
 						:multiple="true"
@@ -50,7 +50,7 @@
 						<template #icon>
 							<History :size="16" />
 						</template>
-						{{ t('guests', 'Reset') }}
+						{{ t('guests', 'Reset allowlist') }}
 					</NcButton>
 				</p>
 			</div>
@@ -177,7 +177,7 @@ export default {
 	border: 1px solid var(--color-border);
 }
 
-.whitelist {
+.allowlist {
 	max-width: 500px;
 
 	.multiselect {
