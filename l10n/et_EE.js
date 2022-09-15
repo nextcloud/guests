@@ -12,7 +12,6 @@ OC.L10N.register(
     "Name" : "Nimi",
     "Email" : "Epost",
     "Default" : "Vaikeväärtus",
-    "Reset" : "Algseaded",
     "Error" : "Tõrge"
 },
 "nplurals=2; plural=(n != 1);");

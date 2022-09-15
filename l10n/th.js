@@ -13,9 +13,6 @@ OC.L10N.register(
     "Name" : "ชื่อ",
     "Email" : "อีเมล",
     "Default" : "ค่าเริ่มต้น",
-    "Guest users are grouped under a virtual group in the user manager" : "ผู้ใช้ทั่วไปจะถูกจัดกลุ่มภายใต้กลุ่มเสมือนในการจัดการผู้ใช้",
-    "Limit guest access to an app whitelist" : "จำกัดการใช้งานรายการที่อนุญาตในแอพฯ",
-    "Reset" : "ตั้งค่าใหม่",
     "Error" : "ข้อผิดพลาด"
 },
 "nplurals=1; plural=0;");

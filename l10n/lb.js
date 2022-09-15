@@ -10,7 +10,6 @@ OC.L10N.register(
     "Name" : "Numm",
     "Email" : "Email",
     "Default" : "Standard",
-    "Reset" : "Zeréck setzen",
     "Error" : "Feeler"
 },
 "nplurals=2; plural=(n != 1);");

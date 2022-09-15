@@ -9,7 +9,6 @@ OC.L10N.register(
     "None" : "Nulle",
     "Name" : "Nomine",
     "Email" : "E-posta",
-    "Reset" : "Re-fixar",
     "Error" : "Error"
 },
 "nplurals=2; plural=(n != 1);");

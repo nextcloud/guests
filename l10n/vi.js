@@ -11,7 +11,6 @@ OC.L10N.register(
     "Default" : "Mặc định",
     "Name:" : "Tên:",
     "Email:" : "Thư điện tử:",
-    "Reset" : "Khởi động lại",
     "Error" : "Lỗi"
 },
 "nplurals=1; plural=0;");

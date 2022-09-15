@@ -9,7 +9,6 @@ OC.L10N.register(
     "Name" : "Ad",
     "Email" : "Email",
     "Default" : "Susmaya görə",
-    "Reset" : "Sıfırla",
     "Error" : "Səhv"
 },
 "nplurals=2; plural=(n != 1);");

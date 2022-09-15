@@ -16,9 +16,6 @@ OC.L10N.register(
     "Default" : "E paracaktuar",
     "Name:" : "Emri",
     "Email:" : "Email",
-    "Guest users are grouped under a virtual group in the user manager" : "Përdoruesit vizitorë grupohen nën një grup virtual te përgjegjësi i përdoruesve",
-    "Limit guest access to an app whitelist" : "Kufizoni hyrje përdoruesish vizitorë sipas një liste lejimesh tëaplikacionit",
-    "Reset" : "Ricaktoje",
     "Error" : "Gabim"
 },
 "nplurals=2; plural=(n != 1);");

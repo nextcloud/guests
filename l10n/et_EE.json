@@ -10,7 +10,6 @@
     "Name" : "Nimi",
     "Email" : "Epost",
     "Default" : "Vaikeväärtus",
-    "Reset" : "Algseaded",
     "Error" : "Tõrge"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

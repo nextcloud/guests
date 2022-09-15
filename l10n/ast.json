@@ -12,7 +12,6 @@
     "Name" : "Nome",
     "Email" : "email",
     "Default" : "Predetermináu",
-    "Guest users are grouped under a virtual group in the user manager" : "Los usuarios convidaos agrúpense so un grupu virtual na xestión d'usuarios",
     "Error" : "Fallu"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

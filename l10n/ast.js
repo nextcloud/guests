@@ -14,7 +14,6 @@ OC.L10N.register(
     "Name" : "Nome",
     "Email" : "email",
     "Default" : "Predetermináu",
-    "Guest users are grouped under a virtual group in the user manager" : "Los usuarios convidaos agrúpense so un grupu virtual na xestión d'usuarios",
     "Error" : "Fallu"
 },
 "nplurals=2; plural=(n != 1);");

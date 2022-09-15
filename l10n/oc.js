@@ -12,7 +12,6 @@ OC.L10N.register(
     "Email" : "Adreça corrièl",
     "Default" : "Defaut",
     "Language:" : "Lenga :",
-    "Reset" : "Reïnicializar",
     "Error" : "Error"
 },
 "nplurals=2; plural=(n > 1);");

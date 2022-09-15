@@ -18,9 +18,6 @@ OC.L10N.register(
     "Email" : "E-pos",
     "Invited by" : "Genooi deur",
     "Default" : "Verstek",
-    "Guest users are grouped under a virtual group in the user manager" : "Gasgebruikers word onder ’n virtuele groep in die gebruikerbestuurder gegroepeer",
-    "Limit guest access to an app whitelist" : "Beperk gastetoegang tot ’n toepwitlys",
-    "Reset" : "Herstel",
     "Error" : "Fout"
 },
 "nplurals=2; plural=(n != 1);");

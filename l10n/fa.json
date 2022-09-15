@@ -31,12 +31,6 @@
     "Received shares" : "اشتراک را دریافت کرد",
     "No guest accounts created" : "هیچ حساب مهمان ایجاد نشده است",
     "Default" : "پیش‌گزیده",
-    "Guest users are grouped under a virtual group in the user manager" : "کاربران مهمان در یک گروه مجازی در مدیر کاربر گروه بندی می شوند",
-    "Guest users can access mounted external storages" : "کاربران مهمان می توانند به انبارهای خارجی نصب شده دسترسی پیدا کنند",
-    "Hide other users from guests" : "کاربران دیگر را از میهمانان مخفی کنید",
-    "Guests will still be able to see users from any group they are added to" : "میهمانان همچنان می توانند کاربران را از هر گروه اضافه شده به آنها مشاهده کنند",
-    "Limit guest access to an app whitelist" : "دسترسی مهمان به لیست سفید برنامه را محدود کنید",
-    "Reset" : "تنظیم مجدد",
     "Error" : "خطا",
     "Your settings have been updated" : "تنظیمات شما به روز شده است",
     "Saving …" : "در حال ذخیره"

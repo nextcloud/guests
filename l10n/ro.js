@@ -14,7 +14,6 @@ OC.L10N.register(
     "Default" : "Implicit",
     "Name:" : "Nume:",
     "Email:" : "Email:",
-    "Reset" : "Resetare",
     "Error" : "Eroare"
 },
 "nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));");
