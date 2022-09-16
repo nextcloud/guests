@@ -9,7 +9,7 @@
 			</div>
 			<div v-if="config.sharingRestrictedToGroup" class="warning">
 				<p>
-					{{ t('guests', 'Creating guests accoutns is restricted while "Restrict accounts to only share with accounts in their groups" is enabled.') }}
+					{{ t('guests', 'Creating guests accounts is restricted while "Restrict accounts to only share with accounts in their groups" is enabled.') }}
 				</p>
 				<p>
 					{{ t('guests', 'Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for.') }}
@@ -35,7 +35,7 @@
 				<NcCheckboxRadioSwitch :checked.sync="config.useWhitelist"
 					type="switch"
 					@updated:checked="saveConfig">
-					{{ t('guests', 'Limit guest access to an app allowlist') }}
+					{{ t('guests', 'Limit guest access to an app\'s allowlist') }}
 				</NcCheckboxRadioSwitch>
 
 				<p v-if="config.useWhitelist" class="allowlist">
