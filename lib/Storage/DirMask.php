@@ -56,7 +56,7 @@ class DirMask extends PermissionsMask {
 		$this->mask = $arguments['mask'];
 	}
 
-	protected function checkPath($path): string {
+	protected function checkPath($path): bool {
 		return substr($path, 0, $this->pathLength) === $this->path;
 	}
 
