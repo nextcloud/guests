@@ -3,6 +3,7 @@
 namespace OCA\Guests;
 
 use OCP\IUser;
+use OCP\Settings\IIconSection;
 use OCP\Settings\IManager;
 
 class FilteredSettingsManager implements IManager {
@@ -56,5 +57,9 @@ class FilteredSettingsManager implements IManager {
 
 	public function getPersonalSettings($section): array {
 		return $this->manager->getPersonalSettings($section);
+	}
+
+	public function getSection(string $type, string $sectionId): ?IIconSection {
+		return $this->manager->getSection($type, $sectionId);
 	}
 }
