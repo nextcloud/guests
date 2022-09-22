@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2.3.0
+
+### Added
+
+- Compatibility with Nextcloud 25
+- Bump workflows + 24 release  @skjnldsv [#880](https://github.com/nextcloud/guests/pull/880)
+- Add talk integration @nickvergessen [#892](https://github.com/nextcloud/guests/pull/892)
+- Update to new vue component @CarlSchwan [#924](https://github.com/nextcloud/guests/pull/924)
+- Add capabilities @SystemKeeper [#901](https://github.com/nextcloud/guests/pull/901)
+
+### Fixed
+
+- Limit settings to whitelisted apps @juliushaertl [#912](https://github.com/nextcloud/guests/pull/912)
+- l10n: Correct typos @Valdnet [#930](https://github.com/nextcloud/guests/pull/930)
+
+### Other
+
+- Update version on master @nickvergessen [#883](https://github.com/nextcloud/guests/pull/883)
+- Update screenshots @skjnldsv [#881](https://github.com/nextcloud/guests/pull/881)
+- Add psalm @PVince81 [#514](https://github.com/nextcloud/guests/pull/514)
+
 ## 2.2.0 - 2022-04-08
 
 ### Fixed
