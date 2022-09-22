@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <files psalm-version="4.27.0@faf106e717c37b8c81721845dba9de3d8deed8ff">
+  <file src="lib/AppConfigOverwrite.php">
+    <MethodSignatureMismatch occurrences="1">
+      <code>public function getValue($app, $key, $default = null) {</code>
+    </MethodSignatureMismatch>
+    <UndefinedClass occurrences="1">
+      <code>ConnectionAdapter</code>
+    </UndefinedClass>
+  </file>
   <file src="lib/AppInfo/Application.php">
     <UndefinedInterfaceMethod occurrences="1">
       <code>listen</code>
@@ -7,6 +15,11 @@
   </file>
   <file src="lib/AppWhitelist.php">
     <UndefinedMethod occurrences="1"/>
+  </file>
+  <file src="lib/FilteredSettingsManager.php">
+    <UndefinedInterfaceMethod occurrences="1">
+      <code>getSection</code>
+    </UndefinedInterfaceMethod>
   </file>
   <file src="lib/Hooks.php">
     <InvalidScalarArgument occurrences="1">
