@@ -48,6 +48,8 @@ OC.L10N.register(
     "Guest accounts can access mounted external storages" : "Kontu gonbidatuek muntatutako kanpo biltegiratzeak atzitu ditzakete",
     "Hide other accounts from guests" : "Ezkutatu beste kontuak gonbidatuei",
     "Guests will still be able to see accounts from any group they are added to" : "Gonbidatuek gehitzen zaien edozein taldeko kontuak ikusi ahal izango dituzte edonola ere",
+    "Limit guest access to an app's allowlist" : "Mugatu gonbidatuen sarbidea aplikazioen baimen-zerrenda batera",
+    "Reset allowlist" : "Baimen-zerrenda hasieratu",
     "Error" : "Errorea",
     "Your settings have been updated" : "Zure ezarpenak eguneratu dira",
     "Saving …" : "Gordetzen  ...",
