@@ -4,7 +4,7 @@ OC.L10N.register(
     "Access to this resource is forbidden for guests." : "L'accès à cet élément n'est pas autorisé pour les invités.",
     "__language_name__" : "Français",
     "Invalid mail address" : "Adresse e-mail non valide",
-    "A user with that email already exists." : "Il existe déjà un utilisateur avec ce courriel. ",
+    "A user with that email already exists." : "Il existe déjà un utilisateur avec cet e-mail. ",
     "A user with that name already exists." : "Un utilisateur avec ce nom existe déjà.",
     "User successfully created" : "Utilisateur créé avec succès",
     "%s shared »%s« with you" : "%s a partagé «%s» avec vous",
@@ -17,7 +17,7 @@ OC.L10N.register(
     "Activate account" : "Activer ce compte",
     "View share" : "Afficher le partage",
     "%s via %s" : "%s via %s",
-    "Couldn't send reset email. Please contact your administrator." : "Impossible d'envoyer le courriel de réinitialisation. Veuillez contacter votre administrateur.",
+    "Couldn't send reset email. Please contact your administrator." : "Impossible d'envoyer l'e-mail de réinitialisation. Veuillez contacter votre administrateur.",
     "Guests" : "Invités",
     "Data imported" : "Données importées",
     "Data from your previous guest account was successfully imported into your new account." : "Les données de votre compte invité ont été importées avec succès dans votre nouveau compte.",
@@ -35,7 +35,7 @@ OC.L10N.register(
     "No guest accounts created" : "Aucun compte invité",
     "Default" : "Par défaut",
     "Name:" : "Nom complet :",
-    "Email:" : "Courriel :",
+    "Email:" : "E-mail :",
     "Language:" : "Langue :",
     "Add guest to groups:" : "Ajouter cet invité aux groupes suivants :",
     "Invite {name}" : "Inviter {name}",
@@ -47,6 +47,6 @@ OC.L10N.register(
     "Your settings have been updated" : "Vos paramètres ont été enregistrés",
     "Saving …" : "Enregistrement…",
     "Invite guest" : "Créer un compte invité",
-    "A user with this ID or email address already exists" : "Un utilisateur avec cet ID ou cette adresse courriel existe déjà"
+    "A user with this ID or email address already exists" : "Un utilisateur avec cet ID ou cette adresse e-mail existe déjà"
 },
 "nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");
