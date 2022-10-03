@@ -44,6 +44,7 @@ OC.L10N.register(
     "Invite user and create share" : "Gonbidatu erabiltzailea eta sortu partekatzea",
     "Guest user needs to be added to at least one group" : "Erabiltzaile gonbidatuak gutxienez talde batera gehitu behar dira",
     "Guest accounts are grouped under a virtual group in the account manager" : "Kontu gonbidatuak talde birtual batean biltzen dira kontu-kudeatzailean",
+    "Creating guests accounts is restricted while \"Restrict accounts to only share with accounts in their groups\" is enabled." : "Gonbidatuen kontuak sortzea mugatuta dago \"Mugatu kontuak euren taldeetako kontuekin soilik partekatzea\" gaituta dagoen bitartean.",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Taldeen kudeatzaileek bakarrik sor ditzakete gonbidatuak eta hauek partekatzea sortu duen erabiltzaileak kudeatzen duen taldeetako batera gehitu behar dira gutxienez.",
     "Guest accounts can access mounted external storages" : "Kontu gonbidatuek muntatutako kanpo biltegiratzeak atzitu ditzakete",
     "Hide other accounts from guests" : "Ezkutatu beste kontuak gonbidatuei",
