@@ -46,7 +46,7 @@
 						:clear-on-select="false"
 						:tag-width="75"
 						@input="saveConfig" />
-					<NcButton type="secondary" class="reset-button" @click="error">
+					<NcButton type="secondary" class="reset-button" @click="reset">
 						<template #icon>
 							<History :size="16" />
 						</template>
