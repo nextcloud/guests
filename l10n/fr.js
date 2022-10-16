@@ -43,6 +43,7 @@ OC.L10N.register(
     "Invite user and create share" : "Inviter l'utilisateur et créer un partage",
     "Guest user needs to be added to at least one group" : "Les utilisateurs invités doivent être ajoutés à un groupe au moins.",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Seuls les membres de groupe administrateurs sont autorisés à créer des invités et les invités doivent être ajoutés à au moins un groupe pour lequel le créateur du partage est un administrateur de groupe.",
+    "Reset allowlist" : "Réinitialiser la liste d'autorisation",
     "Error" : "Erreur",
     "Your settings have been updated" : "Vos paramètres ont été enregistrés",
     "Saving …" : "Enregistrement…",
