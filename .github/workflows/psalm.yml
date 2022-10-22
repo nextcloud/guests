@@ -1,8 +1,3 @@
-# This workflow is provided via the organization template repository
-#
-# https://github.com/nextcloud/.github
-# https://docs.github.com/en/actions/learn-github-actions/sharing-workflows-with-your-organization
-
 name: Static analysis
 
 on:
@@ -10,24 +5,23 @@ on:
   push:
     branches:
       - master
-      - main
       - stable*
 
-concurrency: 
-  group: psalm-${{ github.head_ref || github.run_id }}
-  cancel-in-progress: true
-
 jobs:
-  static-analysis:
+  static-psalm-analysis:
     runs-on: ubuntu-latest
 
-    name: Nextcloud
+    strategy:
+      matrix:
+        ocp-version: [ 'dev-master', 'dev-stable25' ]
+
+    name: Nextcloud ${{ matrix.ocp-version }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@master
 
       - name: Set up php
-        uses: shivammathur/setup-php@v2
+        uses: shivammathur/setup-php@master
         with:
           php-version: 7.4
           coverage: none
