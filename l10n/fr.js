@@ -37,7 +37,7 @@ OC.L10N.register(
     "Name:" : "Nom complet :",
     "Email:" : "E-mail :",
     "Language:" : "Langue :",
-    "Add guest to groups:" : "Ajouter cet invité aux groupes suivants :",
+    "Add guest to groups:" : "Ajouter cet invité aux groupes suivants :",
     "Invite {name}" : "Inviter {name}",
     "Invite user to conversation" : "Convier l'utilisateur à une conversation",
     "Invite user and create share" : "Inviter l'utilisateur et créer un partage",
