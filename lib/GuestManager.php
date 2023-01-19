@@ -139,7 +139,7 @@ class GuestManager {
 			$endOfTime = PHP_INT_MAX - 50000;
 			$token = sprintf('%s:%s', $endOfTime, $token);
 
-			$encryptedValue = $this->crypto->encrypt($token, $email . $this->config->getSystemValue('secret'));
+			$encryptedValue = $this->crypto->encrypt($token, strtolower($email) . $this->config->getSystemValue('secret'));
 
 			$this->config->setUserValue(
 				$userId,
