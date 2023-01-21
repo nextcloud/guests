@@ -49,6 +49,7 @@ OC.L10N.register(
     "Guest accounts can access mounted external storages" : "Gast-Konten können auf eingebundene externe Speicher zugreifen",
     "Hide other accounts from guests" : "Weitere Konten für Gäste nicht anzeigen",
     "Guests will still be able to see accounts from any group they are added to" : "Gäste können weiterhin andere Konten jeder Gruppe sehen, von denen sie Mitglied sind",
+    "Limit guest access to an app's allowlist" : "Gastzugriff auf die Zulassungsliste einer App beschränken",
     "Reset allowlist" : "Allowlist zurücksetzen",
     "Error" : "Fehler",
     "Your settings have been updated" : "Deine Einstellungen wurden aktualisiert",
