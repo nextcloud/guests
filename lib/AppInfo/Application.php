@@ -37,8 +37,10 @@ use OCP\AppFramework\Bootstrap\IRegistrationContext;
 use OCP\AppFramework\Bootstrap\IBootContext;
 use OCP\AppFramework\Http\Events\BeforeTemplateRenderedEvent;
 use OCP\AppFramework\IAppContainer;
+use OCP\IGroupManager;
 use OCP\IServerContainer;
 use OCP\IUser;
+use OCP\IUserManager;
 use OCP\Notification\IManager as INotificationManager;
 use OCP\Share\Events\ShareCreatedEvent;
 
@@ -55,16 +57,14 @@ class Application extends App implements IBootstrap {
 		$context->registerEventListener(LoadAdditionalScriptsEvent::class, LoadAdditionalScriptsListener::class);
 		$context->registerEventListener(ShareCreatedEvent::class, ShareAutoAcceptListener::class);
 		$context->registerEventListener(BeforeTemplateRenderedEvent::class, TalkIntegrationListener::class);
-
-		// need to cheat here since there's no way to register these in IRegistrationContext
-		$container = $this->getContainer();
-		$server = $container->getServer();
-		$server->getUserManager()->registerBackend($container->query(UserBackend::class));
-		\OC_App::loadApp('theming');
-		$server->getGroupManager()->addBackend($container->query(GroupBackend::class));
 	}
 
 	public function boot(IBootContext $context): void {
+		// need to cheat here since there's no way to register these in IRegistrationContext
+		$container = $context->getServerContainer();
+		$container->get(IUserManager::class)->registerBackend($container->query(UserBackend::class));
+		$container->get(IGroupManager::class)->addBackend($container->query(GroupBackend::class));
+
 		$this->setupGuestManagement($context->getAppContainer(), $context->getServerContainer());
 		$this->setupGuestRestrictions($context->getAppContainer(), $context->getServerContainer());
 		$this->setupNotifications($context->getAppContainer());
