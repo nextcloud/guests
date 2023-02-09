@@ -100,6 +100,9 @@ class DirMask extends PermissionsMask {
 		}
 	}
 
+	/**
+	 * @psalm-suppress ParamNameMismatch
+	 */
 	public function rename($source, $target): bool {
 		if (!$this->isUpdatable($source)) {
 			return false;
@@ -119,7 +122,10 @@ class DirMask extends PermissionsMask {
 		}
 		return false;
 	}
-
+	
+	/**
+	 * @psalm-suppress ParamNameMismatch
+	 */
 	public function copy($source, $target): bool {
 		if (!$this->isReadable($source)) {
 			return false;
