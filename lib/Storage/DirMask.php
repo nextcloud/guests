@@ -100,41 +100,41 @@ class DirMask extends PermissionsMask {
 		}
 	}
 
-	public function rename($path1, $path2): bool {
-		if (!$this->isUpdatable($path1)) {
+	public function rename($source, $target): bool {
+		if (!$this->isUpdatable($source)) {
 			return false;
 		}
-		if ($this->file_exists($path2)) {
-			if ($this->isUpdatable($path2)) {
-				return $this->storage->rename($path1, $path2);
+		if ($this->file_exists($target)) {
+			if ($this->isUpdatable($target)) {
+				return $this->storage->rename($source, $target);
 			}
 		} else {
-			$parent = dirname($path2);
+			$parent = dirname($target);
 			if ($parent === '.') {
 				$parent = '';
 			}
 			if ($this->isCreatable($parent)) {
-				return $this->storage->rename($path1, $path2);
+				return $this->storage->rename($source, $target);
 			}
 		}
 		return false;
 	}
 
-	public function copy($path1, $path2): bool {
-		if (!$this->isReadable($path1)) {
+	public function copy($source, $target): bool {
+		if (!$this->isReadable($source)) {
 			return false;
 		}
-		if ($this->file_exists($path2)) {
-			if ($this->isUpdatable($path2)) {
-				return $this->storage->copy($path1, $path2);
+		if ($this->file_exists($target)) {
+			if ($this->isUpdatable($target)) {
+				return $this->storage->copy($source, $target);
 			}
 		} else {
-			$parent = dirname($path2);
+			$parent = dirname($target);
 			if ($parent === '.') {
 				$parent = '';
 			}
 			if ($this->isCreatable($parent)) {
-				return $this->storage->copy($path1, $path2);
+				return $this->storage->copy($source, $target);
 			}
 		}
 		return false;
