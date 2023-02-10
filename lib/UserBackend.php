@@ -247,7 +247,7 @@ class UserBackend extends ABackend implements
 	/**
 	 * Check if the password is correct
 	 *
-	 * @return string|bool
+	 * @return string|false
 	 *
 	 * Check if the password is correct without logging in the user
 	 * returns the user id or false
@@ -377,7 +377,7 @@ class UserBackend extends ABackend implements
 	/**
 	 * counts the users in the database
 	 *
-	 * @return int|bool
+	 * @return int|false
 	 */
 	public function countUsers() {
 		$query = $this->dbConn->getQueryBuilder();

@@ -111,7 +111,7 @@ class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetails
 	 * Returns a list with all groups
 	 */
 	public function getGroups($search = '', $limit = -1, $offset = 0): array {
-		return $offset === 0 ? [$this->groupName] : [];
+		return $offset == 0 ? [$this->groupName] : [];
 	}
 
 	/**
