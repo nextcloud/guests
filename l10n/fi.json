@@ -36,6 +36,8 @@
     "Invite user to conversation" : "Kutsu käyttäjä keskusteluun",
     "Invite user and create share" : "Kutsu käyttäjä ja luo jako",
     "Guest user needs to be added to at least one group" : "Vieraskäyttäjä tulee liittää vähintään yhteen ryhmään",
+    "Guest accounts can access mounted external storages" : "Vierastileillä on pääsy liitetyille erillisiin tallennustiloihin",
+    "Hide other accounts from guests" : "Piilota muut tilit vierailta",
     "Error" : "Virhe",
     "Your settings have been updated" : "Asetuksesi on tallennettu",
     "Saving …" : "Tallennetaan …",
