@@ -161,7 +161,7 @@ class Hooks {
 			if ($passwordToken) {
 				// user has not yet activated his account
 
-				$decryptedToken = $this->crypto->decrypt($passwordToken, $targetUser->getEMailAddress() . $this->config->getSystemValue('secret'));
+				$decryptedToken = $this->crypto->decrypt($passwordToken, strtolower($targetUser->getEMailAddress()) . $this->config->getSystemValue('secret'));
 				[, $token] = explode(':', $decryptedToken);
 				$lang = $this->config->getUserValue($targetUser->getUID(), 'core', 'lang', '');
 				// send invitation
@@ -177,6 +177,8 @@ class Hooks {
 			}
 		} catch (DoesNotExistException $ex) {
 			$this->logger->error("'$shareWith' does not exist", ['app' => Application::APP_ID]);
+		} catch (\Exception $e) {
+			$this->logger->error("Failed to send guest activation mail", ['app' => Application::APP_ID, 'exception' => $e]);
 		}
 	}
 
