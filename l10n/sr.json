@@ -20,6 +20,7 @@
     "Data imported" : "Подаци увезени",
     "Data from your previous guest account was successfully imported into your new account." : "Подаци претходнох гостинског налога су успешно увезени у Ваш нови налог.",
     "Create guest accounts for easier collaboration" : "Направи гостински налог за лакшу сарадњу",
+    "👥 Allows for better collaboration with external users by allowing users to create guests account.\n\nGuests accounts can be created from the share menu by entering either the recipients email or name and choosing \"create guest account\", once the share is created the guest user will receive an email notification about the mail with a link to set their password.\n\nGuests users can only access files shared to them and cannot create any files outside of shares, additionally, the apps accessible to guest accounts are whitelisted." : "👥 Обезбеђује бољу сарадњу са спољним корисницима тако што омогућава да корисници креирају гост налоге.\n\nГост налози могу да се креирају из менија дељења тако што се унесе или и-мејл или име примаоца и изабере „креирај гост налог”, па онда када се креира дељење, корисник гост ће примити и-мејл обавештење о мејлу са линком помоћу којег могу да поставе своју лозинку.\n\nГост корисници могу да приступе само фајловима који су подељеи са њима и не могу да креирају било какве фајлове ван тих дељења. Уз то, апликације које су доступне гост налозима се стављају на белу листу.",
     "None" : "Ништа",
     "Name" : "Име",
     "Shared By" : "Поделио",
@@ -35,13 +36,23 @@
     "Email:" : "И-мејл:",
     "Language:" : "Језик:",
     "Add guest to groups:" : "Додај госта у групе:",
+    "An error occurred, try again" : "Дошло је до грешке, покушајте поново",
     "Invite {name}" : "Позови {name}",
+    "Invite user to conversation" : "Позовите корисника у разговор",
     "Invite user and create share" : "Позови корисника и направи дељење",
     "Guest user needs to be added to at least one group" : "Гостински корисник мора бити додат на бар једну групу",
+    "Guest accounts are grouped under a virtual group in the account manager" : "Гост налози се унутар менаџера налога групишу у виртуелну групу",
+    "Creating guests accounts is restricted while \"Restrict accounts to only share with accounts in their groups\" is enabled." : "Креирање гост налога је ограничено све док је укључено „Ограничи налоге само на дељење са налозима унутар својих група”.",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Само администраторима група је дозвољено да креирају госте, а гости морају бити додати на бар једну групу на којој је онај ко је направио дељење и администратор те групе.",
+    "Guest accounts can access mounted external storages" : "Гост налози могу да приступе монтираним спољним складиштима",
+    "Hide other accounts from guests" : "Сакриј остале налоге од гостију",
+    "Guests will still be able to see accounts from any group they are added to" : "Гости ће још увек моћи да виде налоге из било које групе у коју су додати",
+    "Limit guest access to an app's allowlist" : "Ограничи госту приступ листи дозвољених апликације",
+    "Reset allowlist" : "Ресетуј листу дозвољених",
     "Error" : "Грешка",
     "Your settings have been updated" : "Ваше поставке су ажуриране",
     "Saving …" : "Чувам …",
-    "Invite guest" : "Позови госта"
+    "Invite guest" : "Позови госта",
+    "A user with this ID or email address already exists" : "Корисник са овим ID или и-мејл адресом већ постоји"
 },"pluralForm" :"nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);"
 }
