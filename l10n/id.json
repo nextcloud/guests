@@ -1,10 +1,10 @@
 { "translations": {
     "__language_name__" : "Bahasa Indonesia",
-    "Invalid mail address" : "Alamat email salah",
+    "Invalid mail address" : "Alamat surel salah",
     "A user with that name already exists." : "Pengguna dengan nama tersebut sudah ada.",
-    "%s shared »%s« with you" : "%s membagikan »%s« dengan anda",
+    "%s shared »%s« with you" : "%s membagikan »%s« dengan Anda",
     "%s via %s" : "%s melalui %s",
-    "Couldn't send reset email. Please contact your administrator." : "Tidak dapat mengirim email setel ulang. Silakan hubungi administrator Anda.",
+    "Couldn't send reset email. Please contact your administrator." : "Tidak dapat mengirim surel setel ulang. Silakan hubungi administrator Anda.",
     "None" : "Tidak ada",
     "Name" : "Nama",
     "Email" : "Surel",
