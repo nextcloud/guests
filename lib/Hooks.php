@@ -221,7 +221,7 @@ class Hooks {
 			return;
 		}
 
-		if ($email === $user->getUID()) {
+		if (strtolower($email) === strtolower($user->getUID())) {
 			// This is the guest user, logging in for the very first time
 			return;
 		}
