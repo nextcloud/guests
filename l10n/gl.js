@@ -50,7 +50,7 @@ OC.L10N.register(
     "Hide other accounts from guests" : "Ocultar outras contas dos convidados",
     "Guests will still be able to see accounts from any group they are added to" : "Os convidados aínda poderán ver as contas de calquera grupo ao que se engaden",
     "Limit guest access to an app's allowlist" : "Limita o acceso dos convidados á lista de permisos dunha aplicación",
-    "Reset allowlist" : "Restablecer lista de permisos",
+    "Reset allowlist" : "Restabelecer lista de permisos",
     "Error" : "Erro",
     "Your settings have been updated" : "Actualizaronse os axustes",
     "Saving …" : "Gardando …",
