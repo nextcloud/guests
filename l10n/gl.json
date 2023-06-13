@@ -42,7 +42,7 @@
     "Invite user and create share" : "Convidar usuario e crear compartición",
     "Guest user needs to be added to at least one group" : "O usuario convidado debe engadirse a polo menos un grupo",
     "Guest accounts are grouped under a virtual group in the account manager" : "As contas de convidados agrúpanse nun grupo virtual no xestor de contas",
-    "Creating guests accounts is restricted while \"Restrict accounts to only share with accounts in their groups\" is enabled." : "A creación de contas de convidados está restrinxida mentres está activado \"Restringir contas para compartir só coas contas dos seus grupos\".",
+    "Creating guests accounts is restricted while \"Restrict accounts to only share with accounts in their groups\" is enabled." : "A creación de contas de convidados está restrinxida mentres está activado «Restrinxir contas para compartir só coas contas dos seus grupos».",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Só os administradores de grupo están autorizados a crear convidados e os convidados deben ser engadidos polo menos un grupo no que o creador de comparticións é un administrador de grupo.",
     "Guest accounts can access mounted external storages" : "As contas de convidados poden acceder a almacenamentos externos montados",
     "Hide other accounts from guests" : "Ocultar outras contas dos convidados",
