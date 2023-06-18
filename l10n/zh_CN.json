@@ -44,7 +44,7 @@
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "仅允许群组管理员创建访客，并且必须将访客添加到共享创建者所管理的至少一个群组中。",
     "Error" : "错误",
     "Your settings have been updated" : "您的设置已更新",
-    "Saving …" : "正在保存 …",
+    "Saving …" : "正在保存 ……",
     "Invite guest" : "邀请访客",
     "A user with this ID or email address already exists" : "具有此 ID 或电子邮件地址的用户已存在"
 },"pluralForm" :"nplurals=1; plural=0;"
