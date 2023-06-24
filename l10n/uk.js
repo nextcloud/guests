@@ -6,7 +6,7 @@ OC.L10N.register(
     "Invalid mail address" : "Недійсна адреса ел.пошти",
     "A user with that email already exists." : "Користувач з такою email адресою вже існує.",
     "A user with that name already exists." : "Користувач з таким іменем вже існує.",
-    "User successfully created" : "Користувач успішно створений",
+    "User successfully created" : "Користувача успішно створено",
     "%s shared »%s« with you" : "%s поділився %s з вами",
     "%s just shared »%s« with you." : "%s щойно поділився з вами \"%s\"",
     "%s via %s" : "%s за допомогою %s",

@@ -6,7 +6,7 @@
     "User successfully created" : "사용자를 성공적으로 생성함",
     "%s shared »%s« with you" : "%s 님이 %s을(를) 공유했습니다",
     "Hey there," : "안녕하세요,",
-    "%s just shared »%s« with you." : "%s이(가) 당신과 %s을(를) 공유했습니다.",
+    "%s just shared »%s« with you." : "%s님이 당신과 %s을(를) 공유했습니다.",
     "You can access the shared file by activating your guest account." : "당신의 손님 계정을 활성화하여 이 공유 파일에 접근할 수 있습니다.",
     "After your account is activated you can view the share by logging in with %s." : "계정이 활성화되면, %s(으))로 로그인하여 공유를 확인할 수 있습니다.",
     "The share will expire at %s." : "공유가 %s에 만료됩니다.",
