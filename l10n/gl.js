@@ -17,7 +17,7 @@ OC.L10N.register(
     "Activate account" : "Activar a conta",
     "View share" : "Ver o recurso compartido",
     "%s via %s" : "%s mediante %s",
-    "Couldn't send reset email. Please contact your administrator." : "Non foi posíbel enviar o correo do restabelecemento. Póñase en contacto co administrador.",
+    "Couldn't send reset email. Please contact your administrator." : "Non foi posíbel enviar o correo do restabelecemento. Póñase en contacto coa administración desta instancia.",
     "Guests" : "Convidado",
     "Data imported" : "Datos importados",
     "Data from your previous guest account was successfully imported into your new account." : "Os datos da súa anterior conta de convidados importáronse satisfactoriamente á súa nova conta.",
