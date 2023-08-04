@@ -23,8 +23,8 @@ declare(strict_types=1);
 
 namespace OCA\Guests\Test\Command\Unit;
 
-use OCA\Guests\GuestManager;
 use OCA\Guests\Command\AddCommand;
+use OCA\Guests\GuestManager;
 use OCP\IUser;
 use OCP\IUserManager;
 use OCP\Mail\IMailer;
@@ -111,15 +111,15 @@ class AddCommandTest extends TestCase {
 			->willReturn(true);
 
 		$this->guestManager->expects($this->once())
-			 ->method('createGuest')
-			 ->with(
-				 $createdByUser,
-				 'guestid@example.com',
-				 'guestid@example.com',
-				 isset($commandArgs['--display-name']) ? $commandArgs['--display-name'] : '',
-				 isset($commandArgs['--language']) ? $commandArgs['--language'] : '',
-				 $password
-				)
+			->method('createGuest')
+			->with(
+				$createdByUser,
+				'guestid@example.com',
+				'guestid@example.com',
+				isset($commandArgs['--display-name']) ? $commandArgs['--display-name'] : '',
+				isset($commandArgs['--language']) ? $commandArgs['--language'] : '',
+				$password
+			)
 			->willReturn($guestUser);
 
 		$this->commandTester->setInputs(['guest-password', 'guest-password']);

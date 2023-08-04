@@ -41,7 +41,7 @@ class Notifier implements INotifier {
 	private $url;
 
 	public function __construct(IFactory $factory,
-								IURLGenerator $url) {
+		IURLGenerator $url) {
 		$this->factory = $factory;
 		$this->url = $url;
 	}

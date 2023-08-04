@@ -97,8 +97,8 @@ class GuestsContext implements Context, SnippetAcceptingContext {
 		$posKnownString = strpos($emailBody, $knownString);
 		$posNextString = strpos($emailBody, $nextString, $posKnownString + strlen($knownString));
 		$urlResetPasswd = substr($emailBody,
-								 $posKnownString + strlen($knownString),
-								 $posNextString - ($posKnownString + strlen($knownString)));
+			$posKnownString + strlen($knownString),
+			$posNextString - ($posKnownString + strlen($knownString)));
 		$urlResetPasswd = preg_replace('/[\s]+/mu', ' ', $urlResetPasswd);
 		$urlResetPasswd = str_replace('=', '', $urlResetPasswd);
 		$urlResetPasswd = str_replace(' ', '', $urlResetPasswd);

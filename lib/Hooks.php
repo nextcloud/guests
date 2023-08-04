@@ -33,7 +33,6 @@ use OCP\AppFramework\QueryException;
 use OCP\Constants;
 use OCP\Files\Storage\IStorage;
 use OCP\IConfig;
-use OCP\IRequest;
 use OCP\IUser;
 use OCP\IUserManager;
 use OCP\IUserSession;

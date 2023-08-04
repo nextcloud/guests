@@ -22,11 +22,11 @@
 namespace OCA\Guests;
 
 use OC\AppConfig;
-use OCP\IDBConnection;
 use OC\NavigationManager;
 use OCA\Files_External\Config\ExternalMountPoint;
 use OCP\Files\Config\IMountProviderCollection;
 use OCP\Files\Mount\IMountPoint;
+use OCP\IDBConnection;
 use OCP\INavigationManager;
 use OCP\IRequest;
 use OCP\IServerContainer;

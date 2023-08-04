@@ -232,8 +232,8 @@ namespace Symfony\Component\Console\Input {
 }
 
 namespace Symfony\Component\Console\Helper {
-	use Symfony\Component\Console\Output\OutputInterface;
 	use Symfony\Component\Console\Input\InputInterface;
+	use Symfony\Component\Console\Output\OutputInterface;
 	use Symfony\Component\Console\Question\Question;
 
 	class QuestionHelper {
@@ -260,9 +260,9 @@ namespace Symfony\Component\Console\Output {
 namespace OC\Files\Cache {
 	use OCP\Files\Cache\ICache;
 	use OCP\Files\Cache\ICacheEntry;
+	use OCP\Files\IMimeTypeLoader;
 	use OCP\Files\Search\ISearchOperator;
 	use OCP\Files\Search\ISearchQuery;
-	use OCP\Files\IMimeTypeLoader;
 
 	class Cache implements ICache {
 		/**
@@ -366,8 +366,8 @@ namespace OC\Files {
 }
 
 namespace OC\User {
-	use OCP\UserInterface;
 	use OCP\IUser;
+	use OCP\UserInterface;
 	use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 	class User implements IUser {
@@ -757,12 +757,12 @@ namespace OCA\Files\Service {
 
 	class OwnershipTransferService {
 		public function transfer(IUser $sourceUser,
-								 IUser $destinationUser,
-								 string $path,
-								 ?OutputInterface $output = null,
-								 bool $move = false,
-								 bool $firstLogin = false,
-								 bool $transferIncomingShares = false): void {
+			IUser $destinationUser,
+			string $path,
+			?OutputInterface $output = null,
+			bool $move = false,
+			bool $firstLogin = false,
+			bool $transferIncomingShares = false): void {
 		}
 	}
 }

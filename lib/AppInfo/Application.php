@@ -22,19 +22,19 @@
 namespace OCA\Guests\AppInfo;
 
 use OCA\Files\Event\LoadAdditionalScriptsEvent;
-use OCA\Guests\Listener\LoadAdditionalScriptsListener;
 use OCA\Guests\Capabilities;
 use OCA\Guests\GroupBackend;
 use OCA\Guests\Hooks;
+use OCA\Guests\Listener\LoadAdditionalScriptsListener;
 use OCA\Guests\Listener\ShareAutoAcceptListener;
 use OCA\Guests\Listener\TalkIntegrationListener;
 use OCA\Guests\Notifications\Notifier;
 use OCA\Guests\RestrictionManager;
 use OCA\Guests\UserBackend;
 use OCP\AppFramework\App;
+use OCP\AppFramework\Bootstrap\IBootContext;
 use OCP\AppFramework\Bootstrap\IBootstrap;
 use OCP\AppFramework\Bootstrap\IRegistrationContext;
-use OCP\AppFramework\Bootstrap\IBootContext;
 use OCP\AppFramework\Http\Events\BeforeTemplateRenderedEvent;
 use OCP\AppFramework\IAppContainer;
 use OCP\EventDispatcher\IEventDispatcher;

@@ -49,8 +49,8 @@ class ShareAutoAcceptListener implements IEventListener {
 	private $logger;
 
 	public function __construct(IUserManager $userManager,
-								ShareManager $shareManager,
-								ILogger $logger) {
+		ShareManager $shareManager,
+		ILogger $logger) {
 		$this->userManager = $userManager;
 		$this->shareManager = $shareManager;
 		$this->logger = $logger;
