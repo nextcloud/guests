@@ -39,9 +39,10 @@ use OCP\IUserManager;
 use OCP\IUserSession;
 use OCP\Notification\IManager as INotificationManager;
 use OCP\Security\ICrypto;
+use OCP\Share\Events\ShareCreatedEvent;
 use OCP\Share\IManager as IShareManager;
 use OCP\Share\IShare;
-use Symfony\Component\EventDispatcher\GenericEvent;
+use OCP\User\Events\UserFirstTimeLoggedInEvent;
 use Psr\Log\LoggerInterface;
 
 class Hooks {
@@ -51,9 +52,6 @@ class Hooks {
 
 	/** @var IUserSession */
 	private $userSession;
-
-	/** @var IRequest */
-	private $request;
 
 	/** @var Mail */
 	private $mail;
@@ -84,7 +82,6 @@ class Hooks {
 	public function __construct(
 		LoggerInterface $logger,
 		IUserSession $userSession,
-		IRequest $request,
 		Mail $mail,
 		IUserManager $userManager,
 		IConfig $config,
@@ -97,7 +94,6 @@ class Hooks {
 	) {
 		$this->logger = $logger;
 		$this->userSession = $userSession;
-		$this->request = $request;
 		$this->mail = $mail;
 		$this->userManager = $userManager;
 		$this->config = $config;
@@ -109,9 +105,8 @@ class Hooks {
 		$this->shareManager = $shareManager;
 	}
 
-	public function handlePostShare(GenericEvent $event): void {
-		/** @var IShare $share */
-		$share = $event->getSubject();
+	public function handlePostShare(ShareCreatedEvent $event): void {
+		$share = $event->getShare();
 
 		$shareWith = $share->getSharedWith();
 		$isGuest = $this->guestManager->isGuest($shareWith);
@@ -201,13 +196,13 @@ class Hooks {
 		}
 	}
 
-	public function handleFirstLogin(GenericEvent $event): void {
+	public function handleFirstLogin(UserFirstTimeLoggedInEvent $event): void {
 		if ($this->config->getSystemValue('migrate_guest_user_data', false) === false) {
 			return;
 		}
 
 		/** @var IUser $user */
-		$user = $event->getSubject();
+		$user = $event->getUser();
 		$this->logger->debug('User ' . $user->getUID() . ' logged in for the very first time. Checking guests data import.');
 
 		$email = $user->getEMailAddress();
