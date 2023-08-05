@@ -48,7 +48,7 @@
     "@nextcloud/router": "^2.0.1",
     "@nextcloud/vue": "^7.11.4",
     "email-validator": "^2.0.4",
-    "vue": "^2.7.14",
+    "vue": "^3.3.4",
     "vue-material-design-icons": "^5.2.0"
   },
   "engines": {
