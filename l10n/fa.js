@@ -33,6 +33,7 @@ OC.L10N.register(
     "Received shares" : "اشتراک را دریافت کرد",
     "No guest accounts created" : "هیچ حساب مهمان ایجاد نشده است",
     "Default" : "پیش‌گزیده",
+    "Name:" : "نام:",
     "Email:" : "ایمیل",
     "Error" : "خطا",
     "Your settings have been updated" : "تنظیمات شما به روز شده است",
