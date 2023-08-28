@@ -62,7 +62,7 @@ class FilteredNavigationManager extends NavigationManager {
 		return $this->navigationManager->getActiveEntry();
 	}
 
-	public function setActiveEntry($appId) {
+	public function setActiveEntry($appId): void {
 		$this->navigationManager->setActiveEntry($appId);
 	}
 

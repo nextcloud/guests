@@ -4,7 +4,13 @@
 		"optimize-autoloader": true,
 		"classmap-authoritative": true,
 		"platform": {
-			"php": "7.3"
+			"php": "8.0.2"
+		},
+		"sort-packages": true
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"OCP\\": "vendor/nextcloud/ocp/OCP"
 		}
 	},
 	"scripts": {
@@ -18,10 +24,10 @@
 		"test:unit": "vendor/bin/phpunit -c phpunit.xml"
 	},
 	"require-dev": {
-		"nextcloud/coding-standard": "^1.0",
-		"phpunit/phpunit": "^9",
+		"nextcloud/coding-standard": "^1.1",
+		"nextcloud/ocp": "dev-master",
 		"php-parallel-lint/php-parallel-lint": "^1.2",
-		"christophwurst/nextcloud": "^23.0",
-		"vimeo/psalm": "^4.27"
+		"phpunit/phpunit": "^9",
+		"vimeo/psalm": "^5.14"
 	}
 }

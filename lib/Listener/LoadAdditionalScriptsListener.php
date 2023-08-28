@@ -29,6 +29,9 @@ namespace OCA\Guests\Listener;
 use OCP\EventDispatcher\Event;
 use OCP\EventDispatcher\IEventListener;
 
+/**
+ * @template-implements IEventListener<Event>
+ */
 class LoadAdditionalScriptsListener implements IEventListener {
 	public function handle(Event $event): void {
 		\OCP\Util::addScript('guests', 'guests-main');

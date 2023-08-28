@@ -21,13 +21,13 @@
 
 namespace OCA\Guests;
 
-use OCP\L10N\IFactory;
 use OCP\Defaults;
 use OCP\IConfig;
 use OCP\ILogger;
 use OCP\IURLGenerator;
 use OCP\IUserManager;
 use OCP\IUserSession;
+use OCP\L10N\IFactory;
 use OCP\Mail\IMailer;
 use OCP\Share;
 use OCP\Util;

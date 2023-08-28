@@ -34,6 +34,9 @@ use OCP\Share\Events\ShareCreatedEvent;
 use OCP\Share\IManager as ShareManager;
 use OCP\Share\IShare;
 
+/**
+ * @template-implements IEventListener<Event>
+ */
 class ShareAutoAcceptListener implements IEventListener {
 
 	/** @var IUserManager */
@@ -46,8 +49,8 @@ class ShareAutoAcceptListener implements IEventListener {
 	private $logger;
 
 	public function __construct(IUserManager $userManager,
-								ShareManager $shareManager,
-								ILogger $logger) {
+		ShareManager $shareManager,
+		ILogger $logger) {
 		$this->userManager = $userManager;
 		$this->shareManager = $shareManager;
 		$this->logger = $logger;
