@@ -122,7 +122,7 @@ class DirMask extends PermissionsMask {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * @psalm-suppress ParamNameMismatch
 	 */
@@ -162,6 +162,9 @@ class DirMask extends PermissionsMask {
 		}
 	}
 
+	/**
+	 * @psalm-suppress MethodSignatureMustProvideReturnType
+	 */
 	public function rmdir($path) {
 		if ($this->checkPath($path)) {
 			return parent::rmdir($path);
@@ -178,6 +181,9 @@ class DirMask extends PermissionsMask {
 		}
 	}
 
+	/**
+	 * @psalm-suppress MethodSignatureMustProvideReturnType
+	 */
 	public function file_put_contents($path, $data) {
 		if ($this->checkPath($path)) {
 			return parent::file_put_contents($path, $data);
@@ -186,6 +192,9 @@ class DirMask extends PermissionsMask {
 		}
 	}
 
+	/**
+	 * @psalm-suppress MethodSignatureMustProvideReturnType
+	 */
 	public function fopen($path, $mode) {
 		if ($this->checkPath($path)) {
 			return parent::fopen($path, $mode);
@@ -194,6 +203,9 @@ class DirMask extends PermissionsMask {
 		}
 	}
 
+	/**
+	 * @psalm-suppress MethodSignatureMustProvideReturnType
+	 */
 	public function getCache($path = '', $storage = null) {
 		if (!$storage) {
 			$storage = $this;

@@ -85,6 +85,48 @@ namespace OC\Cache {
 
 namespace OC {
 	class NavigationManager implements \OCP\INavigationManager {
+		public function add($entry) {
+		}
+
+		/**
+		 * Sets the current navigation entry of the currently running app
+		 * @param string $appId id of the app entry to activate (from added $entry)
+		 * @return void
+		 * @since 6.0.0
+		 */
+		public function setActiveEntry($appId) {
+		}
+
+		/**
+		 * Get the current navigation entry of the currently running app
+		 * @return string
+		 * @since 20.0.0
+		 */
+		public function getActiveEntry() {
+		}
+
+		public function clear($loadDefaultLinks = true) {
+		}
+
+		/**
+		 * Get a list of navigation entries
+		 *
+		 * @param string $type type of the navigation entries
+		 * @return array
+		 * @since 14.0.0
+		 */
+		public function getAll(string $type = self::TYPE_APPS): array {
+		}
+
+		/**
+		 * Set an unread counter for navigation entries
+		 *
+		 * @param string $id id of the navigation entry
+		 * @param int $unreadCounter Number of unread entries (0 to hide the counter which is the default)
+		 * @since 22.0.0
+		 */
+		public function setUnreadCounter(string $id, int $unreadCounter): void {
+		}
 	}
 
 	class AppConfig {
@@ -122,6 +164,8 @@ namespace {
 	}
 
 	class OC_Template {
+		public static function printErrorPage($error_msg, $hint = '', $statusCode = 500) {
+		}
 	}
 }
 
@@ -334,6 +378,15 @@ namespace OC\Files\Cache\Wrapper {
 	class CacheWrapper extends Cache {
 	}
 	class CachePermissionsMask extends CacheWrapper {
+		/**
+		 * @param \OCP\Files\Cache\ICache $cache
+		 * @param int $mask
+		 */
+		public function __construct($cache, $mask) {
+		}
+
+		protected function formatCacheEntry($entry) {
+		}
 	}
 }
 
@@ -436,10 +489,10 @@ namespace OC\Files\Mount {
 		protected $class;
 		protected $storageId;
 		protected $rootId = null;
-	
+
 		/** @var int|null */
 		protected $mountId;
-	
+
 		/**
 		 * @param string|\OCP\Files\Storage\IStorage $storage
 		 * @param string $mountpoint
@@ -452,7 +505,7 @@ namespace OC\Files\Mount {
 		public function __construct($storage, $mountpoint, $arguments = null, $loader = null, $mountOptions = null, $mountId = null) {
 			throw new \Exception('stub');
 		}
-	
+
 		/**
 		 * get complete path to the mount point, relative to data/
 		 *
@@ -461,7 +514,7 @@ namespace OC\Files\Mount {
 		public function getMountPoint() {
 			throw new \Exception('stub');
 		}
-	
+
 		/**
 		 * Sets the mount point path, relative to data/
 		 *
@@ -470,28 +523,28 @@ namespace OC\Files\Mount {
 		public function setMountPoint($mountPoint) {
 			throw new \Exception('stub');
 		}
-	
+
 		/**
 		 * @return \OCP\Files\Storage\IStorage
 		 */
 		public function getStorage() {
 			throw new \Exception('stub');
 		}
-	
+
 		/**
 		 * @return string
 		 */
 		public function getStorageId() {
 			throw new \Exception('stub');
 		}
-	
+
 		/**
 		 * @return int
 		 */
 		public function getNumericStorageId() {
 			throw new \Exception('stub');
 		}
-	
+
 		/**
 		 * @param string $path
 		 * @return string
@@ -499,14 +552,14 @@ namespace OC\Files\Mount {
 		public function getInternalPath($path) {
 			throw new \Exception('stub');
 		}
-	
+
 		/**
 		 * @param callable $wrapper
 		 */
 		public function wrapStorage($wrapper) {
 			throw new \Exception('stub');
 		}
-	
+
 		/**
 		 * Get a mount option
 		 *
@@ -517,7 +570,7 @@ namespace OC\Files\Mount {
 		public function getOption($name, $default) {
 			throw new \Exception('stub');
 		}
-	
+
 		/**
 		 * Get all options for the mount
 		 *
@@ -526,18 +579,18 @@ namespace OC\Files\Mount {
 		public function getOptions() {
 			throw new \Exception('stub');
 		}
-	
+
 		/**
 		 * @return int
 		 */
 		public function getStorageRootId() {
 			throw new \Exception('stub');
 		}
-	
+
 		public function getMountId() {
 			throw new \Exception('stub');
 		}
-	
+
 		public function getMountType() {
 			throw new \Exception('stub');
 		}
@@ -549,6 +602,12 @@ namespace OC\Files\Storage\Wrapper{
 	use OCP\Files\Storage\IStorage;
 
 	class Wrapper implements IStorage {
+		/**
+		 * @var \OCP\Files\Storage\IStorage $storage
+		 */
+		protected $storage;
+
+
 		public function __construct(array $parameters) {
 		}
 

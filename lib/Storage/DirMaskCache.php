@@ -37,6 +37,9 @@ class DirMaskCache extends CachePermissionsMask {
 		$this->checkPath = $checkPath;
 	}
 
+	/**
+	 * @psalm-suppress MethodSignatureMustProvideReturnType
+	 */
 	protected function formatCacheEntry($entry) {
 		$checkPath = $this->checkPath;
 		if ($checkPath($entry['path'])) {

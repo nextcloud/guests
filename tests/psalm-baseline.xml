@@ -1,44 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.27.0@faf106e717c37b8c81721845dba9de3d8deed8ff">
+<files psalm-version="5.14.1@b9d355e0829c397b9b3b47d0c0ed042a8a70284d">
   <file src="lib/AppConfigOverwrite.php">
-    <MethodSignatureMismatch occurrences="1">
+    <MethodSignatureMismatch>
       <code>public function getValue($app, $key, $default = null) {</code>
     </MethodSignatureMismatch>
-    <UndefinedClass occurrences="1">
-      <code>ConnectionAdapter</code>
-    </UndefinedClass>
   </file>
   <file src="lib/AppInfo/Application.php">
-    <UndefinedInterfaceMethod occurrences="1">
+    <UndefinedInterfaceMethod>
       <code>listen</code>
     </UndefinedInterfaceMethod>
   </file>
   <file src="lib/AppWhitelist.php">
-    <UndefinedMethod occurrences="1"/>
-  </file>
-  <file src="lib/FilteredSettingsManager.php">
-    <UndefinedInterfaceMethod occurrences="1">
-      <code>getSection</code>
-    </UndefinedInterfaceMethod>
+    <UndefinedMethod/>
   </file>
   <file src="lib/Hooks.php">
-    <InvalidScalarArgument occurrences="1">
-      <code>$share-&gt;getNodeId()</code>
+    <InvalidScalarArgument>
+      <code><![CDATA[$share->getNodeId()]]></code>
     </InvalidScalarArgument>
   </file>
   <file src="lib/Mail.php">
-    <MissingDependency occurrences="1">
+    <MissingDependency>
       <code>Share</code>
     </MissingDependency>
   </file>
   <file src="lib/RestrictionManager.php">
-    <UndefinedClass occurrences="1">
+    <UndefinedClass>
       <code>ExternalMountPoint</code>
     </UndefinedClass>
-  </file>
-  <file src="lib/UserBackend.php">
-    <ImplicitToStringCast occurrences="1">
-      <code>$query-&gt;func()-&gt;lower('displayname')</code>
-    </ImplicitToStringCast>
   </file>
 </files>

@@ -370,7 +370,7 @@ class UserBackend extends ABackend implements
 	/**
 	 * @return bool
 	 */
-	public function hasUserListings() {
+	public function hasUserListings(): bool {
 		return true;
 	}
 
