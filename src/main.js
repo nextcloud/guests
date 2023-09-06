@@ -4,6 +4,7 @@ import Vue from 'vue'
 import GuestForm from './views/GuestForm.vue'
 import Nextcloud from './mixins/Nextcloud.js'
 import { showError } from '@nextcloud/dialogs'
+import { Type } from '@nextcloud/sharing'
 
 Vue.mixin(Nextcloud)
 
@@ -25,6 +26,7 @@ guestForm.$mount('#guest-root')
 const result = {
 	icon: 'icon-guests',
 	displayName: t('guests', 'Invite guest'),
+	shareType: Type.SHARE_TYPE_GUEST,
 	handler: async self => {
 		const user = self.suggestions.find(s => s.isNoUser === false && s.shareType === 0)
 		return new Promise((resolve, reject) => {
