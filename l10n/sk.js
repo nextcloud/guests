@@ -46,7 +46,7 @@ OC.L10N.register(
     "Guest accounts are grouped under a virtual group in the account manager" : "Hostia sú zoskupení vo virtuálnej skupine v manažéri užívateľov",
     "Creating guests accounts is restricted while \"Restrict accounts to only share with accounts in their groups\" is enabled." : "Vytváranie užívateľov-hostí je obmedzené, pokliaľ je povolená možnosť „Obmedziť užívateľov na zdieľanie iba s užívateľmi v ich skupinách“.",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Účty pre hostí môžu vytvárať iba správcovia skupiny a hosťov je treba pridat aspoň do jednej skupiny, pre ktorú je tvorca zdieľania skupinovým správcom.",
-    "Guest accounts can access mounted external storages" : "Užívatelia-hostia majú prístup k pripojeným externým úložiskám",
+    "Guest accounts can access mounted external storages" : "Používatelia-hostia majú prístup k pripojeným externým úložiskám",
     "Hide other accounts from guests" : "Skryť ostatných užívateľov pred hosťami",
     "Guests will still be able to see accounts from any group they are added to" : "Hostia budú môcť naďalej vidieť užívateľov z akejkoľvek skupiny, do ktorej sú pridaní",
     "Limit guest access to an app's allowlist" : "Obmedzte prístup hostí do zoznamu povolených aplikácii",
