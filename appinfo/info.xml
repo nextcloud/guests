@@ -15,7 +15,11 @@ Guests users can only access files shared to them and cannot create any files ou
 	<types>
 		<authentication/>
 	</types>
+	<documentation>
+		<admin>https://github.com/nextcloud/guests/blob/master/README.md</admin>
+	</documentation>
 	<category>security</category>
+	<website>https://github.com/nextcloud/guests/</website>
 	<bugs>https://github.com/nextcloud/guests/issues</bugs>
 	<repository>https://github.com/nextcloud/guests/issues</repository>
 	<screenshot>https://github.com/nextcloud/guests/raw/master/screenshots/dialog.png</screenshot>
