@@ -26,11 +26,12 @@ declare(strict_types=1);
 
 namespace OCA\Guests\Listener;
 
+use OCA\Files\Event\LoadAdditionalScriptsEvent;
 use OCP\EventDispatcher\Event;
 use OCP\EventDispatcher\IEventListener;
 
 /**
- * @template-implements IEventListener<Event>
+ * @template-implements IEventListener<LoadAdditionalScriptsEvent>
  */
 class LoadAdditionalScriptsListener implements IEventListener {
 	public function handle(Event $event): void {

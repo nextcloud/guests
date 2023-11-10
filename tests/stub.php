@@ -825,3 +825,8 @@ namespace OCA\Files\Service {
 		}
 	}
 }
+
+namespace OCA\Files\Event {
+	class LoadAdditionalScriptsEvent extends \OCP\EventDispatcher\Event {
+	}
+}
