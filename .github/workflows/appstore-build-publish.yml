@@ -63,13 +63,15 @@ jobs:
         run: npm i -g npm@"${{ steps.versions.outputs.npmVersion }}"
 
       - name: Get php version
-        id: versions
+        id: php-versions
         uses: icewind1991/nextcloud-version-matrix@334a77e02e5684ba9da35933db0d7110356bf3ba # v1.1.0
+        with:
+          filename: ${{ env.APP_NAME }}/appinfo/info.xml
 
-      - name: Set up php ${{ steps.versions.outputs.php-min }}
+      - name: Set up php ${{ steps.php-versions.outputs.php-min }}
         uses: shivammathur/setup-php@81cd5ae0920b34eef300e1775313071038a53429 # v2
         with:
-          php-version: ${{ steps.versions.outputs.php-min }}
+          php-version: ${{ steps.php-versions.outputs.php-min }}
           coverage: none
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
