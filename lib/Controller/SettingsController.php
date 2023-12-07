@@ -96,7 +96,6 @@ class SettingsController extends Controller {
 	 * We do not set the whitelist to null when it is unused. This is by design.
 	 * It allows remembering the whitelist throughout changes.
 	 *
-	 * @NoAdminRequired
 	 * @return DataResponse with the current whitelist config
 	 */
 	public function getWhitelist(): DataResponse {
@@ -111,7 +110,6 @@ class SettingsController extends Controller {
 	/**
 	 * AJAX handler for resetting the whitelisted apps
 	 *
-	 * @NoAdminRequired
 	 * @return DataResponse with the reset whitelist
 	 */
 	public function resetWhitelist(): DataResponse {
