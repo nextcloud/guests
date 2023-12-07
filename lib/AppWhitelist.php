@@ -113,7 +113,7 @@ class AppWhitelist {
 	}
 
 	public function verifyAccess(IUser $user, IRequest $request): void {
-		if (!$this->isUrlAllowed($user, $request->getRawPathInfo())) {
+		if (!$this->isUrlAllowed($user, $request->getPathInfo())) {
 			header('HTTP/1.0 403 Forbidden');
 			Template::printErrorPage($this->l10n->t(
 				'Access to this resource is forbidden for guests.'
