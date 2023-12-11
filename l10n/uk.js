@@ -35,7 +35,7 @@ OC.L10N.register(
     "No guest accounts created" : "Відсутні гостьові облікові записи",
     "Default" : "За замовчуванням",
     "Name:" : "Ім'я:",
-    "Email:" : "Ел.пошта:",
+    "Email:" : "Імейл:",
     "Language:" : "Мова:",
     "Add guest to groups:" : "Додати гостя до груп:",
     "An error occurred, try again" : "Трапилася помилка, спробуйте ще раз",
