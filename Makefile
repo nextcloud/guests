@@ -4,8 +4,31 @@ app_name=guests
 project_dir=$(CURDIR)/../$(app_name)
 build_dir=$(CURDIR)/build/artifacts
 package_name=$(app_name)
+version+=master
 
 all: dev-setup build-js-production
+
+# Checkout stable version
+stable:
+	@if [ "$(version)" = "29" ]; then \
+		echo "master"; \
+	elif [ "$(version)" = "28" ]; then \
+		echo "master"; \
+	elif [ "$(version)" = "27" ]; then \
+		echo "stable2.5"; \
+	elif [ "$(version)" = "26" ]; then \
+		echo "stable2.5"; \
+	elif [ "$(version)" = "25" ]; then \
+		echo "stable2.5"; \
+	elif [ "$(version)" = "24" ]; then \
+		echo "stable2.5"; \
+	elif [ "$(version)" = "23" ]; then \
+		echo "stable2.4"; \
+	elif [ "$(version)" = "22" ]; then \
+		echo "stable2.4"; \
+	else \
+		echo "master"; \
+	fi;
 
 # Dev env management
 dev-setup: clean clean-dev npm-init
