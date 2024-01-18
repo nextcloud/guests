@@ -130,8 +130,15 @@ namespace OC {
 	}
 
 	class AppConfig {
-		public function __construct(\OC\DB\Connection $connection) {
+		public function __construct(
+			protected \OCP\IDBConnection $connection,
+			private \Psr\Log\LoggerInterface $logger,
+		) {
 		}
+
+		/**
+		 * @deprecated - use getValue*()
+		 */
 		public function getValue(string $app, string $key, string $default = null): string {
 		}
 	}
