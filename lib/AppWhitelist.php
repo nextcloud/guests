@@ -155,6 +155,8 @@ class AppWhitelist {
 			return 'dav';
 		} elseif (substr($url, 0, 5) === '/dav/') {
 			return 'dav';
+		} elseif (substr($url, 0, 6) === '/call/') {
+			return 'spreed';
 		} elseif (substr($url, 0, 10) === '/settings/') {
 			return 'settings';
 		} elseif (substr($url, 0, 8) === '/avatar/') {
