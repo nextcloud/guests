@@ -139,7 +139,7 @@ namespace OC {
 		/**
 		 * @deprecated - use getValue*()
 		 */
-		public function getValue(string $app, string $key, string $default = null): string {
+		public function getValue(string $app, string $key, ?string $default = null): string {
 		}
 	}
 }
@@ -431,7 +431,7 @@ namespace OC\User {
 	use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 	class User implements IUser {
-		public function __construct(string $uid, ?UserInterface $backend, EventDispatcherInterface $dispatcher, $emitter = null, IConfig $config = null, $urlGenerator = null) {
+		public function __construct(string $uid, ?UserInterface $backend, EventDispatcherInterface $dispatcher, $emitter = null, ?IConfig $config = null, $urlGenerator = null) {
 		}
 	}
 }
@@ -459,7 +459,7 @@ namespace OC\BackgroundJob {
 	use OCP\ILogger;
 
 	abstract class TimedJob implements IJob {
-		public function execute(IJobList $jobList, ILogger $logger = null) {
+		public function execute(IJobList $jobList, ?ILogger $logger = null) {
 		}
 
 		abstract protected function run($argument);
