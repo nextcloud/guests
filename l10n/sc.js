@@ -43,7 +43,7 @@ OC.L10N.register(
     "Guest user needs to be added to at least one group" : "Sa persone invitada depet èssere agiunta a su mancu a unu grupu",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Isceti s'amministratzione podet creare contos de invitu, e is persones invitadas depent èssere agiuntas a su mancu a unu grupu amministradu dae chie at creadu sa cumpartzidura.",
     "Error" : "Errore",
-    "Your settings have been updated" : "Impostatziones atualizadas",
+    "Your settings have been updated" : "Cunfiguratzione atualizada",
     "Saving …" : "Sarvende ...",
     "Invite guest" : "Invita una persone",
     "A user with this ID or email address already exists" : "Esistet giai una persone cun custa identificatzione o posta eletrònica"
