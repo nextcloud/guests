@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "__language_name__" : "Asturianu",
     "Name" : "Nome",
+    "Email" : "Corréu electrónicu",
     "Name:" : "Nome:",
     "Error" : "Error"
 },
