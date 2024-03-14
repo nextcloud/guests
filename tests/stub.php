@@ -132,7 +132,8 @@ namespace OC {
 	class AppConfig {
 		public function __construct(
 			protected \OCP\IDBConnection $connection,
-			private \Psr\Log\LoggerInterface $logger,
+			protected \Psr\Log\LoggerInterface $logger,
+			protected \OCP\Security\ICrypto $crypto,
 		) {
 		}
 

@@ -32,6 +32,7 @@ use OCP\IRequest;
 use OCP\IServerContainer;
 use OCP\IUser;
 use OCP\IUserSession;
+use OCP\Security\ICrypto;
 use OCP\Settings\IManager;
 use Psr\Log\LoggerInterface;
 
@@ -123,6 +124,7 @@ class RestrictionManager {
 					return new AppConfigOverwrite(
 						$this->server->get(IDBConnection::class),
 						$this->server->get(LoggerInterface::class),
+						$this->server->get(ICrypto::class),
 						[
 							'core' => [
 								'shareapi_only_share_with_group_members' => 'yes'
