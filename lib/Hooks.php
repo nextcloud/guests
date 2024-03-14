@@ -162,8 +162,7 @@ class Hooks {
 				$this->mail->sendGuestInviteMail(
 					$uid,
 					$shareWith,
-					$share->getNodeType(),
-					$share->getNodeId(),
+					$share,
 					$token,
 					$lang
 				);

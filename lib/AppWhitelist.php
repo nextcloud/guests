@@ -113,7 +113,7 @@ class AppWhitelist {
 	}
 
 	public function verifyAccess(IUser $user, IRequest $request): void {
-		if (!$this->isUrlAllowed($user, $request->getRawPathInfo())) {
+		if (!$this->isUrlAllowed($user, $request->getPathInfo())) {
 			header('HTTP/1.0 403 Forbidden');
 			Template::printErrorPage($this->l10n->t(
 				'Access to this resource is forbidden for guests.'
@@ -155,6 +155,8 @@ class AppWhitelist {
 			return 'dav';
 		} elseif (substr($url, 0, 5) === '/dav/') {
 			return 'dav';
+		} elseif (substr($url, 0, 6) === '/call/') {
+			return 'spreed';
 		} elseif (substr($url, 0, 10) === '/settings/') {
 			return 'settings';
 		} elseif (substr($url, 0, 8) === '/avatar/') {

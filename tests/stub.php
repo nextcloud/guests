@@ -130,9 +130,17 @@ namespace OC {
 	}
 
 	class AppConfig {
-		public function __construct(\OC\DB\Connection $connection) {
+		public function __construct(
+			protected \OCP\IDBConnection $connection,
+			protected \Psr\Log\LoggerInterface $logger,
+			protected \OCP\Security\ICrypto $crypto,
+		) {
 		}
-		public function getValue(string $app, string $key, string $default = null): string {
+
+		/**
+		 * @deprecated - use getValue*()
+		 */
+		public function getValue(string $app, string $key, ?string $default = null): string {
 		}
 	}
 }
@@ -424,7 +432,7 @@ namespace OC\User {
 	use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 	class User implements IUser {
-		public function __construct(string $uid, ?UserInterface $backend, EventDispatcherInterface $dispatcher, $emitter = null, IConfig $config = null, $urlGenerator = null) {
+		public function __construct(string $uid, ?UserInterface $backend, EventDispatcherInterface $dispatcher, $emitter = null, ?IConfig $config = null, $urlGenerator = null) {
 		}
 	}
 }
@@ -452,7 +460,7 @@ namespace OC\BackgroundJob {
 	use OCP\ILogger;
 
 	abstract class TimedJob implements IJob {
-		public function execute(IJobList $jobList, ILogger $logger = null) {
+		public function execute(IJobList $jobList, ?ILogger $logger = null) {
 		}
 
 		abstract protected function run($argument);
@@ -823,5 +831,10 @@ namespace OCA\Files\Service {
 			bool $firstLogin = false,
 			bool $transferIncomingShares = false): void {
 		}
+	}
+}
+
+namespace OCA\Files\Event {
+	class LoadAdditionalScriptsEvent extends \OCP\EventDispatcher\Event {
 	}
 }

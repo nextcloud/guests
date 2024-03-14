@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.14.1@b9d355e0829c397b9b3b47d0c0ed042a8a70284d">
+<files psalm-version="5.21.1@8c473e2437be8b6a8fd8f630f0f11a16b114c494">
   <file src="lib/AppConfigOverwrite.php">
     <MethodSignatureMismatch>
       <code>public function getValue($app, $key, $default = null) {</code>
@@ -9,19 +9,6 @@
     <UndefinedInterfaceMethod>
       <code>listen</code>
     </UndefinedInterfaceMethod>
-  </file>
-  <file src="lib/AppWhitelist.php">
-    <UndefinedMethod/>
-  </file>
-  <file src="lib/Hooks.php">
-    <InvalidScalarArgument>
-      <code><![CDATA[$share->getNodeId()]]></code>
-    </InvalidScalarArgument>
-  </file>
-  <file src="lib/Mail.php">
-    <MissingDependency>
-      <code>Share</code>
-    </MissingDependency>
   </file>
   <file src="lib/RestrictionManager.php">
     <UndefinedClass>

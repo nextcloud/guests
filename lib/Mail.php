@@ -84,7 +84,7 @@ class Mail {
 	 * @param $uid
 	 * @throws \Exception
 	 */
-	public function sendGuestInviteMail(string $uid, string $shareWith, string $itemType, string $itemSource, string $token, string $language = ''): void {
+	public function sendGuestInviteMail(string $uid, string $shareWith, Share\IShare $share, string $token, string $language = ''): void {
 		if ($language === '') {
 			$language = null;
 		}
@@ -99,25 +99,18 @@ class Mail {
 
 		$targetUser = $this->userManager->get($shareWith);
 		$shareWithEmail = $targetUser->getEMailAddress();
+		if (!$shareWithEmail) {
+			throw new \Exception("Guest user created without email");
+		}
 		$replyTo = $this->userManager->get($uid)->getEMailAddress();
 		$senderDisplayName = $this->userSession->getUser()->getDisplayName();
 
-		$items = Share::getItemSharedWithUser($itemType, $itemSource, $shareWith);
-		$filename = trim($items[0]['file_target'], '/');
-		$subject = (string)$l10n->t('%s shared »%s« with you', [$senderDisplayName, $filename]);
-		$expiration = null;
-		if (isset($items[0]['expiration'])) {
-			try {
-				$date = new \DateTime($items[0]['expiration']);
-				$expiration = $date->getTimestamp();
-			} catch (\Exception $e) {
-				$this->logger->error("Couldn't read date: " . $e->getMessage(), ['app' => 'sharing']);
-			}
-		}
-
+		$filename = trim($share->getTarget(), '/');
+		$subject = $l10n->t('%s shared »%s« with you', [$senderDisplayName, $filename]);
+		$expiration = $share->getExpirationDate();
 
 		$link = $this->urlGenerator->linkToRouteAbsolute(
-			'files.viewcontroller.showFile', ['fileid' => $itemSource]
+			'files.viewcontroller.showFile', ['fileid' => $share->getNodeId()]
 		);
 
 		$emailTemplate = $this->mailer->createEMailTemplate('guest.invite');
@@ -163,7 +156,7 @@ class Mail {
 			$message->setPlainBody($emailTemplate->renderText());
 			$message->setFrom([
 				Util::getDefaultEmailAddress('sharing-noreply') =>
-					(string)$l10n->t('%s via %s', [
+					$l10n->t('%s via %s', [
 						$senderDisplayName,
 						$this->defaults->getName()
 					]),

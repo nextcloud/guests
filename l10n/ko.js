@@ -28,7 +28,11 @@ OC.L10N.register(
     "Name:" : "이름:",
     "Add guest to groups:" : "손님 계정을 그룹에 추가:",
     "Guest user needs to be added to at least one group" : "손님 계정을 한개 이상의 그룹에 추가해야 함",
+    "Guest accounts are grouped under a virtual group in the account manager" : "손님 계정은 계정 관리자에서 가상 그룹에 소속됩니다",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "그룹 관리자만 손님을 추가할 수 있습니다. 또한 손님은 한개 이상의 그룹에 포함되어 있어야 하며, 해당 그룹의 관리자는 공유 생성자여야 합니다.",
+    "Guest accounts can access mounted external storages" : "손님 계정이 마운트된 외부 저장소에 접근할 수 있습니다",
+    "Hide other accounts from guests" : "손님 계정에게 다른 계정이 보이지 않도록 숨기기",
+    "Guests will still be able to see accounts from any group they are added to" : "손님 계정은 자신이 속해 있는 그룹의 계정을 계속 볼 수 있습니다",
     "Error" : "오류",
     "Invite guest" : "손님 초대"
 },

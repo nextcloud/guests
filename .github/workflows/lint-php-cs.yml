@@ -22,12 +22,16 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
-      - name: Set up php
-        uses: shivammathur/setup-php@4bd44f22a98a19e0950cbad5f31095157cc9621b # v2
+      - name: Get php version
+        id: versions
+        uses: icewind1991/nextcloud-version-matrix@334a77e02e5684ba9da35933db0d7110356bf3ba # v1.1.0
+
+      - name: Set up php${{ steps.versions.outputs.php-max }}
+        uses: shivammathur/setup-php@81cd5ae0920b34eef300e1775313071038a53429 # v2
         with:
-          php-version: 8.1
+          php-version: ${{ steps.versions.outputs.php-max }}
           coverage: none
           ini-file: development
         env:
@@ -37,4 +41,4 @@ jobs:
         run: composer i
 
       - name: Lint
-        run: composer run cs:check || ( echo 'Please run `composer run cs:fix` to format your code' && exit 1 )
+        run: PHP_CS_FIXER_IGNORE_ENV=1 composer run cs:check || ( echo 'Please run `composer run cs:fix` to format your code' && exit 1 )

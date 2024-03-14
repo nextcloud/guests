@@ -39,22 +39,22 @@
     "@nextcloud/eslint-plugin": "^2.0.0",
     "@nextcloud/stylelint-config": "^2.2.0",
     "@nextcloud/webpack-vue-config": "^5.5.1",
-    "vue-template-compiler": "^2.7.14"
+    "vue-template-compiler": "^2.7.15"
   },
   "dependencies": {
-    "@nextcloud/axios": "^2.3.0",
-    "@nextcloud/dialogs": "^4.2.1",
+    "@nextcloud/axios": "^2.4.0",
+    "@nextcloud/dialogs": "^4.2.3",
     "@nextcloud/event-bus": "^3.1.0",
-    "@nextcloud/router": "^2.0.1",
+    "@nextcloud/router": "^2.2.0",
     "@nextcloud/sharing": "^0.1.0",
     "@nextcloud/vue": "^7.12.6",
     "email-validator": "^2.0.4",
-    "vue": "^2.7.14",
+    "vue": "^2.7.15",
     "vue-material-design-icons": "^5.2.0"
   },
   "engines": {
-    "node": "^16.0.0",
-    "npm": "^7.0.0 || ^8.0.0"
+    "node": "^20.0.0",
+    "npm": "^9.0.0"
   },
   "browserslist": [
     "extends @nextcloud/browserslist-config"
