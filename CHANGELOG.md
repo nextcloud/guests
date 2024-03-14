@@ -2,8 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
-## 2.3.0
+## 3.1.0
+## What's Changed
+* 29 compatibility
+* fix: ListCommand: update for Symfony >=5 exit status by @joshtrichards in https://github.com/nextcloud/guests/pull/1102
+* fix: reuse share object instead of getting it again when sending invite mail by @icewind1991 in https://github.com/nextcloud/guests/pull/1122
+* fix(config): Fix constructor of config class by @nickvergessen in https://github.com/nextcloud/guests/pull/1100
+* fix(DI): Fix DI for AppConfig by @nickvergessen in https://github.com/nextcloud/guests/pull/1127
+* fix(npm): audit
+* fix(whitelist): Block Talk base page as well by @nickvergessen in https://github.com/nextcloud/guests/pull/1107
 
+## New Contributors
+* @joshtrichards made their first contribution in https://github.com/nextcloud/guests/pull/1102
+
+**Full Changelog**: https://github.com/nextcloud/guests/compare/v3.0.1...v3.1.0
+
+## 2.3.0
 ### Added
 
 - Compatibility with Nextcloud 25
