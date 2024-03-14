@@ -323,11 +323,9 @@ export default {
 	}
 }
 // to allow lang multiselect
-#app-guests::v-deep {
-	.modal-container {
-		flex: 1 1 500px;
-		max-width: 500px;
-		overflow: visible;
-	}
+#app-guests:deep(.modal-container) {
+	flex: 1 1 500px;
+	max-width: 500px;
+	overflow: visible;
 }
 </style>
