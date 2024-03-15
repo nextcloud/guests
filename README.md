@@ -1,65 +1,53 @@
-# Guests
+# 👥 Guests
 
-[![Build Status](https://travis-ci.com/nextcloud/guests.svg?branch=master)](https://travis-ci.com/nextcloud/guests)
+The Nextcloud Guests app allows you to create users which can only see files shared with them and access a customizable set of apps.
 
-Create guest users which can only see files shared with them
+![image](https://github.com/nextcloud/guests/assets/1731941/e1d1f71d-458f-48c1-a837-b3c9d6d03ac3)
+
+Guests accounts can be created from the share menu by entering either the recipients email or name and choosing *Invite guest*. Once the 
+share is created the guest user will receive an email notification about the mail with a link to set their password.
+
+Guests users can only access files shared to them and cannot create any files outside of shares. Additionally, the apps accessible to guest 
+accounts are whitelisted.
+
+## Installation
+
+The app is published in the [app store](https://apps.nextcloud.com/apps/guests). It can be [installed through Nextcloud's app management UI](https://docs.nextcloud.com/server/latest/admin_manual/apps_management.html#managing-apps). 
+
+## Development
+
+Development is ongoing. A [CHANGELOG](https://github.com/nextcloud/guests/blob/master/CHANGELOG.md) covers the highlights. [New releases are also published](https://github.com/nextcloud-releases/guests/releases) on GitHub.
 
 ## Usage
 
-1. Create a guest user by typing their email address in to the sharing dialog.
-2. [Optionally] Set a display name for the guest user.
-3. [Optionally] Set a language for the invitation email (otherwise the server's [default language](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html#user-experience) will be used).
-4. [Optionally, only for group admins] Set the groups to put the guests in (note [further documentation](#Special-behavior-under-sharing-restrictions)).
-5. The guest will receive an email invitation with a link to create an account. They only have access to files which are shared with them.
+Guests are be created via the Web UI or `occ guests` commands. The admin can also customize system-wide guest related behavior by going to *Administration settings->Guests* in the Web UI.
 
-### Special behavior under sharing restrictions
+### Creating a guest
 
-Nextcloud allows to restrict users to only share within the groups they are members of themselves (_Settings > Administration > Sharing > ```Restrict users to only share with users in their groups```_)
+1. Create a guest user by typing their email address into the sharing dialog
+2. Select *Invite guest* in the menu that appears.
 
-If that setting is turned on, guests can only be invited by [group admins](https://docs.nextcloud.com/server/latest/admin_manual/configuration_user/user_configuration.html).
+The guest will receive an email invitation with a link to create an account. They only have access to files which are shared with them.
 
-Upon invitation, the group admin must select at least one of their adminstrated groups the guest shall be member of.
+Optionally, when creating a guest the following values may also be specified:
 
-## Note on share acceptance
+* Set a display name for the guest user.
+* Set a language for the invitation email (otherwise the server's [default language](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html#user-experience) will be used).
 
-Guest users automatically accept all files and folders that are shared with them - other than regular full users, who have to actively accept incoming shares since Nextcloud 18.
+Admins/Group admins also may:
 
-## Restrictions on guest users
+* specify the group(s) to put the guest user in (see [Guest specific behavior and configuration](https://github.com/nextcloud/guests/edit/master/README.md#guest-specific-behavior-and-configuration) for details).
 
-### Apps
+![image](https://github.com/nextcloud/guests/assets/1731941/68edbd4f-fedc-45f0-8241-2e1cd12d04de)
 
-Administrators can set a whitelist of apps that guest users have access to.
+> [!WARNING]
+> While it is easy to create a new Guest, it's important to understand the default behavior and how guests interact with other features in Nextcloud. See [Guest specific behavior and configuration](https://github.com/nextcloud/guests/edit/master/README.md#guest-specific-behavior-and-configuration) for details.
 
-By default the following are allowed:
-* activity
-* files_external
-* files_sharing
-* files_texteditor
-* files_trashbin
-* files_versions
-* firstrunwizard
-* gallery
-* notifications
+### Deleting a guest
 
-### Hide other users
+Guests may be deleted in the same way you would remove (or disable) regular user accounts. Guests are in the group *Guests*.
 
-By default, guests will not be able to list other users in the system, if a guest user gets added to a group he will be able
-to list users within that group (and, for example, share files with those users).
-
-## Auto-convert guest users into full users
-
-Guest users who eventually turn into full users (provided by any other user back end like SAML, LDAP, OAuth, database...) can be automatically converted on their first login, while keeping their shares.
-
-#### Prerequisites
-
-1. Nextcloud 18 or higher
-2. target user needs to have the same email address as the guest user
-3. config.php setting `'migrate_guest_user_data' => true,`
-4. config.php setting `'remove_guest_account_on_conversion' => true` if you want the old account to also be deleted. By default the old account will just be disabled.
-
-## Available occ commands
-
-### Create a guest user
+### `occ` commands
 
 The command `occ guests:add` can be used to create guest users on the command-line.
 
@@ -68,6 +56,7 @@ php occ guests:add [--generate-password] [--password-from-env] [--display-name [
 ```
 
 For example:
+
 ```bash
 OC_PASS=somepassword php occ guests:add --password-from-env --display-name "Max Mustermann" --language "de_DE" admin maxmustermann@example.com
 ```
@@ -76,9 +65,10 @@ The user will then be able to login with "maxmustermann@example.com" using the g
 
 When using `--generate-password` instead of giving a password, a random password will be generated. The guest user should then use the "forgot password" link to reset it.
 
-Please note that this command will only create the guest account, it will not send out any email.
+> [!NOTE]
+> The `occ` command will only create the guest account (i.e. it will not send out the invite email).
 
-### List existing guest users
+#### List existing guest users
 
 The following command will list existing guest users:
 ```bash
@@ -89,3 +79,83 @@ The following command will list existing guest users:
 | maxmustermann@example.com | Max Mustermann | admin      | 0 |
 +---------------------------+----------------+------------+---+
 ```
+
+## Guest Specific Behavior and Configuration
+
+Guest users interact with sharing and security functionality in unique ways. Many of the default behaviors related to Guests can also be customized.
+
+> [!TIP]
+> It's important to understand how the Guests app interacts with other aspects of Nextcloud even if you choose to utilize the default settings.
+
+### Inviting guests (sharing)
+
+It is possible to restrict users to only share within the groups they are members of themselves (_Settings > Administration > Sharing > ```Restrict users to only share with users in their groups```_)
+
+If that setting is turned on, guests can only be invited by [group admins](https://docs.nextcloud.com/server/latest/admin_manual/configuration_user/user_configuration.html).
+
+Upon invitation, the group admin must select at least one of their adminstrated groups the guest shall be member of.
+
+### Share acceptance
+
+Guest users automatically accept all files and folders that are shared with them. This is in constract to regular full users (who have to actively accept incoming shares since Nextcloud 18).
+
+### Restricting app access
+
+Administrators can set a whitelist of apps that guest users have access to.
+
+By default the following are allowed:
+
+* `files_trashbin`
+* `files_versions`
+* `files_sharing`
+* `files_texteditor`
+* `text`
+* `activity`
+* `firstrunwizard`
+* `photos`
+* `notifications`
+* `dashboard`
+* `user_status`
+* `weather_status`
+
+In addition, the following apps are always whitelisted to ensure minimal functionality:
+
+* core
+* `theming`
+* `settings`
+* `avatar`
+* `files`
+* `heartbeat`
+* `dav`
+* `guests`
+* `impersonate`
+* `accessibility`
+* `terms_of_service`
+* `dashboard`
+* `weather_status`
+* `user_status`
+* `apporder`
+
+### Hide other users
+
+By default, guests will not be able to list other users in the system, but if a guest gets added to a group they will be able
+to list users within that group (and, for example, share files with those users).
+
+### Converting guest users to full users
+
+Guest users can be automatically converted into full users (provided by any other user back end like SAML, LDAP, OAuth, database...) on their next login. When this happens they will retain their shares.
+
+For this to happen the following must be true:
+
+* The target (new) account needs to have the same email address as the guest account.
+* The `config.php` setting `'migrate_guest_user_data' => true,` must be added.
+
+By default the old (guest) account will be disabled after successful conversion. The `config.php` setting `'remove_guest_account_on_conversion' => true` can be set if you want the old account to be deleted rather than disabled.
+
+## Help & Contributing
+
+- Bug reports: https://github.com/nextcloud/guests/issues (*not* for general troubleshooting assistance)
+- Enhancement ideas: https://github.com/nextcloud/guests/issues
+- Pull requests: https://github.com/nextcloud/guests/pulls
+- Troubleshooting assistance: https://help.nextcloud.com
+- Code: https://github.com/nextcloud/guests/tree/master
