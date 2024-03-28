@@ -4,15 +4,15 @@ The Nextcloud Guests app allows you to create users which can only see files sha
 
 ![image](https://github.com/nextcloud/guests/assets/1731941/e1d1f71d-458f-48c1-a837-b3c9d6d03ac3)
 
-Guests accounts can be created from the share menu by entering either the recipients email or name and choosing *Invite guest*. Once the 
+Guests accounts can be created from the share menu by entering either the recipients email or name and choosing *Invite guest*. Once the
 share is created the guest user will receive an email notification about the mail with a link to set their password.
 
-Guests users can only access files shared to them and cannot create any files outside of shares. Additionally, the apps accessible to guest 
+Guests users can only access files shared to them and cannot create any files outside of shares. Additionally, the apps accessible to guest
 accounts are whitelisted.
 
 ## Installation
 
-The app is published in the [app store](https://apps.nextcloud.com/apps/guests). It can be [installed through Nextcloud's app management UI](https://docs.nextcloud.com/server/latest/admin_manual/apps_management.html#managing-apps). 
+The app is published in the [app store](https://apps.nextcloud.com/apps/guests). It can be [installed through Nextcloud's app management UI](https://docs.nextcloud.com/server/latest/admin_manual/apps_management.html#managing-apps).
 
 ## Development
 
@@ -140,6 +140,8 @@ In addition, the following apps are always whitelisted to ensure minimal functio
 
 By default, guests will not be able to list other users in the system, but if a guest gets added to a group they will be able
 to list users within that group (and, for example, share files with those users).
+
+As a result, guests will be able to see each other as they are part of the same `guest` group. To prevent that behavior, you can add the `guest` group to the "Exclude groups from sharing" settings. You can find more information in [our documentation about sharing](https://docs.nextcloud.com/server/21/admin_manual/configuration_files/file_sharing_configuration.html).
 
 ### Converting guest users to full users
 
