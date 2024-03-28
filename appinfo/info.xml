@@ -9,7 +9,7 @@
 Guests accounts can be created from the share menu by entering either the recipients email or name and choosing "create guest account", once the share is created the guest user will receive an email notification about the mail with a link to set their password.
 
 Guests users can only access files shared to them and cannot create any files outside of shares, additionally, the apps accessible to guest accounts are whitelisted.]]></description>
-	<version>3.1.0</version>
+	<version>3.2.0</version>
 	<licence>agpl</licence>
 	<author>Nextcloud</author>
 	<types>
@@ -26,7 +26,7 @@ Guests users can only access files shared to them and cannot create any files ou
 	<screenshot>https://raw.githubusercontent.com/nextcloud/guests/master/screenshots/settings.png</screenshot>
 	<screenshot>https://raw.githubusercontent.com/nextcloud/guests/master/screenshots/dropdown.png</screenshot>
 	<dependencies>
-		<nextcloud min-version="29" max-version="29" />
+		<nextcloud min-version="29" max-version="30" />
 	</dependencies>
 	<commands>
 		<command>OCA\Guests\Command\ListCommand</command>
