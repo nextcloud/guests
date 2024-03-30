@@ -5,6 +5,7 @@ OC.L10N.register(
     "None" : "Nada",
     "Name" : "Nome",
     "Email" : "Corréu electrónicu",
+    "Default" : "Por defeutu",
     "Name:" : "Nome:",
     "Error" : "Error"
 },
