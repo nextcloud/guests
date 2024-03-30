@@ -3,6 +3,7 @@
     "None" : "Nada",
     "Name" : "Nome",
     "Email" : "Corréu electrónicu",
+    "Default" : "Por defeutu",
     "Name:" : "Nome:",
     "Error" : "Error"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
