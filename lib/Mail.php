@@ -110,7 +110,7 @@ class Mail {
 		$expiration = $share->getExpirationDate();
 
 		$link = $this->urlGenerator->linkToRouteAbsolute(
-			'files.viewcontroller.showFile', ['fileid' => $share->getNodeId()]
+			'files.viewcontroller.showFile', ['fileid' => $share->getNodeId(), 'direct' => 1]
 		);
 
 		$emailTemplate = $this->mailer->createEMailTemplate('guest.invite');
