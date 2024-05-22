@@ -1,6 +1,7 @@
 OC.L10N.register(
     "guests",
     {
+    "Invalid mail address" : "Seoladh ríomhphoist neamhbhailí",
     "Couldn't send reset email. Please contact your administrator." : "Níorbh fhéidir ríomhphost athshocraithe a sheoladh. Déan teagmháil le do riarthóir.",
     "Name" : "Ainm",
     "Default" : "Réamhshocrú",
