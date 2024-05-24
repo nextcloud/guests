@@ -5,6 +5,7 @@ OC.L10N.register(
     "Couldn't send reset email. Please contact your administrator." : "Níorbh fhéidir ríomhphost athshocraithe a sheoladh. Déan teagmháil le do riarthóir.",
     "None" : "aon cheann",
     "Name" : "Ainm",
+    "Email" : "Ríomhphost",
     "Default" : "Réamhshocrú",
     "Error" : "Earráid"
 },
