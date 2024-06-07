@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<NcSettingsSection :title="t('guests', 'Guests')"
+		<NcSettingsSection :name="t('guests', 'Guests')"
 			:description="t('guests', 'Guest accounts are grouped under a virtual group in the account manager')">
 			<div>
 				<span v-if="error || saving || saved"
