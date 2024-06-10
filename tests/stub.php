@@ -796,6 +796,9 @@ namespace OC\Files\Storage\Wrapper{
 
 		public function getWatcher() {
 		}
+
+		public function setOwner(?string $user) : void {
+		}
 	}
 
 	class Jail extends Wrapper {
