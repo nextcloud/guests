@@ -2,7 +2,7 @@
 	<NcModal v-if="isOpened"
 		id="app-guests"
 		:clear-view-delay="0"
-		:title="formatTitle"
+		:name="formatTitle"
 		@close="closeModal">
 		<!-- Main guest form -->
 		<div class="guest_model_content">

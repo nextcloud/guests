@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<NcSettingsSection :title="t('guests', 'Guests')"
+		<NcSettingsSection :name="t('guests', 'Guests')"
 			:description="t('guests', 'Guest accounts are grouped under a virtual group in the account manager')">
 			<div>
 				<span v-if="error || saving || saved"
@@ -39,12 +39,11 @@
 				</NcCheckboxRadioSwitch>
 
 				<p v-if="config.useWhitelist" class="allowlist">
-					<NcMultiselect v-model="config.whitelist"
+					<NcSelect v-model="config.whitelist"
 						:options="config.whiteListableApps"
 						:multiple="true"
 						:close-on-select="false"
-						:clear-on-select="false"
-						:tag-width="75"
+						:clear-search-on-select="false"
 						@input="saveConfig" />
 					<NcButton type="secondary" class="reset-button" @click="reset">
 						<template #icon>
@@ -67,7 +66,7 @@ import { clearTimeout, setTimeout } from 'timers'
 import { generateUrl } from '@nextcloud/router'
 import axios from '@nextcloud/axios'
 import NcCheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch.js'
-import NcMultiselect from '@nextcloud/vue/dist/Components/NcMultiselect.js'
+import NcSelect from '@nextcloud/vue/dist/Components/NcSelect.js'
 import NcSettingsSection from '@nextcloud/vue/dist/Components/NcSettingsSection.js'
 import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
 import NcNoteCard from '@nextcloud/vue/dist/Components/NcNoteCard.js'
@@ -78,7 +77,7 @@ export default {
 	name: 'GuestSettings',
 	components: {
 		GuestList,
-		NcMultiselect,
+		NcSelect,
 		NcSettingsSection,
 		NcCheckboxRadioSwitch,
 		NcButton,

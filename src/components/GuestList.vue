@@ -1,5 +1,5 @@
 <template>
-	<NcSettingsSection :title="t('guests', 'Guests accounts')">
+	<NcSettingsSection :name="t('guests', 'Guests accounts')">
 		<div v-if="loaded && !error">
 			<table v-if="guests.length" class="table">
 				<thead>

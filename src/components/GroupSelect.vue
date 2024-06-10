@@ -1,23 +1,22 @@
 <template>
-	<NcMultiselect v-model="selected"
+	<NcSelect v-model="selected"
 		class="group-multiselect"
 		:placeholder="t('guests', 'None')"
-		track-by="gid"
 		label="name"
 		:options="groups"
 		:disabled="required && groups.length < 2"
-		open-direction="bottom"
+		placement="bottom"
 		:multiple="true"
-		:allow-empty="!required" />
+		:required="required" />
 </template>
 
 <script>
-import NcMultiselect from '@nextcloud/vue/dist/Components/NcMultiselect.js'
+import NcSelect from '@nextcloud/vue/dist/Components/NcSelect.js'
 
 export default {
 	name: 'GroupSelect',
 	components: {
-		NcMultiselect,
+		NcSelect,
 	},
 	props: {
 		groups: {

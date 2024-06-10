@@ -1,24 +1,23 @@
 <template>
-	<NcMultiselect v-model="language"
+	<NcSelect v-model="language"
 		class="lang-multiselect"
 		:placeholder="t('guests', 'Default')"
-		track-by="code"
 		label="name"
 		:options="merged"
 		:disabled="disabled"
-		open-direction="bottom"
-		:allow-empty="false" />
+		placement="bottom"
+		:required="true" />
 </template>
 
 <script>
 import { generateOcsUrl } from '@nextcloud/router'
-import NcMultiselect from '@nextcloud/vue/dist/Components/NcMultiselect.js'
+import NcSelect from '@nextcloud/vue/dist/Components/NcSelect.js'
 import axios from '@nextcloud/axios'
 
 export default {
 	name: 'LanguageSelect',
 	components: {
-		NcMultiselect,
+		NcSelect,
 	},
 	props: {
 		value: {
