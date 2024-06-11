@@ -1,3 +1,2 @@
-const stylelintConfig = require('@nextcloud/stylelint-config')
-
-module.exports = stylelintConfig
+/** @type {import('stylelint').Config} */
+export { default } from '@nextcloud/stylelint-config'
