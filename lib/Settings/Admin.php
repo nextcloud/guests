@@ -23,6 +23,7 @@ namespace OCA\Guests\Settings;
 
 use OCA\Guests\AppWhitelist;
 use OCP\AppFramework\Http\TemplateResponse;
+use OCP\Util;
 
 class Admin implements \OCP\Settings\ISettings {
 	/** @var AppWhitelist */
@@ -36,6 +37,7 @@ class Admin implements \OCP\Settings\ISettings {
 	 * {@inheritdoc}
 	 */
 	public function getForm(): TemplateResponse {
+		Util::addScript('guests', 'guests-settings');
 		return new TemplateResponse('guests', 'settings/admin');
 	}
 
