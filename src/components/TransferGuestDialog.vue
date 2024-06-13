@@ -65,6 +65,8 @@ import NcLoadingIcon from '@nextcloud/vue/dist/Components/NcLoadingIcon.js'
 import NcPasswordField from '@nextcloud/vue/dist/Components/NcPasswordField.js'
 import NcTextField from '@nextcloud/vue/dist/Components/NcTextField.js'
 
+import { logger } from '../logger.ts'
+
 const minPasswordLength = getCapabilities()?.password_policy?.minLength
 
 export default defineComponent({
@@ -112,6 +114,7 @@ export default defineComponent({
 				})
 				this.$emit('close', this.userId)
 			} catch (error) {
+				logger.error('Failed to transfer guest', { error })
 				this.$emit('close', false)
 			}
 			this.loading = false
