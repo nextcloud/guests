@@ -110,15 +110,15 @@ export default defineComponent({
 					userId,
 					password: this.password,
 				})
-				this.$emit('close', true)
+				this.$emit('close', this.userId)
 			} catch (error) {
-				this.$emit('close', false)
+				this.$emit('close', null)
 			}
 			this.loading = false
 		},
 
 		cancel() {
-			this.$emit('close', false)
+			this.$emit('close', null)
 		},
 	},
 })
