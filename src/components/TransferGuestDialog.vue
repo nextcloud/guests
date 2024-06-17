@@ -58,6 +58,7 @@ import axios from '@nextcloud/axios'
 import { generateOcsUrl } from '@nextcloud/router'
 import { getCapabilities } from '@nextcloud/capabilities'
 import { translate as t } from '@nextcloud/l10n'
+import { showError } from '@nextcloud/dialogs'
 
 import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
 import NcDialog from '@nextcloud/vue/dist/Components/NcDialog.js'
@@ -114,7 +115,8 @@ export default defineComponent({
 				})
 				this.$emit('close', this.userId)
 			} catch (error) {
-				logger.error('Failed to transfer guest', { error })
+				logger.error(error.response?.data?.ocs?.meta?.message, { error })
+				showError(error.response?.data?.ocs?.meta?.message)
 				this.$emit('close', false)
 			}
 			this.loading = false
