@@ -263,7 +263,7 @@ export default {
 		},
 
 		resetForm() {
-			this.guest.fullName = this.guest.username = this.guest.email = null
+			this.guest.fullName = this.guest.username = this.guest.email = ''
 		},
 
 		resetErrors() {
