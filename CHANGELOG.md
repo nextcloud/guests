@@ -17,6 +17,59 @@ All notable changes to this project will be documented in this file.
 
 **Full Changelog**: https://github.com/nextcloud/guests/compare/v3.0.1...v3.1.0
 
+
+## 3.0.1
+### What's Changed
+* 3.0.1 by @icewind1991 in https://github.com/nextcloud/guests/pull/1082
+
+**Full Changelog**: https://github.com/nextcloud/guests/compare/v3.0.0...v3.0.1
+
+## 3.0.0
+
+### What's Changed
+* feat(deps): Add Nextcloud 28 support by @nickvergessen in https://github.com/nextcloud/guests/pull/1026
+* Fix event dispatcher usage by @nickvergessen in https://github.com/nextcloud/guests/pull/1045
+* Include shareType in share select option data by @Fenn-CS in https://github.com/nextcloud/guests/pull/1058/pull/1067
+* add website and documentation links by @alexanderdd in https://github.com/nextcloud/guests/pull/1071
+
+### New Contributors
+* @Fenn-CS made their first contribution in https://github.com/nextcloud/guests/pull/1058
+* @alexanderdd made their first contribution in https://github.com/nextcloud/guests/pull/1071
+
+**Full Changelog**: https://github.com/nextcloud/guests/compare/v2.5.0...v3.0.0
+
+### 2.5.2
+
+### Fixes
+
+- Allow creating a guest without a name more than once @ShGKme [#1178](https://github.com/nextcloud/guests/pull/1178)
+
+### 2.5.1
+
+- use decoded path to check app whitelist @icewind1991 [#1085](https://github.com/nextcloud/guests/pull/1085)
+- fix permissions for whitelist reset @icewind1991 [#1085](https://github.com/nextcloud/guests/pull/1085)
+
+### 2.5.0
+
+### Added
+
+- Compatible with Nextcloud 27
+
+## 2.4.1
+
+### Fixed
+
+- Url decode 2.4 @icewind1991 [#1086](https://github.com/nextcloud/guests/pull/1086)
+
+### 2.4.0
+
+### Fixed
+
+- Fix allowlist button handler @PVince81 [#946](https://github.com/nextcloud/guests/pull/946)
+- register user backends in `boot` instead of `register` @icewind1991 [#993](https://github.com/nextcloud/guests/pull/993)
+- lowercase email for encrypting password token @icewind1991 [#986](https://github.com/nextcloud/guests/pull/986)
+- fix migrate guest user being triggered on mixed case email @icewind1991 [#1007](https://github.com/nextcloud/guests/pull/1007)
+
 ## 2.3.0
 ### Added
 
