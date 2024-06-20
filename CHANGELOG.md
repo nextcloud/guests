@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file.
 
+## 3.0.1
+### What's Changed
+* 3.0.1 by @icewind1991 in https://github.com/nextcloud/guests/pull/1082
+
+**Full Changelog**: https://github.com/nextcloud/guests/compare/v3.0.0...v3.0.1
+
+## 3.0.0
+
+### What's Changed
+* feat(deps): Add Nextcloud 28 support by @nickvergessen in https://github.com/nextcloud/guests/pull/1026
+* Fix event dispatcher usage by @nickvergessen in https://github.com/nextcloud/guests/pull/1045
+* Include shareType in share select option data by @Fenn-CS in https://github.com/nextcloud/guests/pull/1058/pull/1067
+* add website and documentation links by @alexanderdd in https://github.com/nextcloud/guests/pull/1071
+
+### New Contributors
+* @Fenn-CS made their first contribution in https://github.com/nextcloud/guests/pull/1058
+* @alexanderdd made their first contribution in https://github.com/nextcloud/guests/pull/1071
+
+**Full Changelog**: https://github.com/nextcloud/guests/compare/v2.5.0...v3.0.0
+
 ### 2.5.2
 
 ### Fixes
