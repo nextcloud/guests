@@ -49,6 +49,7 @@ class Hooks {
 		private GuestManager $guestManager,
 		private UserBackend $userBackend,
 		private IAppContainer $container,
+		private TransferService $transferService,
 	) {}
 
 	public function handlePostShare(ShareCreatedEvent $event): void {
@@ -172,7 +173,7 @@ class Hooks {
 			return;
 		}
 
-		$this->guestManager->transfer($guestUser, $user);
+		$this->transferService->transfer($guestUser, $user);
 
 		if (!$this->config->getSystemValueBool('remove_guest_account_on_conversion', false)) {
 			// Disable previous account
