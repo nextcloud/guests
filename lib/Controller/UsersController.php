@@ -21,62 +21,20 @@ use OCP\Mail\IMailer;
 use Psr\Log\LoggerInterface;
 
 class UsersController extends OCSController {
-	/**
-	 * @var IRequest
-	 */
-	protected $request;
-	/**
-	 * @var IUserManager
-	 */
-	private $userManager;
-	/**
-	 * @var IL10N
-	 */
-	private $l10n;
-	/**
-	 * @var IMailer
-	 */
-	private $mailer;
-	/**
-	 * @var GuestManager
-	 */
-	private $guestManager;
-	/** @var IUserSession */
-	private $userSession;
-	/** @var Config */
-	private $config;
-	/** @var ISubAdmin */
-	private $subAdmin;
-	/** @var IGroupManager */
-	private $groupManager;
-	/** @var LoggerInterface */
-	private $logger;
-
 	public function __construct(
 		string $appName,
 		IRequest $request,
-		IUserManager $userManager,
-		IL10N $l10n,
-		Config $config,
-		IMailer $mailer,
-		GuestManager $guestManager,
-		IUserSession $userSession,
-		ISubAdmin $subAdmin,
-		IGroupManager $groupManager,
-		LoggerInterface $logger,
+		private IUserManager $userManager,
+		private IL10N $l10n,
+		private Config $config,
+		private IMailer $mailer,
+		private GuestManager $guestManager,
+		private IUserSession $userSession,
+		private ISubAdmin $subAdmin,
+		private IGroupManager $groupManager,
+		private LoggerInterface $logger,
 	) {
 		parent::__construct($appName, $request);
-
-		$this->request = $request;
-		$this->userManager = $userManager;
-		$this->l10n = $l10n;
-		$this->mailer = $mailer;
-		$this->guestManager = $guestManager;
-		$this->userSession = $userSession;
-		$this->config = $config;
-		$this->subAdmin = $subAdmin;
-		$this->groupManager = $groupManager;
-		$this->logger = $logger;
 	}
 
 	/**
