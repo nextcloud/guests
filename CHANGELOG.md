@@ -2,6 +2,38 @@
 
 All notable changes to this project will be documented in this file.
 
+### 2.5.2
+
+### Fixes
+
+- Allow creating a guest without a name more than once @ShGKme [#1178](https://github.com/nextcloud/guests/pull/1178)
+
+### 2.5.1
+
+- use decoded path to check app whitelist @icewind1991 [#1085](https://github.com/nextcloud/guests/pull/1085)
+- fix permissions for whitelist reset @icewind1991 [#1085](https://github.com/nextcloud/guests/pull/1085)
+
+### 2.5.0
+
+### Added
+
+- Compatible with Nextcloud 27
+
+## 2.4.1
+
+### Fixed
+
+- Url decode 2.4 @icewind1991 [#1086](https://github.com/nextcloud/guests/pull/1086)
+
+### 2.4.0
+
+### Fixed
+
+- Fix allowlist button handler @PVince81 [#946](https://github.com/nextcloud/guests/pull/946)
+- register user backends in `boot` instead of `register` @icewind1991 [#993](https://github.com/nextcloud/guests/pull/993)
+- lowercase email for encrypting password token @icewind1991 [#986](https://github.com/nextcloud/guests/pull/986)
+- fix migrate guest user being triggered on mixed case email @icewind1991 [#1007](https://github.com/nextcloud/guests/pull/1007)
+
 ## 2.3.0
 
 ### Added
