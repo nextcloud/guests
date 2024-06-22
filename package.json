@@ -45,7 +45,7 @@
   },
   "dependencies": {
     "@nextcloud/axios": "^2.5.0",
-    "@nextcloud/dialogs": "^5.3.1",
+    "@nextcloud/dialogs": "^5.3.3",
     "@nextcloud/event-bus": "^3.3.1",
     "@nextcloud/router": "^3.0.1",
     "@nextcloud/sharing": "^0.1.0",
