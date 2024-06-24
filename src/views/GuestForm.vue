@@ -257,7 +257,7 @@ export default {
 				this.groups = result.data.ocs.data.groups
 				this.groupRequired = result.data.ocs.data.required
 			} catch (error) {
-				console.error('Failed to retrieve groups', error)
+				logger.error('Failed to retrieve groups', { error })
 			}
 		},
 
