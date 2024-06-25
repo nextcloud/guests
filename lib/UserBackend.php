@@ -34,6 +34,7 @@ use OCP\User\Backend\ICountUsersBackend;
 use OCP\User\Backend\IGetDisplayNameBackend;
 use OCP\User\Backend\IGetHomeBackend;
 use OCP\User\Backend\IGetRealUIDBackend;
+use OCP\User\Backend\IPasswordHashBackend;
 use OCP\User\Backend\ISetDisplayNameBackend;
 use OCP\User\Backend\ISetPasswordBackend;
 
@@ -47,7 +48,8 @@ class UserBackend extends ABackend implements
 	ICheckPasswordBackend,
 	IGetHomeBackend,
 	ICountUsersBackend,
-	IGetRealUIDBackend {
+	IGetRealUIDBackend,
+	IPasswordHashBackend {
 	/** @var CappedMemoryCache */
 	private $cache;
 	/** @var IEventDispatcher */
@@ -158,6 +160,31 @@ class UserBackend extends ABackend implements
 		}
 
 		return false;
+	}
+
+	public function getPasswordHash(string $userId): ?string {
+		if (!$this->userExists($userId)) {
+			return null;
+		}
+		$qb = $this->dbConn->getQueryBuilder();
+		$qb->select('password')
+			->from('guests_users')
+			->where($qb->expr()->eq('uid_lower', $qb->createNamedParameter(mb_strtolower($userId))));
+		/** @var false|string $hash */
+		$hash = $qb->executeQuery()->fetchOne();
+		if ($hash === false) {
+			return null;
+		}
+		return $hash;
+	}
+
+	public function setPasswordHash(string $userId, string $passwordHash): bool {
+		$qb = $this->dbConn->getQueryBuilder();
+		$qb->update('guests_users')
+			->set('password', $qb->createNamedParameter($passwordHash))
+			->where($qb->expr()->eq('uid_lower', $qb->createNamedParameter(mb_strtolower($userId))));
+		$result = $qb->executeStatement();
+		return ($result !== 0);
 	}
 
 	/**
