@@ -69,7 +69,10 @@
 </template>
 
 <script>
+import { logger } from '../services/logger.ts'
 import { generateOcsUrl } from '@nextcloud/router'
+import { Type as ShareTypes } from '@nextcloud/sharing'
+
 import AccountPlus from 'vue-material-design-icons/AccountPlus.vue'
 import axios from '@nextcloud/axios'
 import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
@@ -200,6 +203,7 @@ export default {
 
 			this.loading = true
 			try {
+
 				await axios.put(generateOcsUrl('/apps/guests/api/v1/users'), {
 					displayName: this.guest.fullName,
 					email: this.guest.email,
@@ -216,7 +220,8 @@ export default {
 					this.closeModal()
 					return
 				}
-				await this.addGuestShare()
+
+				await this.setupGuestShare()
 			} catch ({ response }) {
 				const error = response && response.data && response.data.ocs && response.data.ocs.data
 					? response.data.ocs.data.errorMessages
@@ -230,22 +235,16 @@ export default {
 			}
 		},
 
-		async addGuestShare() {
+		async setupGuestShare() {
 			try {
-				const url = generateOcsUrl('/apps/files_sharing/api/v1/shares')
 				const path = (this.fileInfo.path + '/' + this.fileInfo.name).replace('//', '/')
-
-				const result = await axios.post(url + '?format=json', {
-					shareType: OC.Share.SHARE_TYPE_USER,
+				const shareTemplate = {
+					shareType: ShareTypes.SHARE_TYPE_USER,
 					shareWith: this.guest.username,
 					path,
-				})
-
-				if (!result.data.ocs) {
-					this.reject(result)
 				}
-
-				this.resolve(result.data.ocs.data)
+				logger.info('Created share template with newly invited guest', { shareTemplate })
+				this.resolve(shareTemplate)
 				this.closeModal()
 			} catch ({ response }) {
 				this.reject(response)
@@ -258,7 +257,7 @@ export default {
 				this.groups = result.data.ocs.data.groups
 				this.groupRequired = result.data.ocs.data.required
 			} catch (error) {
-				console.error('Failed to retrieve groups', error)
+				logger.error('Failed to retrieve groups', { error })
 			}
 		},
 
