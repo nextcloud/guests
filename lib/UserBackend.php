@@ -23,6 +23,7 @@ declare(strict_types=1);
 
 namespace OCA\Guests;
 
+use InvalidArgumentException;
 use OC\Cache\CappedMemoryCache;
 use OCP\EventDispatcher\IEventDispatcher;
 use OCP\IDBConnection;
@@ -179,6 +180,9 @@ class UserBackend extends ABackend implements
 	}
 
 	public function setPasswordHash(string $userId, string $passwordHash): bool {
+		if (!$this->hasher->validate($passwordHash)) {
+			throw new InvalidArgumentException();
+		}
 		$qb = $this->dbConn->getQueryBuilder();
 		$qb->update('guests_users')
 			->set('password', $qb->createNamedParameter($passwordHash))
