@@ -59,6 +59,11 @@ return [
 			'verb' => 'GET'
 		],
 		[
+			'name' => 'users#transfer',
+			'url' => '/api/v1/transfer',
+			'verb' => 'PUT'
+		],
+		[
 			'name' => 'API#languages',
 			'url' => '/api/v1/languages',
 			'verb' => 'GET'
