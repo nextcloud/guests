@@ -33,72 +33,23 @@ use OCP\IConfig;
 use OCP\IUser;
 use OCP\IUserManager;
 use OCP\IUserSession;
-use OCP\Notification\IManager as INotificationManager;
 use OCP\Security\ICrypto;
 use OCP\Share\Events\ShareCreatedEvent;
-use OCP\Share\IManager as IShareManager;
 use OCP\User\Events\UserFirstTimeLoggedInEvent;
 use Psr\Log\LoggerInterface;
 
 class Hooks {
-
-	/** @var LoggerInterface */
-	private $logger;
-
-	/** @var IUserSession */
-	private $userSession;
-
-	/** @var Mail */
-	private $mail;
-
-	/** @var IUserManager */
-	private $userManager;
-
-	/** @var ICrypto */
-	private $crypto;
-
-	/** @var GuestManager */
-	private $guestManager;
-
-	/** @var UserBackend */
-	private $userBackend;
-
-	/** @var IAppContainer */
-	private $container;
-
-	/** @var INotificationManager */
-	private $notificationManager;
-	/** @var IShareManager */
-	private $shareManager;
-
-	/** @var IConfig */
-	private $config;
-
 	public function __construct(
-		LoggerInterface $logger,
-		IUserSession $userSession,
-		Mail $mail,
-		IUserManager $userManager,
-		IConfig $config,
-		ICrypto $crypto,
-		GuestManager $guestManager,
-		UserBackend $userBackend,
-		IAppContainer $container,
-		INotificationManager $notificationManager,
-		IShareManager $shareManager
-	) {
-		$this->logger = $logger;
-		$this->userSession = $userSession;
-		$this->mail = $mail;
-		$this->userManager = $userManager;
-		$this->config = $config;
-		$this->crypto = $crypto;
-		$this->guestManager = $guestManager;
-		$this->userBackend = $userBackend;
-		$this->container = $container;
-		$this->notificationManager = $notificationManager;
-		$this->shareManager = $shareManager;
-	}
+		private LoggerInterface $logger,
+		private IUserSession $userSession,
+		private Mail $mail,
+		private IUserManager $userManager,
+		private IConfig $config,
+		private ICrypto $crypto,
+		private GuestManager $guestManager,
+		private UserBackend $userBackend,
+		private IAppContainer $container,
+	) {}
 
 	public function handlePostShare(ShareCreatedEvent $event): void {
 		$share = $event->getShare();
