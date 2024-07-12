@@ -68,9 +68,12 @@ class TransferJob extends QueuedJob {
 		$this->notificationManager->notify($notification);
 	}
 
-	private function fail(Transfer $transfer): void {
+	private function fail(Transfer $transfer, ?IUser $user = null): void {
 		$this->notifyFailure($transfer);
 		$this->transferMapper->delete($transfer);
+		if ($user instanceof IUser) {
+			$user->delete();
+		}
 	}
 
 	public function run($argument): void {
@@ -113,14 +116,14 @@ class TransferJob extends QueuedJob {
 		$passwordHash = $sourceUser->getPasswordHash();
 		if (empty($passwordHash)) {
 			$this->logger->error('Invalid guest password hash', ['guest' => $sourceUser->getUID(), 'passwordHash' => $passwordHash]);
-			$this->fail($transfer);
+			$this->fail($transfer, $targetUser);
 			return;
 		}
 
 		$setPasswordHashResult = $targetUser->setPasswordHash($passwordHash);
 		if (!$setPasswordHashResult) {
 			$this->logger->error('Failed to set password hash on target user', ['user' => $targetUser->getUID()]);
-			$this->fail($transfer);
+			$this->fail($transfer, $targetUser);
 			return;
 		}
 
