@@ -3,6 +3,6 @@ module.exports = {
 		appName: true,
 	},
 	extends: [
-		'@nextcloud',
+		'@nextcloud/eslint-config/typescript',
 	],
 }

@@ -28,8 +28,8 @@
     "build": "vite build --mode production",
     "dev": "vite build --mode development",
     "watch": "vite build --mode development --watch",
-    "lint": "eslint --ext .js,.vue src",
-    "lint:fix": "eslint --ext .js,.vue src --fix",
+    "lint": "eslint --ext .js,.ts,.vue src",
+    "lint:fix": "eslint --ext .js,.ts,.vue src --fix",
     "stylelint": "stylelint css/*.css css/*.scss src/**/*.vue",
     "stylelint:fix": "stylelint css/*.css css/*.scss src/**/*.vue --fix"
   },
