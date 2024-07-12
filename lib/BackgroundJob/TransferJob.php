@@ -68,6 +68,11 @@ class TransferJob extends QueuedJob {
 		$this->notificationManager->notify($notification);
 	}
 
+	private function fail(Transfer $transfer): void {
+		$this->notifyFailure($transfer);
+		$this->transferMapper->delete($transfer);
+	}
+
 	public function run($argument): void {
 		/** @var int $id */
 		$id = $argument['id'];
@@ -82,15 +87,13 @@ class TransferJob extends QueuedJob {
 		$sourceUser = $this->userManager->get($source);
 		if (!($sourceUser instanceof IUser)) {
 			$this->logger->error('Failed to transfer missing guest user: ' . $source);
-			$this->notifyFailure($transfer);
-			$this->transferMapper->delete($transfer);
+			$this->fail($transfer);
 			return;
 		}
 
 		if ($this->userManager->userExists($target)) {
 			$this->logger->error("Cannot transfer guest user \"$source\", target user \"$target\" already exists");
-			$this->notifyFailure($transfer);
-			$this->transferMapper->delete($transfer);
+			$this->fail($transfer);
 			return;
 		}
 
@@ -101,14 +104,25 @@ class TransferJob extends QueuedJob {
 
 		if (!($targetUser instanceof IUser)) {
 			$this->logger->error('Failed to create new user: ' . $target);
-			$this->notifyFailure($transfer);
-			$this->transferMapper->delete($transfer);
+			$this->fail($transfer);
 			return;
 		}
 
 		$targetUser->setSystemEMailAddress($sourceUser->getUID()); // Guest user id is an email
 
-		// TODO copy password hash to target user
+		$passwordHash = $sourceUser->getPasswordHash();
+		if (empty($passwordHash)) {
+			$this->logger->error('Invalid guest password hash', ['guest' => $sourceUser->getUID(), 'passwordHash' => $passwordHash]);
+			$this->fail($transfer);
+			return;
+		}
+
+		$setPasswordHashResult = $targetUser->setPasswordHash($passwordHash);
+		if (!$setPasswordHashResult) {
+			$this->logger->error('Failed to set password hash on target user', ['user' => $targetUser->getUID()]);
+			$this->fail($transfer);
+			return;
+		}
 
 		try {
 			$this->transferService->transfer($sourceUser, $targetUser);
