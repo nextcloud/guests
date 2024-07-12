@@ -50,7 +50,8 @@ class Hooks {
 		private UserBackend $userBackend,
 		private IAppContainer $container,
 		private TransferService $transferService,
-	) {}
+	) {
+	}
 
 	public function handlePostShare(ShareCreatedEvent $event): void {
 		$share = $event->getShare();

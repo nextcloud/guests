@@ -13,7 +13,6 @@ use OCA\Guests\AppInfo\Application;
 use OCA\Guests\Db\Transfer;
 use OCA\Guests\Db\TransferMapper;
 use OCA\Guests\TransferService;
-use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\AppFramework\Utility\ITimeFactory;
 use OCP\BackgroundJob\QueuedJob;
 use OCP\IURLGenerator;
@@ -33,8 +32,7 @@ class TransferJob extends QueuedJob {
 		private TransferService $transferService,
 		private TransferMapper $transferMapper,
 		private LoggerInterface $logger,
-	)
-	{
+	) {
 		parent::__construct($time);
 	}
 

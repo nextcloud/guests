@@ -32,8 +32,7 @@ class TransferService {
 		private IJobList $jobList,
 		private TransferMapper $transferMapper,
 		private LoggerInterface $logger,
-	)
-	{
+	) {
 	}
 
 	public function transfer(IUser $guestUser, IUser $user): void {
