@@ -9,6 +9,7 @@
 		size="small"
 		@closing="cancel">
 		<form id="transfer-guest-form"
+			class="transfer-dialog__form"
 			@submit.prevent="submit">
 			<NcTextField ref="username"
 				:value.sync="targetUserId"
@@ -150,3 +151,11 @@ export default defineComponent({
 	},
 })
 </script>
+
+<style lang="scss" scoped>
+.transfer-dialog {
+	&__form {
+		margin-bottom: 8px;
+	}
+}
+</style>
