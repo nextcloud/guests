@@ -6,26 +6,28 @@
 import type { User } from './types.ts'
 
 import { translate as t } from '@nextcloud/l10n'
-import { subscribe } from '@nextcloud/event-bus'
+import { subscribe, emit } from '@nextcloud/event-bus'
 import { showError, showSuccess, spawnDialog } from '@nextcloud/dialogs'
 
 import SvgAccountArrowRight from '@mdi/svg/svg/account-arrow-right.svg?raw'
 
 import TransferGuestDialog from './components/TransferGuestDialog.vue'
 
-const transferGuest = async (event: MouseEvent, user: User): Promise<void> => {
-	const handleResult = (result: boolean) => {
-		if (!result) {
+const transferGuest = (_event: MouseEvent, user: User): void => {
+	const onClose = (userId: null | string) => {
+		if (!userId) {
 			showError(t('guests', 'Failed to transfer guest'))
 			return
 		}
-		showSuccess(t('guests', 'Guest transferred to new account'))
+		showSuccess(t('guests', 'Guest transferred to new account "{userId}"', { userId }))
+		emit('guests:user:deleted', user.id as string)
+		emit('guests:user:created', userId)
 	}
 
 	spawnDialog(TransferGuestDialog, {
 		user,
 		// @ts-expect-error callback parameters are known
-	}, handleResult)
+	}, onClose)
 }
 
 const enabled = (user: User) => user?.backend === 'Guests'
