@@ -35,53 +35,17 @@ use OCP\Share\IManager;
 use OCP\Share\IShare;
 
 class GuestManager {
-	/** @var IConfig */
-	private $config;
-
-	/** @var UserBackend */
-	private $userBackend;
-
-	/** @var IUserManager */
-	private $userManager;
-
-	/** @var ISecureRandom */
-	private $secureRandom;
-
-	/** @var ICrypto */
-	private $crypto;
-
-	/** @var IManager */
-	private $shareManager;
-
-	/** @var IDBConnection */
-	private $connection;
-
-	/** @var IUserSession */
-	private $userSession;
-
-	/** @var IEventDispatcher */
-	private $eventDispatcher;
-
 	public function __construct(
-		IConfig $config,
-		UserBackend $userBackend,
-		ISecureRandom $secureRandom,
-		ICrypto $crypto,
-		IManager $shareManager,
-		IDBConnection $connection,
-		IUserSession $userSession,
-		IEventDispatcher $eventDispatcher,
-		IUserManager $userManager
+		private IConfig $config,
+		private UserBackend $userBackend,
+		private ISecureRandom $secureRandom,
+		private ICrypto $crypto,
+		private IManager $shareManager,
+		private IDBConnection $connection,
+		private IUserSession $userSession,
+		private IEventDispatcher $eventDispatcher,
+		private IUserManager $userManager,
 	) {
-		$this->config = $config;
-		$this->userBackend = $userBackend;
-		$this->secureRandom = $secureRandom;
-		$this->crypto = $crypto;
-		$this->shareManager = $shareManager;
-		$this->connection = $connection;
-		$this->userSession = $userSession;
-		$this->eventDispatcher = $eventDispatcher;
-		$this->userManager = $userManager;
 	}
 
 	/**

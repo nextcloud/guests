@@ -3,24 +3,8 @@
 declare(strict_types=1);
 
 /**
- * @copyright 2019 Christoph Wurst <christoph@winzerhof-wurst.at>
- *
- * @author 2019 Christoph Wurst <christoph@winzerhof-wurst.at>
- *
- * @license GNU AGPL version 3 or any later version
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * SPDX-FileCopyrightText: 2019 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
 namespace OCA\Guests\Notifications;
@@ -28,22 +12,17 @@ namespace OCA\Guests\Notifications;
 use InvalidArgumentException;
 use OCA\Guests\AppInfo\Application;
 use OCP\IURLGenerator;
+use OCP\IUserManager;
 use OCP\L10N\IFactory;
 use OCP\Notification\INotification;
 use OCP\Notification\INotifier;
 
 class Notifier implements INotifier {
-
-	/** @var IFactory */
-	private $factory;
-
-	/** @var IURLGenerator */
-	private $url;
-
-	public function __construct(IFactory $factory,
-		IURLGenerator $url) {
-		$this->factory = $factory;
-		$this->url = $url;
+	public function __construct(
+		private IFactory $factory,
+		private IURLGenerator $url,
+		private IUserManager $userManager,
+	) {
 	}
 
 	public function getID(): string {
@@ -54,6 +33,26 @@ class Notifier implements INotifier {
 		return $this->factory->get(Application::APP_ID)->t('Guests');
 	}
 
+	private function getRichMessageParams(string $source, string $target): array {
+		$sourceUser = $this->userManager->get($source);
+		$targetUser = $this->userManager->get($target);
+		return [
+			'guest' => [
+				'type' => $sourceUser ? 'guest' : 'highlight',
+				'id' => $sourceUser?->getUID() ?? $source,
+				'name' => $sourceUser?->getDisplayName() ?? $source,
+			],
+			'user' => [
+				'type' => $targetUser ? 'user' : 'highlight',
+				'id' => $targetUser?->getUID() ?? $source,
+				'name' => $targetUser?->getDisplayName() ?? $target,
+			],
+		];
+	}
+
+	/**
+	 * @throws InvalidArgumentException
+	 */
 	public function prepare(INotification $notification, string $languageCode): INotification {
 		if ($notification->getApp() !== Application::APP_ID) {
 			// Not my app => throw
@@ -72,6 +71,26 @@ class Notifier implements INotifier {
 
 				$notification->setIcon($this->url->getAbsoluteURL($this->url->imagePath('core', 'actions/info.svg')));
 
+				return $notification;
+
+			case 'guest-transfer-fail':
+				$params = $notification->getSubjectParameters();
+				$notification
+					->setRichSubject($l->t('Guest transfer failed'))
+					->setRichMessage(
+						$l->t('Failed to transfer guest {guest} to {user}'),
+						$this->getRichMessageParams($params['source'], $params['target']),
+					);
+				return $notification;
+
+			case 'guest-transfer-done':
+				$params = $notification->getSubjectParameters();
+				$notification
+					->setRichSubject($l->t('Guest transfer done'))
+					->setRichMessage(
+						$l->t('Transfer of guest {guest} to {user} completed'),
+						$this->getRichMessageParams($params['source'], $params['target']),
+					);
 				return $notification;
 
 			default:

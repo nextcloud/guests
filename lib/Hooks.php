@@ -23,85 +23,34 @@
 namespace OCA\Guests;
 
 use OC\Files\Filesystem;
-use OCA\Files\Exception\TransferOwnershipException;
-use OCA\Files\Service\OwnershipTransferService;
 use OCA\Guests\AppInfo\Application;
 use OCA\Guests\Storage\ReadOnlyJail;
 use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\AppFramework\IAppContainer;
-use OCP\AppFramework\QueryException;
 use OCP\Constants;
 use OCP\Files\Storage\IStorage;
 use OCP\IConfig;
 use OCP\IUser;
 use OCP\IUserManager;
 use OCP\IUserSession;
-use OCP\Notification\IManager as INotificationManager;
 use OCP\Security\ICrypto;
 use OCP\Share\Events\ShareCreatedEvent;
-use OCP\Share\IManager as IShareManager;
-use OCP\Share\IShare;
 use OCP\User\Events\UserFirstTimeLoggedInEvent;
 use Psr\Log\LoggerInterface;
 
 class Hooks {
-
-	/** @var LoggerInterface */
-	private $logger;
-
-	/** @var IUserSession */
-	private $userSession;
-
-	/** @var Mail */
-	private $mail;
-
-	/** @var IUserManager */
-	private $userManager;
-
-	/** @var ICrypto */
-	private $crypto;
-
-	/** @var GuestManager */
-	private $guestManager;
-
-	/** @var UserBackend */
-	private $userBackend;
-
-	/** @var IAppContainer */
-	private $container;
-
-	/** @var INotificationManager */
-	private $notificationManager;
-	/** @var IShareManager */
-	private $shareManager;
-
-	/** @var IConfig */
-	private $config;
-
 	public function __construct(
-		LoggerInterface $logger,
-		IUserSession $userSession,
-		Mail $mail,
-		IUserManager $userManager,
-		IConfig $config,
-		ICrypto $crypto,
-		GuestManager $guestManager,
-		UserBackend $userBackend,
-		IAppContainer $container,
-		INotificationManager $notificationManager,
-		IShareManager $shareManager
+		private LoggerInterface $logger,
+		private IUserSession $userSession,
+		private Mail $mail,
+		private IUserManager $userManager,
+		private IConfig $config,
+		private ICrypto $crypto,
+		private GuestManager $guestManager,
+		private UserBackend $userBackend,
+		private IAppContainer $container,
+		private TransferService $transferService,
 	) {
-		$this->logger = $logger;
-		$this->userSession = $userSession;
-		$this->mail = $mail;
-		$this->userManager = $userManager;
-		$this->config = $config;
-		$this->crypto = $crypto;
-		$this->guestManager = $guestManager;
-		$this->userBackend = $userBackend;
-		$this->container = $container;
-		$this->notificationManager = $notificationManager;
-		$this->shareManager = $shareManager;
 	}
 
 	public function handlePostShare(ShareCreatedEvent $event): void {
@@ -195,7 +144,7 @@ class Hooks {
 	}
 
 	public function handleFirstLogin(UserFirstTimeLoggedInEvent $event): void {
-		if ($this->config->getSystemValue('migrate_guest_user_data', false) === false) {
+		if (!$this->config->getSystemValueBool('migrate_guest_user_data', false)) {
 			return;
 		}
 
@@ -219,58 +168,20 @@ class Hooks {
 			return;
 		}
 
-		try {
-			/** @var OwnershipTransferService $ownershipTransferService */
-			$ownershipTransferService = $this->container->get(OwnershipTransferService::class);
-		} catch (QueryException $e) {
-			$this->logger->error('Could not resolve ownership transfer service to import guest user data', [
-				'exception' => $e,
-			]);
-			return;
-		}
-
 		$guestUser = $this->userManager->get($email);
 		if ($guestUser === null) {
 			$this->logger->warning("Guest user $email does not exist (anymore)");
 			return;
 		}
-		try {
-			$ownershipTransferService->transfer(
-				$guestUser,
-				$user,
-				'/',
-				null,
-				true,
-				true
-			);
-		} catch (TransferOwnershipException $e) {
-			$this->logger->error('Could not import guest user data', [
-				'exception' => $e,
-			]);
-		}
 
-		// Update incomming shares
-		$shares = $this->shareManager->getSharedWith($guestUser->getUID(), IShare::TYPE_USER);
-		foreach ($shares as $share) {
-			$share->setSharedWith($user->getUID());
-			$this->shareManager->updateShare($share);
-		}
+		$this->transferService->transfer($guestUser, $user);
 
-		if ($this->config->getSystemValue('remove_guest_account_on_conversion', false) === false) {
+		if (!$this->config->getSystemValueBool('remove_guest_account_on_conversion', false)) {
 			// Disable previous account
 			$guestUser->setEnabled(false);
 		} else {
 			// Remove previous account
 			$guestUser->delete();
 		}
-
-		$notification = $this->notificationManager->createNotification();
-		$notification
-			->setApp(Application::APP_ID)
-			->setSubject('data_migrated_to_system_user')
-			->setObject('user', $email)
-			->setDateTime(new \DateTime())
-			->setUser($user->getUID());
-		$this->notificationManager->notify($notification);
 	}
 }

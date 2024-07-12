@@ -1,10 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
+/**
+ * SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+
 namespace OCA\Guests\Controller;
 
 use OC\Hooks\PublicEmitter;
 use OCA\Guests\Config;
+use OCA\Guests\Db\Transfer;
+use OCA\Guests\Db\TransferMapper;
 use OCA\Guests\GuestManager;
+use OCA\Guests\TransferService;
+use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\OCSController;
@@ -12,63 +23,27 @@ use OCP\Group\ISubAdmin;
 use OCP\IGroupManager;
 use OCP\IL10N;
 use OCP\IRequest;
+use OCP\IUser;
 use OCP\IUserManager;
 use OCP\IUserSession;
 use OCP\Mail\IMailer;
 
 class UsersController extends OCSController {
-	/**
-	 * @var IRequest
-	 */
-	protected $request;
-	/**
-	 * @var IUserManager
-	 */
-	private $userManager;
-	/**
-	 * @var IL10N
-	 */
-	private $l10n;
-	/**
-	 * @var IMailer
-	 */
-	private $mailer;
-	/**
-	 * @var GuestManager
-	 */
-	private $guestManager;
-	/** @var IUserSession */
-	private $userSession;
-	/** @var Config */
-	private $config;
-	/** @var ISubAdmin */
-	private $subAdmin;
-	/** @var IGroupManager */
-	private $groupManager;
-
 	public function __construct(
 		string $appName,
 		IRequest $request,
-		IUserManager $userManager,
-		IL10N $l10n,
-		Config $config,
-		IMailer $mailer,
-		GuestManager $guestManager,
-		IUserSession $userSession,
-		ISubAdmin $subAdmin,
-		IGroupManager $groupManager
+		private IUserManager $userManager,
+		private IL10N $l10n,
+		private Config $config,
+		private IMailer $mailer,
+		private GuestManager $guestManager,
+		private IUserSession $userSession,
+		private ISubAdmin $subAdmin,
+		private IGroupManager $groupManager,
+		private TransferService $transferService,
+		private TransferMapper $transferMapper,
 	) {
 		parent::__construct($appName, $request);
-
-		$this->request = $request;
-		$this->userManager = $userManager;
-		$this->l10n = $l10n;
-		$this->mailer = $mailer;
-		$this->guestManager = $guestManager;
-		$this->userSession = $userSession;
-		$this->config = $config;
-		$this->subAdmin = $subAdmin;
-		$this->groupManager = $groupManager;
 	}
 
 	/**
@@ -198,5 +173,59 @@ class UsersController extends OCSController {
 		$guests = $this->guestManager->getGuestInfo($userId);
 
 		return new DataResponse($guests);
+	}
+
+	/**
+	 * Transfer guest to a full account
+	 */
+	public function transfer(string $guestUserId, string $targetUserId): DataResponse {
+		$author = $this->userSession->getUser();
+		if (!($author instanceof IUser)) {
+			return new DataResponse([
+				'message' => $this->l10n->t('Failed to authorize')
+			], Http::STATUS_UNAUTHORIZED);
+		}
+
+		$sourceUser = $this->userManager->get($guestUserId);
+		if (!($sourceUser instanceof IUser)) {
+			return new DataResponse([
+				'message' => $this->l10n->t('Guest does not exist')
+			], Http::STATUS_NOT_FOUND);
+		}
+
+		if ($this->userManager->userExists($targetUserId)) {
+			return new DataResponse([
+				'message' => $this->l10n->t('User already exists')
+			], Http::STATUS_CONFLICT);
+		}
+
+		if (!$this->guestManager->isGuest($sourceUser)) {
+			return new DataResponse([
+				'message' => $this->l10n->t('User is not a guest'),
+			], Http::STATUS_CONFLICT);
+		}
+
+		try {
+			$transfer = $this->transferMapper->getBySource($sourceUser->getUID());
+		} catch (DoesNotExistException $e) {
+			// Allow as this just means there is no pending transfer
+		}
+
+		try {
+			$transfer = $this->transferMapper->getByTarget($targetUserId);
+		} catch (DoesNotExistException $e) {
+			// Allow as this just means there is no pending transfer
+		}
+
+		if (!empty($transfer)) {
+			return new DataResponse([
+				'status' => $transfer->getStatus(),
+				'source' => $transfer->getSource(),
+				'target' => $transfer->getTarget(),
+			], Http::STATUS_ACCEPTED);
+		}
+
+		$this->transferService->addTransferJob($author, $sourceUser, $targetUserId);
+		return new DataResponse([], Http::STATUS_CREATED);
 	}
 }
