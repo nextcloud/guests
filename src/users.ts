@@ -14,9 +14,12 @@ import SvgAccountArrowRight from '@mdi/svg/svg/account-arrow-right.svg?raw'
 import TransferGuestDialog from './components/TransferGuestDialog.vue'
 
 const transferGuest = (_event: MouseEvent, user: User): void => {
-	const onClose = (userId: null | string) => {
-		if (!userId) {
+	const onClose = (userId: false | null | string) => {
+		if (userId === false) {
 			showError(t('guests', 'Failed to transfer guest'))
+			return
+		}
+		if (userId === null) { // Transfer is cancelled so we return silently
 			return
 		}
 		showSuccess(t('guests', 'Guest transferred to new account "{userId}"', { userId }))

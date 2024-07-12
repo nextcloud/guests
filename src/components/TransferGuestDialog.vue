@@ -112,7 +112,7 @@ export default defineComponent({
 				})
 				this.$emit('close', this.userId)
 			} catch (error) {
-				this.$emit('close', null)
+				this.$emit('close', false)
 			}
 			this.loading = false
 		},
