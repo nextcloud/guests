@@ -12,7 +12,7 @@ namespace OCA\Guests\BackgroundJob;
 use OCA\Guests\AppInfo\Application;
 use OCA\Guests\Db\Transfer;
 use OCA\Guests\Db\TransferMapper;
-use OCA\Guests\GuestManager;
+use OCA\Guests\TransferService;
 use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\AppFramework\Utility\ITimeFactory;
 use OCP\BackgroundJob\QueuedJob;
@@ -30,7 +30,7 @@ class TransferJob extends QueuedJob {
 		private ISecureRandom $secureRandom,
 		private NotificationManager $notificationManager,
 		private IURLGenerator $urlGenerator,
-		private GuestManager $guestManager,
+		private TransferService $transferService,
 		private TransferMapper $transferMapper,
 		private LoggerInterface $logger,
 	)
@@ -111,7 +111,7 @@ class TransferJob extends QueuedJob {
 		// TODO copy password hash to target user
 
 		try {
-			$this->guestManager->transfer($sourceUser, $targetUser);
+			$this->transferService->transfer($sourceUser, $targetUser);
 			$result = $sourceUser->delete();
 			if (!$result) {
 				$this->logger->error('Failed to delete guest user', ['userId' => $sourceUser->getUID()]);

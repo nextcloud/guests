@@ -1,14 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
+/**
+ * SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+
 namespace OCA\Guests\Controller;
 
 use OC\Hooks\PublicEmitter;
 use OCA\Guests\Config;
+use OCA\Guests\Db\Transfer;
+use OCA\Guests\Db\TransferMapper;
 use OCA\Guests\GuestManager;
+use OCA\Guests\TransferService;
+use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\DataResponse;
-use OCP\AppFramework\OCS\OCSException;
-use OCP\AppFramework\OCS\OCSNotFoundException;
 use OCP\AppFramework\OCSController;
 use OCP\Group\ISubAdmin;
 use OCP\IGroupManager;
@@ -18,7 +27,6 @@ use OCP\IUser;
 use OCP\IUserManager;
 use OCP\IUserSession;
 use OCP\Mail\IMailer;
-use Psr\Log\LoggerInterface;
 
 class UsersController extends OCSController {
 	public function __construct(
@@ -32,7 +40,8 @@ class UsersController extends OCSController {
 		private IUserSession $userSession,
 		private ISubAdmin $subAdmin,
 		private IGroupManager $groupManager,
-		private LoggerInterface $logger,
+		private TransferService $transferService,
+		private TransferMapper $transferMapper,
 	) {
 		parent::__construct($appName, $request);
 	}
@@ -166,45 +175,60 @@ class UsersController extends OCSController {
 		return new DataResponse($guests);
 	}
 
-	public function transfer(string $guestUserId, string $targetUserId, string $password): DataResponse {
-		$user = $this->userManager->get($guestUserId);
-		if (!($user instanceof IUser)) {
-			throw new OCSNotFoundException();
+	private function getStatusMessage(string $status): string {
+		return match ($status) {
+			Transfer::STATUS_WAITING => $this->l10n->t('Waiting'),
+			Transfer::STATUS_STARTED => $this->l10n->t('Started'),
+		};
+	}
+
+	/**
+	 * Transfer guest to a full account
+	 */
+	public function transfer(string $guestUserId, string $targetUserId): DataResponse {
+		$author = $this->userSession->getUser();
+		if (!($author instanceof IUser)) {
+			return new DataResponse([], Http::STATUS_UNAUTHORIZED);
 		}
 
-		if (!$this->guestManager->isGuest($user)) {
-			return new DataResponse([], Http::STATUS_CONFLICT);
+		$sourceUser = $this->userManager->get($guestUserId);
+		if (!($sourceUser instanceof IUser)) {
+			return new DataResponse([], Http::STATUS_NOT_FOUND);
 		}
 
 		if ($this->userManager->userExists($targetUserId)) {
-			throw new OCSException($this->l10n->t('User already exists'), 102);
+			return new DataResponse([
+				'message' => $this->l10n->t('User already exists')
+			], Http::STATUS_CONFLICT);
 		}
 
-		$newUser = $this->userManager->createUser(
-			$targetUserId,
-			$password,
-		);
-
-		if (!($newUser instanceof IUser)) {
-			throw new OCSException($this->l10n->t('Failed to create new user'));
+		if (!$this->guestManager->isGuest($sourceUser)) {
+			return new DataResponse([
+				'message' => $this->l10n->t('User is not a guest'),
+			], Http::STATUS_CONFLICT);
 		}
-
-		$newUser->setSystemEMailAddress($guestUserId);
 
 		try {
-			$this->guestManager->transfer($user, $newUser);
-			$result = $user->delete();
-			if (!$result) {
-				$this->logger->error('Failed to delete user', [ 'userId' => $user->getUID() ]);
-			}
-		} catch (\Throwable $th) {
-			$this->logger->error('Failed to transfer guest', [ 'error' => $th ]);
-			$result = $newUser->delete(); // Rollback created user
-			if (!$result) {
-				$this->logger->error('Failed to delete user', [ 'userId' => $newUser->getUID() ]);
-			}
-			throw new OCSException($this->l10n->t('Failed to transfer guest'));
+			$transfer = $this->transferMapper->getBySource($sourceUser->getUID());
+		} catch (DoesNotExistException $e) {
+			// Allow as this just means there is no pending transfer
 		}
+
+		try {
+			$transfer = $this->transferMapper->getByTarget($targetUserId);
+		} catch (DoesNotExistException $e) {
+			// Allow as this just means there is no pending transfer
+		}
+
+		if (!empty($transfer)) {
+			return new DataResponse([
+				'status' => $this->getStatusMessage($transfer->getStatus()),
+				'source' => $transfer->getSource(),
+				'target' => $transfer->getTarget(),
+			], Http::STATUS_ACCEPTED);
+		}
+
+		$this->transferService->addTransferJob($author, $sourceUser, $targetUserId);
 		return new DataResponse([], Http::STATUS_CREATED);
 	}
 }
