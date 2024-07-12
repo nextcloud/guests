@@ -61,7 +61,7 @@ return [
 		[
 			'name' => 'users#transfer',
 			'url' => '/api/v1/transfer',
-			'verb' => 'PUT'
+			'verb' => 'POST',
 		],
 		[
 			'name' => 'API#languages',

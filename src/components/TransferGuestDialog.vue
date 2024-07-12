@@ -122,7 +122,7 @@ export default defineComponent({
 			this.loading = true
 			const targetUserId = this.targetUserId
 			try {
-				const { data } = await axios.put(generateOcsUrl('/apps/guests/api/v1/transfer'), {
+				const { data } = await axios.post(generateOcsUrl('/apps/guests/api/v1/transfer'), {
 					guestUserId: this.user.id,
 					targetUserId,
 				})
