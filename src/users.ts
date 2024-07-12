@@ -6,25 +6,19 @@
 import type { User } from './types.ts'
 
 import { translate as t } from '@nextcloud/l10n'
-import { subscribe, emit } from '@nextcloud/event-bus'
-import { showError, showSuccess, spawnDialog } from '@nextcloud/dialogs'
+import { subscribe } from '@nextcloud/event-bus'
+import { showSuccess, spawnDialog } from '@nextcloud/dialogs'
 
 import SvgAccountArrowRight from '@mdi/svg/svg/account-arrow-right.svg?raw'
 
 import TransferGuestDialog from './components/TransferGuestDialog.vue'
 
 const transferGuest = (_event: MouseEvent, user: User): void => {
-	const onClose = (userId: false | null | string) => {
-		if (userId === false) {
-			showError(t('guests', 'Failed to transfer guest'))
+	const onClose = (userId: null | string) => {
+		if (userId === null) {
 			return
 		}
-		if (userId === null) { // Transfer is cancelled so we return silently
-			return
-		}
-		showSuccess(t('guests', 'Guest transferred to new account "{userId}"', { userId }))
-		emit('guests:user:deleted', user.id as string)
-		emit('guests:user:created', userId)
+		showSuccess(t('guests', 'Guest will be transferred to "{userId}" soon', { userId }))
 	}
 
 	spawnDialog(TransferGuestDialog, {

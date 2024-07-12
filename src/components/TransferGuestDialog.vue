@@ -11,23 +11,21 @@
 		<form id="transfer-guest-form"
 			@submit.prevent="submit">
 			<NcTextField ref="username"
-				:value.sync="userId"
-				:label="t('guests', 'Account name')"
+				:value.sync="targetUserId"
+				:label="t('guests', 'New account name')"
+				:disabled="message"
 				autocapitalize="none"
 				autocomplete="off"
 				spellcheck="false"
 				pattern="[a-zA-Z0-9 _\.@\-']+"
 				required />
-
-			<NcPasswordField :value.sync="password"
-				:minlength="minPasswordLength"
-				:maxlength="469"
-				:label="t('guests', 'Password')"
-				autocapitalize="none"
-				autocomplete="new-password"
-				spellcheck="false"
-				required />
 		</form>
+
+		<NcNoteCard v-if="message"
+			type="info"
+			show-alert>
+			<p v-html="message" />
+		</NcNoteCard>
 
 		<template #actions>
 			<NcButton type="tertiary"
@@ -38,7 +36,7 @@
 
 			<NcButton type="primary"
 				form="transfer-guest-form"
-				:disabled="loading"
+				:disabled="loading || message"
 				native-type="submit">
 				<template v-if="loading" #icon>
 					<NcLoadingIcon :name="t('guests', 'Transferring guest…')" />
@@ -56,19 +54,36 @@ import type { User } from '../types.ts'
 import { defineComponent } from 'vue'
 import axios from '@nextcloud/axios'
 import { generateOcsUrl } from '@nextcloud/router'
-import { getCapabilities } from '@nextcloud/capabilities'
 import { translate as t } from '@nextcloud/l10n'
 import { showError } from '@nextcloud/dialogs'
 
 import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
 import NcDialog from '@nextcloud/vue/dist/Components/NcDialog.js'
 import NcLoadingIcon from '@nextcloud/vue/dist/Components/NcLoadingIcon.js'
-import NcPasswordField from '@nextcloud/vue/dist/Components/NcPasswordField.js'
+import NcNoteCard from '@nextcloud/vue/dist/Components/NcNoteCard.js'
 import NcTextField from '@nextcloud/vue/dist/Components/NcTextField.js'
 
 import { logger } from '../logger.ts'
 
-const minPasswordLength = getCapabilities()?.password_policy?.minLength
+const generateMessage = ({ source, target, status }: { source: string, target: string, status: 'waiting' | 'started' }) => {
+	const matchStatus = {
+		waiting: t('guests', 'Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} is pending', {
+			guest: source,
+			user: target,
+			strongStart: '<strong>',
+			strongEnd: '</strong>',
+		}, undefined, { escape: false, sanitize: false }),
+
+		started: t('guests', 'Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} has started', {
+			guest: source,
+			user: target,
+			strongStart: '<strong>',
+			strongEnd: '</strong>',
+		}, undefined, { escape: false, sanitize: false }),
+	}
+
+	return matchStatus[status]
+}
 
 export default defineComponent({
 	name: 'TransferGuestDialog',
@@ -77,7 +92,7 @@ export default defineComponent({
 		NcButton,
 		NcDialog,
 		NcLoadingIcon,
-		NcPasswordField,
+		NcNoteCard,
 		NcTextField,
 	},
 
@@ -91,9 +106,8 @@ export default defineComponent({
 	data() {
 		return {
 			loading: false,
-			userId: '',
-			password: '',
-			minPasswordLength,
+			targetUserId: '',
+			message: null,
 		}
 	},
 
@@ -106,18 +120,26 @@ export default defineComponent({
 
 		async submit() {
 			this.loading = true
-			const userId = this.userId
+			const targetUserId = this.targetUserId
 			try {
-				await axios.put(generateOcsUrl('/apps/guests/api/v1/transfer'), {
-					email: this.user.id, // Guest user id is an email
-					userId,
-					password: this.password,
+				const { data } = await axios.put(generateOcsUrl('/apps/guests/api/v1/transfer'), {
+					guestUserId: this.user.id,
+					targetUserId,
 				})
-				this.$emit('close', this.userId)
+				if (data.ocs?.meta?.statuscode === 201) {
+					this.$emit('close', targetUserId)
+				}
+				if (data.ocs?.meta?.statuscode === 202) {
+					this.message = generateMessage({
+						source: data.ocs?.data?.source,
+						target: data.ocs?.data?.target,
+						status: data.ocs?.data?.status,
+					})
+				}
 			} catch (error) {
-				logger.error(error.response?.data?.ocs?.meta?.message, { error })
-				showError(error.response?.data?.ocs?.meta?.message)
-				this.$emit('close', false)
+				logger.error(error.response.data.ocs?.data?.message, { error })
+				showError(error.response.data.ocs?.data?.message)
+				this.$emit('close', null)
 			}
 			this.loading = false
 		},
@@ -128,7 +150,3 @@ export default defineComponent({
 	},
 })
 </script>
-
-<style lang="scss">
-
-</style>
