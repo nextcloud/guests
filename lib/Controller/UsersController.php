@@ -175,13 +175,6 @@ class UsersController extends OCSController {
 		return new DataResponse($guests);
 	}
 
-	private function getStatusMessage(string $status): string {
-		return match ($status) {
-			Transfer::STATUS_WAITING => $this->l10n->t('Waiting'),
-			Transfer::STATUS_STARTED => $this->l10n->t('Started'),
-		};
-	}
-
 	/**
 	 * Transfer guest to a full account
 	 */
@@ -222,7 +215,7 @@ class UsersController extends OCSController {
 
 		if (!empty($transfer)) {
 			return new DataResponse([
-				'status' => $this->getStatusMessage($transfer->getStatus()),
+				'status' => $transfer->getStatus(),
 				'source' => $transfer->getSource(),
 				'target' => $transfer->getTarget(),
 			], Http::STATUS_ACCEPTED);
