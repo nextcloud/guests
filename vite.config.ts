@@ -4,6 +4,7 @@ export default createAppConfig({
 	main: 'src/main.js',
 	settings: 'src/settings.js',
 	talk: 'src/talk.js',
+	users: 'src/users.ts',
 },
 {
 	inlineCSS: {
