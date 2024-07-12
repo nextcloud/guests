@@ -181,12 +181,16 @@ class UsersController extends OCSController {
 	public function transfer(string $guestUserId, string $targetUserId): DataResponse {
 		$author = $this->userSession->getUser();
 		if (!($author instanceof IUser)) {
-			return new DataResponse([], Http::STATUS_UNAUTHORIZED);
+			return new DataResponse([
+				'message' => $this->l10n->t('Failed to authorize')
+			], Http::STATUS_UNAUTHORIZED);
 		}
 
 		$sourceUser = $this->userManager->get($guestUserId);
 		if (!($sourceUser instanceof IUser)) {
-			return new DataResponse([], Http::STATUS_NOT_FOUND);
+			return new DataResponse([
+				'message' => $this->l10n->t('Guest does not exist')
+			], Http::STATUS_NOT_FOUND);
 		}
 
 		if ($this->userManager->userExists($targetUserId)) {
