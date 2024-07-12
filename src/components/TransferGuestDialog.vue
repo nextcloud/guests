@@ -64,7 +64,7 @@ import NcLoadingIcon from '@nextcloud/vue/dist/Components/NcLoadingIcon.js'
 import NcNoteCard from '@nextcloud/vue/dist/Components/NcNoteCard.js'
 import NcTextField from '@nextcloud/vue/dist/Components/NcTextField.js'
 
-import { logger } from '../logger.ts'
+import { logger } from '../services/logger.ts'
 
 const generateMessage = ({ source, target, status }: { source: string, target: string, status: 'waiting' | 'started' }) => {
 	const matchStatus = {
