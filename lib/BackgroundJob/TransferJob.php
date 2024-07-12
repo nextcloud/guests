@@ -68,11 +68,15 @@ class TransferJob extends QueuedJob {
 		$this->notificationManager->notify($notification);
 	}
 
-	private function fail(Transfer $transfer, ?IUser $user = null): void {
+	private function fail(Transfer $transfer, ?IUser $targetUser = null): void {
 		$this->notifyFailure($transfer);
 		$this->transferMapper->delete($transfer);
-		if ($user instanceof IUser) {
-			$user->delete();
+		if (!($targetUser instanceof IUser)) {
+			return;
+		}
+		$result = $targetUser->delete(); // Rollback created user
+		if (!$result) {
+			$this->logger->error('Failed to delete target user', ['user' => $targetUser->getUID()]);
 		}
 	}
 
@@ -115,34 +119,31 @@ class TransferJob extends QueuedJob {
 
 		try {
 			$this->transferService->transfer($sourceUser, $targetUser);
-
-			$passwordHash = $sourceUser->getPasswordHash();
-			if (empty($passwordHash)) {
-				$this->logger->error('Invalid guest password hash', ['guest' => $sourceUser->getUID(), 'passwordHash' => $passwordHash]);
-				$this->fail($transfer, $targetUser);
-				return;
-			}
-
-			$setPasswordHashResult = $targetUser->setPasswordHash($passwordHash); // Copy password hash after transfer to prevent log in before completion
-			if (!$setPasswordHashResult) {
-				$this->logger->error('Failed to set password hash on target user', ['user' => $targetUser->getUID()]);
-				$this->fail($transfer, $targetUser);
-				return;
-			}
-
-			$result = $sourceUser->delete();
-			if (!$result) {
-				$this->logger->error('Failed to delete guest user', ['userId' => $sourceUser->getUID()]);
-			}
-			$this->notifySuccess($transfer);
 		} catch (\Throwable $th) {
 			$this->logger->error($th->getMessage(), ['exception' => $th]);
-			$result = $targetUser->delete(); // Rollback created user
-			if (!$result) {
-				$this->logger->error('Failed to delete target user', ['userId' => $targetUser->getUID()]);
-			}
-			$this->notifyFailure($transfer);
+			$this->fail($transfer, $targetUser);
+			return;
 		}
+
+		$passwordHash = $sourceUser->getPasswordHash();
+		if (empty($passwordHash)) {
+			$this->logger->error('Invalid guest password hash', ['guest' => $sourceUser->getUID(), 'passwordHash' => $passwordHash]);
+			$this->fail($transfer, $targetUser);
+			return;
+		}
+
+		$setPasswordHashResult = $targetUser->setPasswordHash($passwordHash); // Copy password hash after transfer to prevent login before completion
+		if (!$setPasswordHashResult) {
+			$this->logger->error('Failed to set password hash on target user', ['user' => $targetUser->getUID()]);
+			$this->fail($transfer, $targetUser);
+			return;
+		}
+
+		$result = $sourceUser->delete();
+		if (!$result) {
+			$this->logger->error('Failed to delete guest user', ['user' => $sourceUser->getUID()]);
+		}
+		$this->notifySuccess($transfer);
 		$this->transferMapper->delete($transfer);
 	}
 }
