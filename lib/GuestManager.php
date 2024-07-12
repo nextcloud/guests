@@ -21,6 +21,10 @@
 
 namespace OCA\Guests;
 
+use OCA\Files\Exception\TransferOwnershipException;
+use OCA\Files\Service\OwnershipTransferService;
+use OCA\Guests\AppInfo\Application;
+use OCP\AppFramework\QueryException;
 use OCP\DB\QueryBuilder\IQueryBuilder;
 use OCP\EventDispatcher\IEventDispatcher;
 use OCP\IConfig;
@@ -28,11 +32,14 @@ use OCP\IDBConnection;
 use OCP\IUser;
 use OCP\IUserManager;
 use OCP\IUserSession;
+use OCP\Notification\IManager as INotificationManager;
 use OCP\Security\Events\GenerateSecurePasswordEvent;
 use OCP\Security\ICrypto;
 use OCP\Security\ISecureRandom;
 use OCP\Share\IManager;
 use OCP\Share\IShare;
+use Psr\Container\ContainerInterface;
+use Psr\Log\LoggerInterface;
 
 class GuestManager {
 	/** @var IConfig */
@@ -62,6 +69,15 @@ class GuestManager {
 	/** @var IEventDispatcher */
 	private $eventDispatcher;
 
+	/** @var ContainerInterface */
+	private $container;
+
+	/** @var LoggerInterface */
+	private $logger;
+
+	/** @var INotificationManager */
+	private $notificationManager;
+
 	public function __construct(
 		IConfig $config,
 		UserBackend $userBackend,
@@ -71,7 +87,10 @@ class GuestManager {
 		IDBConnection $connection,
 		IUserSession $userSession,
 		IEventDispatcher $eventDispatcher,
-		IUserManager $userManager
+		IUserManager $userManager,
+		ContainerInterface $container,
+		LoggerInterface $logger,
+		INotificationManager $notificationManager,
 	) {
 		$this->config = $config;
 		$this->userBackend = $userBackend;
@@ -82,6 +101,9 @@ class GuestManager {
 		$this->userSession = $userSession;
 		$this->eventDispatcher = $eventDispatcher;
 		$this->userManager = $userManager;
+		$this->container = $container;
+		$this->logger = $logger;
+		$this->notificationManager = $notificationManager;
 	}
 
 	/**
@@ -208,5 +230,49 @@ class GuestManager {
 				];
 			}, $shares),
 		];
+	}
+
+	public function transfer(IUser $guestUser, IUser $user): void {
+		try {
+			/** @var OwnershipTransferService $ownershipTransferService */
+			$ownershipTransferService = $this->container->get(OwnershipTransferService::class);
+		} catch (QueryException $e) {
+			$this->logger->error('Could not resolve ownership transfer service to import guest user data', [
+				'exception' => $e,
+			]);
+			throw $e;
+		}
+
+		try {
+			$ownershipTransferService->transfer(
+				$guestUser,
+				$user,
+				'/',
+				null,
+				true,
+				true
+			);
+		} catch (TransferOwnershipException $e) {
+			$this->logger->error('Could not import guest user data', [
+				'exception' => $e,
+			]);
+			throw $e;
+		}
+
+		// Update incomming shares
+		$shares = $this->shareManager->getSharedWith($guestUser->getUID(), IShare::TYPE_USER);
+		foreach ($shares as $share) {
+			$share->setSharedWith($user->getUID());
+			$this->shareManager->updateShare($share);
+		}
+
+		$notification = $this->notificationManager->createNotification();
+		$notification
+			->setApp(Application::APP_ID)
+			->setSubject('data_migrated_to_system_user')
+			->setObject('user', $user->getEMailAddress())
+			->setDateTime(new \DateTime())
+			->setUser($user->getUID());
+		$this->notificationManager->notify($notification);
 	}
 }
