@@ -7,14 +7,18 @@ use OCA\Guests\Config;
 use OCA\Guests\GuestManager;
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\DataResponse;
+use OCP\AppFramework\OCS\OCSException;
+use OCP\AppFramework\OCS\OCSNotFoundException;
 use OCP\AppFramework\OCSController;
 use OCP\Group\ISubAdmin;
 use OCP\IGroupManager;
 use OCP\IL10N;
 use OCP\IRequest;
+use OCP\IUser;
 use OCP\IUserManager;
 use OCP\IUserSession;
 use OCP\Mail\IMailer;
+use Psr\Log\LoggerInterface;
 
 class UsersController extends OCSController {
 	/**
@@ -45,6 +49,8 @@ class UsersController extends OCSController {
 	private $subAdmin;
 	/** @var IGroupManager */
 	private $groupManager;
+	/** @var LoggerInterface */
+	private $logger;
 
 	public function __construct(
 		string $appName,
@@ -56,7 +62,8 @@ class UsersController extends OCSController {
 		GuestManager $guestManager,
 		IUserSession $userSession,
 		ISubAdmin $subAdmin,
-		IGroupManager $groupManager
+		IGroupManager $groupManager,
+		LoggerInterface $logger,
 	) {
 		parent::__construct($appName, $request);
 
@@ -69,6 +76,7 @@ class UsersController extends OCSController {
 		$this->config = $config;
 		$this->subAdmin = $subAdmin;
 		$this->groupManager = $groupManager;
+		$this->logger = $logger;
 	}
 
 	/**
@@ -198,5 +206,47 @@ class UsersController extends OCSController {
 		$guests = $this->guestManager->getGuestInfo($userId);
 
 		return new DataResponse($guests);
+	}
+
+	public function transfer(string $guestUserId, string $targetUserId, string $password): DataResponse {
+		$user = $this->userManager->get($guestUserId);
+		if (!($user instanceof IUser)) {
+			throw new OCSNotFoundException();
+		}
+
+		if (!$this->guestManager->isGuest($user)) {
+			return new DataResponse([], Http::STATUS_CONFLICT);
+		}
+
+		if ($this->userManager->userExists($targetUserId)) {
+			throw new OCSException($this->l10n->t('User already exists'), 102);
+		}
+
+		$newUser = $this->userManager->createUser(
+			$targetUserId,
+			$password,
+		);
+
+		if (!($newUser instanceof IUser)) {
+			throw new OCSException($this->l10n->t('Failed to create new user'));
+		}
+
+		$newUser->setSystemEMailAddress($guestUserId);
+
+		try {
+			$this->guestManager->transfer($user, $newUser);
+			$result = $user->delete();
+			if (!$result) {
+				$this->logger->error('Failed to delete user', [ 'userId' => $user->getUID() ]);
+			}
+		} catch (\Throwable $th) {
+			$this->logger->error('Failed to transfer guest', [ 'error' => $th ]);
+			$result = $newUser->delete(); // Rollback created user
+			if (!$result) {
+				$this->logger->error('Failed to delete user', [ 'userId' => $newUser->getUID() ]);
+			}
+			throw new OCSException($this->l10n->t('Failed to transfer guest'));
+		}
+		return new DataResponse([], Http::STATUS_CREATED);
 	}
 }
