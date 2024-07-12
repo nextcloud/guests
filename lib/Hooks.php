@@ -191,7 +191,7 @@ class Hooks {
 	}
 
 	public function handleFirstLogin(UserFirstTimeLoggedInEvent $event): void {
-		if ($this->config->getSystemValue('migrate_guest_user_data', false) === false) {
+		if (!$this->config->getSystemValueBool('migrate_guest_user_data', false)) {
 			return;
 		}
 
@@ -223,7 +223,7 @@ class Hooks {
 
 		$this->guestManager->transfer($guestUser, $user);
 
-		if ($this->config->getSystemValue('remove_guest_account_on_conversion', false) === false) {
+		if (!$this->config->getSystemValueBool('remove_guest_account_on_conversion', false)) {
 			// Disable previous account
 			$guestUser->setEnabled(false);
 		} else {
