@@ -113,22 +113,23 @@ class TransferJob extends QueuedJob {
 
 		$targetUser->setSystemEMailAddress($sourceUser->getUID()); // Guest user id is an email
 
-		$passwordHash = $sourceUser->getPasswordHash();
-		if (empty($passwordHash)) {
-			$this->logger->error('Invalid guest password hash', ['guest' => $sourceUser->getUID(), 'passwordHash' => $passwordHash]);
-			$this->fail($transfer, $targetUser);
-			return;
-		}
-
-		$setPasswordHashResult = $targetUser->setPasswordHash($passwordHash);
-		if (!$setPasswordHashResult) {
-			$this->logger->error('Failed to set password hash on target user', ['user' => $targetUser->getUID()]);
-			$this->fail($transfer, $targetUser);
-			return;
-		}
-
 		try {
 			$this->transferService->transfer($sourceUser, $targetUser);
+
+			$passwordHash = $sourceUser->getPasswordHash();
+			if (empty($passwordHash)) {
+				$this->logger->error('Invalid guest password hash', ['guest' => $sourceUser->getUID(), 'passwordHash' => $passwordHash]);
+				$this->fail($transfer, $targetUser);
+				return;
+			}
+
+			$setPasswordHashResult = $targetUser->setPasswordHash($passwordHash); // Copy password hash after transfer to prevent log in before completion
+			if (!$setPasswordHashResult) {
+				$this->logger->error('Failed to set password hash on target user', ['user' => $targetUser->getUID()]);
+				$this->fail($transfer, $targetUser);
+				return;
+			}
+
 			$result = $sourceUser->delete();
 			if (!$result) {
 				$this->logger->error('Failed to delete guest user', ['userId' => $sourceUser->getUID()]);
