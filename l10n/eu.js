@@ -7,6 +7,7 @@ OC.L10N.register(
     "A user with that email already exists." : "Badago e-mail hori duen erabiltzaile bat.",
     "A user with that name already exists." : "Badago izen hori duen erabiltzaile bat.",
     "User successfully created" : "Erabiltzailea ondo sortu da",
+    "User already exists" : "Erabiltzailea dagoeneko existitzen da",
     "%s shared »%s« with you" : "%s erabiltzaileak »%s« partekatu du zurekin",
     "Incoming share" : "Jasotako partekatzea",
     "Hey there," : "Kaixo,",

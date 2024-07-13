@@ -4,6 +4,7 @@
     "Invalid mail address" : "Dirección de correo inválida",
     "A user with that name already exists." : "Un usuario con ese nombre ya existe. ",
     "User successfully created" : "El usuario fue creado exitosamente",
+    "User already exists" : "El usuario ya existe",
     "%s shared »%s« with you" : "%s compartió »%s« contigo",
     "%s via %s" : "%s vía %s",
     "Couldn't send reset email. Please contact your administrator." : "No fue posible enviar el correo electrónico de restauración. Por favor contacta a tu adminstrador. ",

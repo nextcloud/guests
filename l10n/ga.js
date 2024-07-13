@@ -7,6 +7,7 @@ OC.L10N.register(
     "A user with that email already exists." : "Tá úsáideoir leis an ríomhphost sin ann cheana féin.",
     "A user with that name already exists." : "Tá úsáideoir leis an ainm sin ann cheana féin.",
     "User successfully created" : "D'éirigh leis an úsáideoir a chruthú",
+    "User already exists" : "Úsáideoir ann cheana féin",
     "%s shared »%s« with you" : "Roinn %s »%s« leat",
     "Incoming share" : "Scair ag teacht isteach",
     "Hey there," : "Hey ann,",

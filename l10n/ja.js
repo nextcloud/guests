@@ -7,6 +7,7 @@ OC.L10N.register(
     "A user with that email already exists." : "そのメールアドレスはすでに存在します。",
     "A user with that name already exists." : "そのユーザー名はすでに存在します。",
     "User successfully created" : "ユーザーアカウントの作成に成功しました",
+    "User already exists" : "ユーザは既に存在する",
     "%s shared »%s« with you" : "%sが あなたと »%s«を共有しました",
     "Incoming share" : "共有されています",
     "Hey there," : "こんにちは、",

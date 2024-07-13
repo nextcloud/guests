@@ -7,6 +7,7 @@ OC.L10N.register(
     "A user with that email already exists." : "Υπάρχει ήδη χρήστης με το ίδιο email",
     "A user with that name already exists." : "Υπάρχει ήδη χρήστης με το ίδιο όνομα",
     "User successfully created" : "Επιτυχής δημιουργία χρήστη",
+    "User already exists" : "Ο χρήστης υπάρχει ήδη",
     "%s shared »%s« with you" : "Ο %s διαμοιράστηκε μαζί σας το »%s«",
     "Incoming share" : "Εισερχόμενο κοινόχρηστο",
     "Hey there," : "Γεία σου,",

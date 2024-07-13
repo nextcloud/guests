@@ -5,6 +5,7 @@
     "A user with that email already exists." : "Un utente con quell'indirizzo email esiste già.",
     "A user with that name already exists." : "Un utente con quel nome esiste già.",
     "User successfully created" : "Utente creato correttamente",
+    "User already exists" : "L'utente esiste già",
     "%s shared »%s« with you" : "%s ha condiviso «%s» con te",
     "Incoming share" : "Condivisione in ingresso",
     "Hey there," : "Ciao,",

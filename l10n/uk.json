@@ -5,6 +5,7 @@
     "A user with that email already exists." : "Користувач з такою email адресою вже існує.",
     "A user with that name already exists." : "Користувач з таким іменем вже існує.",
     "User successfully created" : "Користувача успішно створено",
+    "User already exists" : "Користувач вже існує",
     "%s shared »%s« with you" : "%s поділив(-ла-)ся %s з вами",
     "Incoming share" : "Запропонований спільний ресурс",
     "Hey there," : "Вітання!",
