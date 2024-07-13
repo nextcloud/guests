@@ -7,6 +7,7 @@ OC.L10N.register(
     "A user with that email already exists." : "Ein Benutzer mit dieser E-Mail-Adresse existiert bereits.",
     "A user with that name already exists." : "Ein Benutzer mit diesem Namen existiert bereits.",
     "User successfully created" : "Benutzer erfolgreich erstellt",
+    "User already exists" : "Benutzer existiert bereits",
     "%s shared »%s« with you" : "%s hat „%s“ mit dir geteilt",
     "Incoming share" : "Eingehende Freigabe",
     "Hey there," : "Hallo,",

@@ -7,6 +7,7 @@ OC.L10N.register(
     "A user with that email already exists." : "En användare med den e-postadressen finns redan.",
     "A user with that name already exists." : "En användare med det namnet existerar redan.",
     "User successfully created" : "Användare skapad",
+    "User already exists" : "Användaren finns redan",
     "%s shared »%s« with you" : "%s delade »%s« med dig",
     "Incoming share" : "Inkommande delning",
     "Hey there," : "Hallå där,",

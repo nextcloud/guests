@@ -7,6 +7,7 @@ OC.L10N.register(
     "A user with that email already exists." : "Käyttäjä samalla sähköpostiosoitteella on jo olemassa.",
     "A user with that name already exists." : "Käyttäjä samalla nimellä on jo olemassa.",
     "User successfully created" : "Käyttäjä luotu onnistuneesti",
+    "User already exists" : "Käyttäjä on jo olemassa",
     "%s shared »%s« with you" : "%s jakoi kohteen »%s« kanssasi",
     "Incoming share" : "Saapuva jako",
     "Hey there," : "Hei siellä",

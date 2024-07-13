@@ -7,6 +7,7 @@ OC.L10N.register(
     "A user with that email already exists." : "Naudotojas su tokiu el. paštu jau yra.",
     "A user with that name already exists." : "Naudotojas tokiu vardu jau yra.",
     "User successfully created" : "Naudotojas sėkmingai sukurtas",
+    "User already exists" : "Naudotojas jau yra",
     "%s shared »%s« with you" : "%s pradėjo bendrinti su jumis »%s«",
     "Incoming share" : "Gaunamas viešinys",
     "Hey there," : "Sveiki,",

@@ -5,6 +5,7 @@ OC.L10N.register(
     "Invalid mail address" : "Adresa mail invalidă",
     "A user with that name already exists." : "Există deja un utilizator cu acest nume.",
     "User successfully created" : "Utilizator creat cu succes",
+    "User already exists" : "Utilizatorul există deja",
     "%s shared »%s« with you" : "%s Partajat »%s« cu tine de",
     "%s via %s" : "%s via %s",
     "Couldn't send reset email. Please contact your administrator." : "Expedierea email-ului de resetare a eşuat. Vă rugăm să contactaţi administratorul dvs.",

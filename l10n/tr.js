@@ -7,6 +7,7 @@ OC.L10N.register(
     "A user with that email already exists." : "Bu e-posta adresinin kayıtlı olduğu bir kullanıcı hesabı zaten var.",
     "A user with that name already exists." : "Aynı kullanıcı adlı bir kulanıcı zaten var.",
     "User successfully created" : "Kullanıcı oluşturuldu",
+    "User already exists" : "Kullanıcı zaten var",
     "%s shared »%s« with you" : "%s sizinle »%s« paylaşımında bulundu",
     "Incoming share" : "Gelen paylaşım",
     "Hey there," : "Merhaba,",
