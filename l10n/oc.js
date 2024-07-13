@@ -4,6 +4,7 @@ OC.L10N.register(
     "__language_name__" : "Occitan",
     "Invalid mail address" : "Adreça email invalida",
     "A user with that name already exists." : "Un utilizaire amb aqueste nom existís ja.",
+    "User already exists" : "L’utilizaire existís ja",
     "%s shared »%s« with you" : "%s a partejat «%s» amb vos",
     "%s via %s" : "%s via %s",
     "Couldn't send reset email. Please contact your administrator." : "Impossible de mandar lo corrièl de reïnicializacion. Contactatz vòstre administrator.",

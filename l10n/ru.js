@@ -7,6 +7,7 @@ OC.L10N.register(
     "A user with that email already exists." : "Пользователь с таким адресом электронной почты уже существует.",
     "A user with that name already exists." : "Пользователь с таким именем уже существует.",
     "User successfully created" : "Пользователь успешно создан",
+    "User already exists" : "Пользователь уже существует",
     "%s shared »%s« with you" : "%s предоставил(а) Вам доступ к «%s»",
     "Incoming share" : "Полученный общий ресурс",
     "Hey there," : "Здравствуйте,",

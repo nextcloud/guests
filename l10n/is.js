@@ -7,6 +7,7 @@ OC.L10N.register(
     "A user with that email already exists." : "Notandi með þessu tölvupóstfangi er þegar til.",
     "A user with that name already exists." : "Nú þegar til notandi með þetta nafn.",
     "User successfully created" : "Það tókst að búa til notandann",
+    "User already exists" : "Notandi er þegar til",
     "%s shared »%s« with you" : "%s deildi »%s« með þér",
     "Incoming share" : "Ný sameign",
     "Hey there," : "Hæ þú,",

@@ -5,6 +5,7 @@
     "A user with that email already exists." : "有用戶已經使用此電郵地址註冊。",
     "A user with that name already exists." : "有用戶已經使用此名稱註冊。",
     "User successfully created" : "成功建立用戶",
+    "User already exists" : "用戶已存在",
     "%s shared »%s« with you" : "%s 分享了 »%s« 給您",
     "Incoming share" : "收到的分享",
     "Hey there," : "哈囉，",

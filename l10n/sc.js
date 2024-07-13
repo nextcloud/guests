@@ -7,6 +7,7 @@ OC.L10N.register(
     "A user with that email already exists." : "B'at giai un'utente cun custu indiritzu de posta.",
     "A user with that name already exists." : "B'at giai un'utente cun custu nùmene.",
     "User successfully created" : "Utente creadu",
+    "User already exists" : "S'utente b'est giai",
     "%s shared »%s« with you" : "%s at cumpartzidu »%s« cun tegus",
     "Incoming share" : "Cumpartzidura in intrada",
     "Hey there," : "Salude,",

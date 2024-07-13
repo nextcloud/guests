@@ -7,6 +7,7 @@ OC.L10N.register(
     "A user with that email already exists." : "同電子信箱的使用者已經存在。",
     "A user with that name already exists." : "同名的使用者已經存在。",
     "User successfully created" : "成功建立使用者",
+    "User already exists" : "使用者已存在",
     "%s shared »%s« with you" : "%s 分享了 »%s« 給你",
     "Incoming share" : "收到的分享",
     "Hey there," : "嗨，",

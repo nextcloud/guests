@@ -5,6 +5,7 @@
     "A user with that email already exists." : "Er bestaat al een gebruiker met dat e-mailadres.",
     "A user with that name already exists." : "Er bestaat al een gebruiker met die naam.",
     "User successfully created" : "Gebruiker succesvol aangemaakt",
+    "User already exists" : "Gebruiker bestaat al",
     "%s shared »%s« with you" : "%s heeft \"%s\" met je gedeeld",
     "Incoming share" : "Inkomende share",
     "Hey there," : "Hallo daar,",

@@ -5,6 +5,7 @@
     "A user with that email already exists." : "A user with that email already exists.",
     "A user with that name already exists." : "A user with that name already exists.",
     "User successfully created" : "User successfully created",
+    "User already exists" : "User already exists",
     "%s shared »%s« with you" : "%s shared \"%s\" with you",
     "Incoming share" : "Incoming share",
     "Hey there," : "Hey there,",

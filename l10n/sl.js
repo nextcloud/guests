@@ -7,6 +7,7 @@ OC.L10N.register(
     "A user with that email already exists." : "Uporabnik s tem elektronskim naslovom že obstaja.",
     "A user with that name already exists." : "Uporabnik s tem imenom že obstaja.",
     "User successfully created" : "Uporabniški račun je uspešno ustvarjen.",
+    "User already exists" : "Uporabnik že obstaja",
     "%s shared »%s« with you" : "%s vam omogoča souporabo »%s«",
     "Incoming share" : "Ponujena souporaba",
     "Hey there," : "Pozdravljeni,",
