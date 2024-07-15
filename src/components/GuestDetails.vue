@@ -76,7 +76,7 @@ export default {
 				this.loaded = false
 				try {
 					const { data } = await axios.get(
-						generateOcsUrl('apps/guests/api/v1/users/{guestId}', { guestId: this.guestId })
+						generateOcsUrl('apps/guests/api/v1/users/{guestId}', { guestId: this.guestId }),
 					)
 					this.details[this.guestId] = data.ocs.data
 					this.activeUser = this.guestId

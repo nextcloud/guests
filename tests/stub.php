@@ -841,3 +841,10 @@ namespace OCA\Files\Event {
 	class LoadAdditionalScriptsEvent extends \OCP\EventDispatcher\Event {
 	}
 }
+
+namespace OCA\Settings\Events {
+	use OCP\EventDispatcher\Event;
+
+	class BeforeTemplateRenderedEvent extends Event {
+	}
+}

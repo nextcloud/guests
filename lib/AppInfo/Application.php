@@ -25,12 +25,14 @@ use OCA\Files\Event\LoadAdditionalScriptsEvent;
 use OCA\Guests\Capabilities;
 use OCA\Guests\GroupBackend;
 use OCA\Guests\Hooks;
+use OCA\Guests\Listener\BeforeUserManagementRenderedListener;
 use OCA\Guests\Listener\LoadAdditionalScriptsListener;
 use OCA\Guests\Listener\ShareAutoAcceptListener;
 use OCA\Guests\Listener\TalkIntegrationListener;
 use OCA\Guests\Notifications\Notifier;
 use OCA\Guests\RestrictionManager;
 use OCA\Guests\UserBackend;
+use OCA\Settings\Events\BeforeTemplateRenderedEvent as BeforeUserManagementRenderedEvent;
 use OCP\AppFramework\App;
 use OCP\AppFramework\Bootstrap\IBootContext;
 use OCP\AppFramework\Bootstrap\IBootstrap;
@@ -58,6 +60,7 @@ class Application extends App implements IBootstrap {
 		$context->registerEventListener(LoadAdditionalScriptsEvent::class, LoadAdditionalScriptsListener::class);
 		$context->registerEventListener(ShareCreatedEvent::class, ShareAutoAcceptListener::class);
 		$context->registerEventListener(BeforeTemplateRenderedEvent::class, TalkIntegrationListener::class);
+		$context->registerEventListener(BeforeUserManagementRenderedEvent::class, BeforeUserManagementRenderedListener::class);
 	}
 
 	public function boot(IBootContext $context): void {
