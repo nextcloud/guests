@@ -35,6 +35,8 @@ OC.L10N.register(
     "Received shares" : "Alınan paylaşımlar",
     "No guest accounts created" : "Henüz bir konuk hesabı eklenmemiş",
     "Default" : "Varsayılan",
+    "Cancel" : "İptal",
+    "Transfer" : "Aktar",
     "Name:" : "Ad:",
     "Email:" : "E-posta:",
     "Language:" : "Dil:",

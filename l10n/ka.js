@@ -34,6 +34,8 @@ OC.L10N.register(
     "Received shares" : "Received shares",
     "No guest accounts created" : "No guest accounts created",
     "Default" : "Default",
+    "Cancel" : "Cancel",
+    "Transfer" : "Transfer",
     "Name:" : "Name:",
     "Email:" : "Email:",
     "Language:" : "Language:",

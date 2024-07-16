@@ -35,6 +35,8 @@ OC.L10N.register(
     "Received shares" : "Jasotako partekatzeak",
     "No guest accounts created" : "Ez da gonbidatu konturik sortu",
     "Default" : "Lehenetsia",
+    "Cancel" : "Utzi",
+    "Transfer" : "Transferitu",
     "Name:" : "Izena:",
     "Email:" : "E-posta:",
     "Language:" : "Hizkuntza:",

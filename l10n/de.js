@@ -35,6 +35,7 @@ OC.L10N.register(
     "Received shares" : "Erhaltene Freigaben",
     "No guest accounts created" : "Keine Gastkonten erstellt",
     "Default" : "Standard",
+    "Transfer" : "Übertragen",
     "Name:" : "Name:",
     "Email:" : "E-Mail:",
     "Language:" : "Sprache:",

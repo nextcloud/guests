@@ -35,6 +35,8 @@ OC.L10N.register(
     "Received shares" : "اشتراک را دریافت کرد",
     "No guest accounts created" : "هیچ حساب مهمان ایجاد نشده است",
     "Default" : "پیش‌گزیده",
+    "Cancel" : "منصرف شدن",
+    "Transfer" : "انتقال",
     "Name:" : "نام:",
     "Email:" : "ایمیل",
     "Language:" : "Language:",

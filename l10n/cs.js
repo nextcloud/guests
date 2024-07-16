@@ -35,6 +35,7 @@ OC.L10N.register(
     "Received shares" : "Obdržená sdílení",
     "No guest accounts created" : "Nebyly vytvořeny žádné účty hostů",
     "Default" : "Výchozí",
+    "Transfer" : "Přenos",
     "Name:" : "Jméno:",
     "Email:" : "E-mail:",
     "Language:" : "Jazyk:",
