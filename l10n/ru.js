@@ -35,6 +35,8 @@ OC.L10N.register(
     "Received shares" : "Полученные общие ресурсы",
     "No guest accounts created" : "Не создано ни одной гостевой учётной записи",
     "Default" : "По умолчанию",
+    "Cancel" : "Отмена",
+    "Transfer" : "Передача",
     "Name:" : "Имя:",
     "Email:" : "Эл. почта:",
     "Language:" : "Язык:",

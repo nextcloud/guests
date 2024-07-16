@@ -34,6 +34,8 @@ OC.L10N.register(
     "Received shares" : "Примени споделувања",
     "No guest accounts created" : "Не е креирана гостинска сметка",
     "Default" : "Стандардно",
+    "Cancel" : "Откажи",
+    "Transfer" : "Пренос",
     "Name:" : "Име:",
     "Email:" : "Е-пошта:",
     "Language:" : "Јазик:",

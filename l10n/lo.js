@@ -7,6 +7,7 @@ OC.L10N.register(
     "Name" : "ຊື່",
     "Email" : "ອິເມວ",
     "Default" : "ເລີ່ມຕົ້ນ",
+    "Cancel" : "ຍົກເລີກ",
     "Error" : "ຜິດພາດ"
 },
 "nplurals=1; plural=0;");

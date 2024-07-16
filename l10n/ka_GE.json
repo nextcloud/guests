@@ -12,6 +12,7 @@
     "Name" : "სახელი",
     "Email" : "ელ-ფოსტა",
     "Default" : "საწყისი",
+    "Cancel" : "გაუქმება",
     "Error" : "შეცდომა"
 },"pluralForm" :"nplurals=2; plural=(n!=1);"
 }

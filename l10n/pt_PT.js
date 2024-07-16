@@ -27,6 +27,8 @@ OC.L10N.register(
     "Invited by" : "Convidado por",
     "Received shares" : "Partilhas recebidas",
     "Default" : "Predefinido",
+    "Cancel" : "Cancelar",
+    "Transfer" : "Transfere",
     "Name:" : "Nome:",
     "Email:" : "Email:",
     "Language:" : "Idioma:",

@@ -42,6 +42,8 @@ OC.L10N.register(
     "Received shares" : "Fuarthas scaireanna",
     "No guest accounts created" : "Níor cruthaíodh cuntais aoi",
     "Default" : "Réamhshocrú",
+    "Cancel" : "Cealaigh",
+    "Transfer" : "Aistriú",
     "Name:" : "Ainm:",
     "Email:" : "Ríomhphost:",
     "Language:" : "Teanga:",

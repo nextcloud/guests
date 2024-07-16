@@ -24,6 +24,8 @@
     "Email" : "이메일",
     "No guest accounts created" : "생성된 손님 계정 없음",
     "Default" : "기본값",
+    "Cancel" : "취소",
+    "Transfer" : "전송",
     "Name:" : "이름:",
     "Add guest to groups:" : "손님 계정을 그룹에 추가:",
     "Guest user needs to be added to at least one group" : "손님 계정을 한개 이상의 그룹에 추가해야 함",

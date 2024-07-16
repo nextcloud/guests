@@ -30,6 +30,8 @@ OC.L10N.register(
     "Received shares" : "Vastaanotetut jaot",
     "No guest accounts created" : "Vierastiliä ei luotu",
     "Default" : "Oletus",
+    "Cancel" : "Peruuta",
+    "Transfer" : "Siirrä",
     "Name:" : "Nimi:",
     "Email:" : "Sähköpostiosoite:",
     "Language:" : "Kieli:",

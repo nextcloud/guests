@@ -35,6 +35,8 @@ OC.L10N.register(
     "Received shares" : "Prejeta mesta souporabe",
     "No guest accounts created" : "Ni ustvarjenega nobenega računa za goste",
     "Default" : "Privzeta",
+    "Cancel" : "Prekliči",
+    "Transfer" : "Prenos",
     "Name:" : "Ime:",
     "Email:" : "Elektronski naslov:",
     "Language:" : "Jezik:",

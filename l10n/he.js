@@ -33,6 +33,8 @@ OC.L10N.register(
     "Received shares" : "שיתופים שהתקבלו",
     "No guest accounts created" : "לא נוצרו חשבונות אורחים",
     "Default" : "בררת מחדל",
+    "Cancel" : "ביטול",
+    "Transfer" : "העברה",
     "Name:" : "שם:",
     "Email:" : "דוא״ל:",
     "Language:" : "שפה:",

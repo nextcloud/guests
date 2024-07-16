@@ -8,6 +8,7 @@ OC.L10N.register(
     "Guests" : "අමුත්තන්",
     "Name" : "නම",
     "Email" : "විද්‍යුත් තැපෑල",
+    "Cancel" : "අවලංගු",
     "Error" : "දෝෂය"
 },
 "nplurals=2; plural=(n != 1);");

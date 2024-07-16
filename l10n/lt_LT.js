@@ -34,6 +34,8 @@ OC.L10N.register(
     "Received shares" : "Gauti viešiniai",
     "No guest accounts created" : "Nesukurta jokių svečio paskyrų",
     "Default" : "Numatytoji",
+    "Cancel" : "Atsisakyti",
+    "Transfer" : "Persiųsti",
     "Name:" : "Vardas:",
     "Email:" : "El. paštas:",
     "Language:" : "Kalba:",

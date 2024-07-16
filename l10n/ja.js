@@ -35,6 +35,8 @@ OC.L10N.register(
     "Received shares" : "共有を受け取りました",
     "No guest accounts created" : "ゲストアカウントはまだ作成されていません",
     "Default" : "デフォルト",
+    "Cancel" : "キャンセル",
+    "Transfer" : "転送",
     "Name:" : "名前: ",
     "Email:" : "メール: ",
     "Language:" : "言語: ",

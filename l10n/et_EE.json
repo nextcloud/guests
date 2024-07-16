@@ -10,6 +10,7 @@
     "Name" : "Nimi",
     "Email" : "Epost",
     "Default" : "Vaikeväärtus",
+    "Cancel" : "Tühista",
     "Error" : "Tõrge"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

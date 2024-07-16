@@ -9,6 +9,8 @@
     "Name" : "Nama",
     "Email" : "Surel",
     "Default" : "Bawaan",
+    "Cancel" : "Batal",
+    "Transfer" : "Transfer",
     "Error" : "Kesalahan"
 },"pluralForm" :"nplurals=1; plural=0;"
 }

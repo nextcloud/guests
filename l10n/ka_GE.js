@@ -14,6 +14,7 @@ OC.L10N.register(
     "Name" : "სახელი",
     "Email" : "ელ-ფოსტა",
     "Default" : "საწყისი",
+    "Cancel" : "გაუქმება",
     "Error" : "შეცდომა"
 },
 "nplurals=2; plural=(n!=1);");
