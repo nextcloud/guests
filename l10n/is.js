@@ -34,6 +34,8 @@ OC.L10N.register(
     "Received shares" : "Tók á móti sameignum",
     "No guest accounts created" : "Engir gestaaðgangar útbúnir",
     "Default" : "Sjálfgefið",
+    "Cancel" : "Hætta við",
+    "Transfer" : "Færa",
     "Name:" : "Nafn:",
     "Email:" : "Tölvupóstur:",
     "Language:" : "Tungumál:",

@@ -35,6 +35,8 @@ OC.L10N.register(
     "Received shares" : "Ληφθέντα κοινόχρηστα",
     "No guest accounts created" : "Δεν δημιουργήθηκαν λογαριασμοί επισκέπτη",
     "Default" : "Προεπιλεγμένο",
+    "Cancel" : "Ακύρωση",
+    "Transfer" : "Μεταφορά",
     "Name:" : "Όνομα:",
     "Email:" : "Email:",
     "Language:" : "Γλώσσα:",

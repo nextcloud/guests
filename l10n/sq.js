@@ -14,6 +14,7 @@ OC.L10N.register(
     "Name" : "Emri",
     "Email" : "email",
     "Default" : "E paracaktuar",
+    "Cancel" : "Anuloje",
     "Name:" : "Emri",
     "Email:" : "Email",
     "Error" : "Gabim"

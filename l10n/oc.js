@@ -12,6 +12,7 @@ OC.L10N.register(
     "Name" : "Nom",
     "Email" : "Adreça corrièl",
     "Default" : "Defaut",
+    "Cancel" : "Anullar",
     "Language:" : "Lenga :",
     "Error" : "Error"
 },

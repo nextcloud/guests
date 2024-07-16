@@ -42,6 +42,8 @@ OC.L10N.register(
     "Received shares" : "Mottagna delningar",
     "No guest accounts created" : "Inga gästkonton skapade",
     "Default" : "Standard",
+    "Cancel" : "Avbryt",
+    "Transfer" : "Överför",
     "Name:" : "Namn:",
     "Email:" : "E-post:",
     "Language:" : "Språk:",

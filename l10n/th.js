@@ -13,6 +13,8 @@ OC.L10N.register(
     "Name" : "ชื่อ",
     "Email" : "อีเมล",
     "Default" : "ค่าเริ่มต้น",
+    "Cancel" : "ยกเลิก",
+    "Transfer" : "โอนย้าย",
     "Error" : "ข้อผิดพลาด"
 },
 "nplurals=1; plural=0;");

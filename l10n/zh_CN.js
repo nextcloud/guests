@@ -35,6 +35,8 @@ OC.L10N.register(
     "Received shares" : "接收到的共享",
     "No guest accounts created" : "没有访客账号被创建",
     "Default" : "默认",
+    "Cancel" : "取消",
+    "Transfer" : "转移",
     "Name:" : "姓名：",
     "Email:" : "电子邮箱：",
     "Language:" : "语言：",

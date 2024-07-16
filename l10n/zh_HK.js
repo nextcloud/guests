@@ -42,6 +42,8 @@ OC.L10N.register(
     "Received shares" : "收到的分享",
     "No guest accounts created" : "沒有建立的訪客帳戶",
     "Default" : "默認",
+    "Cancel" : "取消",
+    "Transfer" : "轉移",
     "Name:" : "姓名：",
     "Email:" : "電郵地址：",
     "Language:" : "語言：",

@@ -35,6 +35,8 @@ OC.L10N.register(
     "Received shares" : "Cumpartziduras retzidas",
     "No guest accounts created" : "Perunu contu de invitu creadu",
     "Default" : "Predefinidu",
+    "Cancel" : "Annulla",
+    "Transfer" : "Tràmuda",
     "Name:" : "Nùmene:",
     "Email:" : "Indiritzu de posta:",
     "Language:" : "Limba",

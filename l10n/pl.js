@@ -35,6 +35,8 @@ OC.L10N.register(
     "Received shares" : "Otrzymane udostępnianie",
     "No guest accounts created" : "Nie utworzono kont gości",
     "Default" : "Domyślny",
+    "Cancel" : "Anuluj",
+    "Transfer" : "Przenieś",
     "Name:" : "Nazwa:",
     "Email:" : "E-mail:",
     "Language:" : "Język:",

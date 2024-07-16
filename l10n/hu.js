@@ -35,6 +35,8 @@ OC.L10N.register(
     "Received shares" : "Fogadott megosztások",
     "No guest accounts created" : "Nincs vendégfiók létrehozva",
     "Default" : "Alapértelmezett",
+    "Cancel" : "Mégse",
+    "Transfer" : "Átvitel",
     "Name:" : "Név:",
     "Email:" : "E-mail:",
     "Language:" : "Nyelv:",

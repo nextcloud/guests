@@ -12,6 +12,7 @@ OC.L10N.register(
     "Name" : "Nimi",
     "Email" : "Epost",
     "Default" : "Vaikeväärtus",
+    "Cancel" : "Tühista",
     "Error" : "Tõrge"
 },
 "nplurals=2; plural=(n != 1);");

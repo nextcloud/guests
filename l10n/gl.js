@@ -42,6 +42,8 @@ OC.L10N.register(
     "Received shares" : "Elementos compartidos recibidos",
     "No guest accounts created" : "Non se crearon contas de convidado",
     "Default" : "Predeterminado",
+    "Cancel" : "Cancelar",
+    "Transfer" : "Transferencia",
     "Name:" : "Nome:",
     "Email:" : "Correo-e:",
     "Language:" : "Idioma:",

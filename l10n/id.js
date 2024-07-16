@@ -11,6 +11,8 @@ OC.L10N.register(
     "Name" : "Nama",
     "Email" : "Surel",
     "Default" : "Bawaan",
+    "Cancel" : "Batal",
+    "Transfer" : "Transfer",
     "Error" : "Kesalahan"
 },
 "nplurals=1; plural=0;");

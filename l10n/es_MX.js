@@ -15,6 +15,8 @@ OC.L10N.register(
     "Name" : "Nombre",
     "Email" : "Correo electrónico",
     "Default" : "Predeterminado",
+    "Cancel" : "Cancelar",
+    "Transfer" : "Transferir",
     "Name:" : "Nombre:",
     "Email:" : "Correo:",
     "Error" : "Error"
