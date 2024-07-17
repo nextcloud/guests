@@ -35,6 +35,8 @@ OC.L10N.register(
     "Received shares" : "Получени споделяния",
     "No guest accounts created" : "Няма създадени профили за гости",
     "Default" : "Стандартен",
+    "Cancel" : "Отказ",
+    "Transfer" : "Прехвърляне",
     "Name:" : "Име:",
     "Email:" : "Имейл:",
     "Language:" : "Език:",

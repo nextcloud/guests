@@ -40,8 +40,13 @@
     "Received shares" : "Примљена дељења",
     "No guest accounts created" : "Није направљен гостински налог",
     "Default" : "Подразумевано",
+    "Transfer guest to new account" : "Премештање госта на нови налог",
+    "New account name" : "Име новог налога",
     "Cancel" : "Откажи",
+    "Transferring guest…" : "Гост се премешта…",
     "Transfer" : "Пренеси",
+    "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} is pending" : "Чека се пренос госта {strongStart}{guest}{strongEnd} у {strongStart}{user}{strongEnd} ",
+    "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} has started" : "Почео је пренос госта {strongStart}{guest}{strongEnd} у {strongStart}{user}{strongEnd} ",
     "Name:" : "Име:",
     "Email:" : "И-мејл:",
     "Language:" : "Језик:",
@@ -63,6 +68,8 @@
     "Your settings have been updated" : "Ваше поставке су ажуриране",
     "Saving …" : "Чувам …",
     "Invite guest" : "Позови госта",
-    "A user with this ID or email address already exists" : "Корисник са овим ID или и-мејл адресом већ постоји"
+    "A user with this ID or email address already exists" : "Корисник са овим ID или и-мејл адресом већ постоји",
+    "Guest will be transferred to \"{userId}\" soon" : "Гост ће се ускоро преместити у  „{userId}”",
+    "Transfer guest to full account" : "Пренеси госта у пуни налог"
 },"pluralForm" :"nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);"
 }

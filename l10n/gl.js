@@ -42,8 +42,13 @@ OC.L10N.register(
     "Received shares" : "Elementos compartidos recibidos",
     "No guest accounts created" : "Non se crearon contas de convidado",
     "Default" : "Predeterminado",
+    "Transfer guest to new account" : "Transferir o convidado a unha nova conta",
+    "New account name" : "Novo nome da conta",
     "Cancel" : "Cancelar",
+    "Transferring guest…" : "Transferindo o convidado…",
     "Transfer" : "Transferencia",
+    "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} is pending" : "A transferencia do convidado {strongStart}{guest}{strongEnd} a {strongStart}{user}{strongEnd} está pendente",
+    "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} has started" : "Comzou a transferencia do convidado {strongStart}{guest}{strongEnd} a {strongStart}{user}{strongEnd}",
     "Name:" : "Nome:",
     "Email:" : "Correo-e:",
     "Language:" : "Idioma:",
@@ -65,6 +70,8 @@ OC.L10N.register(
     "Your settings have been updated" : "Actualizaronse os axustes",
     "Saving …" : "Gardando …",
     "Invite guest" : "Convidar visitante",
-    "A user with this ID or email address already exists" : "Xa existe un usuario con este ID ou enderezo de correo-e"
+    "A user with this ID or email address already exists" : "Xa existe un usuario con este ID ou enderezo de correo-e",
+    "Guest will be transferred to \"{userId}\" soon" : "O convidado vai ser transferido a «{userId}» en breve",
+    "Transfer guest to full account" : "Transferencia de convidado a conta completa"
 },
 "nplurals=2; plural=(n != 1);");
