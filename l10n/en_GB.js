@@ -42,8 +42,13 @@ OC.L10N.register(
     "Received shares" : "Received shares",
     "No guest accounts created" : "No guest accounts created",
     "Default" : "Default",
+    "Transfer guest to new account" : "Transfer guest to new account",
+    "New account name" : "New account name",
     "Cancel" : "Cancel",
+    "Transferring guest…" : "Transferring guest…",
     "Transfer" : "Transfer",
+    "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} is pending" : "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} is pending",
+    "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} has started" : "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} has started",
     "Name:" : "Name:",
     "Email:" : "Email:",
     "Language:" : "Language:",
@@ -65,6 +70,8 @@ OC.L10N.register(
     "Your settings have been updated" : "Your settings have been updated",
     "Saving …" : "Saving …",
     "Invite guest" : "Invite guest",
-    "A user with this ID or email address already exists" : "A user with this ID or email address already exists"
+    "A user with this ID or email address already exists" : "A user with this ID or email address already exists",
+    "Guest will be transferred to \"{userId}\" soon" : "Guest will be transferred to \"{userId}\" soon",
+    "Transfer guest to full account" : "Transfer guest to full account"
 },
 "nplurals=2; plural=(n != 1);");

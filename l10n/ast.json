@@ -7,6 +7,8 @@
     "Name" : "Nome",
     "Email" : "Corréu electrónicu",
     "Default" : "Por defeutu",
+    "Cancel" : "Encaboxar",
+    "Transfer" : "Tresferir",
     "Name:" : "Nome:",
     "Error" : "Error"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"

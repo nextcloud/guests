@@ -40,7 +40,13 @@
     "Received shares" : "Erhaltene Freigaben",
     "No guest accounts created" : "Keine Gastkonten vorhanden",
     "Default" : "Standard",
+    "Transfer guest to new account" : "Gast auf neues Konto übertragen",
+    "New account name" : "Neuer Kontoname",
+    "Cancel" : "Abbrechen",
+    "Transferring guest…" : "Übertrage Gast…",
     "Transfer" : "Übertragen",
+    "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} is pending" : "Übertragen von Gast {strongStart}{guest}{strongEnd} auf {strongStart}{user}{strongEnd} steht aus",
+    "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} has started" : "Übertragen von Gast {strongStart}{guest}{strongEnd} auf {strongStart}{user}{strongEnd} hat begonnen",
     "Name:" : "Name:",
     "Email:" : "E-Mail:",
     "Language:" : "Sprache:",
@@ -62,6 +68,8 @@
     "Your settings have been updated" : "Ihre Einstellungen wurden aktualisiert",
     "Saving …" : "Speichere …",
     "Invite guest" : "Gast einladen",
-    "A user with this ID or email address already exists" : "Ein Benutzer mit dieser ID oder E-Mail-Adresse existiert bereits."
+    "A user with this ID or email address already exists" : "Ein Benutzer mit dieser ID oder E-Mail-Adresse existiert bereits.",
+    "Guest will be transferred to \"{userId}\" soon" : "Gast wird in Kürze nach \"{userId}\" übertragen",
+    "Transfer guest to full account" : "Gast auf ein vollständiges Konto übertragen"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
