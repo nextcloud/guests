@@ -42,8 +42,13 @@ OC.L10N.register(
     "Received shares" : "Fuarthas scaireanna",
     "No guest accounts created" : "Níor cruthaíodh cuntais aoi",
     "Default" : "Réamhshocrú",
+    "Transfer guest to new account" : "Aistrigh aoi go cuntas nua",
+    "New account name" : "Ainm cuntais nua",
     "Cancel" : "Cealaigh",
+    "Transferring guest…" : "Aoi á aistriú…",
     "Transfer" : "Aistriú",
+    "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} is pending" : "Tá aistriú aoi {strongStart}{guest}{strongEnd} go {strongStart}{user}{strongEnd} ar feitheamh",
+    "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} has started" : "Tá tús curtha le haistriú aoi {strongStart}{guest}{strongEnd} go {strongStart}{user}{strongEnd}",
     "Name:" : "Ainm:",
     "Email:" : "Ríomhphost:",
     "Language:" : "Teanga:",
@@ -65,6 +70,8 @@ OC.L10N.register(
     "Your settings have been updated" : "Nuashonraíodh do shocruithe",
     "Saving …" : "Shábháil …",
     "Invite guest" : "Tabhair cuireadh do aoi",
-    "A user with this ID or email address already exists" : "Tá úsáideoir leis an aitheantas nó an seoladh ríomhphoist seo ann cheana"
+    "A user with this ID or email address already exists" : "Tá úsáideoir leis an aitheantas nó an seoladh ríomhphoist seo ann cheana",
+    "Guest will be transferred to \"{userId}\" soon" : "Aistreofar aoi go \"{userId}\" go luath",
+    "Transfer guest to full account" : "Aistrigh aoi go cuntas iomlán"
 },
 "nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4);");

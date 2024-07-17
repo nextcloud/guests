@@ -9,6 +9,8 @@ OC.L10N.register(
     "Name" : "Nome",
     "Email" : "Corréu electrónicu",
     "Default" : "Por defeutu",
+    "Cancel" : "Encaboxar",
+    "Transfer" : "Tresferir",
     "Name:" : "Nome:",
     "Error" : "Error"
 },

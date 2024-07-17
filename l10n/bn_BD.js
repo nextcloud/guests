@@ -7,6 +7,7 @@ OC.L10N.register(
     "Name" : "নাম",
     "Email" : "ইমেইল",
     "Default" : "পূর্বনির্ধারিত",
+    "Cancel" : "বাতিল করুন",
     "Error" : "সমস্যা"
 },
 "nplurals=2; plural=(n != 1);");

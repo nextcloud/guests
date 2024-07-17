@@ -35,6 +35,8 @@ OC.L10N.register(
     "Received shares" : "Comparticions rebudes",
     "No guest accounts created" : "No s’ha creat comptes de convidat",
     "Default" : "Per defecte",
+    "Cancel" : "Cancel·la",
+    "Transfer" : "Transferència",
     "Name:" : "Nom:",
     "Email:" : "Email:",
     "Language:" : "Idioma:",
