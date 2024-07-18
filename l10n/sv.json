@@ -40,8 +40,13 @@
     "Received shares" : "Mottagna delningar",
     "No guest accounts created" : "Inga gästkonton skapade",
     "Default" : "Standard",
+    "Transfer guest to new account" : "Överför gäst till nytt konto",
+    "New account name" : "Nytt kontonamn",
     "Cancel" : "Avbryt",
+    "Transferring guest…" : "Överför gäst...",
     "Transfer" : "Överför",
+    "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} is pending" : "Överföring av gäst {strongStart}{guest}{strongEnd} till {strongStart}{user}{strongEnd} väntande",
+    "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} has started" : "Överföring av gäst {strongStart}{guest}{strongEnd} till {strongStart}{user}{strongEnd} har börjat",
     "Name:" : "Namn:",
     "Email:" : "E-post:",
     "Language:" : "Språk:",
@@ -63,6 +68,8 @@
     "Your settings have been updated" : "Dina inställningar har uppdaterats",
     "Saving …" : "Sparar …",
     "Invite guest" : "Bjud in gäst",
-    "A user with this ID or email address already exists" : "En användare med detta ID eller denna e-postadress finns redan."
+    "A user with this ID or email address already exists" : "En användare med detta ID eller denna e-postadress finns redan.",
+    "Guest will be transferred to \"{userId}\" soon" : "Gäst kommer att överföras till \"{userId}\" snart",
+    "Transfer guest to full account" : "Överför gästen till fullständigt konto"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
