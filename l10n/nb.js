@@ -42,8 +42,13 @@ OC.L10N.register(
     "Received shares" : "Mottar delinger",
     "No guest accounts created" : "Ingen gjestekontoer opprettet.",
     "Default" : "Standard",
+    "Transfer guest to new account" : "Overføre gjest til ny konto",
+    "New account name" : "Nytt kontonavn",
     "Cancel" : "Avbryt",
+    "Transferring guest…" : "Overfører gjest...",
     "Transfer" : "Overfør",
+    "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} is pending" : "Overføring av gjest {strongStart}{guest}{strongEnd} til {strongStart}{user}{strongEnd} venter",
+    "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} has started" : "Overføring av gjest {strongStart}{guest}{strongEnd} til {strongStart}{user}{strongEnd} er startet",
     "Name:" : "Navn:",
     "Email:" : "E-post:",
     "Language:" : "Språk:",
@@ -65,6 +70,8 @@ OC.L10N.register(
     "Your settings have been updated" : "Innstillingene dine har blitt oppdatert",
     "Saving …" : "Lagrer ...",
     "Invite guest" : "Inviter gjest",
-    "A user with this ID or email address already exists" : "En bruker med denne IDen eller e-postadresse eksisterer allerede"
+    "A user with this ID or email address already exists" : "En bruker med denne IDen eller e-postadresse eksisterer allerede",
+    "Guest will be transferred to \"{userId}\" soon" : "Gjest vil bli overført til \"{userId}\" snart",
+    "Transfer guest to full account" : "Overfør gjest til full konto"
 },
 "nplurals=2; plural=(n != 1);");
