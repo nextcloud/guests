@@ -9,6 +9,8 @@ OC.L10N.register(
     "Name" : "Anv",
     "Email" : "Postel",
     "Default" : "Dre ziouer",
+    "Cancel" : "Nullañ",
+    "Transfer" : "Treuzkas",
     "Invite {name}" : "Kouviañ {name}",
     "Error" : "Fazi",
     "Invite guest" : "Pedañ kouvidi"
