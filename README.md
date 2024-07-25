@@ -36,12 +36,12 @@ Optionally, when creating a guest the following values may also be specified:
 
 Admins/Group admins also may:
 
-* specify the group(s) to put the guest user in (see [Guest specific behavior and configuration](https://github.com/nextcloud/guests/edit/master/README.md#guest-specific-behavior-and-configuration) for details).
+* specify the group(s) to put the guest user in (see [Guest specific behavior and configuration](https://github.com/nextcloud/guests/blob/master/README.md#guest-specific-behavior-and-configuration) for details).
 
 ![image](https://github.com/nextcloud/guests/assets/1731941/68edbd4f-fedc-45f0-8241-2e1cd12d04de)
 
 > [!WARNING]
-> While it is easy to create a new Guest, it's important to understand the default behavior and how guests interact with other features in Nextcloud. See [Guest specific behavior and configuration](https://github.com/nextcloud/guests/edit/master/README.md#guest-specific-behavior-and-configuration) for details.
+> While it is easy to create a new Guest, it's important to understand the default behavior and how guests interact with other features in Nextcloud. See [Guest specific behavior and configuration](https://github.com/nextcloud/guests/blob/master/README.md#guest-specific-behavior-and-configuration) for details.
 
 ### Deleting a guest
 
