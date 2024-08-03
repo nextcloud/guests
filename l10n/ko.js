@@ -6,6 +6,7 @@ OC.L10N.register(
     "Invalid mail address" : "잘못된 이메일 주소",
     "A user with that name already exists." : "같은 이름의 사용자가 이미 존재합니다.",
     "User successfully created" : "사용자를 성공적으로 생성함",
+    "Failed to authorize" : "인증 실패하였습니다",
     "User already exists" : "사용자가 이미 있습니다.",
     "%s shared »%s« with you" : "%s 님이 %s을(를) 공유했습니다",
     "Hey there," : "안녕하세요,",
