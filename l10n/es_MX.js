@@ -6,6 +6,7 @@ OC.L10N.register(
     "Invalid mail address" : "Dirección de correo inválida",
     "A user with that name already exists." : "Un usuario con ese nombre ya existe. ",
     "User successfully created" : "El usuario fue creado exitosamente",
+    "Failed to authorize" : "Fallo al autorizar",
     "User already exists" : "El usuario ya existe",
     "%s shared »%s« with you" : "%s compartió »%s« contigo",
     "%s via %s" : "%s vía %s",
