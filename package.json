@@ -1,7 +1,7 @@
 {
   "name": "guests",
   "description": "Create guest users which can only see files shared with them",
-  "version": "3.2.0",
+  "version": "5.0.0",
   "type": "module",
   "author": "Robin Appelman <robin@icewind.nl>",
   "contributors": [
