@@ -7,6 +7,7 @@ OC.L10N.register(
     "A user with that email already exists." : "Ezzel az e-mail-címmel már létezik felhasználó.",
     "A user with that name already exists." : "Ezzel a névvel már létezik felhasználó.",
     "User successfully created" : "Felhasználó sikeresen létrehozva",
+    "Failed to authorize" : "Hitelesítés sikertelen",
     "User already exists" : "A felhasználó már létezik",
     "%s shared »%s« with you" : "%s megosztotta Önnel: „%s”",
     "Incoming share" : "Bejövő megosztás",
