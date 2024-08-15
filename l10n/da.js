@@ -7,6 +7,7 @@ OC.L10N.register(
     "A user with that email already exists." : "Denne mailadresse eksisterer allerede.",
     "A user with that name already exists." : "Dette brugernavn eksistere allerede.",
     "User successfully created" : "Bruger oprettet korrekt",
+    "Failed to authorize" : "Kunne ikke godkende",
     "User already exists" : "Brugeren eksisterer allerede",
     "%s shared »%s« with you" : "%s delte »%s« med dig",
     "Incoming share" : "Indgående deling",
