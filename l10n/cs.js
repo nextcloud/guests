@@ -7,6 +7,7 @@ OC.L10N.register(
     "A user with that email already exists." : "Uživatel s takovým e-mailem už existuje.",
     "A user with that name already exists." : "Uživatel s takovým jménem už existuje.",
     "User successfully created" : "Uživatel vytvořen",
+    "Failed to authorize" : "Nepodařilo se získat pověření",
     "User already exists" : "Uživatel už existuje",
     "%s shared »%s« with you" : "%s vám nasdílel(a) „%s“",
     "Incoming share" : "Příchozí sdílení",
