@@ -25,7 +25,7 @@ OC.L10N.register(
     "Guests" : "Invités",
     "Data imported" : "Données importées",
     "Data from your previous guest account was successfully imported into your new account." : "Les données de votre compte invité ont été importées avec succès dans votre nouveau compte.",
-    "Guest transfer failed" : "Le transfert de l'invité à échoué",
+    "Guest transfer failed" : "La conversion de l'invité a échoué",
     "Failed to transfer guest {guest} to {user}" : "Échec de transfert de {guest} sur {user}",
     "Guest transfer done" : "Transfert d'invité effectué",
     "Transfer of guest {guest} to {user} completed" : "Transfert de l'invité de {guest} sur {user} terminé",
@@ -72,6 +72,6 @@ OC.L10N.register(
     "Invite guest" : "Créer un compte invité",
     "A user with this ID or email address already exists" : "Un utilisateur avec cet ID ou cette adresse e-mail existe déjà",
     "Guest will be transferred to \"{userId}\" soon" : "L'invité sera transféré sur \"{userId}\" prochainement",
-    "Transfer guest to full account" : "Transférer l'invité sur un compte complet"
+    "Transfer guest to full account" : "Transférer l'invité vers un compte complet"
 },
 "nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");
