@@ -23,7 +23,6 @@ namespace OCA\Guests;
 
 use OCP\Defaults;
 use OCP\IConfig;
-use OCP\ILogger;
 use OCP\IURLGenerator;
 use OCP\IUserManager;
 use OCP\IUserSession;
@@ -31,50 +30,20 @@ use OCP\L10N\IFactory;
 use OCP\Mail\IMailer;
 use OCP\Share;
 use OCP\Util;
+use Psr\Log\LoggerInterface;
 
 class Mail {
 
-	/** @var IConfig */
-	private $config;
-
-	/** @var ILogger */
-	private $logger;
-
-	/** @var IUserSession */
-	private $userSession;
-
-	/** @var IMailer */
-	private $mailer;
-
-	/** @var Defaults */
-	private $defaults;
-
-	/** @var IFactory */
-	private $l10nFactory;
-
-	private $userManager;
-
-	/** @var  IURLGenerator */
-	private $urlGenerator;
-
 	public function __construct(
-		IConfig $config,
-		ILogger $logger,
-		IUserSession $userSession,
-		IMailer $mailer,
-		Defaults $defaults,
-		IFactory $l10nFactory,
-		IUserManager $userManager,
-		IURLGenerator $urlGenerator
+		private IConfig $config,
+		private LoggerInterface $logger,
+		private IUserSession $userSession,
+		private IMailer $mailer,
+		private Defaults $defaults,
+		private IFactory $l10nFactory,
+		private IUserManager $userManager,
+		private IURLGenerator $urlGenerator,
 	) {
-		$this->config = $config;
-		$this->logger = $logger;
-		$this->userSession = $userSession;
-		$this->mailer = $mailer;
-		$this->defaults = $defaults;
-		$this->l10nFactory = $l10nFactory;
-		$this->userManager = $userManager;
-		$this->urlGenerator = $urlGenerator;
 	}
 
 	/**

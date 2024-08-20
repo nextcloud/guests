@@ -28,23 +28,18 @@ use OCA\Guests\Config;
 use OCA\Guests\GuestManager;
 use OCP\App\IAppManager;
 use OCP\IL10N;
-use OCP\ILogger;
 use OCP\IURLGenerator;
 use OCP\IUser;
 use PHPUnit\Framework\MockObject\MockObject;
+use Psr\Log\LoggerInterface;
 use Test\TestCase;
 
 class AppWhitelistTest extends TestCase {
-	/** @var Config|MockObject */
-	private $config;
-	/** @var GuestManager|MockObject */
-	private $guestManager;
-	/** @var IL10N|MockObject */
-	private $l10n;
-	/** @var IAppManager|MockObject */
-	private $appManager;
-	/** @var IURLGenerator|MockObject */
-	private $urlGenerator;
+	private Config&MockObject $config;
+	private GuestManager&MockObject $guestManager;
+	private IL10N&MockObject $l10n;
+	private IAppManager&MockObject $appManager;
+	private IURLGenerator&MockObject $urlGenerator;
 
 	/** @var AppWhitelist */
 	private $appWhitelist;
@@ -61,12 +56,12 @@ class AppWhitelistTest extends TestCase {
 			->willReturn('');
 
 		$this->appWhitelist = new AppWhitelist(
+			$this->urlGenerator,
 			$this->config,
 			$this->guestManager,
 			$this->l10n,
 			$this->appManager,
-			$this->urlGenerator,
-			$this->createMock(ILogger::class)
+			$this->createMock(LoggerInterface::class)
 		);
 	}
 
