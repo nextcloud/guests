@@ -1,6 +1,6 @@
 <template>
 	<NcSettingsSection :name="t('guests', 'Guests accounts')">
-		<div v-if="loaded && !error">
+		<div class="guests-list" v-if="loaded && !error">
 			<table v-if="guests.length" class="table">
 				<thead>
 					<tr>
@@ -121,7 +121,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#guests-list {
+.guests-list {
 	padding: 20px 0 0;
 
 	table {
