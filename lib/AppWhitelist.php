@@ -23,11 +23,11 @@ namespace OCA\Guests;
 
 use OCP\App\IAppManager;
 use OCP\IL10N;
-use OCP\ILogger;
 use OCP\IRequest;
 use OCP\IURLGenerator;
 use OCP\IUser;
 use OCP\Template;
+use Psr\Log\LoggerInterface;
 
 /**
  * Only allow whitelisted apps to be accessed by guests
@@ -35,20 +35,8 @@ use OCP\Template;
  * @package OCA\Guests
  */
 class AppWhitelist {
-	/** @var Config */
-	private $config;
-	/** @var GuestManager */
-	private $guestManager;
-	/** @var IL10N */
-	private $l10n;
-	/** @var IAppManager */
-	private $appManager;
-	/** @var string */
-	private $baseUrl;
-	/** @var int */
-	private $baseUrlLength;
-	/** @var ILogger */
-	private $logger;
+	private string $baseUrl;
+	private int $baseUrlLength;
 
 	public const WHITELIST_ALWAYS = ',core,theming,settings,avatar,files,heartbeat,dav,guests,impersonate,accessibility,terms_of_service,dashboard,weather_status,user_status,apporder';
 
@@ -62,23 +50,18 @@ class AppWhitelist {
 	 * @param IL10N $l10n
 	 * @param IAppManager $appManager
 	 * @param IURLGenerator $urlGenerator
-	 * @param ILogger $logger
+	 * @param LoggerInterface $logger
 	 */
 	public function __construct(
-		Config $config,
-		GuestManager $guestManager,
-		IL10N $l10n,
-		IAppManager $appManager,
 		IURLGenerator $urlGenerator,
-		ILogger $logger
+		private Config $config,
+		private GuestManager $guestManager,
+		private IL10N $l10n,
+		private IAppManager $appManager,
+		private LoggerInterface $logger,
 	) {
-		$this->config = $config;
-		$this->guestManager = $guestManager;
-		$this->l10n = $l10n;
-		$this->appManager = $appManager;
 		$this->baseUrl = $urlGenerator->getBaseUrl();
 		$this->baseUrlLength = strlen($this->baseUrl);
-		$this->logger = $logger;
 	}
 
 	public function isAppWhitelisted($appId): bool {
@@ -104,7 +87,7 @@ class AppWhitelist {
 					echo "[]";
 					exit;
 				}
-				$this->logger->info("Blocking access to non-whitelisted app ($app) for guest", ['app' => 'guests']);
+				$this->logger->notice("Blocking access to non-whitelisted app ($app) for guest", ['app' => 'guests']);
 				return false;
 			}
 		} else {

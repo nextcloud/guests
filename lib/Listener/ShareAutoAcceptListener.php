@@ -28,32 +28,22 @@ namespace OCA\Guests\Listener;
 use OCA\Guests\UserBackend;
 use OCP\EventDispatcher\Event;
 use OCP\EventDispatcher\IEventListener;
-use OCP\ILogger;
 use OCP\IUserManager;
 use OCP\Share\Events\ShareCreatedEvent;
 use OCP\Share\IManager as ShareManager;
 use OCP\Share\IShare;
+use Psr\Log\LoggerInterface;
 
 /**
  * @template-implements IEventListener<Event>
  */
 class ShareAutoAcceptListener implements IEventListener {
 
-	/** @var IUserManager */
-	private $userManager;
-
-	/** @var ShareManager */
-	private $shareManager;
-
-	/** @var ILogger */
-	private $logger;
-
-	public function __construct(IUserManager $userManager,
-		ShareManager $shareManager,
-		ILogger $logger) {
-		$this->userManager = $userManager;
-		$this->shareManager = $shareManager;
-		$this->logger = $logger;
+	public function __construct(
+		private IUserManager $userManager,
+		private ShareManager $shareManager,
+		private LoggerInterface $logger,
+	) {
 	}
 
 	public function handle(Event $event): void {
