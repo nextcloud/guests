@@ -68,14 +68,14 @@ import { logger } from '../services/logger.ts'
 
 const generateMessage = ({ source, target, status }: { source: string, target: string, status: 'waiting' | 'started' }) => {
 	const matchStatus = {
-		waiting: t('guests', 'Conversion of guest {strongStart}{guest}{strongEnd} account to {strongStart}{user}{strongEnd} regular account is pending', {
+		waiting: t('guests', 'Conversion of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} is pending', {
 			guest: source,
 			user: target,
 			strongStart: '<strong>',
 			strongEnd: '</strong>',
 		}, undefined, { escape: false, sanitize: false }),
 
-		started: t('guests', 'Conversion of guest {strongStart}{guest}{strongEnd} account to {strongStart}{user}{strongEnd} regular account has started', {
+		started: t('guests', 'Conversion of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} has started', {
 			guest: source,
 			user: target,
 			strongStart: '<strong>',
