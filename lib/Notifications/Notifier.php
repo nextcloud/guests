@@ -88,7 +88,7 @@ class Notifier implements INotifier {
 				$notification
 					->setRichSubject($l->t('Guest conversion done'))
 					->setRichMessage(
-						$l->t('Conversion of guest {guest} account to {user} account completed'),
+						$l->t('Conversion of guest {guest} to {user} completed'),
 						$this->getRichMessageParams($params['source'], $params['target']),
 					);
 				return $notification;
