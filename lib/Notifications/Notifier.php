@@ -76,9 +76,9 @@ class Notifier implements INotifier {
 			case 'guest-transfer-fail':
 				$params = $notification->getSubjectParameters();
 				$notification
-					->setRichSubject($l->t('Guest transfer failed'))
+					->setRichSubject($l->t('Guest conversion failed'))
 					->setRichMessage(
-						$l->t('Failed to transfer guest {guest} to {user}'),
+						$l->t('Failed to convert guest {guest} account to {user} account'),
 						$this->getRichMessageParams($params['source'], $params['target']),
 					);
 				return $notification;
@@ -86,9 +86,9 @@ class Notifier implements INotifier {
 			case 'guest-transfer-done':
 				$params = $notification->getSubjectParameters();
 				$notification
-					->setRichSubject($l->t('Guest transfer done'))
+					->setRichSubject($l->t('Guest conversion done'))
 					->setRichMessage(
-						$l->t('Transfer of guest {guest} to {user} completed'),
+						$l->t('Conversion of guest {guest} to {user} completed'),
 						$this->getRichMessageParams($params['source'], $params['target']),
 					);
 				return $notification;
