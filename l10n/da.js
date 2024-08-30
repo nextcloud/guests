@@ -37,7 +37,6 @@ OC.L10N.register(
     "No guest accounts created" : "Ingen gæste konti oprettet",
     "Default" : "Standard",
     "Cancel" : "Annullér",
-    "Transfer" : "Overførsel",
     "Name:" : "Navn:",
     "Email:" : "E-mail:",
     "Language:" : "Sprog:",
@@ -52,6 +51,7 @@ OC.L10N.register(
     "Your settings have been updated" : "Dine indstillinger er opdateret",
     "Saving …" : "Gemmer …",
     "Invite guest" : "Inviter gæst",
-    "A user with this ID or email address already exists" : "En bruger med dette ID eller e-mailadresse eksisterer allerede"
+    "A user with this ID or email address already exists" : "En bruger med dette ID eller e-mailadresse eksisterer allerede",
+    "Transfer" : "Overførsel"
 },
 "nplurals=2; plural=(n != 1);");

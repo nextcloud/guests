@@ -35,7 +35,6 @@ OC.L10N.register(
     "No guest accounts created" : "Engir gestaaðgangar útbúnir",
     "Default" : "Sjálfgefið",
     "Cancel" : "Hætta við",
-    "Transfer" : "Færa",
     "Name:" : "Nafn:",
     "Email:" : "Tölvupóstur:",
     "Language:" : "Tungumál:",
@@ -47,6 +46,7 @@ OC.L10N.register(
     "Error" : "Villa",
     "Your settings have been updated" : "Stillingarnar þínar voru uppfærðar",
     "Saving …" : "Vista …",
-    "Invite guest" : "Bjóða gesti"
+    "Invite guest" : "Bjóða gesti",
+    "Transfer" : "Færa"
 },
 "nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);");

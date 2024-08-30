@@ -28,7 +28,6 @@ OC.L10N.register(
     "Received shares" : "Partilhas recebidas",
     "Default" : "Predefinido",
     "Cancel" : "Cancelar",
-    "Transfer" : "Transfere",
     "Name:" : "Nome:",
     "Email:" : "Email:",
     "Language:" : "Idioma:",
@@ -38,6 +37,7 @@ OC.L10N.register(
     "Error" : "Erro",
     "Your settings have been updated" : "As suas definições foram atualizadas",
     "Saving …" : "A guardar ...",
-    "Invite guest" : "Convidar convidado"
+    "Invite guest" : "Convidar convidado",
+    "Transfer" : "Transfere"
 },
 "nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

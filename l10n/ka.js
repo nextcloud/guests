@@ -35,7 +35,6 @@ OC.L10N.register(
     "No guest accounts created" : "No guest accounts created",
     "Default" : "Default",
     "Cancel" : "Cancel",
-    "Transfer" : "Transfer",
     "Name:" : "Name:",
     "Email:" : "Email:",
     "Language:" : "Language:",
@@ -57,6 +56,7 @@ OC.L10N.register(
     "Your settings have been updated" : "Your settings have been updated",
     "Saving …" : "Saving …",
     "Invite guest" : "Invite guest",
-    "A user with this ID or email address already exists" : "A user with this ID or email address already exists"
+    "A user with this ID or email address already exists" : "A user with this ID or email address already exists",
+    "Transfer" : "Transfer"
 },
 "nplurals=2; plural=(n!=1);");

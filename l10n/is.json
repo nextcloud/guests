@@ -33,7 +33,6 @@
     "No guest accounts created" : "Engir gestaaðgangar útbúnir",
     "Default" : "Sjálfgefið",
     "Cancel" : "Hætta við",
-    "Transfer" : "Færa",
     "Name:" : "Nafn:",
     "Email:" : "Tölvupóstur:",
     "Language:" : "Tungumál:",
@@ -45,6 +44,7 @@
     "Error" : "Villa",
     "Your settings have been updated" : "Stillingarnar þínar voru uppfærðar",
     "Saving …" : "Vista …",
-    "Invite guest" : "Bjóða gesti"
+    "Invite guest" : "Bjóða gesti",
+    "Transfer" : "Færa"
 },"pluralForm" :"nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);"
 }

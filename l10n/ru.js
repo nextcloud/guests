@@ -37,7 +37,6 @@ OC.L10N.register(
     "No guest accounts created" : "Не создано ни одной гостевой учётной записи",
     "Default" : "По умолчанию",
     "Cancel" : "Отмена",
-    "Transfer" : "Передача",
     "Name:" : "Имя:",
     "Email:" : "Эл. почта:",
     "Language:" : "Язык:",
@@ -59,6 +58,7 @@ OC.L10N.register(
     "Your settings have been updated" : "Параметры обновлены",
     "Saving …" : "Сохранение…",
     "Invite guest" : "Пригласить гостя",
-    "A user with this ID or email address already exists" : "Пользователь с таким идентификатором или адресом электронной почты уже существует"
+    "A user with this ID or email address already exists" : "Пользователь с таким идентификатором или адресом электронной почты уже существует",
+    "Transfer" : "Передача"
 },
 "nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);");

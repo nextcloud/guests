@@ -37,7 +37,6 @@ OC.L10N.register(
     "No guest accounts created" : "ゲストアカウントはまだ作成されていません",
     "Default" : "デフォルト",
     "Cancel" : "キャンセル",
-    "Transfer" : "転送",
     "Name:" : "名前: ",
     "Email:" : "メール: ",
     "Language:" : "言語: ",
@@ -52,6 +51,7 @@ OC.L10N.register(
     "Your settings have been updated" : "設定が更新されました",
     "Saving …" : "保存中 …",
     "Invite guest" : "ゲストを招待する",
-    "A user with this ID or email address already exists" : "このIDまたはメールアドレスを持つユーザーはすでに存在します"
+    "A user with this ID or email address already exists" : "このIDまたはメールアドレスを持つユーザーはすでに存在します",
+    "Transfer" : "転送"
 },
 "nplurals=1; plural=0;");

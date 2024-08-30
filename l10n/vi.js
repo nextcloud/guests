@@ -10,9 +10,9 @@ OC.L10N.register(
     "Email" : "Thư điện tử",
     "Default" : "Mặc định",
     "Cancel" : "Hủy",
-    "Transfer" : "Truyền",
     "Name:" : "Tên:",
     "Email:" : "Thư điện tử:",
-    "Error" : "Lỗi"
+    "Error" : "Lỗi",
+    "Transfer" : "Truyền"
 },
 "nplurals=1; plural=0;");
