@@ -34,7 +34,6 @@ OC.L10N.register(
     "No guest accounts created" : "לא נוצרו חשבונות אורחים",
     "Default" : "בררת מחדל",
     "Cancel" : "ביטול",
-    "Transfer" : "העברה",
     "Name:" : "שם:",
     "Email:" : "דוא״ל:",
     "Language:" : "שפה:",
@@ -46,6 +45,7 @@ OC.L10N.register(
     "Error" : "שגיאה",
     "Your settings have been updated" : "ההגדרות שלך עודכנו",
     "Saving …" : "מתבצע שמירה…",
-    "Invite guest" : "הזמנת אורח"
+    "Invite guest" : "הזמנת אורח",
+    "Transfer" : "העברה"
 },
 "nplurals=3; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: 2;");

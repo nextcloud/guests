@@ -35,7 +35,6 @@ OC.L10N.register(
     "No guest accounts created" : "Nesukurta jokių svečio paskyrų",
     "Default" : "Numatytoji",
     "Cancel" : "Atsisakyti",
-    "Transfer" : "Persiųsti",
     "Name:" : "Vardas:",
     "Email:" : "El. paštas:",
     "Language:" : "Kalba:",
@@ -45,6 +44,7 @@ OC.L10N.register(
     "Error" : "Klaida",
     "Your settings have been updated" : "Jūsų nustatymai atnaujinti",
     "Saving …" : "Įrašoma…",
-    "A user with this ID or email address already exists" : "Naudotojas su šiuo ID ar el. pašto adresu jau yra"
+    "A user with this ID or email address already exists" : "Naudotojas su šiuo ID ar el. pašto adresu jau yra",
+    "Transfer" : "Persiųsti"
 },
 "nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);");

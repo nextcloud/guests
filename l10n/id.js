@@ -12,7 +12,7 @@ OC.L10N.register(
     "Email" : "Surel",
     "Default" : "Bawaan",
     "Cancel" : "Batal",
-    "Transfer" : "Transfer",
-    "Error" : "Kesalahan"
+    "Error" : "Kesalahan",
+    "Transfer" : "Transfer"
 },
 "nplurals=1; plural=0;");

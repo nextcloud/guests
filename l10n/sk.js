@@ -38,7 +38,6 @@ OC.L10N.register(
     "Default" : "Predvolené",
     "New account name" : "Nový názov účtu",
     "Cancel" : "Zrušiť",
-    "Transfer" : "Prenos",
     "Name:" : "Meno:",
     "Email:" : "Email:",
     "Language:" : "Jazyk:",
@@ -60,6 +59,7 @@ OC.L10N.register(
     "Your settings have been updated" : "Vaše nastavenie bolo aktualizované",
     "Saving …" : "Ukladanie …",
     "Invite guest" : "Pozviať hosťa",
-    "A user with this ID or email address already exists" : "Používateľ s takýmto ID alebo e-mailom už existuje."
+    "A user with this ID or email address already exists" : "Používateľ s takýmto ID alebo e-mailom už existuje.",
+    "Transfer" : "Prenos"
 },
 "nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);");

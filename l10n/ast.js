@@ -10,8 +10,8 @@ OC.L10N.register(
     "Email" : "Corréu electrónicu",
     "Default" : "Por defeutu",
     "Cancel" : "Encaboxar",
-    "Transfer" : "Tresferir",
     "Name:" : "Nome:",
-    "Error" : "Error"
+    "Error" : "Error",
+    "Transfer" : "Tresferir"
 },
 "nplurals=2; plural=(n != 1);");

@@ -37,7 +37,6 @@ OC.L10N.register(
     "No guest accounts created" : "Ez da gonbidatu konturik sortu",
     "Default" : "Lehenetsia",
     "Cancel" : "Utzi",
-    "Transfer" : "Transferitu",
     "Name:" : "Izena:",
     "Email:" : "E-posta:",
     "Language:" : "Hizkuntza:",
@@ -59,6 +58,7 @@ OC.L10N.register(
     "Your settings have been updated" : "Zure ezarpenak eguneratu dira",
     "Saving …" : "Gordetzen  ...",
     "Invite guest" : "Gonbidapen berria bidali",
-    "A user with this ID or email address already exists" : "Badago izen edo e-posta hori duen erabiltzaile bat"
+    "A user with this ID or email address already exists" : "Badago izen edo e-posta hori duen erabiltzaile bat",
+    "Transfer" : "Transferitu"
 },
 "nplurals=2; plural=(n != 1);");

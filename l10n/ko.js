@@ -28,7 +28,6 @@ OC.L10N.register(
     "No guest accounts created" : "생성된 손님 계정 없음",
     "Default" : "기본값",
     "Cancel" : "취소",
-    "Transfer" : "전송",
     "Name:" : "이름:",
     "Add guest to groups:" : "손님 계정을 그룹에 추가:",
     "Guest user needs to be added to at least one group" : "손님 계정을 한개 이상의 그룹에 추가해야 함",
@@ -38,6 +37,7 @@ OC.L10N.register(
     "Hide other accounts from guests" : "손님 계정에게 다른 계정이 보이지 않도록 숨기기",
     "Guests will still be able to see accounts from any group they are added to" : "손님 계정은 자신이 속해 있는 그룹의 계정을 계속 볼 수 있습니다",
     "Error" : "오류",
-    "Invite guest" : "손님 초대"
+    "Invite guest" : "손님 초대",
+    "Transfer" : "전송"
 },
 "nplurals=1; plural=0;");

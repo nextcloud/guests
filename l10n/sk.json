@@ -36,7 +36,6 @@
     "Default" : "Predvolené",
     "New account name" : "Nový názov účtu",
     "Cancel" : "Zrušiť",
-    "Transfer" : "Prenos",
     "Name:" : "Meno:",
     "Email:" : "Email:",
     "Language:" : "Jazyk:",
@@ -58,6 +57,7 @@
     "Your settings have been updated" : "Vaše nastavenie bolo aktualizované",
     "Saving …" : "Ukladanie …",
     "Invite guest" : "Pozviať hosťa",
-    "A user with this ID or email address already exists" : "Používateľ s takýmto ID alebo e-mailom už existuje."
+    "A user with this ID or email address already exists" : "Používateľ s takýmto ID alebo e-mailom už existuje.",
+    "Transfer" : "Prenos"
 },"pluralForm" :"nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);"
 }

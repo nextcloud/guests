@@ -37,7 +37,6 @@ OC.L10N.register(
     "No guest accounts created" : "没有访客账号被创建",
     "Default" : "默认",
     "Cancel" : "取消",
-    "Transfer" : "转移",
     "Name:" : "姓名：",
     "Email:" : "电子邮箱：",
     "Language:" : "语言：",
@@ -59,6 +58,7 @@ OC.L10N.register(
     "Your settings have been updated" : "您的设置已更新",
     "Saving …" : "正在保存 ……",
     "Invite guest" : "邀请访客",
-    "A user with this ID or email address already exists" : "具有此 ID 或电子邮件地址的用户已存在"
+    "A user with this ID or email address already exists" : "具有此 ID 或电子邮件地址的用户已存在",
+    "Transfer" : "转移"
 },
 "nplurals=1; plural=0;");

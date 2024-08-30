@@ -17,10 +17,10 @@ OC.L10N.register(
     "Email" : "Correo electrónico",
     "Default" : "Predeterminado",
     "Cancel" : "Cancelar",
-    "Transfer" : "Transferir",
     "Name:" : "Nombre:",
     "Email:" : "Correo:",
     "Error" : "Error",
-    "Invite guest" : "Agregar Invitado"
+    "Invite guest" : "Agregar Invitado",
+    "Transfer" : "Transferir"
 },
 "nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");
