@@ -36,7 +36,6 @@ OC.L10N.register(
     "No guest accounts created" : "Perunu contu de invitu creadu",
     "Default" : "Predefinidu",
     "Cancel" : "Annulla",
-    "Transfer" : "Tràmuda",
     "Name:" : "Nùmene:",
     "Email:" : "Indiritzu de posta:",
     "Language:" : "Limba",
@@ -49,6 +48,7 @@ OC.L10N.register(
     "Your settings have been updated" : "Cunfiguratzione atualizada",
     "Saving …" : "Sarvende ...",
     "Invite guest" : "Invita una persone",
-    "A user with this ID or email address already exists" : "Esistet giai una persone cun custa identificatzione o posta eletrònica"
+    "A user with this ID or email address already exists" : "Esistet giai una persone cun custa identificatzione o posta eletrònica",
+    "Transfer" : "Tràmuda"
 },
 "nplurals=2; plural=(n != 1);");

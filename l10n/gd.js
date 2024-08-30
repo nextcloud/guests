@@ -6,7 +6,7 @@ OC.L10N.register(
     "Email" : "Post-d",
     "Default" : "Bunaiteach",
     "Cancel" : "Sguir dheth",
-    "Transfer" : "Tar-chuir",
-    "Error" : "Mearachd"
+    "Error" : "Mearachd",
+    "Transfer" : "Tar-chuir"
 },
 "nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : (n > 2 && n < 20) ? 2 : 3;");

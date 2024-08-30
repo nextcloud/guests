@@ -36,7 +36,6 @@ OC.L10N.register(
     "No guest accounts created" : "Няма създадени профили за гости",
     "Default" : "Стандартен",
     "Cancel" : "Отказ",
-    "Transfer" : "Прехвърляне",
     "Name:" : "Име:",
     "Email:" : "Имейл:",
     "Language:" : "Език:",
@@ -58,6 +57,7 @@ OC.L10N.register(
     "Your settings have been updated" : "Вашите настройки са актуализирани",
     "Saving …" : "Запазване ...",
     "Invite guest" : "Поканете гост",
-    "A user with this ID or email address already exists" : "Потребител с този идентификатор или имейл адрес вече съществува"
+    "A user with this ID or email address already exists" : "Потребител с този идентификатор или имейл адрес вече съществува",
+    "Transfer" : "Прехвърляне"
 },
 "nplurals=2; plural=(n != 1);");
