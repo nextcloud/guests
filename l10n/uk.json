@@ -35,7 +35,6 @@
     "No guest accounts created" : "Відсутні гостьові облікові записи",
     "Default" : "За замовчуванням",
     "Cancel" : "Скасувати",
-    "Transfer" : "Передати",
     "Name:" : "Ім'я:",
     "Email:" : "Імейл:",
     "Language:" : "Мова:",
@@ -57,6 +56,7 @@
     "Your settings have been updated" : "Ваші налаштування оновлено",
     "Saving …" : "Збереження ...",
     "Invite guest" : "Запросити гостя",
-    "A user with this ID or email address already exists" : "Користувач з таким ідентифікатором або адресою ел. пошти вже присутній"
+    "A user with this ID or email address already exists" : "Користувач з таким ідентифікатором або адресою ел. пошти вже присутній",
+    "Transfer" : "Передати"
 },"pluralForm" :"nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);"
 }

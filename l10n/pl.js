@@ -36,7 +36,6 @@ OC.L10N.register(
     "No guest accounts created" : "Nie utworzono kont gości",
     "Default" : "Domyślny",
     "Cancel" : "Anuluj",
-    "Transfer" : "Przenieś",
     "Name:" : "Nazwa:",
     "Email:" : "E-mail:",
     "Language:" : "Język:",
@@ -58,6 +57,7 @@ OC.L10N.register(
     "Your settings have been updated" : "Twoje ustawienia zostały zaktualizowane",
     "Saving …" : "Zapisywanie…",
     "Invite guest" : "Zaproś gościa",
-    "A user with this ID or email address already exists" : "Użytkownik o tym ID lub adresie e-mail już istnieje"
+    "A user with this ID or email address already exists" : "Użytkownik o tym ID lub adresie e-mail już istnieje",
+    "Transfer" : "Przenieś"
 },
 "nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);");

@@ -36,7 +36,6 @@ OC.L10N.register(
     "No guest accounts created" : "No se han creado cuentas de invitados",
     "Default" : "Predeterminado",
     "Cancel" : "Cancelar",
-    "Transfer" : "Transferir",
     "Name:" : "Nombre:",
     "Email:" : "Email: ",
     "Language:" : "Idioma:",
@@ -58,6 +57,7 @@ OC.L10N.register(
     "Your settings have been updated" : "Tu configuración ha sido actualizada",
     "Saving …" : "Guardando…",
     "Invite guest" : "Invitar a invitados",
-    "A user with this ID or email address already exists" : "Ya existe un usuario con este correo electrónico o ID"
+    "A user with this ID or email address already exists" : "Ya existe un usuario con este correo electrónico o ID",
+    "Transfer" : "Transferir"
 },
 "nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

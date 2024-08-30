@@ -36,7 +36,6 @@ OC.L10N.register(
     "No guest accounts created" : "Δεν δημιουργήθηκαν λογαριασμοί επισκέπτη",
     "Default" : "Προεπιλεγμένο",
     "Cancel" : "Ακύρωση",
-    "Transfer" : "Μεταφορά",
     "Name:" : "Όνομα:",
     "Email:" : "Email:",
     "Language:" : "Γλώσσα:",
@@ -49,6 +48,7 @@ OC.L10N.register(
     "Your settings have been updated" : "Οι ρυθμίσεις σας ενημερώθηκαν",
     "Saving …" : "Αποθήκευση ...",
     "Invite guest" : "Πρόσκληση επισκέπτη",
-    "A user with this ID or email address already exists" : "Υπάρχει ήδη χρήστης με αυτό το ID ή την διεύθυνση email"
+    "A user with this ID or email address already exists" : "Υπάρχει ήδη χρήστης με αυτό το ID ή την διεύθυνση email",
+    "Transfer" : "Μεταφορά"
 },
 "nplurals=2; plural=(n != 1);");

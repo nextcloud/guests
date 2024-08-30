@@ -37,7 +37,6 @@ OC.L10N.register(
     "No guest accounts created" : "Nincs vendégfiók létrehozva",
     "Default" : "Alapértelmezett",
     "Cancel" : "Mégse",
-    "Transfer" : "Átvitel",
     "Name:" : "Név:",
     "Email:" : "E-mail:",
     "Language:" : "Nyelv:",
@@ -59,6 +58,7 @@ OC.L10N.register(
     "Your settings have been updated" : "Beállításai sikeresen frissítve",
     "Saving …" : "Mentés …",
     "Invite guest" : "Vendég meghívása",
-    "A user with this ID or email address already exists" : "Ezzel az azonosítóval vagy e-mail-címmel már létezik felhasználó."
+    "A user with this ID or email address already exists" : "Ezzel az azonosítóval vagy e-mail-címmel már létezik felhasználó.",
+    "Transfer" : "Átvitel"
 },
 "nplurals=2; plural=(n != 1);");

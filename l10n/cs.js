@@ -37,7 +37,6 @@ OC.L10N.register(
     "No guest accounts created" : "Nebyly vytvořeny žádné účty hostů",
     "Default" : "Výchozí",
     "Cancel" : "Storno",
-    "Transfer" : "Přenos",
     "Name:" : "Jméno:",
     "Email:" : "E-mail:",
     "Language:" : "Jazyk:",
@@ -59,6 +58,7 @@ OC.L10N.register(
     "Your settings have been updated" : "Vaše nastavení byla zaktualizována",
     "Saving …" : "Ukládání…",
     "Invite guest" : "Pozvat hosta",
-    "A user with this ID or email address already exists" : "Uživatel s tímto identifikátorem nebo e-mailovou adresou už existuje"
+    "A user with this ID or email address already exists" : "Uživatel s tímto identifikátorem nebo e-mailovou adresou už existuje",
+    "Transfer" : "Přenos"
 },
 "nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;");

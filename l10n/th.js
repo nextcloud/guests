@@ -14,7 +14,7 @@ OC.L10N.register(
     "Email" : "อีเมล",
     "Default" : "ค่าเริ่มต้น",
     "Cancel" : "ยกเลิก",
-    "Transfer" : "โอนย้าย",
-    "Error" : "ข้อผิดพลาด"
+    "Error" : "ข้อผิดพลาด",
+    "Transfer" : "โอนย้าย"
 },
 "nplurals=1; plural=0;");

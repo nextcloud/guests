@@ -36,7 +36,6 @@ OC.L10N.register(
     "No guest accounts created" : "No s’ha creat comptes de convidat",
     "Default" : "Per defecte",
     "Cancel" : "Cancel·la",
-    "Transfer" : "Transferència",
     "Name:" : "Nom:",
     "Email:" : "Email:",
     "Language:" : "Idioma:",
@@ -58,6 +57,7 @@ OC.L10N.register(
     "Your settings have been updated" : "S'ha actualitzat els vostres paràmetres",
     "Saving …" : "S'està desant…",
     "Invite guest" : "Convidar convidat",
-    "A user with this ID or email address already exists" : "Ja existeix un usuari amb aquest ID o adreça de correu electrònic"
+    "A user with this ID or email address already exists" : "Ja existeix un usuari amb aquest ID o adreça de correu electrònic",
+    "Transfer" : "Transferència"
 },
 "nplurals=2; plural=(n != 1);");
