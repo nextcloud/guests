@@ -23,6 +23,10 @@
     "Guests" : "الضيوف",
     "Data imported" : "البيانات تمّ استيرادها",
     "Data from your previous guest account was successfully imported into your new account." : "بيانات حسابك السابق كضيفٍ تمّ استيرادها بنجاحٍ في حسابك الجديد.",
+    "Guest conversion failed" : "تعذّر تحويل الضيف",
+    "Failed to convert guest {guest} account to {user} account" : "تعذّر تحويل الضيف في الحساب {guest} إلى الحساب {user}  ",
+    "Guest conversion done" : "تمّ بنجاحٍ تحويل الضيف",
+    "Conversion of guest {guest} to {user} completed" : "تحويل الضيف {guest} إلى {user} تمّ بنجاحٍ",
     "Create guest accounts for easier collaboration" : "إنشيء حسابات ضيوف لتسهيل التعاون",
     "👥 Allows for better collaboration with external users by allowing users to create guests account.\n\nGuests accounts can be created from the share menu by entering either the recipients email or name and choosing \"create guest account\", once the share is created the guest user will receive an email notification about the mail with a link to set their password.\n\nGuests users can only access files shared to them and cannot create any files outside of shares, additionally, the apps accessible to guest accounts are whitelisted." : "👥يسمح بتعاونٍ أفضل مع المستخدمين الخارجيين من خلال السماح للمستخدمين بإنشاء حساب ضيف. \nيمكن إنشاء حساب ضيف من قائمة المشاركة إمّا عن طريق إدخال البريد الإلكتروني للمستلمين أو الاسم واختيار \"إنشاء حساب ضيف\" \"create guest account\". \nبمجرد إنشاء المشاركة سيتلقى المستخدم الضيف إشعارًا بالبريد الإلكتروني يحوي رابطاً لتعيين كلمة المرور الخاصة به. \nيمكن للمستخدمين الوصول فقط إلى الملفات التي تمّت مشاركتها معهم ولا يمكنهم إنشاء أي ملفات خارج المشاركات. \nإضافةً إلى ذلك، فإن التطبيقات التي يمكن للحساب الضيف الوصول إليها  سيتم إدراجها في القائمة البيضاء.",
     "None" : "لا شيء",
@@ -36,8 +40,13 @@
     "Received shares" : "مُشاركات مُستلمة",
     "No guest accounts created" : "لم يتم إنشاء أي حسابات ضيوف",
     "Default" : "افتراضي",
+    "Convert guest to regular account" : "تحويل الضيف إلى حساب عادي",
     "New account name" : "اسم الحساب الجديد",
     "Cancel" : "إلغاء",
+    "Converting guest…" : "جارٍ تحويل الضيف ...",
+    "Convert" : "تحويل",
+    "Conversion of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} is pending" : "تحويل الضيف {strongStart}{guest}{strongEnd} إلى {strongStart}{user}{strongEnd} مُعلَّق",
+    "Conversion of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} has started" : "بدأ تحويل الضيف {strongStart}{guest}{strongEnd} إلى {strongStart}{user}{strongEnd}  ",
     "Name:" : "الاسم:",
     "Email:" : "البريد:",
     "Language:" : "اللغة: ",
@@ -60,6 +69,7 @@
     "Saving …" : "حفظ ...",
     "Invite guest" : "أُدعُ ضيفاً",
     "A user with this ID or email address already exists" : "يوجد مُسبقاً مُستخدم بنفس هذا المُعرّف أو الإيميل",
+    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "سيتم حالاً تحويل الضيف إلى حساب اعتيادي اسمه \"{userId}\"  ",
     "Guest transfer failed" : "فشل في نقل الضيف",
     "Failed to transfer guest {guest} to {user}" : "فشل في نقل الضيف {guest} إلى {user}",
     "Guest transfer done" : "تمّ نقل الضيف",
