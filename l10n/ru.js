@@ -36,6 +36,8 @@ OC.L10N.register(
     "Received shares" : "Полученные общие ресурсы",
     "No guest accounts created" : "Не создано ни одной гостевой учётной записи",
     "Default" : "По умолчанию",
+    "Convert guest to regular account" : "Преобразовать учетную запись гостя в обычную учетную запись",
+    "New account name" : "Новое имя учетной записи",
     "Cancel" : "Отмена",
     "Name:" : "Имя:",
     "Email:" : "Эл. почта:",
