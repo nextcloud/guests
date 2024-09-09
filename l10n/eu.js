@@ -37,6 +37,7 @@ OC.L10N.register(
     "No guest accounts created" : "Ez da gonbidatu konturik sortu",
     "Default" : "Lehenetsia",
     "Cancel" : "Utzi",
+    "Convert" : "Bihurtu",
     "Name:" : "Izena:",
     "Email:" : "E-posta:",
     "Language:" : "Hizkuntza:",
