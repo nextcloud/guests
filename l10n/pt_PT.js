@@ -7,6 +7,7 @@ OC.L10N.register(
     "A user with that email already exists." : "Já existe um utilizador com esse email.",
     "A user with that name already exists." : "Já existe um utilizador com esse nome.",
     "User successfully created" : "Utilizador criado com sucesso",
+    "Failed to authorize" : "Falhou a autorização",
     "%s shared »%s« with you" : "%s partilhou »%s« consigo",
     "You can access the shared file by activating your guest account." : "Pode aceder ao ficheiro partilhado ao ativar a sua conta de convidado",
     "The share will expire at %s." : "A partilha expira em %s.",
