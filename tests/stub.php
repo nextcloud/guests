@@ -127,6 +127,18 @@ namespace OC {
 		 */
 		public function setUnreadCounter(string $id, int $unreadCounter): void {
 		}
+
+		public function get(string $id): ?array {
+		}
+
+		public function getDefaultEntryIdForUser(?\OCP\IUser $user = null, bool $withFallbacks = true): string {
+		}
+
+		public function getDefaultEntryIds(bool $withFallbacks = true): array {
+		}
+
+		public function setDefaultEntryIds(array $ids): void {
+		}
 	}
 
 	class AppConfig {

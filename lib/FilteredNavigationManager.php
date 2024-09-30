@@ -69,4 +69,23 @@ class FilteredNavigationManager extends NavigationManager {
 	public function setUnreadCounter(string $id, int $unreadCounter): void {
 		$this->navigationManager->setUnreadCounter($id, $unreadCounter);
 	}
+
+	public function get(string $id): ?array {
+		return $this->navigationManager->get($id);
+	}
+
+	public function getDefaultEntryIdForUser(?IUser $user = null, bool $withFallbacks = true): string {
+		return $this->navigationManager->getDefaultEntryIdForUser($user, $withFallbacks);
+	}
+
+	public function getDefaultEntryIds(bool $withFallbacks = true): array {
+		return $this->navigationManager->getDefaultEntryIds($withFallbacks);
+	}
+
+	/**
+	 * @psalm-suppress MethodSignatureMismatch
+	 */
+	public function setDefaultEntryIds(array $ids): void {
+		$this->navigationManager->setDefaultEntryIds($ids);
+	}
 }
