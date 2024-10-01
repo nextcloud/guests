@@ -22,6 +22,7 @@
 namespace OCA\Guests\Storage;
 
 use OC\Files\Storage\Wrapper\PermissionsMask;
+use OCP\Files\Cache\ICache;
 
 /**
  * While PermissionMask can mask a whole storage this  can
@@ -100,9 +101,6 @@ class DirMask extends PermissionsMask {
 		}
 	}
 
-	/**
-	 * @psalm-suppress ParamNameMismatch
-	 */
 	public function rename($source, $target): bool {
 		if (!$this->isUpdatable($source)) {
 			return false;
@@ -123,9 +121,6 @@ class DirMask extends PermissionsMask {
 		return false;
 	}
 
-	/**
-	 * @psalm-suppress ParamNameMismatch
-	 */
 	public function copy($source, $target): bool {
 		if (!$this->isReadable($source)) {
 			return false;
@@ -162,10 +157,7 @@ class DirMask extends PermissionsMask {
 		}
 	}
 
-	/**
-	 * @psalm-suppress MethodSignatureMustProvideReturnType
-	 */
-	public function rmdir($path) {
+	public function rmdir($path): bool {
 		if ($this->checkPath($path)) {
 			return parent::rmdir($path);
 		} else {
@@ -181,10 +173,7 @@ class DirMask extends PermissionsMask {
 		}
 	}
 
-	/**
-	 * @psalm-suppress MethodSignatureMustProvideReturnType
-	 */
-	public function file_put_contents($path, $data) {
+	public function file_put_contents($path, $data): int|float|false {
 		if ($this->checkPath($path)) {
 			return parent::file_put_contents($path, $data);
 		} else {
@@ -192,9 +181,6 @@ class DirMask extends PermissionsMask {
 		}
 	}
 
-	/**
-	 * @psalm-suppress MethodSignatureMustProvideReturnType
-	 */
 	public function fopen($path, $mode) {
 		if ($this->checkPath($path)) {
 			return parent::fopen($path, $mode);
@@ -203,10 +189,7 @@ class DirMask extends PermissionsMask {
 		}
 	}
 
-	/**
-	 * @psalm-suppress MethodSignatureMustProvideReturnType
-	 */
-	public function getCache($path = '', $storage = null) {
+	public function getCache($path = '', $storage = null): ICache {
 		if (!$storage) {
 			$storage = $this;
 		}

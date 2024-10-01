@@ -587,7 +587,14 @@ namespace OC\Files\Mount {
 
 namespace OC\Files\Storage\Wrapper{
 
+	use OCP\Files\Cache\ICache;
+	use OCP\Files\Cache\IPropagator;
+	use OCP\Files\Cache\IScanner;
+	use OCP\Files\Cache\IUpdater;
+	use OCP\Files\Cache\IWatcher;
+	use OCP\Files\Storage;
 	use OCP\Files\Storage\IStorage;
+	use OCP\Lock\ILockingProvider;
 
 	class Wrapper implements IStorage {
 		/**
@@ -595,189 +602,196 @@ namespace OC\Files\Storage\Wrapper{
 		 */
 		protected $storage;
 
-
-		public function __construct(array $parameters) {
+		/**
+		 * @param array $parameters
+		 */
+		public function __construct($parameters) {
 		}
 
-		public function getWrapperStorage(): ?IStorage {
+		public function getWrapperStorage(): IStorage {
 		}
 
-		public function getId() {
+		public function getId(): string {
 		}
 
-		public function mkdir($path) {
+		public function mkdir($path): bool {
 		}
 
-		public function rmdir($path) {
+		public function rmdir($path): bool {
 		}
 
 		public function opendir($path) {
-			throw new \Exception('stub');
 		}
 
-		public function is_dir($path) {
-			throw new \Exception('stub');
+		public function is_dir($path): bool {
 		}
 
-		public function is_file($path) {
-			throw new \Exception('stub');
+		public function is_file($path): bool {
 		}
 
-		public function stat($path) {
-			throw new \Exception('stub');
+		public function stat($path): array|false {
 		}
 
-		public function filetype($path) {
-			throw new \Exception('stub');
+		public function filetype($path): string|false {
 		}
 
-		public function filesize($path) {
-			throw new \Exception('stub');
+		public function filesize($path): int|float|false {
 		}
 
-		public function isCreatable($path) {
-			throw new \Exception('stub');
+		public function isCreatable($path): bool {
 		}
 
-		public function isReadable($path) {
-			throw new \Exception('stub');
+		public function isReadable($path): bool {
 		}
 
-		public function isUpdatable($path) {
-			throw new \Exception('stub');
+		public function isUpdatable($path): bool {
 		}
 
-		public function isDeletable($path) {
-			throw new \Exception('stub');
+		public function isDeletable($path): bool {
 		}
 
-		public function isSharable($path) {
-			throw new \Exception('stub');
+		public function isSharable($path): bool {
 		}
 
-		public function getPermissions($path) {
-			throw new \Exception('stub');
+		public function getPermissions($path): int {
 		}
 
-		public function file_exists($path) {
-			throw new \Exception('stub');
+		public function file_exists($path): bool {
 		}
 
-		public function filemtime($path) {
-			throw new \Exception('stub');
+		public function filemtime($path): int|false {
 		}
 
-		public function file_get_contents($path) {
-			throw new \Exception('stub');
+		public function file_get_contents($path): string|false {
 		}
 
-		public function file_put_contents($path, $data) {
-			throw new \Exception('stub');
+		public function file_put_contents($path, $data): int|float|false {
 		}
 
-		public function unlink($path) {
-			throw new \Exception('stub');
+		public function unlink($path): bool {
 		}
 
-		public function rename($path1, $path2) {
-			throw new \Exception('stub');
+		public function rename($source, $target): bool {
 		}
 
-		public function copy($path1, $path2) {
-			throw new \Exception('stub');
+		public function copy($source, $target): bool {
 		}
 
 		public function fopen($path, $mode) {
-			throw new \Exception('stub');
 		}
 
-		public function getMimeType($path) {
-			throw new \Exception('stub');
+		public function getMimeType($path): string|false {
 		}
 
-		public function hash($type, $path, $raw = false) {
-			throw new \Exception('stub');
+		public function hash($type, $path, $raw = false): string|false {
 		}
 
-		public function free_space($path) {
-			throw new \Exception('stub');
+		public function free_space($path): int|float|false {
 		}
 
-		public function touch($path, $mtime = null) {
-			throw new \Exception('stub');
+		public function touch($path, $mtime = null): bool {
 		}
 
-		public function getLocalFile($path) {
-			throw new \Exception('stub');
+		public function getLocalFile($path): string|false {
 		}
 
-		public function hasUpdated($path, $time) {
-			throw new \Exception('stub');
+		public function hasUpdated($path, $time): bool {
 		}
 
-		public function getETag($path) {
-			throw new \Exception('stub');
+		public function getCache($path = '', $storage = null): ICache {
 		}
 
-		public function isLocal() {
-			throw new \Exception('stub');
+		public function getScanner($path = '', $storage = null): IScanner {
 		}
 
-		public function instanceOfStorage($class) {
-			throw new \Exception('stub');
+		public function getOwner($path): string|false {
 		}
 
-		public function getDirectDownload($path) {
-			throw new \Exception('stub');
+		public function getWatcher($path = '', $storage = null): IWatcher {
 		}
 
-		public function verifyPath($path, $fileName) {
-			throw new \Exception('stub');
+		public function getPropagator($storage = null): IPropagator {
 		}
 
-		public function copyFromStorage(IStorage $sourceStorage, $sourceInternalPath, $targetInternalPath) {
-			throw new \Exception('stub');
+		public function getUpdater($storage = null): IUpdater {
 		}
 
-		public function moveFromStorage(IStorage $sourceStorage, $sourceInternalPath, $targetInternalPath) {
-			throw new \Exception('stub');
+		public function getStorageCache(): \OC\Files\Cache\Storage {
 		}
 
-		public function test() {
-			throw new \Exception('stub');
+		public function getETag($path): string|false {
 		}
 
-		public function getAvailability() {
-			throw new \Exception('stub');
+		public function test(): bool {
 		}
 
-		public function setAvailability($isAvailable) {
-			throw new \Exception('stub');
+		public function isLocal(): bool {
 		}
 
-		public function getOwner($path) {
-			throw new \Exception('stub');
+		public function instanceOfStorage($class): bool {
 		}
 
-		public function getCache() {
-			throw new \Exception('stub');
+		/**
+		 * @psalm-template T of IStorage
+		 * @psalm-param class-string<T> $class
+		 * @psalm-return T|null
+		 */
+		public function getInstanceOfStorage(string $class): ?IStorage {
 		}
 
-		public function getPropagator() {
-			throw new \Exception('stub');
+		/**
+		 * Pass any methods custom to specific storage implementations to the wrapped storage
+		 *
+		 * @param string $method
+		 * @param array $args
+		 * @return mixed
+		 */
+		public function __call($method, $args) {
 		}
 
-		public function getScanner() {
-			throw new \Exception('stub');
+		public function getDirectDownload($path): array|false {
 		}
 
-		public function getUpdater() {
+		public function getAvailability(): array {
 		}
 
-		public function getWatcher() {
+		public function setAvailability($isAvailable): void {
 		}
 
-		public function setOwner(?string $user) : void {
+		public function verifyPath($path, $fileName): void {
+		}
+
+		public function copyFromStorage(IStorage $sourceStorage, $sourceInternalPath, $targetInternalPath): bool {
+		}
+
+		public function moveFromStorage(IStorage $sourceStorage, $sourceInternalPath, $targetInternalPath): bool {
+		}
+
+		public function getMetaData($path): ?array {
+		}
+
+		public function acquireLock($path, $type, ILockingProvider $provider): void {
+		}
+
+		public function releaseLock($path, $type, ILockingProvider $provider): void {
+		}
+
+		public function changeLock($path, $type, ILockingProvider $provider): void {
+		}
+
+		public function needsPartFile(): bool {
+		}
+
+		public function writeStream(string $path, $stream, ?int $size = null): int {
+		}
+
+		public function getDirectoryContent($directory): \Traversable {
+		}
+
+		public function isWrapperOf(IStorage $storage): bool {
+		}
+
+		public function setOwner(?string $user): void {
 		}
 	}
 
