@@ -100,7 +100,7 @@ class RestrictionManager {
 			}
 
 			/** @var NavigationManager $navManager */
-			$navManager = $this->server->getNavigationManager();
+			$navManager = \OCP\Server::get(INavigationManager::class);
 
 			$this->server->registerService(INavigationManager::class, function () use ($navManager) {
 				return new FilteredNavigationManager($this->userSession->getUser(), $navManager, $this->whitelist);
