@@ -25,8 +25,8 @@
     "Data from your previous guest account was successfully imported into your new account." : "بيانات حسابك السابق كضيفٍ تمّ استيرادها بنجاحٍ في حسابك الجديد.",
     "Guest conversion failed" : "تعذّر تحويل الضيف",
     "Failed to convert guest {guest} account to {user} account" : "تعذّر تحويل الضيف في الحساب {guest} إلى الحساب {user}  ",
-    "Guest conversion done" : "تمّ بنجاحٍ تحويل الضيف",
-    "Conversion of guest {guest} to {user} completed" : "تحويل الضيف {guest} إلى {user} تمّ بنجاحٍ",
+    "Guest conversion done" : "تمّ بنجاح تحويل الضيف",
+    "Conversion of guest {guest} to {user} completed" : "تحويل الضيف {guest} إلى {user} تمّ بنجاح",
     "Create guest accounts for easier collaboration" : "إنشيء حسابات ضيوف لتسهيل التعاون",
     "👥 Allows for better collaboration with external users by allowing users to create guests account.\n\nGuests accounts can be created from the share menu by entering either the recipients email or name and choosing \"create guest account\", once the share is created the guest user will receive an email notification about the mail with a link to set their password.\n\nGuests users can only access files shared to them and cannot create any files outside of shares, additionally, the apps accessible to guest accounts are whitelisted." : "👥يسمح بتعاونٍ أفضل مع المستخدمين الخارجيين من خلال السماح للمستخدمين بإنشاء حساب ضيف. \nيمكن إنشاء حساب ضيف من قائمة المشاركة إمّا عن طريق إدخال البريد الإلكتروني للمستلمين أو الاسم واختيار \"إنشاء حساب ضيف\" \"create guest account\". \nبمجرد إنشاء المشاركة سيتلقى المستخدم الضيف إشعارًا بالبريد الإلكتروني يحوي رابطاً لتعيين كلمة المرور الخاصة به. \nيمكن للمستخدمين الوصول فقط إلى الملفات التي تمّت مشاركتها معهم ولا يمكنهم إنشاء أي ملفات خارج المشاركات. \nإضافةً إلى ذلك، فإن التطبيقات التي يمكن للحساب الضيف الوصول إليها  سيتم إدراجها في القائمة البيضاء.",
     "None" : "لا شيء",
@@ -56,7 +56,7 @@
     "Invite user to conversation" : "أُدعُ مستخدماً إلى المُحادثة",
     "Invite user and create share" : "أُدعّ مستخدماً و أنشيء مُشاركةً",
     "Guest user needs to be added to at least one group" : "المُستخدمُ الضيفُ يجب أن يُضاف إلى مجموعةٍ و احدةٍ على الأقل",
-    "Guest accounts are grouped under a virtual group in the account manager" : "يتم تجميع حسابات الضيوف في مجموعة افتراضية في مُدير الحسابات account manager.",
+    "Guest accounts are grouped under a virtual group in the account manager" : "يتم تجميع حسابات الضيوف في مجموعة افتراضية في مدير الحسابات.",
     "Creating guests accounts is restricted while \"Restrict accounts to only share with accounts in their groups\" is enabled." : "يتم تقييد إنشاء حسابات الضيوف أثناء تمكين \"تقييد الحسابات للمشاركة مع الحسابات في مجموعاتهم فقط\". ",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "يُسمح فقط لمسؤولي المجموعة بإنشاء ضيوف ويجب إضافة الضيوف إلى مجموعةٍ واحدةٍ على الأقل يكون منشئُ المشاركة مسؤولاً عنها.",
     "Guest accounts can access mounted external storages" : "يمكن لحسابات الضيوف الوصول إلى وحدات التخزين الخارجية المُصعّدة mounted.",
@@ -73,7 +73,7 @@
     "Guest transfer failed" : "فشل في نقل الضيف",
     "Failed to transfer guest {guest} to {user}" : "فشل في نقل الضيف {guest} إلى {user}",
     "Guest transfer done" : "تمّ نقل الضيف",
-    "Transfer of guest {guest} to {user} completed" : "تمّ نقل الضيف {guest} إلى {user} بنجاحٍ",
+    "Transfer of guest {guest} to {user} completed" : "تمّ نقل الضيف {guest} إلى {user} بنجاح",
     "Transfer guest to new account" : "نقل الضيف إلى حساب جديد",
     "Transferring guest…" : "نقل الضيف جارٍ ...",
     "Transfer" : "نقل",
