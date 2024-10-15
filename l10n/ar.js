@@ -70,7 +70,7 @@ OC.L10N.register(
     "Your settings have been updated" : "تمّ تحديث إعداداتك",
     "Saving …" : "حفظ ...",
     "Invite guest" : "أُدعُ ضيفاً",
-    "A user with this ID or email address already exists" : "يوجد مُسبقاً مُستخدم بنفس هذا المُعرّف أو الإيميل",
+    "A user with this ID or email address already exists" : "يوجد مُسبقاً مُستخدم بنفس هذا المعرف أو الإيميل",
     "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "سيتم حالاً تحويل الضيف إلى حساب اعتيادي اسمه \"{userId}\"  ",
     "Guest transfer failed" : "فشل في نقل الضيف",
     "Failed to transfer guest {guest} to {user}" : "فشل في نقل الضيف {guest} إلى {user}",
