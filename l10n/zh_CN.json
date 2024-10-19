@@ -11,7 +11,7 @@
     "Incoming share" : "接收的共享",
     "Hey there," : "您好,",
     "%s just shared »%s« with you." : "%s 刚刚分享了 »%s«给您 。",
-    "You can access the shared file by activating your guest account." : "您可以透过激活访客账户的方式访问被共享的文件。",
+    "You can access the shared file by activating your guest account." : "你可以通过激活访客账号来访问已分享的文件。",
     "After your account is activated you can view the share by logging in with %s." : "激活账号后，您可以以 %s的身份查看共享文件。",
     "The share will expire at %s." : "共享期限将截至于 %s。",
     "Activate account" : "激活账号",
