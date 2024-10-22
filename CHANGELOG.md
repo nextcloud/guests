@@ -2,8 +2,36 @@
 
 All notable changes to this project will be documented in this file.
 
+## 4.0.1
+### Dependencies
+* Chore(deps-dev): Bump vite from 5.3.4 to 5.3.5 by @dependabot in https://github.com/nextcloud/guests/pull/1208
+* Chore(deps): Bump @nextcloud/vue from 8.14.0 to 8.15.0 by @dependabot in https://github.com/nextcloud/guests/pull/1209
+* Chore(deps): Bump @nextcloud/sharing from 0.2.2 to 0.2.3 by @dependabot in https://github.com/nextcloud/guests/pull/1211
+* Chore(deps): Bump @nextcloud/vue from 8.15.0 to 8.15.1 by @dependabot in https://github.com/nextcloud/guests/pull/1214
+* Chore(deps): Bump @nextcloud/vue from 8.15.1 to 8.16.0 by @dependabot in https://github.com/nextcloud/guests/pull/1216
+
+**Full Changelog**: https://github.com/nextcloud/guests/compare/v4.0.0...v4.0.1
+
+## 4.0.0
+### What's Changed
+* Add info about guest seeing each others by @artonge in https://github.com/nextcloud/guests/pull/1144
+* Add 'direct' GET param to invite email 'view share' link by @julien-nc in https://github.com/nextcloud/guests/pull/1151
+* fix(GuestForm): allow to create a guest without name more than once by @ShGKme in https://github.com/nextcloud/guests/pull/1178
+* fix(Sharing): Do not create new share in guest app  by @Fenn-CS in https://github.com/nextcloud/guests/pull/1189
+* feat: Implement IPasswordHashBackend by @Pytal in https://github.com/nextcloud/guests/pull/1194
+* feat: Add transfer endpoint by @Pytal in https://github.com/nextcloud/guests/pull/1173
+* feat: Allow transferring guests to full accounts by @Pytal in https://github.com/nextcloud/guests/pull/1174
+* fix(README): Fix guest specific behavior section links by @joshtrichards in https://github.com/nextcloud/guests/pull/1207
+
+### New Contributors
+* @artonge made their first contribution in https://github.com/nextcloud/guests/pull/1144
+* @solracsf made their first contribution in https://github.com/nextcloud/guests/pull/1170
+* @Pytal made their first contribution in https://github.com/nextcloud/guests/pull/1169
+
+**Full Changelog**: https://github.com/nextcloud/guests/compare/v3.1.0...v4.0.0
+
 ## 3.1.0
-## What's Changed
+### What's Changed
 * 29 compatibility
 * fix: ListCommand: update for Symfony >=5 exit status by @joshtrichards in https://github.com/nextcloud/guests/pull/1102
 * fix: reuse share object instead of getting it again when sending invite mail by @icewind1991 in https://github.com/nextcloud/guests/pull/1122
@@ -12,7 +40,7 @@ All notable changes to this project will be documented in this file.
 * fix(npm): audit
 * fix(whitelist): Block Talk base page as well by @nickvergessen in https://github.com/nextcloud/guests/pull/1107
 
-## New Contributors
+### New Contributors
 * @joshtrichards made their first contribution in https://github.com/nextcloud/guests/pull/1102
 
 **Full Changelog**: https://github.com/nextcloud/guests/compare/v3.0.1...v3.1.0
