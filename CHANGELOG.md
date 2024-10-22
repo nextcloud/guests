@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## 3.0.2
+### Fixes
+* [stable28] fix(GuestForm): allow to create a guest without name more than once by @backportbot in https://github.com/nextcloud/guests/pull/1179
+* [stable28] chore: add changelog for 2.4.0 .. 3.0.1 by @ShGKme in https://github.com/nextcloud/guests/pull/1184
+* [stable28] fix(Sharing): Do not create new share in guest app  by @backportbot in https://github.com/nextcloud/guests/pull/1192
+
+### Dependencies
+* Chore(deps): Bump follow-redirects from 1.15.3 to 1.15.4 by @dependabot in https://github.com/nextcloud/guests/pull/1097
+
+**Full Changelog**: https://github.com/nextcloud/guests/compare/v3.0.1...v3.0.2
+
 ## 3.0.1
 ### What's Changed
 * 3.0.1 by @icewind1991 in https://github.com/nextcloud/guests/pull/1082
@@ -9,7 +20,6 @@ All notable changes to this project will be documented in this file.
 **Full Changelog**: https://github.com/nextcloud/guests/compare/v3.0.0...v3.0.1
 
 ## 3.0.0
-
 ### What's Changed
 * feat(deps): Add Nextcloud 28 support by @nickvergessen in https://github.com/nextcloud/guests/pull/1026
 * Fix event dispatcher usage by @nickvergessen in https://github.com/nextcloud/guests/pull/1045
