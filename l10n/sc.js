@@ -35,6 +35,7 @@ OC.L10N.register(
     "Received shares" : "Cumpartziduras retzidas",
     "No guest accounts created" : "Perunu contu de invitu creadu",
     "Default" : "Predefinidu",
+    "New account name" : "Nùmene de contu nou",
     "Cancel" : "Annulla",
     "Name:" : "Nùmene:",
     "Email:" : "Indiritzu de posta:",
