@@ -54,7 +54,7 @@
     "An error occurred, try again" : "حدث خطأ. حاول مُجدّداً",
     "Invite {name}" : "أرسل دعوةً إلى {name}",
     "Invite user to conversation" : "أُدعُ مستخدماً إلى المُحادثة",
-    "Invite user and create share" : "أُدعّ مستخدماً و أنشيء مُشاركةً",
+    "Invite user and create share" : "دعوة مستخدم وإنشاء مشاركة",
     "Guest user needs to be added to at least one group" : "المُستخدمُ الضيفُ يجب أن يُضاف إلى مجموعةٍ و احدةٍ على الأقل",
     "Guest accounts are grouped under a virtual group in the account manager" : "يتم تجميع حسابات الضيوف في مجموعة افتراضية في مدير الحسابات.",
     "Creating guests accounts is restricted while \"Restrict accounts to only share with accounts in their groups\" is enabled." : "يتم تقييد إنشاء حسابات الضيوف أثناء تمكين \"تقييد الحسابات للمشاركة مع الحسابات في مجموعاتهم فقط\". ",
