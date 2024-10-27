@@ -39,6 +39,7 @@ OC.L10N.register(
     "Convert guest to regular account" : "Преобразовать учетную запись гостя в обычную учетную запись",
     "New account name" : "Новое имя учетной записи",
     "Cancel" : "Отмена",
+    "Converting guest…" : "Преобразование гостя…",
     "Name:" : "Имя:",
     "Email:" : "Эл. почта:",
     "Language:" : "Язык:",
