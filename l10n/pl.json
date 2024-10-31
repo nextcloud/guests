@@ -5,6 +5,7 @@
     "A user with that email already exists." : "Użytkownik o tym e-mailu już istnieje.",
     "A user with that name already exists." : "Użytkownik z taką nazwą już istnieje.",
     "User successfully created" : "Utworzono pomyślnie użytkownika",
+    "Failed to authorize" : "Błąd autoryzacji",
     "User already exists" : "Użytkownik już istnieje",
     "%s shared »%s« with you" : "%s udostępnił Tobie »%s«",
     "Incoming share" : "Przychodzące udostępnianie",
@@ -33,6 +34,7 @@
     "Received shares" : "Otrzymane udostępnianie",
     "No guest accounts created" : "Nie utworzono kont gości",
     "Default" : "Domyślny",
+    "New account name" : "Nowa nazwa konta",
     "Cancel" : "Anuluj",
     "Name:" : "Nazwa:",
     "Email:" : "E-mail:",
@@ -56,6 +58,7 @@
     "Saving …" : "Zapisywanie…",
     "Invite guest" : "Zaproś gościa",
     "A user with this ID or email address already exists" : "Użytkownik o tym ID lub adresie e-mail już istnieje",
+    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Wkrótce gość zostanie przekonwertowany na zwykłe konto o nazwie „{userId}”.",
     "Transfer" : "Przenieś"
 },"pluralForm" :"nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);"
 }
