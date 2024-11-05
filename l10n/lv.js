@@ -8,7 +8,7 @@ OC.L10N.register(
     "User successfully created" : "Lietotājs veiksmīgi izveidots",
     "%s shared »%s« with you" : "%s kopīgots »%s« ar jums",
     "%s via %s" : "%s ar %s",
-    "Couldn't send reset email. Please contact your administrator." : "Nevarēja nosūtīt maiņas e-pastu. Lūdzu sazinies ar savu administratoru.",
+    "Couldn't send reset email. Please contact your administrator." : "Nevarēja nosūtīt atiestatīšanas e-pasta ziņojumu. Lūgums sazināties ar savu pārvaldītāju.",
     "Guests" : "Viesi",
     "None" : "Nav",
     "Name" : "Vārds",
