@@ -1,0 +1,8 @@
+{ "translations": {
+    "None" : "Denguno",
+    "Name" : "Nombre",
+    "Email" : "Correu electronico",
+    "Cancel" : "Canzelar",
+    "Error" : "Error"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}
