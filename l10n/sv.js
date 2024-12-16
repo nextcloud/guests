@@ -22,6 +22,7 @@ OC.L10N.register(
     "View share" : "Visa delning",
     "%s via %s" : "%s via %s",
     "Couldn't send reset email. Please contact your administrator." : "Kunde inte skicka återställningsmejl. Kontakta din administratör.",
+    "Guests" : "Gäster",
     "Data imported" : "Data importerades",
     "Data from your previous guest account was successfully imported into your new account." : "Data från ditt tidigare gästkonto har importerats till ditt nya konto.",
     "Guest conversion failed" : "Gästkonvertering misslyckades",
