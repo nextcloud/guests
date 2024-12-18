@@ -22,6 +22,7 @@ OC.L10N.register(
     "View share" : "Zobrazit sdílení",
     "%s via %s" : "%s prostřednictvím %s",
     "Couldn't send reset email. Please contact your administrator." : "Nepodařilo se odeslat e-mail pro změnu hesla. Obraťte se prosím na správce tohoto serveru.",
+    "Guests" : "Hosté",
     "Data imported" : "Data naimportována",
     "Data from your previous guest account was successfully imported into your new account." : "Data z vašeho dřívějšího účtu hosta byla úspěšně naimportována do vašeho nového účtu.",
     "Guest conversion failed" : "Převod hosta se nezdařil",
