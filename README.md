@@ -5,6 +5,8 @@
 -->
 # 👥 Guests
 
+[![REUSE status](https://api.reuse.software/badge/github.com/nextcloud/guests)](https://api.reuse.software/info/github.com/nextcloud/guests)
+
 The Nextcloud Guests app allows you to create users which can only see files shared with them and access a customizable set of apps.
 
 ![image](https://github.com/nextcloud/guests/assets/1731941/e1d1f71d-458f-48c1-a837-b3c9d6d03ac3)
