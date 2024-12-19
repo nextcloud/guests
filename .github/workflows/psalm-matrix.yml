@@ -2,6 +2,9 @@
 #
 # https://github.com/nextcloud/.github
 # https://docs.github.com/en/actions/learn-github-actions/sharing-workflows-with-your-organization
+#
+# SPDX-FileCopyrightText: 2022-2024 Nextcloud GmbH and Nextcloud contributors
+# SPDX-License-Identifier: MIT
 
 name: Static analysis
 
@@ -13,7 +16,7 @@ concurrency:
 
 jobs:
   matrix:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest-low
     outputs:
       ocp-matrix: ${{ steps.versions.outputs.ocp-matrix }}
     steps:
@@ -31,7 +34,7 @@ jobs:
       fail-fast: false
       matrix: ${{ fromJson(needs.matrix.outputs.ocp-matrix) }}
 
-    name: Nextcloud ${{ matrix.ocp-version }}
+    name: static-psalm-analysis ${{ matrix.ocp-version }}
     steps:
       - name: Checkout
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
@@ -55,7 +58,7 @@ jobs:
         run: composer run psalm
 
   summary:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest-low
     needs: static-analysis
 
     if: always()

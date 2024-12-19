@@ -2,6 +2,9 @@
 #
 # https://github.com/nextcloud/.github
 # https://docs.github.com/en/actions/learn-github-actions/sharing-workflows-with-your-organization
+#
+# SPDX-FileCopyrightText: 2022-2024 Nextcloud GmbH and Nextcloud contributors
+# SPDX-License-Identifier: MIT
 
 name: PHPUnit OCI
 
@@ -16,7 +19,7 @@ concurrency:
 
 jobs:
   matrix:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest-low
     outputs:
       php-max: ${{ steps.versions.outputs.php-max-list }}
       server-max: ${{ steps.versions.outputs.branches-max-list }}
@@ -28,10 +31,13 @@ jobs:
         uses: icewind1991/nextcloud-version-matrix@c2bf575a3516752db5ce2915499d3f694885e2c7 # v1.0.0
 
   changes:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest-low
+    permissions:
+      contents: read
+      pull-requests: read
 
     outputs:
-      src: ${{ steps.changes.outputs.src}}
+      src: ${{ steps.changes.outputs.src }}
 
     steps:
       - uses: dorny/paths-filter@4512585405083f25c027a35db413c2b3b9006d50 # v2.11.1

@@ -2,7 +2,6 @@
   - SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
   - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
-
 <template>
 	<NcDialog :name="t('guests', 'Convert guest to regular account')"
 		:out-transition="true"

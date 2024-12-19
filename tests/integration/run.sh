@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
-
+#
+# SPDX-FileCopyrightText: 2017 Nextcloud GmbH and Nextcloud contributors
+# SPDX-FileCopyrightText: 2017 ownCloud GmbH
+# SPDX-License-Identifier: AGPL-3.0-only
+#
 mkdir -p output
 
 composer install
