@@ -1,0 +1,54 @@
+# SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
+# SPDX-License-Identifier: AGPL-3.0-or-later
+version = 1
+SPDX-PackageName = "guests"
+SPDX-PackageSupplier = "Nextcloud <info@nextcloud.com>"
+SPDX-PackageDownloadLocation = "https://github.com/nextcloud/guests"
+
+[[annotations]]
+path = ["l10n/**.js", "l10n/**.json"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2017 ownCloud translators, 2017-2024 Nextcloud translators"
+SPDX-License-Identifier = "AGPL-3.0-only AND (AGPL-3.0-or-later OR AGPL-3.0-only)"
+
+[[annotations]]
+path = ["tests/integration/data/file_to_overwrite.txt", "tests/integration/data/textfile.txt"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2017 ownCloud GmbH"
+SPDX-License-Identifier = "AGPL-3.0-only"
+
+[[annotations]]
+path = ["tests/integration/composer.json", "tests/integration/composer.lock"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2017 ownCloud GmbH, 2017-2022 Nextcloud GmbH and Nextcloud contributors"
+SPDX-License-Identifier = "AGPL-3.0-only AND (AGPL-3.0-or-later OR AGPL-3.0-only)"
+
+[[annotations]]
+path = ["package-lock.json", "package.json"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2018 Nextcloud GmbH and Nextcloud contributors"
+SPDX-License-Identifier = "AGPL-3.0-or-later"
+
+[[annotations]]
+path = ["composer.json", "composer.lock"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2019 Nextcloud GmbH and Nextcloud contributors"
+SPDX-License-Identifier = "AGPL-3.0-or-later"
+
+[[annotations]]
+path = ".tx/config"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2023 Nextcloud GmbH and Nextcloud contributors"
+SPDX-License-Identifier = "AGPL-3.0-or-later"
+
+[[annotations]]
+path = "tsconfig.json"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2024 Nextcloud GmbH and Nextcloud contributors"
+SPDX-License-Identifier = "AGPL-3.0-or-later"
+
+[[annotations]]
+path = ["img/account-arrow-right.svg", "img/app.svg", "img/app-dark.svg"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2018-2024 Google LLC"
+SPDX-License-Identifier = "Apache-2.0"

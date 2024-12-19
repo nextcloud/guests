@@ -1,4 +1,11 @@
+<!--
+  - SPDX-FileCopyrightText: 2017-2024 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-FileCopyrightText: 2015-2017 ownCloud GmbH
+  - SPDX-License-Identifier: AGPL-3.0-only AND (AGPL-3.0-or-later OR AGPL-3.0-only)
+-->
 # 👥 Guests
+
+[![REUSE status](https://api.reuse.software/badge/github.com/nextcloud/guests)](https://api.reuse.software/info/github.com/nextcloud/guests)
 
 The Nextcloud Guests app allows you to create users which can only see files shared with them and access a customizable set of apps.
 

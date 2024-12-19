@@ -1,3 +1,7 @@
+<!--
+  - SPDX-FileCopyrightText: 2019 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-License-Identifier: AGPL-3.0-or-later
+-->
 <template>
 	<NcSettingsSection :name="t('guests', 'Guests accounts')">
 		<div class="guests-list" v-if="loaded && !error">

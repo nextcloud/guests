@@ -1,0 +1,46 @@
+<!--
+  - SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+# Authors
+
+- Alexander Müller <28591861+alexanderdd@users.noreply.github.com>
+- Andy Scherzinger <info@andy-scherzinger.de>
+- Arthur Schiwon <blizzz@arthur-schiwon.de>
+- Carl Schwan <carl@carlschwan.eu>
+- Christoph Wurst <christoph@winzerhof-wurst.at>
+- Christopher Ng <chrng8@gmail.com>
+- Côme Chilliet <come.chilliet@nextcloud.com>
+- Daniel Kesselberg <mail@danielkesselberg.de>
+- F. E Noel Nfebe <fenn25.fn@gmail.com>
+- Felix Heidecke <felix@heidecke.me>
+- felixboehm <felix@owncloud.com>
+- Ferdinand Thiessen <opensource@fthiessen.de>
+- Git'Fellow <12234510+solracsf@users.noreply.github.com>
+- Grigorii K. Shartsev <me@shgk.me>
+- Ilja Neumann <ineumann@owncloud.com>
+- Jan-Christoph Borchardt <hey@jancborchardt.net>
+- Joas Schilling <coding@schilljs.com>
+- John Molakvoæ <skjnldsv@protonmail.com>
+- Jos Poortvliet <jos@opensuse.org>
+- Josh <josh.t.richards@gmail.com>
+- Julien Veyssier <julien-nc@posteo.net>
+- Julius Knorr <jus@bitgrid.net>
+- Jérôme Herbinet <33763786+Jerome-Herbinet@users.noreply.github.com>
+- Jörn Friedrich Dreyer <jfd@butonic.de>
+- Louis Chemineau <louis@chmn.me>
+- Lukas Reschke <lukas@statuscode.ch>
+- Marcel Müller <marcel-mueller@gmx.de>
+- Markus Hoffrogge <mhoffrogge@gmail.com>
+- Michael Weimann <mail@michael-weimann.eu>
+- Morris Jobke <hey@morrisjobke.de>
+- Kate <kate@provokateurin.de>
+- rakekniven <mark.ziegler@rakekniven.de>
+- Robin Appelman <robin@icewind.nl>
+- Roeland Jago Douma <roeland@famdouma.nl>
+- Sascha Wiswedel <sascha.wiswedel@nextcloud.com>
+- Sergio Bertolin <sbertolin@solidgear.es>
+- Thomas Müller <DeepDiver1975@users.noreply.github.com>
+- Tortue Torche <tortuetorche@users.noreply.github.com>
+- Valdnet <47037905+Valdnet@users.noreply.github.com>
+- Vincent Petry <vincent@nextcloud.com>
