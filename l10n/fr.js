@@ -22,6 +22,7 @@ OC.L10N.register(
     "View share" : "Afficher le partage",
     "%s via %s" : "%s via %s",
     "Couldn't send reset email. Please contact your administrator." : "Impossible d’envoyer l'e-mail de réinitialisation. Veuillez contacter votre administrateur.",
+    "Guests" : "Invités",
     "Data imported" : "Données importées",
     "Data from your previous guest account was successfully imported into your new account." : "Les données de votre compte invité ont été importées avec succès dans votre nouveau compte.",
     "Guest conversion failed" : "La conversion de l'invité a échoué",
