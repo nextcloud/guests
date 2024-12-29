@@ -6,7 +6,7 @@ OC.L10N.register(
     "Invalid mail address" : "Neplatná e-mailová adresa",
     "A user with that email already exists." : "Uživatel s takovým e-mailem už existuje.",
     "A user with that name already exists." : "Uživatel s takovým jménem už existuje.",
-    "User successfully created" : "Uživatel vytvořen",
+    "User successfully created" : "Uživatel úspěšně vytvořen",
     "Failed to authorize" : "Nepodařilo se získat pověření",
     "Guest does not exist" : "Host neexistuje",
     "User already exists" : "Uživatel už existuje",
