@@ -18,7 +18,7 @@ const transferGuest = (_event: MouseEvent, user: User): void => {
 		if (userId === null) {
 			return
 		}
-		showSuccess(t('guests', 'Guest will be transferred to "{userId}" soon', { userId }))
+		showSuccess(t('guests', 'Guest will be converted to a regular account with the account name "{userId}" soon', { userId }))
 	}
 
 	spawnDialog(TransferGuestDialog, {
@@ -32,7 +32,7 @@ const enabled = (user: User) => user?.backend === 'Guests'
 const registerAction = () => {
 	window.OCA.Settings.UserList.registerAction(
 		SvgAccountArrowRight,
-		t('guests', 'Transfer guest to full account'),
+		t('guests', 'Convert guest to regular account'),
 		transferGuest,
 		enabled,
 	)
