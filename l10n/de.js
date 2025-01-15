@@ -37,6 +37,7 @@ OC.L10N.register(
     "Shared At" : "Geteilt auf",
     "An error occured while fetching the shares list" : "Fehler beim Abruf der Freigabeliste",
     "Guests accounts" : "Gastkonten",
+    "Email" : "E-Mail",
     "Invited by" : "Eingeladen von",
     "Received shares" : "Erhaltene Freigaben",
     "No guest accounts created" : "Keine Gastkonten erstellt",
