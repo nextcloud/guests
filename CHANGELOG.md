@@ -6,6 +6,83 @@
 
 All notable changes to this project will be documented in this file.
 
+## 4.1.0
+31 compatibility
+
+### Fixes
+* Add missing div id (fixes CSS lack) by @Jerome-Herbinet in https://github.com/nextcloud/guests/pull/1227
+* fix: Fix navigation manager to be in line with server by @nickvergessen in https://github.com/nextcloud/guests/pull/1248
+* fix(notifications): Notifier::prepare() threw \InvalidArgumentExcepti… by @nickvergessen in https://github.com/nextcloud/guests/pull/1272
+* Replace "transfer" notion with "convert" notion by @Jerome-Herbinet in https://github.com/nextcloud/guests/pull/1228
+
+### Changes
+* 4.1.0 by @icewind1991 in https://github.com/nextcloud/guests/pull/1280
+* feat: always allow twofactor apps by @st3iny in https://github.com/nextcloud/guests/pull/1278
+* feat(deps): Add Nextcloud 31 support by @nickvergessen in https://github.com/nextcloud/guests/pull/1219
+* refactor: Migrate from deprecated `ILogger` interface to PSR-3 logger by @susnux in https://github.com/nextcloud/guests/pull/1229
+
+### Dependencies
+* Chore(deps-dev): Bump @nextcloud/vite-config from 1.3.0 to 1.4.2 by @dependabot
+* Chore(deps-dev): Bump elliptic from 6.5.5 to 6.6.0 by @dependabot
+* Chore(deps-dev): Bump vite from 5.3.4 to 5.4.10 by @dependabot
+* Chore(deps): Bump @nextcloud/dialogs from 5.3.5 to 6.0.0 by @dependabot
+* Chore(deps): Bump @nextcloud/sharing from 0.2.2 to 0.2.3 by @dependabot
+* Chore(deps): Bump @nextcloud/vue from 8.14.0 to 8.17.1 by @dependabot
+* Chore(deps): Bump axios from 1.7.2 to 1.7.4 by @dependabot
+* Chore(deps): Bump fast-xml-parser from 4.4.0 to 4.4.1 by @dependabot
+* Chore(deps): Bump vue-material-design-icons from 5.3.0 to 5.3.1 by @dependabot
+
+### New Contributors
+* @Jerome-Herbinet made their first contribution in https://github.com/nextcloud/guests/pull/1227
+* @susnux made their first contribution in https://github.com/nextcloud/guests/pull/1229
+* @AndyScherzinger made their first contribution in https://github.com/nextcloud/guests/pull/1270
+* @st3iny made their first contribution in https://github.com/nextcloud/guests/pull/1278
+
+**Full Changelog**: https://github.com/nextcloud/guests/compare/v4.0.0...v4.1.0
+
+## 4.0.1
+### Dependencies
+* Chore(deps-dev): Bump vite from 5.3.4 to 5.3.5 by @dependabot in https://github.com/nextcloud/guests/pull/1208
+* Chore(deps): Bump @nextcloud/vue from 8.14.0 to 8.15.0 by @dependabot in https://github.com/nextcloud/guests/pull/1209
+* Chore(deps): Bump @nextcloud/sharing from 0.2.2 to 0.2.3 by @dependabot in https://github.com/nextcloud/guests/pull/1211
+* Chore(deps): Bump @nextcloud/vue from 8.15.0 to 8.15.1 by @dependabot in https://github.com/nextcloud/guests/pull/1214
+* Chore(deps): Bump @nextcloud/vue from 8.15.1 to 8.16.0 by @dependabot in https://github.com/nextcloud/guests/pull/1216
+
+**Full Changelog**: https://github.com/nextcloud/guests/compare/v4.0.0...v4.0.1
+
+
+## 3.2.0
+### Fixes
+* Fix tests by @solracsf in https://github.com/nextcloud/guests/pull/1170
+* fix(GuestForm): allow to create a guest without name more than once by @ShGKme in https://github.com/nextcloud/guests/pull/1178
+* fix(Sharing): Do not create new share in guest app  by @Fenn-CS in https://github.com/nextcloud/guests/pull/1189
+
+### Changes
+* Add 'direct' GET param to invite email 'view share' link by @julien-nc in https://github.com/nextcloud/guests/pull/1151
+* Add info about guest seeing each others by @artonge in https://github.com/nextcloud/guests/pull/1144
+* feat: Upgrade dependencies and migrate to nc/vue v8 by @Pytal in https://github.com/nextcloud/guests/pull/1169
+* feat(deps): Add Nextcloud 30 support by @nickvergessen in https://github.com/nextcloud/guests/pull/1145
+* docs(README): Overhaul the Guests app README by @joshtrichards in https://github.com/nextcloud/guests/pull/1132
+
+### Dependencies
+* chore: add changelog for 2.4.0 .. 3.0.1 by @ShGKme in https://github.com/nextcloud/guests/pull/1181
+* chore: Move to vite by @Pytal in https://github.com/nextcloud/guests/pull/1172
+* Chore(deps): Bump @nextcloud/dialogs from 5.3.2 to 5.3.3 by @dependabot in https://github.com/nextcloud/guests/pull/1187
+* Chore(deps): Bump @nextcloud/dialogs from 5.3.3 to 5.3.4 by @dependabot in https://github.com/nextcloud/guests/pull/1196
+* Chore(deps): Bump @nextcloud/dialogs from 5.3.4 to 5.3.5 by @dependabot in https://github.com/nextcloud/guests/pull/1201
+* Chore(deps): Bump @nextcloud/sharing from 0.1.0 to 0.2.2 by @dependabot in https://github.com/nextcloud/guests/pull/1186
+* Chore(deps): Bump @nextcloud/vue from 8.12.0 to 8.13.0 by @dependabot in https://github.com/nextcloud/guests/pull/1198
+* Chore(deps): Bump @nextcloud/vue from 8.13.0 to 8.14.0 by @dependabot in https://github.com/nextcloud/guests/pull/1200
+* Chore(deps): Bump follow-redirects from 1.15.4 to 1.15.6 by @dependabot in https://github.com/nextcloud/guests/pull/1136
+* Chore(deps): Bump vue-material-design-icons from 5.2.0 to 5.3.0 by @dependabot in https://github.com/nextcloud/guests/pull/1140
+
+### New Contributors
+* @artonge made their first contribution in https://github.com/nextcloud/guests/pull/1144
+* @solracsf made their first contribution in https://github.com/nextcloud/guests/pull/1170
+
+**Full Changelog**: https://github.com/nextcloud/guests/compare/v3.1.0...v3.2.1
+
+
 ## 3.1.0
 ## What's Changed
 * 29 compatibility
@@ -28,8 +105,8 @@ All notable changes to this project will be documented in this file.
 
 **Full Changelog**: https://github.com/nextcloud/guests/compare/v3.0.0...v3.0.1
 
-## 3.0.0
 
+## 3.0.0
 ### What's Changed
 * feat(deps): Add Nextcloud 28 support by @nickvergessen in https://github.com/nextcloud/guests/pull/1026
 * Fix event dispatcher usage by @nickvergessen in https://github.com/nextcloud/guests/pull/1045
