@@ -57,7 +57,6 @@
     "Saving …" : "Zapisywanie…",
     "Invite guest" : "Zaproś gościa",
     "A user with this ID or email address already exists" : "Użytkownik o tym ID lub adresie e-mail już istnieje",
-    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Wkrótce gość zostanie przekonwertowany na zwykłe konto o nazwie „{userId}”.",
-    "Transfer" : "Przenieś"
+    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Wkrótce gość zostanie przekonwertowany na zwykłe konto o nazwie „{userId}”."
 },"pluralForm" :"nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);"
 }

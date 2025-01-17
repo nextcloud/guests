@@ -47,7 +47,6 @@ OC.L10N.register(
     "Your settings have been updated" : "Οι ρυθμίσεις σας ενημερώθηκαν",
     "Saving …" : "Αποθήκευση ...",
     "Invite guest" : "Πρόσκληση επισκέπτη",
-    "A user with this ID or email address already exists" : "Υπάρχει ήδη χρήστης με αυτό το ID ή την διεύθυνση email",
-    "Transfer" : "Μεταφορά"
+    "A user with this ID or email address already exists" : "Υπάρχει ήδη χρήστης με αυτό το ID ή την διεύθυνση email"
 },
 "nplurals=2; plural=(n != 1);");

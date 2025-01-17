@@ -71,17 +71,6 @@ OC.L10N.register(
     "Saving …" : "Ukládání…",
     "Invite guest" : "Pozvat hosta",
     "A user with this ID or email address already exists" : "Uživatel s tímto identifikátorem nebo e-mailovou adresou už existuje",
-    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Host bude brzy převeden na běžný účet s názvem účtu „{userId}“",
-    "Guest transfer failed" : "Přenesení hosta se nezdařilo",
-    "Failed to transfer guest {guest} to {user}" : "Nepodařilo se přenést hosta {guest} na {user}",
-    "Guest transfer done" : "Přenesení hosta dokončeno",
-    "Transfer of guest {guest} to {user} completed" : "Převedení hosta {guest} na {user} dokončeno",
-    "Transfer guest to new account" : "Přenést hosta na běžný účet",
-    "Transferring guest…" : "Přenášení hosta…",
-    "Transfer" : "Přenos",
-    "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} is pending" : "Přenos hosta {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} čeká",
-    "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} has started" : "Přenos hosta {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} započal",
-    "Guest will be transferred to \"{userId}\" soon" : "Host bude brzy převeden na „{userId}“",
-    "Transfer guest to full account" : "Přenést hosta na plný účet"
+    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Host bude brzy převeden na běžný účet s názvem účtu „{userId}“"
 },
 "nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;");

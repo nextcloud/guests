@@ -71,17 +71,6 @@ OC.L10N.register(
     "Saving …" : "儲存中 ...",
     "Invite guest" : "邀請訪客",
     "A user with this ID or email address already exists" : "有用戶已經使用此名稱或電郵地址註冊。",
-    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "訪客快將轉換為「{userId}」為名的一般帳戶",
-    "Guest transfer failed" : "轉移訪客失敗",
-    "Failed to transfer guest {guest} to {user}" : "無法將訪客 {guest}  轉移到 {user}",
-    "Guest transfer done" : "訪客轉移完成",
-    "Transfer of guest {guest} to {user} completed" : "轉移訪客 {guest} 至 {user} 已完成",
-    "Transfer guest to new account" : "轉移訪客到新帳戶",
-    "Transferring guest…" : "正在轉移訪客 …",
-    "Transfer" : "轉移",
-    "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} is pending" : "訪客 {strongStart}{guest}{strongEnd} 轉移到 {strongStart}{user}{strongEnd} 擱置中",
-    "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} has started" : "訪客 {strongStart}{guest}{strongEnd} 轉移到 {strongStart}{user}{strongEnd} 已經開始",
-    "Guest will be transferred to \"{userId}\" soon" : "訪客很快將會轉移到「{userId}」",
-    "Transfer guest to full account" : "將訪客轉移到完整帳戶"
+    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "訪客快將轉換為「{userId}」為名的一般帳戶"
 },
 "nplurals=1; plural=0;");

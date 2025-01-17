@@ -69,17 +69,6 @@
     "Saving …" : "Saving …",
     "Invite guest" : "Invite guest",
     "A user with this ID or email address already exists" : "A user with this ID or email address already exists",
-    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Guest will be converted to a regular account with the account name \"{userId}\" soon",
-    "Guest transfer failed" : "Guest transfer failed",
-    "Failed to transfer guest {guest} to {user}" : "Failed to transfer guest {guest} to {user}",
-    "Guest transfer done" : "Guest transfer done",
-    "Transfer of guest {guest} to {user} completed" : "Transfer of guest {guest} to {user} completed",
-    "Transfer guest to new account" : "Transfer guest to new account",
-    "Transferring guest…" : "Transferring guest…",
-    "Transfer" : "Transfer",
-    "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} is pending" : "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} is pending",
-    "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} has started" : "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} has started",
-    "Guest will be transferred to \"{userId}\" soon" : "Guest will be transferred to \"{userId}\" soon",
-    "Transfer guest to full account" : "Transfer guest to full account"
+    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Guest will be converted to a regular account with the account name \"{userId}\" soon"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
