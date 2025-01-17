@@ -56,7 +56,6 @@ OC.L10N.register(
     "Your settings have been updated" : "Вашите настройки са актуализирани",
     "Saving …" : "Запазване ...",
     "Invite guest" : "Поканете гост",
-    "A user with this ID or email address already exists" : "Потребител с този идентификатор или имейл адрес вече съществува",
-    "Transfer" : "Прехвърляне"
+    "A user with this ID or email address already exists" : "Потребител с този идентификатор или имейл адрес вече съществува"
 },
 "nplurals=2; plural=(n != 1);");

@@ -34,7 +34,6 @@
     "Hide other accounts from guests" : "손님 계정에게 다른 계정이 보이지 않도록 숨기기",
     "Guests will still be able to see accounts from any group they are added to" : "손님 계정은 자신이 속해 있는 그룹의 계정을 계속 볼 수 있습니다",
     "Error" : "오류",
-    "Invite guest" : "손님 초대",
-    "Transfer" : "전송"
+    "Invite guest" : "손님 초대"
 },"pluralForm" :"nplurals=1; plural=0;"
 }

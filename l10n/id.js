@@ -12,7 +12,6 @@ OC.L10N.register(
     "Email" : "Surel",
     "Default" : "Default",
     "Cancel" : "Batal",
-    "Error" : "Galat",
-    "Transfer" : "Transfer"
+    "Error" : "Galat"
 },
 "nplurals=1; plural=0;");

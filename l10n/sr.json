@@ -69,17 +69,6 @@
     "Saving …" : "Чувам …",
     "Invite guest" : "Позови госта",
     "A user with this ID or email address already exists" : "Корисник са овим ID или и-мејл адресом већ постоји",
-    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Ускоро ће се гост конвертовати у регуларни налог са именом „{userId}”",
-    "Guest transfer failed" : "Пренос госта није успео",
-    "Failed to transfer guest {guest} to {user}" : "Није успео пренос госта {guest} кориснику {user}",
-    "Guest transfer done" : "Завршен је пренос госта",
-    "Transfer of guest {guest} to {user} completed" : "Завршен је пренос госта {guest} кориснику {user}",
-    "Transfer guest to new account" : "Премештање госта на нови налог",
-    "Transferring guest…" : "Гост се премешта…",
-    "Transfer" : "Пренеси",
-    "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} is pending" : "Чека се пренос госта {strongStart}{guest}{strongEnd} у {strongStart}{user}{strongEnd} ",
-    "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} has started" : "Почео је пренос госта {strongStart}{guest}{strongEnd} у {strongStart}{user}{strongEnd} ",
-    "Guest will be transferred to \"{userId}\" soon" : "Гост ће се ускоро преместити у  „{userId}”",
-    "Transfer guest to full account" : "Пренеси госта у пуни налог"
+    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Ускоро ће се гост конвертовати у регуларни налог са именом „{userId}”"
 },"pluralForm" :"nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);"
 }

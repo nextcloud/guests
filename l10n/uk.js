@@ -56,7 +56,6 @@ OC.L10N.register(
     "Your settings have been updated" : "Ваші налаштування оновлено",
     "Saving …" : "Збереження ...",
     "Invite guest" : "Запросити гостя",
-    "A user with this ID or email address already exists" : "Користувач з таким ідентифікатором або адресою ел. пошти вже присутній",
-    "Transfer" : "Передати"
+    "A user with this ID or email address already exists" : "Користувач з таким ідентифікатором або адресою ел. пошти вже присутній"
 },
 "nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);");

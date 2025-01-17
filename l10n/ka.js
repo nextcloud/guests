@@ -56,7 +56,6 @@ OC.L10N.register(
     "Your settings have been updated" : "Your settings have been updated",
     "Saving …" : "Saving …",
     "Invite guest" : "Invite guest",
-    "A user with this ID or email address already exists" : "A user with this ID or email address already exists",
-    "Transfer" : "Transfer"
+    "A user with this ID or email address already exists" : "A user with this ID or email address already exists"
 },
 "nplurals=2; plural=(n!=1);");

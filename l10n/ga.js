@@ -71,17 +71,6 @@ OC.L10N.register(
     "Saving …" : "Shábháil …",
     "Invite guest" : "Tabhair cuireadh do aoi",
     "A user with this ID or email address already exists" : "Tá úsáideoir leis an aitheantas nó an seoladh ríomhphoist seo ann cheana",
-    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Tiontófar aoi go gnáthchuntas leis an ainm cuntais \"{userId}\" go luath",
-    "Guest transfer failed" : "Theip ar aistriú aoi",
-    "Failed to transfer guest {guest} to {user}" : "Theip ar aoi {guest} a aistriú go {user}",
-    "Guest transfer done" : "Aistriú aoi déanta",
-    "Transfer of guest {guest} to {user} completed" : "Críochnaíodh aistriú aoi {aoi} go {user}",
-    "Transfer guest to new account" : "Aistrigh aoi go cuntas nua",
-    "Transferring guest…" : "Aoi á aistriú…",
-    "Transfer" : "Aistriú",
-    "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} is pending" : "Tá aistriú aoi {strongStart}{guest}{strongEnd} go {strongStart}{user}{strongEnd} ar feitheamh",
-    "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} has started" : "Tá tús curtha le haistriú aoi {strongStart}{guest}{strongEnd} go {strongStart}{user}{strongEnd}",
-    "Guest will be transferred to \"{userId}\" soon" : "Aistreofar aoi go \"{userId}\" go luath",
-    "Transfer guest to full account" : "Aistrigh aoi go cuntas iomlán"
+    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Tiontófar aoi go gnáthchuntas leis an ainm cuntais \"{userId}\" go luath"
 },
 "nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4);");

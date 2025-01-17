@@ -69,17 +69,6 @@
     "Saving …" : "Sparar …",
     "Invite guest" : "Bjud in gäst",
     "A user with this ID or email address already exists" : "En användare med detta ID eller denna e-postadress finns redan.",
-    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Gästen kommer att konverteras till ett vanligt konto med kontonamnet \"{userId}\" snart",
-    "Guest transfer failed" : "Gästöverföring misslyckades",
-    "Failed to transfer guest {guest} to {user}" : "Det gick inte att överföra gäst {guest} till {user}",
-    "Guest transfer done" : "Gästöverföring klar",
-    "Transfer of guest {guest} to {user} completed" : "Överföring av gäst {guest} till {user} klar",
-    "Transfer guest to new account" : "Överför gäst till nytt konto",
-    "Transferring guest…" : "Överför gäst...",
-    "Transfer" : "Överför",
-    "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} is pending" : "Överföring av gäst {strongStart}{guest}{strongEnd} till {strongStart}{user}{strongEnd} väntande",
-    "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} has started" : "Överföring av gäst {strongStart}{guest}{strongEnd} till {strongStart}{user}{strongEnd} har börjat",
-    "Guest will be transferred to \"{userId}\" soon" : "Gäst kommer att överföras till \"{userId}\" snart",
-    "Transfer guest to full account" : "Överför gästen till fullständigt konto"
+    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Gästen kommer att konverteras till ett vanligt konto med kontonamnet \"{userId}\" snart"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

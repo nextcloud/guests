@@ -71,17 +71,6 @@ OC.L10N.register(
     "Saving …" : "Kaydediliyor…",
     "Invite guest" : "Konuk davet et",
     "A user with this ID or email address already exists" : "Bu kimlik ya da e-posta adresinin kayıtlı olduğu bir kullanıcı hesabı zaten var.",
-    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Konuk yakında \"{userId}\" hesap adıyla normal bir hesaba dönüştürülecek",
-    "Guest transfer failed" : "Konuk aktarılamadı",
-    "Failed to transfer guest {guest} to {user}" : "{guest} konuğu {user} kullanıcısına aktarılamadı",
-    "Guest transfer done" : "Konuk aktarıldı",
-    "Transfer of guest {guest} to {user} completed" : "{guest} konuğu {user} kullanıcısına aktarıldı",
-    "Transfer guest to new account" : "Konuğu yeni hesaba aktar",
-    "Transferring guest…" : "Konuk aktarılıyor…",
-    "Transfer" : "Aktar",
-    "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} is pending" : "{strongStart}{guest}{strongEnd} konuğunun {strongStart}{user}{strongEnd} kullanıcısına aktarılması bekliyor",
-    "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} has started" : "{strongStart}{guest}{strongEnd} konuğunun {strongStart}{user}{strongEnd} kullanıcısına aktarılmasına başlandı",
-    "Guest will be transferred to \"{userId}\" soon" : "Konuk \"{userId}\" kullanıcısına aktarılacak",
-    "Transfer guest to full account" : "Konuğu tam hesaba aktar"
+    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Konuk yakında \"{userId}\" hesap adıyla normal bir hesaba dönüştürülecek"
 },
 "nplurals=2; plural=(n > 1);");

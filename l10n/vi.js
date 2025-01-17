@@ -12,7 +12,6 @@ OC.L10N.register(
     "Cancel" : "Hủy bỏ",
     "Name:" : "Tên:",
     "Email:" : "Thư điện tử:",
-    "Error" : "Lỗi",
-    "Transfer" : "Chuyển"
+    "Error" : "Lỗi"
 },
 "nplurals=1; plural=0;");

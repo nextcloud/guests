@@ -44,7 +44,6 @@ OC.L10N.register(
     "Your settings have been updated" : "Asetuksesi on tallennettu",
     "Saving …" : "Tallennetaan …",
     "Invite guest" : "Kutsu vieras",
-    "A user with this ID or email address already exists" : "Käyttäjä tällä ID-tunnistella tai sähköpostiosoitteella on jo olemassa",
-    "Transfer" : "Siirrä"
+    "A user with this ID or email address already exists" : "Käyttäjä tällä ID-tunnistella tai sähköpostiosoitteella on jo olemassa"
 },
 "nplurals=2; plural=(n != 1);");

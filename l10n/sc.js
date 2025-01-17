@@ -49,7 +49,6 @@ OC.L10N.register(
     "Your settings have been updated" : "Cunfiguratzione atualizada",
     "Saving …" : "Sarvende ...",
     "Invite guest" : "Invita una persone",
-    "A user with this ID or email address already exists" : "Esistet giai una persone cun custa identificatzione o posta eletrònica",
-    "Transfer" : "Tràmuda"
+    "A user with this ID or email address already exists" : "Esistet giai una persone cun custa identificatzione o posta eletrònica"
 },
 "nplurals=2; plural=(n != 1);");

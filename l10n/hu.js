@@ -56,7 +56,6 @@ OC.L10N.register(
     "Your settings have been updated" : "Beállításai sikeresen frissítve",
     "Saving …" : "Mentés …",
     "Invite guest" : "Vendég meghívása",
-    "A user with this ID or email address already exists" : "Ezzel az azonosítóval vagy e-mail-címmel már létezik felhasználó.",
-    "Transfer" : "Átvitel"
+    "A user with this ID or email address already exists" : "Ezzel az azonosítóval vagy e-mail-címmel már létezik felhasználó."
 },
 "nplurals=2; plural=(n != 1);");

@@ -37,7 +37,6 @@ OC.L10N.register(
     "Error" : "Erro",
     "Your settings have been updated" : "As suas definições foram atualizadas",
     "Saving …" : "A guardar ...",
-    "Invite guest" : "Convidar convidado",
-    "Transfer" : "Transfere"
+    "Invite guest" : "Convidar convidado"
 },
 "nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

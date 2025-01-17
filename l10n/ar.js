@@ -71,17 +71,6 @@ OC.L10N.register(
     "Saving …" : "حفظ ...",
     "Invite guest" : "أُدعُ ضيفاً",
     "A user with this ID or email address already exists" : "يوجد مُسبقاً مُستخدم بنفس هذا المعرف أو الإيميل",
-    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "سيتم حالاً تحويل الضيف إلى حساب اعتيادي اسمه \"{userId}\"  ",
-    "Guest transfer failed" : "فشل في نقل الضيف",
-    "Failed to transfer guest {guest} to {user}" : "فشل في نقل الضيف {guest} إلى {user}",
-    "Guest transfer done" : "تمّ نقل الضيف",
-    "Transfer of guest {guest} to {user} completed" : "تمّ نقل الضيف {guest} إلى {user} بنجاح",
-    "Transfer guest to new account" : "نقل الضيف إلى حساب جديد",
-    "Transferring guest…" : "نقل الضيف جارٍ ...",
-    "Transfer" : "نقل",
-    "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} is pending" : "نقل الضيف {strongStart}{guest}{strongEnd} إلى {strongStart}{user}{strongEnd} مُعلّق",
-    "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} has started" : "نقل الضيف {strongStart}{guest}{strongEnd} إلى {strongStart}{user}{strongEnd} بدأ الآن",
-    "Guest will be transferred to \"{userId}\" soon" : "سوف يتم نقل الضيف إلى \"{userId}\" حالاً",
-    "Transfer guest to full account" : "نقل الضيف إلى حساب كامل"
+    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "سيتم حالاً تحويل الضيف إلى حساب اعتيادي اسمه \"{userId}\"  "
 },
 "nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;");

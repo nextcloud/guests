@@ -55,7 +55,6 @@ OC.L10N.register(
     "Your settings have been updated" : "S'ha actualitzat els vostres paràmetres",
     "Saving …" : "S'està desant…",
     "Invite guest" : "Convidar convidat",
-    "A user with this ID or email address already exists" : "Ja existeix un usuari amb aquest ID o adreça de correu electrònic",
-    "Transfer" : "Transferència"
+    "A user with this ID or email address already exists" : "Ja existeix un usuari amb aquest ID o adreça de correu electrònic"
 },
 "nplurals=2; plural=(n != 1);");

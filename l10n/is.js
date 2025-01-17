@@ -44,7 +44,6 @@ OC.L10N.register(
     "Error" : "Villa",
     "Your settings have been updated" : "Stillingarnar þínar voru uppfærðar",
     "Saving …" : "Vista …",
-    "Invite guest" : "Bjóða gesti",
-    "Transfer" : "Færa"
+    "Invite guest" : "Bjóða gesti"
 },
 "nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);");

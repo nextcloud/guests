@@ -16,7 +16,6 @@ OC.L10N.register(
     "Default" : "Por defeutu",
     "Cancel" : "Encaboxar",
     "Name:" : "Nome:",
-    "Error" : "Error",
-    "Transfer" : "Tresferir"
+    "Error" : "Error"
 },
 "nplurals=2; plural=(n != 1);");

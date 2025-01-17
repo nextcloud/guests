@@ -53,12 +53,6 @@ OC.L10N.register(
     "Your settings have been updated" : "Je instellingen zijn bijgewerkt",
     "Saving …" : "Opslaan ...",
     "Invite guest" : "Uitnodigen gast",
-    "A user with this ID or email address already exists" : "Er bestaat al een gebruiker met dit ID of e-mailadres.",
-    "Guest transfer failed" : "Gast overdracht mislukt",
-    "Failed to transfer guest {guest} to {user}" : "Overdracht van gast {guest} naar {user} is mislukt",
-    "Guest transfer done" : "Gast overdacht geslaagd",
-    "Transfer of guest {guest} to {user} completed" : "Overdracht van gast {guest} to {user} voltooid",
-    "Transferring guest…" : "Overdragen gast...",
-    "Transfer" : "Overdragen"
+    "A user with this ID or email address already exists" : "Er bestaat al een gebruiker met dit ID of e-mailadres."
 },
 "nplurals=2; plural=(n != 1);");
