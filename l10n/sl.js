@@ -49,7 +49,6 @@ OC.L10N.register(
     "Your settings have been updated" : "Nastavitve so posodobljene.",
     "Saving …" : "Poteka shranjevanje …",
     "Invite guest" : "Povabi gosta",
-    "A user with this ID or email address already exists" : "Uporabnik s tem določilom ID ali elektronskim naslovom že obstaja.",
-    "Transfer" : "Prenos"
+    "A user with this ID or email address already exists" : "Uporabnik s tem določilom ID ali elektronskim naslovom že obstaja."
 },
 "nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);");

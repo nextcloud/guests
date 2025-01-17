@@ -71,17 +71,6 @@ OC.L10N.register(
     "Saving …" : "Speichere …",
     "Invite guest" : "Gast einladen",
     "A user with this ID or email address already exists" : "Ein Benutzer mit dieser ID oder E-Mail-Adresse existiert bereits.",
-    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Das Gastkonto wird in Kürze in ein reguläres Konto mit dem Namen \"{userId}\" konvertiert",
-    "Guest transfer failed" : "Gastübertragung fehlgeschlagen",
-    "Failed to transfer guest {guest} to {user}" : "Gast {guest} konnte nicht auf {user} übertragen werden",
-    "Guest transfer done" : "Gastübertragung abgeschlossen",
-    "Transfer of guest {guest} to {user} completed" : "Übertragung von Gast {guest} an {user} fertiggestellt",
-    "Transfer guest to new account" : "Gast auf neues Konto übertragen",
-    "Transferring guest…" : "Übertrage Gast…",
-    "Transfer" : "Übertragen",
-    "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} is pending" : "Übertragen von Gast {strongStart}{guest}{strongEnd} auf {strongStart}{user}{strongEnd} steht aus",
-    "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} has started" : "Übertragen von Gast {strongStart}{guest}{strongEnd} auf {strongStart}{user}{strongEnd} hat begonnen",
-    "Guest will be transferred to \"{userId}\" soon" : "Gast wird in Kürze nach \"{userId}\" übertragen",
-    "Transfer guest to full account" : "Gast auf ein vollständiges Konto übertragen"
+    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Das Gastkonto wird in Kürze in ein reguläres Konto mit dem Namen \"{userId}\" konvertiert"
 },
 "nplurals=2; plural=(n != 1);");

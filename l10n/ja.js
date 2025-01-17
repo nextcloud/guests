@@ -49,7 +49,6 @@ OC.L10N.register(
     "Your settings have been updated" : "設定が更新されました",
     "Saving …" : "保存中 …",
     "Invite guest" : "ゲストを招待する",
-    "A user with this ID or email address already exists" : "このIDまたはメールアドレスを持つユーザーはすでに存在します",
-    "Transfer" : "転送"
+    "A user with this ID or email address already exists" : "このIDまたはメールアドレスを持つユーザーはすでに存在します"
 },
 "nplurals=1; plural=0;");

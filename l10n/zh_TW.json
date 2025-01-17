@@ -69,17 +69,6 @@
     "Saving …" : "正在儲存 …",
     "Invite guest" : "邀請訪客",
     "A user with this ID or email address already exists" : "有此 ID 或電子郵件地址的使用者已存在",
-    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "訪客將很快轉換為名為「{userId}」的一般帳號",
-    "Guest transfer failed" : "訪客轉移失敗",
-    "Failed to transfer guest {guest} to {user}" : "轉移訪客 {guest} 到 {user} 失敗",
-    "Guest transfer done" : "訪客轉移完成",
-    "Transfer of guest {guest} to {user} completed" : "轉移訪客 {guest} 到 {user} 已完成",
-    "Transfer guest to new account" : "轉移訪客到新帳號",
-    "Transferring guest…" : "正在轉移訪客……",
-    "Transfer" : "轉移",
-    "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} is pending" : "訪客 {strongStart}{guest}{strongEnd} 轉移到 {strongStart}{user}{strongEnd} 擱置中",
-    "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} has started" : "訪客 {strongStart}{guest}{strongEnd} 轉移到 {strongStart}{user}{strongEnd} 已經開始",
-    "Guest will be transferred to \"{userId}\" soon" : "訪客很快將會轉移到「{userId}」",
-    "Transfer guest to full account" : "將訪客轉移到完整帳號"
+    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "訪客將很快轉換為名為「{userId}」的一般帳號"
 },"pluralForm" :"nplurals=1; plural=0;"
 }

@@ -58,7 +58,6 @@ OC.L10N.register(
     "Your settings have been updated" : "Zure ezarpenak eguneratu dira",
     "Saving …" : "Gordetzen  ...",
     "Invite guest" : "Gonbidapen berria bidali",
-    "A user with this ID or email address already exists" : "Badago izen edo e-posta hori duen erabiltzaile bat",
-    "Transfer" : "Transferitu"
+    "A user with this ID or email address already exists" : "Badago izen edo e-posta hori duen erabiltzaile bat"
 },
 "nplurals=2; plural=(n != 1);");
