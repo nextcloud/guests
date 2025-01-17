@@ -50,7 +50,6 @@ OC.L10N.register(
     "Your settings have been updated" : "تنظیمات شما به روز شده است",
     "Saving …" : "در حال ذخیره",
     "Invite guest" : "Invite guest",
-    "A user with this ID or email address already exists" : "A user with this ID or email address already exists",
-    "Transfer" : "انتقال"
+    "A user with this ID or email address already exists" : "A user with this ID or email address already exists"
 },
 "nplurals=2; plural=(n > 1);");

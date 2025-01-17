@@ -71,17 +71,6 @@ OC.L10N.register(
     "Saving …" : "Gardando…",
     "Invite guest" : "Convidar visitante",
     "A user with this ID or email address already exists" : "Xa existe un usuario con este ID ou enderezo de correo-e",
-    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "A conta de convidado converterase en breve nunha conta normal co nome de conta «{userId}».",
-    "Guest transfer failed" : "Produciuse un fallo na transferencia de convidados",
-    "Failed to transfer guest {guest} to {user}" : "Produciuse un fallo ao transferir o convidado {guest} a {user}",
-    "Guest transfer done" : "Feita a transferencia de convidados",
-    "Transfer of guest {guest} to {user} completed" : "Completouse a transferencia do convidado {guest} a {user}",
-    "Transfer guest to new account" : "Transferir o convidado a unha nova conta",
-    "Transferring guest…" : "Transferindo o convidado…",
-    "Transfer" : "Transferencia",
-    "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} is pending" : "A transferencia do convidado {strongStart}{guest}{strongEnd} a {strongStart}{user}{strongEnd} está pendente",
-    "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} has started" : "Comzou a transferencia do convidado {strongStart}{guest}{strongEnd} a {strongStart}{user}{strongEnd}",
-    "Guest will be transferred to \"{userId}\" soon" : "O convidado vai ser transferido a «{userId}» en breve",
-    "Transfer guest to full account" : "Transferencia de convidado a conta completa"
+    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "A conta de convidado converterase en breve nunha conta normal co nome de conta «{userId}»."
 },
 "nplurals=2; plural=(n != 1);");

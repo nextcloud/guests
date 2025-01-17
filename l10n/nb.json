@@ -68,17 +68,6 @@
     "Saving …" : "Lagrer ...",
     "Invite guest" : "Inviter gjest",
     "A user with this ID or email address already exists" : "En bruker med denne IDen eller e-postadresse eksisterer allerede",
-    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Gjest vil bli konvertert til en vanlig konto med kontonavnet \"{userId}\" snart",
-    "Guest transfer failed" : "Overføring av gjest feilet",
-    "Failed to transfer guest {guest} to {user}" : "Overføring av gjest {guest} til {user} feilet",
-    "Guest transfer done" : "Overføring av gjest fullført",
-    "Transfer of guest {guest} to {user} completed" : "Overføring av gjest {guest} til {user} fullført",
-    "Transfer guest to new account" : "Overføre gjest til ny konto",
-    "Transferring guest…" : "Overfører gjest...",
-    "Transfer" : "Overfør",
-    "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} is pending" : "Overføring av gjest {strongStart}{guest}{strongEnd} til {strongStart}{user}{strongEnd} venter",
-    "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} has started" : "Overføring av gjest {strongStart}{guest}{strongEnd} til {strongStart}{user}{strongEnd} er startet",
-    "Guest will be transferred to \"{userId}\" soon" : "Gjest vil bli overført til \"{userId}\" snart",
-    "Transfer guest to full account" : "Overfør gjest til full konto"
+    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Gjest vil bli konvertert til en vanlig konto med kontonavnet \"{userId}\" snart"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

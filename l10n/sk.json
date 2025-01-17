@@ -68,17 +68,6 @@
     "Saving …" : "Ukladanie …",
     "Invite guest" : "Pozviať hosťa",
     "A user with this ID or email address already exists" : "Používateľ s takýmto ID alebo e-mailom už existuje.",
-    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Návštevník bude konvertovaný na plnohodnotný účet s názvom účtu \"{userId}\" čoskoro",
-    "Guest transfer failed" : "Prenos návštevníka zlyhal",
-    "Failed to transfer guest {guest} to {user}" : "Chyba pri prenose návštevníka {guest} na {user}",
-    "Guest transfer done" : "Prenos návštevníka skončil",
-    "Transfer of guest {guest} to {user} completed" : "Prenos návštevníka {guest} na {user} je hotový",
-    "Transfer guest to new account" : "Preniesť návštevníka na nový účet",
-    "Transferring guest…" : "Prenos návštevníka...",
-    "Transfer" : "Prenos",
-    "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} is pending" : "Prenos návštevníka {strongStart}{guest}{strongEnd} na {strongStart}{user}{strongEnd} čaká na spracovanie",
-    "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} has started" : "Prenos návštevníka {strongStart}{guest}{strongEnd} na {strongStart}{user}{strongEnd} začal",
-    "Guest will be transferred to \"{userId}\" soon" : "Návštevník bude prenesený na \"{userId}\" čoskoro",
-    "Transfer guest to full account" : "Preniesť návštevníka na plnohodnotný účet"
+    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Návštevník bude konvertovaný na plnohodnotný účet s názvom účtu \"{userId}\" čoskoro"
 },"pluralForm" :"nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);"
 }

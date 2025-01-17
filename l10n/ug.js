@@ -71,17 +71,6 @@ OC.L10N.register(
     "Saving …" : "Saving…",
     "Invite guest" : "مېھمان تەكلىپ قىلىڭ",
     "A user with this ID or email address already exists" : "بۇ كىملىك ياكى ئېلېكترونلۇق خەت ئادرېسى بار ئىشلەتكۈچى مەۋجۇت",
-    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "مېھمان ناھايىتى تېزلا «{userId}» ھېسابات ئىسمى بىلەن دائىملىق ھېساباتقا ئايلىنىدۇ",
-    "Guest transfer failed" : "مېھمان يۆتكەش مەغلۇب بولدى",
-    "Failed to transfer guest {guest} to {user}" : "مېھمان {guest} نى {user} غا يۆتكەش مەغلۇب بولدى",
-    "Guest transfer done" : "مېھمان يۆتكەش تاماملاندى",
-    "Transfer of guest {guest} to {user} completed" : "مېھمان {guest} نى {user} غا يۆتكەش تاماملاندى",
-    "Transfer guest to new account" : "مېھماننى يېڭى ھېساباتقا يۆتكەڭ",
-    "Transferring guest…" : "مېھماننى يۆتكەش…",
-    "Transfer" : "يۆتكەش",
-    "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} is pending" : "مېھمان {strongStart} {guest} {strongEnd} نى {strongStart} {user} {strongEnd} غا يۆتكەش كۈتۈلمەكتە",
-    "Transfer of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} has started" : "مېھمان {strongStart} {guest} {strongEnd} نى {strongStart} {user} {strongEnd} غا يۆتكەش باشلاندى",
-    "Guest will be transferred to \"{userId}\" soon" : "مېھمان پات يېقىندا «{userId}» غا يۆتكىلىدۇ",
-    "Transfer guest to full account" : "مېھماننى تولۇق ھېساباتقا يۆتكەڭ"
+    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "مېھمان ناھايىتى تېزلا «{userId}» ھېسابات ئىسمى بىلەن دائىملىق ھېساباتقا ئايلىنىدۇ"
 },
 "nplurals=2; plural=(n != 1);");

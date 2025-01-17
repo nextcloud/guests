@@ -44,7 +44,6 @@ OC.L10N.register(
     "Error" : "שגיאה",
     "Your settings have been updated" : "ההגדרות שלך עודכנו",
     "Saving …" : "מתבצע שמירה…",
-    "Invite guest" : "הזמנת אורח",
-    "Transfer" : "העברה"
+    "Invite guest" : "הזמנת אורח"
 },
 "nplurals=3; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: 2;");
