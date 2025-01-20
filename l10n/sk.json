@@ -20,6 +20,7 @@
     "View share" : "Zobraziť zdieľanie",
     "%s via %s" : "%s cez %s",
     "Couldn't send reset email. Please contact your administrator." : "Nemožno poslať email pre obnovu. Kontaktujte prosím vášho administrátora.",
+    "Guests" : "Hostia",
     "Data imported" : "Údaje importované",
     "Data from your previous guest account was successfully imported into your new account." : "Údaje z vášho predchádzajúceho účtu hosťa boli úspešne importované do vášho nového účtu.",
     "Guest conversion failed" : "Konverzia návštevníka zlyhala",
