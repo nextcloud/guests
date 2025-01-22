@@ -61,7 +61,7 @@
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Só a administración do grupo está autorizada a crear convidados e os convidados deben ser engadidos polo menos a un grupo no que o creador de comparticións é un administrador de grupo.",
     "Guest accounts can access mounted external storages" : "As contas de convidados poden acceder a almacenamentos externos montados",
     "Hide other accounts from guests" : "Agochar outras contas dos convidados",
-    "Guests will still be able to see accounts from any group they are added to" : "Os convidados aínda poderán ver as contas de calquera grupo ao que se engaden",
+    "Guests will still be able to see accounts from any group they are added to" : "Os convidados aínda poderán ver as contas de calquera grupo ao que se engadan",
     "Limit guest access to an app's allowlist" : "Limitar o acceso dos convidados á lista de permisos dunha aplicación",
     "Reset allowlist" : "Restabelecer lista de permisos",
     "Error" : "Erro",
