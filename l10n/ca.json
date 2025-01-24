@@ -5,6 +5,7 @@
     "A user with that email already exists." : "Ja existeix un usuari amb aquesta adreça de correu electrònic.",
     "A user with that name already exists." : "Ja existeix un usuari amb aquest nom.",
     "User successfully created" : "L'usuari s'ha creat correctament",
+    "Failed to authorize" : "No s'ha pogut autoritzar",
     "User already exists" : "L'usuari ja existeix",
     "%s shared »%s« with you" : "%s us ha compartit »%s«",
     "Incoming share" : "Compartició entrant",
