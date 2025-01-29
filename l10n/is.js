@@ -33,6 +33,7 @@ OC.L10N.register(
     "Invited by" : "Boðið af",
     "Received shares" : "Tók á móti sameignum",
     "No guest accounts created" : "Engir gestaaðgangar útbúnir",
+    "Default" : "Sjálfgefið",
     "Cancel" : "Hætta við",
     "Name:" : "Nafn:",
     "Email:" : "Tölvupóstur:",
