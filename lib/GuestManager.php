@@ -50,7 +50,7 @@ class GuestManager {
 		return false;
 	}
 
-	public function createGuest(IUser $createdBy, string $userId, string $email, string $displayName = '', string $language = '', ?string $initialPassword = null) : IUser {
+	public function createGuest(?IUser $createdBy, string $userId, string $email, string $displayName = '', string $language = '', ?string $initialPassword = null) : IUser {
 		if ($initialPassword === null) {
 			$passwordEvent = new GenerateSecurePasswordEvent();
 			$this->eventDispatcher->dispatchTyped($passwordEvent);
@@ -67,7 +67,9 @@ class GuestManager {
 		);
 
 		$user->setEMailAddress($email);
-		$this->config->setUserValue($userId, 'guests', 'created_by', $createdBy->getUID());
+		if ($createdBy) {
+			$this->config->setUserValue($userId, 'guests', 'created_by', $createdBy->getUID());
+		}
 
 		if ($displayName) {
 			$user->setDisplayName($displayName);
