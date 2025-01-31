@@ -116,11 +116,19 @@ class GuestManager {
 		$shareCounts = $this->getShareCountForUsers($guests);
 		$createdBy = $this->config->getUserValueForUsers('guests', 'created_by', $guests);
 		return array_map(function ($uid) use ($createdBy, $displayNames, $shareCounts) {
+			$allSharesCount = count(array_merge(
+				$this->shareManager->getSharedWith($uid, IShare::TYPE_USER, null, -1, 0),
+				$this->shareManager->getSharedWith($uid, IShare::TYPE_GROUP, null, -1, 0),
+				$this->shareManager->getSharedWith($uid, IShare::TYPE_CIRCLE, null, -1, 0),
+				$this->shareManager->getSharedWith($uid, IShare::TYPE_GUEST, null, -1, 0),
+				$this->shareManager->getSharedWith($uid, IShare::TYPE_ROOM, null, -1, 0),
+			));
 			return [
 				'email' => $uid,
 				'display_name' => $displayNames[$uid] ?? $uid,
 				'created_by' => $createdBy[$uid] ?? '',
 				'share_count' => isset($shareCounts[$uid]) ? $shareCounts[$uid] : 0,
+				'share_count_with_circles' => $allSharesCount,
 			];
 		}, $guests);
 	}
