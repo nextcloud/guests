@@ -7,7 +7,7 @@ OC.L10N.register(
     "A user with that email already exists." : "Ein Benutzer mit dieser E-Mail-Adresse existiert bereits.",
     "A user with that name already exists." : "Ein Benutzer mit diesem Namen existiert bereits.",
     "User successfully created" : "Benutzer erfolgreich erstellt",
-    "Failed to authorize" : "Autorisierung fehlgeschlagen",
+    "Failed to authorize" : "Benötigt keine Übersetzung. Hier wird nur die formelle Übersetzung verwendet (de_DE).",
     "Guest does not exist" : "Gast existiert nicht",
     "User already exists" : "Benutzer existiert bereits",
     "User is not a guest" : "Der Benutzer ist kein Gast",
