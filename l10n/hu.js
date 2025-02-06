@@ -34,6 +34,7 @@ OC.L10N.register(
     "Invited by" : "Meghívta:",
     "Received shares" : "Fogadott megosztások",
     "No guest accounts created" : "Nincs vendégfiók létrehozva",
+    "Default" : "Alapértelmezett",
     "Cancel" : "Mégse",
     "Name:" : "Név:",
     "Email:" : "E-mail:",
