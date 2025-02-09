@@ -34,6 +34,7 @@ OC.L10N.register(
     "Invited by" : "Inviteret af",
     "Received shares" : "Modtagne delinger",
     "No guest accounts created" : "Ingen gæstekonti oprettet",
+    "Default" : "Standard",
     "Cancel" : "Annuller",
     "Name:" : "Navn:",
     "Email:" : "E-mail:",
