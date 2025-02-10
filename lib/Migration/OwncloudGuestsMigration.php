@@ -9,12 +9,8 @@ declare(strict_types=1);
 
 namespace OCA\Guests\Migration;
 
-use OCA\Guests\GuestManager;
 use OCA\Guests\UserBackend;
-use OCP\DB\QueryBuilder\IQueryBuilder;
 use OCP\IConfig;
-use OCP\IDBConnection;
-use OCP\IUser;
 use OCP\IUserManager;
 use OCP\Migration\IOutput;
 use OCP\Migration\IRepairStep;
@@ -29,7 +25,8 @@ class OwncloudGuestsMigration implements IRepairStep {
 		protected IConfig $config,
 		protected IUserManager $userManager,
 		protected UserBackend $guestUserBackend,
-	) {}
+	) {
+	}
 
 	public function getName(): string {
 		return 'Converts owncloud guests to nextcloud guests';
