@@ -37,7 +37,7 @@ class ListCommand extends Base {
 			if ($outputType === self::OUTPUT_FORMAT_JSON || $outputType === self::OUTPUT_FORMAT_JSON_PRETTY) {
 				$output->writeln('[]');
 			} else {
-				$output->writeln("<info>No guests created</info>");
+				$output->writeln('<info>No guests created</info>');
 			}
 			return 0;
 		}

@@ -53,7 +53,7 @@ class UserBackend extends ABackend implements
 		IEventDispatcher $eventDispatcher,
 		IDBConnection $connection,
 		Config $config,
-		IHasher $hasher
+		IHasher $hasher,
 	) {
 		$this->cache = new CappedMemoryCache();
 		$this->eventDispatcher = $eventDispatcher;

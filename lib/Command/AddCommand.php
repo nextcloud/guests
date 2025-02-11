@@ -119,11 +119,11 @@ class AddCommand extends Command {
 				$confirm = $helper->ask($input, $output, $question);
 
 				if ($password !== $confirm) {
-					$output->writeln("<error>Passwords did not match!</error>");
+					$output->writeln('<error>Passwords did not match!</error>');
 					return 1;
 				}
 			} else {
-				$output->writeln("<error>Interactive input or --password-from-env is needed for entering a password!</error>");
+				$output->writeln('<error>Interactive input or --password-from-env is needed for entering a password!</error>');
 				return 1;
 			}
 		}

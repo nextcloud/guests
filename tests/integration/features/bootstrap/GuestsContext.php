@@ -45,7 +45,7 @@ class GuestsContext implements Context, SnippetAcceptingContext {
 		} else {
 			$options['auth'] = [$user, $this->regularUser];
 		}
-		$request = $client->createRequest("PUT", $fullUrl, $options);
+		$request = $client->createRequest('PUT', $fullUrl, $options);
 		$request->addHeader('Content-Type', 'application/x-www-form-urlencoded');
 
 		try {

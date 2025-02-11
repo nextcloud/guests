@@ -38,7 +38,7 @@ class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetails
 		GuestManager $guestManager,
 		Config $config,
 		IUserSession $userSession,
-		string $groupName = 'guest_app'
+		string $groupName = 'guest_app',
 	) {
 		$this->guestManager = $guestManager;
 		$this->config = $config;

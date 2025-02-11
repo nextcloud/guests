@@ -55,7 +55,7 @@ class Hooks {
 
 		if (!($share->getNodeType() === 'folder' || $share->getNodeType() === 'file')) {
 			$this->logger->debug(
-				"ignoring share for itemType " . $share->getNodeType(),
+				'ignoring share for itemType ' . $share->getNodeType(),
 				['app' => Application::APP_ID]
 			);
 
@@ -105,7 +105,7 @@ class Hooks {
 		} catch (DoesNotExistException $ex) {
 			$this->logger->error("'$shareWith' does not exist", ['app' => Application::APP_ID]);
 		} catch (\Exception $e) {
-			$this->logger->error("Failed to send guest activation mail", ['app' => Application::APP_ID, 'exception' => $e]);
+			$this->logger->error('Failed to send guest activation mail', ['app' => Application::APP_ID, 'exception' => $e]);
 		}
 	}
 

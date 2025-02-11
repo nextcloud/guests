@@ -58,7 +58,7 @@ class RestrictionManager {
 		GuestManager $guestManager,
 		IMountProviderCollection $mountProviderCollection,
 		Config $config,
-		UserBackend $userBackend
+		UserBackend $userBackend,
 	) {
 		$this->whitelist = $whitelist;
 		$this->request = $request;

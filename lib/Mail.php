@@ -55,7 +55,7 @@ class Mail {
 		$targetUser = $this->userManager->get($shareWith);
 		$shareWithEmail = $targetUser->getEMailAddress();
 		if (!$shareWithEmail) {
-			throw new \Exception("Guest user created without email");
+			throw new \Exception('Guest user created without email');
 		}
 		$replyTo = $this->userManager->get($uid)->getEMailAddress();
 		$senderDisplayName = $this->userSession->getUser()->getDisplayName();
