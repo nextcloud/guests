@@ -11,7 +11,7 @@ OC.L10N.register(
     "%s shared »%s« with you" : "%s partilhou »%s« consigo",
     "You can access the shared file by activating your guest account." : "Pode aceder ao ficheiro partilhado ao ativar a sua conta de convidado",
     "The share will expire at %s." : "A partilha expira em %s.",
-    "Activate account" : "Activar a sua conta",
+    "Activate account" : "Ativar conta",
     "View share" : "Ver partilha",
     "%s via %s" : "%s via %s",
     "Couldn't send reset email. Please contact your administrator." : "Não foi possível enviar a mensagem de reposição. Por favor, contacte o seu administrador.",
