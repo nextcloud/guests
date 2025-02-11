@@ -22,7 +22,7 @@ class AppConfigOverwrite extends AppConfig {
 		IDBConnection $connection,
 		LoggerInterface $logger,
 		ICrypto $crypto,
-		array $overWrite
+		array $overWrite,
 	) {
 		parent::__construct($connection, $logger, $crypto);
 		$this->overWrite = $overWrite;

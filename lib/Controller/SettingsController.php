@@ -31,7 +31,7 @@ class SettingsController extends Controller {
 	public function __construct(
 		IRequest $request,
 		Config $config,
-		AppWhitelist $appWhitelist
+		AppWhitelist $appWhitelist,
 	) {
 		parent::__construct(Application::APP_ID, $request);
 		$this->config = $config;

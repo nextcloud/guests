@@ -43,7 +43,7 @@ class APIController extends OCSController {
 		Config $config,
 		IFactory $l10nFactory,
 		ISubAdmin $subAdmin,
-		IGroupManager $groupManager
+		IGroupManager $groupManager,
 	) {
 		parent::__construct(Application::APP_ID, $request);
 		$this->userSession = $userSession;

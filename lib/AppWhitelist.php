@@ -71,7 +71,7 @@ class AppWhitelist {
 			} else {
 				if ($url === '/apps/files_external/api/v1/mounts') {
 					// fake successful response
-					echo "[]";
+					echo '[]';
 					exit;
 				}
 				$this->logger->notice("Blocking access to non-whitelisted app ($app) for guest", ['app' => 'guests']);
