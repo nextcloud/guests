@@ -58,7 +58,7 @@ class OwncloudGuestsMigration implements IRepairStep {
 	 * 1. Create a new guest with the same username and password
 	 * 2. register a new transfer
 	 * 3. Delete the old user
-	 * 4. Delete the old preferences row
+	 * 4. Delete the old 'isGuest' prference row
 	 */
 	protected function runStep(IOutput $output) {
 		$output->startProgress(count($this->cachedUserIDs));
