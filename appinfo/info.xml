@@ -31,7 +31,7 @@ Guests users can only access files shared to them and cannot create any files ou
 	<screenshot>https://raw.githubusercontent.com/nextcloud/guests/master/screenshots/settings.png</screenshot>
 	<screenshot>https://raw.githubusercontent.com/nextcloud/guests/master/screenshots/dropdown.png</screenshot>
 	<dependencies>
-		<nextcloud min-version="30" max-version="31" />
+		<nextcloud min-version="30" max-version="32" />
 	</dependencies>
 	<repair-steps>
 		<pre-migration>
