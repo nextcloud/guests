@@ -2,7 +2,7 @@
     "None" : "Denguno",
     "Name" : "Nombre",
     "Email" : "Correu electronico",
-    "Cancel" : "Canzelar",
+    "Cancel" : "Cancelar",
     "Error" : "Error"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

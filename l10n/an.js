@@ -4,7 +4,7 @@ OC.L10N.register(
     "None" : "Denguno",
     "Name" : "Nombre",
     "Email" : "Correu electronico",
-    "Cancel" : "Canzelar",
+    "Cancel" : "Cancelar",
     "Error" : "Error"
 },
 "nplurals=2; plural=(n != 1);");
