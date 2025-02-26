@@ -21,7 +21,7 @@ OC.L10N.register(
     "Activate account" : "Konto aktivieren",
     "View share" : "Freigabe ansehen",
     "%s via %s" : "%s über %s",
-    "Couldn't send reset email. Please contact your administrator." : "Die E-Mail zum Zurücksetzen konnte nicht gesendet werden. Bitte kontaktiere deinen Administrator.",
+    "Couldn't send reset email. Please contact your administrator." : "Die E-Mail zum Zurücksetzen konnte nicht gesendet werden. Bitte kontaktiere deine Administration.",
     "Guests" : "Gäste",
     "Data imported" : "Daten importiert",
     "Data from your previous guest account was successfully imported into your new account." : "Daten deines bisherigen Gast-Kontos wurden erfolgreich in dein neues Konto importiert.",
