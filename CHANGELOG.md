@@ -6,6 +6,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## 4.2.0
+
+### Changes
+* feat: migrate owncloud guests-users to nextcloud guests by @skjnldsv in https://github.com/nextcloud/guests/pull/1286
+* feat(deps): Add Nextcloud 32 support by @nickvergessen in https://github.com/nextcloud/guests/pull/1282
+
+### Fixes
+* fix: settings save by @skjnldsv in https://github.com/nextcloud/guests/pull/1299
+
+### Other
+* Various dependencies
+
+**Full Changelog**: https://github.com/nextcloud/guests/compare/v4.1.0...v4.2.0
+
 ## 4.1.0
 31 compatibility
 
