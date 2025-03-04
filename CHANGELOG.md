@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 3.2.1
+### Fixes
+* [stable-3] fix: settings save by @backportbot in https://github.com/nextcloud/guests/pull/1304
+
 ## 3.2.0
 ### Fixes
 * Fix tests by @solracsf in https://github.com/nextcloud/guests/pull/1170
