@@ -18,13 +18,13 @@
 			<div v-if="loaded">
 				<NcCheckboxRadioSwitch :checked.sync="config.allowExternalStorage"
 					type="switch"
-					@updated:checked="saveConfig">
+					@update:checked="saveConfig">
 					{{ t('guests', 'Guest accounts can access mounted external storages') }}
 				</NcCheckboxRadioSwitch>
 
 				<NcCheckboxRadioSwitch :checked.sync="config.hideUsers"
 					type="switch"
-					@updated:checked="saveConfig">
+					@update:checked="saveConfig">
 					{{ t('guests', 'Hide other accounts from guests') }}
 				</NcCheckboxRadioSwitch>
 
@@ -34,7 +34,7 @@
 
 				<NcCheckboxRadioSwitch :checked.sync="config.useWhitelist"
 					type="switch"
-					@updated:checked="saveConfig">
+					@update:checked="saveConfig">
 					{{ t('guests', 'Limit guest access to an app\'s allowlist') }}
 				</NcCheckboxRadioSwitch>
 
