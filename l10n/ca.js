@@ -34,6 +34,7 @@ OC.L10N.register(
     "Invited by" : "Convidat per",
     "Received shares" : "Comparticions rebudes",
     "No guest accounts created" : "No s’ha creat comptes de convidat",
+    "Default" : "Per defecte",
     "Cancel" : "Cancel·la",
     "Invite {name}" : "Convidar a {name}",
     "Invite user to conversation" : "Convida l'usuari a la conversa",
