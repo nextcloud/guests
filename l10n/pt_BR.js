@@ -22,6 +22,7 @@ OC.L10N.register(
     "View share" : "Ver compartilhamento",
     "%s via %s" : "%s via %s",
     "Couldn't send reset email. Please contact your administrator." : "Não foi possível enviar o e-mail de redefinição. Por favor, contate o administrador.",
+    "Guests" : "Hóspedes",
     "Data imported" : "Dados importados",
     "Data from your previous guest account was successfully imported into your new account." : "Os dados anteriores da conta convidado foram importados com sucesso para sua nova conta.",
     "Guest conversion failed" : "Falha na conversão de convidado",
