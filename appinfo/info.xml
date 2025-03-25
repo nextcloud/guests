@@ -4,8 +4,8 @@
   - SPDX-FileCopyrightText: 2015-2017 ownCloud GmbH
   - SPDX-License-Identifier: AGPL-3.0-only AND (AGPL-3.0-or-later OR AGPL-3.0-only)
 -->
-<info xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance"
-	  xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+<info xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
 	<id>guests</id>
 	<name>Guests</name>
 	<summary>Create guest accounts for easier collaboration</summary>
@@ -18,7 +18,7 @@ Guests users can only access files shared to them and cannot create any files ou
 	<licence>agpl</licence>
 	<author>Nextcloud</author>
 	<types>
-		<authentication/>
+		<authentication />
 	</types>
 	<documentation>
 		<admin>https://github.com/nextcloud/guests/blob/master/README.md</admin>
@@ -34,9 +34,9 @@ Guests users can only access files shared to them and cannot create any files ou
 		<nextcloud min-version="30" max-version="32" />
 	</dependencies>
 	<repair-steps>
-		<pre-migration>
+		<post-migration>
 			<step>OCA\Guests\Migration\OwncloudGuestsMigration</step>
-		</pre-migration>
+		</post-migration>
 	</repair-steps>
 	<commands>
 		<command>OCA\Guests\Command\ListCommand</command>
