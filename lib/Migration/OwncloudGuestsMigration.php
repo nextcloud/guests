@@ -58,7 +58,8 @@ class OwncloudGuestsMigration implements IRepairStep {
 	 * 1. Create a new guest with the same username and password
 	 * 2. register a new transfer
 	 * 3. Delete the old user
-	 * 4. Delete the old 'isGuest' prference row
+	 * 4. Delete the old 'isGuest' preference row
+	 * 5. Set the quota to '0 B'
 	 */
 	protected function runStep(IOutput $output) {
 		$output->startProgress(count($this->cachedUserIDs));
@@ -73,6 +74,13 @@ class OwncloudGuestsMigration implements IRepairStep {
 					$oldBackend->deleteUser($ocGuest->getUID());
 
 					$this->config->deleteUserValue($userID, 'owncloud', 'isGuest');
+
+					$guestUser = $this->userManager->get($userID);
+					if ($guestUser) {
+						$guestUser->setQuota('0 B');
+					} else {
+						$output->warning("Could not set quota for guest $userID");
+					}
 				} else {
 					$output->warning("Could not get hashed password for guest $userID, skipping");
 				}
