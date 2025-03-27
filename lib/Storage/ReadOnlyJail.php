@@ -12,20 +12,6 @@ namespace OCA\Guests\Storage;
  * read only mask for home storages
  */
 class ReadOnlyJail extends DirMask {
-
-	/**
-	 * @param $path
-	 * @return bool
-	 */
-	protected function checkPath($path): bool {
-		if ($path === 'files') {
-			return true;
-		}
-
-		return parent::checkPath($path);
-	}
-
-
 	/**
 	 * @param string $path
 	 * @return bool
@@ -36,18 +22,5 @@ class ReadOnlyJail extends DirMask {
 		}
 
 		return $this->getWrapperStorage()->isDeletable($path);
-	}
-
-	/**
-	 * @param string $path
-	 * @return bool
-	 */
-	public function mkdir($path): bool {
-		// Lift restrictions if files dir is created (at first login)
-		if ($path === 'files') {
-			return $this->storage->mkdir($path);
-		} else {
-			return parent::mkdir($path);
-		}
 	}
 }
