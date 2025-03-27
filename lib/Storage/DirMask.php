@@ -39,13 +39,13 @@ class DirMask extends PermissionsMask {
 	 */
 	public function __construct($arguments) {
 		parent::__construct($arguments);
-		$this->path = $arguments['path'];
+		$this->path = rtrim($arguments['path'], '/');
 		$this->pathLength = strlen($arguments['path']);
 		$this->mask = $arguments['mask'];
 	}
 
 	protected function checkPath($path): bool {
-		return substr($path, 0, $this->pathLength) === $this->path;
+		return $path === $this->path || substr($path, 0, $this->pathLength + 1) === $this->path . '/';
 	}
 
 	public function isUpdatable($path): bool {
