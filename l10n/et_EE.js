@@ -5,6 +5,7 @@ OC.L10N.register(
     "Invalid mail address" : "Vigane e-posti aadress",
     "A user with that name already exists." : "Selle nimega kasutaja on juba olemas.",
     "User successfully created" : "Kasutaja edukalt loodud",
+    "Failed to authorize" : "Autoriseerimine ei õnnestunud",
     "%s shared »%s« with you" : "%s jagas faili »%s« sinuga",
     "%s via %s" : "%s üle %s",
     "Couldn't send reset email. Please contact your administrator." : "Ei suutnud lähtestada e-maili. Palun võta ühendust administraatoriga.",
