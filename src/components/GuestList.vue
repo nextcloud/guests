@@ -150,7 +150,7 @@ export default defineComponent({
 .guests-list {
 	padding: 20px 0 0;
 
-	table {
+	:deep(table) {
 		width: calc(100% + 60px);
 		margin: 0 -30px;
 		table-layout: fixed;

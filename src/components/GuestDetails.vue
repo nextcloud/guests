@@ -1,5 +1,5 @@
 <template>
-	<div id="guests-details">
+	<div class="guests-details">
 		<div v-if="loaded && !error">
 			<table>
 				<thead>
@@ -20,7 +20,7 @@
 						<td colspan="2" class="name" :style="{ backgroundImage: 'url(' + getMimeIcon(share.mime_type) + ')'}">
 							{{ share.name }}
 						</td>
-						<td class="shared_by">
+						<td class="shared_by" :title="share.shared_by">
 							{{ share.shared_by }}
 						</td>
 						<td class="shared_at">
@@ -101,7 +101,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#guests-details {
+.guests-details {
 	.loading,
 	.error {
 		height: 50px;
