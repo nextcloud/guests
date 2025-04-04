@@ -5,15 +5,19 @@
 
 import type { User } from './types.ts'
 
-import { translate as t } from '@nextcloud/l10n'
-import { subscribe } from '@nextcloud/event-bus'
-import { showSuccess, spawnDialog } from '@nextcloud/dialogs'
-
 import SvgAccountArrowRight from '@mdi/svg/svg/account-arrow-right.svg?raw'
-
+import { showSuccess } from '@nextcloud/dialogs'
+import { subscribe } from '@nextcloud/event-bus'
+import { translate as t } from '@nextcloud/l10n'
+import { spawnDialog } from '@nextcloud/vue/functions/dialog'
 import TransferGuestDialog from './components/TransferGuestDialog.vue'
 
-const transferGuest = (_event: MouseEvent, user: User): void => {
+/**
+ *
+ * @param _event
+ * @param user
+ */
+function transferGuest(_event: MouseEvent, user: User): void {
 	const onClose = (userId: null | string) => {
 		if (userId === null) {
 			return
@@ -29,7 +33,10 @@ const transferGuest = (_event: MouseEvent, user: User): void => {
 
 const enabled = (user: User) => user?.backend === 'Guests'
 
-const registerAction = () => {
+/**
+ *
+ */
+function registerAction() {
 	window.OCA.Settings.UserList.registerAction(
 		SvgAccountArrowRight,
 		t('guests', 'Convert guest to regular account'),

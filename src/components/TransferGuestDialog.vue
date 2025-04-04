@@ -3,15 +3,18 @@
   - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 <template>
-	<NcDialog :name="t('guests', 'Convert guest to regular account')"
-		:out-transition="true"
+	<NcDialog
+		:name="t('guests', 'Convert guest to regular account')"
+		:outTransition="true"
 		size="small"
 		@closing="cancel">
-		<form id="transfer-guest-form"
+		<form
+			id="transfer-guest-form"
 			class="transfer-dialog__form"
 			@submit.prevent="submit">
-			<NcTextField ref="username"
-				:value.sync="targetUserId"
+			<NcTextField
+				ref="username"
+				v-model="targetUserId"
 				:label="t('guests', 'New account name')"
 				:disabled="message"
 				autocapitalize="none"
@@ -21,23 +24,26 @@
 				required />
 		</form>
 
-		<NcNoteCard v-if="message"
+		<NcNoteCard
+			v-if="message"
 			type="info"
-			show-alert>
+			showAlert>
 			<p v-html="message" />
 		</NcNoteCard>
 
 		<template #actions>
-			<NcButton type="tertiary"
+			<NcButton
+				variant="tertiary"
 				:disabled="loading"
 				@click="cancel">
 				{{ t('guests', 'Cancel') }}
 			</NcButton>
 
-			<NcButton type="primary"
+			<NcButton
+				variant="primary"
 				form="transfer-guest-form"
 				:disabled="loading || message"
-				native-type="submit">
+				nativeType="submit">
 				<template v-if="loading" #icon>
 					<NcLoadingIcon :name="t('guests', 'Converting guest…')" />
 				</template>
@@ -51,21 +57,26 @@
 import type { PropType } from 'vue'
 import type { User } from '../types.ts'
 
-import { defineComponent } from 'vue'
 import axios from '@nextcloud/axios'
-import { generateOcsUrl } from '@nextcloud/router'
-import { translate as t } from '@nextcloud/l10n'
 import { showError } from '@nextcloud/dialogs'
-
-import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
-import NcDialog from '@nextcloud/vue/dist/Components/NcDialog.js'
-import NcLoadingIcon from '@nextcloud/vue/dist/Components/NcLoadingIcon.js'
-import NcNoteCard from '@nextcloud/vue/dist/Components/NcNoteCard.js'
-import NcTextField from '@nextcloud/vue/dist/Components/NcTextField.js'
-
+import { translate as t } from '@nextcloud/l10n'
+import { generateOcsUrl } from '@nextcloud/router'
+import { defineComponent } from 'vue'
+import NcButton from '@nextcloud/vue/components/NcButton'
+import NcDialog from '@nextcloud/vue/components/NcDialog'
+import NcLoadingIcon from '@nextcloud/vue/components/NcLoadingIcon'
+import NcNoteCard from '@nextcloud/vue/components/NcNoteCard'
+import NcTextField from '@nextcloud/vue/components/NcTextField'
 import { logger } from '../services/logger.ts'
 
-const generateMessage = ({ source, target, status }: { source: string, target: string, status: 'waiting' | 'started' }) => {
+/**
+ *
+ * @param root0
+ * @param root0.source
+ * @param root0.target
+ * @param root0.status
+ */
+function generateMessage({ source, target, status }: { source: string, target: string, status: 'waiting' | 'started' }) {
 	const matchStatus = {
 		waiting: t('guests', 'Conversion of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} is pending', {
 			guest: source,
@@ -103,6 +114,8 @@ export default defineComponent({
 		},
 	},
 
+	emits: ['close'],
+
 	data() {
 		return {
 			loading: false,
@@ -136,7 +149,7 @@ export default defineComponent({
 						status: data.ocs?.data?.status,
 					})
 				}
-			} catch (error) {
+			} catch (error: Error) {
 				logger.error(error.response.data.ocs?.data?.message, { error })
 				showError(error.response.data.ocs?.data?.message)
 				this.$emit('close', null)
