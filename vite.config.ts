@@ -5,16 +5,18 @@
 
 import { createAppConfig } from '@nextcloud/vite-config'
 
-export default createAppConfig({
-	main: 'src/main.js',
-	settings: 'src/settings.js',
-	talk: 'src/talk.js',
-	users: 'src/users.ts',
-	init: 'src/init.ts',
-	contactsmenu: 'src/contactsmenu.ts'
-},
-{
-	inlineCSS: {
-		relativeCSSInjection: true,
+export default createAppConfig(
+	{
+		main: 'src/main.ts',
+		settings: 'src/settings.ts',
+		talk: 'src/talk.ts',
+		users: 'src/users.ts',
+		init: 'src/init.ts',
+		contactsmenu: 'src/contactsmenu.ts',
 	},
-})
+	{
+		inlineCSS: {
+			relativeCSSInjection: true,
+		},
+	},
+)

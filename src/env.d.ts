@@ -16,10 +16,10 @@ declare global {
 		OCA: {
 			Settings: {
 				UserList: {
-					registerAction: RegisterAction,
-				},
-			},
-		},
+					registerAction: RegisterAction
+				}
+			}
+		}
 	}
 }
 

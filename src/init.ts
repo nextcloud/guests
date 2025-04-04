@@ -3,25 +3,23 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import Vue from 'vue'
-
+import { createApp } from 'vue'
 import GuestForm from './views/GuestForm.vue'
-import Nextcloud from './mixins/Nextcloud.js'
-
-Vue.mixin(Nextcloud)
 
 if (!OCA.Guests) {
 	/**
-	 * @namespace OCA.Guests
 	 */
 	OCA.Guests = {}
 }
 
-const guestForm = new Vue(GuestForm)
+// Create mount point for the guest form dialog
 const guestRoot = document.createElement('div')
 guestRoot.setAttribute('id', 'guest-root')
 document.body.appendChild(guestRoot)
-guestForm.$mount('#guest-root')
+
+// Initialize the guest form dialog and expose it
+const guestForm = createApp(GuestForm)
+	.mount('#guest-root') as InstanceType<typeof GuestForm>
 
 OCA.Guests.openGuestDialog = (app: string, shareWith?: string) => {
 	guestForm.populate({ app }, shareWith)

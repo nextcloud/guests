@@ -3,7 +3,8 @@
   - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 <template>
-	<NcSelect v-model="selected"
+	<NcSelect
+		v-model="selected"
 		class="group-multiselect"
 		:placeholder="t('guests', 'None')"
 		label="name"
@@ -15,36 +16,40 @@
 </template>
 
 <script>
-import NcSelect from '@nextcloud/vue/dist/Components/NcSelect.js'
+import NcSelect from '@nextcloud/vue/components/NcSelect'
 
 export default {
 	name: 'GroupSelect',
 	components: {
 		NcSelect,
 	},
+
 	props: {
 		groups: {
 			type: Array,
 			default: () => [],
 		},
+
 		required: {
 			type: Boolean,
 			default: false,
 		},
 	},
+
 	data() {
 		const defaultGroups = []
 		if (this.required && this.groups.length === 1) {
 			defaultGroups.push(this.groups[0])
-			this.$emit('input', defaultGroups.map(group => group.gid))
+			this.$emit('input', defaultGroups.map((group) => group.gid))
 		}
 		return {
 			selected: defaultGroups,
 		}
 	},
+
 	watch: {
 		selected() {
-			this.$emit('input', this.selected.map(group => group.gid))
+			this.$emit('input', this.selected.map((group) => group.gid))
 		},
 	},
 }
