@@ -23,9 +23,8 @@
 					</tr>
 				</thead>
 				<tbody>
-					<template v-for="guest in guests">
-						<tr :key="guest.email"
-							:class="guest.email === details_for ? 'active': ''"
+					<template v-for="guest in guests" :key="guest.email">
+						<tr :class="{'active': guest.email === details_for}"
 							@click="toggleDetails(guest.email)">
 							<td class="email"
 								:title="guest.email">

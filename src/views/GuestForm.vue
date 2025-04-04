@@ -75,12 +75,12 @@
 <script>
 import { logger } from '../services/logger.ts'
 import { generateOcsUrl } from '@nextcloud/router'
-import { Type as ShareTypes } from '@nextcloud/sharing'
+import { ShareType } from '@nextcloud/sharing'
+import axios from '@nextcloud/axios'
 
 import AccountPlus from 'vue-material-design-icons/AccountPlus.vue'
-import axios from '@nextcloud/axios'
-import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
-import NcModal from '@nextcloud/vue/dist/Components/NcModal.js'
+import NcButton from '@nextcloud/vue/components/NcButton'
+import NcModal from '@nextcloud/vue/components/NcModal'
 
 import GroupSelect from '../components/GroupSelect.vue'
 import LanguageSelect from '../components/LanguageSelect.vue'
@@ -243,7 +243,7 @@ export default {
 			try {
 				const path = (this.fileInfo.path + '/' + this.fileInfo.name).replace('//', '/')
 				const shareTemplate = {
-					shareType: ShareTypes.SHARE_TYPE_USER,
+					shareType: ShareType.SHARE_TYPE_USER,
 					shareWith: this.guest.username,
 					path,
 				}

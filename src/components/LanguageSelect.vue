@@ -15,7 +15,7 @@
 
 <script>
 import { generateOcsUrl } from '@nextcloud/router'
-import NcSelect from '@nextcloud/vue/dist/Components/NcSelect.js'
+import NcSelect from '@nextcloud/vue/components/NcSelect'
 import axios from '@nextcloud/axios'
 
 export default {
