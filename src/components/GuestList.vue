@@ -1,6 +1,6 @@
 <template>
 	<NcSettingsSection :name="t('guests', 'Guests accounts')">
-		<div class="guests-list" v-if="loaded && !error">
+		<div v-if="loaded && !error" class="guests-list">
 			<table v-if="guests.length" class="table">
 				<thead>
 					<tr>
@@ -23,13 +23,16 @@
 						<tr :key="guest.email"
 							:class="guest.email === details_for ? 'active': ''"
 							@click="toggleDetails(guest.email)">
-							<td class="email">
+							<td class="email"
+								:title="guest.email">
 								{{ guest.email }}
 							</td>
-							<td class="display_name">
+							<td class="display_name"
+								:title="guest.display_name">
 								{{ guest.display_name }}
 							</td>
-							<td class="created_by">
+							<td class="created_by"
+								:title="guest.created_by">
 								{{ guest.created_by }}
 							</td>
 							<td class="share_count">
@@ -62,18 +65,39 @@
 	</NcSettingsSection>
 </template>
 
-<script>
-import { generateOcsUrl } from '@nextcloud/router'
-import axios from '@nextcloud/axios'
-import GuestDetails from './GuestDetails.vue'
-import NcSettingsSection from '@nextcloud/vue/dist/Components/NcSettingsSection.js'
+<script lang="ts">
+import type { OCSResponse } from '@nextcloud/typings/ocs'
+import type { AxiosResponse } from '@nextcloud/axios'
 
-export default {
+import { defineComponent } from 'vue'
+import { generateOcsUrl } from '@nextcloud/router'
+import { t } from '@nextcloud/l10n'
+import axios from '@nextcloud/axios'
+import NcSettingsSection from '@nextcloud/vue/components/NcSettingsSection'
+
+import GuestDetails from './GuestDetails.vue'
+
+type OcsGuest = {
+	email: string
+	display_name: string
+	created_by: string
+	share_count: number
+}
+
+export default defineComponent({
 	name: 'GuestList',
+
 	components: {
 		GuestDetails,
 		NcSettingsSection,
 	},
+
+	setup() {
+		return {
+			t,
+		}
+	},
+
 	data() {
 		return {
 			details_for: '',
@@ -81,16 +105,18 @@ export default {
 			sort_direction: 1,
 			error: false,
 			loaded: false,
-			guests: [],
+			guests: [] as OcsGuest[],
 		}
 	},
+
 	beforeMount() {
 		this.loadGuests()
 	},
+
 	methods: {
 		async loadGuests() {
 			try {
-				const { data } = await axios.get(generateOcsUrl('apps/guests/api/v1/users'))
+				const { data } = await axios.get(generateOcsUrl('apps/guests/api/v1/users')) as AxiosResponse<OCSResponse<OcsGuest[]>>
 				this.guests = data.ocs.data
 			} catch (error) {
 				this.error = true
@@ -99,10 +125,10 @@ export default {
 				this.loaded = true
 			}
 		},
-		getSortClass(name) {
+		getSortClass(name: string) {
 			return name + ' ' + (name === this.sort ? `sort-${this.sort_direction > 0 ? 'asc' : 'desc'}` : '')
 		},
-		setSort(name) {
+		setSort(name: string) {
 			if (name === this.sort) {
 				this.sort_direction = -this.sort_direction
 			} else {
@@ -113,21 +139,21 @@ export default {
 				return (a[this.sort]).localeCompare(b[this.sort]) * this.sort_direction
 			})
 		},
-		toggleDetails(email) {
+		toggleDetails(email: string) {
 			this.details_for = email
 		},
 	},
-}
+})
 </script>
 
 <style lang="scss" scoped>
 .guests-list {
 	padding: 20px 0 0;
 
-	table {
+	:deep(table) {
+		width: calc(100% + 60px);
 		margin: 0 -30px;
 		table-layout: fixed;
-		width: calc(100% + 60px);
 
 		tr {
 			height: 32px;
@@ -138,20 +164,20 @@ export default {
 		}
 
 		.sort-desc::after {
-			content: '▼';
 			position: absolute;
 			right: 10px;
+			content: '▼';
 		}
 
 		.sort-asc::after {
-			content: '▲';
 			position: absolute;
 			right: 10px;
+			content: '▲';
 		}
 
 		th {
-			border-bottom: 1px #ddd solid;
 			cursor: pointer;
+			border-bottom: 1px #ddd solid;
 
 			.sort_arrow {
 				float: right;
@@ -160,6 +186,13 @@ export default {
 		}
 
 		td, th {
+			position: relative;
+			display: table-cell;
+			overflow: hidden;
+			padding: 10px;
+			white-space: normal;
+			text-overflow: ellipsis;
+
 			&:first-child {
 				padding-left: 30px;
 			}
@@ -168,9 +201,6 @@ export default {
 				padding-right: 30px;
 				text-align: right;
 			}
-			padding: 10px;
-			position: relative;
-			display: table-cell;
 
 			&.groups {
 				width: 400px;
@@ -188,15 +218,16 @@ export default {
 }
 
 .error {
-	height: 50px;
 	display: flex;
-	justify-content: center;
 	align-items: center;
+	justify-content: center;
+	height: 50px;
 	.icon-error {
-		margin: 10px;
-		height: 24px;
 		width: 24px;
+		height: 24px;
+		margin: 10px;
 		background-size: 24px;
 	}
 }
+
 </style>
