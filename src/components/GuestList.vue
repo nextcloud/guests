@@ -23,13 +23,16 @@
 						<tr :key="guest.email"
 							:class="guest.email === details_for ? 'active': ''"
 							@click="toggleDetails(guest.email)">
-							<td class="email">
+							<td class="email"
+								:title="guest.email">
 								{{ guest.email }}
 							</td>
-							<td class="display_name">
+							<td class="display_name"
+								:title="guest.display_name">
 								{{ guest.display_name }}
 							</td>
-							<td class="created_by">
+							<td class="created_by"
+								:title="guest.created_by">
 								{{ guest.created_by }}
 							</td>
 							<td class="share_count">
@@ -125,9 +128,9 @@ export default {
 	padding: 20px 0 0;
 
 	table {
+		width: calc(100% + 60px);
 		margin: 0 -30px;
 		table-layout: fixed;
-		width: calc(100% + 60px);
 
 		tr {
 			height: 32px;
@@ -138,20 +141,20 @@ export default {
 		}
 
 		.sort-desc::after {
-			content: '▼';
 			position: absolute;
 			right: 10px;
+			content: '▼';
 		}
 
 		.sort-asc::after {
-			content: '▲';
 			position: absolute;
 			right: 10px;
+			content: '▲';
 		}
 
 		th {
-			border-bottom: 1px #ddd solid;
 			cursor: pointer;
+			border-bottom: 1px #ddd solid;
 
 			.sort_arrow {
 				float: right;
@@ -160,6 +163,13 @@ export default {
 		}
 
 		td, th {
+			position: relative;
+			display: table-cell;
+			overflow: hidden;
+			padding: 10px;
+			white-space: normal;
+			text-overflow: ellipsis;
+
 			&:first-child {
 				padding-left: 30px;
 			}
@@ -168,9 +178,6 @@ export default {
 				padding-right: 30px;
 				text-align: right;
 			}
-			padding: 10px;
-			position: relative;
-			display: table-cell;
 
 			&.groups {
 				width: 400px;
@@ -188,15 +195,16 @@ export default {
 }
 
 .error {
-	height: 50px;
 	display: flex;
-	justify-content: center;
 	align-items: center;
+	justify-content: center;
+	height: 50px;
 	.icon-error {
-		margin: 10px;
-		height: 24px;
 		width: 24px;
+		height: 24px;
+		margin: 10px;
 		background-size: 24px;
 	}
 }
+
 </style>
