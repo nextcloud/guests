@@ -1,6 +1,6 @@
 <template>
 	<NcSettingsSection :name="t('guests', 'Guests accounts')">
-		<div class="guests-list" v-if="loaded && !error">
+		<div v-if="loaded && !error" class="guests-list">
 			<table v-if="guests.length" class="table">
 				<thead>
 					<tr>
@@ -65,18 +65,39 @@
 	</NcSettingsSection>
 </template>
 
-<script>
-import { generateOcsUrl } from '@nextcloud/router'
-import axios from '@nextcloud/axios'
-import GuestDetails from './GuestDetails.vue'
-import NcSettingsSection from '@nextcloud/vue/dist/Components/NcSettingsSection.js'
+<script lang="ts">
+import type { OCSResponse } from '@nextcloud/typings/ocs'
+import type { AxiosResponse } from '@nextcloud/axios'
 
-export default {
+import { defineComponent } from 'vue'
+import { generateOcsUrl } from '@nextcloud/router'
+import { t } from '@nextcloud/l10n'
+import axios from '@nextcloud/axios'
+import NcSettingsSection from '@nextcloud/vue/components/NcSettingsSection'
+
+import GuestDetails from './GuestDetails.vue'
+
+type OcsGuest = {
+	email: string
+	display_name: string
+	created_by: string
+	share_count: number
+}
+
+export default defineComponent({
 	name: 'GuestList',
+
 	components: {
 		GuestDetails,
 		NcSettingsSection,
 	},
+
+	setup() {
+		return {
+			t,
+		}
+	},
+
 	data() {
 		return {
 			details_for: '',
@@ -84,16 +105,18 @@ export default {
 			sort_direction: 1,
 			error: false,
 			loaded: false,
-			guests: [],
+			guests: [] as OcsGuest[],
 		}
 	},
+
 	beforeMount() {
 		this.loadGuests()
 	},
+
 	methods: {
 		async loadGuests() {
 			try {
-				const { data } = await axios.get(generateOcsUrl('apps/guests/api/v1/users'))
+				const { data } = await axios.get(generateOcsUrl('apps/guests/api/v1/users')) as AxiosResponse<OCSResponse<OcsGuest[]>>
 				this.guests = data.ocs.data
 			} catch (error) {
 				this.error = true
@@ -102,10 +125,10 @@ export default {
 				this.loaded = true
 			}
 		},
-		getSortClass(name) {
+		getSortClass(name: string) {
 			return name + ' ' + (name === this.sort ? `sort-${this.sort_direction > 0 ? 'asc' : 'desc'}` : '')
 		},
-		setSort(name) {
+		setSort(name: string) {
 			if (name === this.sort) {
 				this.sort_direction = -this.sort_direction
 			} else {
@@ -116,11 +139,11 @@ export default {
 				return (a[this.sort]).localeCompare(b[this.sort]) * this.sort_direction
 			})
 		},
-		toggleDetails(email) {
+		toggleDetails(email: string) {
 			this.details_for = email
 		},
 	},
-}
+})
 </script>
 
 <style lang="scss" scoped>
