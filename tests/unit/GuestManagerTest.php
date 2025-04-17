@@ -159,7 +159,7 @@ class GuestManagerTest extends TestCase {
 		$guestUser->expects($this->once())
 			->method('setDisplayName')
 			->with('Example Guest');
-		$guestUser->method('setEMailAddress')
+		$guestUser->method('setSystemEMailAddress')
 			->willReturnCallback(function ($email) {
 				$this->config->setUserValue('guest@example.com', 'settings', 'email', $email);
 			});

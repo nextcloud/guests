@@ -23,20 +23,12 @@ use OCP\IRequest;
  */
 class SettingsController extends Controller {
 
-	/** @var Config */
-	private $config;
-
-	/** @var AppWhitelist */
-	private $appWhitelist;
-
 	public function __construct(
 		IRequest $request,
-		Config $config,
-		AppWhitelist $appWhitelist,
+		private Config $config,
+		private AppWhitelist $appWhitelist,
 	) {
 		parent::__construct(Application::APP_ID, $request);
-		$this->config = $config;
-		$this->appWhitelist = $appWhitelist;
 	}
 
 	/**
@@ -56,6 +48,7 @@ class SettingsController extends Controller {
 			'hideUsers' => $hideUsers,
 			'whiteListableApps' => $this->appWhitelist->getWhitelistAbleApps(),
 			'sharingRestrictedToGroup' => $this->config->isSharingRestrictedToGroup(),
+			'createRestrictedToGroup' => $this->config->getCreateRestrictedToGroup(),
 		]);
 	}
 
@@ -66,7 +59,7 @@ class SettingsController extends Controller {
 	 * @param $hideUsers bool
 	 * @return DataResponse
 	 */
-	public function setConfig(bool $useWhitelist, array $whitelist, bool $allowExternalStorage, bool $hideUsers): DataResponse {
+	public function setConfig(bool $useWhitelist, array $whitelist, bool $allowExternalStorage, bool $hideUsers, array $createRestrictedToGroup): DataResponse {
 		$newWhitelist = [];
 		foreach ($whitelist as $app) {
 			$newWhitelist[] = trim($app);
@@ -75,6 +68,7 @@ class SettingsController extends Controller {
 		$this->config->setAppWhitelist($newWhitelist);
 		$this->config->setAllowExternalStorage($allowExternalStorage);
 		$this->config->setHideOtherUsers($hideUsers);
+		$this->config->setCreateRestrictedToGroup($createRestrictedToGroup);
 		return new DataResponse();
 	}
 

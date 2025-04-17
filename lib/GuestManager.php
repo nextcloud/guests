@@ -67,7 +67,7 @@ class GuestManager {
 			$this->userBackend
 		);
 
-		$user->setEMailAddress($email);
+		$user->setSystemEMailAddress($email);
 		if ($createdBy) {
 			$this->config->setUserValue($userId, 'guests', 'created_by', $createdBy->getUID());
 		}
