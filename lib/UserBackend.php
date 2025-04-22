@@ -9,7 +9,7 @@ declare(strict_types=1);
 namespace OCA\Guests;
 
 use InvalidArgumentException;
-use OC\Cache\CappedMemoryCache;
+use OCP\Cache\CappedMemoryCache;
 use OCP\EventDispatcher\IEventDispatcher;
 use OCP\IDBConnection;
 use OCP\Security\Events\ValidatePasswordPolicyEvent;
@@ -38,28 +38,16 @@ class UserBackend extends ABackend implements
 	IPasswordHashBackend {
 	/** @var CappedMemoryCache */
 	private $cache;
-	/** @var IEventDispatcher */
-	private $eventDispatcher;
-	/** @var IDBConnection */
-	private $dbConn;
-	/** @var Config */
-	private $config;
-	/** @var IHasher */
-	private $hasher;
 	/** @var bool */
 	private $allowListing = true;
 
 	public function __construct(
-		IEventDispatcher $eventDispatcher,
-		IDBConnection $connection,
-		Config $config,
-		IHasher $hasher,
+		private IEventDispatcher $eventDispatcher,
+		private IDBConnection $dbConn,
+		private Config $config,
+		private IHasher $hasher,
 	) {
 		$this->cache = new CappedMemoryCache();
-		$this->eventDispatcher = $eventDispatcher;
-		$this->dbConn = $connection;
-		$this->config = $config;
-		$this->hasher = $hasher;
 	}
 
 	public function setAllowListing(bool $allow) {

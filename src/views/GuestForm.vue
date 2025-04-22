@@ -12,6 +12,7 @@
 		<div class="guest_model_content">
 			<form @submit.prevent="addGuest">
 				<div class="modal-body">
+					<!-- Name -->
 					<div class="form-group">
 						<label class="form-label" for="app-guests-input-name">
 							{{ t('guests', 'Name:') }}
@@ -22,7 +23,12 @@
 							class="form-input"
 							type="text"
 							:disabled="loading">
+						<NcNoteCard v-if="errors.username" type="error">
+							{{ errors.username }}
+						</NcNoteCard>
 					</div>
+
+					<!-- Email -->
 					<div class="form-group">
 						<label class="form-label" for="app-guests-input-email">
 							{{ t('guests', 'Email:') }}
@@ -33,15 +39,21 @@
 							class="form-input"
 							type="email"
 							:disabled="loading"
-							:class="{ _error: error.email }">
-						<span v-if="error.email">{{ error.email }}</span>
+							:class="{ _error: errors.email }">
+						<NcNoteCard v-if="errors.email" type="error">
+							{{ errors.email }}
+						</NcNoteCard>
 					</div>
+
+					<!-- Language -->
 					<div class="form-lang">
 						<label class="form-label" for="app-guests-input-lang">
 							{{ t('guests', 'Language:') }}
 						</label>
 						<LanguageSelect v-model="guest.language" :disabled="loading" />
 					</div>
+
+					<!-- Groups -->
 					<div v-if="groups.length > 0" class="form-group">
 						<label class="form-label" for="app-guests-input-group">
 							{{ t('guests', 'Add guest to groups:') }}
@@ -50,13 +62,17 @@
 							:disabled="loading"
 							:groups="groups"
 							:required="groupRequired" />
-						<span v-if="error.groups">{{ error.groups }}</span>
+						<NcNoteCard v-if="errors.groups" type="error">
+							{{ errors.groups }}
+						</NcNoteCard>
 					</div>
 				</div>
 
 				<!-- Footer -->
 				<div class="modal-footer">
-					<span v-if="error.button">{{ t('guests', 'An error occurred, try again') }}</span>
+					<NcNoteCard v-if="errors.button" type="error">
+						{{ t('guests', 'An error occurred, try again') }}
+					</NcNoteCard>
 					<NcButton type="primary"
 						native-type="submit"
 						:disabled="loading">
@@ -73,15 +89,17 @@
 </template>
 
 <script>
-import { logger } from '../services/logger.ts'
 import { generateOcsUrl } from '@nextcloud/router'
-import { Type as ShareTypes } from '@nextcloud/sharing'
+import { ShareType } from '@nextcloud/sharing'
+import { showError } from '@nextcloud/dialogs'
+import axios from '@nextcloud/axios'
 
 import AccountPlus from 'vue-material-design-icons/AccountPlus.vue'
-import axios from '@nextcloud/axios'
-import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
-import NcModal from '@nextcloud/vue/dist/Components/NcModal.js'
+import NcButton from '@nextcloud/vue/components/NcButton'
+import NcModal from '@nextcloud/vue/components/NcModal'
+import NcNoteCard from '@nextcloud/vue/components/NcNoteCard'
 
+import { logger } from '../services/logger.ts'
 import GroupSelect from '../components/GroupSelect.vue'
 import LanguageSelect from '../components/LanguageSelect.vue'
 
@@ -89,10 +107,11 @@ export default {
 	name: 'GuestForm',
 	components: {
 		AccountPlus,
-		NcButton,
 		GroupSelect,
 		LanguageSelect,
+		NcButton,
 		NcModal,
+		NcNoteCard,
 	},
 	data() {
 		return {
@@ -113,7 +132,7 @@ export default {
 				groups: [],
 			},
 
-			error: {
+			errors: {
 				button: false,
 				email: false,
 				username: false,
@@ -199,10 +218,10 @@ export default {
 
 		async addGuest() {
 			if (this.groupRequired && this.guest.groups.length === 0) {
-				this.error.groups = t('guests', 'Guest user needs to be added to at least one group')
+				this.errors.groups = t('guests', 'Guest user needs to be added to at least one group')
 				return
 			} else {
-				this.error.groups = false
+				this.errors.groups = false
 			}
 
 			this.loading = true
@@ -227,13 +246,16 @@ export default {
 
 				await this.setupGuestShare()
 			} catch ({ response }) {
-				const error = response && response.data && response.data.ocs && response.data.ocs.data
-					? response.data.ocs.data.errorMessages
-					: { button: true }
-
-				this.error.email = error.email ? error.email : false
-				this.error.username = error.username ? error.username : false
-				this.error.button = error.button ? error.button : false
+				const errors = response?.data?.ocs?.data?.errorMessages
+				// Backend returns either an array of strings or an
+				// object with error messages for each field.
+				if (Array.isArray(errors)) {
+					errors.map(showError)
+				} else {
+					this.errors.email = errors.email ? errors.email : false
+					this.errors.username = errors.username ? errors.username : false
+					this.errors.button = errors.button ? errors.button : false
+				}
 			} finally {
 				this.loading = false
 			}
@@ -243,7 +265,7 @@ export default {
 			try {
 				const path = (this.fileInfo.path + '/' + this.fileInfo.name).replace('//', '/')
 				const shareTemplate = {
-					shareType: ShareTypes.SHARE_TYPE_USER,
+					shareType: ShareType.User,
 					shareWith: this.guest.username,
 					path,
 				}
@@ -270,9 +292,9 @@ export default {
 		},
 
 		resetErrors() {
-			this.error.username = false
-			this.error.email = false
-			this.error.button = false
+			this.errors.username = false
+			this.errors.email = false
+			this.errors.button = false
 		},
 	},
 }

@@ -67,10 +67,11 @@ class UsersController extends OCSController {
 				Http::STATUS_FORBIDDEN
 			);
 		}
+
 		if (!$this->config->canCreateGuests()) {
 			return new DataResponse(
 				[
-					'errorMessages' => ['This user is not allowed to create guests'],
+					'errorMessages' => ['You are not allowed to create guests'],
 				],
 				Http::STATUS_FORBIDDEN
 			);
@@ -99,7 +100,7 @@ class UsersController extends OCSController {
 			if (!($this->subAdmin->isSubAdminOfGroup($currentUser, $group) || $this->groupManager->isAdmin($currentUser->getUID()))) {
 				return new DataResponse(
 					[
-						'errorMessages' => ["This user is not allowed to add users to group $groupId"],
+						'errorMessages' => ["You are not allowed to add users to group $groupId"],
 					],
 					Http::STATUS_FORBIDDEN
 				);

@@ -6,6 +6,9 @@
 	<div>
 		<NcSettingsSection :name="t('guests', 'Guests')"
 			:description="t('guests', 'Guest accounts are grouped under a virtual group in the account manager')">
+			<NcNoteCard type="info">
+				{{ t('guests', 'Guests account have no quota by default') }}
+			</NcNoteCard>
 			<div>
 				<span v-if="error || saving || saved"
 					:class="{error, saving, saved}"
@@ -36,6 +39,21 @@
 					{{ t('guests', 'Guests will still be able to see accounts from any group they are added to') }}
 				</NcNoteCard>
 
+				<!-- Restrict guest creation to groups -->
+				<NcCheckboxRadioSwitch :checked="config.createRestrictedToGroup.length > 0"
+					type="switch"
+					@update:checked="onGroupRestrictToggle">
+					{{ t('guests', 'Limit guest account creation to the following groups only') }}
+				</NcCheckboxRadioSwitch>
+
+				<p v-if="config.createRestrictedToGroup.length > 0">
+					<NcSettingsSelectGroup :label="t('guests', 'Limit guest account creation to the following groups only')"
+						:model-value="config.createRestrictedToGroup"
+						:placeholder="t('guests', 'Select groups to allow')"
+						@update:model-value="onSelectGroups" />
+				</p>
+
+				<!-- Allowlist -->
 				<NcCheckboxRadioSwitch :checked.sync="config.useWhitelist"
 					type="switch"
 					@update:checked="saveConfig">
@@ -69,24 +87,29 @@
 import { clearTimeout, setTimeout } from 'timers'
 import { generateUrl } from '@nextcloud/router'
 import axios from '@nextcloud/axios'
-import NcCheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch.js'
-import NcSelect from '@nextcloud/vue/dist/Components/NcSelect.js'
-import NcSettingsSection from '@nextcloud/vue/dist/Components/NcSettingsSection.js'
-import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
-import NcNoteCard from '@nextcloud/vue/dist/Components/NcNoteCard.js'
-import GuestList from '../components/GuestList.vue'
+
 import History from 'vue-material-design-icons/History.vue'
+import NcButton from '@nextcloud/vue/components/NcButton'
+import NcCheckboxRadioSwitch from '@nextcloud/vue/components/NcCheckboxRadioSwitch'
+import NcNoteCard from '@nextcloud/vue/components/NcNoteCard'
+import NcSelect from '@nextcloud/vue/components/NcSelect'
+import NcSettingsSection from '@nextcloud/vue/components/NcSettingsSection'
+import NcSettingsSelectGroup from '@nextcloud/vue/components/NcSettingsSelectGroup'
+
+import GuestList from '../components/GuestList.vue'
+import { showError } from '@nextcloud/dialogs'
 
 export default {
 	name: 'GuestSettings',
 	components: {
 		GuestList,
+		History,
+		NcButton,
+		NcCheckboxRadioSwitch,
+		NcNoteCard,
 		NcSelect,
 		NcSettingsSection,
-		NcCheckboxRadioSwitch,
-		NcButton,
-		NcNoteCard,
-		History,
+		NcSettingsSelectGroup,
 	},
 	data() {
 		return {
@@ -102,6 +125,7 @@ export default {
 				whitelist: [],
 				whiteListableApps: [],
 				sharingRestrictedToGroup: false,
+				createRestrictedToGroup: [],
 			},
 		}
 	},
@@ -166,6 +190,33 @@ export default {
 			this.saved = false
 			this.saving = false
 			clearTimeout(this.savingTimeout)
+		},
+
+		onGroupRestrictToggle(checked) {
+			this.config.createRestrictedToGroup = checked
+				? ['admin']
+				: []
+			this.saveConfig()
+		},
+
+		onSelectGroups(groups) {
+			// Removing the last group will disable the feature
+			if (groups.length === 0) {
+				this.onGroupRestrictToggle(false)
+				return
+			}
+
+			// Prevent removing the admin group
+			// It doesn't really matter to see if the admin group is in the list
+			// as we'll check it on the server side anyway. But we'll keep it here
+			// as a clear statement that the admin group is always allowed to create guest accounts.
+			if (!groups.includes('admin')) {
+				showError(t('guests', 'The admin group is always allowed to create guest accounts'))
+			}
+
+			// Admin group is always added to the list of groups
+			this.config.createRestrictedToGroup = [...new Set(['admin', ...groups])]
+			this.saveConfig()
 		},
 	},
 }
