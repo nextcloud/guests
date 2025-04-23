@@ -12,6 +12,7 @@ OC.L10N.register(
     "None" : "Pole",
     "Name" : "Nimi",
     "Email" : "E-post",
+    "Default" : "Vaikimisi",
     "Cancel" : "Tühista",
     "Error" : "Viga"
 },

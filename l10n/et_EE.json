@@ -10,6 +10,7 @@
     "None" : "Pole",
     "Name" : "Nimi",
     "Email" : "E-post",
+    "Default" : "Vaikimisi",
     "Cancel" : "Tühista",
     "Error" : "Viga"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"

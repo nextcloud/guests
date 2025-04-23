@@ -34,6 +34,7 @@ OC.L10N.register(
     "Invited by" : "招待者: ",
     "Received shares" : "共有を受け取りました",
     "No guest accounts created" : "ゲストアカウントはまだ作成されていません",
+    "Default" : "デフォルト",
     "Cancel" : "キャンセル",
     "Invite {name}" : "{name} を招待",
     "Invite user to conversation" : "会話にユーザーを招待",
