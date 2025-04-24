@@ -65,6 +65,7 @@
     "Guest accounts can access mounted external storages" : "Účty hostů mohou přistupovat k připojeným externím úložištím",
     "Hide other accounts from guests" : "Skrýt před hosty ostatní uživatelské účty",
     "Guests will still be able to see accounts from any group they are added to" : "Hosté i tak budou moci vidět účty ze skupin, do kterých jsou přidáni",
+    "Select groups to allow" : "Vybrat skupiny, které povolit",
     "Limit guest access to an app's allowlist" : "Omezit hostovi přístup pouze na aplikace, uvedené v seznamu povolených",
     "Reset allowlist" : "Vrátit seznam povolených do výchozího stavu",
     "Invite guest" : "Pozvat hosta",
