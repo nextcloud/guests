@@ -7,6 +7,7 @@ OC.L10N.register(
     "A user with that email already exists." : "Корисник со оваа адреса на е-пошта веќе постои.",
     "A user with that name already exists." : "Корисник со ова име веќе постои.",
     "User successfully created" : "Корисникот успешно е креиран",
+    "Failed to authorize" : "Неуспешна авторизација",
     "%s shared »%s« with you" : "%s сподели »%s« со вас",
     "Incoming share" : "Дојдовни споделувања",
     "Hey there," : "Здраво,",
