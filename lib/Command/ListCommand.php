@@ -49,7 +49,7 @@ class ListCommand extends Base {
 			$this->writeArrayInOutputFormat($input, $output, $guests);
 		} else {
 			$table = new Table($output);
-			$table->setHeaders(['Email', 'Name', 'Invited By']);
+			$table->setHeaders(['Email', 'UserID', 'Name', 'Invited By']);
 			$table->setRows($guests);
 			$table->render();
 		}

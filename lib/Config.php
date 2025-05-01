@@ -33,6 +33,14 @@ class Config {
 		$this->appConfig->setAppValueBool('allow_external_storage', $allow === true || $allow === 'true') ;
 	}
 
+	public function useHashedEmailAsUserID(): bool {
+		return $this->appConfig->getAppValueBool('hash_user_ids', true);
+	}
+
+	public function setUseHashedEmailAsUserID(bool $useHash): void {
+		$this->appConfig->setAppValueBool('hash_user_ids', $useHash) ;
+	}
+
 	public function hideOtherUsers(): bool {
 		return $this->appConfig->getAppValueBool('hide_users', true);
 	}

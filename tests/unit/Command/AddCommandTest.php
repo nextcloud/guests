@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace OCA\Guests\Test\Command\Unit;
 
 use OCA\Guests\Command\AddCommand;
+use OCA\Guests\Config;
 use OCA\Guests\GuestManager;
 use OCP\IUser;
 use OCP\IUserManager;
@@ -19,14 +20,10 @@ use Symfony\Component\Console\Tester\CommandTester;
 use Test\TestCase;
 
 class AddCommandTest extends TestCase {
-	/** @var IUserManager|MockObject */
-	private $userManager;
-
-	/** @var GuestManager|MockObject */
-	private $guestManager;
-
-	/** @var IMailer|MockObject */
-	private $mailer;
+	private IUserManager&MockObject $userManager;
+	private GuestManager&MockObject $guestManager;
+	private IMailer&MockObject $mailer;
+	private Config&MockObject $config;
 
 	private ?AddCommand $command = null;
 
@@ -38,11 +35,13 @@ class AddCommandTest extends TestCase {
 		$this->userManager = $this->createMock(IUserManager::class);
 		$this->guestManager = $this->createMock(GuestManager::class);
 		$this->mailer = $this->createMock(IMailer::class);
+		$this->config = $this->createMock(Config::class);
 
 		$this->command = new AddCommand(
 			$this->userManager,
 			$this->mailer,
-			$this->guestManager
+			$this->guestManager,
+			$this->config,
 		);
 		$this->command->setApplication(new Application());
 
