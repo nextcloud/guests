@@ -11,6 +11,9 @@
 						<th :class="getSortClass('email')" @click="setSort('email')">
 							{{ t('guests', 'Email') }}
 						</th>
+						<th :class="getSortClass('uid')" @click="setSort('uid')">
+							{{ t('guests', 'User ID') }}
+						</th>
 						<th :class="getSortClass('display_name')" @click="setSort('display_name')">
 							{{ t('guests', 'Name') }}
 						</th>
@@ -31,6 +34,10 @@
 								:title="guest.email">
 								{{ guest.email }}
 							</td>
+							<td class="uid"
+								:title="guest.uid">
+								{{ guest.uid }}
+							</td>
 							<td class="display_name"
 								:title="guest.display_name">
 								{{ guest.display_name }}
@@ -46,7 +53,7 @@
 						<tr v-if="guest.email === details_for"
 							:key="guest.email + '-details'"
 							class="details">
-							<td colspan="4">
+							<td colspan="5">
 								<GuestDetails :guest-id="guest.email" />
 							</td>
 						</tr>

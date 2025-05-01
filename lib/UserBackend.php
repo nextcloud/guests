@@ -109,6 +109,14 @@ class UserBackend extends ABackend implements
 		return $result ? true : false;
 	}
 
+	public function setInitialEmail(string $uid, string $email): bool {
+		$query = $this->dbConn->getQueryBuilder();
+		$query->update('guests_users')
+			->set('email', $query->createNamedParameter($email))
+			->where($query->expr()->eq('uid_lower', $query->createNamedParameter(mb_strtolower($uid))));
+		return (bool)$query->executeStatement();
+	}
+
 	/**
 	 * Set password
 	 *
@@ -249,6 +257,35 @@ class UserBackend extends ABackend implements
 	}
 
 	/**
+	 * Get a list of all users with their email and display name
+	 *
+	 * @return array<string, array{email: string, displayname: string}>
+	 */
+	public function getAllGuestAccounts(?int $limit = null, ?int $offset = null): array {
+		if (!$this->allowListing) {
+			return [];
+		}
+
+		$query = $this->dbConn->getQueryBuilder();
+		$query->select('uid', 'email', 'displayname')
+			->from('guests_users')
+			->orderBy('uid_lower', 'ASC')
+			->setMaxResults($limit)
+			->setFirstResult($offset);
+
+		$result = $query->execute();
+		$users = [];
+		while ($row = $result->fetch()) {
+			$users[(string)$row['uid']] = [
+				'email' => (string)$row['email'],
+				'displayname' => (string)$row['displayname'],
+			];
+		}
+
+		return $users;
+	}
+
+	/**
 	 * Check if the password is correct
 	 *
 	 * @return string|false
@@ -257,7 +294,7 @@ class UserBackend extends ABackend implements
 	 * returns the user id or false
 	 */
 	public function checkPassword(string $loginName, string $password) {
-		if (strpos($loginName, '@') === false) {
+		if (!$this->potentialGuestUserId($loginName)) {
 			return false;
 		}
 
@@ -294,9 +331,13 @@ class UserBackend extends ABackend implements
 	 * @return bool true if user was found, false otherwise
 	 */
 	private function loadUser($uid): bool {
+		if (isset($this->cache[$uid]) && $this->cache[$uid] === false) {
+			return false;
+		}
+
 		// guests $uid could be NULL or ''
 		// or is not an email anyway
-		if (strpos($uid, '@') === false) {
+		if (!$this->potentialGuestUserId($uid)) {
 			$this->cache[$uid] = false;
 			return false;
 		}
@@ -416,7 +457,7 @@ class UserBackend extends ABackend implements
 	}
 
 	public function getRealUID(string $uid): string {
-		if (strpos($uid, '@') === false) {
+		if (!$this->potentialGuestUserId($uid)) {
 			throw new \RuntimeException($uid . ' does not exist');
 		}
 
@@ -429,5 +470,17 @@ class UserBackend extends ABackend implements
 		}
 
 		return $this->cache[$uid]['uid'];
+	}
+
+	/**
+	 * Guest app user ids are:
+	 * - either email addresses so they need to contain an @
+	 * - lowercase sha256 hashes of email addresses, 64 characters of a-f and 0-9
+	 *
+	 * @param string $userId
+	 * @return bool
+	 */
+	protected function potentialGuestUserId(string $userId): bool {
+		return str_contains($userId, '@') || preg_match('/^[a-f0-9]{64}$/', $userId);
 	}
 }
