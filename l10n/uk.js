@@ -34,6 +34,7 @@ OC.L10N.register(
     "Invited by" : "Запрошення надіслано",
     "Received shares" : "Отримані спільні ресурси",
     "No guest accounts created" : "Відсутні гостьові облікові записи",
+    "Default" : "Типово",
     "Cancel" : "Скасувати",
     "Invite {name}" : "Запросити {name}",
     "Invite user to conversation" : "Запросити користувача до розмови",
