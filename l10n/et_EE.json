@@ -28,6 +28,7 @@
     "Guest conversion done" : "Külaliskonto konverteerimine on tehtud",
     "Conversion of guest {guest} to {user} completed" : "Õnnestus konverteerida {guest} külaliskonto {user} tavakontoks",
     "Create guest accounts for easier collaboration" : "Lihtsama ühistöö huvides lisa ja halda külaliskontosid",
+    "👥 Allows for better collaboration with external users by allowing users to create guests account.\n\nGuests accounts can be created from the share menu by entering either the recipients email or name and choosing \"create guest account\", once the share is created the guest user will receive an email notification about the mail with a link to set their password.\n\nGuests users can only access files shared to them and cannot create any files outside of shares, additionally, the apps accessible to guest accounts are whitelisted." : "👥 Kasutades võimalust luua külaliskontosid võimaldab paremat koostööd väliste kasutajatega.\n\nKülaliskontosid saad luua jagamismenüüst sisestades külalise e-posti aadressi ja nime ning valides „Loo külaliskonto“. Seepeale saab külaline teavituskirja lingiga oma salasõna sisestamiseks.\n\nKülalised näevad vaid neile jagatud faile ega saa jaosmeedia väliselt ühtegi faili luua. Lisaks on kasutatavad rakendused piiratud etteantud loendiga.",
     "None" : "Pole",
     "Name" : "Nimi",
     "Shared By" : "Jagaja:",
@@ -61,6 +62,9 @@
     "The admin group is always allowed to create guest accounts" : "Peakasutajate grupi liikmed võivad alati luua külaliskontosid",
     "Guest accounts are grouped under a virtual group in the account manager" : "Kasutajakontode haldusliideses on külaliskontod rühmitatud virtuaalse grupina",
     "Guests account have no quota by default" : "Külaliskontol vaikimisi pole kvooti",
+    "Creating guests accounts is restricted while \"Restrict accounts to only share with accounts in their groups\" is enabled." : "Külaliskontode lisamine on piiratud, kui kasutusel on „Piira jagamist vaid oma gruppide kasutajakontodega“ eelistus.",
+    "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Ainult gruppide peakasutajad võivad lisada külaliskontosid ning külalised peavad olema vähemalt ühe grupi liige, kus jaosmeedia looja on grupi peakasutaja.",
+    "Guest accounts can access mounted external storages" : "Külaliskasutajatel on ligipääs haagitud välistele andmeruumidele",
     "Hide other accounts from guests" : "Peida muud kasutajakontod külaliskontode eest",
     "Guests will still be able to see accounts from any group they are added to" : "Siiski näevad külalised nende gruppide teisi liikmeid, mille liikmed nad ise on",
     "Limit guest account creation to the following groups only" : "Luba külaliskontode loomine vaid järgnevate gruppide liikmetele",
@@ -68,6 +72,7 @@
     "Limit guest access to an app's allowlist" : "Piira külaliskasutaja ligipääs lubatud rakenduste loendiga",
     "Reset allowlist" : "Lähtesta lubatud rakenduste loend",
     "Invite guest" : "Saada kutse külalisele",
-    "A user with this ID or email address already exists" : "Sellise tunnuse või e-posti aadressiga kasutaja on juba olemas."
+    "A user with this ID or email address already exists" : "Sellise tunnuse või e-posti aadressiga kasutaja on juba olemas.",
+    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Külaliskonto konverteeritakse tavakasutaja kontoks nimega „{userId}“ üsna pea"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
