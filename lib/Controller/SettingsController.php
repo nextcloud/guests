@@ -45,6 +45,7 @@ class SettingsController extends Controller {
 			'useWhitelist' => $useWhitelist,
 			'whitelist' => $whitelist,
 			'allowExternalStorage' => $allowExternalStorage,
+			'useHashedEmailAsUserID' => $this->config->useHashedEmailAsUserID(),
 			'hideUsers' => $hideUsers,
 			'whiteListableApps' => $this->appWhitelist->getWhitelistAbleApps(),
 			'sharingRestrictedToGroup' => $this->config->isSharingRestrictedToGroup(),
@@ -59,7 +60,7 @@ class SettingsController extends Controller {
 	 * @param $hideUsers bool
 	 * @return DataResponse
 	 */
-	public function setConfig(bool $useWhitelist, array $whitelist, bool $allowExternalStorage, bool $hideUsers, array $createRestrictedToGroup): DataResponse {
+	public function setConfig(bool $useWhitelist, array $whitelist, bool $allowExternalStorage, bool $useHashedEmailAsUserID, bool $hideUsers, array $createRestrictedToGroup): DataResponse {
 		$newWhitelist = [];
 		foreach ($whitelist as $app) {
 			$newWhitelist[] = trim($app);
@@ -67,6 +68,7 @@ class SettingsController extends Controller {
 		$this->config->setUseWhitelist($useWhitelist);
 		$this->config->setAppWhitelist($newWhitelist);
 		$this->config->setAllowExternalStorage($allowExternalStorage);
+		$this->config->setUseHashedEmailAsUserID($useHashedEmailAsUserID);
 		$this->config->setHideOtherUsers($hideUsers);
 		$this->config->setCreateRestrictedToGroup($createRestrictedToGroup);
 		return new DataResponse();
