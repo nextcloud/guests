@@ -11,6 +11,7 @@ OC.L10N.register(
     "Couldn't send reset email. Please contact your administrator." : "No fue posible enviar el correo electrónico de restauración. Por favor contacta a tu adminstrador. ",
     "None" : "Ninguno",
     "Name" : "Nombre",
-    "Email" : "Correo electrónico"
+    "Email" : "Correo electrónico",
+    "Cancel" : "Cancel"
 },
 "nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

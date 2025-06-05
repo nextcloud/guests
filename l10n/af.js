@@ -13,6 +13,7 @@ OC.L10N.register(
     "Shared By" : "Gedeel Deur",
     "Shared At" : "Gedeel Om",
     "Guests accounts" : "Gasterekeninge",
-    "Invited by" : "Genooi deur"
+    "Invited by" : "Genooi deur",
+    "Cancel" : "Cancel"
 },
 "nplurals=2; plural=(n != 1);");

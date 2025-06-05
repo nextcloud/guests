@@ -3,6 +3,7 @@
     "Name" : "Nom",
     "Email" : "Imayl",
     "Default" : "Prédéfini(e)",
+    "Cancel" : "Cancel",
     "Error" : "Erreur"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

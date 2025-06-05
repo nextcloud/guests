@@ -13,6 +13,7 @@ OC.L10N.register(
     "Guests accounts" : "Qonaq hesabları",
     "Email" : "Email",
     "Invited by" : "Dəvət edən",
+    "Cancel" : "Cancel",
     "Invite {name}" : "{name} Dəvət et",
     "Name:" : "Ad:",
     "Email:" : "Email:",

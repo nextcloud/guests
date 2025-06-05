@@ -6,6 +6,7 @@
     "None" : "Ingen",
     "Name" : "Namn",
     "Email" : "Epost",
+    "Cancel" : "Cancel",
     "Error" : "Feil"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

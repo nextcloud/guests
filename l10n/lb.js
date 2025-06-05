@@ -9,6 +9,7 @@ OC.L10N.register(
     "None" : "Keng",
     "Name" : "Numm",
     "Email" : "Email",
+    "Cancel" : "Cancel",
     "Error" : "Fehler"
 },
 "nplurals=2; plural=(n != 1);");

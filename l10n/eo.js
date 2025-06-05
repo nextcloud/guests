@@ -28,6 +28,7 @@ OC.L10N.register(
     "Invited by" : "Invitita de",
     "Received shares" : "Ricevitaj kunhavoj",
     "No guest accounts created" : "Neniu gastkonto kreita",
+    "Cancel" : "Cancel",
     "Error" : "Eraro"
 },
 "nplurals=2; plural=(n != 1);");

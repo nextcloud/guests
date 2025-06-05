@@ -8,6 +8,7 @@ OC.L10N.register(
     "None" : "Ingen",
     "Name" : "Namn",
     "Email" : "Epost",
+    "Cancel" : "Cancel",
     "Error" : "Feil"
 },
 "nplurals=2; plural=(n != 1);");
