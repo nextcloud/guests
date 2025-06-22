@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Failed to authorize" : "Imeshindwa kuidhinisha",
     "Couldn't send reset email. Please contact your administrator." : "Haiwezi kutuma barua pepe iliyowekwa upya. Tafadhali wasiliana na msimamizi wako",
+    "None" : "Hakuna",
     "Name" : "Jina",
     "Email" : "Barua pepe",
     "Cancel" : "Cancel",
