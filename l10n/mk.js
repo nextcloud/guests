@@ -34,6 +34,7 @@ OC.L10N.register(
     "Received shares" : "Примени споделувања",
     "No guest accounts created" : "Не е креирана гостинска сметка",
     "Default" : "Предефиниран",
+    "New account name" : "Ново корисничко име",
     "Cancel" : "Откажи",
     "Invite {name}" : "Покани го {name}",
     "Invite user to conversation" : "покани корисник во разговор",
