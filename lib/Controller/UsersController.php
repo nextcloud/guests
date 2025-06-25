@@ -114,7 +114,12 @@ class UsersController extends OCSController {
 			);
 		}
 
-		$username = $email;
+		if ($this->config->useHashedEmailAsUserID()) {
+			$email = strtolower($email);
+			$username = hash('sha256', $email);
+		} else {
+			$username = $email;
+		}
 
 		$existingUsers = $this->userManager->getByEmail($email);
 		if (count($existingUsers) > 0) {
