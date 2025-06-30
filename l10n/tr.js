@@ -64,7 +64,7 @@ OC.L10N.register(
     "The admin group is always allowed to create guest accounts" : "Yönetici grubu her zaman konuk hesapları oluşturabilir",
     "Guest accounts are grouped under a virtual group in the account manager" : "Konuk hesapları, hesap yönetimi bölümünde sanal bir grup altında toplanır",
     "Guests account have no quota by default" : "Konuk hesabının varsayılan olarak kotası yoktur",
-    "Creating guests accounts is restricted while \"Restrict accounts to only share with accounts in their groups\" is enabled." : "\"Hesaplar, yalnızca kendi gruplarındaki hesaplar ile paylaşabilsin\" seçeneği etkinleştirildiğinde konuk hesaplarını eklemek kısıtlanır.",
+    "Creating guests accounts is restricted while \"Restrict accounts to only share with accounts in their groups\" is enabled." : "\"Hesaplar, yalnızca kendi gruplarındaki hesaplar ile paylaşabilsin\" seçeneği açıldığında konuk hesaplarının eklenmesi kısıtlanır.",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Yalnızca grup yöneticileri konuk ekleyebilir ve konukların paylaşım sahibinin yöneticisi olduğu en az bir gruba eklenmesi gerekir.",
     "Guest accounts can access mounted external storages" : "Konuk hesaplar takılı dış depolama birimlerine erişebilir",
     "Hide other accounts from guests" : "Diğer hesaplar konuklardan gizlensin",
