@@ -6,6 +6,26 @@
 
 All notable changes to this project will be documented in this file.
 
+## 4.3.0
+### Changes
+* feat: Add share count including circles by @Pytal in https://github.com/nextcloud/guests/pull/1287
+* feat: allow limiting guests creation to specific groups by @skjnldsv in https://github.com/nextcloud/guests/pull/1330
+
+### Fixes
+* fix: fix DirMask path check by @icewind1991 in https://github.com/nextcloud/guests/pull/1311
+* fix: Set guest quota to '0 B' when migrating form OC by @artonge in https://github.com/nextcloud/guests/pull/1310
+* fix(settings): ellipsis long table cells by @skjnldsv in https://github.com/nextcloud/guests/pull/1321
+
+### Other
+* Chore(deps): Bump @babel/runtime from 7.26.9 to 7.27.0
+* Chore(deps): Bump @nextcloud/dialogs from 6.1.1 to 6.3.1
+* Chore(deps): Bump @nextcloud/event-bus from 3.3.1 to 3.3.2
+* Chore(deps): Bump @nextcloud/vue from 8.23.1 to 8.27.0
+* Chore(deps): Bump axios from 1.7.9 to 1.8.3
+* Various dependencies
+
+**Full Changelog**: https://github.com/nextcloud/guests/compare/v4.2.0...v4.3.0
+
 ## 4.2.0
 
 ### Changes
