@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace OCA\Guests\Command;
 
+use OCA\Guests\Config;
 use OCA\Guests\GuestManager;
 use OCP\IUser;
 use OCP\IUserManager;
@@ -21,18 +22,13 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
 
 class AddCommand extends Command {
-	/** @var IUserManager */
-	private $userManager;
-	/** @var GuestManager */
-	private $guestManager;
-	/** @var IMailer */
-	private $mailer;
-
-	public function __construct(IUserManager $userManager, IMailer $mailer, GuestManager $guestManager) {
+	public function __construct(
+		private IUserManager $userManager,
+		private IMailer $mailer,
+		private GuestManager $guestManager,
+		private Config $config,
+	) {
 		parent::__construct();
-		$this->userManager = $userManager;
-		$this->guestManager = $guestManager;
-		$this->mailer = $mailer;
 	}
 
 	protected function configure() {
@@ -85,14 +81,20 @@ class AddCommand extends Command {
 			return 1;
 		}
 
+		$email = $input->getArgument('email');
+		if ($this->config->useHashedEmailAsUserID()) {
+			$email = strtolower($email);
+			$uid = hash('sha256', $email);
+		} else {
+			$uid = $email;
+		}
+
 		// same behavior like in the UsersController
-		$uid = $input->getArgument('email');
 		if ($this->userManager->userExists($uid)) {
 			$output->writeln('<error>The user "' . $uid . '" already exists.</error>');
 			return 1;
 		}
 
-		$email = $input->getArgument('email');
 		if (!$this->mailer->validateMailAddress($email)) {
 			$output->writeln('<error>Invalid email address "' . $email . '".</error>');
 			return 1;

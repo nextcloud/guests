@@ -41,6 +41,7 @@ class OwncloudGuestMigrationTest extends TestCase {
 	}
 
 	private function createOcGuest(string $userId): void {
+		$this->userManager->get($userId)?->delete();
 		$this->userManager->createUser($userId, $userId . '_password');
 		$this->config->setUserValue($userId, 'owncloud', 'isGuest', '1');
 	}

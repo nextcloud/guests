@@ -29,6 +29,12 @@
 					{{ t('guests', 'Guest accounts can access mounted external storages') }}
 				</NcCheckboxRadioSwitch>
 
+				<NcCheckboxRadioSwitch :checked.sync="config.useHashedEmailAsUserID"
+					type="switch"
+					@update:checked="saveConfig">
+					{{ t('guests', 'Use a hash of the email as user ID for improved privacy') }}
+				</NcCheckboxRadioSwitch>
+
 				<NcCheckboxRadioSwitch :checked.sync="config.hideUsers"
 					type="switch"
 					@update:checked="saveConfig">
@@ -121,6 +127,7 @@ export default {
 			config: {
 				useWhitelist: false,
 				allowExternalStorage: false,
+				useHashedEmailAsUserID: true,
 				hideUsers: false,
 				whitelist: [],
 				whiteListableApps: [],

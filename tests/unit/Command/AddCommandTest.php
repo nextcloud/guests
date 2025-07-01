@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace OCA\Guests\Test\Command\Unit;
 
 use OCA\Guests\Command\AddCommand;
+use OCA\Guests\Config;
 use OCA\Guests\GuestManager;
 use OCP\IUser;
 use OCP\IUserManager;
@@ -25,6 +26,8 @@ class AddCommandTest extends TestCase {
 	private $guestManager;
 	/** @var IMailer|MockObject */
 	private $mailer;
+	/** @var IMailer|MockObject */
+	private Config&MockObject $config;
 	/** @var AddCommand */
 	private $command;
 	/** @var CommandTester */
@@ -36,11 +39,13 @@ class AddCommandTest extends TestCase {
 		$this->userManager = $this->createMock(IUserManager::class);
 		$this->guestManager = $this->createMock(GuestManager::class);
 		$this->mailer = $this->createMock(IMailer::class);
+		$this->config = $this->createMock(Config::class);
 
 		$this->command = new AddCommand(
 			$this->userManager,
 			$this->mailer,
-			$this->guestManager
+			$this->guestManager,
+			$this->config,
 		);
 		$this->command->setApplication(new Application());
 		$this->commandTester = new CommandTester($this->command);
