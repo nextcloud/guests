@@ -1,6 +1,7 @@
 OC.L10N.register(
     "guests",
     {
+    "__language_name__" : "_lugha_jina_",
     "Failed to authorize" : "Imeshindwa kuidhinisha",
     "Couldn't send reset email. Please contact your administrator." : "Haiwezi kutuma barua pepe iliyowekwa upya. Tafadhali wasiliana na msimamizi wako",
     "None" : "Hakuna",
