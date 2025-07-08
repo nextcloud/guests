@@ -9,21 +9,15 @@ namespace OCA\Guests;
 
 use OC\NavigationManager;
 use OCP\IUser;
+use OCP\INavigationManager;
 
 class FilteredNavigationManager extends NavigationManager {
-	/** @var AppWhitelist */
-	private $whitelist;
 
-	/** @var IUser */
-	private $user;
-
-	/** @var NavigationManager */
-	private $navigationManager;
-
-	public function __construct(IUser $user, NavigationManager $navigationManager, AppWhitelist $whitelist) {
-		$this->whitelist = $whitelist;
-		$this->user = $user;
-		$this->navigationManager = $navigationManager;
+	public function __construct(
+        private IUser $user,
+        private INavigationManager $navigationManager,
+        private AppWhitelist $whitelist
+    ) {
 	}
 
 	public function getAll(string $type = 'link'): array {
