@@ -44,7 +44,7 @@ class DirMask extends PermissionsMask {
 		$this->mask = $arguments['mask'];
 	}
 
-	protected function checkPath($path): bool {
+	protected function checkPath(string $path): bool {
 		return $path === $this->path || substr($path, 0, $this->pathLength + 1) === $this->path . '/';
 	}
 
@@ -56,7 +56,7 @@ class DirMask extends PermissionsMask {
 		}
 	}
 
-	public function isCreatable($path): bool {
+	public function isCreatable(string $path): bool {
 		if ($this->checkPath($path)) {
 			return parent::isCreatable($path);
 		} else {
