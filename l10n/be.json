@@ -1,5 +1,6 @@
 { "translations": {
     "__language_name__" : "Беларуская",
+    "Name" : "Назва",
     "Email" : "Электронная пошта",
     "Cancel" : "Скасаваць",
     "Error" : "Памылка"
