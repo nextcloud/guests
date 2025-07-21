@@ -4,27 +4,9 @@
   - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 <files psalm-version="5.26.1@d747f6500b38ac4f7dfc5edbcae6e4b637d7add0">
-  <file src="lib/AppConfigOverwrite.php">
-    <MethodSignatureMismatch>
-      <code><![CDATA[public function getValue($app, $key, $default = null) {]]></code>
-    </MethodSignatureMismatch>
-  </file>
   <file src="lib/AppInfo/Application.php">
     <UndefinedInterfaceMethod>
       <code><![CDATA[listen]]></code>
     </UndefinedInterfaceMethod>
-  </file>
-  <file src="lib/FilteredNavigationManager.php">
-    <TooManyArguments>
-      <code><![CDATA[getDefaultEntryIds]]></code>
-    </TooManyArguments>
-    <UndefinedInterfaceMethod>
-      <code><![CDATA[clear]]></code>
-    </UndefinedInterfaceMethod>
-  </file>
-  <file src="lib/RestrictionManager.php">
-    <UndefinedClass>
-      <code><![CDATA[ExternalMountPoint]]></code>
-    </UndefinedClass>
   </file>
 </files>
