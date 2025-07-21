@@ -98,8 +98,10 @@ class AppWhitelist {
 	/**
 	 * Core has \OC::$REQUESTEDAPP but it isn't set until the routes are matched
 	 * taken from \OC\Route\Router::match()
+	 *
+	 * @param false|string $url
 	 */
-	private function getRequestedApp($url): string {
+	private function getRequestedApp(string|false $url): string {
 		if (substr($url, 0, $this->baseUrlLength) === $this->baseUrl) {
 			$url = substr($url, $this->baseUrlLength);
 		}
