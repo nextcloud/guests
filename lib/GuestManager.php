@@ -149,7 +149,7 @@ class GuestManager {
 		return $data;
 	}
 
-	public function getGuestInfo($userId): array {
+	public function getGuestInfo(string $userId): array {
 		$shares = array_merge(
 			$this->shareManager->getSharedWith($userId, IShare::TYPE_USER, null, -1, 0),
 			$this->shareManager->getSharedWith($userId, IShare::TYPE_GROUP, null, -1, 0),
