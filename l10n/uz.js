@@ -2,10 +2,10 @@ OC.L10N.register(
     "guests",
     {
     "Couldn't send reset email. Please contact your administrator." : "Couldn't send reset email. Please contact your administrator.",
-    "None" : "None",
+    "None" : "Yo'q",
     "Name" : "Name",
     "Email" : "Email",
-    "Cancel" : "Cancel",
-    "Error" : "Error"
+    "Cancel" : "Bekor qilish",
+    "Error" : "Xatolik"
 },
 "nplurals=1; plural=0;");
