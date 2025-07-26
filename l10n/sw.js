@@ -8,6 +8,7 @@ OC.L10N.register(
     "None" : "Hakuna",
     "Name" : "Jina",
     "Email" : "Barua pepe",
+    "Default" : "Chaguo msingi",
     "Cancel" : "Cancel",
     "Error" : "Hitilafu"
 },
