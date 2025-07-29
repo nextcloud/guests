@@ -23,53 +23,19 @@ use OCP\Settings\IManager;
 use Psr\Log\LoggerInterface;
 
 class RestrictionManager {
-	/** @var AppWhitelist */
-	private $whitelist;
-
-	/** @var IRequest */
-	private $request;
-
-	/** @var IUserSession */
-	private $userSession;
-
-	/** @var IServerContainer */
-	private $server;
-
-	/** @var Hooks */
-	private $hooks;
-
-	/** @var GuestManager */
-	private $guestManager;
-
-	/** @var IMountProviderCollection */
-	private $mountProviderCollection;
-
-	/** @var Config */
-	private $config;
-
-	/** @var UserBackend */
-	private $userBackend;
 
 	public function __construct(
-		AppWhitelist $whitelist,
-		IRequest $request,
-		IUserSession $userSession,
-		IServerContainer $server,
-		Hooks $hooks,
-		GuestManager $guestManager,
-		IMountProviderCollection $mountProviderCollection,
-		Config $config,
-		UserBackend $userBackend,
+		private AppWhitelist $whitelist,
+		private IRequest $request,
+		private IUserSession $userSession,
+		private IServerContainer $server,
+		private Hooks $hooks,
+		private GuestManager $guestManager,
+		private IMountProviderCollection $mountProviderCollection,
+		private Config $config,
+		private UserBackend $userBackend,
+		private LoggerInterface $logger,
 	) {
-		$this->whitelist = $whitelist;
-		$this->request = $request;
-		$this->userSession = $userSession;
-		$this->server = $server;
-		$this->hooks = $hooks;
-		$this->guestManager = $guestManager;
-		$this->mountProviderCollection = $mountProviderCollection;
-		$this->config = $config;
-		$this->userBackend = $userBackend;
 	}
 
 	public function verifyAccess(): void {
@@ -77,7 +43,15 @@ class RestrictionManager {
 	}
 
 	public function setupRestrictions(): void {
-		if ($this->guestManager->isGuest($this->userSession->getUser())) {
+		$user = $this->userSession->getUser();
+
+		if ($user === null) {
+			// No user logged in, no restrictions needed
+			$this->logger->warning('No user session found, skipping guest restrictions setup.');
+			return;
+		}
+
+		if ($this->guestManager->isGuest($user)) {
 			\OCP\Util::connectHook('OC_Filesystem', 'preSetup', $this->hooks, 'setupReadonlyFilesystem');
 			if (!$this->config->allowExternalStorage()) {
 				$this->mountProviderCollection->registerMountFilter(function (IMountPoint $mountPoint, IUser $user) {
@@ -88,8 +62,8 @@ class RestrictionManager {
 			/** @var NavigationManager $navManager */
 			$navManager = \OCP\Server::get(INavigationManager::class);
 
-			$this->server->registerService(INavigationManager::class, function () use ($navManager) {
-				return new FilteredNavigationManager($this->userSession->getUser(), $navManager, $this->whitelist);
+			$this->server->registerService(INavigationManager::class, function () use ($navManager, $user) {
+				return new FilteredNavigationManager($user, $navManager, $this->whitelist);
 			});
 
 			$settingsManager = $this->server->get(IManager::class);
