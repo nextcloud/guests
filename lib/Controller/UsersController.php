@@ -13,12 +13,14 @@ use OC\Hooks\PublicEmitter;
 use OCA\Guests\Config;
 use OCA\Guests\Db\Transfer;
 use OCA\Guests\Db\TransferMapper;
+use OCA\Guests\Events\GuestCreatedEvent;
 use OCA\Guests\GuestManager;
 use OCA\Guests\TransferService;
 use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\OCSController;
+use OCP\EventDispatcher\IEventDispatcher;
 use OCP\Group\ISubAdmin;
 use OCP\IGroupManager;
 use OCP\IL10N;
@@ -42,6 +44,7 @@ class UsersController extends OCSController {
 		private IGroupManager $groupManager,
 		private TransferService $transferService,
 		private TransferMapper $transferMapper,
+		private IEventDispatcher $eventDispatcher,
 	) {
 		parent::__construct($appName, $request);
 	}
@@ -55,7 +58,7 @@ class UsersController extends OCSController {
 	 * @param array $groups
 	 * @return DataResponse
 	 */
-	public function create(string $email, string $displayName, string $language, array $groups): DataResponse {
+	public function create(string $email, string $displayName, string $language, array $groups, bool $sendInvite = true): DataResponse {
 		$errorMessages = [];
 		$currentUser = $this->userSession->getUser();
 
@@ -142,6 +145,7 @@ class UsersController extends OCSController {
 			if ($this->userManager instanceof PublicEmitter) {
 				$this->userManager->emit('\OC\User', 'assignedUserId', [$username]);
 			}
+			$this->eventDispatcher->dispatchTyped(new GuestCreatedEvent($username, $sendInvite));
 			foreach ($groupObjects as $group) {
 				$group->addUser($guestUser);
 			}

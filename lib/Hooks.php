@@ -10,6 +10,7 @@ namespace OCA\Guests;
 
 use OC\Files\Filesystem;
 use OCA\Guests\AppInfo\Application;
+use OCA\Guests\Events\GuestCreatedEvent;
 use OCA\Guests\Storage\ReadOnlyJail;
 use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\AppFramework\IAppContainer;
@@ -76,7 +77,6 @@ class Hooks {
 		$this->logger->debug("checking if '$shareWith' has a password",
 			['app' => Application::APP_ID]);
 
-
 		$passwordToken = $this->config->getUserValue(
 			$shareWith,
 			'core',
@@ -97,9 +97,9 @@ class Hooks {
 				$this->mail->sendGuestInviteMail(
 					$uid,
 					$shareWith,
-					$share,
 					$token,
-					$lang
+					$lang,
+					$share
 				);
 				$share->setMailSend(false);
 			}
@@ -168,6 +168,66 @@ class Hooks {
 		} else {
 			// Remove previous account
 			$guestUser->delete();
+		}
+	}
+
+	public function handlePostCreate(GuestCreatedEvent $event): void {
+		if (!$event->shouldSendInviteEmail()) {
+			return;
+		}
+
+		$guest = $event->getUserId();
+
+		if (!$this->guestManager->isGuest($guest)) {
+			$this->logger->debug(
+				"ignoring user '$guest', not a guest",
+				['app' => Application::APP_ID]
+			);
+
+			return;
+		}
+
+		$user = $this->userSession->getUser();
+
+		if (!$user) {
+			throw new \Exception(
+				'post_assign_id hook triggered without user in session'
+			);
+		}
+
+		$this->logger->debug("checking if '$guest' has a password",
+			['app' => Application::APP_ID]);
+
+
+		$guestUser = $this->userManager->get($guest);
+
+		$passwordToken = $this->config->getUserValue(
+			$guest,
+			'core',
+			'lostpassword',
+			null
+		);
+
+		$uid = $user->getUID();
+
+		try {
+			if ($passwordToken) {
+				// user has not yet activated his account
+				$decryptedToken = $this->crypto->decrypt($passwordToken, strtolower($guest) . $this->config->getSystemValue('secret'));
+				[, $token] = explode(':', $decryptedToken);
+				$lang = $this->config->getUserValue($guest, 'core', 'lang', '');
+				// send invitation
+				$this->mail->sendGuestInviteMail(
+					$uid,
+					$guest,
+					$token,
+					$lang
+				);
+			}
+		} catch (DoesNotExistException $ex) {
+			$this->logger->error("'$guest' does not exist", ['app' => Application::APP_ID]);
+		} catch (\Exception $e) {
+			$this->logger->error('Failed to send guest activation mail', ['app' => Application::APP_ID, 'exception' => $e]);
 		}
 	}
 }
