@@ -11,10 +11,10 @@ use OCA\Files\Event\LoadAdditionalScriptsEvent;
 use OCA\Guests\Capabilities;
 use OCA\Guests\GroupBackend;
 use OCA\Guests\Hooks;
+use OCA\Guests\Listener\BeforeTemplateRenderedListener;
 use OCA\Guests\Listener\BeforeUserManagementRenderedListener;
 use OCA\Guests\Listener\LoadAdditionalScriptsListener;
 use OCA\Guests\Listener\ShareAutoAcceptListener;
-use OCA\Guests\Listener\TalkIntegrationListener;
 use OCA\Guests\Listener\UserChangedListener;
 use OCA\Guests\Notifications\Notifier;
 use OCA\Guests\RestrictionManager;
@@ -33,6 +33,7 @@ use OCP\Notification\IManager as INotificationManager;
 use OCP\Share\Events\ShareCreatedEvent;
 use OCP\User\Events\UserChangedEvent;
 use OCP\User\Events\UserFirstTimeLoggedInEvent;
+use OCP\Util;
 use Psr\Container\ContainerInterface;
 
 class Application extends App implements IBootstrap {
@@ -47,7 +48,7 @@ class Application extends App implements IBootstrap {
 
 		$context->registerEventListener(LoadAdditionalScriptsEvent::class, LoadAdditionalScriptsListener::class);
 		$context->registerEventListener(ShareCreatedEvent::class, ShareAutoAcceptListener::class);
-		$context->registerEventListener(BeforeTemplateRenderedEvent::class, TalkIntegrationListener::class);
+		$context->registerEventListener(BeforeTemplateRenderedEvent::class, BeforeTemplateRenderedListener::class);
 		$context->registerEventListener(BeforeUserManagementRenderedEvent::class, BeforeUserManagementRenderedListener::class);
 		$context->registerEventListener(UserChangedEvent::class, UserChangedListener::class);
 	}
@@ -62,6 +63,7 @@ class Application extends App implements IBootstrap {
 		$this->setupGuestRestrictions($context->getAppContainer(), $context->getServerContainer());
 		$this->setupNotifications($context->getAppContainer());
 		$context->getAppContainer()->get(RestrictionManager::class)->lateSetupRestrictions();
+		Util::addScript('guests', 'guests-init');
 	}
 
 	private function setupGuestManagement(ContainerInterface $container, ContainerInterface $server): void {

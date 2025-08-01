@@ -13,6 +13,7 @@ use OCA\Guests\Config;
 use OCA\Guests\Controller\UsersController;
 use OCA\Guests\Db\TransferMapper;
 use OCA\Guests\GuestManager;
+use OCA\Guests\Service\InviteService;
 use OCA\Guests\TransferService;
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Services\IAppConfig;
@@ -56,6 +57,8 @@ class UsersControllerTest extends TestCase {
 	private $appConfig;
 	/** @var IConfig|MockObject */
 	private $config;
+	/** @var InviteService|MockObject */
+	private $inviteService;
 
 	/** @var UsersController */
 	private $controller;
@@ -75,6 +78,7 @@ class UsersControllerTest extends TestCase {
 		$this->transferMapper = $this->createMock(TransferMapper::class);
 		$this->appConfig = $this->createMock(IAppConfig::class);
 		$this->config = $this->createMock(IConfig::class);
+		$this->inviteService = $this->createMock(InviteService::class);
 
 		$this->guestsConfig = new Config(
 			$this->config,
@@ -101,7 +105,8 @@ class UsersControllerTest extends TestCase {
 			$this->subAdmin,
 			$this->groupManager,
 			$this->transferService,
-			$this->transferMapper
+			$this->transferMapper,
+			$this->inviteService
 		);
 	}
 
