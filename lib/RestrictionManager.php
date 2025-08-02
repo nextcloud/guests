@@ -12,6 +12,7 @@ use OC\NavigationManager;
 use OCA\Files_External\Config\ExternalMountPoint;
 use OCP\Files\Config\IMountProviderCollection;
 use OCP\Files\Mount\IMountPoint;
+use OCP\IConfig;
 use OCP\IDBConnection;
 use OCP\INavigationManager;
 use OCP\IRequest;
@@ -83,6 +84,7 @@ class RestrictionManager {
 				$this->server->registerService(AppConfig::class, function () {
 					return new AppConfigOverwrite(
 						$this->server->get(IDBConnection::class),
+						$this->server->get(IConfig::class),
 						$this->server->get(LoggerInterface::class),
 						$this->server->get(ICrypto::class),
 						[

@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace OCA\Guests;
 
 use OC\AppConfig;
+use OCP\IConfig;
 use OCP\IDBConnection;
 use OCP\Security\ICrypto;
 use Psr\Log\LoggerInterface;
@@ -20,11 +21,12 @@ class AppConfigOverwrite extends AppConfig {
 
 	public function __construct(
 		IDBConnection $connection,
+		IConfig $config,
 		LoggerInterface $logger,
 		ICrypto $crypto,
 		array $overWrite,
 	) {
-		parent::__construct($connection, $logger, $crypto);
+		parent::__construct($connection, $config, $logger, $crypto);
 		$this->overWrite = $overWrite;
 	}
 
