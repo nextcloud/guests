@@ -9,6 +9,7 @@ namespace OCA\Guests\AppInfo;
 
 use OCA\Files\Event\LoadAdditionalScriptsEvent;
 use OCA\Guests\Capabilities;
+use OCA\Guests\ConfigLexicon;
 use OCA\Guests\GroupBackend;
 use OCA\Guests\Hooks;
 use OCA\Guests\Listener\BeforeUserManagementRenderedListener;
@@ -47,6 +48,7 @@ class Application extends App implements IBootstrap {
 		$context->registerEventListener(ShareCreatedEvent::class, ShareAutoAcceptListener::class);
 		$context->registerEventListener(BeforeTemplateRenderedEvent::class, TalkIntegrationListener::class);
 		$context->registerEventListener(BeforeUserManagementRenderedEvent::class, BeforeUserManagementRenderedListener::class);
+		$context->registerConfigLexicon(ConfigLexicon::class);
 	}
 
 	public function boot(IBootContext $context): void {

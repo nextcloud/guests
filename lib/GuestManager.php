@@ -7,6 +7,10 @@
 
 namespace OCA\Guests;
 
+use OCA\Guests\AppInfo\Application;
+use OCP\AppFramework\Services\IAppConfig;
+use OCP\Config\IUserConfig;
+use OCP\Config\ValueType;
 use OCP\DB\QueryBuilder\IQueryBuilder;
 use OCP\EventDispatcher\IEventDispatcher;
 use OCP\IConfig;
@@ -23,6 +27,8 @@ use OCP\Share\IShare;
 class GuestManager {
 	public function __construct(
 		private IConfig $config,
+		private readonly IAppConfig $appConfig,
+		private readonly IUserConfig $userConfig,
 		private UserBackend $userBackend,
 		private ISecureRandom $secureRandom,
 		private ICrypto $crypto,
@@ -69,7 +75,7 @@ class GuestManager {
 
 		$user->setSystemEMailAddress($email);
 		if ($createdBy) {
-			$this->config->setUserValue($userId, 'guests', 'created_by', $createdBy->getUID());
+			$this->userConfig->setValueString($userId, Application::APP_ID, ConfigLexicon::USER_CREATED_BY, $createdBy->getUID());
 		}
 
 		if ($displayName) {
@@ -101,7 +107,7 @@ class GuestManager {
 			);
 		}
 
-		$user->setQuota('0 B');
+		$user->setQuota($this->appConfig->getAppValueString(ConfigLexicon::GUEST_DISK_QUOTA));
 
 		return $user;
 	}
@@ -114,7 +120,8 @@ class GuestManager {
 		$displayNames = $this->userBackend->getDisplayNames();
 		$guests = array_keys($displayNames);
 		$shareCounts = $this->getShareCountForUsers($guests);
-		$createdBy = $this->config->getUserValueForUsers('guests', 'created_by', $guests);
+		$createdBy = $this->userConfig->getValuesByUsers(Application::APP_ID, ConfigLexicon::USER_CREATED_BY, ValueType::STRING, $guests);
+
 		return array_map(function ($uid) use ($createdBy, $displayNames, $shareCounts) {
 			$allSharesCount = count(array_merge(
 				$this->shareManager->getSharedWith($uid, IShare::TYPE_USER, null, -1, 0),
@@ -127,7 +134,7 @@ class GuestManager {
 				'email' => $uid,
 				'display_name' => $displayNames[$uid] ?? $uid,
 				'created_by' => $createdBy[$uid] ?? '',
-				'share_count' => isset($shareCounts[$uid]) ? $shareCounts[$uid] : 0,
+				'share_count' => $shareCounts[$uid] ?? 0,
 				'share_count_with_circles' => $allSharesCount,
 			];
 		}, $guests);

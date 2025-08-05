@@ -10,6 +10,7 @@ namespace OCA\Guests;
 
 use OCP\AppFramework\Services\IAppConfig;
 use OCP\Group\ISubAdmin;
+use OCP\IAppConfig as IGlobalAppConfig;
 use OCP\IConfig;
 use OCP\IGroupManager;
 use OCP\IUserSession;
@@ -17,6 +18,7 @@ use OCP\IUserSession;
 class Config {
 	public function __construct(
 		private IConfig $config,
+		private IGlobalAppConfig $globalAppConfig,
 		private IAppConfig $appConfig,
 		private ISubAdmin $subAdmin,
 		private IUserSession $userSession,
@@ -25,25 +27,19 @@ class Config {
 	}
 
 	public function allowExternalStorage(): bool {
-		return $this->appConfig->getAppValueBool('allow_external_storage', false);
+		return $this->appConfig->getAppValueBool(ConfigLexicon::EXTERNAL_STORAGE_ENABLED);
 	}
 
-	/**
-	 * @param string|bool $allow
-	 */
-	public function setAllowExternalStorage($allow) {
-		$this->appConfig->setAppValueBool('allow_external_storage', $allow === true || $allow === 'true') ;
+	public function setAllowExternalStorage(bool $allow): void {
+		$this->appConfig->setAppValueBool(ConfigLexicon::EXTERNAL_STORAGE_ENABLED, $allow);
 	}
 
 	public function hideOtherUsers(): bool {
-		return $this->appConfig->getAppValueBool('hide_users', true);
+		return $this->appConfig->getAppValueBool(ConfigLexicon::HIDE_OTHER_ACCOUNTS);
 	}
 
-	/**
-	 * @param string|bool $hide
-	 */
-	public function setHideOtherUsers($hide): void {
-		$this->appConfig->setAppValueBool('hide_users', $hide === true || $hide === 'true') ;
+	public function setHideOtherUsers(bool $hide): void {
+		$this->appConfig->setAppValueBool(ConfigLexicon::HIDE_OTHER_ACCOUNTS, $hide);
 	}
 
 	public function getHome(string $uid): string {
@@ -51,36 +47,26 @@ class Config {
 	}
 
 	public function useWhitelist(): bool {
-		return $this->appConfig->getAppValueBool('usewhitelist', true);
+		return $this->appConfig->getAppValueBool(ConfigLexicon::WHITE_LIST_ENABLED);
 	}
 
-	/**
-	 * @param string|bool $use
-	 */
-	public function setUseWhitelist($use) {
-		$this->appConfig->setAppValueBool('usewhitelist', $use === true || $use === 'true') ;
+	public function setUseWhitelist(bool $use): void {
+		$this->appConfig->setAppValueBool(ConfigLexicon::WHITE_LIST_ENABLED, $use);
 	}
 
 	/**
 	 * @return string[]
 	 */
 	public function getAppWhitelist(): array {
-		$whitelist = $this->appConfig->getAppValueString('whitelist', AppWhitelist::DEFAULT_WHITELIST);
-		return explode(',', $whitelist);
+		return explode(',', $this->appConfig->getAppValueString(ConfigLexicon::WHITE_LIST));
 	}
 
-	/**
-	 * @param array|string $whitelist
-	 */
-	public function setAppWhitelist($whitelist): void {
-		if (is_array($whitelist)) {
-			$whitelist = implode(',', $whitelist);
-		}
-		$this->appConfig->setAppValueString('whitelist', $whitelist);
+	public function setAppWhitelist(array $whitelist): void {
+		$this->appConfig->setAppValueString(ConfigLexicon::WHITE_LIST, implode(',', $whitelist));
 	}
 
 	public function isSharingRestrictedToGroup(): bool {
-		return $this->config->getAppValue('core', 'shareapi_only_share_with_group_members', 'no') === 'yes';
+		return $this->globalAppConfig->getValueBool('core', 'shareapi_only_share_with_group_members');
 	}
 
 	public function canCreateGuests(): bool {
@@ -114,7 +100,7 @@ class Config {
 	 * @return string[]
 	 */
 	public function getCreateRestrictedToGroup(): array {
-		$groups = $this->appConfig->getAppValueArray('create_restricted_to_group', []);
+		$groups = $this->appConfig->getAppValueArray(ConfigLexicon::GROUP_LIMITATION);
 		// If empty, it means there is no restriction
 		if (empty($groups)) {
 			return [];
@@ -123,7 +109,7 @@ class Config {
 		// It does not matter at this point if the admin
 		// group is in the list or not. We are checking it
 		// anyway in the canCreateGuests method.
-		return array_values(array_unique($this->appConfig->getAppValueArray('create_restricted_to_group', [])));
+		return array_values(array_unique($this->appConfig->getAppValueArray(ConfigLexicon::GROUP_LIMITATION)));
 	}
 
 	/**
