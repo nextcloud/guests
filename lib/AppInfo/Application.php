@@ -10,6 +10,7 @@ namespace OCA\Guests\AppInfo;
 
 use OCA\Files\Event\LoadAdditionalScriptsEvent;
 use OCA\Guests\Capabilities;
+use OCA\Guests\ConfigLexicon;
 use OCA\Guests\GroupBackend;
 use OCA\Guests\Listener\BeforeTemplateRenderedListener;
 use OCA\Guests\Listener\BeforeUserManagementRenderedListener;
@@ -57,6 +58,7 @@ class Application extends App implements IBootstrap {
 		$context->registerEventListener(UserFirstTimeLoggedInEvent::class, UserFirstTimeLoggedInListener::class);
 
 		$context->registerNotifierService(Notifier::class);
+		$context->registerConfigLexicon(ConfigLexicon::class);
 	}
 
 	#[\Override]

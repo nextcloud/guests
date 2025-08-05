@@ -9,6 +9,10 @@ declare(strict_types=1);
 
 namespace OCA\Guests;
 
+use OCA\Guests\AppInfo\Application;
+use OCP\AppFramework\Services\IAppConfig;
+use OCP\Config\IUserConfig;
+use OCP\Config\ValueType;
 use OCP\DB\QueryBuilder\IQueryBuilder;
 use OCP\EventDispatcher\IEventDispatcher;
 use OCP\IConfig;
@@ -25,6 +29,8 @@ use OCP\Share\IShare;
 class GuestManager {
 	public function __construct(
 		private readonly IConfig $config,
+		private readonly IAppConfig $appConfig,
+		private readonly IUserConfig $userConfig,
 		private readonly UserBackend $userBackend,
 		private readonly ISecureRandom $secureRandom,
 		private readonly ICrypto $crypto,
@@ -72,7 +78,7 @@ class GuestManager {
 		$this->userBackend->setInitialEmail($userId, $email);
 		$user->setSystemEMailAddress($email);
 		if ($createdBy instanceof IUser) {
-			$this->config->setUserValue($userId, 'guests', 'created_by', $createdBy->getUID());
+			$this->userConfig->setValueString($userId, Application::APP_ID, ConfigLexicon::USER_CREATED_BY, $createdBy->getUID());
 		}
 
 		if ($displayName !== '') {
@@ -104,7 +110,7 @@ class GuestManager {
 			);
 		}
 
-		$user->setQuota('0 B');
+		$user->setQuota($this->appConfig->getAppValueString(ConfigLexicon::GUEST_DISK_QUOTA));
 
 		return $user;
 	}
@@ -129,7 +135,8 @@ class GuestManager {
 		$guestsInfo = $this->userBackend->getAllGuestAccounts();
 		$guests = array_keys($guestsInfo);
 		$shareCounts = $this->getShareCountForUsers($guests);
-		$createdBy = $this->config->getUserValueForUsers('guests', 'created_by', $guests);
+		$createdBy = $this->userConfig->getValuesByUsers(Application::APP_ID, ConfigLexicon::USER_CREATED_BY, ValueType::STRING, $guests);
+
 		return array_map(function (string $uid) use ($createdBy, $guestsInfo, $shareCounts): array {
 			$allSharesCount = count(array_merge(
 				$this->shareManager->getSharedWith($uid, IShare::TYPE_USER, null, -1, 0),
