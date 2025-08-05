@@ -12,13 +12,11 @@ use OC\NavigationManager;
 use OCA\Files_External\Config\ExternalMountPoint;
 use OCP\Files\Config\IMountProviderCollection;
 use OCP\Files\Mount\IMountPoint;
-use OCP\IDBConnection;
 use OCP\INavigationManager;
 use OCP\IRequest;
 use OCP\IServerContainer;
 use OCP\IUser;
 use OCP\IUserSession;
-use OCP\Security\ICrypto;
 use OCP\Settings\IManager;
 use Psr\Log\LoggerInterface;
 
@@ -80,17 +78,16 @@ class RestrictionManager {
 
 				$this->userBackend->setAllowListing(false);
 
-				$this->server->registerService(AppConfig::class, function () {
-					return new AppConfigOverwrite(
-						$this->server->get(IDBConnection::class),
-						$this->server->get(LoggerInterface::class),
-						$this->server->get(ICrypto::class),
-						[
-							'core' => [
-								'shareapi_only_share_with_group_members' => 'yes'
-							]
-						]
-					);
+				/** @var AppConfigOverwrite $appConfig */
+				$appConfig = $this->server->get(AppConfigOverwrite::class);
+				$appConfig->setOverwrite([
+					'core' => [
+						'shareapi_only_share_with_group_members' => 'yes'
+					]
+				]);
+
+				$this->server->registerService(AppConfig::class, function () use ($appConfig) {
+					return $appConfig;
 				});
 			}
 		}
