@@ -15,6 +15,7 @@ use OCA\Guests\Listener\BeforeUserManagementRenderedListener;
 use OCA\Guests\Listener\LoadAdditionalScriptsListener;
 use OCA\Guests\Listener\ShareAutoAcceptListener;
 use OCA\Guests\Listener\TalkIntegrationListener;
+use OCA\Guests\Listener\UserChangedListener;
 use OCA\Guests\Notifications\Notifier;
 use OCA\Guests\RestrictionManager;
 use OCA\Guests\UserBackend;
@@ -31,6 +32,7 @@ use OCP\IServerContainer;
 use OCP\IUserManager;
 use OCP\Notification\IManager as INotificationManager;
 use OCP\Share\Events\ShareCreatedEvent;
+use OCP\User\Events\UserChangedEvent;
 use OCP\User\Events\UserFirstTimeLoggedInEvent;
 
 class Application extends App implements IBootstrap {
@@ -47,6 +49,7 @@ class Application extends App implements IBootstrap {
 		$context->registerEventListener(ShareCreatedEvent::class, ShareAutoAcceptListener::class);
 		$context->registerEventListener(BeforeTemplateRenderedEvent::class, TalkIntegrationListener::class);
 		$context->registerEventListener(BeforeUserManagementRenderedEvent::class, BeforeUserManagementRenderedListener::class);
+		$context->registerEventListener(UserChangedEvent::class, UserChangedListener::class);
 	}
 
 	public function boot(IBootContext $context): void {
