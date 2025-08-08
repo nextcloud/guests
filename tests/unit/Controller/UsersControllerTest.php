@@ -16,6 +16,7 @@ use OCA\Guests\GuestManager;
 use OCA\Guests\TransferService;
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Services\IAppConfig;
+use OCP\EventDispatcher\IEventDispatcher;
 use OCP\Group\ISubAdmin;
 use OCP\IConfig;
 use OCP\IGroup;
@@ -56,6 +57,8 @@ class UsersControllerTest extends TestCase {
 	private $appConfig;
 	/** @var IConfig|MockObject */
 	private $config;
+	/** @var IEventDispatcher|MockObject */
+	private $eventDispatcher;
 
 	/** @var UsersController */
 	private $controller;
@@ -75,6 +78,7 @@ class UsersControllerTest extends TestCase {
 		$this->transferMapper = $this->createMock(TransferMapper::class);
 		$this->appConfig = $this->createMock(IAppConfig::class);
 		$this->config = $this->createMock(IConfig::class);
+		$this->eventDispatcher = $this->createMock(IEventDispatcher::class);
 
 		$this->guestsConfig = new Config(
 			$this->config,
@@ -101,7 +105,8 @@ class UsersControllerTest extends TestCase {
 			$this->subAdmin,
 			$this->groupManager,
 			$this->transferService,
-			$this->transferMapper
+			$this->transferMapper,
+			$this->eventDispatcher
 		);
 	}
 

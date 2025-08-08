@@ -9,6 +9,7 @@ namespace OCA\Guests\AppInfo;
 
 use OCA\Files\Event\LoadAdditionalScriptsEvent;
 use OCA\Guests\Capabilities;
+use OCA\Guests\Events\GuestCreatedEvent;
 use OCA\Guests\GroupBackend;
 use OCA\Guests\Hooks;
 use OCA\Guests\Listener\BeforeUserManagementRenderedListener;
@@ -32,6 +33,7 @@ use OCP\IUserManager;
 use OCP\Notification\IManager as INotificationManager;
 use OCP\Share\Events\ShareCreatedEvent;
 use OCP\User\Events\UserFirstTimeLoggedInEvent;
+use OCP\Util;
 
 class Application extends App implements IBootstrap {
 	public const APP_ID = 'guests';
@@ -59,12 +61,14 @@ class Application extends App implements IBootstrap {
 		$this->setupGuestRestrictions($context->getAppContainer(), $context->getServerContainer());
 		$this->setupNotifications($context->getAppContainer());
 		$context->getAppContainer()->query(RestrictionManager::class)->lateSetupRestrictions();
+		Util::addScript('guests', 'guests-init');
 	}
 
 	private function setupGuestManagement(IAppContainer $container, IServerContainer $server): void {
 		$hookManager = $container->query(Hooks::class);
 		$server->get(IEventDispatcher::class)->addListener(ShareCreatedEvent::class, [$hookManager, 'handlePostShare']);
 		$server->get(IEventDispatcher::class)->addListener(UserFirstTimeLoggedInEvent::class, [$hookManager, 'handleFirstLogin']);
+		$server->get(IEventDispatcher::class)->addListener(GuestCreatedEvent::class, [$hookManager, 'handlePostCreate']);
 	}
 
 	private function setupGuestRestrictions(IAppContainer $container, IServerContainer $server): void {

@@ -12,10 +12,16 @@
 		<div class="guest_model_content">
 			<form @submit.prevent="addGuest">
 				<div class="modal-body">
+					<h2 class="form-title">
+						{{ t('guests', 'Invite Guest') }}
+					</h2>
+					<p class="form-description">
+						{{ t('guests', 'Guests are accounts with limited permissions who will be able to access resources shared with them and use apps.') }}
+					</p>
 					<!-- Name -->
 					<div class="form-group">
 						<label class="form-label" for="app-guests-input-name">
-							{{ t('guests', 'Name:') }}
+							{{ t('guests', 'Name') }}
 						</label>
 						<input id="app-guests-input-name"
 							ref="name"
@@ -31,7 +37,7 @@
 					<!-- Email -->
 					<div class="form-group">
 						<label class="form-label" for="app-guests-input-email">
-							{{ t('guests', 'Email:') }}
+							{{ t('guests', 'Email') }}
 						</label>
 						<input id="app-guests-input-email"
 							ref="email"
@@ -48,7 +54,7 @@
 					<!-- Language -->
 					<div class="form-lang">
 						<label class="form-label" for="app-guests-input-lang">
-							{{ t('guests', 'Language:') }}
+							{{ t('guests', 'Language') }}
 						</label>
 						<LanguageSelect v-model="guest.language" :disabled="loading" />
 					</div>
@@ -80,7 +86,7 @@
 							<AccountPlus v-if="!loading" :size="20" />
 							<div v-else class="icon-loading-small" />
 						</template>
-						{{ submitLabel }}
+						{{ t('guests', 'Invite user') }}
 					</NcButton>
 				</div>
 			</form>
@@ -91,7 +97,8 @@
 <script>
 import { generateOcsUrl } from '@nextcloud/router'
 import { ShareType } from '@nextcloud/sharing'
-import { showError } from '@nextcloud/dialogs'
+import { showError, showSuccess } from '@nextcloud/dialogs'
+import { emit } from '@nextcloud/event-bus'
 import axios from '@nextcloud/axios'
 
 import AccountPlus from 'vue-material-design-icons/AccountPlus.vue'
@@ -149,15 +156,10 @@ export default {
 			return t('guests', 'Invite {name}', {
 				name: this.guest.fullName
 					? this.guest.fullName
-					: this.guest.email,
+					: this.guest.email
+						? this.guest.email
+						: 'Guest',
 			})
-		},
-
-		submitLabel() {
-			if (this.integrationApp === 'talk') {
-				return t('guests', 'Invite user to conversation')
-			}
-			return t('guests', 'Invite user and create share')
 		},
 	},
 
@@ -182,7 +184,8 @@ export default {
 	methods: {
 		populate(metaData, shareWith) {
 			if (
-				shareWith.indexOf('@') !== -1
+				shareWith
+				&& shareWith.indexOf('@') !== -1
 				&& shareWith.lastIndexOf('.') > shareWith.indexOf('@')
 			) {
 				this.guest.email = shareWith || ''
@@ -232,19 +235,28 @@ export default {
 					email: this.guest.email,
 					language: this.guest.language,
 					groups: this.guest.groups,
+					sendInvite: this.integrationApp !== 'files',
 				})
 
+				if (this.integrationApp === 'files') {
+					await this.setupGuestShare()
+					return
+				}
+
 				if (this.integrationApp === 'talk') {
-					this.loading = false
 					this.resolve({
 						id: this.guest.email,
 						source: 'users',
 					})
-					this.closeModal()
-					return
 				}
 
-				await this.setupGuestShare()
+				emit('guests:user:created', {
+					username: this.guest.username,
+					name: this.guest.fullName,
+				})
+
+				this.closeModal()
+				showSuccess(t('guests', 'Guest added'))
 			} catch ({ response }) {
 				const errors = response?.data?.ocs?.data?.errorMessages
 				// Backend returns either an array of strings or an
@@ -310,6 +322,7 @@ export default {
 	font-size: 100%;
 	min-width: 200px;
 	margin: $modal-gutter;
+	margin-top: 8px;
 
 	.form-group {
 		margin: math.div($modal-gutter, 2) 0;
@@ -326,6 +339,17 @@ export default {
 			border: 1px solid var(--color-error);
 			color: var(--color-error);
 		}
+	}
+
+	.form-title {
+		margin-top: 0px;
+		padding-top: 0px;
+	}
+
+	.form-description {
+		color: color-mix(in srgb, var(--color-main-text) 80%, transparent);
+		margin-top: 8px;
+		margin-bottom: 20px;
 	}
 
 	.modal-footer {
