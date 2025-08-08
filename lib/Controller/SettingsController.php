@@ -11,8 +11,10 @@ namespace OCA\Guests\Controller;
 use OCA\Guests\AppInfo\Application;
 use OCA\Guests\AppWhitelist;
 use OCA\Guests\Config;
+use OCA\Guests\ConfigLexicon;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\DataResponse;
+use OCP\AppFramework\Services\IAppConfig;
 use OCP\IRequest;
 
 /**
@@ -22,11 +24,11 @@ use OCP\IRequest;
  * @package OCA\Guests\Controller
  */
 class SettingsController extends Controller {
-
 	public function __construct(
 		IRequest $request,
-		private Config $config,
-		private AppWhitelist $appWhitelist,
+		private readonly Config $config,
+		private readonly IAppConfig $appConfig,
+		private readonly AppWhitelist $appWhitelist,
 	) {
 		parent::__construct(Application::APP_ID, $request);
 	}
@@ -94,9 +96,9 @@ class SettingsController extends Controller {
 	 * @return DataResponse with the reset whitelist
 	 */
 	public function resetWhitelist(): DataResponse {
-		$this->config->setAppWhitelist(AppWhitelist::DEFAULT_WHITELIST);
+		$this->appConfig->deleteAppValue(ConfigLexicon::WHITE_LIST);
 		return new DataResponse([
-			'whitelist' => explode(',', AppWhitelist::DEFAULT_WHITELIST),
+			'whitelist' => $this->config->getAppWhitelist(),
 		]);
 	}
 }

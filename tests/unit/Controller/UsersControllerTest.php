@@ -17,6 +17,7 @@ use OCA\Guests\TransferService;
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Services\IAppConfig;
 use OCP\Group\ISubAdmin;
+use OCP\IAppConfig as IGlobalAppConfig;
 use OCP\IConfig;
 use OCP\IGroup;
 use OCP\IGroupManager;
@@ -52,6 +53,8 @@ class UsersControllerTest extends TestCase {
 	private $transferService;
 	/** @var TransferMapper|MockObject */
 	private $transferMapper;
+	/** @var IGlobalAppConfig|MockObject */
+	private $globalAppConfig;
 	/** @var IAppConfig|MockObject */
 	private $appConfig;
 	/** @var IConfig|MockObject */
@@ -73,11 +76,13 @@ class UsersControllerTest extends TestCase {
 		$this->groupManager = $this->createMock(IGroupManager::class);
 		$this->transferService = $this->createMock(TransferService::class);
 		$this->transferMapper = $this->createMock(TransferMapper::class);
+		$this->globalAppConfig = $this->createMock(IGlobalAppConfig::class);
 		$this->appConfig = $this->createMock(IAppConfig::class);
 		$this->config = $this->createMock(IConfig::class);
 
 		$this->guestsConfig = new Config(
 			$this->config,
+			$this->globalAppConfig,
 			$this->appConfig,
 			$this->subAdmin,
 			$this->userSession,
@@ -300,9 +305,9 @@ class UsersControllerTest extends TestCase {
 			->willReturn([]);
 		
 		// Sharing is restricted to group
-		$this->config->method('getAppValue')
-			->with('core', 'shareapi_only_share_with_group_members', 'no')
-			->willReturn('yes');
+		$this->globalAppConfig->method('getValueBool')
+			->with('core', 'shareapi_only_share_with_group_members')
+			->willReturn(true);
 		
 		// User is a subadmin
 		$this->subAdmin->method('isSubAdmin')
@@ -358,10 +363,10 @@ class UsersControllerTest extends TestCase {
 			->willReturn([]);
 		
 		// Sharing is restricted to group
-		$this->config->method('getAppValue')
-			->with('core', 'shareapi_only_share_with_group_members', 'no')
-			->willReturn('yes');
-		
+		$this->globalAppConfig->method('getValueBool')
+			->with('core', 'shareapi_only_share_with_group_members')
+			->willReturn(true);
+
 		// User is NOT a subadmin
 		$this->subAdmin->method('isSubAdmin')
 			->with($currentUser)
@@ -439,9 +444,9 @@ class UsersControllerTest extends TestCase {
 			->willReturn([]);
 
 		// Sharing is restricted to group
-		$this->config->method('getAppValue')
-			->with('core', 'shareapi_only_share_with_group_members', 'no')
-			->willReturn('yes');
+		$this->globalAppConfig->method('getValueBool')
+			->with('core', 'shareapi_only_share_with_group_members')
+			->willReturn(true);
 
 		// User is an admin
 		// so they are allowed to create guests
@@ -478,9 +483,9 @@ class UsersControllerTest extends TestCase {
 			->willReturn(true);
 
 		// Sharing is restricted to group
-		$this->config->method('getAppValue')
-			->with('core', 'shareapi_only_share_with_group_members', 'no')
-			->willReturn('yes');
+		$this->globalAppConfig->method('getValueBool')
+			->with('core', 'shareapi_only_share_with_group_members')
+			->willReturn(true);
 
 		$this->assertTrue($this->guestsConfig->canCreateGuests());
 		$this->assertTrue($this->guestsConfig->isSharingRestrictedToGroup());
@@ -526,9 +531,9 @@ class UsersControllerTest extends TestCase {
 			->willReturn(false);
 
 		// Sharing is restricted to group
-		$this->config->method('getAppValue')
-			->with('core', 'shareapi_only_share_with_group_members', 'no')
-			->willReturn('yes');
+		$this->globalAppConfig->method('getValueBool')
+			->with('core', 'shareapi_only_share_with_group_members')
+			->willReturn(true);
 
 		// There is no group restriction in place
 		$this->appConfig->method('getAppValueArray')
@@ -709,10 +714,10 @@ class UsersControllerTest extends TestCase {
 			->willReturn(['other_group1', 'other_group2']);
 
 		// Sharing is restricted to group
-		$this->config->method('getAppValue')
-			->with('core', 'shareapi_only_share_with_group_members', 'no')
-			->willReturn('yes');
-	
+		$this->globalAppConfig->method('getValueBool')
+			->with('core', 'shareapi_only_share_with_group_members')
+			->willReturn(true);
+
 		$this->assertTrue($this->guestsConfig->canCreateGuests());
 		$this->assertTrue($this->guestsConfig->isSharingRestrictedToGroup());
 

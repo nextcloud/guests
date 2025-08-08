@@ -8,8 +8,11 @@ declare(strict_types=1);
 
 namespace OCA\Guests\Test\Unit;
 
+use OCA\Guests\ConfigLexicon;
 use OCA\Guests\GuestManager;
 use OCA\Guests\UserBackend;
+use OCP\AppFramework\Services\IAppConfig;
+use OCP\Config\IUserConfig;
 use OCP\EventDispatcher\IEventDispatcher;
 use OCP\IConfig;
 use OCP\IDBConnection;
@@ -31,7 +34,12 @@ class GuestManagerTest extends TestCase {
 	private $userManager;
 	/** @var IConfig|MockObject */
 	private $config;
+	/** @var IAppConfig|MockObject */
+	private $appConfig;
+	/** @var IUserConfig|MockObject */
+	private $userConfig;
 	/** @var ISecureRandom|MockObject */
+
 	private $random;
 	/** @var ICrypto|MockObject */
 	private $crypto;
@@ -52,6 +60,8 @@ class GuestManagerTest extends TestCase {
 		$this->userSession = $this->createMock(IUserSession::class);
 		$this->userManager = $this->createMock(IUserManager::class);
 		$this->config = $this->createMock(IConfig::class);
+		$this->appConfig = $this->createMock(IAppConfig::class);
+		$this->userConfig = $this->createMock(IUserConfig::class);
 		$this->random = $this->createMock(ISecureRandom::class);
 		$this->random->method('generate')
 			->willReturnCallback(function ($count) {
@@ -68,6 +78,8 @@ class GuestManagerTest extends TestCase {
 
 		$this->guestManager = new GuestManager(
 			$this->config,
+			$this->appConfig,
+			$this->userConfig,
 			$this->userBackend,
 			$this->random,
 			$this->crypto,
@@ -137,13 +149,18 @@ class GuestManagerTest extends TestCase {
 
 	public function testCreateGuest() {
 		$setValues = [];
+		$fnSetValues = function ($user, $app, $key, $value) use (&$setValues): bool {
+			if (!isset($setValues[$app])) {
+				$setValues[$app] = [];
+			}
+			$setValues[$app][$key] = $value;
+			return true;
+		};
+
 		$this->config->method('setUserValue')
-			->willReturnCallback(function ($user, $app, $key, $value) use (&$setValues) {
-				if (!isset($setValues[$app])) {
-					$setValues[$app] = [];
-				}
-				$setValues[$app][$key] = $value;
-			});
+			->willReturnCallback($fnSetValues);
+		$this->userConfig->method('setValueString')
+			->willReturnCallback($fnSetValues);
 
 		$createdByUser = $this->createMock(IUser::class);
 		$createdByUser->method('getUID')
@@ -155,6 +172,11 @@ class GuestManagerTest extends TestCase {
 			->method('createUserFromBackend')
 			->with('guest@example.com', str_repeat('4', 20), $this->userBackend)
 			->willReturn($guestUser);
+
+		$this->appConfig->expects($this->once())
+			->method('getAppValueString')
+			->with(ConfigLexicon::GUEST_DISK_QUOTA)
+			->willReturn('0 B');
 
 		$guestUser->expects($this->once())
 			->method('setDisplayName')
