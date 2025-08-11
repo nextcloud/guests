@@ -2,6 +2,7 @@ OC.L10N.register(
     "guests",
     {
     "__language_name__" : "Беларуская",
+    "None" : "Няма",
     "Name" : "Назва",
     "Email" : "Электронная пошта",
     "Cancel" : "Скасаваць",
