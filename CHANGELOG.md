@@ -6,6 +6,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## 4.4.0
+### Changes
+* feat: add repair step to ensure guests haven't changed their email by @icewind1991 in https://github.com/nextcloud/guests/pull/1370
+
+### Fixes
+* fix: check if we have a user session before setting-up restrictions by @skjnldsv in https://github.com/nextcloud/guests/pull/1364
+* fix: prevent guests from changing their email address by @icewind1991 in https://github.com/nextcloud/guests/pull/1369
+* fix: remove constructor overwrite from AppConfigOverwrite by @icewind1991 in https://github.com/nextcloud/guests/pull/1367
+
+### Other
+* Chore(deps): Bump form-data from 4.0.2 to 4.0.4 by @dependabot[bot] in https://github.com/nextcloud/guests/pull/1360
+* Chore(deps): Bump linkifyjs from 4.2.0 to 4.3.2 by @dependabot[bot] in https://github.com/nextcloud/guests/pull/1365
+
 ## 4.3.0
 ### Changes
 * feat: Add share count including circles by @Pytal in https://github.com/nextcloud/guests/pull/1287
