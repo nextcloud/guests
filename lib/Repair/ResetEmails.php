@@ -29,7 +29,7 @@ class ResetEmails implements IRepairStep {
 	public function run(IOutput $output) {
 		foreach ($this->guestManager->listGuests() as $guestId) {
 			$guest = $this->userManager->get($guestId);
-			if (strtolower($guest->getSystemEMailAddress()) !== strtolower($guestId)) {
+			if (strtolower($guest->getSystemEMailAddress() ?? '') !== strtolower($guestId)) {
 				$this->config->setUserValue($guestId, 'guests', 'old_email', $guest->getSystemEMailAddress());
 				$guest->setSystemEMailAddress(strtolower($guestId));
 			}
