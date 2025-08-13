@@ -31,7 +31,7 @@ class Config {
 	/**
 	 * @param string|bool $allow
 	 */
-	public function setAllowExternalStorage($allow) {
+	public function setAllowExternalStorage($allow): void {
 		$this->appConfig->setAppValueBool('allow_external_storage', $allow === true || $allow === 'true') ;
 	}
 
@@ -57,7 +57,7 @@ class Config {
 	/**
 	 * @param string|bool $use
 	 */
-	public function setUseWhitelist($use) {
+	public function setUseWhitelist($use): void {
 		$this->appConfig->setAppValueBool('usewhitelist', $use === true || $use === 'true') ;
 	}
 
@@ -94,7 +94,7 @@ class Config {
 			|| $this->subAdmin->isSubAdmin($user)) {
 			return true;
 		}
-		
+
 		// Check if we have a group restriction
 		// and if the user belong to that group
 		$groupRestriction = $this->getCreateRestrictedToGroup();

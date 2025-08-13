@@ -25,15 +25,15 @@ use OCP\AppFramework\Bootstrap\IBootContext;
 use OCP\AppFramework\Bootstrap\IBootstrap;
 use OCP\AppFramework\Bootstrap\IRegistrationContext;
 use OCP\AppFramework\Http\Events\BeforeTemplateRenderedEvent;
-use OCP\AppFramework\IAppContainer;
 use OCP\EventDispatcher\IEventDispatcher;
 use OCP\IGroupManager;
-use OCP\IServerContainer;
 use OCP\IUserManager;
+use OCP\IUserSession;
 use OCP\Notification\IManager as INotificationManager;
 use OCP\Share\Events\ShareCreatedEvent;
 use OCP\User\Events\UserChangedEvent;
 use OCP\User\Events\UserFirstTimeLoggedInEvent;
+use Psr\Container\ContainerInterface;
 
 class Application extends App implements IBootstrap {
 	public const APP_ID = 'guests';
@@ -55,26 +55,27 @@ class Application extends App implements IBootstrap {
 	public function boot(IBootContext $context): void {
 		// need to cheat here since there's no way to register these in IRegistrationContext
 		$container = $context->getServerContainer();
-		$container->get(IUserManager::class)->registerBackend($container->query(UserBackend::class));
-		$container->get(IGroupManager::class)->addBackend($container->query(GroupBackend::class));
+		$container->get(IUserManager::class)->registerBackend($container->get(UserBackend::class));
+		$container->get(IGroupManager::class)->addBackend($container->get(GroupBackend::class));
 
 		$this->setupGuestManagement($context->getAppContainer(), $context->getServerContainer());
 		$this->setupGuestRestrictions($context->getAppContainer(), $context->getServerContainer());
 		$this->setupNotifications($context->getAppContainer());
-		$context->getAppContainer()->query(RestrictionManager::class)->lateSetupRestrictions();
+		$context->getAppContainer()->get(RestrictionManager::class)->lateSetupRestrictions();
 	}
 
-	private function setupGuestManagement(IAppContainer $container, IServerContainer $server): void {
-		$hookManager = $container->query(Hooks::class);
+	private function setupGuestManagement(ContainerInterface $container, ContainerInterface $server): void {
+		$hookManager = $container->get(Hooks::class);
 		$server->get(IEventDispatcher::class)->addListener(ShareCreatedEvent::class, [$hookManager, 'handlePostShare']);
 		$server->get(IEventDispatcher::class)->addListener(UserFirstTimeLoggedInEvent::class, [$hookManager, 'handleFirstLogin']);
 	}
 
-	private function setupGuestRestrictions(IAppContainer $container, IServerContainer $server): void {
-		$userSession = $server->getUserSession();
+	private function setupGuestRestrictions(ContainerInterface $container, ContainerInterface $server): void {
+		/** @var IUserSession $userSession */
+		$userSession = $server->get(IUserSession::class);
 		$user = $userSession->getUser();
 		/** @var RestrictionManager $restrictionManager */
-		$restrictionManager = $container->query(RestrictionManager::class);
+		$restrictionManager = $container->get(RestrictionManager::class);
 
 		if ($user) {
 			$restrictionManager->verifyAccess();
@@ -87,8 +88,8 @@ class Application extends App implements IBootstrap {
 		}
 	}
 
-	private function setupNotifications(IAppContainer $container): void {
-		$notificationManager = $container->query(INotificationManager::class);
+	private function setupNotifications(ContainerInterface $container): void {
+		$notificationManager = $container->get(INotificationManager::class);
 		$notificationManager->registerNotifierService(Notifier::class);
 	}
 }

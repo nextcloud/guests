@@ -73,7 +73,7 @@ class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetails
 	 * Get all groups a user belongs to
 	 *
 	 * @param string $uid Name of the user
-	 * @return array an array of group names
+	 * @return list<string> an array of group names
 	 * @since 4.5.0
 	 *
 	 * This function fetches all groups a user belongs to. It does not check
@@ -120,7 +120,7 @@ class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetails
 	 * @param string $search
 	 * @param int $limit
 	 * @param int $offset
-	 * @return array an array of user ids
+	 * @return array<int, string> an array of user ids
 	 * @since 4.5.0
 	 */
 	public function usersInGroup($gid, $search = '', $limit = -1, $offset = 0): array {

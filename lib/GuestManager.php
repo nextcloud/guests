@@ -84,9 +84,9 @@ class GuestManager {
 			// generate token for lost password so that a link can be sent by email
 			$token = $this->secureRandom->generate(
 				21,
-				ISecureRandom::CHAR_DIGITS .
-				ISecureRandom::CHAR_LOWER .
-				ISecureRandom::CHAR_UPPER);
+				ISecureRandom::CHAR_DIGITS
+				. ISecureRandom::CHAR_LOWER
+				. ISecureRandom::CHAR_UPPER);
 
 			$endOfTime = PHP_INT_MAX - 50000;
 			$token = sprintf('%s:%s', $endOfTime, $token);
@@ -149,7 +149,7 @@ class GuestManager {
 		return $data;
 	}
 
-	public function getGuestInfo($userId): array {
+	public function getGuestInfo(string $userId): array {
 		$shares = array_merge(
 			$this->shareManager->getSharedWith($userId, IShare::TYPE_USER, null, -1, 0),
 			$this->shareManager->getSharedWith($userId, IShare::TYPE_GROUP, null, -1, 0),

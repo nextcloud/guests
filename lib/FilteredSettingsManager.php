@@ -28,10 +28,16 @@ class FilteredSettingsManager implements IManager {
 		return $this->appWhitelist->isAppWhitelisted($appId);
 	}
 
+	/**
+	 * @return void
+	 */
 	public function registerSection(string $type, string $section) {
 		$this->manager->registerSection($type, $section);
 	}
 
+	/**
+	 * @return void
+	 */
 	public function registerSetting(string $type, string $setting) {
 		if (!$this->isSettingAllowed($setting)) {
 			return;
