@@ -8,22 +8,16 @@
 namespace OCA\Guests;
 
 use OC\NavigationManager;
+use OCP\INavigationManager;
 use OCP\IUser;
 
 class FilteredNavigationManager extends NavigationManager {
-	/** @var AppWhitelist */
-	private $whitelist;
 
-	/** @var IUser */
-	private $user;
-
-	/** @var NavigationManager */
-	private $navigationManager;
-
-	public function __construct(IUser $user, NavigationManager $navigationManager, AppWhitelist $whitelist) {
-		$this->whitelist = $whitelist;
-		$this->user = $user;
-		$this->navigationManager = $navigationManager;
+	public function __construct(
+		private IUser $user,
+		private INavigationManager $navigationManager,
+		private AppWhitelist $whitelist,
+	) {
 	}
 
 	public function getAll(string $type = 'link'): array {
@@ -56,14 +50,23 @@ class FilteredNavigationManager extends NavigationManager {
 		$this->navigationManager->setUnreadCounter($id, $unreadCounter);
 	}
 
+	/**
+	 * @psalm-suppress MethodSignatureMismatch
+	 */
 	public function get(string $id): ?array {
 		return $this->navigationManager->get($id);
 	}
 
+	/**
+	 * @psalm-suppress MethodSignatureMismatch
+	 */
 	public function getDefaultEntryIdForUser(?IUser $user = null, bool $withFallbacks = true): string {
 		return $this->navigationManager->getDefaultEntryIdForUser($user, $withFallbacks);
 	}
 
+	/**
+	 * @psalm-suppress MethodSignatureMismatch
+	 */
 	public function getDefaultEntryIds(bool $withFallbacks = true): array {
 		return $this->navigationManager->getDefaultEntryIds($withFallbacks);
 	}

@@ -9,9 +9,4 @@
       <code><![CDATA[listen]]></code>
     </UndefinedInterfaceMethod>
   </file>
-  <file src="lib/RestrictionManager.php">
-    <UndefinedClass>
-      <code><![CDATA[ExternalMountPoint]]></code>
-    </UndefinedClass>
-  </file>
 </files>

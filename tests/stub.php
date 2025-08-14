@@ -827,3 +827,8 @@ namespace OCA\Settings\Events {
 	class BeforeTemplateRenderedEvent extends Event {
 	}
 }
+
+namespace OCA\Files_External\Config {
+	class ExternalMountPoint {
+	}
+}
