@@ -11,6 +11,7 @@ namespace OCA\Guests\Listener;
 use OCA\Guests\GuestManager;
 use OCP\EventDispatcher\Event;
 use OCP\EventDispatcher\IEventListener;
+use OCP\IAppConfig;
 use OCP\IUserSession;
 use OCP\User\Events\UserChangedEvent;
 
@@ -23,6 +24,7 @@ class UserChangedListener implements IEventListener {
 	public function __construct(
 		private readonly IUserSession $userSession,
 		private readonly GuestManager $guestManager,
+		private readonly IAppConfig $appConfig,
 	) {
 	}
 
@@ -43,6 +45,10 @@ class UserChangedListener implements IEventListener {
 		if (strtolower($event->getValue()) === strtolower($user->getUID())) {
 			return;
 		}
+		if ($this->appConfig->getValueBool('guests', 'allow_email_change', false, true)) {
+			return;
+		}
+
 		$user->setSystemEMailAddress(strtolower($user->getUID()));
 		$event->stopPropagation();
 	}
