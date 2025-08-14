@@ -50,7 +50,7 @@ class UserBackend extends ABackend implements
 		$this->cache = new CappedMemoryCache();
 	}
 
-	public function setAllowListing(bool $allow) {
+	public function setAllowListing(bool $allow): void {
 		$this->allowListing = $allow;
 	}
 

@@ -61,7 +61,7 @@ class OwncloudGuestsMigration implements IRepairStep {
 	 * 4. Delete the old 'isGuest' preference row
 	 * 5. Set the quota to '0 B'
 	 */
-	protected function runStep(IOutput $output) {
+	protected function runStep(IOutput $output): void {
 		$output->startProgress(count($this->cachedUserIDs));
 		foreach ($this->cachedUserIDs as $userID) {
 			if ($ocGuest = $this->userManager->get($userID)) {

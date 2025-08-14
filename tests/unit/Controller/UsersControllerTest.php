@@ -135,7 +135,7 @@ class UsersControllerTest extends TestCase {
 
 		// Empty user session will return false straight away
 		$this->assertFalse($this->guestsConfig->canCreateGuests());
-		
+
 		$response = $this->controller->create('test@example.com', 'Test User', 'en', []);
 		$this->assertEquals(Http::STATUS_FORBIDDEN, $response->getStatus());
 		$this->assertEquals(['errorMessages' => ['You are not allowed to create guests']], $response->getData());
@@ -149,24 +149,24 @@ class UsersControllerTest extends TestCase {
 		$currentUser = $this->createMock(IUser::class);
 		$currentUser->method('getUID')
 			->willReturn('test_user');
-		
+
 		$this->userSession->method('getUser')
 			->willReturn($currentUser);
-		
+
 		$this->guestManager->method('isGuest')
 			->with($currentUser)
 			->willReturn(false);
-		
+
 		// Set up group restriction check
 		$this->appConfig->method('getAppValueArray')
 			->with('create_restricted_to_group', [])
 			->willReturn(['allowed_group1', 'allowed_group2']);
-		
+
 		// User's groups don't intersect with allowed groups
 		$this->groupManager->method('getUserGroupIds')
 			->with($currentUser)
 			->willReturn(['other_group1', 'other_group2']);
-		
+
 		$response = $this->controller->create('test@example.com', 'Test User', 'en', []);
 		$this->assertEquals(Http::STATUS_FORBIDDEN, $response->getStatus());
 		$this->assertEquals(['errorMessages' => ['You are not allowed to create guests']], $response->getData());
@@ -180,19 +180,19 @@ class UsersControllerTest extends TestCase {
 		$currentUser = $this->createMock(IUser::class);
 		$currentUser->method('getUID')
 			->willReturn('admin_user');
-		
+
 		$this->userSession->method('getUser')
 			->willReturn($currentUser);
-		
+
 		$this->guestManager->method('isGuest')
 			->with($currentUser)
 			->willReturn(false);
-		
+
 		// Set up group restriction check
 		$this->appConfig->method('getAppValueArray')
 			->with('create_restricted_to_group', [])
 			->willReturn(['allowed_group1', 'allowed_group2']);
-		
+
 		// User is in the admin group
 		$this->groupManager->method('getUserGroupIds')
 			->with($currentUser)
@@ -202,24 +202,24 @@ class UsersControllerTest extends TestCase {
 		$this->groupManager->method('isAdmin')
 			->with('admin_user')
 			->willReturn(true);
-		
+
 		// Other necessary mocks for a successful creation
 		$this->mailer->method('validateMailAddress')
 			->willReturn(true);
-		
+
 		$this->userManager->method('getByEmail')
 			->willReturn([]);
-		
+
 		$this->userManager->method('userExists')
 			->willReturn(false);
-		
+
 		$guestUser = $this->createMock(IUser::class);
 		$this->guestManager->method('createGuest')
 			->willReturn($guestUser);
-		
+
 		$this->userManager->method('get')
 			->willReturn($guestUser);
-		
+
 		$response = $this->controller->create('new@example.com', 'Test User', 'en', []);
 		$this->assertEquals(Http::STATUS_CREATED, $response->getStatus());
 	}
@@ -232,41 +232,41 @@ class UsersControllerTest extends TestCase {
 		$currentUser = $this->createMock(IUser::class);
 		$currentUser->method('getUID')
 			->willReturn('test_user');
-		
+
 		$this->userSession->method('getUser')
 			->willReturn($currentUser);
-		
+
 		$this->guestManager->method('isGuest')
 			->with($currentUser)
 			->willReturn(false);
-		
+
 		// Set up group restriction check
 		$this->appConfig->method('getAppValueArray')
 			->with('create_restricted_to_group', [])
 			->willReturn(['allowed_group1', 'allowed_group2']);
-		
+
 		// User is in one of the allowed groups
 		$this->groupManager->method('getUserGroupIds')
 			->with($currentUser)
 			->willReturn(['other_group', 'allowed_group2']);
-		
+
 		// Other necessary mocks for a successful creation
 		$this->mailer->method('validateMailAddress')
 			->willReturn(true);
-		
+
 		$this->userManager->method('getByEmail')
 			->willReturn([]);
-		
+
 		$this->userManager->method('userExists')
 			->willReturn(false);
-		
+
 		$guestUser = $this->createMock(IUser::class);
 		$this->guestManager->method('createGuest')
 			->willReturn($guestUser);
-		
+
 		$this->userManager->method('get')
 			->willReturn($guestUser);
-		
+
 		$response = $this->controller->create('new@example.com', 'Test User', 'en', []);
 		$this->assertEquals(Http::STATUS_CREATED, $response->getStatus());
 	}
@@ -286,24 +286,24 @@ class UsersControllerTest extends TestCase {
 		$this->groupManager->method('get')
 			->with('allowed_group1')
 			->willReturn($group);
-		
+
 		$this->userSession->method('getUser')
 			->willReturn($currentUser);
-		
+
 		$this->guestManager->method('isGuest')
 			->with($currentUser)
 			->willReturn(false);
-		
+
 		// No group restrictions
 		$this->appConfig->method('getAppValueArray')
 			->with('create_restricted_to_group', [])
 			->willReturn([]);
-		
+
 		// Sharing is restricted to group
 		$this->config->method('getAppValue')
 			->with('core', 'shareapi_only_share_with_group_members', 'no')
 			->willReturn('yes');
-		
+
 		// User is a subadmin
 		$this->subAdmin->method('isSubAdmin')
 			->with($currentUser)
@@ -311,27 +311,27 @@ class UsersControllerTest extends TestCase {
 		$this->subAdmin->method('isSubAdminOfGroup')
 			->with($currentUser, $group)
 			->willReturn(true);
-		
+
 		// Other necessary mocks for a successful creation
 		$this->mailer->method('validateMailAddress')
 			->willReturn(true);
-		
+
 		$this->userManager->method('getByEmail')
 			->willReturn([]);
-		
+
 		$this->userManager->method('userExists')
 			->willReturn(false);
-		
+
 		$guestUser = $this->createMock(IUser::class);
 		$this->guestManager->method('createGuest')
 			->willReturn($guestUser);
-		
+
 		$this->userManager->method('get')
 			->willReturn($guestUser);
 
 		$this->assertTrue($this->guestsConfig->canCreateGuests());
 		$this->assertTrue($this->guestsConfig->isSharingRestrictedToGroup());
-		
+
 		$response = $this->controller->create('new@example.com', 'Test User', 'en', ['allowed_group1']);
 		$this->assertEquals(Http::STATUS_CREATED, $response->getStatus());
 	}
@@ -344,29 +344,29 @@ class UsersControllerTest extends TestCase {
 		$currentUser = $this->createMock(IUser::class);
 		$currentUser->method('getUID')
 			->willReturn('regular_user');
-		
+
 		$this->userSession->method('getUser')
 			->willReturn($currentUser);
-		
+
 		$this->guestManager->method('isGuest')
 			->with($currentUser)
 			->willReturn(false);
-		
+
 		// No group restrictions
 		$this->appConfig->method('getAppValueArray')
 			->with('create_restricted_to_group', [])
 			->willReturn([]);
-		
+
 		// Sharing is restricted to group
 		$this->config->method('getAppValue')
 			->with('core', 'shareapi_only_share_with_group_members', 'no')
 			->willReturn('yes');
-		
+
 		// User is NOT a subadmin
 		$this->subAdmin->method('isSubAdmin')
 			->with($currentUser)
 			->willReturn(false);
-		
+
 		$response = $this->controller->create('test@example.com', 'Test User', 'en', []);
 		$this->assertEquals(Http::STATUS_FORBIDDEN, $response->getStatus());
 		$this->assertEquals(['errorMessages' => ['You are not allowed to create guests']], $response->getData());
@@ -380,41 +380,41 @@ class UsersControllerTest extends TestCase {
 		$currentUser = $this->createMock(IUser::class);
 		$currentUser->method('getUID')
 			->willReturn('regular_user');
-		
+
 		$this->userSession->method('getUser')
 			->willReturn($currentUser);
-		
+
 		$this->guestManager->method('isGuest')
 			->with($currentUser)
 			->willReturn(false);
-		
+
 		// No group restrictions
 		$this->appConfig->method('getAppValueArray')
 			->with('create_restricted_to_group', [])
 			->willReturn([]);
-		
+
 		// Sharing is restricted to group
 		$this->config->method('getAppValue')
 			->with('core', 'shareapi_only_share_with_group_members', 'no')
 			->willReturn('no');
-		
+
 		// Other necessary mocks for a successful creation
 		$this->mailer->method('validateMailAddress')
 			->willReturn(true);
-		
+
 		$this->userManager->method('getByEmail')
 			->willReturn([]);
-		
+
 		$this->userManager->method('userExists')
 			->willReturn(false);
-		
+
 		$guestUser = $this->createMock(IUser::class);
 		$this->guestManager->method('createGuest')
 			->willReturn($guestUser);
-		
+
 		$this->userManager->method('get')
 			->willReturn($guestUser);
-		
+
 		$response = $this->controller->create('new@example.com', 'Test User', 'en', []);
 		$this->assertEquals(Http::STATUS_CREATED, $response->getStatus());
 	}
@@ -702,7 +702,7 @@ class UsersControllerTest extends TestCase {
 		$this->appConfig->method('getAppValueArray')
 			->with('create_restricted_to_group', [])
 			->willReturn(['group1', 'group2']);
-		
+
 		// User's groups don't intersect with allowed groups
 		$this->groupManager->method('getUserGroupIds')
 			->with($currentUser)
@@ -712,7 +712,7 @@ class UsersControllerTest extends TestCase {
 		$this->config->method('getAppValue')
 			->with('core', 'shareapi_only_share_with_group_members', 'no')
 			->willReturn('yes');
-	
+
 		$this->assertTrue($this->guestsConfig->canCreateGuests());
 		$this->assertTrue($this->guestsConfig->isSharingRestrictedToGroup());
 

@@ -18,6 +18,9 @@ use OCP\Util;
  * @template-implements IEventListener<BeforeTemplateRenderedEvent>
  */
 class BeforeUserManagementRenderedListener implements IEventListener {
+	/**
+	 * @param Event $event
+	 */
 	public function handle(Event $event): void {
 		if (!($event instanceof BeforeTemplateRenderedEvent)) {
 			return;

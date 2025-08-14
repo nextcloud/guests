@@ -51,7 +51,7 @@ class AppWhitelist {
 		$this->baseUrlLength = strlen($this->baseUrl);
 	}
 
-	public function isAppWhitelisted($appId): bool {
+	public function isAppWhitelisted(string $appId): bool {
 		$whitelist = $this->config->getAppWhitelist();
 		$alwaysEnabled = explode(',', self::WHITELIST_ALWAYS);
 
@@ -62,7 +62,10 @@ class AppWhitelist {
 		return $this->config->useWhitelist();
 	}
 
-	public function isUrlAllowed(IUser $user, $url): bool {
+	/**
+	 * @param false|string $url
+	 */
+	public function isUrlAllowed(IUser $user, string|false $url): bool {
 		if ($this->guestManager->isGuest($user) && $this->isWhitelistEnabled()) {
 			$app = $this->getRequestedApp($url);
 
@@ -95,8 +98,10 @@ class AppWhitelist {
 	/**
 	 * Core has \OC::$REQUESTEDAPP but it isn't set until the routes are matched
 	 * taken from \OC\Route\Router::match()
+	 *
+	 * @param false|string $url
 	 */
-	private function getRequestedApp($url): string {
+	private function getRequestedApp(string|false $url): string {
 		if (substr($url, 0, $this->baseUrlLength) === $this->baseUrl) {
 			$url = substr($url, $this->baseUrlLength);
 		}

@@ -111,8 +111,8 @@ class Mail {
 			$message->setHtmlBody($emailTemplate->renderHtml());
 			$message->setPlainBody($emailTemplate->renderText());
 			$message->setFrom([
-				Util::getDefaultEmailAddress('sharing-noreply') =>
-					$l10n->t('%s via %s', [
+				Util::getDefaultEmailAddress('sharing-noreply')
+					=> $l10n->t('%s via %s', [
 						$senderDisplayName,
 						$this->defaults->getName()
 					]),
