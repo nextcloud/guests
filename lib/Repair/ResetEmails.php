@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace OCA\Guests\Repair;
 
 use OCA\Guests\GuestManager;
+use OCP\IAppConfig;
 use OCP\IConfig;
 use OCP\IUserManager;
 use OCP\Migration\IOutput;
@@ -18,6 +19,7 @@ class ResetEmails implements IRepairStep {
 	public function __construct(
 		private readonly GuestManager $guestManager,
 		private readonly IUserManager $userManager,
+		private readonly IAppConfig $appConfig,
 		private readonly IConfig $config,
 	) {
 	}
@@ -30,6 +32,10 @@ class ResetEmails implements IRepairStep {
 	 * @return void
 	 */
 	public function run(IOutput $output) {
+		if ($this->appConfig->getValueBool('guests', 'allow_email_change', false, true)) {
+			return;
+		}
+
 		foreach ($this->guestManager->listGuests() as $guestId) {
 			$guest = $this->userManager->get($guestId);
 			if (strtolower($guest?->getSystemEMailAddress() ?? '') !== strtolower($guestId)) {
