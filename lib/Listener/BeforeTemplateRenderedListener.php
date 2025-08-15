@@ -10,7 +10,9 @@ declare(strict_types=1);
 
 namespace OCA\Guests\Listener;
 
+use OCA\Guests\Config;
 use OCP\AppFramework\Http\Events\BeforeTemplateRenderedEvent;
+use OCP\AppFramework\Services\IInitialState;
 use OCP\EventDispatcher\Event;
 use OCP\EventDispatcher\IEventListener;
 use OCP\Util;
@@ -18,11 +20,20 @@ use OCP\Util;
 /**
  * @template-implements IEventListener<Event>
  */
-class TalkIntegrationListener implements IEventListener {
+class BeforeTemplateRenderedListener implements IEventListener {
+	public function __construct(
+		private Config $config,
+		private IInitialState $initialState,
+	) {
+	}
+
 	public function handle(Event $event): void {
 		if (!$event instanceof BeforeTemplateRenderedEvent) {
 			return;
 		}
+
+		$this->initialState->provideInitialState('canCreateGuests', $this->config->canCreateGuests());
+
 		if (!$event->isLoggedIn() || $event->getResponse()->getTemplateName() !== 'index') {
 			return;
 		}

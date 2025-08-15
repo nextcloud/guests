@@ -10,8 +10,8 @@ namespace OCA\Guests;
 
 use OC\Files\Filesystem;
 use OCA\Guests\AppInfo\Application;
+use OCA\Guests\Service\InviteService;
 use OCA\Guests\Storage\ReadOnlyJail;
-use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\AppFramework\IAppContainer;
 use OCP\Constants;
 use OCP\Files\Storage\IStorage;
@@ -36,6 +36,7 @@ class Hooks {
 		private UserBackend $userBackend,
 		private IAppContainer $container,
 		private TransferService $transferService,
+		private InviteService $inviteService,
 	) {
 	}
 
@@ -76,38 +77,9 @@ class Hooks {
 		$this->logger->debug("checking if '$shareWith' has a password",
 			['app' => Application::APP_ID]);
 
-
-		$passwordToken = $this->config->getUserValue(
-			$shareWith,
-			'core',
-			'lostpassword',
-			null
-		);
-
 		$uid = $user->getUID();
 
-		try {
-			if ($passwordToken) {
-				// user has not yet activated his account
-
-				$decryptedToken = $this->crypto->decrypt($passwordToken, strtolower($targetUser->getEMailAddress()) . $this->config->getSystemValue('secret'));
-				[, $token] = explode(':', $decryptedToken);
-				$lang = $this->config->getUserValue($targetUser->getUID(), 'core', 'lang', '');
-				// send invitation
-				$this->mail->sendGuestInviteMail(
-					$uid,
-					$shareWith,
-					$share,
-					$token,
-					$lang
-				);
-				$share->setMailSend(false);
-			}
-		} catch (DoesNotExistException $ex) {
-			$this->logger->error("'$shareWith' does not exist", ['app' => Application::APP_ID]);
-		} catch (\Exception $e) {
-			$this->logger->error('Failed to send guest activation mail', ['app' => Application::APP_ID, 'exception' => $e]);
-		}
+		$this->inviteService->sendInvite($uid, $shareWith, $share);
 	}
 
 	public function setupReadonlyFilesystem(array $params): void {

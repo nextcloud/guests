@@ -14,6 +14,7 @@ use OCA\Guests\Config;
 use OCA\Guests\Db\Transfer;
 use OCA\Guests\Db\TransferMapper;
 use OCA\Guests\GuestManager;
+use OCA\Guests\Service\InviteService;
 use OCA\Guests\TransferService;
 use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\AppFramework\Http;
@@ -42,6 +43,7 @@ class UsersController extends OCSController {
 		private IGroupManager $groupManager,
 		private TransferService $transferService,
 		private TransferMapper $transferMapper,
+		private InviteService $inviteService,
 	) {
 		parent::__construct($appName, $request);
 	}
@@ -55,7 +57,7 @@ class UsersController extends OCSController {
 	 * @param array $groups
 	 * @return DataResponse
 	 */
-	public function create(string $email, string $displayName, string $language, array $groups): DataResponse {
+	public function create(string $email, string $displayName, string $language, array $groups, bool $sendInvite = true): DataResponse {
 		$errorMessages = [];
 		$currentUser = $this->userSession->getUser();
 
@@ -152,6 +154,10 @@ class UsersController extends OCSController {
 				],
 				Http::STATUS_UNPROCESSABLE_ENTITY
 			);
+		}
+
+		if ($sendInvite) {
+			$this->inviteService->sendInvite($currentUser->getUID(), $username);
 		}
 
 		return new DataResponse(

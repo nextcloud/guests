@@ -4,29 +4,9 @@
  */
 
 import { validate } from 'email-validator'
-import Vue from 'vue'
-
-import GuestForm from './views/GuestForm.vue'
-import Nextcloud from './mixins/Nextcloud.js'
 import { showError } from '@nextcloud/dialogs'
 import { Type } from '@nextcloud/sharing'
-
-Vue.mixin(Nextcloud)
-
-if (!OCA.Guests) {
-	/**
-	 * @namespace OCA.Guests
-	 */
-	OCA.Guests = {}
-}
-
-// Init guests modal
-const guestForm = new Vue(GuestForm)
-const guestRoot = document.createElement('div')
-guestRoot.setAttribute('id', 'guest-root')
-document.body.appendChild(guestRoot)
-guestForm.$mount('#guest-root')
-
+import { guestForm } from './init.ts'
 // entry in the sharing input search results
 const result = {
 	icon: 'icon-guests',
