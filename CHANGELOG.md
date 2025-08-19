@@ -6,6 +6,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## 4.4.1
+### Fixes
+* fix: ensure repair email is a string by @skjnldsv in https://github.com/nextcloud/guests/pull/1374
+* fix: accept INavigationManager instead of NavigationManager in Filter… by @pulsarf0x in https://github.com/nextcloud/guests/pull/1357
+
+### Other
+* chore: update workflows from templates by @skjnldsv in https://github.com/nextcloud/guests/pull/1376
+* chore(ci): add `update-nextcloud-ocp-matrix` workflow by @skjnldsv in https://github.com/nextcloud/guests/pull/1377
+* chore: update composer to fix psalm by @skjnldsv in https://github.com/nextcloud/guests/pull/1375
+
 ## 4.4.0
 ### Changes
 * feat: add repair step to ensure guests haven't changed their email by @icewind1991 in https://github.com/nextcloud/guests/pull/1370
