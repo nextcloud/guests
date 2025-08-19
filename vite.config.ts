@@ -10,7 +10,8 @@ export default createAppConfig({
 	settings: 'src/settings.js',
 	talk: 'src/talk.js',
 	users: 'src/users.ts',
-	init: 'src/init.ts'
+	init: 'src/init.ts',
+	contactsmenu: 'src/contactsmenu.ts'
 },
 {
 	inlineCSS: {

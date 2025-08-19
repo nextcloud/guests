@@ -33,6 +33,7 @@ class BeforeTemplateRenderedListener implements IEventListener {
 		}
 
 		$this->initialState->provideInitialState('canCreateGuests', $this->config->canCreateGuests());
+		Util::addScript('guests', 'guests-contactsmenu');
 
 		if (!$event->isLoggedIn() || $event->getResponse()->getTemplateName() !== 'index') {
 			return;
