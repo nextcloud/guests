@@ -137,7 +137,7 @@ namespace OC {
 		/**
 		 * @deprecated - use getValue*()
 		 */
-		public function getValue(string $app, string $key, ?string $default = null): string {
+		public function getValue($app, $key, $default = '') {
 		}
 	}
 }
