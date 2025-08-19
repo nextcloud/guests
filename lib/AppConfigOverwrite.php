@@ -19,7 +19,14 @@ class AppConfigOverwrite extends AppConfig {
 		$this->overWrite = $overwrite;
 	}
 
-	public function getValue(string $app, string $key, ?string $default = null): string {
+
+	/**
+	 * @param $app
+	 * @param $key
+	 * @param $default
+	 * @return string
+	 */
+	public function getValue($app, $key, $default = '') {
 		if (isset($this->overWrite[$app]) && isset($this->overWrite[$app][$key])) {
 			return $this->overWrite[$app][$key];
 		}
