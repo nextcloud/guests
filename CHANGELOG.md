@@ -6,6 +6,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## 4.5.0
+### Changes
+* feat: provide the guest form to allow guest creation anywhere by @leftybournes in https://github.com/nextcloud/guests/pull/1371
+* feat: add setting to allow guests to change their email by @icewind1991 in https://github.com/nextcloud/guests/pull/1379
+* feat: add guests through the contacts menu by @leftybournes in https://github.com/nextcloud/guests/pull/1380
+
+### Fixes
+* fix: incompatible overwrite for AppConfig by @miaulalala in https://github.com/nextcloud/guests/pull/1384
+
+### New Contributors
+* @leftybournes made their first contribution in https://github.com/nextcloud/guests/pull/1371
+* @miaulalala made their first contribution in https://github.com/nextcloud/guests/pull/1384
+
 ## 4.4.1
 ### Fixes
 * fix: ensure repair email is a string by @skjnldsv in https://github.com/nextcloud/guests/pull/1374
