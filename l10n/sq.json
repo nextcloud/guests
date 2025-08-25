@@ -4,7 +4,6 @@
     "Invalid mail address" : "Adresë email e pavlefshme",
     "A user with that name already exists." : "Ka tashmë një përdorues me këtë emër.",
     "User successfully created" : "Përdoruesi u krijua me sukses",
-    "%s shared »%s« with you" : "%s ndarë »%s« me ju",
     "%s via %s" : "%s nëpërmjet %s",
     "Couldn't send reset email. Please contact your administrator." : "S’u dërgua dot email-i i rivendosjes. Ju lutemi, lidhuni me përgjegjësin tuaj.",
     "None" : "Asnjë",
@@ -12,8 +11,7 @@
     "Email" : "Emaili",
     "Default" : "Paraprake",
     "Cancel" : "Anuloje",
-    "Name:" : "Emri",
-    "Email:" : "Email",
+    "Language" : "Gjuha",
     "Error" : "Gabim"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

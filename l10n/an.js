@@ -5,6 +5,7 @@ OC.L10N.register(
     "Name" : "Nombre",
     "Email" : "Correu electronico",
     "Cancel" : "Cancelar",
+    "Language" : "Luenga",
     "Error" : "Error"
 },
 "nplurals=2; plural=(n != 1);");

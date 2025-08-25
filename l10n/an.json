@@ -3,6 +3,7 @@
     "Name" : "Nombre",
     "Email" : "Correu electronico",
     "Cancel" : "Cancelar",
+    "Language" : "Luenga",
     "Error" : "Error"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

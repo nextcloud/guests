@@ -6,6 +6,7 @@ OC.L10N.register(
     "Name" : "Անուն",
     "Email" : "Էլ․փոստ",
     "Cancel" : "չեղարկել",
+    "Language" : "Լեզու",
     "Error" : "Սխալ"
 },
 "nplurals=2; plural=(n != 1);");

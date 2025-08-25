@@ -6,7 +6,6 @@ OC.L10N.register(
     "Invalid mail address" : "Ongeldige posadres",
     "A user with that name already exists." : "’n Gelyknamige gebruiker bestaan reeds.",
     "User successfully created" : "gebruiker suksesvol geskep",
-    "%s shared »%s« with you" : "%s het »%s« met u gedeel",
     "%s via %s" : "%s d.m.v. %s",
     "Couldn't send reset email. Please contact your administrator." : "Kon nie die herstel-e-pos stuur nie. Kontak asseblief jou administrateur.",
     "None" : "Geen",
@@ -14,6 +13,7 @@ OC.L10N.register(
     "Shared At" : "Gedeel Om",
     "Guests accounts" : "Gasterekeninge",
     "Invited by" : "Genooi deur",
-    "Cancel" : "Cancel"
+    "Cancel" : "Cancel",
+    "Language" : "Taal"
 },
 "nplurals=2; plural=(n != 1);");

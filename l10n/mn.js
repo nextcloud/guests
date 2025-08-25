@@ -6,6 +6,7 @@ OC.L10N.register(
     "None" : "юу ч үгүй",
     "Name" : "Нэр",
     "Cancel" : "Цуцлах",
+    "Language" : "Хэл",
     "Error" : "Алдаа"
 },
 "nplurals=2; plural=(n != 1);");

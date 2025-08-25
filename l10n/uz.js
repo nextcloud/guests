@@ -6,6 +6,7 @@ OC.L10N.register(
     "Name" : "Name",
     "Email" : "Email",
     "Cancel" : "Bekor qilish",
+    "Language" : "Language",
     "Error" : "Xatolik"
 },
 "nplurals=1; plural=0;");

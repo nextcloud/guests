@@ -8,6 +8,7 @@ OC.L10N.register(
     "Name" : "﻿ಹೆಸರು",
     "Email" : "﻿ಇ-ಅಂಚೆ",
     "Cancel" : "Cancel",
+    "Language" : "﻿ಭಾಷೆ",
     "Error" : "﻿ತಪ್ಪಾಗಿದೆ"
 },
 "nplurals=2; plural=(n > 1);");

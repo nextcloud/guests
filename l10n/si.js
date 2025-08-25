@@ -7,6 +7,7 @@ OC.L10N.register(
     "Activate account" : "ගිණුම සක්‍රිය කරන්න",
     "Name" : "නම",
     "Cancel" : "අවලංගු",
+    "Language" : "භාෂාව",
     "Error" : "දෝෂය"
 },
 "nplurals=2; plural=(n != 1);");

@@ -9,6 +9,7 @@ OC.L10N.register(
     "Email" : "Postel",
     "Cancel" : "Nullañ",
     "Invite {name}" : "Kouviañ {name}",
+    "Language" : "Yezh",
     "Error" : "Fazi",
     "Invite guest" : "Pedañ kouvidi"
 },

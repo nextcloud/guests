@@ -8,7 +8,6 @@ OC.L10N.register(
     "User successfully created" : "El usuario fue creado exitosamente",
     "Failed to authorize" : "Fallo al autorizar",
     "User already exists" : "El usuario ya existe",
-    "%s shared »%s« with you" : "%s ha compartido »%s« contigo",
     "%s via %s" : "%s vía %s",
     "Couldn't send reset email. Please contact your administrator." : "No fue posible enviar el correo electrónico de restauración. Por favor contacta a tu adminstrador. ",
     "None" : "Ninguno",
@@ -16,8 +15,7 @@ OC.L10N.register(
     "Email" : "Correo electrónico",
     "Default" : "Por omisión",
     "Cancel" : "Cancelar",
-    "Name:" : "Nombre:",
-    "Email:" : "Correo:",
+    "Language" : "Idioma",
     "Error" : "Error",
     "Invite guest" : "Agregar Invitado"
 },

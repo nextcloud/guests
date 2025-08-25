@@ -6,6 +6,7 @@ OC.L10N.register(
     "Name" : "பெயர்",
     "Email" : "மின்னஞ்சல்",
     "Cancel" : "ரத்து செய்",
+    "Language" : "மொழி",
     "Error" : "வழு"
 },
 "nplurals=2; plural=(n != 1);");

@@ -6,6 +6,7 @@ OC.L10N.register(
     "Name" : "ឈ្មោះ",
     "Email" : "អ៊ីមែល",
     "Cancel" : "លើកលែង",
+    "Language" : "ភាសា",
     "Error" : "កំហុស"
 },
 "nplurals=1; plural=0;");
