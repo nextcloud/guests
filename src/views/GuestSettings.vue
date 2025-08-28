@@ -6,14 +6,22 @@
 	<div>
 		<NcSettingsSection :name="t('guests', 'Guests')"
 			:description="t('guests', 'Guest accounts are grouped under a virtual group in the account manager')">
+			<!-- Guests usage description -->
 			<NcNoteCard type="info">
-				{{ t('guests', 'Guests account have no quota by default') }}
+				{{ t('guests', 'Guests are simple, limited accounts you can give to people outside your Nextcloud instance.') }}
+				{{ t('guests', 'They do not get their own storage, but can log in and work together on files, folders and chats you share with them.') }}
+				{{ t('guests', 'Guests are always identified as such, to make it clear who is part of your team and who is an external collaborator.') }}
+				{{ t('guests', 'Use them when you want to collaborate with friends, clients or partners without having to create full user accounts.') }}
 			</NcNoteCard>
+
+			<!-- Status messages -->
 			<div>
 				<span v-if="error || saving || saved"
 					:class="{error, saving, saved}"
 					class="msg">{{ statusText }}</span>
 			</div>
+
+			<!-- Sharing restricted to groups warning -->
 			<div v-if="config.sharingRestrictedToGroup" class="warning">
 				<p>
 					{{ t('guests', 'Creating guests accounts is restricted while "Restrict accounts to only share with accounts in their groups" is enabled.') }}
@@ -22,6 +30,8 @@
 					{{ t('guests', 'Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for.') }}
 				</p>
 			</div>
+
+			<!-- Settings -->
 			<div v-if="loaded">
 				<NcCheckboxRadioSwitch :checked.sync="config.allowExternalStorage"
 					type="switch"
@@ -79,6 +89,8 @@
 				<div class="loading" />
 			</div>
 		</NcSettingsSection>
+
+		<!-- Guest list -->
 		<GuestList />
 	</div>
 </template>
