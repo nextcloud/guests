@@ -56,7 +56,6 @@ OC.L10N.register(
     "Saving …" : "保存中 …",
     "The admin group is always allowed to create guest accounts" : "管理者グループは常にゲストアカウントの作成が許可されています",
     "Guest accounts are grouped under a virtual group in the account manager" : "ゲストアカウントは、アカウントマネージャの仮想グループの下にグループ化されます",
-    "Guests account have no quota by default" : "ゲストアカウントにはデフォルトでクォータがありません",
     "Creating guests accounts is restricted while \"Restrict accounts to only share with accounts in their groups\" is enabled." : "\"アカウントをグループ内のアカウントとの共有のみに制限\"が有効になっている間は、ゲストアカウントの作成が制限されます。",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "ゲストを作成できるのはグループ管理者のみで、ゲストは共有者がグループ管理者となっている少なくとも1つのグループに追加する必要があります。",
     "Guest accounts can access mounted external storages" : "ゲストアカウントはマウントされた外部ストレージにアクセスできます",

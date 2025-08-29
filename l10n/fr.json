@@ -65,7 +65,6 @@
     "Saving …" : "Enregistrement  …",
     "The admin group is always allowed to create guest accounts" : "Le groupe administrateur est toujours autorisé à créer des comptes invités",
     "Guest accounts are grouped under a virtual group in the account manager" : "Les comptes invités sont rassemblés dans un groupe virtuel, dans le gestionnaire de comptes",
-    "Guests account have no quota by default" : "Les comptes invités n'ont pas de quota par défaut",
     "Creating guests accounts is restricted while \"Restrict accounts to only share with accounts in their groups\" is enabled." : "La création de comptes d'invités est restreinte lorsque l'option \"N'autoriser les partages qu'entre membres de mêmes groupes\" est activée.",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Seuls les membres de groupe administrateurs sont autorisés à créer des invités et les invités doivent être ajoutés à au moins un groupe pour lequel le créateur du partage est un administrateur de groupe.",
     "Guest accounts can access mounted external storages" : "Les comptes invités peuvent accéder aux stockages externes montés",

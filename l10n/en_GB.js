@@ -67,7 +67,6 @@ OC.L10N.register(
     "Saving …" : "Saving …",
     "The admin group is always allowed to create guest accounts" : "The admin group is always allowed to create guest accounts",
     "Guest accounts are grouped under a virtual group in the account manager" : "Guest accounts are grouped under a virtual group in the account manager",
-    "Guests account have no quota by default" : "Guests account have no quota by default",
     "Creating guests accounts is restricted while \"Restrict accounts to only share with accounts in their groups\" is enabled." : "Creating guests accounts is restricted while \"Restrict accounts to only share with accounts in their groups\" is enabled.",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for.",
     "Guest accounts can access mounted external storages" : "Guest accounts can access mounted external storages",

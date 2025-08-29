@@ -67,7 +67,6 @@ OC.L10N.register(
     "Saving …" : "Збереження ...",
     "The admin group is always allowed to create guest accounts" : "Група адміністраторів завжди має право створювати гостьові облікові записи",
     "Guest accounts are grouped under a virtual group in the account manager" : "Гостьові облікові записи згруповано під віртуальною групою у розділі управління користувачами",
-    "Guests account have no quota by default" : "Гостьовий акаунт за замовчуванням не має квоти",
     "Creating guests accounts is restricted while \"Restrict accounts to only share with accounts in their groups\" is enabled." : "Створення гостьових облікових записів обмежено, при цьому увімкнено \"Обмежити користувачів надавати спільних доступ тільки в межах груп, до яких вони належать\".",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Лише адміністратори груп можуть створювати гостьові облікові записи, а гостей потрібно додати принаймні до однієї з груп, в яких автор спільного ресурсу є груповим адміністратором.",
     "Guest accounts can access mounted external storages" : "Гостьові облікові записи можуть мати доступ до під'єднаних зовнішніх сховищ.",

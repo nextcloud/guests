@@ -57,7 +57,6 @@
     "Saving …" : "Ukládání…",
     "The admin group is always allowed to create guest accounts" : "Skupině admin (správci) je vytváření účtů hostů povoleno vždy",
     "Guest accounts are grouped under a virtual group in the account manager" : "Účty hostů jsou seskupeny v rámci virtuální skupiny ve správě účtů",
-    "Guests account have no quota by default" : "Účty hostů ve výchozím stavu nemají žádnou kvótu",
     "Creating guests accounts is restricted while \"Restrict accounts to only share with accounts in their groups\" is enabled." : "Vytváření účtů hostů je omezeno, pokud je zapnuté „Povolit sdílení pouze mezi účty v rámci jejich skupin“.",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Účty pro hosty mohou vytvářet pouze správci skupin. Hosty je třeba přidat do alespoň jedné ze skupin, které je tvůrce sdílení správcem.",
     "Guest accounts can access mounted external storages" : "Účty hostů mohou přistupovat k připojeným externím úložištím",

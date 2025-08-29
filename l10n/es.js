@@ -67,7 +67,6 @@ OC.L10N.register(
     "Saving …" : "Guardando …",
     "The admin group is always allowed to create guest accounts" : "El grupo de administradores siempre tiene permitido crear cuentas de invitado",
     "Guest accounts are grouped under a virtual group in the account manager" : "Las cuentas de invitado se agrupan en un grupo virtual en el administrador de cuentas",
-    "Guests account have no quota by default" : "Las cuentas de invitado no tienen cuota de manera predeterminada",
     "Creating guests accounts is restricted while \"Restrict accounts to only share with accounts in their groups\" is enabled." : "La creación de cuentas de invitado está restringida cuando está habilitada la opción \"Restringir cuentas a solo compartir con cuentas en sus grupos\".",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Solo los administradores de grupo pueden crear invitados y los invitados deben ser agregados al menos a un grupo del cual el creador del recurso compartido es administrador.",
     "Guest accounts can access mounted external storages" : "Las cuentas de invitado pueden acceder a los almacenamientos compartidos externos montados",

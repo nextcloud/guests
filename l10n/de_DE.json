@@ -65,7 +65,6 @@
     "Saving …" : "Speichere …",
     "The admin group is always allowed to create guest accounts" : "Die Administrationsgruppe darf Gastkonten immer erstellen",
     "Guest accounts are grouped under a virtual group in the account manager" : "Gast-Konten sind unter einer virtuellen Gruppe im Konten-Manager zusammengefasst",
-    "Guests account have no quota by default" : "Gastkonten haben standardmäßig kein Kontingent",
     "Creating guests accounts is restricted while \"Restrict accounts to only share with accounts in their groups\" is enabled." : "Die Erstellung von Gast-Konten ist eingeschränkt, solange \"Konten auf das Teilen mit Konten innerhalb ihrer Gruppen beschränken\" aktiv ist.",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Nur Gruppenadministratoren dürfen Gäste erstellen und Gäste müssen mindestens einer Gruppe hinzugefügt werden, für die der Freigabeersteller ein Gruppenadministrator ist.",
     "Guest accounts can access mounted external storages" : "Gast-Konten können auf eingebundene externe Speicher zugreifen",

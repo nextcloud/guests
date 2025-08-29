@@ -65,7 +65,6 @@
     "Saving …" : "Salvestan…",
     "The admin group is always allowed to create guest accounts" : "Peakasutajate grupi liikmed võivad alati luua külaliskontosid",
     "Guest accounts are grouped under a virtual group in the account manager" : "Kasutajakontode haldusliideses on külaliskontod rühmitatud virtuaalse grupina",
-    "Guests account have no quota by default" : "Külaliskontol vaikimisi pole kvooti",
     "Creating guests accounts is restricted while \"Restrict accounts to only share with accounts in their groups\" is enabled." : "Külaliskontode lisamine on piiratud, kui kasutusel on „Piira jagamist vaid oma gruppide kasutajakontodega“ eelistus.",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Ainult gruppide peakasutajad võivad lisada külaliskontosid ning külalised peavad olema vähemalt ühe grupi liige, kus jaosmeedia looja on grupi peakasutaja.",
     "Guest accounts can access mounted external storages" : "Külaliskasutajatel on ligipääs haagitud välistele andmeruumidele",

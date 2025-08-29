@@ -5,6 +5,7 @@ OC.L10N.register(
     "None" : "Yo'q",
     "Name" : "Name",
     "Email" : "Email",
+    "Default" : "Standart",
     "Cancel" : "Bekor qilish",
     "Language" : "Language",
     "Error" : "Xatolik"

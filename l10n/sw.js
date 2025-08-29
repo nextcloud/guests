@@ -56,7 +56,6 @@ OC.L10N.register(
     "Saving …" : "Inahifadhi …",
     "The admin group is always allowed to create guest accounts" : "Kikundi cha wasimamizi kinaruhusiwa kila wakati kuunda akaunti za wageni",
     "Guest accounts are grouped under a virtual group in the account manager" : "Akaunti za wageni zimewekwa katika kikundi cha kawaida kwenye msimamizi wa akaunti",
-    "Guests account have no quota by default" : "Akaunti za wageni hazina mgao kwa chaguo-msingi",
     "Creating guests accounts is restricted while \"Restrict accounts to only share with accounts in their groups\" is enabled." : "Kufungua akaunti za wageni kumezuiwa huku \"Zuia akaunti zishiriki tu na akaunti katika vikundi vyao\" kumewezeshwa.",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Ni wasimamizi wa kikundi pekee wanaoruhusiwa kuunda wageni na wageni lazima waongezwe kwenye angalau kikundi kimoja ambacho muundaji wa kushiriki ni msimamizi wa kikundi.",
     "Guest accounts can access mounted external storages" : "Akaunti za wageni zinaweza kufikia hifadhi za nje zilizopachikwa",

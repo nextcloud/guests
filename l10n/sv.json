@@ -54,7 +54,6 @@
     "Saving …" : "Sparar …",
     "The admin group is always allowed to create guest accounts" : "Administratörsgruppen har alltid tillåtelse att skapa gästkonton",
     "Guest accounts are grouped under a virtual group in the account manager" : "Gästkonton grupperas under en virtuell grupp i kontohanteraren",
-    "Guests account have no quota by default" : "Gästkonton har ingen kvot som standard",
     "Creating guests accounts is restricted while \"Restrict accounts to only share with accounts in their groups\" is enabled." : "Att skapa gästkonton är begränsat medan \"Begränsa konton till att endast dela med konton i deras grupper\" är aktiverat.",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Endast gruppadministratörer får skapa gäster och gäster måste läggas till i minst en grupp som den som skapar delningen är gruppadministratör för.",
     "Guest accounts can access mounted external storages" : "Gästkonton kan komma åt monterade externa lagringar",

@@ -65,7 +65,6 @@
     "Saving …" : "儲存中 ...",
     "The admin group is always allowed to create guest accounts" : "管理員群組一律允許建立訪客帳戶",
     "Guest accounts are grouped under a virtual group in the account manager" : "訪客帳戶的群組在帳戶管理員的虛擬群組之下",
-    "Guests account have no quota by default" : "訪客帳戶預設沒有配額",
     "Creating guests accounts is restricted while \"Restrict accounts to only share with accounts in their groups\" is enabled." : "啟用「限制帳戶只能分享給群組裡的其他帳戶」時，會限制訪客帳戶的建立。",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "只有群組管理員才能建立訪客帳戶，且訪客帳戶必須加進至少一個「分享建立者是群組管理員」的群組。",
     "Guest accounts can access mounted external storages" : "訪客帳戶能存取掛載的外部儲存區",

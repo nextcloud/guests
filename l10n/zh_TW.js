@@ -67,7 +67,6 @@ OC.L10N.register(
     "Saving …" : "正在儲存 …",
     "The admin group is always allowed to create guest accounts" : "管理員群組一律允許建立訪客帳號",
     "Guest accounts are grouped under a virtual group in the account manager" : "訪客帳號會在帳號管理者的虛擬群組之下分組",
-    "Guests account have no quota by default" : "訪客帳號預設沒有配額",
     "Creating guests accounts is restricted while \"Restrict accounts to only share with accounts in their groups\" is enabled." : "啟用「限制賬戶只能分享給群組裡的其他賬戶」時，會限制訪客賬戶的建立。",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "只有群組管理員才能建立訪客帳號，且訪客帳號必須加進至少一個「分享建立者是群組管理員」的群組。",
     "Guest accounts can access mounted external storages" : "訪客帳號能存取掛載的外部儲存區",

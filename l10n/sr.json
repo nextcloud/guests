@@ -65,7 +65,6 @@
     "Saving …" : "Чувам …",
     "The admin group is always allowed to create guest accounts" : "Група админа увек може да креира налоге госта",
     "Guest accounts are grouped under a virtual group in the account manager" : "Гост налози се унутар менаџера налога групишу у виртуелну групу",
-    "Guests account have no quota by default" : "Налози госта подразумевано немају квоту",
     "Creating guests accounts is restricted while \"Restrict accounts to only share with accounts in their groups\" is enabled." : "Креирање гост налога је ограничено све док је укључено „Ограничи налоге само на дељење са налозима унутар својих група”.",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Само администраторима група је дозвољено да креирају госте, а гости морају бити додати на бар једну групу на којој је онај ко је направио дељење и администратор те групе.",
     "Guest accounts can access mounted external storages" : "Гост налози могу да приступе монтираним спољним складиштима",

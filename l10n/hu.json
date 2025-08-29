@@ -54,7 +54,6 @@
     "Saving …" : "Mentés …",
     "The admin group is always allowed to create guest accounts" : "Az adminisztrációs csoport mindig hozhat létre vendégfiókokat",
     "Guest accounts are grouped under a virtual group in the account manager" : "A vendégfiókok egy virtuális csoportba vannak szervezve a fiókkezelőben",
-    "Guests account have no quota by default" : "A vendégfiókoknak alapértelmezés szerint nincs kvótájuk",
     "Creating guests accounts is restricted while \"Restrict accounts to only share with accounts in their groups\" is enabled." : "A vendégfiókok létrehozása korlátozott, míg a „A fiókok korlátozása, hogy csak a csoportjaikban lévő fiókokkal oszthassanak meg” lehetőség engedélyezve van.",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Csak a csoport rendszergazdái hozhatnak létre vendégeket, és a vendégeket hozzá kell adni legalább egy csoporthoz, amely megosztás létrehozója a csoport rendszergazdája.",
     "Guest accounts can access mounted external storages" : "A vendégfiókok elérhetik a csatolt külső tárolókat",
