@@ -110,7 +110,7 @@ class Mail {
 		);
 
 		$emailTemplate->addBodyText(
-			$l10n->t('%s just invited you and shared »%s« with you.', [$senderDisplayName, $filename])
+			$l10n->t('%1$s just invited you and shared »%2$s« with you.', [$senderDisplayName, $filename])
 		);
 
 		$emailTemplate->addBodyText(
