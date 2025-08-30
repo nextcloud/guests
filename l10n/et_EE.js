@@ -15,7 +15,6 @@ OC.L10N.register(
     "Couldn't send reset email. Please contact your administrator." : "Ei suutnud lähtestada e-maili. Palun võta ühendust administraatoriga.",
     "%s shared a file with you" : "%s jagas faili sinuga",
     "Hey there," : "Tere,",
-    "%s just invited you and shared »%s« with you." : "%s just saatis sulle kutse ja jagas „%s“ faili sinuga.",
     "You can access the shared file by activating your guest account." : "Saad jagatud failile ligi peale külaliskonto aktiveerimist.",
     "After your account is activated you can view the share by logging in with %s." : "Peale sinu konto aktiveerimist võid vaadata jaosmeediat, kui logid sisse %s abil.",
     "The share will expire at %s." : "Jagamine aegub %s.",

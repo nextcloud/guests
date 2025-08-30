@@ -15,7 +15,6 @@ OC.L10N.register(
     "Couldn't send reset email. Please contact your administrator." : "No se ha podido enviar el correo para restablecer la contraseña. Por favor, contacte con un administrador.",
     "%s shared a file with you" : "%s compartió un archivo con Ud.",
     "Hey there," : "Hola,",
-    "%s just invited you and shared »%s« with you." : "%s le acaba de invitar y compartió »%s« con Ud.",
     "You can access the shared file by activating your guest account." : "Puede acceder al archivo compartido activando su cuenta de invitado.",
     "After your account is activated you can view the share by logging in with %s." : "Tras activar su cuenta, puede ver el recurso compartido iniciando sesión con %s.",
     "The share will expire at %s." : "El recurso compartido caducará en %s.",

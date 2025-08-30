@@ -13,7 +13,6 @@
     "Couldn't send reset email. Please contact your administrator." : "Couldn't send reset email. Please contact your administrator.",
     "%s shared a file with you" : "%s shared a file with you",
     "Hey there," : "Hey there,",
-    "%s just invited you and shared »%s« with you." : "%s just invited you and shared »%s« with you.",
     "You can access the shared file by activating your guest account." : "You can access the shared file by activating your guest account.",
     "After your account is activated you can view the share by logging in with %s." : "After your account is activated you can view the share by logging in with %s.",
     "The share will expire at %s." : "The share will expire at %s.",
