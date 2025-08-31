@@ -13,6 +13,7 @@
     "Couldn't send reset email. Please contact your administrator." : "Die E-Mail zum Zurücksetzen konnte nicht gesendet werden. Bitte kontaktiere deine Administration.",
     "%s shared a file with you" : "%s hat eine Datei mit dir geteilt",
     "Hey there," : "Hallo,",
+    "%1$s just invited you and shared »%2$s« with you." : "%1$s hat dich gerade eingeladen und »%2$s« mit dir geteilt.",
     "You can access the shared file by activating your guest account." : "Du kannst auf die geteilte Datei zugreifen, indem du dich mit deinem Gast-Konto anmeldest.",
     "After your account is activated you can view the share by logging in with %s." : "Nach Aktivierung deines Kontos kannst du die Freigabe ansehen, indem du Dich mit %s anmeldest.",
     "The share will expire at %s." : "Die Freigabe wird am %s ablaufen.",

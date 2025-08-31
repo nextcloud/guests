@@ -15,6 +15,7 @@ OC.L10N.register(
     "Couldn't send reset email. Please contact your administrator." : "Sıfırlama e-postası gönderilemedi. Lütfen BT yöneticiniz ile görüşün.",
     "%s shared a file with you" : "%s sizinle bir dosya paylaştı",
     "Hey there," : "Merhaba,",
+    "%1$s just invited you and shared »%2$s« with you." : "%1$ssizi davet etti ve sizinle »%2$s« paylaştı.",
     "You can access the shared file by activating your guest account." : "Konuk hesabınızı etkinleştirerek paylaşılan dosyaya erişebilirsiniz.",
     "After your account is activated you can view the share by logging in with %s." : "Hesabınız etkinleştirildikten sonra %s ile oturum açarak paylaşılan dosyayı görebilirsiniz.",
     "The share will expire at %s." : "Paylaşımın geçerlilk süresi %s tarihinde dolacak.",

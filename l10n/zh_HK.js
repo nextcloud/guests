@@ -15,6 +15,7 @@ OC.L10N.register(
     "Couldn't send reset email. Please contact your administrator." : "無法寄出重設密碼電郵。請聯絡您的管理員。",
     "%s shared a file with you" : "%s 與您分享了檔案",
     "Hey there," : "哈囉，",
+    "%1$s just invited you and shared »%2$s« with you." : "%1$s 剛邀請了您和分享了 »%2$s« 給您。",
     "You can access the shared file by activating your guest account." : "啟用訪客帳戶後，您就能存取分享檔案了。",
     "After your account is activated you can view the share by logging in with %s." : "帳戶啟動後，您就能登入 %s 檢視分享項目了。",
     "The share will expire at %s." : "此分享將於 %s 過期。",
