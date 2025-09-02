@@ -15,6 +15,7 @@ OC.L10N.register(
     "Couldn't send reset email. Please contact your administrator." : "Не могу да пошаљем поруку за ресетовање. Контактирајте администратора.",
     "%s shared a file with you" : "%s је поделио фајл са вама",
     "Hey there," : "Поздрав тамо,",
+    "%1$s just invited you and shared »%2$s« with you." : "%1$s вас је управио позвао и поделио »%2$s« са вама.",
     "You can access the shared file by activating your guest account." : "Можеш да приступиш овом дељеном фајлу тако што активираш гостински налог.",
     "After your account is activated you can view the share by logging in with %s." : "Када ти се налог активира, можеш видети ово дељење пријавом на %s.",
     "The share will expire at %s." : "Ово дељење истиче %s.",

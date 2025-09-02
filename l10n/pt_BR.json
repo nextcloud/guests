@@ -13,6 +13,7 @@
     "Couldn't send reset email. Please contact your administrator." : "Não foi possível enviar o e-mail de redefinição. Por favor, contate o administrador.",
     "%s shared a file with you" : "%s compartilhou um arquivo com você",
     "Hey there," : "Olá,",
+    "%1$s just invited you and shared »%2$s« with you." : "%1$s acabou de convidar você e compartilhou »%2$s« com você.",
     "You can access the shared file by activating your guest account." : "Você pode acessar o arquive compartilhado ativando sua conta de convidado.",
     "After your account is activated you can view the share by logging in with %s." : "Depois que sua conta for ativada, você poderá visualizar o compartilhamento fazendo login com %s.",
     "The share will expire at %s." : "O compartilhamento expirará em %s.",

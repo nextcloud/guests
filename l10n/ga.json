@@ -13,6 +13,7 @@
     "Couldn't send reset email. Please contact your administrator." : "Níorbh fhéidir ríomhphost athshocraithe a sheoladh. Déan teagmháil le do riarthóir le do thoil.",
     "%s shared a file with you" : "Roinn %s comhad leat",
     "Hey there," : "Hey ann,",
+    "%1$s just invited you and shared »%2$s« with you." : "Thug %1$s cuireadh duit agus roinn siad »%2$s« leat.",
     "You can access the shared file by activating your guest account." : "Is féidir leat an comhad roinnte a rochtain trí do chuntas aoi a ghníomhachtú.",
     "After your account is activated you can view the share by logging in with %s." : "Nuair a bheidh do chuntas gníomhachtaithe is féidir leat an sciar a fheiceáil trí logáil isteach le %s.",
     "The share will expire at %s." : "Rachaidh an sciar in éag ag %s.",
