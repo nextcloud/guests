@@ -137,7 +137,8 @@ class DirMask extends PermissionsMask {
 	}
 
 	public function mkdir($path): bool {
-		if ($this->checkPath($path)) {
+		// Always allow creating the path of the dir mask.
+		if ($path !== $this->path && $this->checkPath($path)) {
 			return parent::mkdir($path);
 		} else {
 			return $this->storage->mkdir($path);
