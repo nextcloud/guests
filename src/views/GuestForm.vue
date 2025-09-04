@@ -21,7 +21,7 @@
 					<!-- Name -->
 					<div class="form-group">
 						<label class="form-label" for="app-guests-input-name">
-							{{ t('guests', 'Name') }}
+							{{ t('guests', 'Guest Name') }}
 						</label>
 						<input id="app-guests-input-name"
 							ref="name"
@@ -359,15 +359,6 @@ export default {
 		align-items: center;
 		span {
 			margin: 10px;
-		}
-		button {
-			height: 44px;
-			&.icon-loading-small {
-				padding-left: $modal-button-loading * 2;
-				&::after {
-					left: $modal-button-loading;
-				}
-			}
 		}
 	}
 }
