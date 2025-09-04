@@ -13,6 +13,7 @@
     "Couldn't send reset email. Please contact your administrator." : "Не вдалося надіслати повідомлення для відновлення пароля. Прохання сконтактувати з адміністратором.",
     "%s shared a file with you" : "%s поділив(ла)ся файлом з вами",
     "Hey there," : "Вітання!",
+    "%1$s just invited you and shared »%2$s« with you." : "%1$s щойно запросив(-ла) вас та надав(-ла) доступ до \"%2$s\".",
     "You can access the shared file by activating your guest account." : "Щоби отримати доступ до спільного файлу, потрібно увімкнути гостьовий обліковий запис.",
     "After your account is activated you can view the share by logging in with %s." : "Щойно ви активуєте обліковий запис, ви зможете переглянути спільний ресурс, яким з вами поділилися після входу під %s.",
     "The share will expire at %s." : "Термін дії спільного ресурсу: до %s.",

@@ -17,6 +17,8 @@
     "The share will expire at %s." : "Platnost sdílení skončí %s.",
     "Activate account" : "Aktivovat účet",
     "View share" : "Zobrazit sdílení",
+    "You have been invited" : "Byli jste pozváni",
+    "%s just invited you." : "%s vás právě pozval/a.",
     "Guests" : "Hosté",
     "Data imported" : "Data naimportována",
     "Data from your previous guest account was successfully imported into your new account." : "Data z vašeho dřívějšího účtu hosta byla úspěšně naimportována do vašeho nového účtu.",
@@ -66,6 +68,7 @@
     "Select groups to allow" : "Vybrat skupiny, které povolit",
     "Limit guest access to an app's allowlist" : "Omezit hostovi přístup pouze na aplikace, uvedené v seznamu povolených",
     "Reset allowlist" : "Vrátit seznam povolených do výchozího stavu",
+    "Add guest" : "Přidat hosta",
     "Invite guest" : "Pozvat hosta",
     "A user with this ID or email address already exists" : "Uživatel s tímto identifikátorem nebo e-mailovou adresou už existuje",
     "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Host bude brzy převeden na běžný účet s názvem účtu „{userId}“"
