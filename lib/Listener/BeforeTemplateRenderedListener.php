@@ -12,7 +12,6 @@ namespace OCA\Guests\Listener;
 
 use OCA\Guests\Config;
 use OCP\AppFramework\Http\Events\BeforeTemplateRenderedEvent;
-use OCP\AppFramework\Services\IInitialState;
 use OCP\EventDispatcher\Event;
 use OCP\EventDispatcher\IEventListener;
 use OCP\Util;
@@ -23,7 +22,6 @@ use OCP\Util;
 class BeforeTemplateRenderedListener implements IEventListener {
 	public function __construct(
 		private Config $config,
-		private IInitialState $initialState,
 	) {
 	}
 
@@ -32,10 +30,17 @@ class BeforeTemplateRenderedListener implements IEventListener {
 			return;
 		}
 
-		$this->initialState->provideInitialState('canCreateGuests', $this->config->canCreateGuests());
+		if (!$event->isLoggedIn()) {
+			return;
+		}
+
+		if (!$this->config->canCreateGuests()) {
+			return;
+		}
+		Util::addScript('guests', 'guests-init');
 		Util::addScript('guests', 'guests-contactsmenu');
 
-		if (!$event->isLoggedIn() || $event->getResponse()->getTemplateName() !== 'index') {
+		if ($event->getResponse()->getTemplateName() !== 'index') {
 			return;
 		}
 

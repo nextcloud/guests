@@ -13,6 +13,9 @@ use OCA\Guests\Storage\DirMask;
 use OCP\Constants;
 use Test\TestCase;
 
+/**
+ * @group DB
+ */
 class DirMaskTest extends TestCase {
 	public function testReadonlyDir() {
 		$storage = new Temporary([]);
