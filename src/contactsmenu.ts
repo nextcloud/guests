@@ -5,15 +5,16 @@
 
 import AccountPlusOutlineSvg from '@mdi/svg/svg/account-plus-outline.svg?raw'
 import { t } from '@nextcloud/l10n'
+import { guestForm } from './init.ts'
 
 window.addEventListener('DOMContentLoaded', () => {
-	if (OC.ContactsMenu && OCA.Guests?.openGuestDialog) {
+	if (OC.ContactsMenu) {
 		OC.ContactsMenu.addAction({
 			id: 'guests_addGuestAction',
 			icon: AccountPlusOutlineSvg,
 			label: t('guests', 'Add guest'),
 			onClick: () => {
-				OCA.Guests.openGuestDialog('core')
+				guestForm.populate({ app: 'core' })
 			},
 		})
 	}

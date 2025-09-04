@@ -33,7 +33,6 @@ use OCP\Notification\IManager as INotificationManager;
 use OCP\Share\Events\ShareCreatedEvent;
 use OCP\User\Events\UserChangedEvent;
 use OCP\User\Events\UserFirstTimeLoggedInEvent;
-use OCP\Util;
 use Psr\Container\ContainerInterface;
 
 class Application extends App implements IBootstrap {
@@ -63,7 +62,6 @@ class Application extends App implements IBootstrap {
 		$this->setupGuestRestrictions($context->getAppContainer(), $context->getServerContainer());
 		$this->setupNotifications($context->getAppContainer());
 		$context->getAppContainer()->get(RestrictionManager::class)->lateSetupRestrictions();
-		Util::addScript('guests', 'guests-init');
 	}
 
 	private function setupGuestManagement(ContainerInterface $container, ContainerInterface $server): void {
