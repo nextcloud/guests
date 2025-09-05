@@ -6,6 +6,28 @@
 
 All notable changes to this project will be documented in this file.
 
+## 4.5.1
+### Changes
+* feat: add better description in settings by @skjnldsv in https://github.com/nextcloud/guests/pull/1390
+
+### Fixes
+* fix(l10n): User numbered placeholders by @solracsf in https://github.com/nextcloud/guests/pull/1392
+* fix(DirMask): Allow creating path by @provokateurin in https://github.com/nextcloud/guests/pull/1400
+* fix: Load scripts if a user is logged in and is allowed invite guests by @leftybournes in https://github.com/nextcloud/guests/pull/1402
+
+### New Contributors
+* @provokateurin made their first contribution in https://github.com/nextcloud/guests/pull/1400
+
+### Other
+* build: update node and npm engines versions by @nextcloud-command in https://github.com/nextcloud/guests/pull/1388
+* Chore(deps-dev): Bump sha.js from 2.4.11 to 2.4.12 by @dependabot[bot] in https://github.com/nextcloud/guests/pull/1387
+* Chore(deps): Bump @nextcloud/sharing from 0.2.4 to 0.2.5 by @dependabot[bot] in https://github.com/nextcloud/guests/pull/1394
+* Chore(deps-dev): Bump @nextcloud/vite-config from 1.5.6 to 1.6.0 by @dependabot[bot] in https://github.com/nextcloud/guests/pull/1397
+* Chore(deps): Bump @nextcloud/l10n from 3.3.0 to 3.4.0 by @dependabot[bot] in https://github.com/nextcloud/guests/pull/1398
+* Chore(deps): Bump @nextcloud/vue from 8.27.0 to 8.29.2 by @dependabot[bot] in https://github.com/nextcloud/guests/pull/1393
+* Chore(deps-dev): Bump vite from 5.4.19 to 7.1.3 by @dependabot[bot] in https://github.com/nextcloud/guests/pull/1395
+* Chore(deps): Bump esbuild and vite by @dependabot[bot] in https://github.com/nextcloud/guests/pull/1399
+
 ## 4.5.0
 ### Changes
 * feat: provide the guest form to allow guest creation anywhere by @leftybournes in https://github.com/nextcloud/guests/pull/1371
