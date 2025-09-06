@@ -58,6 +58,7 @@ OC.L10N.register(
     "Guest added" : "Mgeni ameongezwa",
     "Invite Guest" : "Alika mgeni",
     "Guests are accounts with limited permissions who will be able to access resources shared with them and use apps." : "Wageni ni akaunti zilizo na ruhusa chache ambao wataweza kufikia rasilimali zilizoshirikiwa nao na kutumia programu.",
+    "Guest Name" : "Jina la mgeni",
     "Language" : "Lugha",
     "Add guest to groups:" : "Ongeza mgeni kwenye makundi",
     "An error occurred, try again" : "Hitilafu imetokea, jaribu tena baadaye",

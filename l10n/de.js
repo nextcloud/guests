@@ -58,6 +58,7 @@ OC.L10N.register(
     "Guest added" : "Gast hinzugefügt",
     "Invite Guest" : "Gast einladen",
     "Guests are accounts with limited permissions who will be able to access resources shared with them and use apps." : "Gäste sind Konten mit eingeschränkten Berechtigungen, die auf für sie freigegebene Ressourcen zugreifen und Apps verwenden können.",
+    "Guest Name" : "Gastname",
     "Language" : "Sprache",
     "Add guest to groups:" : "Gast zu folgenden Gruppen hinzufügen:",
     "An error occurred, try again" : "Es ist ein Fehler aufgetreten. Bitte versuche es noch einmal",
