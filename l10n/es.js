@@ -58,6 +58,7 @@ OC.L10N.register(
     "Guest added" : "Invitado añadido",
     "Invite Guest" : "Invitar a Invitado",
     "Guests are accounts with limited permissions who will be able to access resources shared with them and use apps." : "Las cuentas de Invitado son cuentas con permisos limitados que serán capaces de acceder a los recursos compartidos con ellas y utilizar apps.",
+    "Guest Name" : "Nombre del invitado",
     "Language" : "Lenguaje",
     "Add guest to groups:" : "Añadir invitado a los grupos:",
     "An error occurred, try again" : "Ha ocurrido un error, vuelva a intentarlo",
