@@ -58,6 +58,7 @@ OC.L10N.register(
     "Guest added" : "Aoi curtha leis",
     "Invite Guest" : "Tabhair cuireadh do Aoi",
     "Guests are accounts with limited permissions who will be able to access resources shared with them and use apps." : "Is cuntais iad aíonna a bhfuil ceadanna teoranta acu a bheidh in ann rochtain a fháil ar acmhainní a roinntear leo agus aipeanna a úsáid.",
+    "Guest Name" : "Ainm an Aoi",
     "Language" : "Teanga",
     "Add guest to groups:" : "Cuir aoi le grúpaí:",
     "An error occurred, try again" : "Tharla earráid, bain triail eile as",

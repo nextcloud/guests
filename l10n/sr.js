@@ -58,6 +58,7 @@ OC.L10N.register(
     "Guest added" : "Додат је гост",
     "Invite Guest" : "Позови госта",
     "Guests are accounts with limited permissions who will be able to access resources shared with them and use apps." : "Гости су налози са ограниченим дозволама који ће моћи да да користе апликације и да приступе само ресурсима који су подељени са њима.",
+    "Guest Name" : "Име госта",
     "Language" : "Језик",
     "Add guest to groups:" : "Додај госта у групе:",
     "An error occurred, try again" : "Дошло је до грешке, покушајте поново",
