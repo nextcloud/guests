@@ -51,12 +51,9 @@ class UserChangedListener implements IEventListener {
 		$allowChange = false;
 		if (strtolower($event->getValue()) === strtolower($user->getUID())) {
 			$allowChange = true;
-		}
-
-		if ($this->userSession->getUser() !== $user) {
+		} elseif ($this->userSession->getUser() !== $user) {
 			$allowChange = true;
-		}
-		if ($this->appConfig->getValueBool(Application::APP_ID, 'allow_email_change', false, true) && $event->getValue() !== '') {
+		} elseif ($this->appConfig->getValueBool(Application::APP_ID, 'allow_email_change', false, true) && $event->getValue() !== '') {
 			$allowChange = true;
 		}
 
