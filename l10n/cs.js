@@ -52,6 +52,7 @@ OC.L10N.register(
     "Guest user needs to be added to at least one group" : "Hosta je třeba přidat do alespoň jedné skupiny",
     "Guest added" : "Host přidán",
     "Invite Guest" : "Pozvat hosta",
+    "Guest Name" : "Jméno hosta",
     "Language" : "Jazyk",
     "Add guest to groups:" : "Přidat hosta do skupin:",
     "An error occurred, try again" : "Došlo k chybě, zkuste to znovu",

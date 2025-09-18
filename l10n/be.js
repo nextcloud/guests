@@ -10,6 +10,7 @@ OC.L10N.register(
     "Email" : "Электронная пошта",
     "Default" : "Прадвызначаныя",
     "Cancel" : "Скасаваць",
+    "Invite {name}" : "Запрасіць {name}",
     "Language" : "Мова",
     "Invite user" : "Запрасіць карыстальніка",
     "Error" : "Памылка"
