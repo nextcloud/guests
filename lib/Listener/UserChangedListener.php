@@ -8,10 +8,12 @@ declare(strict_types=1);
 
 namespace OCA\Guests\Listener;
 
+use OCA\Guests\AppInfo\Application;
 use OCA\Guests\GuestManager;
 use OCP\EventDispatcher\Event;
 use OCP\EventDispatcher\IEventListener;
 use OCP\IAppConfig;
+use OCP\IConfig;
 use OCP\IUserSession;
 use OCP\User\Events\UserChangedEvent;
 
@@ -25,6 +27,7 @@ class UserChangedListener implements IEventListener {
 		private readonly IUserSession $userSession,
 		private readonly GuestManager $guestManager,
 		private readonly IAppConfig $appConfig,
+		private readonly IConfig $config,
 	) {
 	}
 
@@ -36,20 +39,29 @@ class UserChangedListener implements IEventListener {
 			return;
 		}
 		$user = $event->getUser();
-		if ($this->userSession->getUser() !== $user) {
-			return;
-		}
 		if (!$this->guestManager->isGuest($user)) {
 			return;
 		}
-		if (strtolower($event->getValue()) === strtolower($user->getUID())) {
-			return;
-		}
-		if ($this->appConfig->getValueBool('guests', 'allow_email_change', false, true)) {
+
+		$guestEmail = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'email', strtolower($user->getUID()));
+		if ($event->getValue() === $guestEmail) {
 			return;
 		}
 
-		$user->setSystemEMailAddress(strtolower($user->getUID()));
-		$event->stopPropagation();
+		$allowChange = false;
+		if (strtolower($event->getValue()) === strtolower($user->getUID())) {
+			$allowChange = true;
+		} elseif ($this->userSession->getUser() !== $user) {
+			$allowChange = true;
+		} elseif ($this->appConfig->getValueBool(Application::APP_ID, 'allow_email_change', false, true) && $event->getValue() !== '') {
+			$allowChange = true;
+		}
+
+		if ($allowChange) {
+			$this->config->setUserValue($user->getUID(), Application::APP_ID, 'email', $event->getValue());
+		} else {
+			$user->setSystemEMailAddress($guestEmail);
+			$event->stopPropagation();
+		}
 	}
 }

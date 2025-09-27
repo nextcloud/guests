@@ -56,6 +56,7 @@
     "Guest added" : "已新增訪客",
     "Invite Guest" : "邀請訪客",
     "Guests are accounts with limited permissions who will be able to access resources shared with them and use apps." : "訪客帳號是僅有有限權限的帳號，可以存取與他們分享的資源並使用應用程式。",
+    "Guest Name" : "訪客名稱",
     "Language" : "語言",
     "Add guest to groups:" : "將訪客加入群組：",
     "An error occurred, try again" : "發生錯誤，請重試",

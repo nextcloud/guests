@@ -3,11 +3,14 @@ OC.L10N.register(
     {
     "__language_name__" : "Беларуская",
     "Failed to authorize" : "Не ўдалося аўтарызавацца",
+    "%s via %s" : "%s праз %s",
     "Couldn't send reset email. Please contact your administrator." : "Не ўдалося адправіць ліст для скіду. Звярніцеся да адміністратара.",
     "None" : "Няма",
     "Name" : "Назва",
     "Email" : "Электронная пошта",
+    "Default" : "Прадвызначаныя",
     "Cancel" : "Скасаваць",
+    "Invite {name}" : "Запрасіць {name}",
     "Language" : "Мова",
     "Invite user" : "Запрасіць карыстальніка",
     "Error" : "Памылка"

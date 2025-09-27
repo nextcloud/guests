@@ -58,6 +58,7 @@ OC.L10N.register(
     "Guest added" : "Guest added",
     "Invite Guest" : "Invite Guest",
     "Guests are accounts with limited permissions who will be able to access resources shared with them and use apps." : "Guests are accounts with limited permissions who will be able to access resources shared with them and use apps.",
+    "Guest Name" : "Guest Name",
     "Language" : "Language",
     "Add guest to groups:" : "Add guest to groups:",
     "An error occurred, try again" : "An error occurred, try again",

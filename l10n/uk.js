@@ -58,6 +58,7 @@ OC.L10N.register(
     "Guest added" : "Гостя додано",
     "Invite Guest" : "Запросити гостя",
     "Guests are accounts with limited permissions who will be able to access resources shared with them and use apps." : "Гості - це облікові записи з обмеженими повноваженнями, матимуть доступ до ресурсів, якими поділилися з ними, а також використовувати застосунки.",
+    "Guest Name" : "Ім'я гостя",
     "Language" : "Мова",
     "Add guest to groups:" : "Додати гостя до груп:",
     "An error occurred, try again" : "Трапилася помилка, спробуйте ще раз",

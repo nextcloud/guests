@@ -58,6 +58,7 @@ OC.L10N.register(
     "Guest added" : "Külaline on lisatud",
     "Invite Guest" : "Saada kutse külalisele",
     "Guests are accounts with limited permissions who will be able to access resources shared with them and use apps." : "Külalised on piiratud õigustega kasutajakontod, millel on ligipääs otseselt neile jagatud andmetele ja võimalus kasutada rakendusi.",
+    "Guest Name" : "Külalise nimi",
     "Language" : "Keel",
     "Add guest to groups:" : "Lisa külaline gruppidesse:",
     "An error occurred, try again" : "Tekkis viga, palun proovi uuesti",

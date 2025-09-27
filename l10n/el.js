@@ -7,6 +7,7 @@ OC.L10N.register(
     "A user with that email already exists." : "Υπάρχει ήδη χρήστης με το ίδιο email",
     "A user with that name already exists." : "Υπάρχει ήδη χρήστης με το ίδιο όνομα",
     "User successfully created" : "Επιτυχής δημιουργία χρήστη",
+    "Failed to authorize" : "Αποτυχία εξουσιοδότησης",
     "User already exists" : "Ο χρήστης υπάρχει ήδη",
     "%s via %s" : "%s μέσω %s",
     "Couldn't send reset email. Please contact your administrator." : "Αδυναμία αποστολής ηλ. μηνύματος επαναφοράς. Παρακαλώ επικοινωνήστε με το διαχειριστή σας.",

@@ -58,6 +58,7 @@ OC.L10N.register(
     "Guest added" : "Konuk eklendi",
     "Invite Guest" : "Konuk davet et",
     "Guests are accounts with limited permissions who will be able to access resources shared with them and use apps." : "Konuklar, onlarla paylaşılan kaynaklara erişebilecek ve uygulamaları kullanabilecek sınırlı izinleri olan hesaplardır.",
+    "Guest Name" : "Konuk adı",
     "Language" : "Dil",
     "Add guest to groups:" : "Konuk şu gruplara eklensin:",
     "An error occurred, try again" : "Bir sorun çıktı. Yeniden deneyin",
