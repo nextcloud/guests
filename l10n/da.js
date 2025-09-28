@@ -35,6 +35,7 @@ OC.L10N.register(
     "Cancel" : "Annuller",
     "Invite {name}" : "Inviter {navn}",
     "Guest user needs to be added to at least one group" : "Gæstebruger skal tilføjes til mindst en gruppe",
+    "Guest Name" : "Gæstenavn",
     "Language" : "Sprog",
     "Add guest to groups:" : "Føj gæst til grupper",
     "An error occurred, try again" : "Der opstod en fejl. Prøv igen",
