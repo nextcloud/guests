@@ -73,4 +73,12 @@ class FilteredSettingsManager implements IManager {
 	public function getSection(string $type, string $sectionId): ?IIconSection {
 		return $this->manager->getSection($type, $sectionId);
 	}
+
+	public function getAdminDelegatedSettings(): array {
+		if (method_exists($this->manager, 'getAdminDelegatedSettings')) {
+			return $this->manager->getAdminDelegatedSettings();
+		}
+
+		throw new \Exception('Method not available in version 32 or older');
+	}
 }
