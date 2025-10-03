@@ -58,6 +58,10 @@ class FilteredSettingsManager implements IManager {
 		return $this->manager->getAdminSettings($section, $subAdminOnly);
 	}
 
+	public function getAdminDelegatedSettings(): array {
+		return $this->manager->getAdminDelegatedSettings();
+	}
+
 	public function getAllowedAdminSettings(string $section, IUser $user): array {
 		return $this->manager->getAllowedAdminSettings($section, $user);
 	}
