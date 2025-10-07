@@ -7,6 +7,7 @@ OC.L10N.register(
     "A user with that email already exists." : "Korisnik s tom adresom e-pošte već postoji.",
     "A user with that name already exists." : "Korisnik s tim imenom već postoji.",
     "User successfully created" : "Korisnik je uspješno stvoren",
+    "Failed to authorize" : "Autorizacija nije uspjela",
     "User already exists" : "Korisnik već postoji",
     "%s via %s" : "%s putem %s",
     "Couldn't send reset email. Please contact your administrator." : "Nije moguće poslati poruku za resetiranje lozinke. Molimo kontaktirajte sa svojim administratorom.",
