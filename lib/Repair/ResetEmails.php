@@ -39,6 +39,9 @@ class ResetEmails implements IRepairStep {
 
 		foreach ($this->guestManager->listGuests() as $guestId) {
 			$guest = $this->userManager->get($guestId);
+			if ($guest === null) {
+				continue;
+			}
 			$expectedEmail = $this->config->getUserValue($guestId, Application::APP_ID, 'email', strtolower($guestId));
 			if (strtolower($guest?->getSystemEMailAddress() ?? '') !== $expectedEmail) {
 				$this->config->setUserValue($guestId, 'guests', 'old_email', $guest?->getSystemEMailAddress() ?? '');
