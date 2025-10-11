@@ -15,6 +15,7 @@ use OCP\IConfig;
 use OCP\IUserManager;
 use OCP\Migration\IOutput;
 use OCP\Migration\IRepairStep;
+use Psr\Log\LoggerInterface;
 
 class ResetEmails implements IRepairStep {
 	public function __construct(
@@ -22,6 +23,7 @@ class ResetEmails implements IRepairStep {
 		private readonly IUserManager $userManager,
 		private readonly IAppConfig $appConfig,
 		private readonly IConfig $config,
+		private readonly LoggerInterface $logger,
 	) {
 	}
 
@@ -39,9 +41,17 @@ class ResetEmails implements IRepairStep {
 
 		foreach ($this->guestManager->listGuests() as $guestId) {
 			$guest = $this->userManager->get($guestId);
+			if ($guest === null) {
+				$output->warning('Unable to find user object for guest with id "' . $guestId . '"');
+				$this->logger->warning('Unable to find user object for guest', ['guestId' => $guestId]);
+				continue;
+			}
+
 			$expectedEmail = $this->config->getUserValue($guestId, Application::APP_ID, 'email', strtolower($guestId));
-			if (strtolower($guest?->getSystemEMailAddress() ?? '') !== $expectedEmail) {
-				$this->config->setUserValue($guestId, 'guests', 'old_email', $guest?->getSystemEMailAddress() ?? '');
+			$currentEmail = $guest->getSystemEMailAddress() ?? '';
+
+			if (strtolower($currentEmail) !== $expectedEmail) {
+				$this->config->setUserValue($guestId, 'guests', 'old_email', $currentEmail);
 				$guest->setSystemEMailAddress($expectedEmail);
 			}
 		}
