@@ -76,7 +76,7 @@ class UserBackend extends ABackend implements
 					'uid_lower' => $qb->createNamedParameter(mb_strtolower($uid)),
 				]);
 
-			$result = $qb->execute();
+			$result = $qb->executeStatement();
 
 			// Clear cache
 			unset($this->cache[$uid]);
@@ -100,7 +100,7 @@ class UserBackend extends ABackend implements
 		$query = $this->dbConn->getQueryBuilder();
 		$query->delete('guests_users')
 			->where($query->expr()->eq('uid_lower', $query->createNamedParameter(mb_strtolower($uid))));
-		$result = $query->execute();
+		$result = $query->executeStatement();
 
 		if (isset($this->cache[$uid])) {
 			unset($this->cache[$uid]);
@@ -128,7 +128,7 @@ class UserBackend extends ABackend implements
 			$query->update('guests_users')
 				->set('password', $query->createNamedParameter($hashedPassword))
 				->where($query->expr()->eq('uid_lower', $query->createNamedParameter(mb_strtolower($uid))));
-			$result = $query->execute();
+			$result = $query->executeStatement();
 
 			return $result ? true : false;
 		}
@@ -179,7 +179,7 @@ class UserBackend extends ABackend implements
 			$query->update('guests_users')
 				->set('displayname', $query->createNamedParameter($displayName))
 				->where($query->expr()->eq('uid_lower', $query->createNamedParameter(mb_strtolower($uid))));
-			$query->execute();
+			$query->executeStatement();
 
 			$this->cache[$uid]['displayname'] = $displayName;
 
@@ -238,7 +238,7 @@ class UserBackend extends ABackend implements
 					->setFirstResult($offset);
 			}
 
-			$result = $query->execute();
+			$result = $query->executeQuery();
 			$displayNames = [];
 			while ($row = $result->fetch()) {
 				$displayNames[(string)$row['uid']] = (string)$row['displayname'];
@@ -269,7 +269,7 @@ class UserBackend extends ABackend implements
 					'uid_lower', $qb->createNamedParameter(mb_strtolower($loginName))
 				)
 			);
-		$result = $qb->execute();
+		$result = $qb->executeQuery();
 		$row = $result->fetch();
 		$result->closeCursor();
 
@@ -310,7 +310,7 @@ class UserBackend extends ABackend implements
 						'uid_lower', $qb->createNamedParameter(mb_strtolower($uid))
 					)
 				);
-			$result = $qb->execute();
+			$result = $qb->executeQuery();
 			$row = $result->fetch();
 			$result->closeCursor();
 
@@ -387,7 +387,7 @@ class UserBackend extends ABackend implements
 		$query = $this->dbConn->getQueryBuilder();
 		$query->select($query->func()->count('uid'))
 			->from('guests_users');
-		$result = $query->execute();
+		$result = $query->executeQuery();
 
 		return $result->fetchColumn();
 	}

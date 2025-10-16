@@ -139,7 +139,7 @@ class GuestManager {
 			->from('share')
 			->where($query->expr()->in('share_with', $query->createNamedParameter($guests, IQueryBuilder::PARAM_STR_ARRAY)))
 			->groupBy('share_with');
-		$result = $query->execute();
+		$result = $query->executeQuery();
 		$data = [];
 		while ($row = $result->fetch()) {
 			$data[$row['share_with']] = $row['count'];
