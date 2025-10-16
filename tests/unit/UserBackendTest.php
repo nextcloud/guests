@@ -27,7 +27,7 @@ class UserBackendTest extends TestCase {
 	private function clearGuests() {
 		$query = \OC::$server->getDatabaseConnection()->getQueryBuilder();
 
-		$query->delete('guests_users')->execute();
+		$query->delete('guests_users')->executeStatement();
 	}
 
 	protected function setUp(): void {
