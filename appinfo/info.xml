@@ -36,8 +36,10 @@ Guests users can only access files shared to them and cannot create any files ou
 	<repair-steps>
 		<post-migration>
 			<step>OCA\Guests\Migration\OwncloudGuestsMigration</step>
-			<step>OCA\Guests\Repair\ResetEmails</step>
 		</post-migration>
+		<live-migration>
+			<step>OCA\Guests\Repair\ResetEmails</step>
+		</live-migration>
 	</repair-steps>
 	<commands>
 		<command>OCA\Guests\Command\ListCommand</command>
