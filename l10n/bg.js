@@ -7,6 +7,7 @@ OC.L10N.register(
     "A user with that email already exists." : "Потребител с този имейл вече съществува.",
     "A user with that name already exists." : "Потребител с това име вече съществува.",
     "User successfully created" : "Успешно създаден потребител",
+    "Failed to authorize" : "Неуспешно оторизиране",
     "User already exists" : "Вече съществува потребител",
     "%s via %s" : "%s през %s",
     "Couldn't send reset email. Please contact your administrator." : "Изпращането на електронна поща е неуспешно. Моля, свържете се с вашия администратор.",
