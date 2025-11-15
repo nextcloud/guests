@@ -6,6 +6,7 @@ OC.L10N.register(
     "None" : "ບໍ່ມີ",
     "Name" : "ຊື່",
     "Default" : "ເລີ່ມຕົ້ນ",
-    "Cancel" : "ຍົກເລີກ"
+    "Cancel" : "ຍົກເລີກ",
+    "Error" : "ຂໍ້ຜິດພາດ"
 },
 "nplurals=1; plural=0;");
