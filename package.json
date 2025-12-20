@@ -41,7 +41,7 @@
     "@nextcloud/typings": "^1.10.0",
     "@nextcloud/vite-config": "^1.7.2",
     "@vue/tsconfig": "^0.5.1",
-    "vite": "^7.2.6",
+    "vite": "^7.3.0",
     "vue-template-compiler": "^2.7.16"
   },
   "dependencies": {
