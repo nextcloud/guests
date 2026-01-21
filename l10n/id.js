@@ -5,6 +5,7 @@ OC.L10N.register(
     "Invalid mail address" : "Alamat email salah",
     "A user with that name already exists." : "Pengguna dengan nama tersebut sudah ada.",
     "Failed to authorize" : "Gagal mengautorisasi",
+    "User already exists" : "Pengguna sudah ada",
     "%s via %s" : "%s melalui %s",
     "Couldn't send reset email. Please contact your administrator." : "Tidak dapat mengirim email setel ulang. Silakan hubungi administrator Anda.",
     "None" : "Tidak ada",
