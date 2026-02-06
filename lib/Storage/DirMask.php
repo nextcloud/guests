@@ -22,11 +22,11 @@ class DirMask extends PermissionsMask {
 	/**
 	 * @var string the dir that should be masked
 	 */
-	private $path;
+	private readonly string $path;
 	/**
 	 * @var int remember length
 	 */
-	private $pathLength;
+	private readonly int $pathLength;
 
 	private $mask;
 
@@ -39,8 +39,8 @@ class DirMask extends PermissionsMask {
 	 */
 	public function __construct($arguments) {
 		parent::__construct($arguments);
-		$this->path = rtrim($arguments['path'], '/');
-		$this->pathLength = strlen($arguments['path']);
+		$this->path = rtrim((string)$arguments['path'], '/');
+		$this->pathLength = strlen((string)$arguments['path']);
 		$this->mask = $arguments['mask'];
 	}
 
@@ -97,7 +97,7 @@ class DirMask extends PermissionsMask {
 				return $this->storage->rename($source, $target);
 			}
 		} else {
-			$parent = dirname($target);
+			$parent = dirname((string)$target);
 			if ($parent === '.') {
 				$parent = '';
 			}
@@ -117,7 +117,7 @@ class DirMask extends PermissionsMask {
 				return $this->storage->copy($source, $target);
 			}
 		} else {
-			$parent = dirname($target);
+			$parent = dirname((string)$target);
 			if ($parent === '.') {
 				$parent = '';
 			}
@@ -182,8 +182,6 @@ class DirMask extends PermissionsMask {
 			$storage = $this;
 		}
 		$sourceCache = $this->storage->getCache($path, $storage);
-		return new DirMaskCache($sourceCache, $this->mask, function (string $path) {
-			return $this->checkPath($path);
-		});
+		return new DirMaskCache($sourceCache, $this->mask, fn (string $path): bool => $this->checkPath($path));
 	}
 }

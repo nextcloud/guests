@@ -21,10 +21,9 @@ class UserBackendTest extends TestCase {
 	/** @var Config|MockObject */
 	private $config;
 
-	/** @var UserBackend */
-	private $backend;
+	private ?\OCA\Guests\UserBackend $backend = null;
 
-	private function clearGuests() {
+	private function clearGuests(): void {
 		$query = \OC::$server->getDatabaseConnection()->getQueryBuilder();
 
 		$query->delete('guests_users')->executeStatement();
@@ -51,14 +50,14 @@ class UserBackendTest extends TestCase {
 		parent::tearDown();
 	}
 
-	public function testCreate() {
+	public function testCreate(): void {
 		$this->backend->createUser('foo@example.tld', 'bar');
 		$this->assertTrue($this->backend->userExists('foo@example.tld'));
 
 		$this->assertEquals(['foo@example.tld'], $this->backend->getUsers());
 	}
 
-	public function testNoListing() {
+	public function testNoListing(): void {
 		$this->backend->createUser('foo@example.tld', 'bar');
 		$this->assertTrue($this->backend->userExists('foo@example.tld'));
 

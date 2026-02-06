@@ -22,21 +22,20 @@ use OCP\Share\IShare;
 
 class GuestManager {
 	public function __construct(
-		private IConfig $config,
-		private UserBackend $userBackend,
-		private ISecureRandom $secureRandom,
-		private ICrypto $crypto,
-		private IManager $shareManager,
-		private IDBConnection $connection,
-		private IUserSession $userSession,
-		private IEventDispatcher $eventDispatcher,
-		private IUserManager $userManager,
+		private readonly IConfig $config,
+		private readonly UserBackend $userBackend,
+		private readonly ISecureRandom $secureRandom,
+		private readonly ICrypto $crypto,
+		private readonly IManager $shareManager,
+		private readonly IDBConnection $connection,
+		private readonly IUserSession $userSession,
+		private readonly IEventDispatcher $eventDispatcher,
+		private readonly IUserManager $userManager,
 	) {
 	}
 
 	/**
 	 * @param IUser|string $user
-	 * @return bool
 	 */
 	public function isGuest($user = null): bool {
 		if (is_null($user)) {
@@ -115,7 +114,7 @@ class GuestManager {
 		$guests = array_keys($displayNames);
 		$shareCounts = $this->getShareCountForUsers($guests);
 		$createdBy = $this->config->getUserValueForUsers('guests', 'created_by', $guests);
-		return array_map(function ($uid) use ($createdBy, $displayNames, $shareCounts) {
+		return array_map(function (int|string $uid) use ($createdBy, $displayNames, $shareCounts): array {
 			$allSharesCount = count(array_merge(
 				$this->shareManager->getSharedWith($uid, IShare::TYPE_USER, null, -1, 0),
 				$this->shareManager->getSharedWith($uid, IShare::TYPE_GROUP, null, -1, 0),
@@ -127,7 +126,7 @@ class GuestManager {
 				'email' => $uid,
 				'display_name' => $displayNames[$uid] ?? $uid,
 				'created_by' => $createdBy[$uid] ?? '',
-				'share_count' => isset($shareCounts[$uid]) ? $shareCounts[$uid] : 0,
+				'share_count' => $shareCounts[$uid] ?? 0,
 				'share_count_with_circles' => $allSharesCount,
 			];
 		}, $guests);
@@ -158,15 +157,13 @@ class GuestManager {
 			$this->shareManager->getSharedWith($userId, IShare::TYPE_ROOM, null, -1, 0)
 		);
 		return [
-			'shares' => array_map(function (IShare $share) {
-				return [
-					'id' => $share->getId(),
-					'shared_by' => $share->getSharedBy(),
-					'mime_type' => $share->getNodeCacheEntry()->getMimeType(),
-					'name' => $share->getNodeCacheEntry()->getName(),
-					'time' => $share->getShareTime()->getTimestamp(),
-				];
-			}, $shares),
+			'shares' => array_map(fn (IShare $share): array => [
+				'id' => $share->getId(),
+				'shared_by' => $share->getSharedBy(),
+				'mime_type' => $share->getNodeCacheEntry()->getMimeType(),
+				'name' => $share->getNodeCacheEntry()->getName(),
+				'time' => $share->getShareTime()->getTimestamp(),
+			], $shares),
 		];
 	}
 }

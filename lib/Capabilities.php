@@ -19,7 +19,7 @@ class Capabilities implements ICapability {
 	/**
 	 * @inheritDoc
 	 */
-	public function getCapabilities() {
+	public function getCapabilities(): array {
 		return [
 			'guests' => [
 				'enabled' => true,

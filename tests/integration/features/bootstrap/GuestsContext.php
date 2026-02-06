@@ -19,22 +19,18 @@ require __DIR__ . '/../../vendor/autoload.php';
 class GuestsContext implements Context, SnippetAcceptingContext {
 	use Webdav;
 
-	/** @var array */
-	private $createdGuests = [];
+	private array $createdGuests = [];
 
-	public function prepareUserNameAsFrontend($guestDisplayName, $guestEmail) {
-		$emailDomain = preg_split('/\./', preg_split('/@/', $guestEmail, null, null)[1], null, null);
-		$userName = $guestDisplayName . '_' . $emailDomain[0] . '_' . $emailDomain[1];
-		return $userName;
+	public function prepareUserNameAsFrontend(string $guestDisplayName, $guestEmail) {
+		$emailDomain = preg_split('/\./', (string)preg_split('/@/', (string)$guestEmail, 0, null)[1], 0, null);
+		return $guestDisplayName . '_' . $emailDomain[0] . '_' . $emailDomain[1];
 	}
 
 	/**
 	 * @Given user :user creates guest user :guestDisplayName with email :guestEmail
 	 * @param string $user
-	 * @param string $guestDisplayName
-	 * @param string $guestEmail
 	 */
-	public function userCreatedAGuestUser($user, $guestDisplayName, $guestEmail) {
+	public function userCreatedAGuestUser($user, string $guestDisplayName, string $guestEmail): void {
 		$fullUrl = substr($this->baseUrl, 0, -4) . '/index.php/apps/guests/users';
 		//Replicating frontend behaviour
 		$userName = $this->prepareUserNameAsFrontend($guestDisplayName, $guestEmail);
@@ -62,7 +58,7 @@ class GuestsContext implements Context, SnippetAcceptingContext {
 	 * @Then check that user :user is a guest
 	 * @param string $guestDisplayName
 	 */
-	public function checkGuestUser($guestDisplayName) {
+	public function checkGuestUser($guestDisplayName): void {
 		$userName = $this->prepareUserNameAsFrontend($guestDisplayName, $this->createdGuests[$guestDisplayName]);
 		$this->checkThatUserBelongsToGroup($userName, 'guest_app');
 	}
@@ -71,41 +67,39 @@ class GuestsContext implements Context, SnippetAcceptingContext {
 	 * @Then guest user :user is deleted
 	 * @param string $guestDisplayName
 	 */
-	public function deleteGuestUser($guestDisplayName) {
+	public function deleteGuestUser($guestDisplayName): void {
 		$userName = $this->prepareUserNameAsFrontend($guestDisplayName, $this->createdGuests[$guestDisplayName]);
 		$this->deleteUser($userName);
 	}
 
 	/*Processes the body of an email sent and gets the reset password url
 	  It depends on the content of the email*/
-	public function extractResetPasswordUrl($emailBody) {
+	public function extractResetPasswordUrl($emailBody): string {
 		$knownString = 'Activate your guest account at ownCloud by setting a password: ';
 		$nextString = 'Then view it';
-		$posKnownString = strpos($emailBody, $knownString);
-		$posNextString = strpos($emailBody, $nextString, $posKnownString + strlen($knownString));
-		$urlResetPasswd = substr($emailBody,
+		$posKnownString = strpos((string)$emailBody, $knownString);
+		$posNextString = strpos((string)$emailBody, $nextString, $posKnownString + strlen($knownString));
+		$urlResetPasswd = substr((string)$emailBody,
 			$posKnownString + strlen($knownString),
 			$posNextString - ($posKnownString + strlen($knownString)));
 		$urlResetPasswd = preg_replace('/[\s]+/mu', ' ', $urlResetPasswd);
 		$urlResetPasswd = str_replace('=', '', $urlResetPasswd);
-		$urlResetPasswd = str_replace(' ', '', $urlResetPasswd);
-		return $urlResetPasswd;
+		return str_replace(' ', '', $urlResetPasswd);
 	}
 
 	/*Function to prepare the set password url from the reset password form one*/
-	public function getSetPasswordUrl($urlResetPasswd) {
-		$resetUrlParts = explode('/', $urlResetPasswd);
+	public function getSetPasswordUrl($urlResetPasswd): string {
+		$resetUrlParts = explode('/', (string)$urlResetPasswd);
 		array_splice($resetUrlParts, 5, 2, 'set');
-		$urlSetPasswd = implode('/', $resetUrlParts);
-		return $urlSetPasswd;
+		return implode('/', $resetUrlParts);
 	}
 
 	/**
 	 * @Given guest user :user sets its password
 	 * @param string $guestDisplayName
 	 */
-	public function guestUserSetsItsPassword($guestDisplayName) {
-		$userName = $this->prepareUserNameAsFrontend($guestDisplayName, $this->createdGuests[$guestDisplayName]);
+	public function guestUserSetsItsPassword($guestDisplayName): void {
+		$this->prepareUserNameAsFrontend($guestDisplayName, $this->createdGuests[$guestDisplayName]);
 		$emails = $this->getEmails();
 		$lastEmailBody = $emails->items[0]->Content->Body;
 		$resetPwUrl = $this->extractResetPasswordUrl($lastEmailBody);
@@ -127,7 +121,7 @@ class GuestsContext implements Context, SnippetAcceptingContext {
 	 * @BeforeScenario
 	 * @AfterScenario
 	 */
-	public function cleanupGuests() {
+	public function cleanupGuests(): void {
 		foreach ($this->createdGuests as $displayName => $email) {
 			$this->deleteGuestUser($displayName);
 		}

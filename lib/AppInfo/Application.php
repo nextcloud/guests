@@ -81,7 +81,7 @@ class Application extends App implements IBootstrap {
 			$restrictionManager->verifyAccess();
 			$restrictionManager->setupRestrictions();
 		} else {
-			$userSession->listen('\OC\User', 'postLogin', function () use ($restrictionManager) {
+			$userSession->listen('\OC\User', 'postLogin', function () use ($restrictionManager): void {
 				$restrictionManager->verifyAccess();
 				$restrictionManager->setupRestrictions();
 			});

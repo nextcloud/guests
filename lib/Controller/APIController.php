@@ -10,7 +10,7 @@ namespace OCA\Guests\Controller;
 
 use OC\L10N\Factory;
 use OCA\Guests\AppInfo\Application;
-use OCA\Guests\Config;
+use OCP\AppFramework\Http\Attribute\NoAdminRequired;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\OCSController;
 use OCP\Group\ISubAdmin;
@@ -21,41 +21,18 @@ use OCP\IUserSession;
 use OCP\L10N\IFactory;
 
 class APIController extends OCSController {
-
-	/** @var Config */
-	private $config;
-
-	/** @var IFactory */
-	private $l10nFactory;
-
-	/** @var IUserSession */
-	private $userSession;
-
-	/** @var ISubAdmin */
-	private $subAdmin;
-
-	/** @var IGroupManager */
-	private $groupManager;
-
 	public function __construct(
 		IRequest $request,
-		IUserSession $userSession,
-		Config $config,
-		IFactory $l10nFactory,
-		ISubAdmin $subAdmin,
-		IGroupManager $groupManager,
+		private readonly IUserSession $userSession,
+		private readonly \OCA\Guests\Config $config,
+		private readonly IFactory $l10nFactory,
+		private readonly ISubAdmin $subAdmin,
+		private readonly IGroupManager $groupManager,
 	) {
 		parent::__construct(Application::APP_ID, $request);
-		$this->userSession = $userSession;
-		$this->config = $config;
-		$this->l10nFactory = $l10nFactory;
-		$this->subAdmin = $subAdmin;
-		$this->groupManager = $groupManager;
 	}
 
-	/**
-	 * @NoAdminRequired
-	 */
+	#[NoAdminRequired]
 	public function languages(): DataResponse {
 		$languageCodes = $this->l10nFactory->findAvailableLanguages('guests');
 
@@ -95,7 +72,7 @@ class APIController extends OCSController {
 		ksort($commonLanguages);
 
 		// sort now by displayed language not the iso-code
-		usort($languages, function ($a, $b) {
+		usort($languages, function (array $a, array $b): int {
 			if ($a['code'] === $a['name'] && $b['code'] !== $b['name']) {
 				// If a doesn't have a name, but b does, list b before a
 				return 1;
@@ -105,7 +82,7 @@ class APIController extends OCSController {
 				return -1;
 			}
 			// Otherwise compare the names
-			return strcmp($a['name'], $b['name']);
+			return strcmp((string)$a['name'], (string)$b['name']);
 		});
 
 		return new DataResponse([
@@ -115,9 +92,7 @@ class APIController extends OCSController {
 		]);
 	}
 
-	/**
-	 * @NoAdminRequired
-	 */
+	#[NoAdminRequired]
 	public function groups(): DataResponse {
 		$user = $this->userSession->getUser();
 		if ($this->groupManager->isAdmin($user->getUID())) {
@@ -125,12 +100,10 @@ class APIController extends OCSController {
 		} else {
 			$groups = $this->subAdmin->getSubAdminsGroups($user);
 		}
-		$groups = array_values(array_map(function (IGroup $group) {
-			return [
-				'gid' => $group->getGID(),
-				'name' => $group->getDisplayName(),
-			];
-		}, $groups));
+		$groups = array_values(array_map(fn (IGroup $group): array => [
+			'gid' => $group->getGID(),
+			'name' => $group->getDisplayName(),
+		], $groups));
 
 		return new DataResponse([
 			'required' => $this->config->isSharingRestrictedToGroup(),

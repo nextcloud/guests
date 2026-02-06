@@ -21,7 +21,7 @@ use OCP\Util;
  */
 class BeforeTemplateRenderedListener implements IEventListener {
 	public function __construct(
-		private Config $config,
+		private readonly Config $config,
 	) {
 	}
 

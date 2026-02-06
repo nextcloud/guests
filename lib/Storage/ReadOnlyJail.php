@@ -14,7 +14,6 @@ namespace OCA\Guests\Storage;
 class ReadOnlyJail extends DirMask {
 	/**
 	 * @param string $path
-	 * @return bool
 	 */
 	public function isDeletable($path): bool {
 		if (pathinfo($path, PATHINFO_EXTENSION) === 'part') {

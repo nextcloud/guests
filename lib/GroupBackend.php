@@ -20,31 +20,19 @@ use OCP\IUserSession;
  * @package OCA\Guests
  */
 class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetailsBackend, IHideFromCollaborationBackend {
-	/** @var GuestManager */
-	private $guestManager;
-
 	/** @var string[] */
 	private $guestMembers = [];
-
-	/** @var string */
-	private $groupName;
-
-	/** @var Config */
-	private $config;
 
 	/** @var IUserSession */
 	private $userSession;
 
 	public function __construct(
-		GuestManager $guestManager,
-		Config $config,
+		private readonly \OCA\Guests\GuestManager $guestManager,
+		private readonly \OCA\Guests\Config $config,
 		IUserSession $userSession,
-		string $groupName = 'guest_app',
+		private readonly string $groupName = 'guest_app',
 	) {
-		$this->guestManager = $guestManager;
-		$this->config = $config;
 		$this->userSession = $userSession;
-		$this->groupName = $groupName;
 	}
 
 	private function getMembers(): array {
@@ -60,7 +48,6 @@ class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetails
 	 *
 	 * @param string $uid uid of the user
 	 * @param string $gid gid of the group
-	 * @return bool
 	 * @since 4.5.0
 	 *
 	 * Checks whether the user is member of a group or not.
@@ -106,7 +93,6 @@ class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetails
 	 * check if a group exists
 	 *
 	 * @param string $gid
-	 * @return bool
 	 * @since 4.5.0
 	 */
 	public function groupExists($gid): bool {

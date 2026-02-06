@@ -15,12 +15,12 @@ class FilteredSettingsManager implements IManager {
 
 	/** @var IManager */
 	private $manager;
-	/** @var AppWhitelist */
-	private $appWhitelist;
 
-	public function __construct(IManager $manager, AppWhitelist $appWhitelist) {
+	public function __construct(
+		IManager $manager,
+		private readonly \OCA\Guests\AppWhitelist $appWhitelist,
+	) {
 		$this->manager = $manager;
-		$this->appWhitelist = $appWhitelist;
 	}
 
 	private function isSettingAllowed(string $setting): bool {
@@ -28,17 +28,11 @@ class FilteredSettingsManager implements IManager {
 		return $this->appWhitelist->isAppWhitelisted($appId);
 	}
 
-	/**
-	 * @return void
-	 */
-	public function registerSection(string $type, string $section) {
+	public function registerSection(string $type, string $section): void {
 		$this->manager->registerSection($type, $section);
 	}
 
-	/**
-	 * @return void
-	 */
-	public function registerSetting(string $type, string $setting) {
+	public function registerSetting(string $type, string $setting): void {
 		if (!$this->isSettingAllowed($setting)) {
 			return;
 		}

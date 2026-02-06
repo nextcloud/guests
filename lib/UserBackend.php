@@ -38,14 +38,13 @@ class UserBackend extends ABackend implements
 	IPasswordHashBackend {
 	/** @var CappedMemoryCache */
 	private $cache;
-	/** @var bool */
-	private $allowListing = true;
+	private bool $allowListing = true;
 
 	public function __construct(
-		private IEventDispatcher $eventDispatcher,
-		private IDBConnection $dbConn,
-		private Config $config,
-		private IHasher $hasher,
+		private readonly IEventDispatcher $eventDispatcher,
+		private readonly IDBConnection $dbConn,
+		private readonly Config $config,
+		private readonly IHasher $hasher,
 	) {
 		$this->cache = new CappedMemoryCache();
 	}
@@ -257,7 +256,7 @@ class UserBackend extends ABackend implements
 	 * returns the user id or false
 	 */
 	public function checkPassword(string $loginName, string $password) {
-		if (strpos($loginName, '@') === false) {
+		if (!str_contains($loginName, '@')) {
 			return false;
 		}
 
@@ -296,7 +295,7 @@ class UserBackend extends ABackend implements
 	private function loadUser($uid): bool {
 		// guests $uid could be NULL or ''
 		// or is not an email anyway
-		if (strpos($uid, '@') === false) {
+		if (!str_contains($uid, '@')) {
 			$this->cache[$uid] = false;
 			return false;
 		}
@@ -339,9 +338,7 @@ class UserBackend extends ABackend implements
 	 */
 	public function getUsers($search = '', $limit = null, $offset = null): array {
 		$users = $this->getDisplayNames($search, $limit, $offset);
-		$userIds = array_map(function ($uid) {
-			return (string)$uid;
-		}, array_keys($users));
+		$userIds = array_map(fn (int|string $uid): string => (string)$uid, array_keys($users));
 		sort($userIds, SORT_STRING | SORT_FLAG_CASE);
 		return $userIds;
 	}
@@ -350,7 +347,6 @@ class UserBackend extends ABackend implements
 	 * check if a user exists
 	 *
 	 * @param string $uid the username
-	 * @return bool
 	 */
 	public function userExists($uid): bool {
 		$this->loadUser($uid);
@@ -371,9 +367,6 @@ class UserBackend extends ABackend implements
 		return false;
 	}
 
-	/**
-	 * @return bool
-	 */
 	public function hasUserListings(): bool {
 		return true;
 	}
@@ -416,7 +409,7 @@ class UserBackend extends ABackend implements
 	}
 
 	public function getRealUID(string $uid): string {
-		if (strpos($uid, '@') === false) {
+		if (!str_contains($uid, '@')) {
 			throw new \RuntimeException($uid . ' does not exist');
 		}
 
