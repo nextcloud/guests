@@ -73,12 +73,12 @@ class GuestsContext implements Context, SnippetAcceptingContext {
 
 	/*Processes the body of an email sent and gets the reset password url
 	  It depends on the content of the email*/
-	public function extractResetPasswordUrl($emailBody): string {
+	public function extractResetPasswordUrl(string $emailBody): string {
 		$knownString = 'Activate your guest account at ownCloud by setting a password: ';
 		$nextString = 'Then view it';
-		$posKnownString = strpos((string)$emailBody, $knownString);
-		$posNextString = strpos((string)$emailBody, $nextString, $posKnownString + strlen($knownString));
-		$urlResetPasswd = substr((string)$emailBody,
+		$posKnownString = strpos($emailBody, $knownString);
+		$posNextString = strpos($emailBody, $nextString, $posKnownString + strlen($knownString));
+		$urlResetPasswd = substr($emailBody,
 			$posKnownString + strlen($knownString),
 			$posNextString - ($posKnownString + strlen($knownString)));
 		$urlResetPasswd = preg_replace('/[\s]+/mu', ' ', $urlResetPasswd);
@@ -87,8 +87,8 @@ class GuestsContext implements Context, SnippetAcceptingContext {
 	}
 
 	/*Function to prepare the set password url from the reset password form one*/
-	public function getSetPasswordUrl($urlResetPasswd): string {
-		$resetUrlParts = explode('/', (string)$urlResetPasswd);
+	public function getSetPasswordUrl(string $urlResetPasswd): string {
+		$resetUrlParts = explode('/', $urlResetPasswd);
 		array_splice($resetUrlParts, 5, 2, 'set');
 		return implode('/', $resetUrlParts);
 	}

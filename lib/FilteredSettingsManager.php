@@ -66,6 +66,7 @@ class FilteredSettingsManager implements IManager {
 	}
 
 	public function getAdminDelegatedSettings(): array {
+		/** @psalm-suppress RedundantCondition we support older version of Server */
 		if (method_exists($this->manager, 'getAdminDelegatedSettings')) {
 			return $this->manager->getAdminDelegatedSettings();
 		}

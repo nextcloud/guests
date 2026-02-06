@@ -205,7 +205,7 @@ class UserBackend extends ABackend implements
 	 * @param string $search
 	 * @param int|null $limit
 	 * @param int|null $offset
-	 * @return array an array of all displayNames (value) and the corresponding uids (key)
+	 * @return array<string, string> an array of all displayNames (value) and the corresponding uids (key)
 	 */
 	public function getDisplayNames($search = '', $limit = null, $offset = null): array {
 		if (!$this->allowListing) {
@@ -334,11 +334,11 @@ class UserBackend extends ABackend implements
 	 * @param string $search
 	 * @param null|int $limit
 	 * @param null|int $offset
-	 * @return string[] an array of all uids
+	 * @return list<string> an array of all uids
 	 */
 	public function getUsers($search = '', $limit = null, $offset = null): array {
 		$users = $this->getDisplayNames($search, $limit, $offset);
-		$userIds = array_map(fn (int|string $uid): string => (string)$uid, array_keys($users));
+		$userIds = array_keys($users);
 		sort($userIds, SORT_STRING | SORT_FLAG_CASE);
 		return $userIds;
 	}

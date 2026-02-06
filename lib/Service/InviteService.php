@@ -33,7 +33,7 @@ class InviteService {
 		}
 
 		try {
-			// user has not yet activated his account
+			// user has not yet activated their account
 			$decryptedToken = $this->crypto->decrypt($passwordToken, strtolower($guest) . $this->config->getSystemValue('secret'));
 			[, $token] = explode(':', $decryptedToken);
 			$lang = $this->config->getUserValue($guest, 'core', 'lang', '');

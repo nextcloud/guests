@@ -50,7 +50,7 @@ class Hooks {
 			return;
 		}
 
-		if (!($share->getNodeType() === 'folder' || $share->getNodeType() === 'file')) {
+		if ($share->getNodeType() !== 'folder' && $share->getNodeType() !== 'file') {
 			$this->logger->debug(
 				'ignoring share for itemType ' . $share->getNodeType(),
 				['app' => Application::APP_ID]

@@ -105,6 +105,9 @@ class GuestManager {
 		return $user;
 	}
 
+	/**
+	 * @return list<string>
+	 */
 	public function listGuests(): array {
 		return $this->userBackend->getUsers();
 	}
@@ -114,7 +117,7 @@ class GuestManager {
 		$guests = array_keys($displayNames);
 		$shareCounts = $this->getShareCountForUsers($guests);
 		$createdBy = $this->config->getUserValueForUsers('guests', 'created_by', $guests);
-		return array_map(function (int|string $uid) use ($createdBy, $displayNames, $shareCounts): array {
+		return array_map(function (string $uid) use ($createdBy, $displayNames, $shareCounts): array {
 			$allSharesCount = count(array_merge(
 				$this->shareManager->getSharedWith($uid, IShare::TYPE_USER, null, -1, 0),
 				$this->shareManager->getSharedWith($uid, IShare::TYPE_GROUP, null, -1, 0),

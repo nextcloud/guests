@@ -31,36 +31,21 @@ use PHPUnit\Framework\MockObject\MockObject;
 use Test\TestCase;
 
 class UsersControllerTest extends TestCase {
-	/** @var IRequest|MockObject */
-	private $request;
-	/** @var IUserManager|MockObject */
-	private $userManager;
-	/** @var IL10N|MockObject */
-	private $l10n;
-	/** @var Config|MockObject */
-	private ?Config $guestsConfig = null;
-	/** @var IMailer|MockObject */
-	private $mailer;
-	/** @var GuestManager|MockObject */
-	private $guestManager;
-	/** @var IUserSession|MockObject */
-	private $userSession;
-	/** @var ISubAdmin|MockObject */
-	private $subAdmin;
-	/** @var IGroupManager|MockObject */
-	private $groupManager;
-	/** @var TransferService|MockObject */
-	private $transferService;
-	/** @var TransferMapper|MockObject */
-	private $transferMapper;
-	/** @var IAppConfig|MockObject */
-	private $appConfig;
-	/** @var IConfig|MockObject */
-	private $config;
-	/** @var InviteService|MockObject */
-	private $inviteService;
-
-	private ?UsersController $controller = null;
+	private IRequest&MockObject $request;
+	private IUserManager&MockObject $userManager;
+	private IL10N&MockObject $l10n;
+	private Config $guestsConfig;
+	private IMailer&MockObject $mailer;
+	private GuestManager&MockObject $guestManager;
+	private IUserSession&MockObject $userSession;
+	private ISubAdmin&MockObject $subAdmin;
+	private IGroupManager&MockObject $groupManager;
+	private TransferService&MockObject $transferService;
+	private TransferMapper&MockObject $transferMapper;
+	private IAppConfig&MockObject $appConfig;
+	private IConfig&MockObject $config;
+	private InviteService&MockObject $inviteService;
+	private UsersController $controller;
 
 	protected function setUp(): void {
 		parent::setUp();

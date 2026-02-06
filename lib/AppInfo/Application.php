@@ -65,9 +65,10 @@ class Application extends App implements IBootstrap {
 	}
 
 	private function setupGuestManagement(ContainerInterface $container, ContainerInterface $server): void {
+		/** @var Hooks $hookManager */
 		$hookManager = $container->get(Hooks::class);
-		$server->get(IEventDispatcher::class)->addListener(ShareCreatedEvent::class, [$hookManager, 'handlePostShare']);
-		$server->get(IEventDispatcher::class)->addListener(UserFirstTimeLoggedInEvent::class, [$hookManager, 'handleFirstLogin']);
+		$server->get(IEventDispatcher::class)->addListener(ShareCreatedEvent::class, $hookManager->handlePostShare(...));
+		$server->get(IEventDispatcher::class)->addListener(UserFirstTimeLoggedInEvent::class, $hookManager->handleFirstLogin(...));
 	}
 
 	private function setupGuestRestrictions(ContainerInterface $container, ContainerInterface $server): void {
