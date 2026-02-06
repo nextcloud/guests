@@ -24,7 +24,7 @@ class GroupBackendTest extends TestCase {
 	/** @var IUserSession|MockObject */
 	private $userSession;
 
-	private ?\OCA\Guests\GroupBackend $backend = null;
+	private ?GroupBackend $backend = null;
 
 	protected function setUp(): void {
 		parent::setUp();

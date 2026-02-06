@@ -42,7 +42,7 @@ class GuestManagerTest extends TestCase {
 	/** @var IEventDispatcher|MockObject */
 	private $eventDispatcher;
 
-	private ?\OCA\Guests\GuestManager $guestManager = null;
+	private ?GuestManager $guestManager = null;
 
 	protected function setUp(): void {
 		parent::setUp();

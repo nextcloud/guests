@@ -10,6 +10,7 @@ namespace OCA\Guests\Controller;
 
 use OC\L10N\Factory;
 use OCA\Guests\AppInfo\Application;
+use OCA\Guests\Config;
 use OCP\AppFramework\Http\Attribute\NoAdminRequired;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\OCSController;
@@ -24,7 +25,7 @@ class APIController extends OCSController {
 	public function __construct(
 		IRequest $request,
 		private readonly IUserSession $userSession,
-		private readonly \OCA\Guests\Config $config,
+		private readonly Config $config,
 		private readonly IFactory $l10nFactory,
 		private readonly ISubAdmin $subAdmin,
 		private readonly IGroupManager $groupManager,

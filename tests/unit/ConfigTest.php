@@ -32,7 +32,7 @@ class ConfigTest extends TestCase {
 	/** @var IGroupManager|MockObject */
 	private $groupManager;
 
-	private ?\OCA\Guests\Config $guestConfig = null;
+	private ?Config $guestConfig = null;
 
 	protected function setUp(): void {
 		parent::setUp();

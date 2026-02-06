@@ -21,18 +21,14 @@ use OCP\IUserSession;
  */
 class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetailsBackend, IHideFromCollaborationBackend {
 	/** @var string[] */
-	private $guestMembers = [];
-
-	/** @var IUserSession */
-	private $userSession;
+	private array $guestMembers = [];
 
 	public function __construct(
-		private readonly \OCA\Guests\GuestManager $guestManager,
-		private readonly \OCA\Guests\Config $config,
-		IUserSession $userSession,
+		private readonly GuestManager $guestManager,
+		private readonly Config $config,
+		private readonly IUserSession $userSession,
 		private readonly string $groupName = 'guest_app',
 	) {
-		$this->userSession = $userSession;
 	}
 
 	private function getMembers(): array {

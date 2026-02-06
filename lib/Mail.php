@@ -15,7 +15,7 @@ use OCP\IUserManager;
 use OCP\IUserSession;
 use OCP\L10N\IFactory;
 use OCP\Mail\IMailer;
-use OCP\Share;
+use OCP\Share\IShare;
 use OCP\Util;
 
 class Mail {
@@ -37,7 +37,7 @@ class Mail {
 	 * @param $uid
 	 * @throws \Exception
 	 */
-	public function sendGuestInviteMail(string $uid, string $guest, string $token, string $language = '', ?Share\IShare $share = null): void {
+	public function sendGuestInviteMail(string $uid, string $guest, string $token, string $language = '', ?IShare $share = null): void {
 		if ($language === '') {
 			$language = null;
 		}
@@ -56,7 +56,7 @@ class Mail {
 		$replyTo = $this->userManager->get($uid)->getEMailAddress();
 		$senderDisplayName = $this->userSession->getUser()->getDisplayName();
 
-		if (!$share instanceof \OCP\Share\IShare) {
+		if (!$share instanceof IShare) {
 			[ $subject, $emailTemplate ] = $this->composeInviteMessage($senderDisplayName, $guestEmail, $passwordLink, $l10n);
 		} else {
 			[ $subject, $emailTemplate ] = $this->composeShareMessage($share, $senderDisplayName, $guestEmail, $passwordLink, $l10n);
@@ -88,7 +88,7 @@ class Mail {
 		}
 	}
 
-	private function composeShareMessage(Share\IShare $share, string $senderDisplayName, string $guestEmail, string $passwordLink, IL10N $l10n): array {
+	private function composeShareMessage(IShare $share, string $senderDisplayName, string $guestEmail, string $passwordLink, IL10N $l10n): array {
 		$filename = trim($share->getTarget(), '/');
 		$subject = $l10n->t('%s shared a file with you', [$senderDisplayName]);
 		$expiration = $share->getExpirationDate();

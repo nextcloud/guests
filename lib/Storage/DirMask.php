@@ -28,20 +28,17 @@ class DirMask extends PermissionsMask {
 	 */
 	private readonly int $pathLength;
 
-	private $mask;
-
 	/**
-	 * @param array $arguments ['storage' => $storage, 'mask' => $mask, 'path' => $path]
+	 * @param array $parameters ['storage' => $storage, 'mask' => $mask, 'path' => $path]
 	 *
 	 * $storage: The storage the permissions mask should be applied on
 	 * $mask: The permission bits that should be kept, a combination of the \OCP\Constant::PERMISSION_ constants
 	 * $path: The path relative to the storage root that should be masked
 	 */
-	public function __construct($arguments) {
-		parent::__construct($arguments);
-		$this->path = rtrim((string)$arguments['path'], '/');
-		$this->pathLength = strlen((string)$arguments['path']);
-		$this->mask = $arguments['mask'];
+	public function __construct($parameters) {
+		parent::__construct($parameters);
+		$this->path = rtrim((string)$parameters['path'], '/');
+		$this->pathLength = strlen((string)$parameters['path']);
 	}
 
 	protected function checkPath(string $path): bool {

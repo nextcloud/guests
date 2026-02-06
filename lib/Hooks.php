@@ -82,7 +82,7 @@ class Hooks {
 		$user = $this->userManager->get($uid);
 
 		if ($user && $this->guestManager->isGuest($user)) {
-			Filesystem::addStorageWrapper('guests.readonly', function ($mountPoint, IStorage $storage) use ($uid): \OCA\Guests\Storage\ReadOnlyJail|\OCP\Files\Storage\IStorage {
+			Filesystem::addStorageWrapper('guests.readonly', function ($mountPoint, IStorage $storage) use ($uid): ReadOnlyJail|IStorage {
 				if ($mountPoint === "/$uid/") {
 					return new ReadOnlyJail([
 						'storage' => $storage,

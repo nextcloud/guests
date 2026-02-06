@@ -5,10 +5,11 @@
  * SPDX-FileCopyrightText: 2017 ownCloud GmbH
  * SPDX-License-Identifier: AGPL-3.0-only AND (AGPL-3.0-or-later OR AGPL-3.0-only)
  */
-
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\BadResponseException;
+use GuzzleHttp\Exception\ClientException;
 
 require __DIR__ . '/../../vendor/autoload.php';
 
@@ -47,7 +48,7 @@ class GuestsContext implements Context, SnippetAcceptingContext {
 
 		try {
 			$this->response = $client->send($request);
-		} catch (\GuzzleHttp\Exception\BadResponseException $e) {
+		} catch (BadResponseException $e) {
 			// 4xx and 5xx responses cause an exception
 			$this->response = $e->getResponse();
 		}
@@ -56,18 +57,16 @@ class GuestsContext implements Context, SnippetAcceptingContext {
 
 	/**
 	 * @Then check that user :user is a guest
-	 * @param string $guestDisplayName
 	 */
-	public function checkGuestUser($guestDisplayName): void {
+	public function checkGuestUser(string $guestDisplayName): void {
 		$userName = $this->prepareUserNameAsFrontend($guestDisplayName, $this->createdGuests[$guestDisplayName]);
 		$this->checkThatUserBelongsToGroup($userName, 'guest_app');
 	}
 
 	/**
 	 * @Then guest user :user is deleted
-	 * @param string $guestDisplayName
 	 */
-	public function deleteGuestUser($guestDisplayName): void {
+	public function deleteGuestUser(string $guestDisplayName): void {
 		$userName = $this->prepareUserNameAsFrontend($guestDisplayName, $this->createdGuests[$guestDisplayName]);
 		$this->deleteUser($userName);
 	}
@@ -96,9 +95,8 @@ class GuestsContext implements Context, SnippetAcceptingContext {
 
 	/**
 	 * @Given guest user :user sets its password
-	 * @param string $guestDisplayName
 	 */
-	public function guestUserSetsItsPassword($guestDisplayName): void {
+	public function guestUserSetsItsPassword(string $guestDisplayName): void {
 		$this->prepareUserNameAsFrontend($guestDisplayName, $this->createdGuests[$guestDisplayName]);
 		$emails = $this->getEmails();
 		$lastEmailBody = $emails->items[0]->Content->Body;
@@ -112,7 +110,7 @@ class GuestsContext implements Context, SnippetAcceptingContext {
 		];
 		try {
 			$this->response = $client->send($client->createRequest('POST', $urlSetPasswd, $options));
-		} catch (\GuzzleHttp\Exception\ClientException $ex) {
+		} catch (ClientException $ex) {
 			$this->response = $ex->getResponse();
 		}
 	}

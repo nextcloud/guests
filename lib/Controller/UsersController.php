@@ -18,6 +18,7 @@ use OCA\Guests\Service\InviteService;
 use OCA\Guests\TransferService;
 use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\AppFramework\Http;
+use OCP\AppFramework\Http\Attribute\NoAdminRequired;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\OCSController;
 use OCP\Group\ISubAdmin;
@@ -48,9 +49,7 @@ class UsersController extends OCSController {
 		parent::__construct($appName, $request);
 	}
 
-	/**
-	 * @NoAdminRequired
-	 */
+	#[NoAdminRequired]
 	public function create(string $email, string $displayName, string $language, array $groups, bool $sendInvite = true): DataResponse {
 		$errorMessages = [];
 		$currentUser = $this->userSession->getUser();
@@ -208,7 +207,7 @@ class UsersController extends OCSController {
 
 		try {
 			$transfer = $this->transferMapper->getBySource($sourceUser->getUID());
-		} catch (DoesNotExistException $e) {
+		} catch (DoesNotExistException) {
 			// Allow as this just means there is no pending transfer
 		}
 

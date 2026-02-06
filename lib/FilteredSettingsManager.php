@@ -7,24 +7,21 @@
 
 namespace OCA\Guests;
 
+use OC\AppFramework\App;
 use OCP\IUser;
 use OCP\Settings\IIconSection;
 use OCP\Settings\IManager;
 
 class FilteredSettingsManager implements IManager {
 
-	/** @var IManager */
-	private $manager;
-
 	public function __construct(
-		IManager $manager,
-		private readonly \OCA\Guests\AppWhitelist $appWhitelist,
+		private readonly IManager $manager,
+		private readonly AppWhitelist $appWhitelist,
 	) {
-		$this->manager = $manager;
 	}
 
 	private function isSettingAllowed(string $setting): bool {
-		$appId = \OC\AppFramework\App::getAppIdForClass($setting);
+		$appId = App::getAppIdForClass($setting);
 		return $this->appWhitelist->isAppWhitelisted($appId);
 	}
 

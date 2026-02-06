@@ -379,17 +379,7 @@ namespace OC\Files\Cache\Wrapper {
 	class CacheWrapper extends Cache {
 	}
 	class CachePermissionsMask extends CacheWrapper {
-<<<<<<< HEAD
 		public function __construct(\OCP\Files\Cache\ICache $cache, int $mask) {
-||||||| parent of 417a8e5 (refactor: Modernize code with rector)
-		/**
-		 * @param \OCP\Files\Cache\ICache $cache
-		 * @param int $mask
-		 */
-		public function __construct($cache, $mask) {
-=======
-		public function __construct() {
->>>>>>> 417a8e5 (refactor: Modernize code with rector)
 		}
 
 		protected function formatCacheEntry($entry) {

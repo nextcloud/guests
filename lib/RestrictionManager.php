@@ -17,7 +17,9 @@ use OCP\IRequest;
 use OCP\IServerContainer;
 use OCP\IUser;
 use OCP\IUserSession;
+use OCP\Server;
 use OCP\Settings\IManager;
+use OCP\Util;
 use Psr\Log\LoggerInterface;
 
 class RestrictionManager {
@@ -50,18 +52,18 @@ class RestrictionManager {
 		}
 
 		if ($this->guestManager->isGuest($user)) {
-			\OCP\Util::connectHook('OC_Filesystem', 'preSetup', $this->hooks, 'setupReadonlyFilesystem');
+			Util::connectHook('OC_Filesystem', 'preSetup', $this->hooks, 'setupReadonlyFilesystem');
 			if (!$this->config->allowExternalStorage()) {
 				$this->mountProviderCollection->registerMountFilter(fn (IMountPoint $mountPoint, IUser $user): bool => !($mountPoint instanceof ExternalMountPoint && $this->guestManager->isGuest($user)));
 			}
 
 			/** @var NavigationManager $navManager */
-			$navManager = \OCP\Server::get(INavigationManager::class);
+			$navManager = Server::get(INavigationManager::class);
 
-			$this->server->registerService(INavigationManager::class, fn (): \OCA\Guests\FilteredNavigationManager => new FilteredNavigationManager($user, $navManager, $this->whitelist));
+			$this->server->registerService(INavigationManager::class, fn (): FilteredNavigationManager => new FilteredNavigationManager($user, $navManager, $this->whitelist));
 
 			$settingsManager = $this->server->get(IManager::class);
-			$this->server->registerService(IManager::class, fn (): \OCA\Guests\FilteredSettingsManager => new FilteredSettingsManager($settingsManager, $this->whitelist));
+			$this->server->registerService(IManager::class, fn (): FilteredSettingsManager => new FilteredSettingsManager($settingsManager, $this->whitelist));
 		}
 	}
 

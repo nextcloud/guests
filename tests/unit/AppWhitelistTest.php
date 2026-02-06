@@ -26,7 +26,7 @@ class AppWhitelistTest extends TestCase {
 	private IAppManager&MockObject $appManager;
 	private IURLGenerator&MockObject $urlGenerator;
 
-	private ?\OCA\Guests\AppWhitelist $appWhitelist = null;
+	private ?AppWhitelist $appWhitelist = null;
 
 	protected function setUp(): void {
 		parent::setUp();

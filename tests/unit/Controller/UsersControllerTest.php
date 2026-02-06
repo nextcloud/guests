@@ -38,7 +38,7 @@ class UsersControllerTest extends TestCase {
 	/** @var IL10N|MockObject */
 	private $l10n;
 	/** @var Config|MockObject */
-	private ?\OCA\Guests\Config $guestsConfig = null;
+	private ?Config $guestsConfig = null;
 	/** @var IMailer|MockObject */
 	private $mailer;
 	/** @var GuestManager|MockObject */
@@ -60,7 +60,7 @@ class UsersControllerTest extends TestCase {
 	/** @var InviteService|MockObject */
 	private $inviteService;
 
-	private ?\OCA\Guests\Controller\UsersController $controller = null;
+	private ?UsersController $controller = null;
 
 	protected function setUp(): void {
 		parent::setUp();

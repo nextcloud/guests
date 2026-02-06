@@ -9,9 +9,10 @@
 namespace OCA\Guests\Settings;
 
 use OCP\AppFramework\Http\TemplateResponse;
+use OCP\Settings\ISettings;
 use OCP\Util;
 
-class Admin implements \OCP\Settings\ISettings {
+class Admin implements ISettings {
 	/**
 	 * {@inheritdoc}
 	 */

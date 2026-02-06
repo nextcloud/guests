@@ -9,15 +9,12 @@ declare(strict_types=1);
 namespace OCA\Guests\Storage;
 
 use OC\Files\Cache\Wrapper\CachePermissionsMask;
+use OCP\Files\Cache\ICache;
 
 class DirMaskCache extends CachePermissionsMask {
 	private $checkPath;
 
-	/**
-	 * @param \OCP\Files\Cache\ICache $cache
-	 * @param int $mask
-	 */
-	public function __construct($cache, $mask, callable $checkPath) {
+	public function __construct(ICache $cache, int $mask, callable $checkPath) {
 		parent::__construct($cache, $mask);
 		$this->checkPath = $checkPath;
 	}

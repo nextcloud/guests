@@ -25,8 +25,8 @@ class AddCommandTest extends TestCase {
 	private $guestManager;
 	/** @var IMailer|MockObject */
 	private $mailer;
-	private ?\OCA\Guests\Command\AddCommand $command = null;
-	private ?\Symfony\Component\Console\Tester\CommandTester $commandTester = null;
+	private ?AddCommand $command = null;
+	private ?CommandTester $commandTester = null;
 
 	protected function setUp(): void {
 		parent::setUp();
