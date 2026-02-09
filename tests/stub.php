@@ -14,9 +14,6 @@ namespace OC\Cache {
 	 * @deprecated use OCP\Cache\CappedMemoryCache instead
 	 */
 	class CappedMemoryCache implements ICache, \ArrayAccess {
-		public function __construct($capacity = 512) {
-		}
-
 		public function hasKey($key): bool {
 		}
 
@@ -30,7 +27,6 @@ namespace OC\Cache {
 		 * @param string $key
 		 * @param T $value
 		 * @param int $ttl
-		 * @return bool
 		 */
 		public function set($key, $value, $ttl = 0): bool {
 		}
@@ -54,7 +50,6 @@ namespace OC\Cache {
 		/**
 		 * @param string $offset
 		 * @param T $value
-		 * @return void
 		 */
 		public function offsetSet($offset, $value): void {
 		}
@@ -97,7 +92,6 @@ namespace OC {
 		 * Get a list of navigation entries
 		 *
 		 * @param string $type type of the navigation entries
-		 * @return array
 		 * @since 14.0.0
 		 */
 		public function getAll(string $type = self::TYPE_APPS): array {
@@ -223,14 +217,17 @@ namespace OC\Core\Command {
 		public const OUTPUT_FORMAT_PLAIN = 'plain';
 		public const OUTPUT_FORMAT_JSON = 'json';
 		public const OUTPUT_FORMAT_JSON_PRETTY = 'json_pretty';
-
+		public const SUCCESS = 0;
+		public const FAILURE = 1;
 		public function __construct() {
 		}
-		protected function configure() {
+		protected function configure(): void {
 		}
-		public function run(InputInterface $input, OutputInterface $output) {
+		public function run(InputInterface $input, OutputInterface $output): void {
 		}
-		public function setName(string $name) {
+		public function setName(string $name): self {
+		}
+		public function setDescription(string $name): self {
 		}
 		public function getHelper(string $name) {
 		}
@@ -245,10 +242,9 @@ namespace OC\Files\ObjectStore {
 }
 
 namespace Symfony\Component\Console\Helper {
-	use Symfony\Component\Console\Output\OutputInterface;
 
 	class Table {
-		public function __construct(OutputInterface $text) {
+		public function __construct(\Symfony\Component\Console\Output\OutputInterface $input) {
 		}
 		public function setHeaders(array $header) {
 		}
@@ -293,7 +289,7 @@ namespace Symfony\Component\Console\Helper {
 
 namespace Symfony\Component\Console\Question {
 	class ConfirmationQuestion {
-		public function __construct(string $text, bool $default) {
+		public function __construct() {
 		}
 	}
 }
@@ -383,11 +379,7 @@ namespace OC\Files\Cache\Wrapper {
 	class CacheWrapper extends Cache {
 	}
 	class CachePermissionsMask extends CacheWrapper {
-		/**
-		 * @param \OCP\Files\Cache\ICache $cache
-		 * @param int $mask
-		 */
-		public function __construct($cache, $mask) {
+		public function __construct(\OCP\Files\Cache\ICache $cache, int $mask) {
 		}
 
 		protected function formatCacheEntry($entry) {
@@ -396,7 +388,6 @@ namespace OC\Files\Cache\Wrapper {
 }
 
 namespace OC\Files {
-	use OCP\Files\Cache\ICacheEntry;
 
 	class Filesystem {
 		public static function addStorageWrapper(string $wrapperName, callable $wrapper, int $priority = 50) {
@@ -404,20 +395,8 @@ namespace OC\Files {
 	}
 
 	class FileInfo implements \OCP\Files\FileInfo {
-		/**
-		 * @param string|boolean $path
-		 * @param \OCP\Files\Storage\IStorage $storage
-		 * @param string $internalPath
-		 * @param array|ICacheEntry $data
-		 * @param \OCP\Files\Mount\IMountPoint $mount
-		 * @param \OCP\IUser|null $owner
-		 */
-		public function __construct($path, $storage, $internalPath, $data, $mount, $owner = null) {
-		}
 	}
 	class View {
-		public function __construct(string $path) {
-		}
 		public function unlink($path) {
 		}
 	}
@@ -425,12 +404,8 @@ namespace OC\Files {
 
 namespace OC\User {
 	use OCP\IUser;
-	use OCP\UserInterface;
-	use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 	class User implements IUser {
-		public function __construct(string $uid, ?UserInterface $backend, EventDispatcherInterface $dispatcher, $emitter = null, ?IConfig $config = null, $urlGenerator = null) {
-		}
 	}
 }
 
@@ -451,40 +426,31 @@ namespace OCA\DAV\Connector\Sabre {
 }
 
 namespace OC\Files\Mount {
-	use OC\Files\Storage\Storage;
 	use OCP\Files\Mount\IMountPoint;
 
 	class MountPoint implements IMountPoint {
 		/**
 		 * @var \OC\Files\Storage\Storage $storage
 		 */
-		protected $storage = null;
+		protected $storage;
 		protected $class;
 		protected $storageId;
-		protected $rootId = null;
+		protected $rootId;
 
 		/** @var int|null */
 		protected $mountId;
 
 		/**
-		 * @param string|\OCP\Files\Storage\IStorage $storage
-		 * @param string $mountpoint
-		 * @param array $arguments (optional) configuration for the storage backend
-		 * @param \OCP\Files\Storage\IStorageFactory $loader
-		 * @param array $mountOptions mount specific options
-		 * @param int|null $mountId
 		 * @throws \Exception
 		 */
-		public function __construct($storage, $mountpoint, $arguments = null, $loader = null, $mountOptions = null, $mountId = null) {
+		public function __construct() {
 			throw new \Exception('stub');
 		}
 
 		/**
 		 * get complete path to the mount point, relative to data/
-		 *
-		 * @return string
 		 */
-		public function getMountPoint() {
+		public function getMountPoint(): never {
 			throw new \Exception('stub');
 		}
 
@@ -493,43 +459,33 @@ namespace OC\Files\Mount {
 		 *
 		 * @param string $mountPoint new mount point
 		 */
-		public function setMountPoint($mountPoint) {
+		public function setMountPoint($mountPoint): never {
 			throw new \Exception('stub');
 		}
 
-		/**
-		 * @return \OCP\Files\Storage\IStorage
-		 */
-		public function getStorage() {
+		public function getStorage(): never {
 			throw new \Exception('stub');
 		}
 
-		/**
-		 * @return string
-		 */
-		public function getStorageId() {
+		public function getStorageId(): never {
 			throw new \Exception('stub');
 		}
 
-		/**
-		 * @return int
-		 */
-		public function getNumericStorageId() {
+		public function getNumericStorageId(): never {
 			throw new \Exception('stub');
 		}
 
 		/**
 		 * @param string $path
-		 * @return string
 		 */
-		public function getInternalPath($path) {
+		public function getInternalPath($path): never {
 			throw new \Exception('stub');
 		}
 
 		/**
 		 * @param callable $wrapper
 		 */
-		public function wrapStorage($wrapper) {
+		public function wrapStorage($wrapper): never {
 			throw new \Exception('stub');
 		}
 
@@ -538,33 +494,27 @@ namespace OC\Files\Mount {
 		 *
 		 * @param string $name Name of the mount option to get
 		 * @param mixed $default Default value for the mount option
-		 * @return mixed
 		 */
-		public function getOption($name, $default) {
+		public function getOption($name, $default): never {
 			throw new \Exception('stub');
 		}
 
 		/**
 		 * Get all options for the mount
-		 *
-		 * @return array
 		 */
-		public function getOptions() {
+		public function getOptions(): never {
 			throw new \Exception('stub');
 		}
 
-		/**
-		 * @return int
-		 */
-		public function getStorageRootId() {
+		public function getStorageRootId(): never {
 			throw new \Exception('stub');
 		}
 
-		public function getMountId() {
+		public function getMountId(): never {
 			throw new \Exception('stub');
 		}
 
-		public function getMountType() {
+		public function getMountType(): never {
 			throw new \Exception('stub');
 		}
 	}
@@ -577,7 +527,6 @@ namespace OC\Files\Storage\Wrapper{
 	use OCP\Files\Cache\IScanner;
 	use OCP\Files\Cache\IUpdater;
 	use OCP\Files\Cache\IWatcher;
-	use OCP\Files\Storage;
 	use OCP\Files\Storage\IStorage;
 	use OCP\Lock\ILockingProvider;
 
@@ -586,12 +535,6 @@ namespace OC\Files\Storage\Wrapper{
 		 * @var \OCP\Files\Storage\IStorage $storage
 		 */
 		protected $storage;
-
-		/**
-		 * @param array $parameters
-		 */
-		public function __construct($parameters) {
-		}
 
 		public function getWrapperStorage(): IStorage {
 		}
@@ -724,16 +667,6 @@ namespace OC\Files\Storage\Wrapper{
 		public function getInstanceOfStorage(string $class): ?IStorage {
 		}
 
-		/**
-		 * Pass any methods custom to specific storage implementations to the wrapped storage
-		 *
-		 * @param string $method
-		 * @param array $args
-		 * @return mixed
-		 */
-		public function __call($method, $args) {
-		}
-
 		public function getDirectDownload($path): array|false {
 		}
 
@@ -778,6 +711,9 @@ namespace OC\Files\Storage\Wrapper{
 
 		public function setOwner(?string $user): void {
 		}
+
+		public function getDirectDownloadById(string $fileId): array|false {
+		}
 	}
 
 	class Jail extends Wrapper {
@@ -791,6 +727,12 @@ namespace OC\Files\Storage\Wrapper{
 	}
 
 	class PermissionsMask extends Wrapper {
+		public int $mask;
+		public \OCP\Files\Storage\IStorage $storage;
+
+		public function __construct($parameters) {
+		}
+
 		public function getQuota() {
 		}
 	}
