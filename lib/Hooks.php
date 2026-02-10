@@ -77,6 +77,9 @@ class Hooks {
 		$this->inviteService->sendInvite($uid, $shareWith, $share);
 	}
 
+	/**
+	 * @param array<string, mixed> $params
+	 */
 	public function setupReadonlyFilesystem(array $params): void {
 		$uid = $params['user'];
 		$user = $this->userManager->get($uid);

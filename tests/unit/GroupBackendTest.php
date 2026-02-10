@@ -49,6 +49,9 @@ class GroupBackendTest extends TestCase {
 			->willReturn($user);
 	}
 
+	/**
+	 * @param string[] $uids
+	 */
 	private function setGuests(array $uids): void {
 		$this->guestManager->method('listGuests')
 			->willReturn($uids);

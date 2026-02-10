@@ -89,6 +89,9 @@ class Mail {
 		}
 	}
 
+	/**
+	 * @return array<int, mixed>
+	 */
 	private function composeShareMessage(IShare $share, string $senderDisplayName, string $guestEmail, string $passwordLink, IL10N $l10n): array {
 		$filename = trim($share->getTarget(), '/');
 		$subject = $l10n->t('%s shared a file with you', [$senderDisplayName]);
@@ -135,6 +138,9 @@ class Mail {
 		return [ $subject, $emailTemplate ];
 	}
 
+	/**
+	 * @return array<int, mixed>
+	 */
 	private function composeInviteMessage(string $senderDisplayName, string $guestEmail, string $passwordLink, IL10N $l10n): array {
 		$subject = $l10n->t('%s invited you as a guest', [$senderDisplayName]);
 

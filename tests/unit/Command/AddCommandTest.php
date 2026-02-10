@@ -44,6 +44,9 @@ class AddCommandTest extends TestCase {
 		$this->commandTester = new CommandTester($this->command);
 	}
 
+	/**
+	 * @return array<int, array<int, array<string, string>>|array<int, array<string, bool|string>>>
+	 */
 	public function createGuestDataProvider() {
 		return [
 			[

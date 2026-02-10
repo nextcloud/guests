@@ -111,6 +111,9 @@ class GuestManager {
 		return $this->userBackend->getUsers();
 	}
 
+	/**
+	 * @return mixed[][]
+	 */
 	public function getGuestsInfo(): array {
 		$displayNames = $this->userBackend->getDisplayNames();
 		$guests = array_keys($displayNames);
@@ -134,6 +137,9 @@ class GuestManager {
 		}, $guests);
 	}
 
+	/**
+	 * @param string[] $guests
+	 */
 	private function getShareCountForUsers(array $guests): array {
 		$query = $this->connection->getQueryBuilder();
 		$query->select('share_with', $query->func()->count('*', 'count'))
@@ -150,6 +156,9 @@ class GuestManager {
 		return $data;
 	}
 
+	/**
+	 * @return array<string, array<mixed, array<string, mixed>>>
+	 */
 	public function getGuestInfo(string $userId): array {
 		$shares = array_merge(
 			$this->shareManager->getSharedWith($userId, IShare::TYPE_USER, null, -1, 0),

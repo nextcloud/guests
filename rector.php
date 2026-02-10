@@ -25,6 +25,7 @@ return RectorConfig::configure()
 		deadCode: true,
 		codeQuality: true,
 		typeDeclarations: true,
+		typeDeclarationDocblocks: true,
 	)->withPhpSets(
 		php81: true,
 	)->withConfiguredRule(ClassPropertyAssignToConstructorPromotionRector::class, [
