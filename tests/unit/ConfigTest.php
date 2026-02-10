@@ -23,12 +23,16 @@ use Test\TestCase;
 class ConfigTest extends TestCase {
 	/** @var IConfig|MockObject */
 	private $config;
+
 	/** @var IAppConfig|MockObject */
 	private $appConfig;
+
 	/** @var ISubAdmin|MockObject */
 	private $subAdmin;
+
 	/** @var IUserSession|MockObject */
 	private $userSession;
+
 	/** @var IGroupManager|MockObject */
 	private $groupManager;
 

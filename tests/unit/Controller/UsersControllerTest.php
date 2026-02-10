@@ -32,19 +32,33 @@ use Test\TestCase;
 
 class UsersControllerTest extends TestCase {
 	private IRequest&MockObject $request;
+
 	private IUserManager&MockObject $userManager;
+
 	private IL10N&MockObject $l10n;
+
 	private Config $guestsConfig;
+
 	private IMailer&MockObject $mailer;
+
 	private GuestManager&MockObject $guestManager;
+
 	private IUserSession&MockObject $userSession;
+
 	private ISubAdmin&MockObject $subAdmin;
+
 	private IGroupManager&MockObject $groupManager;
+
 	private TransferService&MockObject $transferService;
+
 	private TransferMapper&MockObject $transferMapper;
+
 	private IAppConfig&MockObject $appConfig;
+
 	private IConfig&MockObject $config;
+
 	private InviteService&MockObject $inviteService;
+
 	private UsersController $controller;
 
 	protected function setUp(): void {

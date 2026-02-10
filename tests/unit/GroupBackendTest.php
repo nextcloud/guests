@@ -19,8 +19,10 @@ use Test\TestCase;
 class GroupBackendTest extends TestCase {
 	/** @var GuestManager|MockObject */
 	private $guestManager;
+
 	/** @var Config|MockObject */
 	private $config;
+
 	/** @var IUserSession|MockObject */
 	private $userSession;
 

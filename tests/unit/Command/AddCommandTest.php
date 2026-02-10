@@ -21,11 +21,15 @@ use Test\TestCase;
 class AddCommandTest extends TestCase {
 	/** @var IUserManager|MockObject */
 	private $userManager;
+
 	/** @var GuestManager|MockObject */
 	private $guestManager;
+
 	/** @var IMailer|MockObject */
 	private $mailer;
+
 	private ?AddCommand $command = null;
+
 	private ?CommandTester $commandTester = null;
 
 	protected function setUp(): void {
@@ -41,6 +45,7 @@ class AddCommandTest extends TestCase {
 			$this->guestManager
 		);
 		$this->command->setApplication(new Application());
+
 		$this->commandTester = new CommandTester($this->command);
 	}
 
@@ -110,6 +115,7 @@ class AddCommandTest extends TestCase {
 
 		$this->commandTester->setInputs(['guest-password', 'guest-password']);
 		$this->commandTester->execute($commandArgs);
+
 		$output = $this->commandTester->getDisplay();
 		$this->assertStringContainsString('The guest account user "guestid" was created successfully', $output);
 	}

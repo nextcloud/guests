@@ -35,12 +35,13 @@ class ListCommand extends Base {
 		$guests = $this->guestManager->getGuestsInfo();
 
 		$outputType = $input->getOption('output');
-		if (count($guests) === 0) {
+		if ($guests === []) {
 			if ($outputType === self::OUTPUT_FORMAT_JSON || $outputType === self::OUTPUT_FORMAT_JSON_PRETTY) {
 				$output->writeln('[]');
 			} else {
 				$output->writeln('<info>No guests created</info>');
 			}
+
 			return self::SUCCESS;
 		}
 
@@ -52,6 +53,7 @@ class ListCommand extends Base {
 			$table->setRows($guests);
 			$table->render();
 		}
+
 		return self::SUCCESS;
 	}
 }

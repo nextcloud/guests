@@ -50,7 +50,7 @@ class InviteService {
 				$share->setMailSend(false);
 			}
 		} catch (DoesNotExistException) {
-			$this->logger->error("'$guest' does not exist");
+			$this->logger->error('"' . $guest . '" does not exist');
 		} catch (\Exception $e) {
 			$this->logger->error('Failed to send guest activation mail', ['exception' => $e]);
 		}

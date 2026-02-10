@@ -19,7 +19,9 @@ require __DIR__ . '/../../vendor/autoload.php';
  */
 class GuestsContext implements Context, SnippetAcceptingContext {
 	public $baseUrl;
+
 	public $response;
+
 	use Webdav;
 
 	private array $createdGuests = [];
@@ -46,10 +48,11 @@ class GuestsContext implements Context, SnippetAcceptingContext {
 
 		try {
 			$this->response = $client->send($request);
-		} catch (BadResponseException $e) {
+		} catch (BadResponseException $badResponseException) {
 			// 4xx and 5xx responses cause an exception
-			$this->response = $e->getResponse();
+			$this->response = $badResponseException->getResponse();
 		}
+
 		$this->createdGuests[$guestDisplayName] = $guestEmail;
 	}
 
@@ -108,8 +111,8 @@ class GuestsContext implements Context, SnippetAcceptingContext {
 		];
 		try {
 			$this->response = $client->send($client->createRequest('POST', $urlSetPasswd, $options));
-		} catch (ClientException $ex) {
-			$this->response = $ex->getResponse();
+		} catch (ClientException $clientException) {
+			$this->response = $clientException->getResponse();
 		}
 	}
 

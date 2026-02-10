@@ -25,10 +25,17 @@ return RectorConfig::configure()
 	->withPreparedSets(
 		deadCode: true,
 		codeQuality: true,
+		codingStyle: true,
 		typeDeclarations: true,
 		typeDeclarationDocblocks: true,
-		phpunitCodeQuality: true,
+		privatization: true,
+		instanceOf: true,
+		earlyReturn: true,
 		rectorPreset: true,
+		phpunitCodeQuality: true,
+		doctrineCodeQuality: true,
+		symfonyCodeQuality: true,
+		symfonyConfigs: true,
 	)->withPhpSets(
 		php81: true,
 	)->withConfiguredRule(ClassPropertyAssignToConstructorPromotionRector::class, [

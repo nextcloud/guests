@@ -21,9 +21,13 @@ use Test\TestCase;
 
 class AppWhitelistTest extends TestCase {
 	private Config&MockObject $config;
+
 	private GuestManager&MockObject $guestManager;
+
 	private IL10N&MockObject $l10n;
+
 	private IAppManager&MockObject $appManager;
+
 	private IURLGenerator&MockObject $urlGenerator;
 
 	private ?AppWhitelist $appWhitelist = null;

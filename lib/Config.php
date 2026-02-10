@@ -65,6 +65,7 @@ class Config {
 		if (is_array($whitelist)) {
 			$whitelist = implode(',', $whitelist);
 		}
+
 		$this->appConfig->setAppValueString('whitelist', $whitelist);
 	}
 
