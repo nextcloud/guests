@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * SPDX-FileCopyrightText: 2017-2024 Nextcloud GmbH and Nextcloud contributors
  * SPDX-FileCopyrightText: 2017 ownCloud GmbH
@@ -29,9 +31,6 @@ class AppWhitelist {
 
 	public const DEFAULT_WHITELIST = 'files_trashbin,files_versions,files_sharing,files_texteditor,text,activity,firstrunwizard,photos,notifications,dashboard,user_status,weather_status';
 
-	/**
-	 * AppWhitelist constructor.
-	 */
 	public function __construct(
 		IURLGenerator $urlGenerator,
 		private readonly Config $config,
@@ -70,9 +69,9 @@ class AppWhitelist {
 				$this->logger->notice("Blocking access to non-whitelisted app ($app) for guest", ['app' => 'guests']);
 				return false;
 			}
-		} else {
-			return true;
 		}
+
+		return true;
 	}
 
 	public function verifyAccess(IUser $user, IRequest $request): void {
@@ -130,6 +129,9 @@ class AppWhitelist {
 		return 'core';
 	}
 
+	/**
+	 * @return list<string>
+	 */
 	public function getWhitelistAbleApps(): array {
 		return array_values(array_diff(
 			$this->appManager->getInstalledApps(),

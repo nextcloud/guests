@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 /**
  * SPDX-FileCopyrightText: 2020 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
@@ -30,12 +31,11 @@ class ShareAutoAcceptListener implements IEventListener {
 	}
 
 	public function handle(Event $event): void {
-		if (!($event instanceof ShareCreatedEvent)) {
+		if (!$event instanceof ShareCreatedEvent) {
 			return;
 		}
 
 		$share = $event->getShare();
-
 		// Right now we only handle direct shares to this user
 		if ($share->getShareType() !== IShare::TYPE_USER) {
 			$this->logger->debug('Not handling share since it is not a user share');
@@ -48,7 +48,7 @@ class ShareAutoAcceptListener implements IEventListener {
 			return;
 		}
 
-		if (!($user->getBackend() instanceof UserBackend)) {
+		if (!$user->getBackend() instanceof UserBackend) {
 			$this->logger->debug('Not a guest user');
 			return;
 		}

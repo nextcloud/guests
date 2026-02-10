@@ -48,6 +48,7 @@ class TransferJob extends QueuedJob {
 				'source' => $transfer->getSource(),
 				'target' => $transfer->getTarget(),
 			]);
+
 		$this->notificationManager->notify($notification);
 	}
 
@@ -63,13 +64,14 @@ class TransferJob extends QueuedJob {
 				'source' => $transfer->getSource(),
 				'target' => $transfer->getTarget(),
 			]);
+
 		$this->notificationManager->notify($notification);
 	}
 
 	private function fail(Transfer $transfer, ?IUser $targetUser = null): void {
 		$this->notifyFailure($transfer);
 		$this->transferMapper->delete($transfer);
-		if (!($targetUser instanceof IUser)) {
+		if (!$targetUser instanceof IUser) {
 			return;
 		}
 		$result = $targetUser->delete(); // Rollback created user
@@ -90,7 +92,7 @@ class TransferJob extends QueuedJob {
 		$target = $transfer->getTarget();
 
 		$sourceUser = $this->userManager->get($source);
-		if (!($sourceUser instanceof IUser)) {
+		if (!$sourceUser instanceof IUser) {
 			$this->logger->error('Failed to transfer missing guest user: ' . $source);
 			$this->fail($transfer);
 			return;
@@ -107,7 +109,7 @@ class TransferJob extends QueuedJob {
 			$this->secureRandom->generate(20), // Password hash will be copied to target user from source user
 		);
 
-		if (!($targetUser instanceof IUser)) {
+		if (!$targetUser instanceof IUser) {
 			$this->logger->error('Failed to create new user: ' . $target);
 			$this->fail($transfer);
 			return;
@@ -141,6 +143,7 @@ class TransferJob extends QueuedJob {
 		if (!$result) {
 			$this->logger->error('Failed to delete guest user', ['user' => $sourceUser->getUID()]);
 		}
+
 		$this->notifySuccess($transfer);
 		$this->transferMapper->delete($transfer);
 	}

@@ -7,7 +7,6 @@ declare(strict_types=1);
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-
 namespace OCA\Guests\Listener;
 
 use OCA\Guests\Config;
@@ -44,10 +43,7 @@ class BeforeTemplateRenderedListener implements IEventListener {
 			return;
 		}
 
-		// FIXME use this once Nextcloud 25 is the supported minimum
-		// if ($event->getResponse()->getApp() !== 'spreed') {
-		$params = $event->getResponse()->getParams();
-		if (!isset($params['app']) || $params['app'] !== 'spreed') {
+		if ($event->getResponse()->getApp() !== 'spreed') {
 			return;
 		}
 

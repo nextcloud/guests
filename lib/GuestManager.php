@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * SPDX-FileCopyrightText: 2017 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
@@ -34,10 +36,7 @@ class GuestManager {
 	) {
 	}
 
-	/**
-	 * @param IUser|string $user
-	 */
-	public function isGuest($user = null): bool {
+	public function isGuest(IUser|string|null $user = null): bool {
 		if (is_null($user)) {
 			$user = $this->userSession->getUser();
 			return ($user !== null) && $this->userBackend->userExists($user->getUID());

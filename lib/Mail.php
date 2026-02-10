@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * SPDX-FileCopyrightText: 2017-2024 Nextcloud GmbH and Nextcloud contributors
  * SPDX-FileCopyrightText: 2017 ownCloud GmbH
@@ -34,7 +36,6 @@ class Mail {
 	 * Sends out a reset password mail if the user is a guest and does not have
 	 * a password set, yet.
 	 *
-	 * @param $uid
 	 * @throws \Exception
 	 */
 	public function sendGuestInviteMail(string $uid, string $guest, string $token, string $language = '', ?IShare $share = null): void {

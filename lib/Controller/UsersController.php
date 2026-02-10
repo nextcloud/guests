@@ -226,6 +226,7 @@ class UsersController extends OCSController {
 		}
 
 		$this->transferService->addTransferJob($author, $sourceUser, $targetUserId);
+
 		return new DataResponse([], Http::STATUS_CREATED);
 	}
 }

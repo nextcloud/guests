@@ -76,6 +76,7 @@ class TransferService {
 			->setObject('user', $user->getEMailAddress())
 			->setDateTime(new \DateTime())
 			->setUser($user->getUID());
+
 		$this->notificationManager->notify($notification);
 	}
 

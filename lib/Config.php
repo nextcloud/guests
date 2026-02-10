@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 /**
  * SPDX-FileCopyrightText: 2019 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
@@ -28,10 +29,7 @@ class Config {
 		return $this->appConfig->getAppValueBool('allow_external_storage', false);
 	}
 
-	/**
-	 * @param string|bool $allow
-	 */
-	public function setAllowExternalStorage($allow): void {
+	public function setAllowExternalStorage(string|bool $allow): void {
 		$this->appConfig->setAppValueBool('allow_external_storage', $allow === true || $allow === 'true') ;
 	}
 
@@ -39,10 +37,7 @@ class Config {
 		return $this->appConfig->getAppValueBool('hide_users', true);
 	}
 
-	/**
-	 * @param string|bool $hide
-	 */
-	public function setHideOtherUsers($hide): void {
+	public function setHideOtherUsers(string|bool $hide): void {
 		$this->appConfig->setAppValueBool('hide_users', $hide === true || $hide === 'true') ;
 	}
 
@@ -54,25 +49,19 @@ class Config {
 		return $this->appConfig->getAppValueBool('usewhitelist', true);
 	}
 
-	/**
-	 * @param string|bool $use
-	 */
-	public function setUseWhitelist($use): void {
+	public function setUseWhitelist(string|bool $use): void {
 		$this->appConfig->setAppValueBool('usewhitelist', $use === true || $use === 'true') ;
 	}
 
 	/**
-	 * @return string[]
+	 * @return list<string>
 	 */
 	public function getAppWhitelist(): array {
 		$whitelist = $this->appConfig->getAppValueString('whitelist', AppWhitelist::DEFAULT_WHITELIST);
 		return explode(',', $whitelist);
 	}
 
-	/**
-	 * @param array|string $whitelist
-	 */
-	public function setAppWhitelist($whitelist): void {
+	public function setAppWhitelist(array|string $whitelist): void {
 		if (is_array($whitelist)) {
 			$whitelist = implode(',', $whitelist);
 		}
@@ -106,12 +95,11 @@ class Config {
 			}
 		}
 
-
 		return !$this->isSharingRestrictedToGroup();
 	}
 
 	/**
-	 * @return string[]
+	 * @return list<string>
 	 */
 	public function getCreateRestrictedToGroup(): array {
 		$groups = $this->appConfig->getAppValueArray('create_restricted_to_group', []);
@@ -127,7 +115,7 @@ class Config {
 	}
 
 	/**
-	 * @param string[] $groups
+	 * @param list<string> $groups
 	 */
 	public function setCreateRestrictedToGroup(array $groups): void {
 		$this->appConfig->setAppValueArray('create_restricted_to_group', $groups);

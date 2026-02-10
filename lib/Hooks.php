@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * SPDX-FileCopyrightText: 2017-2024 Nextcloud GmbH and Nextcloud contributors
  * SPDX-FileCopyrightText: 2017 ownCloud GmbH
@@ -46,7 +48,6 @@ class Hooks {
 				"ignoring user '$shareWith', not a guest",
 				['app' => Application::APP_ID]
 			);
-
 			return;
 		}
 
@@ -55,7 +56,6 @@ class Hooks {
 				'ignoring share for itemType ' . $share->getNodeType(),
 				['app' => Application::APP_ID]
 			);
-
 			return;
 		}
 
@@ -89,9 +89,8 @@ class Hooks {
 						'mask' => Constants::PERMISSION_READ,
 						'path' => 'files'
 					]);
-				} else {
-					return $storage;
 				}
+				return $storage;
 			});
 		}
 	}

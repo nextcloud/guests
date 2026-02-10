@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 /**
  * SPDX-FileCopyrightText: 2017 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
@@ -36,8 +37,8 @@ class UserBackend extends ABackend implements
 	ICountUsersBackend,
 	IGetRealUIDBackend,
 	IPasswordHashBackend {
-	/** @var CappedMemoryCache */
-	private $cache;
+
+	private CappedMemoryCache $cache;
 	private bool $allowListing = true;
 
 	public function __construct(
@@ -54,12 +55,6 @@ class UserBackend extends ABackend implements
 	}
 
 	/**
-	 * Create a new user
-	 *
-	 * @param string $uid The username of the user to create
-	 * @param string $password The password of the new user
-	 * @return bool
-	 *
 	 * Creates a new user. Basic checking of username is done in OC_User
 	 * itself, not in its subclasses.
 	 */
@@ -87,10 +82,9 @@ class UserBackend extends ABackend implements
 	}
 
 	/**
-	 * delete a user
+	 * Deletes a user
 	 *
 	 * @param string $uid The username of the user to delete
-	 * @return bool
 	 *
 	 * Deletes a user
 	 */
@@ -109,12 +103,6 @@ class UserBackend extends ABackend implements
 	}
 
 	/**
-	 * Set password
-	 *
-	 * @param string $uid The username
-	 * @param string $password The new password
-	 * @return bool
-	 *
 	 * Change the password of a user
 	 */
 	public function setPassword(string $uid, string $password): bool {
@@ -164,12 +152,6 @@ class UserBackend extends ABackend implements
 	}
 
 	/**
-	 * Set display name
-	 *
-	 * @param string $uid The username
-	 * @param string $displayName The new display name
-	 * @return bool
-	 *
 	 * Change the display name of a user
 	 */
 	public function setDisplayName(string $uid, string $displayName): bool {
@@ -189,10 +171,9 @@ class UserBackend extends ABackend implements
 	}
 
 	/**
-	 * get display name of the user
+	 * Get display name of the user
 	 *
 	 * @param string $uid user ID of the user
-	 * @return string display name
 	 */
 	public function getDisplayName($uid): string {
 		$this->loadUser($uid);
@@ -248,12 +229,10 @@ class UserBackend extends ABackend implements
 	}
 
 	/**
-	 * Check if the password is correct
-	 *
-	 * @return string|false
-	 *
 	 * Check if the password is correct without logging in the user
 	 * returns the user id or false
+	 *
+	 * @return string|false
 	 */
 	public function checkPassword(string $loginName, string $password) {
 		if (!str_contains($loginName, '@')) {
@@ -290,7 +269,6 @@ class UserBackend extends ABackend implements
 	 * Load an user in the cache
 	 *
 	 * @param string $uid the username
-	 * @return bool true if user was found, false otherwise
 	 */
 	private function loadUser($uid): bool {
 		// guests $uid could be NULL or ''
@@ -344,7 +322,7 @@ class UserBackend extends ABackend implements
 	}
 
 	/**
-	 * check if a user exists
+	 * Check if a user exists
 	 *
 	 * @param string $uid the username
 	 */
@@ -354,9 +332,8 @@ class UserBackend extends ABackend implements
 	}
 
 	/**
-	 * get the user's home directory
+	 * Get the user's home directory
 	 *
-	 * @param string $uid the username
 	 * @return string|false
 	 */
 	public function getHome(string $uid) {
@@ -372,7 +349,7 @@ class UserBackend extends ABackend implements
 	}
 
 	/**
-	 * counts the users in the database
+	 * Counts the users in the database
 	 *
 	 * @return int|false
 	 */
@@ -386,7 +363,7 @@ class UserBackend extends ABackend implements
 	}
 
 	/**
-	 * returns the username for the given login name in the correct casing
+	 * Returns the username for the given login name in the correct casing
 	 *
 	 * @param string $loginName
 	 * @return string|false

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * SPDX-FileCopyrightText: 2017-2024 Nextcloud GmbH and Nextcloud contributors
  * SPDX-FileCopyrightText: 2017 ownCloud GmbH
@@ -48,41 +50,41 @@ class DirMask extends PermissionsMask {
 	public function isUpdatable($path): bool {
 		if ($this->checkPath($path)) {
 			return parent::isUpdatable($path);
-		} else {
-			return $this->storage->isUpdatable($path);
 		}
+
+		return $this->storage->isUpdatable($path);
 	}
 
 	public function isCreatable($path): bool {
 		if ($this->checkPath($path)) {
 			return parent::isCreatable($path);
-		} else {
-			return $this->storage->isCreatable($path);
 		}
+
+		return $this->storage->isCreatable($path);
 	}
 
 	public function isDeletable($path): bool {
 		if ($this->checkPath($path)) {
 			return parent::isDeletable($path);
-		} else {
-			return $this->storage->isDeletable($path);
 		}
+
+		return $this->storage->isDeletable($path);
 	}
 
 	public function isSharable($path): bool {
 		if ($this->checkPath($path)) {
 			return parent::isSharable($path);
-		} else {
-			return $this->storage->isSharable($path);
 		}
+
+		return $this->storage->isSharable($path);
 	}
 
 	public function getPermissions($path): int {
 		if ($this->checkPath($path)) {
 			return parent::getPermissions($path);
-		} else {
-			return $this->storage->getPermissions($path);
 		}
+
+		return $this->storage->getPermissions($path);
 	}
 
 	public function rename($source, $target): bool {
@@ -128,50 +130,50 @@ class DirMask extends PermissionsMask {
 	public function touch($path, $mtime = null): bool {
 		if ($this->checkPath($path)) {
 			return parent::touch($path);
-		} else {
-			return $this->storage->touch($path);
 		}
+
+		return $this->storage->touch($path);
 	}
 
 	public function mkdir($path): bool {
 		// Always allow creating the path of the dir mask.
 		if ($path !== $this->path && $this->checkPath($path)) {
 			return parent::mkdir($path);
-		} else {
-			return $this->storage->mkdir($path);
 		}
+
+		return $this->storage->mkdir($path);
 	}
 
 	public function rmdir($path): bool {
 		if ($this->checkPath($path)) {
 			return parent::rmdir($path);
-		} else {
-			return $this->storage->rmdir($path);
 		}
+
+		return $this->storage->rmdir($path);
 	}
 
 	public function unlink($path): bool {
 		if ($this->checkPath($path)) {
 			return parent::unlink($path);
-		} else {
-			return $this->storage->unlink($path);
 		}
+
+		return $this->storage->unlink($path);
 	}
 
 	public function file_put_contents($path, $data): int|float|false {
 		if ($this->checkPath($path)) {
 			return parent::file_put_contents($path, $data);
-		} else {
-			return $this->storage->file_put_contents($path, $data);
 		}
+
+		return $this->storage->file_put_contents($path, $data);
 	}
 
 	public function fopen($path, $mode) {
 		if ($this->checkPath($path)) {
 			return parent::fopen($path, $mode);
-		} else {
-			return $this->storage->fopen($path, $mode);
 		}
+
+		return $this->storage->fopen($path, $mode);
 	}
 
 	public function getCache($path = '', $storage = null): ICache {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * SPDX-FileCopyrightText: 2017-2024 Nextcloud GmbH and Nextcloud contributors
  * SPDX-FileCopyrightText: 2017 ownCloud GmbH
@@ -76,7 +78,6 @@ class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetails
 	 * @param string $search
 	 * @param int $limit
 	 * @param int $offset
-	 * @return array an array of group names
 	 * @since 4.5.0
 	 *
 	 * Returns a list with all groups
@@ -109,9 +110,8 @@ class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetails
 		if ($gid === $this->groupName) {
 			if ($this->guestManager->isGuest() && $this->config->hideOtherUsers()) {
 				return [$this->userSession->getUser()->getUID()];
-			} else {
-				return $offset === 0 ? $this->getMembers() : [];
 			}
+			return $offset === 0 ? $this->getMembers() : [];
 		}
 
 		return [];
@@ -121,20 +121,17 @@ class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetails
 		if ($gid === $this->groupName) {
 			if ($this->guestManager->isGuest() && $this->config->hideOtherUsers()) {
 				return 1;
-			} else {
-				return count($this->getMembers());
 			}
-		} else {
-			return 0;
+			return count($this->getMembers());
 		}
+		return 0;
 	}
 
 	public function getGroupDetails(string $gid): array {
 		if ($gid === $this->groupName) {
 			return ['displayName' => 'Guests'];
-		} else {
-			return [];
 		}
+		return [];
 	}
 
 	public function hideGroup(string $groupId): bool {
