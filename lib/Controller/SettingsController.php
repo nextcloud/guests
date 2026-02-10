@@ -25,8 +25,8 @@ class SettingsController extends Controller {
 
 	public function __construct(
 		IRequest $request,
-		private Config $config,
-		private AppWhitelist $appWhitelist,
+		private readonly Config $config,
+		private readonly AppWhitelist $appWhitelist,
 	) {
 		parent::__construct(Application::APP_ID, $request);
 	}
@@ -57,12 +57,11 @@ class SettingsController extends Controller {
 	 * @param $whitelist string[]
 	 * @param $allowExternalStorage bool
 	 * @param $hideUsers bool
-	 * @return DataResponse
 	 */
 	public function setConfig(bool $useWhitelist, array $whitelist, bool $allowExternalStorage, bool $hideUsers, array $createRestrictedToGroup): DataResponse {
 		$newWhitelist = [];
 		foreach ($whitelist as $app) {
-			$newWhitelist[] = trim($app);
+			$newWhitelist[] = trim((string)$app);
 		}
 		$this->config->setUseWhitelist($useWhitelist);
 		$this->config->setAppWhitelist($newWhitelist);

@@ -13,7 +13,7 @@ use OC\AppConfig;
 class AppConfigOverwrite extends AppConfig {
 
 	/** @var string[][] */
-	private $overWrite = [];
+	private array $overWrite = [];
 
 	public function setOverwrite(array $overwrite): void {
 		$this->overWrite = $overwrite;

@@ -17,22 +17,24 @@ use OCP\IRequest;
 use OCP\IServerContainer;
 use OCP\IUser;
 use OCP\IUserSession;
+use OCP\Server;
 use OCP\Settings\IManager;
+use OCP\Util;
 use Psr\Log\LoggerInterface;
 
 class RestrictionManager {
 
 	public function __construct(
-		private AppWhitelist $whitelist,
-		private IRequest $request,
-		private IUserSession $userSession,
-		private IServerContainer $server,
-		private Hooks $hooks,
-		private GuestManager $guestManager,
-		private IMountProviderCollection $mountProviderCollection,
-		private Config $config,
-		private UserBackend $userBackend,
-		private LoggerInterface $logger,
+		private readonly AppWhitelist $whitelist,
+		private readonly IRequest $request,
+		private readonly IUserSession $userSession,
+		private readonly IServerContainer $server,
+		private readonly Hooks $hooks,
+		private readonly GuestManager $guestManager,
+		private readonly IMountProviderCollection $mountProviderCollection,
+		private readonly Config $config,
+		private readonly UserBackend $userBackend,
+		private readonly LoggerInterface $logger,
 	) {
 	}
 
@@ -50,24 +52,18 @@ class RestrictionManager {
 		}
 
 		if ($this->guestManager->isGuest($user)) {
-			\OCP\Util::connectHook('OC_Filesystem', 'preSetup', $this->hooks, 'setupReadonlyFilesystem');
+			Util::connectHook('OC_Filesystem', 'preSetup', $this->hooks, 'setupReadonlyFilesystem');
 			if (!$this->config->allowExternalStorage()) {
-				$this->mountProviderCollection->registerMountFilter(function (IMountPoint $mountPoint, IUser $user) {
-					return !($mountPoint instanceof ExternalMountPoint && $this->guestManager->isGuest($user));
-				});
+				$this->mountProviderCollection->registerMountFilter(fn (IMountPoint $mountPoint, IUser $user): bool => !($mountPoint instanceof ExternalMountPoint && $this->guestManager->isGuest($user)));
 			}
 
 			/** @var NavigationManager $navManager */
-			$navManager = \OCP\Server::get(INavigationManager::class);
+			$navManager = Server::get(INavigationManager::class);
 
-			$this->server->registerService(INavigationManager::class, function () use ($navManager, $user) {
-				return new FilteredNavigationManager($user, $navManager, $this->whitelist);
-			});
+			$this->server->registerService(INavigationManager::class, fn (): FilteredNavigationManager => new FilteredNavigationManager($user, $navManager, $this->whitelist));
 
 			$settingsManager = $this->server->get(IManager::class);
-			$this->server->registerService(IManager::class, function () use ($settingsManager) {
-				return new FilteredSettingsManager($settingsManager, $this->whitelist);
-			});
+			$this->server->registerService(IManager::class, fn (): FilteredSettingsManager => new FilteredSettingsManager($settingsManager, $this->whitelist));
 		}
 	}
 
@@ -86,9 +82,7 @@ class RestrictionManager {
 					]
 				]);
 
-				$this->server->registerService(AppConfig::class, function () use ($appConfig) {
-					return $appConfig;
-				});
+				$this->server->registerService(AppConfig::class, fn () => $appConfig);
 			}
 		}
 	}

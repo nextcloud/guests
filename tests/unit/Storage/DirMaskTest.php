@@ -17,7 +17,7 @@ use Test\TestCase;
  * @group DB
  */
 class DirMaskTest extends TestCase {
-	public function testReadonlyDir() {
+	public function testReadonlyDir(): void {
 		$storage = new Temporary([]);
 
 		$storage->mkdir('readonly');

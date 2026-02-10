@@ -11,6 +11,9 @@ namespace OCA\Guests\Test\Unit;
 use OCA\Guests\Config;
 use OCA\Guests\UserBackend;
 use OCP\EventDispatcher\IEventDispatcher;
+use OCP\IDBConnection;
+use OCP\Security\IHasher;
+use OCP\Server;
 use PHPUnit\Framework\MockObject\MockObject;
 use Test\TestCase;
 
@@ -21,11 +24,10 @@ class UserBackendTest extends TestCase {
 	/** @var Config|MockObject */
 	private $config;
 
-	/** @var UserBackend */
-	private $backend;
+	private ?UserBackend $backend = null;
 
-	private function clearGuests() {
-		$query = \OC::$server->getDatabaseConnection()->getQueryBuilder();
+	private function clearGuests(): void {
+		$query = Server::get(IDBConnection::class)->getQueryBuilder();
 
 		$query->delete('guests_users')->executeStatement();
 	}
@@ -39,9 +41,9 @@ class UserBackendTest extends TestCase {
 
 		$this->backend = new UserBackend(
 			$this->createMock(IEventDispatcher::class),
-			\OC::$server->getDatabaseConnection(),
+			Server::get(IDBConnection::class),
 			$this->config,
-			\OC::$server->getHasher()
+			Server::get(IHasher::class)
 		);
 	}
 
@@ -51,14 +53,14 @@ class UserBackendTest extends TestCase {
 		parent::tearDown();
 	}
 
-	public function testCreate() {
+	public function testCreate(): void {
 		$this->backend->createUser('foo@example.tld', 'bar');
 		$this->assertTrue($this->backend->userExists('foo@example.tld'));
 
 		$this->assertEquals(['foo@example.tld'], $this->backend->getUsers());
 	}
 
-	public function testNoListing() {
+	public function testNoListing(): void {
 		$this->backend->createUser('foo@example.tld', 'bar');
 		$this->assertTrue($this->backend->userExists('foo@example.tld'));
 

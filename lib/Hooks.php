@@ -12,31 +12,26 @@ use OC\Files\Filesystem;
 use OCA\Guests\AppInfo\Application;
 use OCA\Guests\Service\InviteService;
 use OCA\Guests\Storage\ReadOnlyJail;
-use OCP\AppFramework\IAppContainer;
 use OCP\Constants;
 use OCP\Files\Storage\IStorage;
 use OCP\IConfig;
 use OCP\IUser;
 use OCP\IUserManager;
 use OCP\IUserSession;
-use OCP\Security\ICrypto;
 use OCP\Share\Events\ShareCreatedEvent;
 use OCP\User\Events\UserFirstTimeLoggedInEvent;
 use Psr\Log\LoggerInterface;
 
 class Hooks {
 	public function __construct(
-		private LoggerInterface $logger,
-		private IUserSession $userSession,
-		private Mail $mail,
-		private IUserManager $userManager,
-		private IConfig $config,
-		private ICrypto $crypto,
-		private GuestManager $guestManager,
-		private UserBackend $userBackend,
-		private IAppContainer $container,
-		private TransferService $transferService,
-		private InviteService $inviteService,
+		private readonly LoggerInterface $logger,
+		private readonly IUserSession $userSession,
+		private readonly IUserManager $userManager,
+		private readonly IConfig $config,
+		private readonly GuestManager $guestManager,
+		private readonly UserBackend $userBackend,
+		private readonly TransferService $transferService,
+		private readonly InviteService $inviteService,
 	) {
 	}
 
@@ -55,7 +50,7 @@ class Hooks {
 			return;
 		}
 
-		if (!($share->getNodeType() === 'folder' || $share->getNodeType() === 'file')) {
+		if ($share->getNodeType() !== 'folder' && $share->getNodeType() !== 'file') {
 			$this->logger->debug(
 				'ignoring share for itemType ' . $share->getNodeType(),
 				['app' => Application::APP_ID]
@@ -66,7 +61,7 @@ class Hooks {
 
 
 		$user = $this->userSession->getUser();
-		$targetUser = $this->userManager->get($shareWith);
+		$this->userManager->get($shareWith);
 
 		if (!$user) {
 			throw new \Exception(
@@ -87,7 +82,7 @@ class Hooks {
 		$user = $this->userManager->get($uid);
 
 		if ($user && $this->guestManager->isGuest($user)) {
-			Filesystem::addStorageWrapper('guests.readonly', function ($mountPoint, IStorage $storage) use ($uid) {
+			Filesystem::addStorageWrapper('guests.readonly', function ($mountPoint, IStorage $storage) use ($uid): ReadOnlyJail|IStorage {
 				if ($mountPoint === "/$uid/") {
 					return new ReadOnlyJail([
 						'storage' => $storage,
@@ -121,7 +116,7 @@ class Hooks {
 			return;
 		}
 
-		if (strtolower($email) === strtolower($user->getUID())) {
+		if (strtolower($email) === strtolower((string)$user->getUID())) {
 			// This is the guest user, logging in for the very first time
 			return;
 		}

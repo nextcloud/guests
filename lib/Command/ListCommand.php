@@ -10,18 +10,19 @@ namespace OCA\Guests\Command;
 
 use OC\Core\Command\Base;
 use OCA\Guests\GuestManager;
+use Override;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class ListCommand extends Base {
-	private $guestManager;
-
-	public function __construct(GuestManager $guestManager) {
+	public function __construct(
+		private readonly GuestManager $guestManager,
+	) {
 		parent::__construct();
-		$this->guestManager = $guestManager;
 	}
 
+	#[Override]
 	protected function configure(): void {
 		$this
 			->setName('guests:list')
@@ -29,6 +30,7 @@ class ListCommand extends Base {
 		parent::configure();
 	}
 
+	#[Override]
 	protected function execute(InputInterface $input, OutputInterface $output): int {
 		$guests = $this->guestManager->getGuestsInfo();
 
@@ -39,7 +41,7 @@ class ListCommand extends Base {
 			} else {
 				$output->writeln('<info>No guests created</info>');
 			}
-			return 0;
+			return self::SUCCESS;
 		}
 
 		if ($outputType === self::OUTPUT_FORMAT_JSON || $outputType === self::OUTPUT_FORMAT_JSON_PRETTY) {
@@ -50,6 +52,6 @@ class ListCommand extends Base {
 			$table->setRows($guests);
 			$table->render();
 		}
-		return 0;
+		return self::SUCCESS;
 	}
 }

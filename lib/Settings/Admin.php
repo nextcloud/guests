@@ -8,18 +8,11 @@
 
 namespace OCA\Guests\Settings;
 
-use OCA\Guests\AppWhitelist;
 use OCP\AppFramework\Http\TemplateResponse;
+use OCP\Settings\ISettings;
 use OCP\Util;
 
-class Admin implements \OCP\Settings\ISettings {
-	/** @var AppWhitelist */
-	private $appWhitelist;
-
-	public function __construct(AppWhitelist $appWhitelist) {
-		$this->appWhitelist = $appWhitelist;
-	}
-
+class Admin implements ISettings {
 	/**
 	 * {@inheritdoc}
 	 */

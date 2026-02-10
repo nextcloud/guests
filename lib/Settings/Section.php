@@ -17,10 +17,6 @@ class Section implements IIconSection {
 	/** @var IURLGenerator */
 	private $url;
 
-	/**
-	 * @param IURLGenerator $url
-	 * @param IL10N $l
-	 */
 	public function __construct(IURLGenerator $url, IL10N $l) {
 		$this->url = $url;
 		$this->l = $l;

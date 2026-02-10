@@ -42,8 +42,7 @@ class GuestManagerTest extends TestCase {
 	/** @var IEventDispatcher|MockObject */
 	private $eventDispatcher;
 
-	/** @var GuestManager */
-	private $guestManager;
+	private ?GuestManager $guestManager = null;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -54,14 +53,10 @@ class GuestManagerTest extends TestCase {
 		$this->config = $this->createMock(IConfig::class);
 		$this->random = $this->createMock(ISecureRandom::class);
 		$this->random->method('generate')
-			->willReturnCallback(function ($count) {
-				return str_repeat('4', $count);
-			});
+			->willReturnCallback(fn ($count) => str_repeat('4', $count));
 		$this->crypto = $this->createMock(ICrypto::class);
 		$this->crypto->method('encrypt')
-			->willReturnCallback(function ($plain) {
-				return $plain;
-			});
+			->willReturnCallback(fn ($plain) => $plain);
 		$this->shareManager = $this->createMock(IManager::class);
 		$this->conneciton = $this->createMock(IDBConnection::class);
 		$this->eventDispatcher = $this->createMock(IEventDispatcher::class);
@@ -79,21 +74,17 @@ class GuestManagerTest extends TestCase {
 		);
 	}
 
-	public function testIsGuestString() {
+	public function testIsGuestString(): void {
 		$this->userBackend->method('userExists')
-			->willReturnCallback(function ($uid) {
-				return $uid === 'test_guest';
-			});
+			->willReturnCallback(fn ($uid): bool => $uid === 'test_guest');
 
 		$this->assertTrue($this->guestManager->isGuest('test_guest'));
 		$this->assertFalse($this->guestManager->isGuest('foo'));
 	}
 
-	public function testIsGuestObject() {
+	public function testIsGuestObject(): void {
 		$this->userBackend->method('userExists')
-			->willReturnCallback(function ($uid) {
-				return $uid === 'test_guest';
-			});
+			->willReturnCallback(fn ($uid): bool => $uid === 'test_guest');
 
 		$user = $this->createMock(IUser::class);
 		$user->method('getUID')
@@ -107,11 +98,9 @@ class GuestManagerTest extends TestCase {
 		$this->assertFalse($this->guestManager->isGuest($user));
 	}
 
-	public function testIsGuestNull() {
+	public function testIsGuestNull(): void {
 		$this->userBackend->method('userExists')
-			->willReturnCallback(function ($uid) {
-				return $uid === 'test_guest';
-			});
+			->willReturnCallback(fn ($uid): bool => $uid === 'test_guest');
 
 		$user = $this->createMock(IUser::class);
 		$user->method('getUID')
@@ -135,10 +124,10 @@ class GuestManagerTest extends TestCase {
 		$this->assertFalse($this->guestManager->isGuest($user));
 	}
 
-	public function testCreateGuest() {
+	public function testCreateGuest(): void {
 		$setValues = [];
 		$this->config->method('setUserValue')
-			->willReturnCallback(function ($user, $app, $key, $value) use (&$setValues) {
+			->willReturnCallback(function ($user, $app, $key, $value) use (&$setValues): void {
 				if (!isset($setValues[$app])) {
 					$setValues[$app] = [];
 				}
@@ -160,11 +149,11 @@ class GuestManagerTest extends TestCase {
 			->method('setDisplayName')
 			->with('Example Guest');
 		$guestUser->method('setSystemEMailAddress')
-			->willReturnCallback(function ($email) {
+			->willReturnCallback(function ($email): void {
 				$this->config->setUserValue('guest@example.com', 'settings', 'email', $email);
 			});
 		$guestUser->method('setQuota')
-			->willReturnCallback(function ($quota) {
+			->willReturnCallback(function ($quota): void {
 				$this->config->setUserValue('guest@example.com', 'files', 'quota', $quota);
 			});
 

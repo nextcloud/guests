@@ -18,6 +18,7 @@ use OCA\Guests\Service\InviteService;
 use OCA\Guests\TransferService;
 use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\AppFramework\Http;
+use OCP\AppFramework\Http\Attribute\NoAdminRequired;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\OCSController;
 use OCP\Group\ISubAdmin;
@@ -33,30 +34,22 @@ class UsersController extends OCSController {
 	public function __construct(
 		string $appName,
 		IRequest $request,
-		private IUserManager $userManager,
-		private IL10N $l10n,
-		private Config $config,
-		private IMailer $mailer,
-		private GuestManager $guestManager,
-		private IUserSession $userSession,
-		private ISubAdmin $subAdmin,
-		private IGroupManager $groupManager,
-		private TransferService $transferService,
-		private TransferMapper $transferMapper,
-		private InviteService $inviteService,
+		private readonly IUserManager $userManager,
+		private readonly IL10N $l10n,
+		private readonly Config $config,
+		private readonly IMailer $mailer,
+		private readonly GuestManager $guestManager,
+		private readonly IUserSession $userSession,
+		private readonly ISubAdmin $subAdmin,
+		private readonly IGroupManager $groupManager,
+		private readonly TransferService $transferService,
+		private readonly TransferMapper $transferMapper,
+		private readonly InviteService $inviteService,
 	) {
 		parent::__construct($appName, $request);
 	}
 
-	/**
-	 * @NoAdminRequired
-	 *
-	 * @param string $email
-	 * @param string $displayName
-	 * @param string $language
-	 * @param array $groups
-	 * @return DataResponse
-	 */
+	#[NoAdminRequired]
 	public function create(string $email, string $displayName, string $language, array $groups, bool $sendInvite = true): DataResponse {
 		$errorMessages = [];
 		$currentUser = $this->userSession->getUser();
@@ -214,13 +207,13 @@ class UsersController extends OCSController {
 
 		try {
 			$transfer = $this->transferMapper->getBySource($sourceUser->getUID());
-		} catch (DoesNotExistException $e) {
+		} catch (DoesNotExistException) {
 			// Allow as this just means there is no pending transfer
 		}
 
 		try {
 			$transfer = $this->transferMapper->getByTarget($targetUserId);
-		} catch (DoesNotExistException $e) {
+		} catch (DoesNotExistException) {
 			// Allow as this just means there is no pending transfer
 		}
 

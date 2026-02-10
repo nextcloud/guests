@@ -23,9 +23,9 @@ use Psr\Log\LoggerInterface;
 class ShareAutoAcceptListener implements IEventListener {
 
 	public function __construct(
-		private IUserManager $userManager,
-		private ShareManager $shareManager,
-		private LoggerInterface $logger,
+		private readonly IUserManager $userManager,
+		private readonly ShareManager $shareManager,
+		private readonly LoggerInterface $logger,
 	) {
 	}
 

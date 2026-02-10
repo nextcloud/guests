@@ -19,9 +19,9 @@ use OCP\Notification\UnknownNotificationException;
 
 class Notifier implements INotifier {
 	public function __construct(
-		private IFactory $factory,
-		private IURLGenerator $url,
-		private IUserManager $userManager,
+		private readonly IFactory $factory,
+		private readonly IURLGenerator $url,
+		private readonly IUserManager $userManager,
 	) {
 	}
 

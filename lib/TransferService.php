@@ -26,12 +26,12 @@ use Psr\Log\LoggerInterface;
 
 class TransferService {
 	public function __construct(
-		private ContainerInterface $container,
-		private IShareManager $shareManager,
-		private INotificationManager $notificationManager,
-		private IJobList $jobList,
-		private TransferMapper $transferMapper,
-		private LoggerInterface $logger,
+		private readonly ContainerInterface $container,
+		private readonly IShareManager $shareManager,
+		private readonly INotificationManager $notificationManager,
+		private readonly IJobList $jobList,
+		private readonly TransferMapper $transferMapper,
+		private readonly LoggerInterface $logger,
 	) {
 	}
 

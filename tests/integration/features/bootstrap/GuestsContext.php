@@ -5,10 +5,11 @@
  * SPDX-FileCopyrightText: 2017 ownCloud GmbH
  * SPDX-License-Identifier: AGPL-3.0-only AND (AGPL-3.0-or-later OR AGPL-3.0-only)
  */
-
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\BadResponseException;
+use GuzzleHttp\Exception\ClientException;
 
 require __DIR__ . '/../../vendor/autoload.php';
 
@@ -19,22 +20,18 @@ require __DIR__ . '/../../vendor/autoload.php';
 class GuestsContext implements Context, SnippetAcceptingContext {
 	use Webdav;
 
-	/** @var array */
-	private $createdGuests = [];
+	private array $createdGuests = [];
 
-	public function prepareUserNameAsFrontend($guestDisplayName, $guestEmail) {
-		$emailDomain = preg_split('/\./', preg_split('/@/', $guestEmail, null, null)[1], null, null);
-		$userName = $guestDisplayName . '_' . $emailDomain[0] . '_' . $emailDomain[1];
-		return $userName;
+	public function prepareUserNameAsFrontend(string $guestDisplayName, $guestEmail) {
+		$emailDomain = preg_split('/\./', (string)preg_split('/@/', (string)$guestEmail, 0, null)[1], 0, null);
+		return $guestDisplayName . '_' . $emailDomain[0] . '_' . $emailDomain[1];
 	}
 
 	/**
 	 * @Given user :user creates guest user :guestDisplayName with email :guestEmail
 	 * @param string $user
-	 * @param string $guestDisplayName
-	 * @param string $guestEmail
 	 */
-	public function userCreatedAGuestUser($user, $guestDisplayName, $guestEmail) {
+	public function userCreatedAGuestUser($user, string $guestDisplayName, string $guestEmail): void {
 		$fullUrl = substr($this->baseUrl, 0, -4) . '/index.php/apps/guests/users';
 		//Replicating frontend behaviour
 		$userName = $this->prepareUserNameAsFrontend($guestDisplayName, $guestEmail);
@@ -51,7 +48,7 @@ class GuestsContext implements Context, SnippetAcceptingContext {
 
 		try {
 			$this->response = $client->send($request);
-		} catch (\GuzzleHttp\Exception\BadResponseException $e) {
+		} catch (BadResponseException $e) {
 			// 4xx and 5xx responses cause an exception
 			$this->response = $e->getResponse();
 		}
@@ -60,25 +57,23 @@ class GuestsContext implements Context, SnippetAcceptingContext {
 
 	/**
 	 * @Then check that user :user is a guest
-	 * @param string $guestDisplayName
 	 */
-	public function checkGuestUser($guestDisplayName) {
+	public function checkGuestUser(string $guestDisplayName): void {
 		$userName = $this->prepareUserNameAsFrontend($guestDisplayName, $this->createdGuests[$guestDisplayName]);
 		$this->checkThatUserBelongsToGroup($userName, 'guest_app');
 	}
 
 	/**
 	 * @Then guest user :user is deleted
-	 * @param string $guestDisplayName
 	 */
-	public function deleteGuestUser($guestDisplayName) {
+	public function deleteGuestUser(string $guestDisplayName): void {
 		$userName = $this->prepareUserNameAsFrontend($guestDisplayName, $this->createdGuests[$guestDisplayName]);
 		$this->deleteUser($userName);
 	}
 
 	/*Processes the body of an email sent and gets the reset password url
 	  It depends on the content of the email*/
-	public function extractResetPasswordUrl($emailBody) {
+	public function extractResetPasswordUrl(string $emailBody): string {
 		$knownString = 'Activate your guest account at ownCloud by setting a password: ';
 		$nextString = 'Then view it';
 		$posKnownString = strpos($emailBody, $knownString);
@@ -88,24 +83,21 @@ class GuestsContext implements Context, SnippetAcceptingContext {
 			$posNextString - ($posKnownString + strlen($knownString)));
 		$urlResetPasswd = preg_replace('/[\s]+/mu', ' ', $urlResetPasswd);
 		$urlResetPasswd = str_replace('=', '', $urlResetPasswd);
-		$urlResetPasswd = str_replace(' ', '', $urlResetPasswd);
-		return $urlResetPasswd;
+		return str_replace(' ', '', $urlResetPasswd);
 	}
 
 	/*Function to prepare the set password url from the reset password form one*/
-	public function getSetPasswordUrl($urlResetPasswd) {
+	public function getSetPasswordUrl(string $urlResetPasswd): string {
 		$resetUrlParts = explode('/', $urlResetPasswd);
 		array_splice($resetUrlParts, 5, 2, 'set');
-		$urlSetPasswd = implode('/', $resetUrlParts);
-		return $urlSetPasswd;
+		return implode('/', $resetUrlParts);
 	}
 
 	/**
 	 * @Given guest user :user sets its password
-	 * @param string $guestDisplayName
 	 */
-	public function guestUserSetsItsPassword($guestDisplayName) {
-		$userName = $this->prepareUserNameAsFrontend($guestDisplayName, $this->createdGuests[$guestDisplayName]);
+	public function guestUserSetsItsPassword(string $guestDisplayName): void {
+		$this->prepareUserNameAsFrontend($guestDisplayName, $this->createdGuests[$guestDisplayName]);
 		$emails = $this->getEmails();
 		$lastEmailBody = $emails->items[0]->Content->Body;
 		$resetPwUrl = $this->extractResetPasswordUrl($lastEmailBody);
@@ -118,7 +110,7 @@ class GuestsContext implements Context, SnippetAcceptingContext {
 		];
 		try {
 			$this->response = $client->send($client->createRequest('POST', $urlSetPasswd, $options));
-		} catch (\GuzzleHttp\Exception\ClientException $ex) {
+		} catch (ClientException $ex) {
 			$this->response = $ex->getResponse();
 		}
 	}
@@ -127,7 +119,7 @@ class GuestsContext implements Context, SnippetAcceptingContext {
 	 * @BeforeScenario
 	 * @AfterScenario
 	 */
-	public function cleanupGuests() {
+	public function cleanupGuests(): void {
 		foreach ($this->createdGuests as $displayName => $email) {
 			$this->deleteGuestUser($displayName);
 		}

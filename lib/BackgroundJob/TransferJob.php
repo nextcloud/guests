@@ -25,13 +25,13 @@ use Psr\Log\LoggerInterface;
 class TransferJob extends QueuedJob {
 	public function __construct(
 		ITimeFactory $time,
-		private IUserManager $userManager,
-		private ISecureRandom $secureRandom,
-		private NotificationManager $notificationManager,
-		private IURLGenerator $urlGenerator,
-		private TransferService $transferService,
-		private TransferMapper $transferMapper,
-		private LoggerInterface $logger,
+		private readonly IUserManager $userManager,
+		private readonly ISecureRandom $secureRandom,
+		private readonly NotificationManager $notificationManager,
+		private readonly IURLGenerator $urlGenerator,
+		private readonly TransferService $transferService,
+		private readonly TransferMapper $transferMapper,
+		private readonly LoggerInterface $logger,
 	) {
 		parent::__construct($time);
 	}

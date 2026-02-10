@@ -16,11 +16,11 @@ use OCP\IUserSession;
 
 class Config {
 	public function __construct(
-		private IConfig $config,
-		private IAppConfig $appConfig,
-		private ISubAdmin $subAdmin,
-		private IUserSession $userSession,
-		private IGroupManager $groupManager,
+		private readonly IConfig $config,
+		private readonly IAppConfig $appConfig,
+		private readonly ISubAdmin $subAdmin,
+		private readonly IUserSession $userSession,
+		private readonly IGroupManager $groupManager,
 	) {
 	}
 

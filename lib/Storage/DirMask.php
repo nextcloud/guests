@@ -22,26 +22,23 @@ class DirMask extends PermissionsMask {
 	/**
 	 * @var string the dir that should be masked
 	 */
-	private $path;
+	private readonly string $path;
 	/**
 	 * @var int remember length
 	 */
-	private $pathLength;
-
-	private $mask;
+	private readonly int $pathLength;
 
 	/**
-	 * @param array $arguments ['storage' => $storage, 'mask' => $mask, 'path' => $path]
+	 * @param array $parameters ['storage' => $storage, 'mask' => $mask, 'path' => $path]
 	 *
 	 * $storage: The storage the permissions mask should be applied on
 	 * $mask: The permission bits that should be kept, a combination of the \OCP\Constant::PERMISSION_ constants
 	 * $path: The path relative to the storage root that should be masked
 	 */
-	public function __construct($arguments) {
-		parent::__construct($arguments);
-		$this->path = rtrim($arguments['path'], '/');
-		$this->pathLength = strlen($arguments['path']);
-		$this->mask = $arguments['mask'];
+	public function __construct($parameters) {
+		parent::__construct($parameters);
+		$this->path = rtrim((string)$parameters['path'], '/');
+		$this->pathLength = strlen((string)$parameters['path']);
 	}
 
 	protected function checkPath(string $path): bool {
@@ -97,7 +94,7 @@ class DirMask extends PermissionsMask {
 				return $this->storage->rename($source, $target);
 			}
 		} else {
-			$parent = dirname($target);
+			$parent = dirname((string)$target);
 			if ($parent === '.') {
 				$parent = '';
 			}
@@ -117,7 +114,7 @@ class DirMask extends PermissionsMask {
 				return $this->storage->copy($source, $target);
 			}
 		} else {
-			$parent = dirname($target);
+			$parent = dirname((string)$target);
 			if ($parent === '.') {
 				$parent = '';
 			}
@@ -182,8 +179,6 @@ class DirMask extends PermissionsMask {
 			$storage = $this;
 		}
 		$sourceCache = $this->storage->getCache($path, $storage);
-		return new DirMaskCache($sourceCache, $this->mask, function (string $path) {
-			return $this->checkPath($path);
-		});
+		return new DirMaskCache($sourceCache, $this->mask, $this->checkPath(...));
 	}
 }
