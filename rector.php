@@ -23,6 +23,7 @@ return RectorConfig::configure()
 	)
 	->withPreparedSets(
 		deadCode: true,
+		codeQuality: true,
 		typeDeclarations: true,
 	)->withPhpSets(
 		php81: true,

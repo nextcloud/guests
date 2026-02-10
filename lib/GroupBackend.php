@@ -34,7 +34,7 @@ class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetails
 	}
 
 	private function getMembers(): array {
-		if (empty($this->guestMembers)) {
+		if ($this->guestMembers === []) {
 			$this->guestMembers = $this->guestManager->listGuests();
 		}
 

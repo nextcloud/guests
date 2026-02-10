@@ -75,7 +75,7 @@ class UserBackend extends ABackend implements
 			// Clear cache
 			unset($this->cache[$uid]);
 
-			return $result ? true : false;
+			return (bool)$result;
 		}
 
 		return false;
@@ -99,7 +99,7 @@ class UserBackend extends ABackend implements
 			unset($this->cache[$uid]);
 		}
 
-		return $result ? true : false;
+		return (bool)$result;
 	}
 
 	/**
@@ -117,7 +117,7 @@ class UserBackend extends ABackend implements
 				->where($query->expr()->eq('uid_lower', $query->createNamedParameter(mb_strtolower($uid))));
 			$result = $query->executeStatement();
 
-			return $result ? true : false;
+			return (bool)$result;
 		}
 
 		return false;
@@ -255,7 +255,7 @@ class UserBackend extends ABackend implements
 			$storedHash = $row['password'];
 			$newHash = '';
 			if ($this->hasher->verify($password, $storedHash, $newHash)) {
-				if (!empty($newHash)) {
+				if ($newHash !== '') {
 					$this->setPassword($loginName, $password);
 				}
 				return (string)$row['uid'];

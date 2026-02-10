@@ -87,10 +87,10 @@ class Config {
 		// Check if we have a group restriction
 		// and if the user belong to that group
 		$groupRestriction = $this->getCreateRestrictedToGroup();
-		if (!empty($groupRestriction)) {
+		if ($groupRestriction !== []) {
 			$userGroups = $this->groupManager->getUserGroupIds($user);
 			$groupRestriction = array_intersect($userGroups, $groupRestriction);
-			if (empty($groupRestriction)) {
+			if ($groupRestriction === []) {
 				return false;
 			}
 		}

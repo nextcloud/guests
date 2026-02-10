@@ -66,15 +66,15 @@ class GuestManager {
 		);
 
 		$user->setSystemEMailAddress($email);
-		if ($createdBy) {
+		if ($createdBy instanceof IUser) {
 			$this->config->setUserValue($userId, 'guests', 'created_by', $createdBy->getUID());
 		}
 
-		if ($displayName) {
+		if ($displayName !== '') {
 			$user->setDisplayName($displayName);
 		}
 
-		if ($language) {
+		if ($language !== '') {
 			$this->config->setUserValue($userId, 'core', 'lang', $language);
 		}
 

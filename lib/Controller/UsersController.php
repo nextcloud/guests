@@ -92,7 +92,7 @@ class UsersController extends OCSController {
 					Http::STATUS_BAD_REQUEST
 				);
 			}
-			if (!($this->subAdmin->isSubAdminOfGroup($currentUser, $group) || $this->groupManager->isAdmin($currentUser->getUID()))) {
+			if (!$this->subAdmin->isSubAdminOfGroup($currentUser, $group) && !$this->groupManager->isAdmin($currentUser->getUID())) {
 				return new DataResponse(
 					[
 						'errorMessages' => ["You are not allowed to add users to group $groupId"],
@@ -103,7 +103,7 @@ class UsersController extends OCSController {
 			$groupObjects[] = $group;
 		}
 
-		if (empty($email) || !$this->mailer->validateMailAddress($email)) {
+		if ($email === '' || $email === '0' || !$this->mailer->validateMailAddress($email)) {
 			$errorMessages['email'] = $this->l10n->t(
 				'Invalid mail address'
 			);
@@ -122,7 +122,7 @@ class UsersController extends OCSController {
 			);
 		}
 
-		if (!empty($errorMessages)) {
+		if ($errorMessages !== []) {
 			return new DataResponse(
 				[
 					'errorMessages' => $errorMessages,

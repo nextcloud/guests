@@ -46,7 +46,7 @@ class InviteService {
 				$share
 			);
 
-			if ($share) {
+			if ($share instanceof IShare) {
 				$share->setMailSend(false);
 			}
 		} catch (DoesNotExistException) {
