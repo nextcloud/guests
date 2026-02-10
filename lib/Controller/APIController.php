@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 /**
  * SPDX-FileCopyrightText: 2020 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
@@ -44,7 +45,7 @@ class APIController extends OCSController {
 			$l = $this->l10nFactory->get('lib', $lang);
 			// TRANSLATORS this is the language name for the language switcher in the personal settings and should be the localized version
 			$potentialName = $l->t('__language_name__');
-			if ($l->getLanguageCode() === $lang && $potentialName[0] !== '_') {//first check if the language name is in the translation file
+			if ($l->getLanguageCode() === $lang && $potentialName[0] !== '_') { // first check if the language name is in the translation file
 				$ln = [
 					'code' => $lang,
 					'name' => $potentialName,
@@ -54,14 +55,14 @@ class APIController extends OCSController {
 					'code' => $lang,
 					'name' => 'English (US)',
 				];
-			} else {//fallback to language code
+			} else { // fallback to language code
 				$ln = [
 					'code' => $lang,
 					'name' => $lang,
 				];
 			}
 
-			// put appropriate languages into appropriate arrays, to print them sorted
+			// Put appropriate languages into appropriate arrays, to print them sorted
 			// common languages -> divider -> other languages
 			if (in_array($lang, Factory::COMMON_LANGUAGE_CODES)) {
 				$commonLanguages[array_search($lang, Factory::COMMON_LANGUAGE_CODES)] = $ln;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * SPDX-FileCopyrightText: 2017 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
@@ -10,42 +12,31 @@ namespace OCA\Guests\Settings;
 use OCP\IL10N;
 use OCP\IURLGenerator;
 use OCP\Settings\IIconSection;
+use Override;
 
 class Section implements IIconSection {
-	/** @var IL10N */
-	private $l;
-	/** @var IURLGenerator */
-	private $url;
-
-	public function __construct(IURLGenerator $url, IL10N $l) {
-		$this->url = $url;
-		$this->l = $l;
+	public function __construct(
+		private readonly IURLGenerator $url,
+		private readonly IL10N $l,
+	) {
 	}
 
-	/**
-	 * {@inheritdoc}
-	 */
+	#[Override]
 	public function getID(): string {
 		return 'guests';
 	}
 
-	/**
-	 * {@inheritdoc}
-	 */
+	#[Override]
 	public function getName(): string {
 		return $this->l->t('Guests');
 	}
 
-	/**
-	 * {@inheritdoc}
-	 */
+	#[Override]
 	public function getPriority(): int {
 		return 30;
 	}
 
-	/**
-	 * {@inheritdoc}
-	 */
+	#[Override]
 	public function getIcon(): string {
 		return $this->url->imagePath('guests', 'app-dark.svg');
 	}

@@ -19,7 +19,7 @@ use OCP\Util;
  */
 class BeforeUserManagementRenderedListener implements IEventListener {
 	public function handle(Event $event): void {
-		if (!($event instanceof BeforeTemplateRenderedEvent)) {
+		if (!$event instanceof BeforeTemplateRenderedEvent) {
 			return;
 		}
 

@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 /**
  * SPDX-FileCopyrightText: 2019 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
@@ -30,6 +31,7 @@ class DirMaskCache extends CachePermissionsMask {
 		if ($checkPath($entry['path'])) {
 			return parent::formatCacheEntry($entry);
 		}
+
 		return $entry;
 	}
 }

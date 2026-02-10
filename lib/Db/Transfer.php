@@ -30,10 +30,13 @@ class Transfer extends Entity {
 
 	/** @var string */
 	protected $author;
+
 	/** @var string */
 	protected $source;
+
 	/** @var string */
 	protected $target;
+
 	/** @var string */
 	protected $status;
 

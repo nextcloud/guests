@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * SPDX-FileCopyrightText: 2017-2024 Nextcloud GmbH and Nextcloud contributors
  * SPDX-FileCopyrightText: 2017 ownCloud GmbH
@@ -11,26 +13,21 @@ namespace OCA\Guests\Settings;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\Settings\ISettings;
 use OCP\Util;
+use Override;
 
 class Admin implements ISettings {
-	/**
-	 * {@inheritdoc}
-	 */
+	#[Override]
 	public function getForm(): TemplateResponse {
 		Util::addScript('guests', 'guests-settings');
 		return new TemplateResponse('guests', 'settings/admin');
 	}
 
-	/**
-	 * {@inheritdoc}
-	 */
+	#[Override]
 	public function getSection(): string {
 		return 'guests';
 	}
 
-	/**
-	 * {@inheritdoc}
-	 */
+	#[Override]
 	public function getPriority(): int {
 		return 0;
 	}
