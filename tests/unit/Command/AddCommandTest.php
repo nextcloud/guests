@@ -71,7 +71,7 @@ class AddCommandTest extends TestCase {
 	 * @dataProvider createGuestDataProvider
 	 */
 	public function testCreateGuest($commandArgs): void {
-		$createdByUser = $this->createMock(IUser::class);
+		$createdByUser = $this->createStub(IUser::class);
 
 		$password = 'guest-password';
 		if (isset($commandArgs['--generate-password'])) {

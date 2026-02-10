@@ -152,7 +152,7 @@ class ConfigTest extends TestCase {
 	}
 
 	public function testCanCreateGuestsWithGroupRestrictionNoMatch(): void {
-		$user = $this->createMock(IUser::class);
+		$user = $this->createStub(IUser::class);
 		$this->userSession->method('getUser')
 			->willReturn($user);
 
@@ -168,7 +168,7 @@ class ConfigTest extends TestCase {
 	}
 
 	public function testCanCreateGuestsWithGroupRestrictionWithMatch(): void {
-		$user = $this->createMock(IUser::class);
+		$user = $this->createStub(IUser::class);
 		$this->userSession->method('getUser')
 			->willReturn($user);
 
@@ -188,7 +188,7 @@ class ConfigTest extends TestCase {
 	}
 
 	public function testCanCreateGuestsWithSharingRestrictedButIsSubAdmin(): void {
-		$user = $this->createMock(IUser::class);
+		$user = $this->createStub(IUser::class);
 		$this->userSession->method('getUser')
 			->willReturn($user);
 
@@ -208,7 +208,7 @@ class ConfigTest extends TestCase {
 	}
 
 	public function testCanCreateGuestsWithSharingRestrictedNotSubAdmin(): void {
-		$user = $this->createMock(IUser::class);
+		$user = $this->createStub(IUser::class);
 		$this->userSession->method('getUser')
 			->willReturn($user);
 
