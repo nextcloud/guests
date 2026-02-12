@@ -36,9 +36,9 @@ class OwncloudGuestsMigration implements IRepairStep {
 		if (!$this->shouldRun()) {
 			$this->logger->info('Skipping owncloud guests migration, no owncloud guests found');
 			return;
-		} else {
-			$this->runStep($output);
 		}
+
+		$this->runStep($output);
 	}
 
 	protected function shouldRun(): bool {
@@ -48,7 +48,7 @@ class OwncloudGuestsMigration implements IRepairStep {
 			return false;
 		}
 
-		$this->logger->info("Found $count owncloud guests to migrate");
+		$this->logger->info('Found ' . $count . ' owncloud guests to migrate');
 
 		return true;
 	}
@@ -79,14 +79,15 @@ class OwncloudGuestsMigration implements IRepairStep {
 					if ($guestUser) {
 						$guestUser->setQuota('0 B');
 					} else {
-						$output->warning("Could not set quota for guest $userID");
+						$output->warning('Could not set quota for guest ' . $userID);
 					}
 				} else {
-					$output->warning("Could not get hashed password for guest $userID, skipping");
+					$output->warning('Could not get hashed password for guest ' . $userID . ', skipping');
 				}
 			} else {
-				$output->warning("Failed to get user data for guest $userID, skipping");
+				$output->warning('Failed to get user data for guest ' . $userID . ', skipping');
 			}
+
 			$output->advance();
 		}
 	}

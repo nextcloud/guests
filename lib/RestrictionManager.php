@@ -70,22 +70,17 @@ class RestrictionManager {
 	}
 
 	public function lateSetupRestrictions(): void {
-		if ($this->guestManager->isGuest($this->userSession->getUser())) {
-			if ($this->config->hideOtherUsers()) {
-				$this->server->getContactsManager()->clear();
-
-				$this->userBackend->setAllowListing(false);
-
-				/** @var AppConfigOverwrite $appConfig */
-				$appConfig = $this->server->get(AppConfigOverwrite::class);
-				$appConfig->setOverwrite([
-					'core' => [
-						'shareapi_only_share_with_group_members' => 'yes'
-					]
-				]);
-
-				$this->server->registerService(AppConfig::class, fn () => $appConfig);
-			}
+		if ($this->guestManager->isGuest($this->userSession->getUser()) && $this->config->hideOtherUsers()) {
+			$this->server->getContactsManager()->clear();
+			$this->userBackend->setAllowListing(false);
+			/** @var AppConfigOverwrite $appConfig */
+			$appConfig = $this->server->get(AppConfigOverwrite::class);
+			$appConfig->setOverwrite([
+				'core' => [
+					'shareapi_only_share_with_group_members' => 'yes'
+				]
+			]);
+			$this->server->registerService(AppConfig::class, fn () => $appConfig);
 		}
 	}
 }

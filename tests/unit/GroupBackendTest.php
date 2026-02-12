@@ -19,8 +19,10 @@ use Test\TestCase;
 class GroupBackendTest extends TestCase {
 	/** @var GuestManager|MockObject */
 	private $guestManager;
+
 	/** @var Config|MockObject */
 	private $config;
+
 	/** @var IUserSession|MockObject */
 	private $userSession;
 
@@ -49,6 +51,9 @@ class GroupBackendTest extends TestCase {
 			->willReturn($user);
 	}
 
+	/**
+	 * @param string[] $uids
+	 */
 	private function setGuests(array $uids): void {
 		$this->guestManager->method('listGuests')
 			->willReturn($uids);

@@ -25,20 +25,28 @@ use Test\TestCase;
 class GuestManagerTest extends TestCase {
 	/** @var UserBackend|MockObject */
 	private $userBackend;
+
 	/** @var IUserSession|MockObject */
 	private $userSession;
+
 	/** @var IUserManager|MockObject */
 	private $userManager;
+
 	/** @var IConfig|MockObject */
 	private $config;
+
 	/** @var ISecureRandom|MockObject */
 	private $random;
+
 	/** @var ICrypto|MockObject */
 	private $crypto;
+
 	/** @var IManager|MockObject */
 	private $shareManager;
+
 	/** @var IDBConnection|MockObject */
 	private $conneciton;
+
 	/** @var IEventDispatcher|MockObject */
 	private $eventDispatcher;
 
@@ -131,6 +139,7 @@ class GuestManagerTest extends TestCase {
 				if (!isset($setValues[$app])) {
 					$setValues[$app] = [];
 				}
+
 				$setValues[$app][$key] = $value;
 			});
 

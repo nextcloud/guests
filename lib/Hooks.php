@@ -17,7 +17,6 @@ use OCA\Guests\Storage\ReadOnlyJail;
 use OCP\Constants;
 use OCP\Files\Storage\IStorage;
 use OCP\IConfig;
-use OCP\IUser;
 use OCP\IUserManager;
 use OCP\IUserSession;
 use OCP\Share\Events\ShareCreatedEvent;
@@ -45,7 +44,7 @@ class Hooks {
 
 		if (!$isGuest) {
 			$this->logger->debug(
-				"ignoring user '$shareWith', not a guest",
+				"ignoring user '" . $shareWith . "', not a guest",
 				['app' => Application::APP_ID]
 			);
 			return;
@@ -69,7 +68,7 @@ class Hooks {
 			);
 		}
 
-		$this->logger->debug("checking if '$shareWith' has a password",
+		$this->logger->debug("checking if '" . $shareWith . "' has a password",
 			['app' => Application::APP_ID]);
 
 		$uid = $user->getUID();
@@ -77,19 +76,23 @@ class Hooks {
 		$this->inviteService->sendInvite($uid, $shareWith, $share);
 	}
 
+	/**
+	 * @param array<string, mixed> $params
+	 */
 	public function setupReadonlyFilesystem(array $params): void {
 		$uid = $params['user'];
 		$user = $this->userManager->get($uid);
 
 		if ($user && $this->guestManager->isGuest($user)) {
 			Filesystem::addStorageWrapper('guests.readonly', function ($mountPoint, IStorage $storage) use ($uid): ReadOnlyJail|IStorage {
-				if ($mountPoint === "/$uid/") {
+				if ($mountPoint === sprintf('/%s/', $uid)) {
 					return new ReadOnlyJail([
 						'storage' => $storage,
 						'mask' => Constants::PERMISSION_READ,
 						'path' => 'files'
 					]);
 				}
+
 				return $storage;
 			});
 		}
@@ -100,7 +103,6 @@ class Hooks {
 			return;
 		}
 
-		/** @var IUser $user */
 		$user = $event->getUser();
 		$this->logger->debug('User ' . $user->getUID() . ' logged in for the very first time. Checking guests data import.');
 
@@ -115,14 +117,14 @@ class Hooks {
 			return;
 		}
 
-		if (strtolower($email) === strtolower((string)$user->getUID())) {
+		if (strtolower($email) === strtolower($user->getUID())) {
 			// This is the guest user, logging in for the very first time
 			return;
 		}
 
 		$guestUser = $this->userManager->get($email);
 		if ($guestUser === null) {
-			$this->logger->warning("Guest user $email does not exist (anymore)");
+			$this->logger->warning('Guest user ' . $email . ' does not exist (anymore)');
 			return;
 		}
 

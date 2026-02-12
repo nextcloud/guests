@@ -36,6 +36,7 @@ class BeforeTemplateRenderedListener implements IEventListener {
 		if (!$this->config->canCreateGuests()) {
 			return;
 		}
+
 		Util::addScript('guests', 'guests-init');
 		Util::addScript('guests', 'guests-contactsmenu');
 

@@ -21,11 +21,15 @@ use Test\TestCase;
 class AddCommandTest extends TestCase {
 	/** @var IUserManager|MockObject */
 	private $userManager;
+
 	/** @var GuestManager|MockObject */
 	private $guestManager;
+
 	/** @var IMailer|MockObject */
 	private $mailer;
+
 	private ?AddCommand $command = null;
+
 	private ?CommandTester $commandTester = null;
 
 	protected function setUp(): void {
@@ -41,9 +45,13 @@ class AddCommandTest extends TestCase {
 			$this->guestManager
 		);
 		$this->command->setApplication(new Application());
+
 		$this->commandTester = new CommandTester($this->command);
 	}
 
+	/**
+	 * @return array<int, array<int, array<string, string>>|array<int, array<string, bool|string>>>
+	 */
 	public function createGuestDataProvider() {
 		return [
 			[
@@ -68,7 +76,7 @@ class AddCommandTest extends TestCase {
 	 * @dataProvider createGuestDataProvider
 	 */
 	public function testCreateGuest($commandArgs): void {
-		$createdByUser = $this->createMock(IUser::class);
+		$createdByUser = $this->createStub(IUser::class);
 
 		$password = 'guest-password';
 		if (isset($commandArgs['--generate-password'])) {
@@ -107,6 +115,7 @@ class AddCommandTest extends TestCase {
 
 		$this->commandTester->setInputs(['guest-password', 'guest-password']);
 		$this->commandTester->execute($commandArgs);
+
 		$output = $this->commandTester->getDisplay();
 		$this->assertStringContainsString('The guest account user "guestid" was created successfully', $output);
 	}

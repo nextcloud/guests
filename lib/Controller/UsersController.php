@@ -87,23 +87,25 @@ class UsersController extends OCSController {
 			if (!$group) {
 				return new DataResponse(
 					[
-						'errorMessages' => ["Group $groupId not found"],
+						'errorMessages' => ['Group ' . $groupId . ' not found'],
 					],
 					Http::STATUS_BAD_REQUEST
 				);
 			}
-			if (!($this->subAdmin->isSubAdminOfGroup($currentUser, $group) || $this->groupManager->isAdmin($currentUser->getUID()))) {
+
+			if (!$this->subAdmin->isSubAdminOfGroup($currentUser, $group) && !$this->groupManager->isAdmin($currentUser->getUID())) {
 				return new DataResponse(
 					[
-						'errorMessages' => ["You are not allowed to add users to group $groupId"],
+						'errorMessages' => ['You are not allowed to add users to group ' . $groupId],
 					],
 					Http::STATUS_FORBIDDEN
 				);
 			}
+
 			$groupObjects[] = $group;
 		}
 
-		if (empty($email) || !$this->mailer->validateMailAddress($email)) {
+		if ($email === '' || !$this->mailer->validateMailAddress($email)) {
 			$errorMessages['email'] = $this->l10n->t(
 				'Invalid mail address'
 			);
@@ -122,7 +124,7 @@ class UsersController extends OCSController {
 			);
 		}
 
-		if (!empty($errorMessages)) {
+		if ($errorMessages !== []) {
 			return new DataResponse(
 				[
 					'errorMessages' => $errorMessages,
@@ -132,18 +134,26 @@ class UsersController extends OCSController {
 		}
 
 		try {
-			$this->guestManager->createGuest($this->userSession->getUser(), $username, $email, $displayName, $language);
-			$guestUser = $this->userManager->get($username);
+			$guestUser = $this->guestManager->createGuest($this->userSession->getUser(), $username, $email, $displayName, $language);
+			if (!$guestUser instanceof IUser) {
+				return new DataResponse(
+					[
+						'errorMessages' => ['email' => 'Unable to create guest user ' . $username],
+					],
+					Http::STATUS_UNPROCESSABLE_ENTITY
+				);
+			}
 			if ($this->userManager instanceof PublicEmitter) {
 				$this->userManager->emit('\OC\User', 'assignedUserId', [$username]);
 			}
+
 			foreach ($groupObjects as $group) {
 				$group->addUser($guestUser);
 			}
-		} catch (\Exception $e) {
+		} catch (\Exception $exception) {
 			return new DataResponse(
 				[
-					'errorMessages' => ['email' => $e->getMessage()],
+					'errorMessages' => ['email' => $exception->getMessage()],
 				],
 				Http::STATUS_UNPROCESSABLE_ENTITY
 			);

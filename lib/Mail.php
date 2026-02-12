@@ -16,6 +16,7 @@ use OCP\IURLGenerator;
 use OCP\IUserManager;
 use OCP\IUserSession;
 use OCP\L10N\IFactory;
+use OCP\Mail\IEMailTemplate;
 use OCP\Mail\IMailer;
 use OCP\Share\IShare;
 use OCP\Util;
@@ -42,6 +43,7 @@ class Mail {
 		if ($language === '') {
 			$language = null;
 		}
+
 		$l10n = $this->l10nFactory->get('guests', $language);
 
 		$passwordLink = $this->urlGenerator->linkToRouteAbsolute(
@@ -54,6 +56,7 @@ class Mail {
 		if (!$guestEmail) {
 			throw new \Exception('Guest user created without email');
 		}
+
 		$replyTo = $this->userManager->get($uid)->getEMailAddress();
 		$senderDisplayName = $this->userSession->getUser()->getDisplayName();
 
@@ -84,11 +87,14 @@ class Mail {
 			$this->mailer->send($message);
 		} catch (\Exception) {
 			throw new \Exception($l10n->t(
-				'Couldn\'t send reset email. Please contact your administrator.'
+				"Couldn't send reset email. Please contact your administrator."
 			));
 		}
 	}
 
+	/**
+	 * @return array{string, IEMailTemplate}
+	 */
 	private function composeShareMessage(IShare $share, string $senderDisplayName, string $guestEmail, string $passwordLink, IL10N $l10n): array {
 		$filename = trim($share->getTarget(), '/');
 		$subject = $l10n->t('%s shared a file with you', [$senderDisplayName]);
@@ -135,6 +141,9 @@ class Mail {
 		return [ $subject, $emailTemplate ];
 	}
 
+	/**
+	 * @return array{string, IEMailTemplate}
+	 */
 	private function composeInviteMessage(string $senderDisplayName, string $guestEmail, string $passwordLink, IL10N $l10n): array {
 		$subject = $l10n->t('%s invited you as a guest', [$senderDisplayName]);
 

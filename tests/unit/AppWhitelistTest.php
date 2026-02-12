@@ -21,9 +21,13 @@ use Test\TestCase;
 
 class AppWhitelistTest extends TestCase {
 	private Config&MockObject $config;
+
 	private GuestManager&MockObject $guestManager;
+
 	private IL10N&MockObject $l10n;
+
 	private IAppManager&MockObject $appManager;
+
 	private IURLGenerator&MockObject $urlGenerator;
 
 	private ?AppWhitelist $appWhitelist = null;
@@ -56,7 +60,7 @@ class AppWhitelistTest extends TestCase {
 			->willReturn(true);
 		$this->guestManager->method('isGuest')
 			->willReturn(true);
-		$user = $this->createMock(IUser::class);
+		$user = $this->createStub(IUser::class);
 
 		$this->assertFalse($this->appWhitelist->isUrlAllowed($user, '/apps/news/...'));
 		$this->assertTrue($this->appWhitelist->isUrlAllowed($user, '/apps/foo/...'));
@@ -69,7 +73,7 @@ class AppWhitelistTest extends TestCase {
 			->willReturn(false);
 		$this->guestManager->method('isGuest')
 			->willReturn(true);
-		$user = $this->createMock(IUser::class);
+		$user = $this->createStub(IUser::class);
 
 		$this->assertTrue($this->appWhitelist->isUrlAllowed($user, '/apps/news/...'));
 		$this->assertTrue($this->appWhitelist->isUrlAllowed($user, '/apps/foo/...'));

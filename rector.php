@@ -9,6 +9,7 @@ use Nextcloud\Rector\Set\NextcloudSets;
 use Rector\Config\RectorConfig;
 use Rector\Php80\Rector\Class_\ClassPropertyAssignToConstructorPromotionRector;
 use Rector\PHPUnit\Set\PHPUnitSetList;
+use Rector\TypeDeclaration\Rector\StmtsAwareInterface\SafeDeclareStrictTypesRector;
 
 return RectorConfig::configure()
 	->withPaths([
@@ -23,7 +24,18 @@ return RectorConfig::configure()
 	)
 	->withPreparedSets(
 		deadCode: true,
+		codeQuality: true,
+		codingStyle: true,
 		typeDeclarations: true,
+		typeDeclarationDocblocks: true,
+		privatization: true,
+		instanceOf: true,
+		earlyReturn: true,
+		rectorPreset: true,
+		phpunitCodeQuality: true,
+		doctrineCodeQuality: true,
+		symfonyCodeQuality: true,
+		symfonyConfigs: true,
 	)->withPhpSets(
 		php81: true,
 	)->withConfiguredRule(ClassPropertyAssignToConstructorPromotionRector::class, [
@@ -33,4 +45,7 @@ return RectorConfig::configure()
 	->withSets([
 		NextcloudSets::NEXTCLOUD_30,
 		PHPUnitSetList::PHPUNIT_100,
+	])
+	->withRules([
+		SafeDeclareStrictTypesRector::class,
 	]);

@@ -39,6 +39,7 @@ class UserBackend extends ABackend implements
 	IPasswordHashBackend {
 
 	private CappedMemoryCache $cache;
+
 	private bool $allowListing = true;
 
 	public function __construct(
@@ -75,7 +76,7 @@ class UserBackend extends ABackend implements
 			// Clear cache
 			unset($this->cache[$uid]);
 
-			return $result ? true : false;
+			return (bool)$result;
 		}
 
 		return false;
@@ -99,7 +100,7 @@ class UserBackend extends ABackend implements
 			unset($this->cache[$uid]);
 		}
 
-		return $result ? true : false;
+		return (bool)$result;
 	}
 
 	/**
@@ -117,7 +118,7 @@ class UserBackend extends ABackend implements
 				->where($query->expr()->eq('uid_lower', $query->createNamedParameter(mb_strtolower($uid))));
 			$result = $query->executeStatement();
 
-			return $result ? true : false;
+			return (bool)$result;
 		}
 
 		return false;
@@ -127,6 +128,7 @@ class UserBackend extends ABackend implements
 		if (!$this->userExists($userId)) {
 			return null;
 		}
+
 		$qb = $this->dbConn->getQueryBuilder();
 		$qb->select('password')
 			->from('guests_users')
@@ -136,6 +138,7 @@ class UserBackend extends ABackend implements
 		if ($hash === false) {
 			return null;
 		}
+
 		return $hash;
 	}
 
@@ -143,6 +146,7 @@ class UserBackend extends ABackend implements
 		if (!$this->hasher->validate($passwordHash)) {
 			throw new InvalidArgumentException();
 		}
+
 		$qb = $this->dbConn->getQueryBuilder();
 		$qb->update('guests_users')
 			->set('password', $qb->createNamedParameter($passwordHash))
@@ -191,41 +195,40 @@ class UserBackend extends ABackend implements
 	public function getDisplayNames($search = '', $limit = null, $offset = null): array {
 		if (!$this->allowListing) {
 			return [];
-		} else {
-			$query = $this->dbConn->getQueryBuilder();
-
-			if ($search === '') {
-				$query->select('uid', 'displayname')
-					->from('guests_users', 'u')
-					->orderBy('uid_lower', 'ASC')
-					->setMaxResults($limit)
-					->setFirstResult($offset);
-			} else {
-				$query->select('uid', 'displayname')
-					->from('guests_users', 'u')
-					->leftJoin('u', 'preferences', 'p', $query->expr()->andX(
-						$query->expr()->eq('userid', 'uid'),
-						$query->expr()->eq('appid', $query->expr()->literal('settings')),
-						$query->expr()->eq('configkey', $query->expr()->literal('email')))
-					)
-					// sqlite doesn't like re-using a single named parameter here
-					->where($query->expr()->iLike('uid', $query->createPositionalParameter('%' . $this->dbConn->escapeLikeParameter($search) . '%')))
-					->orWhere($query->expr()->iLike('displayname', $query->createPositionalParameter('%' . $this->dbConn->escapeLikeParameter($search) . '%')))
-					->orWhere($query->expr()->iLike('configvalue', $query->createPositionalParameter('%' . $this->dbConn->escapeLikeParameter($search) . '%')))
-					->orderBy($query->func()->lower('displayname'), 'ASC')
-					->orderBy('uid_lower', 'ASC')
-					->setMaxResults($limit)
-					->setFirstResult($offset);
-			}
-
-			$result = $query->executeQuery();
-			$displayNames = [];
-			while ($row = $result->fetch()) {
-				$displayNames[(string)$row['uid']] = (string)$row['displayname'];
-			}
-
-			return $displayNames;
 		}
+
+		$query = $this->dbConn->getQueryBuilder();
+		if ($search === '') {
+			$query->select('uid', 'displayname')
+				->from('guests_users', 'u')
+				->orderBy('uid_lower', 'ASC')
+				->setMaxResults($limit)
+				->setFirstResult($offset);
+		} else {
+			$query->select('uid', 'displayname')
+				->from('guests_users', 'u')
+				->leftJoin('u', 'preferences', 'p', $query->expr()->andX(
+					$query->expr()->eq('userid', 'uid'),
+					$query->expr()->eq('appid', $query->expr()->literal('settings')),
+					$query->expr()->eq('configkey', $query->expr()->literal('email')))
+				)
+				// sqlite doesn't like re-using a single named parameter here
+				->where($query->expr()->iLike('uid', $query->createPositionalParameter('%' . $this->dbConn->escapeLikeParameter($search) . '%')))
+				->orWhere($query->expr()->iLike('displayname', $query->createPositionalParameter('%' . $this->dbConn->escapeLikeParameter($search) . '%')))
+				->orWhere($query->expr()->iLike('configvalue', $query->createPositionalParameter('%' . $this->dbConn->escapeLikeParameter($search) . '%')))
+				->orderBy($query->func()->lower('displayname'), 'ASC')
+				->orderBy('uid_lower', 'ASC')
+				->setMaxResults($limit)
+				->setFirstResult($offset);
+		}
+
+		$result = $query->executeQuery();
+		$displayNames = [];
+		while ($row = $result->fetch()) {
+			$displayNames[(string)$row['uid']] = (string)$row['displayname'];
+		}
+
+		return $displayNames;
 	}
 
 	/**
@@ -255,9 +258,10 @@ class UserBackend extends ABackend implements
 			$storedHash = $row['password'];
 			$newHash = '';
 			if ($this->hasher->verify($password, $storedHash, $newHash)) {
-				if (!empty($newHash)) {
+				if ($newHash !== '') {
 					$this->setPassword($loginName, $password);
 				}
+
 				return (string)$row['uid'];
 			}
 		}

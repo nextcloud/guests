@@ -32,19 +32,33 @@ use Test\TestCase;
 
 class UsersControllerTest extends TestCase {
 	private IRequest&MockObject $request;
+
 	private IUserManager&MockObject $userManager;
+
 	private IL10N&MockObject $l10n;
+
 	private Config $guestsConfig;
+
 	private IMailer&MockObject $mailer;
+
 	private GuestManager&MockObject $guestManager;
+
 	private IUserSession&MockObject $userSession;
+
 	private ISubAdmin&MockObject $subAdmin;
+
 	private IGroupManager&MockObject $groupManager;
+
 	private TransferService&MockObject $transferService;
+
 	private TransferMapper&MockObject $transferMapper;
+
 	private IAppConfig&MockObject $appConfig;
+
 	private IConfig&MockObject $config;
+
 	private InviteService&MockObject $inviteService;
+
 	private UsersController $controller;
 
 	protected function setUp(): void {
@@ -96,7 +110,7 @@ class UsersControllerTest extends TestCase {
 	 * Test that creation fails when the current user is a guest.
 	 */
 	public function testCreateWhenCurrentUserIsGuest(): void {
-		$currentUser = $this->createMock(IUser::class);
+		$currentUser = $this->createStub(IUser::class);
 		$this->userSession->method('getUser')
 			->willReturn($currentUser);
 
@@ -200,7 +214,7 @@ class UsersControllerTest extends TestCase {
 		$this->userManager->method('userExists')
 			->willReturn(false);
 
-		$guestUser = $this->createMock(IUser::class);
+		$guestUser = $this->createStub(IUser::class);
 		$this->guestManager->method('createGuest')
 			->willReturn($guestUser);
 
@@ -247,7 +261,7 @@ class UsersControllerTest extends TestCase {
 		$this->userManager->method('userExists')
 			->willReturn(false);
 
-		$guestUser = $this->createMock(IUser::class);
+		$guestUser = $this->createStub(IUser::class);
 		$this->guestManager->method('createGuest')
 			->willReturn($guestUser);
 
@@ -309,7 +323,7 @@ class UsersControllerTest extends TestCase {
 		$this->userManager->method('userExists')
 			->willReturn(false);
 
-		$guestUser = $this->createMock(IUser::class);
+		$guestUser = $this->createStub(IUser::class);
 		$this->guestManager->method('createGuest')
 			->willReturn($guestUser);
 
@@ -395,7 +409,7 @@ class UsersControllerTest extends TestCase {
 		$this->userManager->method('userExists')
 			->willReturn(false);
 
-		$guestUser = $this->createMock(IUser::class);
+		$guestUser = $this->createStub(IUser::class);
 		$this->guestManager->method('createGuest')
 			->willReturn($guestUser);
 
@@ -495,7 +509,7 @@ class UsersControllerTest extends TestCase {
 			->with($currentUser)
 			->willReturn(false);
 
-		$group = $this->createMock(IGroup::class);
+		$group = $this->createStub(IGroup::class);
 		$this->groupManager->method('get')
 			->with('testgroup')
 			->willReturn($group);
@@ -577,7 +591,7 @@ class UsersControllerTest extends TestCase {
 			->with('existing@example.com')
 			->willReturn(true);
 
-		$existingUser = $this->createMock(IUser::class);
+		$existingUser = $this->createStub(IUser::class);
 		$this->userManager->method('getByEmail')
 			->with('existing@example.com')
 			->willReturn([$existingUser]);
@@ -641,7 +655,7 @@ class UsersControllerTest extends TestCase {
 
 		$group1 = $this->createMock(IGroup::class);
 		$group2 = $this->createMock(IGroup::class);
-		$this->groupManager->method('get')
+		$this->groupManager->expects($this->exactly(2))->method('get')
 			->willReturnMap([
 				['group1', $group1],
 				['group2', $group2],
@@ -668,7 +682,7 @@ class UsersControllerTest extends TestCase {
 			->with('new@example.com')
 			->willReturn(false);
 
-		$guestUser = $this->createMock(IUser::class);
+		$guestUser = $this->createStub(IUser::class);
 		$this->userManager->method('get')
 			->with('new@example.com')
 			->willReturn($guestUser);

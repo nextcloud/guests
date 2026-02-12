@@ -41,15 +41,16 @@ class GuestManager {
 			$user = $this->userSession->getUser();
 			return ($user !== null) && $this->userBackend->userExists($user->getUID());
 		}
+
 		if (is_string($user)) {
 			return $this->userBackend->userExists($user);
-		} elseif ($user instanceof IUser) {
-			return $this->userBackend->userExists($user->getUID());
 		}
-		return false;
+
+
+		return $this->userBackend->userExists($user->getUID());
 	}
 
-	public function createGuest(?IUser $createdBy, string $userId, string $email, string $displayName = '', string $language = '', ?string $initialPassword = null) : IUser {
+	public function createGuest(?IUser $createdBy, string $userId, string $email, string $displayName = '', string $language = '', ?string $initialPassword = null) : ?IUser {
 		if ($initialPassword === null) {
 			$passwordEvent = new GenerateSecurePasswordEvent();
 			$this->eventDispatcher->dispatchTyped($passwordEvent);
@@ -58,23 +59,26 @@ class GuestManager {
 			$password = $initialPassword;
 		}
 
-		/** @var IUser */
 		$user = $this->userManager->createUserFromBackend(
 			$userId,
 			$password,
 			$this->userBackend
 		);
 
+		if (!$user instanceof IUser) {
+			return null;
+		}
+
 		$user->setSystemEMailAddress($email);
-		if ($createdBy) {
+		if ($createdBy instanceof IUser) {
 			$this->config->setUserValue($userId, 'guests', 'created_by', $createdBy->getUID());
 		}
 
-		if ($displayName) {
+		if ($displayName !== '') {
 			$user->setDisplayName($displayName);
 		}
 
-		if ($language) {
+		if ($language !== '') {
 			$this->config->setUserValue($userId, 'core', 'lang', $language);
 		}
 
@@ -111,6 +115,15 @@ class GuestManager {
 		return $this->userBackend->getUsers();
 	}
 
+	/**
+	 * @return list<array{
+	 *     email: non-empty-string,
+	 *     display_name: non-empty-string,
+	 *     created_by: string,
+	 *     share_count: int,
+	 *     share_count_with_circles: int
+	 * }>
+	 */
 	public function getGuestsInfo(): array {
 		$displayNames = $this->userBackend->getDisplayNames();
 		$guests = array_keys($displayNames);
@@ -134,6 +147,10 @@ class GuestManager {
 		}, $guests);
 	}
 
+	/**
+	 * @param list<string> $guests
+	 * @return array<string, int>
+	 */
 	private function getShareCountForUsers(array $guests): array {
 		$query = $this->connection->getQueryBuilder();
 		$query->select('share_with', $query->func()->count('*', 'count'))
@@ -143,13 +160,23 @@ class GuestManager {
 		$result = $query->executeQuery();
 		$data = [];
 		while ($row = $result->fetch()) {
-			$data[$row['share_with']] = $row['count'];
+			$data[$row['share_with']] = (int)$row['count'];
 		}
+
 		$result->closeCursor();
 
 		return $data;
 	}
 
+	/**
+	 * @return array{shares: list<array{
+	 *     id: string,
+	 *     shared_by: string,
+	 *     mime_type: int,
+	 *     name: string,
+	 *     time: int,
+	 * }>}
+	 */
 	public function getGuestInfo(string $userId): array {
 		$shares = array_merge(
 			$this->shareManager->getSharedWith($userId, IShare::TYPE_USER, null, -1, 0),

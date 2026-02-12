@@ -28,6 +28,9 @@ class FilteredNavigationManager extends NavigationManager {
 		return array_filter($items, $this->isEntryWhitelisted(...));
 	}
 
+	/**
+	 * @param array<string, mixed> $item
+	 */
 	private function isEntryWhitelisted(array $item): bool {
 		return $this->whitelist->isUrlAllowed($this->user, $item['href']);
 	}

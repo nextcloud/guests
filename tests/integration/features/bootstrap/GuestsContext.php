@@ -18,6 +18,10 @@ require __DIR__ . '/../../vendor/autoload.php';
  * Guests context.
  */
 class GuestsContext implements Context, SnippetAcceptingContext {
+	public $baseUrl;
+
+	public $response;
+
 	use Webdav;
 
 	private array $createdGuests = [];
@@ -32,26 +36,23 @@ class GuestsContext implements Context, SnippetAcceptingContext {
 	 * @param string $user
 	 */
 	public function userCreatedAGuestUser($user, string $guestDisplayName, string $guestEmail): void {
-		$fullUrl = substr($this->baseUrl, 0, -4) . '/index.php/apps/guests/users';
+		$fullUrl = substr((string)$this->baseUrl, 0, -4) . '/index.php/apps/guests/users';
 		//Replicating frontend behaviour
 		$userName = $this->prepareUserNameAsFrontend($guestDisplayName, $guestEmail);
 		$fullUrl = $fullUrl . '?displayName=' . $guestDisplayName . '&email=' . $guestEmail . '&username=' . $userName;
 		$client = new Client();
 		$options = [];
-		if ($user === 'admin') {
-			$options['auth'] = $this->adminUser;
-		} else {
-			$options['auth'] = [$user, $this->regularUser];
-		}
+		$options['auth'] = $user === 'admin' ? $this->adminUser : [$user, $this->regularUser];
 		$request = $client->createRequest('PUT', $fullUrl, $options);
 		$request->addHeader('Content-Type', 'application/x-www-form-urlencoded');
 
 		try {
 			$this->response = $client->send($request);
-		} catch (BadResponseException $e) {
+		} catch (BadResponseException $badResponseException) {
 			// 4xx and 5xx responses cause an exception
-			$this->response = $e->getResponse();
+			$this->response = $badResponseException->getResponse();
 		}
+
 		$this->createdGuests[$guestDisplayName] = $guestEmail;
 	}
 
@@ -110,8 +111,8 @@ class GuestsContext implements Context, SnippetAcceptingContext {
 		];
 		try {
 			$this->response = $client->send($client->createRequest('POST', $urlSetPasswd, $options));
-		} catch (ClientException $ex) {
-			$this->response = $ex->getResponse();
+		} catch (ClientException $clientException) {
+			$this->response = $clientException->getResponse();
 		}
 	}
 
@@ -120,7 +121,7 @@ class GuestsContext implements Context, SnippetAcceptingContext {
 	 * @AfterScenario
 	 */
 	public function cleanupGuests(): void {
-		foreach ($this->createdGuests as $displayName => $email) {
+		foreach (array_keys($this->createdGuests) as $displayName) {
 			$this->deleteGuestUser($displayName);
 		}
 	}

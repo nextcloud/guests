@@ -33,6 +33,9 @@ class Notifier implements INotifier {
 		return $this->factory->get(Application::APP_ID)->t('Guests');
 	}
 
+	/**
+	 * @return array<string, array<string, mixed>>
+	 */
 	private function getRichMessageParams(string $source, string $target): array {
 		$sourceUser = $this->userManager->get($source);
 		$targetUser = $this->userManager->get($target);

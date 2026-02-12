@@ -25,6 +25,7 @@ class DirMask extends PermissionsMask {
 	 * @var string the dir that should be masked
 	 */
 	private readonly string $path;
+
 	/**
 	 * @var int remember length
 	 */
@@ -91,6 +92,7 @@ class DirMask extends PermissionsMask {
 		if (!$this->isUpdatable($source)) {
 			return false;
 		}
+
 		if ($this->file_exists($target)) {
 			if ($this->isUpdatable($target)) {
 				return $this->storage->rename($source, $target);
@@ -100,10 +102,12 @@ class DirMask extends PermissionsMask {
 			if ($parent === '.') {
 				$parent = '';
 			}
+
 			if ($this->isCreatable($parent)) {
 				return $this->storage->rename($source, $target);
 			}
 		}
+
 		return false;
 	}
 
@@ -111,6 +115,7 @@ class DirMask extends PermissionsMask {
 		if (!$this->isReadable($source)) {
 			return false;
 		}
+
 		if ($this->file_exists($target)) {
 			if ($this->isUpdatable($target)) {
 				return $this->storage->copy($source, $target);
@@ -120,10 +125,12 @@ class DirMask extends PermissionsMask {
 			if ($parent === '.') {
 				$parent = '';
 			}
+
 			if ($this->isCreatable($parent)) {
 				return $this->storage->copy($source, $target);
 			}
 		}
+
 		return false;
 	}
 
@@ -180,6 +187,7 @@ class DirMask extends PermissionsMask {
 		if (!$storage) {
 			$storage = $this;
 		}
+
 		$sourceCache = $this->storage->getCache($path, $storage);
 		return new DirMaskCache($sourceCache, $this->mask, $this->checkPath(...));
 	}

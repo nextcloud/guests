@@ -134,7 +134,6 @@ class AddCommand extends Command {
 			$input->getOption('language') ?? '',
 			$password
 		);
-
 		if ($user instanceof IUser) {
 			$output->writeln('<info>The guest account user "' . $user->getUID() . '" was created successfully</info>');
 			return self::SUCCESS;

@@ -34,7 +34,7 @@ class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetails
 	}
 
 	private function getMembers(): array {
-		if (empty($this->guestMembers)) {
+		if ($this->guestMembers === []) {
 			$this->guestMembers = $this->guestManager->listGuests();
 		}
 
@@ -111,6 +111,7 @@ class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetails
 			if ($this->guestManager->isGuest() && $this->config->hideOtherUsers()) {
 				return [$this->userSession->getUser()->getUID()];
 			}
+
 			return $offset === 0 ? $this->getMembers() : [];
 		}
 
@@ -122,8 +123,10 @@ class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetails
 			if ($this->guestManager->isGuest() && $this->config->hideOtherUsers()) {
 				return 1;
 			}
+
 			return count($this->getMembers());
 		}
+
 		return 0;
 	}
 
@@ -131,6 +134,7 @@ class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetails
 		if ($gid === $this->groupName) {
 			return ['displayName' => 'Guests'];
 		}
+
 		return [];
 	}
 

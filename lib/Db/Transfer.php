@@ -26,6 +26,7 @@ use OCP\AppFramework\Db\Entity;
  */
 class Transfer extends Entity {
 	public const STATUS_WAITING = 'waiting';
+
 	public const STATUS_STARTED = 'started';
 
 	/** @var string */

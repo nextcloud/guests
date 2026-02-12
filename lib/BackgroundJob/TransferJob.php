@@ -74,6 +74,7 @@ class TransferJob extends QueuedJob {
 		if (!$targetUser instanceof IUser) {
 			return;
 		}
+
 		$result = $targetUser->delete(); // Rollback created user
 		if (!$result) {
 			$this->logger->error('Failed to delete target user', ['user' => $targetUser->getUID()]);
@@ -86,6 +87,7 @@ class TransferJob extends QueuedJob {
 
 		$transfer = $this->transferMapper->getById($id);
 		$transfer->setStatus(Transfer::STATUS_STARTED);
+
 		$this->transferMapper->update($transfer);
 
 		$source = $transfer->getSource();
@@ -99,7 +101,7 @@ class TransferJob extends QueuedJob {
 		}
 
 		if ($this->userManager->userExists($target)) {
-			$this->logger->error("Cannot transfer guest user \"$source\", target user \"$target\" already exists");
+			$this->logger->error('Cannot transfer guest user "' . $source . '", target user "' . $target . '" already exists');
 			$this->fail($transfer);
 			return;
 		}
@@ -119,8 +121,8 @@ class TransferJob extends QueuedJob {
 
 		try {
 			$this->transferService->transfer($sourceUser, $targetUser);
-		} catch (\Throwable $th) {
-			$this->logger->error($th->getMessage(), ['exception' => $th]);
+		} catch (\Throwable $throwable) {
+			$this->logger->error($throwable->getMessage(), ['exception' => $throwable]);
 			$this->fail($transfer, $targetUser);
 			return;
 		}

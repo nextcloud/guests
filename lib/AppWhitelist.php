@@ -25,6 +25,7 @@ use Psr\Log\LoggerInterface;
  */
 class AppWhitelist {
 	private readonly string $baseUrl;
+
 	private readonly int $baseUrlLength;
 
 	public const WHITELIST_ALWAYS = ',core,theming,settings,avatar,files,heartbeat,dav,guests,impersonate,accessibility,terms_of_service,dashboard,weather_status,user_status,apporder,twofactor_totp,twofactor_webauthn,twofactor_backupcodes,twofactor_nextcloud_notification';
@@ -60,15 +61,16 @@ class AppWhitelist {
 
 			if ($this->isAppWhitelisted($app)) {
 				return true;
-			} else {
-				if ($url === '/apps/files_external/api/v1/mounts') {
-					// fake successful response
-					echo '[]';
-					exit;
-				}
-				$this->logger->notice("Blocking access to non-whitelisted app ($app) for guest", ['app' => 'guests']);
-				return false;
 			}
+
+			if ($url === '/apps/files_external/api/v1/mounts') {
+				// fake successful response
+				echo '[]';
+				exit;
+			}
+
+			$this->logger->notice('Blocking access to non-whitelisted app (' . $app . ') for guest', ['app' => 'guests']);
+			return false;
 		}
 
 		return true;
@@ -92,40 +94,69 @@ class AppWhitelist {
 		if (substr($url, 0, $this->baseUrlLength) === $this->baseUrl) {
 			$url = substr($url, $this->baseUrlLength);
 		}
+
 		if (str_starts_with($url, '/index.php/')) {
 			$url = substr($url, 10);
 		}
+
 		if (str_starts_with($url, '/apps/')) {
 			// empty string / 'apps' / $app / rest of the route
 			[, , $app,] = explode('/', $url, 4);
 			return \OC_App::cleanAppId($app);
-		} elseif ($url === '/cron.php') {
+		}
+
+		if ($url === '/cron.php') {
 			return 'core';
-		} elseif (str_starts_with($url, '/core/')) {
+		}
+
+		if (str_starts_with($url, '/core/')) {
 			return 'core';
-		} elseif (str_starts_with($url, '/js/')) {
+		}
+
+		if (str_starts_with($url, '/js/')) {
 			return 'core';
-		} elseif (str_starts_with($url, '/css/')) {
+		}
+
+		if (str_starts_with($url, '/css/')) {
 			return 'core';
-		} elseif (str_starts_with($url, '/login')) {
+		}
+
+		if (str_starts_with($url, '/login')) {
 			return 'core';
-		} elseif (str_starts_with($url, '/logout')) {
+		}
+
+		if (str_starts_with($url, '/logout')) {
 			return 'core';
-		} elseif (str_starts_with($url, '/f/')) {
+		}
+
+		if (str_starts_with($url, '/f/')) {
 			return 'files';
-		} elseif (str_starts_with($url, '/webdav/')) {
+		}
+
+		if (str_starts_with($url, '/webdav/')) {
 			return 'dav';
-		} elseif (str_starts_with($url, '/dav/')) {
+		}
+
+		if (str_starts_with($url, '/dav/')) {
 			return 'dav';
-		} elseif (str_starts_with($url, '/call/')) {
+		}
+
+		if (str_starts_with($url, '/call/')) {
 			return 'spreed';
-		} elseif (str_starts_with($url, '/settings/')) {
+		}
+
+		if (str_starts_with($url, '/settings/')) {
 			return 'settings';
-		} elseif (str_starts_with($url, '/avatar/')) {
+		}
+
+		if (str_starts_with($url, '/avatar/')) {
 			return 'avatar';
-		} elseif (str_starts_with($url, '/heartbeat')) {
+		}
+
+		if (str_starts_with($url, '/heartbeat')) {
 			return 'heartbeat';
 		}
+
 		return 'core';
 	}
 

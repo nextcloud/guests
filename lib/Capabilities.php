@@ -20,6 +20,7 @@ class Capabilities implements ICapability {
 
 	/**
 	 * @inheritDoc
+	 * @return array<string, array<string, bool>>
 	 */
 	public function getCapabilities(): array {
 		return [

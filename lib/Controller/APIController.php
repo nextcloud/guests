@@ -65,7 +65,7 @@ class APIController extends OCSController {
 			// Put appropriate languages into appropriate arrays, to print them sorted
 			// common languages -> divider -> other languages
 			if (in_array($lang, Factory::COMMON_LANGUAGE_CODES)) {
-				$commonLanguages[array_search($lang, Factory::COMMON_LANGUAGE_CODES)] = $ln;
+				$commonLanguages[array_search($lang, Factory::COMMON_LANGUAGE_CODES, true)] = $ln;
 			} else {
 				$languages[] = $ln;
 			}
@@ -79,10 +79,12 @@ class APIController extends OCSController {
 				// If a doesn't have a name, but b does, list b before a
 				return 1;
 			}
+
 			if ($a['code'] !== $a['name'] && $b['code'] === $b['name']) {
 				// If a does have a name, but b doesn't, list a before b
 				return -1;
 			}
+
 			// Otherwise compare the names
 			return strcmp((string)$a['name'], (string)$b['name']);
 		});
@@ -102,6 +104,7 @@ class APIController extends OCSController {
 		} else {
 			$groups = $this->subAdmin->getSubAdminsGroups($user);
 		}
+
 		$groups = array_values(array_map(fn (IGroup $group): array => [
 			'gid' => $group->getGID(),
 			'name' => $group->getDisplayName(),

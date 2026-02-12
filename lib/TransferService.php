@@ -39,11 +39,11 @@ class TransferService {
 		try {
 			/** @var OwnershipTransferService $ownershipTransferService */
 			$ownershipTransferService = $this->container->get(OwnershipTransferService::class);
-		} catch (QueryException $e) {
+		} catch (QueryException $queryException) {
 			$this->logger->error('Could not resolve ownership transfer service to import guest user data', [
-				'exception' => $e,
+				'exception' => $queryException,
 			]);
-			throw $e;
+			throw $queryException;
 		}
 
 		try {
@@ -55,11 +55,11 @@ class TransferService {
 				true,
 				true
 			);
-		} catch (TransferOwnershipException $e) {
+		} catch (TransferOwnershipException $transferOwnershipException) {
 			$this->logger->error('Could not import guest user data', [
-				'exception' => $e,
+				'exception' => $transferOwnershipException,
 			]);
-			throw $e;
+			throw $transferOwnershipException;
 		}
 
 		// Update incomming shares
