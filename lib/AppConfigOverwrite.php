@@ -22,7 +22,7 @@ class AppConfigOverwrite extends AppConfig {
 		$this->overWrite = $overwrite;
 	}
 
-	public function getValue($app, $key, $default = ''): string {
+	public function getValue($app, $key, $default = '') {
 		if (isset($this->overWrite[$app]) && isset($this->overWrite[$app][$key])) {
 			return $this->overWrite[$app][$key];
 		}
