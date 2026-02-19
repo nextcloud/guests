@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 /**
  * SPDX-FileCopyrightText: 2020 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
@@ -11,6 +12,7 @@ namespace OCA\Guests\Controller;
 use OC\L10N\Factory;
 use OCA\Guests\AppInfo\Application;
 use OCA\Guests\Config;
+use OCP\AppFramework\Http\Attribute\NoAdminRequired;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\OCSController;
 use OCP\Group\ISubAdmin;
@@ -21,41 +23,18 @@ use OCP\IUserSession;
 use OCP\L10N\IFactory;
 
 class APIController extends OCSController {
-
-	/** @var Config */
-	private $config;
-
-	/** @var IFactory */
-	private $l10nFactory;
-
-	/** @var IUserSession */
-	private $userSession;
-
-	/** @var ISubAdmin */
-	private $subAdmin;
-
-	/** @var IGroupManager */
-	private $groupManager;
-
 	public function __construct(
 		IRequest $request,
-		IUserSession $userSession,
-		Config $config,
-		IFactory $l10nFactory,
-		ISubAdmin $subAdmin,
-		IGroupManager $groupManager,
+		private readonly IUserSession $userSession,
+		private readonly Config $config,
+		private readonly IFactory $l10nFactory,
+		private readonly ISubAdmin $subAdmin,
+		private readonly IGroupManager $groupManager,
 	) {
 		parent::__construct(Application::APP_ID, $request);
-		$this->userSession = $userSession;
-		$this->config = $config;
-		$this->l10nFactory = $l10nFactory;
-		$this->subAdmin = $subAdmin;
-		$this->groupManager = $groupManager;
 	}
 
-	/**
-	 * @NoAdminRequired
-	 */
+	#[NoAdminRequired]
 	public function languages(): DataResponse {
 		$languageCodes = $this->l10nFactory->findAvailableLanguages('guests');
 
@@ -66,7 +45,7 @@ class APIController extends OCSController {
 			$l = $this->l10nFactory->get('lib', $lang);
 			// TRANSLATORS this is the language name for the language switcher in the personal settings and should be the localized version
 			$potentialName = $l->t('__language_name__');
-			if ($l->getLanguageCode() === $lang && $potentialName[0] !== '_') {//first check if the language name is in the translation file
+			if ($l->getLanguageCode() === $lang && $potentialName[0] !== '_') { // first check if the language name is in the translation file
 				$ln = [
 					'code' => $lang,
 					'name' => $potentialName,
@@ -76,17 +55,17 @@ class APIController extends OCSController {
 					'code' => $lang,
 					'name' => 'English (US)',
 				];
-			} else {//fallback to language code
+			} else { // fallback to language code
 				$ln = [
 					'code' => $lang,
 					'name' => $lang,
 				];
 			}
 
-			// put appropriate languages into appropriate arrays, to print them sorted
+			// Put appropriate languages into appropriate arrays, to print them sorted
 			// common languages -> divider -> other languages
 			if (in_array($lang, Factory::COMMON_LANGUAGE_CODES)) {
-				$commonLanguages[array_search($lang, Factory::COMMON_LANGUAGE_CODES)] = $ln;
+				$commonLanguages[array_search($lang, Factory::COMMON_LANGUAGE_CODES, true)] = $ln;
 			} else {
 				$languages[] = $ln;
 			}
@@ -95,17 +74,19 @@ class APIController extends OCSController {
 		ksort($commonLanguages);
 
 		// sort now by displayed language not the iso-code
-		usort($languages, function ($a, $b) {
+		usort($languages, function (array $a, array $b): int {
 			if ($a['code'] === $a['name'] && $b['code'] !== $b['name']) {
 				// If a doesn't have a name, but b does, list b before a
 				return 1;
 			}
+
 			if ($a['code'] !== $a['name'] && $b['code'] === $b['name']) {
 				// If a does have a name, but b doesn't, list a before b
 				return -1;
 			}
+
 			// Otherwise compare the names
-			return strcmp($a['name'], $b['name']);
+			return strcmp((string)$a['name'], (string)$b['name']);
 		});
 
 		return new DataResponse([
@@ -115,9 +96,7 @@ class APIController extends OCSController {
 		]);
 	}
 
-	/**
-	 * @NoAdminRequired
-	 */
+	#[NoAdminRequired]
 	public function groups(): DataResponse {
 		$user = $this->userSession->getUser();
 		if ($this->groupManager->isAdmin($user->getUID())) {
@@ -125,12 +104,11 @@ class APIController extends OCSController {
 		} else {
 			$groups = $this->subAdmin->getSubAdminsGroups($user);
 		}
-		$groups = array_values(array_map(function (IGroup $group) {
-			return [
-				'gid' => $group->getGID(),
-				'name' => $group->getDisplayName(),
-			];
-		}, $groups));
+
+		$groups = array_values(array_map(fn (IGroup $group): array => [
+			'gid' => $group->getGID(),
+			'name' => $group->getDisplayName(),
+		], $groups));
 
 		return new DataResponse([
 			'required' => $this->config->isSharingRestrictedToGroup(),

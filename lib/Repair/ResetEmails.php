@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 /**
  * SPDX-FileCopyrightText: 2025 Robin Appelman <robin@icewind.nl>
  * SPDX-License-Identifier: AGPL-3.0-or-later
@@ -31,10 +32,7 @@ class ResetEmails implements IRepairStep {
 		return 'Reset the email of all guest accounts';
 	}
 
-	/**
-	 * @return void
-	 */
-	public function run(IOutput $output) {
+	public function run(IOutput $output): void {
 		if ($this->appConfig->getValueBool('guests', 'allow_email_change', false, true)) {
 			return;
 		}

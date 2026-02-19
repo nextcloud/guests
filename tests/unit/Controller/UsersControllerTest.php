@@ -31,37 +31,35 @@ use PHPUnit\Framework\MockObject\MockObject;
 use Test\TestCase;
 
 class UsersControllerTest extends TestCase {
-	/** @var IRequest|MockObject */
-	private $request;
-	/** @var IUserManager|MockObject */
-	private $userManager;
-	/** @var IL10N|MockObject */
-	private $l10n;
-	/** @var Config|MockObject */
-	private $guestsConfig;
-	/** @var IMailer|MockObject */
-	private $mailer;
-	/** @var GuestManager|MockObject */
-	private $guestManager;
-	/** @var IUserSession|MockObject */
-	private $userSession;
-	/** @var ISubAdmin|MockObject */
-	private $subAdmin;
-	/** @var IGroupManager|MockObject */
-	private $groupManager;
-	/** @var TransferService|MockObject */
-	private $transferService;
-	/** @var TransferMapper|MockObject */
-	private $transferMapper;
-	/** @var IAppConfig|MockObject */
-	private $appConfig;
-	/** @var IConfig|MockObject */
-	private $config;
-	/** @var InviteService|MockObject */
-	private $inviteService;
+	private IRequest&MockObject $request;
 
-	/** @var UsersController */
-	private $controller;
+	private IUserManager&MockObject $userManager;
+
+	private IL10N&MockObject $l10n;
+
+	private Config $guestsConfig;
+
+	private IMailer&MockObject $mailer;
+
+	private GuestManager&MockObject $guestManager;
+
+	private IUserSession&MockObject $userSession;
+
+	private ISubAdmin&MockObject $subAdmin;
+
+	private IGroupManager&MockObject $groupManager;
+
+	private TransferService&MockObject $transferService;
+
+	private TransferMapper&MockObject $transferMapper;
+
+	private IAppConfig&MockObject $appConfig;
+
+	private IConfig&MockObject $config;
+
+	private InviteService&MockObject $inviteService;
+
+	private UsersController $controller;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -89,9 +87,7 @@ class UsersControllerTest extends TestCase {
 		);
 
 		$this->l10n->method('t')
-			->willReturnCallback(function ($text) {
-				return $text;
-			});
+			->willReturnCallback(fn ($text) => $text);
 
 		$this->controller = new UsersController(
 			'guests',
@@ -113,8 +109,8 @@ class UsersControllerTest extends TestCase {
 	/**
 	 * Test that creation fails when the current user is a guest.
 	 */
-	public function testCreateWhenCurrentUserIsGuest() {
-		$currentUser = $this->createMock(IUser::class);
+	public function testCreateWhenCurrentUserIsGuest(): void {
+		$currentUser = $this->createStub(IUser::class);
 		$this->userSession->method('getUser')
 			->willReturn($currentUser);
 
@@ -133,7 +129,7 @@ class UsersControllerTest extends TestCase {
 	/**
 	 * Test that creation fails when the user is not logged in.
 	 */
-	public function testCreateFailsWithNoUserSession() {
+	public function testCreateFailsWithNoUserSession(): void {
 		// Mock user session to return null (no logged-in user)
 		$this->userSession->method('getUser')
 			->willReturn(null);
@@ -149,7 +145,7 @@ class UsersControllerTest extends TestCase {
 	/**
 	 * Test that creation fails when user is not in allowed groups
 	 */
-	public function testCreateFailsWhenUserNotInAllowedGroups() {
+	public function testCreateFailsWhenUserNotInAllowedGroups(): void {
 		// Mock current user
 		$currentUser = $this->createMock(IUser::class);
 		$currentUser->method('getUID')
@@ -180,7 +176,7 @@ class UsersControllerTest extends TestCase {
 	/**
 	 * Test that admin users can always create guests regardless of group restrictions
 	 */
-	public function testCreateSucceedsForAdminDespiteGroupRestrictions() {
+	public function testCreateSucceedsForAdminDespiteGroupRestrictions(): void {
 		// Mock current user
 		$currentUser = $this->createMock(IUser::class);
 		$currentUser->method('getUID')
@@ -218,7 +214,7 @@ class UsersControllerTest extends TestCase {
 		$this->userManager->method('userExists')
 			->willReturn(false);
 
-		$guestUser = $this->createMock(IUser::class);
+		$guestUser = $this->createStub(IUser::class);
 		$this->guestManager->method('createGuest')
 			->willReturn($guestUser);
 
@@ -232,7 +228,7 @@ class UsersControllerTest extends TestCase {
 	/**
 	 * Test that creation succeeds when user is in one of the allowed groups
 	 */
-	public function testCreateSucceedsWhenUserInAllowedGroup() {
+	public function testCreateSucceedsWhenUserInAllowedGroup(): void {
 		// Mock current user
 		$currentUser = $this->createMock(IUser::class);
 		$currentUser->method('getUID')
@@ -265,7 +261,7 @@ class UsersControllerTest extends TestCase {
 		$this->userManager->method('userExists')
 			->willReturn(false);
 
-		$guestUser = $this->createMock(IUser::class);
+		$guestUser = $this->createStub(IUser::class);
 		$this->guestManager->method('createGuest')
 			->willReturn($guestUser);
 
@@ -279,7 +275,7 @@ class UsersControllerTest extends TestCase {
 	/**
 	 * Test that SubAdmin can create guests when sharing is restricted to group
 	 */
-	public function testCreateSucceedsForSubAdminWhenSharingIsRestricted() {
+	public function testCreateSucceedsForSubAdminWhenSharingIsRestricted(): void {
 		// Mock current user
 		$currentUser = $this->createMock(IUser::class);
 		$currentUser->method('getUID')
@@ -327,7 +323,7 @@ class UsersControllerTest extends TestCase {
 		$this->userManager->method('userExists')
 			->willReturn(false);
 
-		$guestUser = $this->createMock(IUser::class);
+		$guestUser = $this->createStub(IUser::class);
 		$this->guestManager->method('createGuest')
 			->willReturn($guestUser);
 
@@ -344,7 +340,7 @@ class UsersControllerTest extends TestCase {
 	/**
 	 * Test that non-SubAdmin cannot create guests when sharing is restricted to group
 	 */
-	public function testCreateFailsForNonSubAdminWhenSharingIsRestricted() {
+	public function testCreateFailsForNonSubAdminWhenSharingIsRestricted(): void {
 		// Mock current user
 		$currentUser = $this->createMock(IUser::class);
 		$currentUser->method('getUID')
@@ -380,7 +376,7 @@ class UsersControllerTest extends TestCase {
 	/**
 	 * Test that creation succeeds when there are no restrictions
 	 */
-	public function testCreateSucceedsWhenNoRestrictions() {
+	public function testCreateSucceedsWhenNoRestrictions(): void {
 		// Mock current user
 		$currentUser = $this->createMock(IUser::class);
 		$currentUser->method('getUID')
@@ -413,7 +409,7 @@ class UsersControllerTest extends TestCase {
 		$this->userManager->method('userExists')
 			->willReturn(false);
 
-		$guestUser = $this->createMock(IUser::class);
+		$guestUser = $this->createStub(IUser::class);
 		$this->guestManager->method('createGuest')
 			->willReturn($guestUser);
 
@@ -427,7 +423,7 @@ class UsersControllerTest extends TestCase {
 	/**
 	 * Test that creation fails when sharing is restricted to group but no groups are provided
 	 */
-	public function testCreateWhenSharingRestrictedToGroupButNoGroups() {
+	public function testCreateWhenSharingRestrictedToGroupButNoGroups(): void {
 		$currentUser = $this->createMock(IUser::class);
 		$currentUser->method('getUID')
 			->willReturn('admin_user');
@@ -465,7 +461,7 @@ class UsersControllerTest extends TestCase {
 	/**
 	 * Test that creation fails when group does not exist
 	 */
-	public function testCreateWithNonExistentGroup() {
+	public function testCreateWithNonExistentGroup(): void {
 		$currentUser = $this->createMock(IUser::class);
 		$currentUser->method('getUID')
 			->willReturn('admin_user');
@@ -502,7 +498,7 @@ class UsersControllerTest extends TestCase {
 	/**
 	 * Test that creation fails when user is subadmin, but is not a subadmin of the group
 	 */
-	public function testCreateWithGroupButNotSubAdmin() {
+	public function testCreateWithGroupButNotSubAdmin(): void {
 		$currentUser = $this->createMock(IUser::class);
 		$currentUser->method('getUID')
 			->willReturn('current_user');
@@ -513,7 +509,7 @@ class UsersControllerTest extends TestCase {
 			->with($currentUser)
 			->willReturn(false);
 
-		$group = $this->createMock(IGroup::class);
+		$group = $this->createStub(IGroup::class);
 		$this->groupManager->method('get')
 			->with('testgroup')
 			->willReturn($group);
@@ -551,7 +547,7 @@ class UsersControllerTest extends TestCase {
 	/**
 	 * Test that creation fails when email is invalid
 	 */
-	public function testCreateWithInvalidEmail() {
+	public function testCreateWithInvalidEmail(): void {
 		$currentUser = $this->createMock(IUser::class);
 		$currentUser->method('getUID')
 			->willReturn('current_user');
@@ -580,7 +576,7 @@ class UsersControllerTest extends TestCase {
 	/**
 	 * Test that creation fails when user with the same email already exists
 	 */
-	public function testCreateWithExistingEmailUser() {
+	public function testCreateWithExistingEmailUser(): void {
 		$currentUser = $this->createMock(IUser::class);
 		$currentUser->method('getUID')
 			->willReturn('current_user');
@@ -595,7 +591,7 @@ class UsersControllerTest extends TestCase {
 			->with('existing@example.com')
 			->willReturn(true);
 
-		$existingUser = $this->createMock(IUser::class);
+		$existingUser = $this->createStub(IUser::class);
 		$this->userManager->method('getByEmail')
 			->with('existing@example.com')
 			->willReturn([$existingUser]);
@@ -610,7 +606,7 @@ class UsersControllerTest extends TestCase {
 	/**
 	 * Test that creation fails when user with the same username already exists
 	 */
-	public function testCreateWithExistingUsernameUser() {
+	public function testCreateWithExistingUsernameUser(): void {
 		$currentUser = $this->createMock(IUser::class);
 		$currentUser->method('getUID')
 			->willReturn('current_user');
@@ -646,7 +642,7 @@ class UsersControllerTest extends TestCase {
 	 * Enforcing group restrictions won't have any effect
 	 * since the user is a subadmin and can create guests anyway.
 	 */
-	public function testCreateSuccessWithGroupsAsSubadmin() {
+	public function testCreateSuccessWithGroupsAsSubadmin(): void {
 		$currentUser = $this->createMock(IUser::class);
 		$currentUser->method('getUID')
 			->willReturn('current_user');
@@ -659,7 +655,7 @@ class UsersControllerTest extends TestCase {
 
 		$group1 = $this->createMock(IGroup::class);
 		$group2 = $this->createMock(IGroup::class);
-		$this->groupManager->method('get')
+		$this->groupManager->expects($this->exactly(2))->method('get')
 			->willReturnMap([
 				['group1', $group1],
 				['group2', $group2],
@@ -686,7 +682,7 @@ class UsersControllerTest extends TestCase {
 			->with('new@example.com')
 			->willReturn(false);
 
-		$guestUser = $this->createMock(IUser::class);
+		$guestUser = $this->createStub(IUser::class);
 		$this->userManager->method('get')
 			->with('new@example.com')
 			->willReturn($guestUser);
@@ -731,7 +727,7 @@ class UsersControllerTest extends TestCase {
 	 * This is a generic test to ensure that the controller
 	 * handles exceptions correctly.
 	 */
-	public function testCreateException() {
+	public function testCreateException(): void {
 		$currentUser = $this->createMock(IUser::class);
 		$currentUser->method('getUID')
 			->willReturn('current_user');

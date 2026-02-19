@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * SPDX-FileCopyrightText: 2017-2024 Nextcloud GmbH and Nextcloud contributors
  * SPDX-FileCopyrightText: 2017 ownCloud GmbH
@@ -25,8 +27,8 @@ class SettingsController extends Controller {
 
 	public function __construct(
 		IRequest $request,
-		private Config $config,
-		private AppWhitelist $appWhitelist,
+		private readonly Config $config,
+		private readonly AppWhitelist $appWhitelist,
 	) {
 		parent::__construct(Application::APP_ID, $request);
 	}
@@ -41,6 +43,7 @@ class SettingsController extends Controller {
 		$allowExternalStorage = $this->config->allowExternalStorage();
 		$hideUsers = $this->config->hideOtherUsers();
 		$whitelist = $this->config->getAppWhitelist();
+
 		return new DataResponse([
 			'useWhitelist' => $useWhitelist,
 			'whitelist' => $whitelist,
@@ -53,22 +56,20 @@ class SettingsController extends Controller {
 	}
 
 	/**
-	 * @param $useWhitelist bool
-	 * @param $whitelist string[]
-	 * @param $allowExternalStorage bool
-	 * @param $hideUsers bool
-	 * @return DataResponse
+	 * @param list<string> $whitelist
 	 */
 	public function setConfig(bool $useWhitelist, array $whitelist, bool $allowExternalStorage, bool $hideUsers, array $createRestrictedToGroup): DataResponse {
 		$newWhitelist = [];
 		foreach ($whitelist as $app) {
-			$newWhitelist[] = trim($app);
+			$newWhitelist[] = trim((string)$app);
 		}
+
 		$this->config->setUseWhitelist($useWhitelist);
 		$this->config->setAppWhitelist($newWhitelist);
 		$this->config->setAllowExternalStorage($allowExternalStorage);
 		$this->config->setHideOtherUsers($hideUsers);
 		$this->config->setCreateRestrictedToGroup($createRestrictedToGroup);
+
 		return new DataResponse();
 	}
 
@@ -82,6 +83,7 @@ class SettingsController extends Controller {
 	public function getWhitelist(): DataResponse {
 		$useWhitelist = $this->config->useWhitelist();
 		$whitelist = $this->config->getAppWhitelist();
+
 		return new DataResponse([
 			'useWhitelist' => $useWhitelist,
 			'whitelist' => $whitelist,
@@ -95,6 +97,7 @@ class SettingsController extends Controller {
 	 */
 	public function resetWhitelist(): DataResponse {
 		$this->config->setAppWhitelist(AppWhitelist::DEFAULT_WHITELIST);
+
 		return new DataResponse([
 			'whitelist' => explode(',', AppWhitelist::DEFAULT_WHITELIST),
 		]);
