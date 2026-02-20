@@ -32,7 +32,13 @@ class DirMask extends PermissionsMask {
 	private readonly int $pathLength;
 
 	/**
-	 * @param array $parameters ['storage' => $storage, 'mask' => $mask, 'path' => $path]
+	 * @var int the permissions bits we want to keep
+	 */
+	private $mask;
+
+	/**
+	 * @param array{storage: \OCP\Files\Storage\IStorage, mask: int, path: string, ...} $parameters
+	 * @psalm-suppress MoreSpecificImplementedParamType
 	 *
 	 * $storage: The storage the permissions mask should be applied on
 	 * $mask: The permission bits that should be kept, a combination of the \OCP\Constant::PERMISSION_ constants
@@ -42,6 +48,7 @@ class DirMask extends PermissionsMask {
 		parent::__construct($parameters);
 		$this->path = rtrim((string)$parameters['path'], '/');
 		$this->pathLength = strlen((string)$parameters['path']);
+		$this->mask = $parameters['mask'];
 	}
 
 	protected function checkPath(string $path): bool {
