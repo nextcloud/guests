@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * SPDX-FileCopyrightText: 2022 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
@@ -7,38 +9,29 @@
 
 namespace OCA\Guests;
 
+use OC\AppFramework\App;
 use OCP\IUser;
 use OCP\Settings\IIconSection;
 use OCP\Settings\IManager;
 
 class FilteredSettingsManager implements IManager {
 
-	/** @var IManager */
-	private $manager;
-	/** @var AppWhitelist */
-	private $appWhitelist;
-
-	public function __construct(IManager $manager, AppWhitelist $appWhitelist) {
-		$this->manager = $manager;
-		$this->appWhitelist = $appWhitelist;
+	public function __construct(
+		private readonly IManager $manager,
+		private readonly AppWhitelist $appWhitelist,
+	) {
 	}
 
 	private function isSettingAllowed(string $setting): bool {
-		$appId = \OC\AppFramework\App::getAppIdForClass($setting);
+		$appId = App::getAppIdForClass($setting);
 		return $this->appWhitelist->isAppWhitelisted($appId);
 	}
 
-	/**
-	 * @return void
-	 */
-	public function registerSection(string $type, string $section) {
+	public function registerSection(string $type, string $section): void {
 		$this->manager->registerSection($type, $section);
 	}
 
-	/**
-	 * @return void
-	 */
-	public function registerSetting(string $type, string $setting) {
+	public function registerSetting(string $type, string $setting): void {
 		if (!$this->isSettingAllowed($setting)) {
 			return;
 		}
@@ -75,6 +68,7 @@ class FilteredSettingsManager implements IManager {
 	}
 
 	public function getAdminDelegatedSettings(): array {
+		/** @psalm-suppress RedundantCondition we support older version of Server */
 		if (method_exists($this->manager, 'getAdminDelegatedSettings')) {
 			return $this->manager->getAdminDelegatedSettings();
 		}

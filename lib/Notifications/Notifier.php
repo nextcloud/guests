@@ -19,9 +19,9 @@ use OCP\Notification\UnknownNotificationException;
 
 class Notifier implements INotifier {
 	public function __construct(
-		private IFactory $factory,
-		private IURLGenerator $url,
-		private IUserManager $userManager,
+		private readonly IFactory $factory,
+		private readonly IURLGenerator $url,
+		private readonly IUserManager $userManager,
 	) {
 	}
 
@@ -33,6 +33,9 @@ class Notifier implements INotifier {
 		return $this->factory->get(Application::APP_ID)->t('Guests');
 	}
 
+	/**
+	 * @return array<string, array<string, mixed>>
+	 */
 	private function getRichMessageParams(string $source, string $target): array {
 		$sourceUser = $this->userManager->get($source);
 		$targetUser = $this->userManager->get($target);

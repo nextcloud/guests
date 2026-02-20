@@ -23,17 +23,20 @@ use Test\TestCase;
 class ConfigTest extends TestCase {
 	/** @var IConfig|MockObject */
 	private $config;
+
 	/** @var IAppConfig|MockObject */
 	private $appConfig;
+
 	/** @var ISubAdmin|MockObject */
 	private $subAdmin;
+
 	/** @var IUserSession|MockObject */
 	private $userSession;
+
 	/** @var IGroupManager|MockObject */
 	private $groupManager;
 
-	/** @var Config */
-	private $guestConfig;
+	private ?Config $guestConfig = null;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -53,7 +56,7 @@ class ConfigTest extends TestCase {
 		);
 	}
 
-	public function testAllowExternalStorage() {
+	public function testAllowExternalStorage(): void {
 		$this->appConfig->method('getAppValueBool')
 			->with('allow_external_storage', false)
 			->willReturn(true);
@@ -61,7 +64,7 @@ class ConfigTest extends TestCase {
 		$this->assertTrue($this->guestConfig->allowExternalStorage());
 	}
 
-	public function testSetAllowExternalStorage() {
+	public function testSetAllowExternalStorage(): void {
 		$this->appConfig->expects($this->exactly(2))
 			->method('setAppValueBool')
 			->with('allow_external_storage', true);
@@ -70,7 +73,7 @@ class ConfigTest extends TestCase {
 		$this->guestConfig->setAllowExternalStorage('true');
 	}
 
-	public function testHideOtherUsers() {
+	public function testHideOtherUsers(): void {
 		$this->appConfig->method('getAppValueBool')
 			->with('hide_users', true)
 			->willReturn(false);
@@ -78,7 +81,7 @@ class ConfigTest extends TestCase {
 		$this->assertFalse($this->guestConfig->hideOtherUsers());
 	}
 
-	public function testSetHideOtherUsers() {
+	public function testSetHideOtherUsers(): void {
 		$this->appConfig->expects($this->exactly(2))
 			->method('setAppValueBool')
 			->with('hide_users', true);
@@ -87,7 +90,7 @@ class ConfigTest extends TestCase {
 		$this->guestConfig->setHideOtherUsers('true');
 	}
 
-	public function testGetHome() {
+	public function testGetHome(): void {
 		$this->config->method('getSystemValue')
 			->with('datadirectory', \OC::$SERVERROOT . '/data')
 			->willReturn('/custom/path');
@@ -95,7 +98,7 @@ class ConfigTest extends TestCase {
 		$this->assertEquals('/custom/path/test_user', $this->guestConfig->getHome('test_user'));
 	}
 
-	public function testUseWhitelist() {
+	public function testUseWhitelist(): void {
 		$this->appConfig->method('getAppValueBool')
 			->with('usewhitelist', true)
 			->willReturn(false);
@@ -103,7 +106,7 @@ class ConfigTest extends TestCase {
 		$this->assertFalse($this->guestConfig->useWhitelist());
 	}
 
-	public function testSetUseWhitelist() {
+	public function testSetUseWhitelist(): void {
 		$this->appConfig->expects($this->exactly(2))
 			->method('setAppValueBool')
 			->with('usewhitelist', true);
@@ -112,7 +115,7 @@ class ConfigTest extends TestCase {
 		$this->guestConfig->setUseWhitelist('true');
 	}
 
-	public function testGetAppWhitelist() {
+	public function testGetAppWhitelist(): void {
 		$this->appConfig->method('getAppValueString')
 			->with('whitelist', AppWhitelist::DEFAULT_WHITELIST)
 			->willReturn('app1,app2,app3');
@@ -120,7 +123,7 @@ class ConfigTest extends TestCase {
 		$this->assertEquals(['app1', 'app2', 'app3'], $this->guestConfig->getAppWhitelist());
 	}
 
-	public function testSetAppWhitelistArray() {
+	public function testSetAppWhitelistArray(): void {
 		$this->appConfig->expects($this->exactly(2))
 			->method('setAppValueString')
 			->with('whitelist', 'app1,app2,app3');
@@ -129,7 +132,7 @@ class ConfigTest extends TestCase {
 		$this->guestConfig->setAppWhitelist('app1,app2,app3');
 	}
 
-	public function testIsSharingRestrictedToGroup() {
+	public function testIsSharingRestrictedToGroup(): void {
 		$this->config->method('getAppValue')
 			->with('core', 'shareapi_only_share_with_group_members', 'no')
 			->willReturn('yes');
@@ -137,7 +140,7 @@ class ConfigTest extends TestCase {
 		$this->assertTrue($this->guestConfig->isSharingRestrictedToGroup());
 	}
 
-	public function testIsSharingNotRestrictedToGroup() {
+	public function testIsSharingNotRestrictedToGroup(): void {
 		$this->config->method('getAppValue')
 			->with('core', 'shareapi_only_share_with_group_members', 'no')
 			->willReturn('no');
@@ -145,15 +148,15 @@ class ConfigTest extends TestCase {
 		$this->assertFalse($this->guestConfig->isSharingRestrictedToGroup());
 	}
 
-	public function testCanCreateGuestsNoUser() {
+	public function testCanCreateGuestsNoUser(): void {
 		$this->userSession->method('getUser')
 			->willReturn(null);
 
 		$this->assertFalse($this->guestConfig->canCreateGuests());
 	}
 
-	public function testCanCreateGuestsWithGroupRestrictionNoMatch() {
-		$user = $this->createMock(IUser::class);
+	public function testCanCreateGuestsWithGroupRestrictionNoMatch(): void {
+		$user = $this->createStub(IUser::class);
 		$this->userSession->method('getUser')
 			->willReturn($user);
 
@@ -168,8 +171,8 @@ class ConfigTest extends TestCase {
 		$this->assertFalse($this->guestConfig->canCreateGuests());
 	}
 
-	public function testCanCreateGuestsWithGroupRestrictionWithMatch() {
-		$user = $this->createMock(IUser::class);
+	public function testCanCreateGuestsWithGroupRestrictionWithMatch(): void {
+		$user = $this->createStub(IUser::class);
 		$this->userSession->method('getUser')
 			->willReturn($user);
 
@@ -188,8 +191,8 @@ class ConfigTest extends TestCase {
 		$this->assertTrue($this->guestConfig->canCreateGuests());
 	}
 
-	public function testCanCreateGuestsWithSharingRestrictedButIsSubAdmin() {
-		$user = $this->createMock(IUser::class);
+	public function testCanCreateGuestsWithSharingRestrictedButIsSubAdmin(): void {
+		$user = $this->createStub(IUser::class);
 		$this->userSession->method('getUser')
 			->willReturn($user);
 
@@ -208,8 +211,8 @@ class ConfigTest extends TestCase {
 		$this->assertTrue($this->guestConfig->canCreateGuests());
 	}
 
-	public function testCanCreateGuestsWithSharingRestrictedNotSubAdmin() {
-		$user = $this->createMock(IUser::class);
+	public function testCanCreateGuestsWithSharingRestrictedNotSubAdmin(): void {
+		$user = $this->createStub(IUser::class);
 		$this->userSession->method('getUser')
 			->willReturn($user);
 
@@ -228,7 +231,7 @@ class ConfigTest extends TestCase {
 		$this->assertFalse($this->guestConfig->canCreateGuests());
 	}
 
-	public function testGetCreateRestrictedToGroupEmpty() {
+	public function testGetCreateRestrictedToGroupEmpty(): void {
 		$this->appConfig->method('getAppValueArray')
 			->with('create_restricted_to_group', [])
 			->willReturn([]);
@@ -236,7 +239,7 @@ class ConfigTest extends TestCase {
 		$this->assertEquals([], $this->guestConfig->getCreateRestrictedToGroup());
 	}
 
-	public function testGetCreateRestrictedToGroupWithAdmin() {
+	public function testGetCreateRestrictedToGroupWithAdmin(): void {
 		$this->appConfig->method('getAppValueArray')
 			->with('create_restricted_to_group', [])
 			->willReturn(['admin', 'group1']);
@@ -244,7 +247,7 @@ class ConfigTest extends TestCase {
 		$this->assertEquals(['admin', 'group1'], $this->guestConfig->getCreateRestrictedToGroup());
 	}
 
-	public function testSetCreateRestrictedToGroup() {
+	public function testSetCreateRestrictedToGroup(): void {
 		$this->appConfig->expects($this->once())
 			->method('setAppValueArray')
 			->with('create_restricted_to_group', ['group1', 'group2']);

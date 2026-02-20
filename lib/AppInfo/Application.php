@@ -1,10 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * SPDX-FileCopyrightText: 2017 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
-
 namespace OCA\Guests\AppInfo;
 
 use OCA\Files\Event\LoadAdditionalScriptsEvent;
@@ -65,9 +66,10 @@ class Application extends App implements IBootstrap {
 	}
 
 	private function setupGuestManagement(ContainerInterface $container, ContainerInterface $server): void {
+		/** @var Hooks $hookManager */
 		$hookManager = $container->get(Hooks::class);
-		$server->get(IEventDispatcher::class)->addListener(ShareCreatedEvent::class, [$hookManager, 'handlePostShare']);
-		$server->get(IEventDispatcher::class)->addListener(UserFirstTimeLoggedInEvent::class, [$hookManager, 'handleFirstLogin']);
+		$server->get(IEventDispatcher::class)->addListener(ShareCreatedEvent::class, $hookManager->handlePostShare(...));
+		$server->get(IEventDispatcher::class)->addListener(UserFirstTimeLoggedInEvent::class, $hookManager->handleFirstLogin(...));
 	}
 
 	private function setupGuestRestrictions(ContainerInterface $container, ContainerInterface $server): void {
@@ -81,7 +83,7 @@ class Application extends App implements IBootstrap {
 			$restrictionManager->verifyAccess();
 			$restrictionManager->setupRestrictions();
 		} else {
-			$userSession->listen('\OC\User', 'postLogin', function () use ($restrictionManager) {
+			$userSession->listen('\OC\User', 'postLogin', function () use ($restrictionManager): void {
 				$restrictionManager->verifyAccess();
 				$restrictionManager->setupRestrictions();
 			});

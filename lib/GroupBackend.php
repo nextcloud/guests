@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * SPDX-FileCopyrightText: 2017-2024 Nextcloud GmbH and Nextcloud contributors
  * SPDX-FileCopyrightText: 2017 ownCloud GmbH
@@ -20,35 +22,19 @@ use OCP\IUserSession;
  * @package OCA\Guests
  */
 class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetailsBackend, IHideFromCollaborationBackend {
-	/** @var GuestManager */
-	private $guestManager;
-
 	/** @var string[] */
-	private $guestMembers = [];
-
-	/** @var string */
-	private $groupName;
-
-	/** @var Config */
-	private $config;
-
-	/** @var IUserSession */
-	private $userSession;
+	private array $guestMembers = [];
 
 	public function __construct(
-		GuestManager $guestManager,
-		Config $config,
-		IUserSession $userSession,
-		string $groupName = 'guest_app',
+		private readonly GuestManager $guestManager,
+		private readonly Config $config,
+		private readonly IUserSession $userSession,
+		private readonly string $groupName = 'guest_app',
 	) {
-		$this->guestManager = $guestManager;
-		$this->config = $config;
-		$this->userSession = $userSession;
-		$this->groupName = $groupName;
 	}
 
 	private function getMembers(): array {
-		if (empty($this->guestMembers)) {
+		if ($this->guestMembers === []) {
 			$this->guestMembers = $this->guestManager->listGuests();
 		}
 
@@ -60,7 +46,6 @@ class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetails
 	 *
 	 * @param string $uid uid of the user
 	 * @param string $gid gid of the group
-	 * @return bool
 	 * @since 4.5.0
 	 *
 	 * Checks whether the user is member of a group or not.
@@ -93,7 +78,6 @@ class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetails
 	 * @param string $search
 	 * @param int $limit
 	 * @param int $offset
-	 * @return array an array of group names
 	 * @since 4.5.0
 	 *
 	 * Returns a list with all groups
@@ -106,7 +90,6 @@ class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetails
 	 * check if a group exists
 	 *
 	 * @param string $gid
-	 * @return bool
 	 * @since 4.5.0
 	 */
 	public function groupExists($gid): bool {
@@ -127,9 +110,9 @@ class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetails
 		if ($gid === $this->groupName) {
 			if ($this->guestManager->isGuest() && $this->config->hideOtherUsers()) {
 				return [$this->userSession->getUser()->getUID()];
-			} else {
-				return $offset === 0 ? $this->getMembers() : [];
 			}
+
+			return $offset === 0 ? $this->getMembers() : [];
 		}
 
 		return [];
@@ -139,20 +122,20 @@ class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetails
 		if ($gid === $this->groupName) {
 			if ($this->guestManager->isGuest() && $this->config->hideOtherUsers()) {
 				return 1;
-			} else {
-				return count($this->getMembers());
 			}
-		} else {
-			return 0;
+
+			return count($this->getMembers());
 		}
+
+		return 0;
 	}
 
 	public function getGroupDetails(string $gid): array {
 		if ($gid === $this->groupName) {
 			return ['displayName' => 'Guests'];
-		} else {
-			return [];
 		}
+
+		return [];
 	}
 
 	public function hideGroup(string $groupId): bool {
