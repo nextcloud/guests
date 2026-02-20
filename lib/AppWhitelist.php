@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * SPDX-FileCopyrightText: 2017-2024 Nextcloud GmbH and Nextcloud contributors
  * SPDX-FileCopyrightText: 2017 ownCloud GmbH
@@ -22,30 +24,21 @@ use Psr\Log\LoggerInterface;
  * @package OCA\Guests
  */
 class AppWhitelist {
-	private string $baseUrl;
-	private int $baseUrlLength;
+	private readonly string $baseUrl;
+
+	private readonly int $baseUrlLength;
 
 	public const WHITELIST_ALWAYS = ',core,theming,settings,avatar,files,heartbeat,dav,guests,impersonate,accessibility,terms_of_service,dashboard,weather_status,user_status,apporder,twofactor_totp,twofactor_webauthn,twofactor_backupcodes,twofactor_nextcloud_notification';
 
 	public const DEFAULT_WHITELIST = 'files_trashbin,files_versions,files_sharing,files_texteditor,text,activity,firstrunwizard,photos,notifications,dashboard,user_status,weather_status';
 
-	/**
-	 * AppWhitelist constructor.
-	 *
-	 * @param Config $config
-	 * @param GuestManager $guestManager
-	 * @param IL10N $l10n
-	 * @param IAppManager $appManager
-	 * @param IURLGenerator $urlGenerator
-	 * @param LoggerInterface $logger
-	 */
 	public function __construct(
 		IURLGenerator $urlGenerator,
-		private Config $config,
-		private GuestManager $guestManager,
-		private IL10N $l10n,
-		private IAppManager $appManager,
-		private LoggerInterface $logger,
+		private readonly Config $config,
+		private readonly GuestManager $guestManager,
+		private readonly IL10N $l10n,
+		private readonly IAppManager $appManager,
+		private readonly LoggerInterface $logger,
 	) {
 		$this->baseUrl = $urlGenerator->getBaseUrl();
 		$this->baseUrlLength = strlen($this->baseUrl);
@@ -62,27 +55,25 @@ class AppWhitelist {
 		return $this->config->useWhitelist();
 	}
 
-	/**
-	 * @param false|string $url
-	 */
 	public function isUrlAllowed(IUser $user, string|false $url): bool {
 		if ($this->guestManager->isGuest($user) && $this->isWhitelistEnabled()) {
 			$app = $this->getRequestedApp($url);
 
 			if ($this->isAppWhitelisted($app)) {
 				return true;
-			} else {
-				if ($url === '/apps/files_external/api/v1/mounts') {
-					// fake successful response
-					echo '[]';
-					exit;
-				}
-				$this->logger->notice("Blocking access to non-whitelisted app ($app) for guest", ['app' => 'guests']);
-				return false;
 			}
-		} else {
-			return true;
+
+			if ($url === '/apps/files_external/api/v1/mounts') {
+				// fake successful response
+				echo '[]';
+				exit;
+			}
+
+			$this->logger->notice('Blocking access to non-whitelisted app (' . $app . ') for guest', ['app' => 'guests']);
+			return false;
 		}
+
+		return true;
 	}
 
 	public function verifyAccess(IUser $user, IRequest $request): void {
@@ -98,50 +89,80 @@ class AppWhitelist {
 	/**
 	 * Core has \OC::$REQUESTEDAPP but it isn't set until the routes are matched
 	 * taken from \OC\Route\Router::match()
-	 *
-	 * @param false|string $url
 	 */
 	private function getRequestedApp(string|false $url): string {
 		if (substr($url, 0, $this->baseUrlLength) === $this->baseUrl) {
 			$url = substr($url, $this->baseUrlLength);
 		}
-		if (strpos($url, '/index.php/') === 0) {
+
+		if (str_starts_with($url, '/index.php/')) {
 			$url = substr($url, 10);
 		}
-		if (substr($url, 0, 6) === '/apps/') {
+
+		if (str_starts_with($url, '/apps/')) {
 			// empty string / 'apps' / $app / rest of the route
 			[, , $app,] = explode('/', $url, 4);
 			return \OC_App::cleanAppId($app);
-		} elseif ($url === '/cron.php') {
+		}
+
+		if ($url === '/cron.php') {
 			return 'core';
-		} elseif (substr($url, 0, 6) === '/core/') {
+		}
+
+		if (str_starts_with($url, '/core/')) {
 			return 'core';
-		} elseif (substr($url, 0, 4) === '/js/') {
+		}
+
+		if (str_starts_with($url, '/js/')) {
 			return 'core';
-		} elseif (substr($url, 0, 5) === '/css/') {
+		}
+
+		if (str_starts_with($url, '/css/')) {
 			return 'core';
-		} elseif (substr($url, 0, 6) === '/login') {
+		}
+
+		if (str_starts_with($url, '/login')) {
 			return 'core';
-		} elseif (substr($url, 0, 7) === '/logout') {
+		}
+
+		if (str_starts_with($url, '/logout')) {
 			return 'core';
-		} elseif (substr($url, 0, 3) === '/f/') {
+		}
+
+		if (str_starts_with($url, '/f/')) {
 			return 'files';
-		} elseif (substr($url, 0, 8) === '/webdav/') {
+		}
+
+		if (str_starts_with($url, '/webdav/')) {
 			return 'dav';
-		} elseif (substr($url, 0, 5) === '/dav/') {
+		}
+
+		if (str_starts_with($url, '/dav/')) {
 			return 'dav';
-		} elseif (substr($url, 0, 6) === '/call/') {
+		}
+
+		if (str_starts_with($url, '/call/')) {
 			return 'spreed';
-		} elseif (substr($url, 0, 10) === '/settings/') {
+		}
+
+		if (str_starts_with($url, '/settings/')) {
 			return 'settings';
-		} elseif (substr($url, 0, 8) === '/avatar/') {
+		}
+
+		if (str_starts_with($url, '/avatar/')) {
 			return 'avatar';
-		} elseif (substr($url, 0, 10) === '/heartbeat') {
+		}
+
+		if (str_starts_with($url, '/heartbeat')) {
 			return 'heartbeat';
 		}
+
 		return 'core';
 	}
 
+	/**
+	 * @return list<string>
+	 */
 	public function getWhitelistAbleApps(): array {
 		return array_values(array_diff(
 			$this->appManager->getInstalledApps(),

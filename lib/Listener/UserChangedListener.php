@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 /**
  * SPDX-FileCopyrightText: 2025 Robin Appelman <robin@icewind.nl>
  * SPDX-License-Identifier: AGPL-3.0-or-later
@@ -35,21 +36,24 @@ class UserChangedListener implements IEventListener {
 		if (!$event instanceof UserChangedEvent) {
 			return;
 		}
+
 		if ($event->getFeature() !== 'eMailAddress') {
 			return;
 		}
+
 		$user = $event->getUser();
 		if (!$this->guestManager->isGuest($user)) {
 			return;
 		}
 
-		$guestEmail = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'email', strtolower($user->getUID()));
+		$userId = (string)$user->getUID();
+		$guestEmail = $this->config->getUserValue($userId, Application::APP_ID, 'email', strtolower($userId));
 		if ($event->getValue() === $guestEmail) {
 			return;
 		}
 
 		$allowChange = false;
-		if (strtolower($event->getValue()) === strtolower($user->getUID())) {
+		if (strtolower($event->getValue()) === strtolower($userId)) {
 			$allowChange = true;
 		} elseif ($this->userSession->getUser() !== $user) {
 			$allowChange = true;
@@ -58,7 +62,7 @@ class UserChangedListener implements IEventListener {
 		}
 
 		if ($allowChange) {
-			$this->config->setUserValue($user->getUID(), Application::APP_ID, 'email', $event->getValue());
+			$this->config->setUserValue($userId, Application::APP_ID, 'email', $event->getValue());
 		} else {
 			$user->setSystemEMailAddress($guestEmail);
 			$event->stopPropagation();

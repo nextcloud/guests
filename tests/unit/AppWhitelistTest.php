@@ -21,13 +21,16 @@ use Test\TestCase;
 
 class AppWhitelistTest extends TestCase {
 	private Config&MockObject $config;
+
 	private GuestManager&MockObject $guestManager;
+
 	private IL10N&MockObject $l10n;
+
 	private IAppManager&MockObject $appManager;
+
 	private IURLGenerator&MockObject $urlGenerator;
 
-	/** @var AppWhitelist */
-	private $appWhitelist;
+	private ?AppWhitelist $appWhitelist = null;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -50,27 +53,27 @@ class AppWhitelistTest extends TestCase {
 		);
 	}
 
-	public function testIsUrlAllowed() {
+	public function testIsUrlAllowed(): void {
 		$this->config->method('getAppWhitelist')
 			->willReturn(['foo', 'bar']);
 		$this->config->method('useWhitelist')
 			->willReturn(true);
 		$this->guestManager->method('isGuest')
 			->willReturn(true);
-		$user = $this->createMock(IUser::class);
+		$user = $this->createStub(IUser::class);
 
 		$this->assertFalse($this->appWhitelist->isUrlAllowed($user, '/apps/news/...'));
 		$this->assertTrue($this->appWhitelist->isUrlAllowed($user, '/apps/foo/...'));
 	}
 
-	public function testIsUrlAllowedNoWhitelist() {
+	public function testIsUrlAllowedNoWhitelist(): void {
 		$this->config->method('getAppWhitelist')
 			->willReturn(['foo', 'bar']);
 		$this->config->method('useWhitelist')
 			->willReturn(false);
 		$this->guestManager->method('isGuest')
 			->willReturn(true);
-		$user = $this->createMock(IUser::class);
+		$user = $this->createStub(IUser::class);
 
 		$this->assertTrue($this->appWhitelist->isUrlAllowed($user, '/apps/news/...'));
 		$this->assertTrue($this->appWhitelist->isUrlAllowed($user, '/apps/foo/...'));

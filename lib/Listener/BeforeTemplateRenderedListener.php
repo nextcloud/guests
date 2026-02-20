@@ -7,7 +7,6 @@ declare(strict_types=1);
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-
 namespace OCA\Guests\Listener;
 
 use OCA\Guests\Config;
@@ -21,7 +20,7 @@ use OCP\Util;
  */
 class BeforeTemplateRenderedListener implements IEventListener {
 	public function __construct(
-		private Config $config,
+		private readonly Config $config,
 	) {
 	}
 
@@ -37,6 +36,7 @@ class BeforeTemplateRenderedListener implements IEventListener {
 		if (!$this->config->canCreateGuests()) {
 			return;
 		}
+
 		Util::addScript('guests', 'guests-init');
 		Util::addScript('guests', 'guests-contactsmenu');
 
@@ -44,10 +44,7 @@ class BeforeTemplateRenderedListener implements IEventListener {
 			return;
 		}
 
-		// FIXME use this once Nextcloud 25 is the supported minimum
-		// if ($event->getResponse()->getApp() !== 'spreed') {
-		$params = $event->getResponse()->getParams();
-		if (!isset($params['app']) || $params['app'] !== 'spreed') {
+		if ($event->getResponse()->getApp() !== 'spreed') {
 			return;
 		}
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * SPDX-FileCopyrightText: 2022 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
@@ -18,8 +20,9 @@ class Capabilities implements ICapability {
 
 	/**
 	 * @inheritDoc
+	 * @return array<string, array<string, bool>>
 	 */
-	public function getCapabilities() {
+	public function getCapabilities(): array {
 		return [
 			'guests' => [
 				'enabled' => true,

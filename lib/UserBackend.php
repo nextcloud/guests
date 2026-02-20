@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 /**
  * SPDX-FileCopyrightText: 2017 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
@@ -36,16 +37,16 @@ class UserBackend extends ABackend implements
 	ICountUsersBackend,
 	IGetRealUIDBackend,
 	IPasswordHashBackend {
-	/** @var CappedMemoryCache */
-	private $cache;
-	/** @var bool */
-	private $allowListing = true;
+
+	private CappedMemoryCache $cache;
+
+	private bool $allowListing = true;
 
 	public function __construct(
-		private IEventDispatcher $eventDispatcher,
-		private IDBConnection $dbConn,
-		private Config $config,
-		private IHasher $hasher,
+		private readonly IEventDispatcher $eventDispatcher,
+		private readonly IDBConnection $dbConn,
+		private readonly Config $config,
+		private readonly IHasher $hasher,
 	) {
 		$this->cache = new CappedMemoryCache();
 	}
@@ -55,12 +56,6 @@ class UserBackend extends ABackend implements
 	}
 
 	/**
-	 * Create a new user
-	 *
-	 * @param string $uid The username of the user to create
-	 * @param string $password The password of the new user
-	 * @return bool
-	 *
 	 * Creates a new user. Basic checking of username is done in OC_User
 	 * itself, not in its subclasses.
 	 */
@@ -81,17 +76,16 @@ class UserBackend extends ABackend implements
 			// Clear cache
 			unset($this->cache[$uid]);
 
-			return $result ? true : false;
+			return (bool)$result;
 		}
 
 		return false;
 	}
 
 	/**
-	 * delete a user
+	 * Deletes a user
 	 *
 	 * @param string $uid The username of the user to delete
-	 * @return bool
 	 *
 	 * Deletes a user
 	 */
@@ -106,16 +100,10 @@ class UserBackend extends ABackend implements
 			unset($this->cache[$uid]);
 		}
 
-		return $result ? true : false;
+		return (bool)$result;
 	}
 
 	/**
-	 * Set password
-	 *
-	 * @param string $uid The username
-	 * @param string $password The new password
-	 * @return bool
-	 *
 	 * Change the password of a user
 	 */
 	public function setPassword(string $uid, string $password): bool {
@@ -130,7 +118,7 @@ class UserBackend extends ABackend implements
 				->where($query->expr()->eq('uid_lower', $query->createNamedParameter(mb_strtolower($uid))));
 			$result = $query->executeStatement();
 
-			return $result ? true : false;
+			return (bool)$result;
 		}
 
 		return false;
@@ -140,6 +128,7 @@ class UserBackend extends ABackend implements
 		if (!$this->userExists($userId)) {
 			return null;
 		}
+
 		$qb = $this->dbConn->getQueryBuilder();
 		$qb->select('password')
 			->from('guests_users')
@@ -149,6 +138,7 @@ class UserBackend extends ABackend implements
 		if ($hash === false) {
 			return null;
 		}
+
 		return $hash;
 	}
 
@@ -156,6 +146,7 @@ class UserBackend extends ABackend implements
 		if (!$this->hasher->validate($passwordHash)) {
 			throw new InvalidArgumentException();
 		}
+
 		$qb = $this->dbConn->getQueryBuilder();
 		$qb->update('guests_users')
 			->set('password', $qb->createNamedParameter($passwordHash))
@@ -165,12 +156,6 @@ class UserBackend extends ABackend implements
 	}
 
 	/**
-	 * Set display name
-	 *
-	 * @param string $uid The username
-	 * @param string $displayName The new display name
-	 * @return bool
-	 *
 	 * Change the display name of a user
 	 */
 	public function setDisplayName(string $uid, string $displayName): bool {
@@ -190,10 +175,9 @@ class UserBackend extends ABackend implements
 	}
 
 	/**
-	 * get display name of the user
+	 * Get display name of the user
 	 *
 	 * @param string $uid user ID of the user
-	 * @return string display name
 	 */
 	public function getDisplayName($uid): string {
 		$this->loadUser($uid);
@@ -206,58 +190,55 @@ class UserBackend extends ABackend implements
 	 * @param string $search
 	 * @param int|null $limit
 	 * @param int|null $offset
-	 * @return array an array of all displayNames (value) and the corresponding uids (key)
+	 * @return array<string, string> an array of all displayNames (value) and the corresponding uids (key)
 	 */
 	public function getDisplayNames($search = '', $limit = null, $offset = null): array {
 		if (!$this->allowListing) {
 			return [];
-		} else {
-			$query = $this->dbConn->getQueryBuilder();
-
-			if ($search === '') {
-				$query->select('uid', 'displayname')
-					->from('guests_users', 'u')
-					->orderBy('uid_lower', 'ASC')
-					->setMaxResults($limit)
-					->setFirstResult($offset);
-			} else {
-				$query->select('uid', 'displayname')
-					->from('guests_users', 'u')
-					->leftJoin('u', 'preferences', 'p', $query->expr()->andX(
-						$query->expr()->eq('userid', 'uid'),
-						$query->expr()->eq('appid', $query->expr()->literal('settings')),
-						$query->expr()->eq('configkey', $query->expr()->literal('email')))
-					)
-					// sqlite doesn't like re-using a single named parameter here
-					->where($query->expr()->iLike('uid', $query->createPositionalParameter('%' . $this->dbConn->escapeLikeParameter($search) . '%')))
-					->orWhere($query->expr()->iLike('displayname', $query->createPositionalParameter('%' . $this->dbConn->escapeLikeParameter($search) . '%')))
-					->orWhere($query->expr()->iLike('configvalue', $query->createPositionalParameter('%' . $this->dbConn->escapeLikeParameter($search) . '%')))
-					->orderBy($query->func()->lower('displayname'), 'ASC')
-					->orderBy('uid_lower', 'ASC')
-					->setMaxResults($limit)
-					->setFirstResult($offset);
-			}
-
-			$result = $query->executeQuery();
-			$displayNames = [];
-			while ($row = $result->fetch()) {
-				$displayNames[(string)$row['uid']] = (string)$row['displayname'];
-			}
-
-			return $displayNames;
 		}
+
+		$query = $this->dbConn->getQueryBuilder();
+		if ($search === '') {
+			$query->select('uid', 'displayname')
+				->from('guests_users', 'u')
+				->orderBy('uid_lower', 'ASC')
+				->setMaxResults($limit)
+				->setFirstResult($offset);
+		} else {
+			$query->select('uid', 'displayname')
+				->from('guests_users', 'u')
+				->leftJoin('u', 'preferences', 'p', $query->expr()->andX(
+					$query->expr()->eq('userid', 'uid'),
+					$query->expr()->eq('appid', $query->expr()->literal('settings')),
+					$query->expr()->eq('configkey', $query->expr()->literal('email')))
+				)
+				// sqlite doesn't like re-using a single named parameter here
+				->where($query->expr()->iLike('uid', $query->createPositionalParameter('%' . $this->dbConn->escapeLikeParameter($search) . '%')))
+				->orWhere($query->expr()->iLike('displayname', $query->createPositionalParameter('%' . $this->dbConn->escapeLikeParameter($search) . '%')))
+				->orWhere($query->expr()->iLike('configvalue', $query->createPositionalParameter('%' . $this->dbConn->escapeLikeParameter($search) . '%')))
+				->orderBy($query->func()->lower('displayname'), 'ASC')
+				->orderBy('uid_lower', 'ASC')
+				->setMaxResults($limit)
+				->setFirstResult($offset);
+		}
+
+		$result = $query->executeQuery();
+		$displayNames = [];
+		while ($row = $result->fetch()) {
+			$displayNames[(string)$row['uid']] = (string)$row['displayname'];
+		}
+
+		return $displayNames;
 	}
 
 	/**
-	 * Check if the password is correct
-	 *
-	 * @return string|false
-	 *
 	 * Check if the password is correct without logging in the user
 	 * returns the user id or false
+	 *
+	 * @return string|false
 	 */
 	public function checkPassword(string $loginName, string $password) {
-		if (strpos($loginName, '@') === false) {
+		if (!str_contains($loginName, '@')) {
 			return false;
 		}
 
@@ -277,9 +258,10 @@ class UserBackend extends ABackend implements
 			$storedHash = $row['password'];
 			$newHash = '';
 			if ($this->hasher->verify($password, $storedHash, $newHash)) {
-				if (!empty($newHash)) {
+				if ($newHash !== '') {
 					$this->setPassword($loginName, $password);
 				}
+
 				return (string)$row['uid'];
 			}
 		}
@@ -291,12 +273,11 @@ class UserBackend extends ABackend implements
 	 * Load an user in the cache
 	 *
 	 * @param string $uid the username
-	 * @return bool true if user was found, false otherwise
 	 */
 	private function loadUser($uid): bool {
 		// guests $uid could be NULL or ''
 		// or is not an email anyway
-		if (strpos($uid, '@') === false) {
+		if (!str_contains($uid, '@')) {
 			$this->cache[$uid] = false;
 			return false;
 		}
@@ -335,22 +316,19 @@ class UserBackend extends ABackend implements
 	 * @param string $search
 	 * @param null|int $limit
 	 * @param null|int $offset
-	 * @return string[] an array of all uids
+	 * @return list<string> an array of all uids
 	 */
 	public function getUsers($search = '', $limit = null, $offset = null): array {
 		$users = $this->getDisplayNames($search, $limit, $offset);
-		$userIds = array_map(function ($uid) {
-			return (string)$uid;
-		}, array_keys($users));
+		$userIds = array_keys($users);
 		sort($userIds, SORT_STRING | SORT_FLAG_CASE);
 		return $userIds;
 	}
 
 	/**
-	 * check if a user exists
+	 * Check if a user exists
 	 *
 	 * @param string $uid the username
-	 * @return bool
 	 */
 	public function userExists($uid): bool {
 		$this->loadUser($uid);
@@ -358,9 +336,8 @@ class UserBackend extends ABackend implements
 	}
 
 	/**
-	 * get the user's home directory
+	 * Get the user's home directory
 	 *
-	 * @param string $uid the username
 	 * @return string|false
 	 */
 	public function getHome(string $uid) {
@@ -371,15 +348,12 @@ class UserBackend extends ABackend implements
 		return false;
 	}
 
-	/**
-	 * @return bool
-	 */
 	public function hasUserListings(): bool {
 		return true;
 	}
 
 	/**
-	 * counts the users in the database
+	 * Counts the users in the database
 	 *
 	 * @return int|false
 	 */
@@ -393,7 +367,7 @@ class UserBackend extends ABackend implements
 	}
 
 	/**
-	 * returns the username for the given login name in the correct casing
+	 * Returns the username for the given login name in the correct casing
 	 *
 	 * @param string $loginName
 	 * @return string|false
@@ -416,7 +390,7 @@ class UserBackend extends ABackend implements
 	}
 
 	public function getRealUID(string $uid): string {
-		if (strpos($uid, '@') === false) {
+		if (!str_contains($uid, '@')) {
 			throw new \RuntimeException($uid . ' does not exist');
 		}
 
