@@ -8,6 +8,8 @@
     "Failed to authorize" : "Falhou a autorização",
     "%s via %s" : "%s via %s",
     "Couldn't send reset email. Please contact your administrator." : "Não foi possível enviar a mensagem de reposição. Por favor, contacte o seu administrador.",
+    "%s shared a file with you" : "%s partilhou um ficheiro consigo.",
+    "%1$s just invited you and shared »%2$s« with you." : "%1$s acabou de o convidar e partilhou »%2$s« consigo.",
     "You can access the shared file by activating your guest account." : "Pode aceder ao ficheiro partilhado ao ativar a sua conta de convidado",
     "The share will expire at %s." : "A partilha expira em %s.",
     "Activate account" : "Ativar conta",

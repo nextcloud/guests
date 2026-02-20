@@ -1,12 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * SPDX-FileCopyrightText: 2021 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
-
-declare(strict_types=1);
-
 
 namespace OCA\Guests\Listener;
 
@@ -22,13 +21,10 @@ use OCP\Util;
 class LoadAdditionalScriptsListener implements IEventListener {
 
 	public function __construct(
-		private Config $config,
+		private readonly Config $config,
 	) {
 	}
 
-	/**
-	 * @param Event $event
-	 */
 	public function handle(Event $event): void {
 		// If the user cannot create guests, we don't need to load the script
 		if (!$this->config->canCreateGuests()) {

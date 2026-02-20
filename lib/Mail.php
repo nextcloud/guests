@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * SPDX-FileCopyrightText: 2017-2024 Nextcloud GmbH and Nextcloud contributors
  * SPDX-FileCopyrightText: 2017 ownCloud GmbH
@@ -9,28 +11,25 @@
 namespace OCA\Guests;
 
 use OCP\Defaults;
-use OCP\IConfig;
 use OCP\IL10N;
 use OCP\IURLGenerator;
 use OCP\IUserManager;
 use OCP\IUserSession;
 use OCP\L10N\IFactory;
+use OCP\Mail\IEMailTemplate;
 use OCP\Mail\IMailer;
-use OCP\Share;
+use OCP\Share\IShare;
 use OCP\Util;
-use Psr\Log\LoggerInterface;
 
 class Mail {
 
 	public function __construct(
-		private IConfig $config,
-		private LoggerInterface $logger,
-		private IUserSession $userSession,
-		private IMailer $mailer,
-		private Defaults $defaults,
-		private IFactory $l10nFactory,
-		private IUserManager $userManager,
-		private IURLGenerator $urlGenerator,
+		private readonly IUserSession $userSession,
+		private readonly IMailer $mailer,
+		private readonly Defaults $defaults,
+		private readonly IFactory $l10nFactory,
+		private readonly IUserManager $userManager,
+		private readonly IURLGenerator $urlGenerator,
 	) {
 	}
 
@@ -38,13 +37,13 @@ class Mail {
 	 * Sends out a reset password mail if the user is a guest and does not have
 	 * a password set, yet.
 	 *
-	 * @param $uid
 	 * @throws \Exception
 	 */
-	public function sendGuestInviteMail(string $uid, string $guest, string $token, string $language = '', ?Share\IShare $share = null): void {
+	public function sendGuestInviteMail(string $uid, string $guest, string $token, string $language = '', ?IShare $share = null): void {
 		if ($language === '') {
 			$language = null;
 		}
+
 		$l10n = $this->l10nFactory->get('guests', $language);
 
 		$passwordLink = $this->urlGenerator->linkToRouteAbsolute(
@@ -57,10 +56,11 @@ class Mail {
 		if (!$guestEmail) {
 			throw new \Exception('Guest user created without email');
 		}
+
 		$replyTo = $this->userManager->get($uid)->getEMailAddress();
 		$senderDisplayName = $this->userSession->getUser()->getDisplayName();
 
-		if (empty($share)) {
+		if (!$share instanceof IShare) {
 			[ $subject, $emailTemplate ] = $this->composeInviteMessage($senderDisplayName, $guestEmail, $passwordLink, $l10n);
 		} else {
 			[ $subject, $emailTemplate ] = $this->composeShareMessage($share, $senderDisplayName, $guestEmail, $passwordLink, $l10n);
@@ -85,14 +85,17 @@ class Mail {
 			}
 
 			$this->mailer->send($message);
-		} catch (\Exception $e) {
+		} catch (\Exception) {
 			throw new \Exception($l10n->t(
-				'Couldn\'t send reset email. Please contact your administrator.'
+				"Couldn't send reset email. Please contact your administrator."
 			));
 		}
 	}
 
-	private function composeShareMessage(Share\IShare $share, string $senderDisplayName, string $guestEmail, string $passwordLink, IL10N $l10n): array {
+	/**
+	 * @return array{string, IEMailTemplate}
+	 */
+	private function composeShareMessage(IShare $share, string $senderDisplayName, string $guestEmail, string $passwordLink, IL10N $l10n): array {
 		$filename = trim($share->getTarget(), '/');
 		$subject = $l10n->t('%s shared a file with you', [$senderDisplayName]);
 		$expiration = $share->getExpirationDate();
@@ -138,6 +141,9 @@ class Mail {
 		return [ $subject, $emailTemplate ];
 	}
 
+	/**
+	 * @return array{string, IEMailTemplate}
+	 */
 	private function composeInviteMessage(string $senderDisplayName, string $guestEmail, string $passwordLink, IL10N $l10n): array {
 		$subject = $l10n->t('%s invited you as a guest', [$senderDisplayName]);
 

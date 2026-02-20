@@ -18,6 +18,7 @@ use OCA\Guests\Service\InviteService;
 use OCA\Guests\TransferService;
 use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\AppFramework\Http;
+use OCP\AppFramework\Http\Attribute\NoAdminRequired;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\OCSController;
 use OCP\Group\ISubAdmin;
@@ -33,30 +34,22 @@ class UsersController extends OCSController {
 	public function __construct(
 		string $appName,
 		IRequest $request,
-		private IUserManager $userManager,
-		private IL10N $l10n,
-		private Config $config,
-		private IMailer $mailer,
-		private GuestManager $guestManager,
-		private IUserSession $userSession,
-		private ISubAdmin $subAdmin,
-		private IGroupManager $groupManager,
-		private TransferService $transferService,
-		private TransferMapper $transferMapper,
-		private InviteService $inviteService,
+		private readonly IUserManager $userManager,
+		private readonly IL10N $l10n,
+		private readonly Config $config,
+		private readonly IMailer $mailer,
+		private readonly GuestManager $guestManager,
+		private readonly IUserSession $userSession,
+		private readonly ISubAdmin $subAdmin,
+		private readonly IGroupManager $groupManager,
+		private readonly TransferService $transferService,
+		private readonly TransferMapper $transferMapper,
+		private readonly InviteService $inviteService,
 	) {
 		parent::__construct($appName, $request);
 	}
 
-	/**
-	 * @NoAdminRequired
-	 *
-	 * @param string $email
-	 * @param string $displayName
-	 * @param string $language
-	 * @param array $groups
-	 * @return DataResponse
-	 */
+	#[NoAdminRequired]
 	public function create(string $email, string $displayName, string $language, array $groups, bool $sendInvite = true): DataResponse {
 		$errorMessages = [];
 		$currentUser = $this->userSession->getUser();
@@ -94,23 +87,25 @@ class UsersController extends OCSController {
 			if (!$group) {
 				return new DataResponse(
 					[
-						'errorMessages' => ["Group $groupId not found"],
+						'errorMessages' => ['Group ' . $groupId . ' not found'],
 					],
 					Http::STATUS_BAD_REQUEST
 				);
 			}
-			if (!($this->subAdmin->isSubAdminOfGroup($currentUser, $group) || $this->groupManager->isAdmin($currentUser->getUID()))) {
+
+			if (!$this->subAdmin->isSubAdminOfGroup($currentUser, $group) && !$this->groupManager->isAdmin($currentUser->getUID())) {
 				return new DataResponse(
 					[
-						'errorMessages' => ["You are not allowed to add users to group $groupId"],
+						'errorMessages' => ['You are not allowed to add users to group ' . $groupId],
 					],
 					Http::STATUS_FORBIDDEN
 				);
 			}
+
 			$groupObjects[] = $group;
 		}
 
-		if (empty($email) || !$this->mailer->validateMailAddress($email)) {
+		if ($email === '' || !$this->mailer->validateMailAddress($email)) {
 			$errorMessages['email'] = $this->l10n->t(
 				'Invalid mail address'
 			);
@@ -129,7 +124,7 @@ class UsersController extends OCSController {
 			);
 		}
 
-		if (!empty($errorMessages)) {
+		if ($errorMessages !== []) {
 			return new DataResponse(
 				[
 					'errorMessages' => $errorMessages,
@@ -139,18 +134,26 @@ class UsersController extends OCSController {
 		}
 
 		try {
-			$this->guestManager->createGuest($this->userSession->getUser(), $username, $email, $displayName, $language);
-			$guestUser = $this->userManager->get($username);
+			$guestUser = $this->guestManager->createGuest($this->userSession->getUser(), $username, $email, $displayName, $language);
+			if (!$guestUser instanceof IUser) {
+				return new DataResponse(
+					[
+						'errorMessages' => ['email' => 'Unable to create guest user ' . $username],
+					],
+					Http::STATUS_UNPROCESSABLE_ENTITY
+				);
+			}
 			if ($this->userManager instanceof PublicEmitter) {
 				$this->userManager->emit('\OC\User', 'assignedUserId', [$username]);
 			}
+
 			foreach ($groupObjects as $group) {
 				$group->addUser($guestUser);
 			}
-		} catch (\Exception $e) {
+		} catch (\Exception $exception) {
 			return new DataResponse(
 				[
-					'errorMessages' => ['email' => $e->getMessage()],
+					'errorMessages' => ['email' => $exception->getMessage()],
 				],
 				Http::STATUS_UNPROCESSABLE_ENTITY
 			);
@@ -214,13 +217,13 @@ class UsersController extends OCSController {
 
 		try {
 			$transfer = $this->transferMapper->getBySource($sourceUser->getUID());
-		} catch (DoesNotExistException $e) {
+		} catch (DoesNotExistException) {
 			// Allow as this just means there is no pending transfer
 		}
 
 		try {
 			$transfer = $this->transferMapper->getByTarget($targetUserId);
-		} catch (DoesNotExistException $e) {
+		} catch (DoesNotExistException) {
 			// Allow as this just means there is no pending transfer
 		}
 
@@ -233,6 +236,7 @@ class UsersController extends OCSController {
 		}
 
 		$this->transferService->addTransferJob($author, $sourceUser, $targetUserId);
+
 		return new DataResponse([], Http::STATUS_CREATED);
 	}
 }

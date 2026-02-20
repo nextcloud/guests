@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * SPDX-FileCopyrightText: 2017-2024 Nextcloud GmbH and Nextcloud contributors
  * SPDX-FileCopyrightText: 2017 ownCloud GmbH
@@ -12,31 +14,25 @@ use OC\Files\Filesystem;
 use OCA\Guests\AppInfo\Application;
 use OCA\Guests\Service\InviteService;
 use OCA\Guests\Storage\ReadOnlyJail;
-use OCP\AppFramework\IAppContainer;
 use OCP\Constants;
 use OCP\Files\Storage\IStorage;
 use OCP\IConfig;
-use OCP\IUser;
 use OCP\IUserManager;
 use OCP\IUserSession;
-use OCP\Security\ICrypto;
 use OCP\Share\Events\ShareCreatedEvent;
 use OCP\User\Events\UserFirstTimeLoggedInEvent;
 use Psr\Log\LoggerInterface;
 
 class Hooks {
 	public function __construct(
-		private LoggerInterface $logger,
-		private IUserSession $userSession,
-		private Mail $mail,
-		private IUserManager $userManager,
-		private IConfig $config,
-		private ICrypto $crypto,
-		private GuestManager $guestManager,
-		private UserBackend $userBackend,
-		private IAppContainer $container,
-		private TransferService $transferService,
-		private InviteService $inviteService,
+		private readonly LoggerInterface $logger,
+		private readonly IUserSession $userSession,
+		private readonly IUserManager $userManager,
+		private readonly IConfig $config,
+		private readonly GuestManager $guestManager,
+		private readonly UserBackend $userBackend,
+		private readonly TransferService $transferService,
+		private readonly InviteService $inviteService,
 	) {
 	}
 
@@ -48,25 +44,23 @@ class Hooks {
 
 		if (!$isGuest) {
 			$this->logger->debug(
-				"ignoring user '$shareWith', not a guest",
+				"ignoring user '" . $shareWith . "', not a guest",
 				['app' => Application::APP_ID]
 			);
-
 			return;
 		}
 
-		if (!($share->getNodeType() === 'folder' || $share->getNodeType() === 'file')) {
+		if ($share->getNodeType() !== 'folder' && $share->getNodeType() !== 'file') {
 			$this->logger->debug(
 				'ignoring share for itemType ' . $share->getNodeType(),
 				['app' => Application::APP_ID]
 			);
-
 			return;
 		}
 
 
 		$user = $this->userSession->getUser();
-		$targetUser = $this->userManager->get($shareWith);
+		$this->userManager->get($shareWith);
 
 		if (!$user) {
 			throw new \Exception(
@@ -74,7 +68,7 @@ class Hooks {
 			);
 		}
 
-		$this->logger->debug("checking if '$shareWith' has a password",
+		$this->logger->debug("checking if '" . $shareWith . "' has a password",
 			['app' => Application::APP_ID]);
 
 		$uid = $user->getUID();
@@ -82,21 +76,24 @@ class Hooks {
 		$this->inviteService->sendInvite($uid, $shareWith, $share);
 	}
 
+	/**
+	 * @param array<string, mixed> $params
+	 */
 	public function setupReadonlyFilesystem(array $params): void {
 		$uid = $params['user'];
 		$user = $this->userManager->get($uid);
 
 		if ($user && $this->guestManager->isGuest($user)) {
-			Filesystem::addStorageWrapper('guests.readonly', function ($mountPoint, IStorage $storage) use ($uid) {
-				if ($mountPoint === "/$uid/") {
+			Filesystem::addStorageWrapper('guests.readonly', function ($mountPoint, IStorage $storage) use ($uid): ReadOnlyJail|IStorage {
+				if ($mountPoint === sprintf('/%s/', $uid)) {
 					return new ReadOnlyJail([
 						'storage' => $storage,
 						'mask' => Constants::PERMISSION_READ,
 						'path' => 'files'
 					]);
-				} else {
-					return $storage;
 				}
+
+				return $storage;
 			});
 		}
 	}
@@ -106,7 +103,6 @@ class Hooks {
 			return;
 		}
 
-		/** @var IUser $user */
 		$user = $event->getUser();
 		$this->logger->debug('User ' . $user->getUID() . ' logged in for the very first time. Checking guests data import.');
 
@@ -128,7 +124,7 @@ class Hooks {
 
 		$guestUser = $this->userManager->get($email);
 		if ($guestUser === null) {
-			$this->logger->warning("Guest user $email does not exist (anymore)");
+			$this->logger->warning('Guest user ' . $email . ' does not exist (anymore)');
 			return;
 		}
 

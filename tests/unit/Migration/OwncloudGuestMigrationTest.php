@@ -25,9 +25,13 @@ use Test\Util\User\Dummy;
  */
 class OwncloudGuestMigrationTest extends TestCase {
 	private IConfig $config;
+
 	private IUserManager $userManager;
+
 	private BufferedOutput $consoleOutput;
+
 	private ConsoleOutput $migrationOutput;
+
 	private GuestManager $guestManager;
 
 	protected function setUp():void {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * SPDX-FileCopyrightText: 2017 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
@@ -22,36 +24,33 @@ use OCP\Share\IShare;
 
 class GuestManager {
 	public function __construct(
-		private IConfig $config,
-		private UserBackend $userBackend,
-		private ISecureRandom $secureRandom,
-		private ICrypto $crypto,
-		private IManager $shareManager,
-		private IDBConnection $connection,
-		private IUserSession $userSession,
-		private IEventDispatcher $eventDispatcher,
-		private IUserManager $userManager,
+		private readonly IConfig $config,
+		private readonly UserBackend $userBackend,
+		private readonly ISecureRandom $secureRandom,
+		private readonly ICrypto $crypto,
+		private readonly IManager $shareManager,
+		private readonly IDBConnection $connection,
+		private readonly IUserSession $userSession,
+		private readonly IEventDispatcher $eventDispatcher,
+		private readonly IUserManager $userManager,
 	) {
 	}
 
-	/**
-	 * @param IUser|string $user
-	 * @return bool
-	 */
-	public function isGuest($user = null): bool {
+	public function isGuest(IUser|string|null $user = null): bool {
 		if (is_null($user)) {
 			$user = $this->userSession->getUser();
 			return ($user !== null) && $this->userBackend->userExists($user->getUID());
 		}
+
 		if (is_string($user)) {
 			return $this->userBackend->userExists($user);
-		} elseif ($user instanceof IUser) {
-			return $this->userBackend->userExists($user->getUID());
 		}
-		return false;
+
+
+		return $this->userBackend->userExists($user->getUID());
 	}
 
-	public function createGuest(?IUser $createdBy, string $userId, string $email, string $displayName = '', string $language = '', ?string $initialPassword = null) : IUser {
+	public function createGuest(?IUser $createdBy, string $userId, string $email, string $displayName = '', string $language = '', ?string $initialPassword = null) : ?IUser {
 		if ($initialPassword === null) {
 			$passwordEvent = new GenerateSecurePasswordEvent();
 			$this->eventDispatcher->dispatchTyped($passwordEvent);
@@ -60,23 +59,26 @@ class GuestManager {
 			$password = $initialPassword;
 		}
 
-		/** @var IUser */
 		$user = $this->userManager->createUserFromBackend(
 			$userId,
 			$password,
 			$this->userBackend
 		);
 
+		if (!$user instanceof IUser) {
+			return null;
+		}
+
 		$user->setSystemEMailAddress($email);
-		if ($createdBy) {
+		if ($createdBy instanceof IUser) {
 			$this->config->setUserValue($userId, 'guests', 'created_by', $createdBy->getUID());
 		}
 
-		if ($displayName) {
+		if ($displayName !== '') {
 			$user->setDisplayName($displayName);
 		}
 
-		if ($language) {
+		if ($language !== '') {
 			$this->config->setUserValue($userId, 'core', 'lang', $language);
 		}
 
@@ -106,16 +108,28 @@ class GuestManager {
 		return $user;
 	}
 
+	/**
+	 * @return list<string>
+	 */
 	public function listGuests(): array {
 		return $this->userBackend->getUsers();
 	}
 
+	/**
+	 * @return list<array{
+	 *     email: non-empty-string,
+	 *     display_name: non-empty-string,
+	 *     created_by: string,
+	 *     share_count: int,
+	 *     share_count_with_circles: int
+	 * }>
+	 */
 	public function getGuestsInfo(): array {
 		$displayNames = $this->userBackend->getDisplayNames();
 		$guests = array_keys($displayNames);
 		$shareCounts = $this->getShareCountForUsers($guests);
 		$createdBy = $this->config->getUserValueForUsers('guests', 'created_by', $guests);
-		return array_map(function ($uid) use ($createdBy, $displayNames, $shareCounts) {
+		return array_map(function (string $uid) use ($createdBy, $displayNames, $shareCounts): array {
 			$allSharesCount = count(array_merge(
 				$this->shareManager->getSharedWith($uid, IShare::TYPE_USER, null, -1, 0),
 				$this->shareManager->getSharedWith($uid, IShare::TYPE_GROUP, null, -1, 0),
@@ -127,12 +141,16 @@ class GuestManager {
 				'email' => $uid,
 				'display_name' => $displayNames[$uid] ?? $uid,
 				'created_by' => $createdBy[$uid] ?? '',
-				'share_count' => isset($shareCounts[$uid]) ? $shareCounts[$uid] : 0,
+				'share_count' => $shareCounts[$uid] ?? 0,
 				'share_count_with_circles' => $allSharesCount,
 			];
 		}, $guests);
 	}
 
+	/**
+	 * @param list<string> $guests
+	 * @return array<string, int>
+	 */
 	private function getShareCountForUsers(array $guests): array {
 		$query = $this->connection->getQueryBuilder();
 		$query->select('share_with', $query->func()->count('*', 'count'))
@@ -142,13 +160,23 @@ class GuestManager {
 		$result = $query->executeQuery();
 		$data = [];
 		while ($row = $result->fetch()) {
-			$data[$row['share_with']] = $row['count'];
+			$data[$row['share_with']] = (int)$row['count'];
 		}
+
 		$result->closeCursor();
 
 		return $data;
 	}
 
+	/**
+	 * @return array{shares: list<array{
+	 *     id: string,
+	 *     shared_by: string,
+	 *     mime_type: int,
+	 *     name: string,
+	 *     time: int,
+	 * }>}
+	 */
 	public function getGuestInfo(string $userId): array {
 		$shares = array_merge(
 			$this->shareManager->getSharedWith($userId, IShare::TYPE_USER, null, -1, 0),
@@ -158,15 +186,13 @@ class GuestManager {
 			$this->shareManager->getSharedWith($userId, IShare::TYPE_ROOM, null, -1, 0)
 		);
 		return [
-			'shares' => array_map(function (IShare $share) {
-				return [
-					'id' => $share->getId(),
-					'shared_by' => $share->getSharedBy(),
-					'mime_type' => $share->getNodeCacheEntry()->getMimeType(),
-					'name' => $share->getNodeCacheEntry()->getName(),
-					'time' => $share->getShareTime()->getTimestamp(),
-				];
-			}, $shares),
+			'shares' => array_map(fn (IShare $share): array => [
+				'id' => $share->getId(),
+				'shared_by' => $share->getSharedBy(),
+				'mime_type' => $share->getNodeCacheEntry()->getMimeType(),
+				'name' => $share->getNodeCacheEntry()->getName(),
+				'time' => $share->getShareTime()->getTimestamp(),
+			], $shares),
 		];
 	}
 }
