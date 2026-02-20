@@ -26,12 +26,12 @@ use Psr\Log\LoggerInterface;
 
 class TransferService {
 	public function __construct(
-		private ContainerInterface $container,
-		private IShareManager $shareManager,
-		private INotificationManager $notificationManager,
-		private IJobList $jobList,
-		private TransferMapper $transferMapper,
-		private LoggerInterface $logger,
+		private readonly ContainerInterface $container,
+		private readonly IShareManager $shareManager,
+		private readonly INotificationManager $notificationManager,
+		private readonly IJobList $jobList,
+		private readonly TransferMapper $transferMapper,
+		private readonly LoggerInterface $logger,
 	) {
 	}
 
@@ -39,11 +39,11 @@ class TransferService {
 		try {
 			/** @var OwnershipTransferService $ownershipTransferService */
 			$ownershipTransferService = $this->container->get(OwnershipTransferService::class);
-		} catch (QueryException $e) {
+		} catch (QueryException $queryException) {
 			$this->logger->error('Could not resolve ownership transfer service to import guest user data', [
-				'exception' => $e,
+				'exception' => $queryException,
 			]);
-			throw $e;
+			throw $queryException;
 		}
 
 		try {
@@ -55,11 +55,11 @@ class TransferService {
 				true,
 				true
 			);
-		} catch (TransferOwnershipException $e) {
+		} catch (TransferOwnershipException $transferOwnershipException) {
 			$this->logger->error('Could not import guest user data', [
-				'exception' => $e,
+				'exception' => $transferOwnershipException,
 			]);
-			throw $e;
+			throw $transferOwnershipException;
 		}
 
 		// Update incomming shares
@@ -76,6 +76,7 @@ class TransferService {
 			->setObject('user', $user->getEMailAddress())
 			->setDateTime(new \DateTime())
 			->setUser($user->getUID());
+
 		$this->notificationManager->notify($notification);
 	}
 

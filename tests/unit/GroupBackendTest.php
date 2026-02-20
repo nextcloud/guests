@@ -19,13 +19,14 @@ use Test\TestCase;
 class GroupBackendTest extends TestCase {
 	/** @var GuestManager|MockObject */
 	private $guestManager;
+
 	/** @var Config|MockObject */
 	private $config;
+
 	/** @var IUserSession|MockObject */
 	private $userSession;
 
-	/** @var GroupBackend */
-	private $backend;
+	private ?GroupBackend $backend = null;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -41,7 +42,7 @@ class GroupBackendTest extends TestCase {
 		);
 	}
 
-	private function setUID(string $uid) {
+	private function setUID(string $uid): void {
 		$user = $this->createMock(IUser::class);
 		$user->method('getUID')
 			->willReturn($uid);
@@ -50,12 +51,15 @@ class GroupBackendTest extends TestCase {
 			->willReturn($user);
 	}
 
-	private function setGuests(array $uids) {
+	/**
+	 * @param string[] $uids
+	 */
+	private function setGuests(array $uids): void {
 		$this->guestManager->method('listGuests')
 			->willReturn($uids);
 
 		$this->guestManager->method('isGuest')
-			->willReturnCallback(function ($uid) use ($uids) {
+			->willReturnCallback(function ($uid) use ($uids): bool {
 				if ($uid === null) {
 					$user = $this->userSession->getUser();
 					if ($user) {
@@ -67,19 +71,19 @@ class GroupBackendTest extends TestCase {
 			});
 	}
 
-	public function testUsersInDifferentGroup() {
+	public function testUsersInDifferentGroup(): void {
 		$this->setGuests(['foo', 'bar']);
 
 		$this->assertEquals([], $this->backend->usersInGroup('foo'));
 	}
 
-	public function testUsersInGroup() {
+	public function testUsersInGroup(): void {
 		$this->setGuests(['foo', 'bar']);
 
 		$this->assertEquals(['foo', 'bar'], $this->backend->usersInGroup('guest_app'));
 	}
 
-	public function testUsersInGroupHideOthersAsGuest() {
+	public function testUsersInGroupHideOthersAsGuest(): void {
 		$this->setGuests(['foo', 'bar']);
 
 		$this->setUID('foo');
@@ -90,7 +94,7 @@ class GroupBackendTest extends TestCase {
 		$this->assertEquals(['foo'], $this->backend->usersInGroup('guest_app'));
 	}
 
-	public function testUsersInGroupHideOthersAsNonGuest() {
+	public function testUsersInGroupHideOthersAsNonGuest(): void {
 		$this->setGuests(['foo', 'bar']);
 
 		$this->setUID('someone');
@@ -101,14 +105,14 @@ class GroupBackendTest extends TestCase {
 		$this->assertEquals(['foo', 'bar'], $this->backend->usersInGroup('guest_app'));
 	}
 
-	public function testInGroup() {
+	public function testInGroup(): void {
 		$this->setGuests(['foo', 'bar']);
 
 		$this->assertTrue($this->backend->inGroup('foo', 'guest_app'));
 		$this->assertFalse($this->backend->inGroup('other', 'guest_app'));
 	}
 
-	public function testInGroupHideOthers() {
+	public function testInGroupHideOthers(): void {
 		$this->setGuests(['foo', 'bar']);
 
 		$this->setUID('foo');
@@ -121,14 +125,14 @@ class GroupBackendTest extends TestCase {
 		$this->assertFalse($this->backend->inGroup('other', 'guest_app'));
 	}
 
-	public function testGetUserGroups() {
+	public function testGetUserGroups(): void {
 		$this->setGuests(['foo', 'bar']);
 
 		$this->assertEquals(['guest_app'], $this->backend->getUserGroups('foo'));
 		$this->assertEquals([], $this->backend->getUserGroups('other'));
 	}
 
-	public function testGetUserGroupsHideOthers() {
+	public function testGetUserGroupsHideOthers(): void {
 		$this->setGuests(['foo', 'bar']);
 
 		$this->setUID('foo');

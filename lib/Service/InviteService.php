@@ -18,10 +18,10 @@ use Psr\Log\LoggerInterface;
 
 class InviteService {
 	public function __construct(
-		private LoggerInterface $logger,
-		private IConfig $config,
-		private ICrypto $crypto,
-		private Mail $mail,
+		private readonly LoggerInterface $logger,
+		private readonly IConfig $config,
+		private readonly ICrypto $crypto,
+		private readonly Mail $mail,
 	) {
 	}
 
@@ -33,7 +33,7 @@ class InviteService {
 		}
 
 		try {
-			// user has not yet activated his account
+			// user has not yet activated their account
 			$decryptedToken = $this->crypto->decrypt($passwordToken, strtolower($guest) . $this->config->getSystemValue('secret'));
 			[, $token] = explode(':', $decryptedToken);
 			$lang = $this->config->getUserValue($guest, 'core', 'lang', '');
@@ -46,11 +46,11 @@ class InviteService {
 				$share
 			);
 
-			if ($share) {
+			if ($share instanceof IShare) {
 				$share->setMailSend(false);
 			}
-		} catch (DoesNotExistException $ex) {
-			$this->logger->error("'$guest' does not exist");
+		} catch (DoesNotExistException) {
+			$this->logger->error('"' . $guest . '" does not exist');
 		} catch (\Exception $e) {
 			$this->logger->error('Failed to send guest activation mail', ['exception' => $e]);
 		}

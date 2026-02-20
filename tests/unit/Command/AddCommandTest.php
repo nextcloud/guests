@@ -21,14 +21,16 @@ use Test\TestCase;
 class AddCommandTest extends TestCase {
 	/** @var IUserManager|MockObject */
 	private $userManager;
+
 	/** @var GuestManager|MockObject */
 	private $guestManager;
+
 	/** @var IMailer|MockObject */
 	private $mailer;
-	/** @var AddCommand */
-	private $command;
-	/** @var CommandTester */
-	private $commandTester;
+
+	private ?AddCommand $command = null;
+
+	private ?CommandTester $commandTester = null;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -43,9 +45,13 @@ class AddCommandTest extends TestCase {
 			$this->guestManager
 		);
 		$this->command->setApplication(new Application());
+
 		$this->commandTester = new CommandTester($this->command);
 	}
 
+	/**
+	 * @return array<int, array<int, array<string, string>>|array<int, array<string, bool|string>>>
+	 */
 	public function createGuestDataProvider() {
 		return [
 			[
@@ -69,8 +75,8 @@ class AddCommandTest extends TestCase {
 	/**
 	 * @dataProvider createGuestDataProvider
 	 */
-	public function testCreateGuest($commandArgs) {
-		$createdByUser = $this->createMock(IUser::class);
+	public function testCreateGuest($commandArgs): void {
+		$createdByUser = $this->createStub(IUser::class);
 
 		$password = 'guest-password';
 		if (isset($commandArgs['--generate-password'])) {
@@ -101,19 +107,20 @@ class AddCommandTest extends TestCase {
 				$createdByUser,
 				'guestid@example.com',
 				'guestid@example.com',
-				isset($commandArgs['--display-name']) ? $commandArgs['--display-name'] : '',
-				isset($commandArgs['--language']) ? $commandArgs['--language'] : '',
+				$commandArgs['--display-name'] ?? '',
+				$commandArgs['--language'] ?? '',
 				$password
 			)
 			->willReturn($guestUser);
 
 		$this->commandTester->setInputs(['guest-password', 'guest-password']);
 		$this->commandTester->execute($commandArgs);
+
 		$output = $this->commandTester->getDisplay();
 		$this->assertStringContainsString('The guest account user "guestid" was created successfully', $output);
 	}
 
-	public function testCreateGuestCreatorNotFound() {
+	public function testCreateGuestCreatorNotFound(): void {
 		$this->userManager->expects($this->once())
 			->method('get')
 			->with('creator')
@@ -129,7 +136,7 @@ class AddCommandTest extends TestCase {
 		$this->assertEquals(1, $this->commandTester->getStatusCode());
 	}
 
-	public function testCreateGuestAlreadyExists() {
+	public function testCreateGuestAlreadyExists(): void {
 		$this->userManager->expects($this->once())
 			->method('get')
 			->with('creator')
@@ -150,7 +157,7 @@ class AddCommandTest extends TestCase {
 		$this->assertEquals(1, $this->commandTester->getStatusCode());
 	}
 
-	public function testCreateGuestInvalidEmail() {
+	public function testCreateGuestInvalidEmail(): void {
 		$this->userManager->expects($this->once())
 			->method('get')
 			->with('creator')

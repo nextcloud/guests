@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * SPDX-FileCopyrightText: 2017-2024 Nextcloud GmbH and Nextcloud contributors
  * SPDX-FileCopyrightText: 2017 ownCloud GmbH
@@ -14,7 +16,6 @@ namespace OCA\Guests\Storage;
 class ReadOnlyJail extends DirMask {
 	/**
 	 * @param string $path
-	 * @return bool
 	 */
 	public function isDeletable($path): bool {
 		if (pathinfo($path, PATHINFO_EXTENSION) === 'part') {

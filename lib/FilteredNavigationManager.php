@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * SPDX-FileCopyrightText: 2017 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
@@ -14,18 +16,21 @@ use OCP\IUser;
 class FilteredNavigationManager extends NavigationManager {
 
 	public function __construct(
-		private IUser $user,
-		private INavigationManager $navigationManager,
-		private AppWhitelist $whitelist,
+		private readonly IUser $user,
+		private readonly INavigationManager $navigationManager,
+		private readonly AppWhitelist $whitelist,
 	) {
 	}
 
 	public function getAll(string $type = 'link'): array {
 		$items = $this->navigationManager->getAll($type);
 
-		return array_filter($items, [$this, 'isEntryWhitelisted']);
+		return array_filter($items, $this->isEntryWhitelisted(...));
 	}
 
+	/**
+	 * @param array<string, mixed> $item
+	 */
 	private function isEntryWhitelisted(array $item): bool {
 		return $this->whitelist->isUrlAllowed($this->user, $item['href']);
 	}
