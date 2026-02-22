@@ -21,7 +21,6 @@ use OCP\IUser;
 use OCP\IUserSession;
 use OCP\Server;
 use OCP\Settings\IManager;
-use OCP\Util;
 use Psr\Log\LoggerInterface;
 
 class RestrictionManager {
@@ -54,7 +53,6 @@ class RestrictionManager {
 		}
 
 		if ($this->guestManager->isGuest($user)) {
-			Util::connectHook('OC_Filesystem', 'preSetup', $this->hooks, 'setupReadonlyFilesystem');
 			if (!$this->config->allowExternalStorage()) {
 				$this->mountProviderCollection->registerMountFilter(fn (IMountPoint $mountPoint, IUser $user): bool => !($mountPoint instanceof ExternalMountPoint && $this->guestManager->isGuest($user)));
 			}
