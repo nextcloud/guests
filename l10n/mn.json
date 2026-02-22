@@ -1,10 +1,19 @@
 { "translations": {
-    "__language_name__" : "__хэлний_нэр__",
-    "Couldn't send reset email. Please contact your administrator." : "Нууц үг солих цахим шуудан явсангүй. Админтай холбоо барина уу.",
-    "None" : "юу ч үгүй",
-    "Name" : "Нэр",
-    "Cancel" : "Цуцлах",
-    "Language" : "Хэл",
-    "Error" : "Алдаа"
+    "__language_name__" : "__—Ö—ç–ª–Ω–∏–π_–Ω—ç—Ä__",
+    "Invalid mail address" : "Буруу и-мэйл хаяг",
+    "Failed to authorize" : "Зөвшөөрөл олгоход алдаа гарлаа",
+    "User already exists" : "Хэрэглэгч аль хэдийн байна",
+    "%s via %s" : "%s %s-аар",
+    "Couldn't send reset email. Please contact your administrator." : "–ù—É—É—Ü “Ø–≥ —Å–æ–ª–∏—Ö —Ü–∞—Ö–∏–º —à—É—É–¥–∞–Ω —è–≤—Å–∞–Ω–≥“Ø–π. –ê–¥–º–∏–Ω—Ç–∞–π —Ö–æ–ª–±–æ–æ –±–∞—Ä–∏–Ω–∞ —É—É.",
+    "None" : "—é—É —á “Ø–≥“Ø–π",
+    "Name" : "–ù—ç—Ä",
+    "Email" : "Имэйл",
+    "Default" : "Өгөгдмөл",
+    "Cancel" : "–¶—É—Ü–ª–∞—Ö",
+    "Invite {name}" : "{name}-г урих",
+    "Language" : "–•—ç–ª",
+    "Error" : "–ê–ª–¥–∞–∞",
+    "Saving …" : "Хадгалж байна …",
+    "Add guest" : "Зочин нэмэх"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
