@@ -106,10 +106,16 @@ class TransferJob extends QueuedJob {
 			return;
 		}
 
-		$targetUser = $this->userManager->createUser(
-			$target,
-			$this->secureRandom->generate(20), // Password hash will be copied to target user from source user
-		);
+		try {
+			$targetUser = $this->userManager->createUser(
+				$target,
+				$this->secureRandom->generate(20), // Password hash will be copied to target user from source user
+			);
+		} catch (\Exception) {
+			$this->logger->error('Cannot transfer guest user "' . $source . '", target user "' . $target . '" creation failed');
+			$this->fail($transfer);
+			return;
+		}
 
 		if (!$targetUser instanceof IUser) {
 			$this->logger->error('Failed to create new user: ' . $target);
