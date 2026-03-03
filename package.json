@@ -54,7 +54,7 @@
     "@nextcloud/logger": "^3.0.3",
     "@nextcloud/router": "^3.1.0",
     "@nextcloud/sharing": "^0.2.5",
-    "@nextcloud/vue": "^8.33.0",
+    "@nextcloud/vue": "^9.5.0",
     "email-validator": "^2.0.4",
     "vue": "^2.7.16",
     "vue-material-design-icons": "^5.3.1"
