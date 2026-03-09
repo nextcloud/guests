@@ -152,7 +152,7 @@ As a result, guests will be able to see each other as they are part of the same 
 
 ### Converting guest users to full users
 
-Guest users can be automatically converted into full users (provided by any other user back end like SAML, LDAP, OAuth, database...) on their next login. When this happens they will retain their shares.
+Guest users can be automatically converted into full users (provided by any other user back end like SAML, LDAP, OAuth, database...) on their **first** login. When this happens they will retain their shares.
 
 For this to happen the following must be true:
 
