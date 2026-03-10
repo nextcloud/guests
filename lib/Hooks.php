@@ -10,12 +10,8 @@ declare(strict_types=1);
 
 namespace OCA\Guests;
 
-use OC\Files\Filesystem;
 use OCA\Guests\AppInfo\Application;
 use OCA\Guests\Service\InviteService;
-use OCA\Guests\Storage\ReadOnlyJail;
-use OCP\Constants;
-use OCP\Files\Storage\IStorage;
 use OCP\IConfig;
 use OCP\IUserManager;
 use OCP\IUserSession;
@@ -74,28 +70,6 @@ class Hooks {
 		$uid = $user->getUID();
 
 		$this->inviteService->sendInvite($uid, $shareWith, $share);
-	}
-
-	/**
-	 * @param array<string, mixed> $params
-	 */
-	public function setupReadonlyFilesystem(array $params): void {
-		$uid = $params['user'];
-		$user = $this->userManager->get($uid);
-
-		if ($user && $this->guestManager->isGuest($user)) {
-			Filesystem::addStorageWrapper('guests.readonly', function ($mountPoint, IStorage $storage) use ($uid): ReadOnlyJail|IStorage {
-				if ($mountPoint === sprintf('/%s/', $uid)) {
-					return new ReadOnlyJail([
-						'storage' => $storage,
-						'mask' => Constants::PERMISSION_READ,
-						'path' => 'files'
-					]);
-				}
-
-				return $storage;
-			});
-		}
 	}
 
 	public function handleFirstLogin(UserFirstTimeLoggedInEvent $event): void {
