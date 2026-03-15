@@ -12,6 +12,7 @@ namespace OCA\Guests\Service;
 use OCA\Guests\Mail;
 use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\IConfig;
+use OCP\IUserManager;
 use OCP\Security\ICrypto;
 use OCP\Share\IShare;
 use Psr\Log\LoggerInterface;
@@ -21,6 +22,7 @@ class InviteService {
 		private readonly LoggerInterface $logger,
 		private readonly IConfig $config,
 		private readonly ICrypto $crypto,
+		private readonly IUserManager $userManager,
 		private readonly Mail $mail,
 	) {
 	}
@@ -29,15 +31,23 @@ class InviteService {
 		$passwordToken = $this->config->getUserValue($guest, 'core', 'lostpassword', null);
 
 		if (!$passwordToken) {
+			$this->logger->warning('No password token found for guest "' . $guest . '", skipping invitation email');
 			return false;
 		}
 
 		try {
-			// user has not yet activated their account
-			$decryptedToken = $this->crypto->decrypt($passwordToken, strtolower($guest) . $this->config->getSystemValue('secret'));
+			$targetUser = $this->userManager->get($guest);
+			if ($targetUser === null) {
+				$this->logger->error('Guest user "' . $guest . '" not found');
+				return false;
+			}
+
+			$decryptedToken = $this->crypto->decrypt(
+				$passwordToken,
+				strtolower($targetUser->getEMailAddress()) . $this->config->getSystemValue('secret')
+			);
 			[, $token] = explode(':', $decryptedToken);
 			$lang = $this->config->getUserValue($guest, 'core', 'lang', '');
-			// send invitation
 			$this->mail->sendGuestInviteMail(
 				$userId,
 				$guest,
