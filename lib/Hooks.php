@@ -20,6 +20,7 @@ use OCP\IConfig;
 use OCP\IUserManager;
 use OCP\IUserSession;
 use OCP\Share\Events\ShareCreatedEvent;
+use OCP\Share\IShare;
 use OCP\User\Events\UserFirstTimeLoggedInEvent;
 use Psr\Log\LoggerInterface;
 
@@ -39,9 +40,20 @@ class Hooks {
 	public function handlePostShare(ShareCreatedEvent $event): void {
 		$share = $event->getShare();
 
-		$shareWith = $share->getSharedWith();
-		$isGuest = $this->guestManager->isGuest($shareWith);
+		// Only process shares targeting a specific user or email (guest invite logic).
+		// Link shares, remote shares, etc. have no shareWith recipient and must be skipped.
+		$allowedShareTypes = [
+			IShare::TYPE_USER,
+			IShare::TYPE_EMAIL
+		];
 
+		if (!in_array($share->getShareType(), $allowedShareTypes, true)) {
+			return;
+		}
+
+		$shareWith = $share->getSharedWith();
+
+		$isGuest = $this->guestManager->isGuest($shareWith);
 		if (!$isGuest) {
 			$this->logger->debug(
 				"ignoring user '" . $shareWith . "', not a guest",
@@ -57,7 +69,6 @@ class Hooks {
 			);
 			return;
 		}
-
 
 		$user = $this->userSession->getUser();
 		$this->userManager->get($shareWith);
