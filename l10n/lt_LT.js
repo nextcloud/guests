@@ -7,6 +7,7 @@ OC.L10N.register(
     "A user with that email already exists." : "Naudotojas su tokiu el. paštu jau yra.",
     "A user with that name already exists." : "Naudotojas tokiu vardu jau yra.",
     "User successfully created" : "Naudotojas sėkmingai sukurtas",
+    "Failed to authorize" : "Nepavyko autorizuoti",
     "Guest does not exist" : "Svečio nėra",
     "User already exists" : "Naudotojas jau yra",
     "User is not a guest" : "Naudotojas nėra svečias",
