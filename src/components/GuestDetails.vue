@@ -47,8 +47,10 @@
 </template>
 
 <script>
-import { generateOcsUrl } from '@nextcloud/router'
 import axios from '@nextcloud/axios'
+import { formatRelativeTime } from '@nextcloud/l10n'
+import { generateOcsUrl } from '@nextcloud/router'
+import logger from '../utils/logger.ts'
 
 export default {
 	name: 'GuestDetails',
@@ -58,6 +60,7 @@ export default {
 			required: true,
 		},
 	},
+
 	data() {
 		return {
 			activeUser: '',
@@ -66,26 +69,27 @@ export default {
 			loaded: false,
 		}
 	},
+
 	watch: {
 		guestId() {
 			this.loadGuestDetails()
 		},
 	},
+
 	beforeMount() {
 		this.loadGuestDetails()
 	},
+
 	methods: {
 		async loadGuestDetails() {
 			if (!this.details[this.guestId]) {
 				this.loaded = false
 				try {
-					const { data } = await axios.get(
-						generateOcsUrl('apps/guests/api/v1/users/{guestId}', { guestId: this.guestId }),
-					)
+					const { data } = await axios.get(generateOcsUrl('apps/guests/api/v1/users/{guestId}', { guestId: this.guestId }))
 					this.details[this.guestId] = data.ocs.data
 					this.activeUser = this.guestId
 				} catch (error) {
-					console.error(error)
+					logger.error('Error fetching guest details', { error })
 					this.error = true
 				} finally {
 					this.loaded = true
@@ -94,11 +98,13 @@ export default {
 				this.activeUser = this.guestId
 			}
 		},
+
 		getMimeIcon(mime) {
 			return OC.MimeType.getIconUrl(mime)
 		},
+
 		formatTime(time) {
-			return OC.Util.formatDate(new Date(time * 1000))
+			return formatRelativeTime(time * 1000)
 		},
 	},
 }

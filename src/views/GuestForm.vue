@@ -3,9 +3,10 @@
   - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 <template>
-	<NcModal v-if="isOpened"
+	<NcModal
+		v-if="isOpened"
 		id="app-guests"
-		:clear-view-delay="0"
+		:clearViewDelay="0"
 		:name="formatTitle"
 		@close="closeModal">
 		<!-- Main guest form -->
@@ -23,7 +24,8 @@
 						<label class="form-label" for="app-guests-input-name">
 							{{ t('guests', 'Guest Name') }}
 						</label>
-						<input id="app-guests-input-name"
+						<input
+							id="app-guests-input-name"
 							ref="name"
 							v-model="guest.fullName"
 							class="form-input"
@@ -39,7 +41,8 @@
 						<label class="form-label" for="app-guests-input-email">
 							{{ t('guests', 'Email') }}
 						</label>
-						<input id="app-guests-input-email"
+						<input
+							id="app-guests-input-email"
 							ref="email"
 							v-model="guest.email"
 							class="form-input"
@@ -64,7 +67,8 @@
 						<label class="form-label" for="app-guests-input-group">
 							{{ t('guests', 'Add guest to groups:') }}
 						</label>
-						<GroupSelect v-model="guest.groups"
+						<GroupSelect
+							v-model="guest.groups"
 							:disabled="loading"
 							:groups="groups"
 							:required="groupRequired" />
@@ -79,8 +83,9 @@
 					<NcNoteCard v-if="errors.button" type="error">
 						{{ t('guests', 'An error occurred, try again') }}
 					</NcNoteCard>
-					<NcButton type="primary"
-						native-type="submit"
+					<NcButton
+						variant="primary"
+						nativeType="submit"
 						:disabled="loading">
 						<template #icon>
 							<AccountPlus v-if="!loading" :size="20" />
@@ -95,20 +100,18 @@
 </template>
 
 <script>
-import { generateOcsUrl } from '@nextcloud/router'
-import { ShareType } from '@nextcloud/sharing'
+import axios from '@nextcloud/axios'
 import { showError, showSuccess } from '@nextcloud/dialogs'
 import { emit } from '@nextcloud/event-bus'
-import axios from '@nextcloud/axios'
-
-import AccountPlus from 'vue-material-design-icons/AccountPlus.vue'
+import { generateOcsUrl } from '@nextcloud/router'
+import { ShareType } from '@nextcloud/sharing'
 import NcButton from '@nextcloud/vue/components/NcButton'
 import NcModal from '@nextcloud/vue/components/NcModal'
 import NcNoteCard from '@nextcloud/vue/components/NcNoteCard'
-
-import { logger } from '../services/logger.ts'
+import AccountPlus from 'vue-material-design-icons/AccountPlus.vue'
 import GroupSelect from '../components/GroupSelect.vue'
 import LanguageSelect from '../components/LanguageSelect.vue'
+import { logger } from '../services/logger.ts'
 
 export default {
 	name: 'GuestForm',
@@ -120,6 +123,7 @@ export default {
 		NcModal,
 		NcNoteCard,
 	},
+
 	data() {
 		return {
 			integrationApp: null,
@@ -164,7 +168,7 @@ export default {
 	},
 
 	watch: {
-		'guest.email'() {
+		'guest.email': function() {
 			if (this.guest.email) {
 				this.guest.username = this.guest.email
 			} else {
@@ -229,7 +233,6 @@ export default {
 
 			this.loading = true
 			try {
-
 				await axios.put(generateOcsUrl('/apps/guests/api/v1/users'), {
 					displayName: this.guest.fullName,
 					email: this.guest.email,

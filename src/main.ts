@@ -3,17 +3,20 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { validate } from 'email-validator'
 import { showError } from '@nextcloud/dialogs'
-import { Type } from '@nextcloud/sharing'
+import { t } from '@nextcloud/l10n'
+import { ShareType } from '@nextcloud/sharing'
+import { validate } from 'email-validator'
 import { guestForm } from './init.ts'
+import logger from './utils/logger.ts'
+
 // entry in the sharing input search results
 const result = {
 	icon: 'icon-guests',
 	displayName: t('guests', 'Invite guest'),
-	shareType: Type.SHARE_TYPE_GUEST,
-	handler: async self => {
-		const user = self.suggestions.find(s => s.isNoUser === false && s.shareType === 0)
+	shareType: ShareType.Guest,
+	handler: async (self) => {
+		const user = self.suggestions.find((s) => s.isNoUser === false && s.shareType === 0)
 		return new Promise((resolve, reject) => {
 			if (user) {
 				showError(t('guests', 'A user with this ID or email address already exists'))
@@ -23,7 +26,7 @@ const result = {
 			}
 		})
 	},
-	condition: self => {
+	condition: (self) => {
 		return validate(self.query)
 	},
 }
@@ -33,6 +36,6 @@ window.addEventListener('DOMContentLoaded', () => {
 	if (OCA.Sharing && OCA.Sharing.ShareSearch) {
 		OCA.Sharing.ShareSearch.addNewResult(result)
 	} else {
-		console.error('OCA.Sharing.ShareSearch not ready')
+		logger.error('OCA.Sharing.ShareSearch not ready')
 	}
 })
