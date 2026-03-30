@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace OCA\Guests\Command;
 
+use OCA\Guests\Config;
 use OCA\Guests\GuestManager;
 use OCP\IUser;
 use OCP\IUserManager;
@@ -27,6 +28,7 @@ class AddCommand extends Command {
 		private readonly IUserManager $userManager,
 		private readonly IMailer $mailer,
 		private readonly GuestManager $guestManager,
+		private readonly Config $config,
 	) {
 		parent::__construct();
 	}
@@ -83,14 +85,20 @@ class AddCommand extends Command {
 			return self::FAILURE;
 		}
 
+		$email = $input->getArgument('email');
+		if ($this->config->useHashedEmailAsUserID()) {
+			$email = strtolower($email);
+			$uid = hash('sha256', $email);
+		} else {
+			$uid = $email;
+		}
+
 		// same behavior like in the UsersController
-		$uid = $input->getArgument('email');
 		if ($this->userManager->userExists($uid)) {
 			$output->writeln('<error>The user "' . $uid . '" already exists.</error>');
 			return self::FAILURE;
 		}
 
-		$email = $input->getArgument('email');
 		if (!$this->mailer->validateMailAddress($email)) {
 			$output->writeln('<error>Invalid email address "' . $email . '".</error>');
 			return self::FAILURE;
