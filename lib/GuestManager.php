@@ -69,6 +69,7 @@ class GuestManager {
 			return null;
 		}
 
+		$this->userBackend->setInitialEmail($userId, $email);
 		$user->setSystemEMailAddress($email);
 		if ($createdBy instanceof IUser) {
 			$this->config->setUserValue($userId, 'guests', 'created_by', $createdBy->getUID());
@@ -125,11 +126,11 @@ class GuestManager {
 	 * }>
 	 */
 	public function getGuestsInfo(): array {
-		$displayNames = $this->userBackend->getDisplayNames();
-		$guests = array_keys($displayNames);
+		$guestsInfo = $this->userBackend->getAllGuestAccounts();
+		$guests = array_keys($guestsInfo);
 		$shareCounts = $this->getShareCountForUsers($guests);
 		$createdBy = $this->config->getUserValueForUsers('guests', 'created_by', $guests);
-		return array_map(function (string $uid) use ($createdBy, $displayNames, $shareCounts): array {
+		return array_map(function (string $uid) use ($createdBy, $guestsInfo, $shareCounts): array {
 			$allSharesCount = count(array_merge(
 				$this->shareManager->getSharedWith($uid, IShare::TYPE_USER, null, -1, 0),
 				$this->shareManager->getSharedWith($uid, IShare::TYPE_GROUP, null, -1, 0),
@@ -138,8 +139,9 @@ class GuestManager {
 				$this->shareManager->getSharedWith($uid, IShare::TYPE_ROOM, null, -1, 0),
 			));
 			return [
-				'email' => $uid,
-				'display_name' => $displayNames[$uid] ?? $uid,
+				'email' => $guestsInfo[$uid]['email'] ?? $uid,
+				'uid' => $uid,
+				'display_name' => $guestsInfo[$uid]['displayname'] ?? $uid,
 				'created_by' => $createdBy[$uid] ?? '',
 				'share_count' => $shareCounts[$uid] ?? 0,
 				'share_count_with_circles' => $allSharesCount,
