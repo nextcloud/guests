@@ -71,7 +71,7 @@ class RestrictionManager {
 
 	public function lateSetupRestrictions(): void {
 		if ($this->guestManager->isGuest($this->userSession->getUser()) && $this->config->hideOtherUsers()) {
-			$this->server->getContactsManager()->clear();
+			$this->server->get(\OCP\Contacts\IManager::class)->clear();
 			$this->userBackend->setAllowListing(false);
 			/** @var AppConfigOverwrite $appConfig */
 			$appConfig = $this->server->get(AppConfigOverwrite::class);
