@@ -4,7 +4,8 @@
 -->
 <template>
 	<div>
-		<NcSettingsSection :name="t('guests', 'Guests')"
+		<NcSettingsSection
+			:name="t('guests', 'Guests')"
 			:description="t('guests', 'Guest accounts are grouped under a virtual group in the account manager')">
 			<!-- Guests usage description -->
 			<NcNoteCard type="info">
@@ -16,7 +17,8 @@
 
 			<!-- Status messages -->
 			<div>
-				<span v-if="error || saving || saved"
+				<span
+					v-if="error || saving || saved"
 					:class="{error, saving, saved}"
 					class="msg">{{ statusText }}</span>
 			</div>
@@ -33,19 +35,22 @@
 
 			<!-- Settings -->
 			<div v-if="loaded">
-				<NcCheckboxRadioSwitch :checked.sync="config.allowExternalStorage"
+				<NcCheckboxRadioSwitch
+					v-model="config.allowExternalStorage"
 					type="switch"
 					@update:checked="saveConfig">
 					{{ t('guests', 'Guest accounts can access mounted external storages') }}
 				</NcCheckboxRadioSwitch>
 
-				<NcCheckboxRadioSwitch :checked.sync="config.useHashedEmailAsUserID"
+				<NcCheckboxRadioSwitch
+					v-model="config.useHashedEmailAsUserID"
 					type="switch"
 					@update:checked="saveConfig">
 					{{ t('guests', 'Use a hash of the email as user ID for improved privacy') }}
 				</NcCheckboxRadioSwitch>
 
-				<NcCheckboxRadioSwitch :checked.sync="config.hideUsers"
+				<NcCheckboxRadioSwitch
+					v-model="config.hideUsers"
 					type="switch"
 					@update:checked="saveConfig">
 					{{ t('guests', 'Hide other accounts from guests') }}
@@ -56,34 +61,38 @@
 				</NcNoteCard>
 
 				<!-- Restrict guest creation to groups -->
-				<NcCheckboxRadioSwitch :checked="config.createRestrictedToGroup.length > 0"
+				<NcCheckboxRadioSwitch
+					:modelValue="config.createRestrictedToGroup.length > 0"
 					type="switch"
 					@update:checked="onGroupRestrictToggle">
 					{{ t('guests', 'Limit guest account creation to the following groups only') }}
 				</NcCheckboxRadioSwitch>
 
 				<p v-if="config.createRestrictedToGroup.length > 0">
-					<NcSettingsSelectGroup :label="t('guests', 'Limit guest account creation to the following groups only')"
-						:model-value="config.createRestrictedToGroup"
+					<NcSettingsSelectGroup
+						:label="t('guests', 'Limit guest account creation to the following groups only')"
+						:modelValue="config.createRestrictedToGroup"
 						:placeholder="t('guests', 'Select groups to allow')"
-						@update:model-value="onSelectGroups" />
+						@update:modelValue="onSelectGroups" />
 				</p>
 
 				<!-- Allowlist -->
-				<NcCheckboxRadioSwitch :checked.sync="config.useWhitelist"
+				<NcCheckboxRadioSwitch
+					v-model="config.useWhitelist"
 					type="switch"
 					@update:checked="saveConfig">
 					{{ t('guests', 'Limit guest access to an app\'s allowlist') }}
 				</NcCheckboxRadioSwitch>
 
 				<p v-if="config.useWhitelist" class="allowlist">
-					<NcSelect v-model="config.whitelist"
+					<NcSelect
+						v-model="config.whitelist"
 						:options="config.whiteListableApps"
 						:multiple="true"
-						:close-on-select="false"
-						:clear-search-on-select="false"
+						:closeOnSelect="false"
+						:clearSearchOnSelect="false"
 						@input="saveConfig" />
-					<NcButton type="secondary" class="reset-button" @click="reset">
+					<NcButton variant="secondary" class="reset-button" @click="reset">
 						<template #icon>
 							<History :size="16" />
 						</template>
@@ -102,20 +111,18 @@
 </template>
 
 <script>
-import { clearTimeout, setTimeout } from 'timers'
-import { generateUrl } from '@nextcloud/router'
 import axios from '@nextcloud/axios'
-
-import History from 'vue-material-design-icons/History.vue'
+import { showError } from '@nextcloud/dialogs'
+import { generateUrl } from '@nextcloud/router'
+import { clearTimeout, setTimeout } from 'timers'
 import NcButton from '@nextcloud/vue/components/NcButton'
 import NcCheckboxRadioSwitch from '@nextcloud/vue/components/NcCheckboxRadioSwitch'
 import NcNoteCard from '@nextcloud/vue/components/NcNoteCard'
 import NcSelect from '@nextcloud/vue/components/NcSelect'
 import NcSettingsSection from '@nextcloud/vue/components/NcSettingsSection'
 import NcSettingsSelectGroup from '@nextcloud/vue/components/NcSettingsSelectGroup'
-
+import History from 'vue-material-design-icons/History.vue'
 import GuestList from '../components/GuestList.vue'
-import { showError } from '@nextcloud/dialogs'
 
 export default {
 	name: 'GuestSettings',
@@ -129,6 +136,7 @@ export default {
 		NcSettingsSection,
 		NcSettingsSelectGroup,
 	},
+
 	data() {
 		return {
 			error: false,
@@ -148,6 +156,7 @@ export default {
 			},
 		}
 	},
+
 	computed: {
 		statusText() {
 			if (this.error) {
@@ -162,9 +171,11 @@ export default {
 			return ''
 		},
 	},
+
 	beforeMount() {
 		this.loadConfig()
 	},
+
 	methods: {
 		async loadConfig() {
 			const { data } = await axios.get(generateUrl('apps/guests/config'))
@@ -179,7 +190,7 @@ export default {
 				await axios.put(generateUrl('apps/guests/config'), this.config)
 			} catch ({ data }) {
 				this.error = true
-				console.error(data)
+				logger.error('Error saving config', { data })
 			} finally {
 				this.saved = true
 				this.savingTimeout = setTimeout(() => {
@@ -196,7 +207,7 @@ export default {
 				this.config.whitelist = data.whitelist
 			} catch ({ data }) {
 				this.error = true
-				console.error(data)
+				logger.error('Error resetting allowlist', { data })
 			} finally {
 				this.saved = true
 				this.savingTimeout = setTimeout(() => {

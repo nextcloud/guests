@@ -26,23 +26,27 @@
 					</tr>
 				</thead>
 				<tbody>
-					<template v-for="guest in guests">
-						<tr :key="guest.email"
-							:class="guest.email === details_for ? 'active': ''"
+					<template v-for="guest in guests" :key="guest.email">
+						<tr
+							:class="{active: guest.email === details_for}"
 							@click="toggleDetails(guest.email)">
-							<td class="email"
+							<td
+								class="email"
 								:title="guest.email">
 								{{ guest.email }}
 							</td>
-							<td class="uid"
+							<td
+								class="uid"
 								:title="guest.uid">
 								{{ guest.uid }}
 							</td>
-							<td class="display_name"
+							<td
+								class="display_name"
 								:title="guest.display_name">
 								{{ guest.display_name }}
 							</td>
-							<td class="created_by"
+							<td
+								class="created_by"
 								:title="guest.created_by">
 								{{ guest.created_by }}
 							</td>
@@ -50,11 +54,12 @@
 								{{ guest.share_count }}
 							</td>
 						</tr>
-						<tr v-if="guest.email === details_for"
+						<tr
+							v-if="guest.email === details_for"
 							:key="guest.email + '-details'"
 							class="details">
 							<td colspan="5">
-								<GuestDetails :guest-id="guest.email" />
+								<GuestDetails :guestId="guest.email" />
 							</td>
 						</tr>
 					</template>
@@ -77,16 +82,16 @@
 </template>
 
 <script lang="ts">
-import type { OCSResponse } from '@nextcloud/typings/ocs'
 import type { AxiosResponse } from '@nextcloud/axios'
+import type { OCSResponse } from '@nextcloud/typings/ocs'
 
-import { defineComponent } from 'vue'
-import { generateOcsUrl } from '@nextcloud/router'
-import { t } from '@nextcloud/l10n'
 import axios from '@nextcloud/axios'
+import { t } from '@nextcloud/l10n'
+import { generateOcsUrl } from '@nextcloud/router'
+import { defineComponent } from 'vue'
 import NcSettingsSection from '@nextcloud/vue/components/NcSettingsSection'
-
 import GuestDetails from './GuestDetails.vue'
+import logger from '../utils/logger.ts'
 
 type OcsGuest = {
 	email: string
@@ -131,14 +136,16 @@ export default defineComponent({
 				this.guests = data.ocs.data
 			} catch (error) {
 				this.error = true
-				console.error('Error fetching guests list', error)
+				logger.error('Error fetching guests list', { error })
 			} finally {
 				this.loaded = true
 			}
 		},
+
 		getSortClass(name: string) {
 			return name + ' ' + (name === this.sort ? `sort-${this.sort_direction > 0 ? 'asc' : 'desc'}` : '')
 		},
+
 		setSort(name: string) {
 			if (name === this.sort) {
 				this.sort_direction = -this.sort_direction
@@ -150,6 +157,7 @@ export default defineComponent({
 				return (a[this.sort]).localeCompare(b[this.sort]) * this.sort_direction
 			})
 		},
+
 		toggleDetails(email: string) {
 			this.details_for = email
 		},

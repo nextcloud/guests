@@ -3,7 +3,8 @@
   - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 <template>
-	<NcSelect v-model="language"
+	<NcSelect
+		v-model="language"
 		class="lang-multiselect"
 		:placeholder="t('guests', 'Default')"
 		label="name"
@@ -14,25 +15,26 @@
 </template>
 
 <script>
-import { generateOcsUrl } from '@nextcloud/router'
-import NcSelect from '@nextcloud/vue/dist/Components/NcSelect.js'
 import axios from '@nextcloud/axios'
+import { generateOcsUrl } from '@nextcloud/router'
+import NcSelect from '@nextcloud/vue/components/NcSelect'
+import logger from '../utils/logger.ts'
 
 export default {
 	name: 'LanguageSelect',
 	components: {
 		NcSelect,
 	},
+
 	props: {
-		value: {
-			type: String,
-			default: '',
-		},
 		disabled: {
 			type: Boolean,
 			default: false,
 		},
 	},
+
+	emits: ['input'],
+
 	data() {
 		return {
 			language: '',
@@ -40,19 +42,23 @@ export default {
 				code: '',
 				name: t('guests', 'Default'),
 			},
+
 			commonLanguages: [],
 			languages: [],
 			merged: [],
 		}
 	},
+
 	watch: {
 		language() {
 			this.$emit('input', this.language.code)
 		},
 	},
+
 	beforeMount() {
 		this.loadLanguages()
 	},
+
 	methods: {
 		async loadLanguages() {
 			try {
@@ -61,7 +67,7 @@ export default {
 				this.languages = result.data.ocs.data.languages
 				this.merged = [this.defaultLanguage].concat(result.data.ocs.data.commonLanguages).concat(result.data.ocs.data.languages)
 			} catch (error) {
-				console.error('Failed to retrieve languages', error)
+				logger.error('Failed to retrieve languages', { error })
 			}
 		},
 	},
