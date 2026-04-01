@@ -40,6 +40,7 @@
     "An error occured while fetching the shares list" : "Помилка під час отримання списку спільних ресурсів",
     "Guests accounts" : "Гостьові облікові записи",
     "Email" : "Ел.пошта",
+    "User ID" : "ID користувача",
     "Invited by" : "Запрошення надіслано",
     "Received shares" : "Отримані спільні ресурси",
     "No guest accounts created" : "Відсутні гостьові облікові записи",

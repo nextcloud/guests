@@ -29,6 +29,7 @@ OC.L10N.register(
     "An error occured while fetching the shares list" : "提取共享列表时发生错误",
     "Guests accounts" : "访客账号",
     "Email" : "电子邮箱",
+    "User ID" : "用户ID",
     "Invited by" : "邀请人",
     "Received shares" : "接收到的共享",
     "No guest accounts created" : "没有访客账号被创建",

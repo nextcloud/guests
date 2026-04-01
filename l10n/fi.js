@@ -36,6 +36,7 @@ OC.L10N.register(
     "An error occured while fetching the shares list" : "Jakolistaa noudettaessa tapahtui virhe",
     "Guests accounts" : "Vierastilit",
     "Email" : "Sähköposti",
+    "User ID" : "Käyttäjätunniste",
     "Invited by" : "Kutsunut",
     "Received shares" : "Vastaanotetut jaot",
     "No guest accounts created" : "Vierastiliä ei luotu",

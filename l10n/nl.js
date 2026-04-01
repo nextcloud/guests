@@ -42,6 +42,7 @@ OC.L10N.register(
     "An error occured while fetching the shares list" : "Er trad een fout op bij het ophalen van de lijst met deellinks",
     "Guests accounts" : "Gastenaccounts",
     "Email" : "E-mail",
+    "User ID" : "Gebruiker-ID",
     "Invited by" : "Uitgenodigd door",
     "Received shares" : "Ontvangen shares",
     "No guest accounts created" : "Geen gastaccount aangemaakt",

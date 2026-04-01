@@ -28,6 +28,7 @@ OC.L10N.register(
     "An error occured while fetching the shares list" : "Errore bat gertatu da partekatzeen zerrendak jasotzean",
     "Guests accounts" : "Gonbidatuen kontuak",
     "Email" : "Posta elektronikoa",
+    "User ID" : "Erabiltzailearen ID",
     "Invited by" : "Nork gonbidatua",
     "Received shares" : "Jasotako partekatzeak",
     "No guest accounts created" : "Ez da gonbidatu konturik sortu",

@@ -34,6 +34,7 @@ OC.L10N.register(
     "An error occured while fetching the shares list" : "En feil oppsto ved henting av delingsliste",
     "Guests accounts" : "Gjestekontoer",
     "Email" : "E-post",
+    "User ID" : "Bruker-ID",
     "Invited by" : "Invitert av",
     "Received shares" : "Mottar delinger",
     "No guest accounts created" : "Ingen gjestekontoer opprettet.",

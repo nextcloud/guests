@@ -28,6 +28,7 @@ OC.L10N.register(
     "An error occured while fetching the shares list" : "Došlo je do pogreške pri dohvaćanju popisa dijeljenja",
     "Guests accounts" : "Računi gostiju",
     "Email" : "E-pošta",
+    "User ID" : "ID korisnika",
     "Invited by" : "Pozvao",
     "Received shares" : "Primljena dijeljenja",
     "No guest accounts created" : "Nema stvorenih računa gostiju",

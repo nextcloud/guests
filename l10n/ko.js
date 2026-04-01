@@ -22,6 +22,7 @@ OC.L10N.register(
     "Name" : "이름",
     "Guests accounts" : "손님 계정",
     "Email" : "이메일",
+    "User ID" : "유저 ID",
     "No guest accounts created" : "생성된 손님 계정 없음",
     "Default" : "디폴트",
     "Cancel" : "취소",

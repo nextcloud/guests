@@ -26,6 +26,7 @@
     "An error occured while fetching the shares list" : "S'ha produït un error en recuperar la llista de comparticions",
     "Guests accounts" : "Comptes de convidats",
     "Email" : "Adreça electrònica",
+    "User ID" : "ID de l'usuari",
     "Invited by" : "Convidat per",
     "Received shares" : "Comparticions rebudes",
     "No guest accounts created" : "No s’ha creat comptes de convidat",

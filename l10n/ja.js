@@ -35,6 +35,7 @@ OC.L10N.register(
     "An error occured while fetching the shares list" : "共有リストの取得中にエラーが発生しました。",
     "Guests accounts" : "ゲストアカウント",
     "Email" : "メール",
+    "User ID" : "ユーザーID",
     "Invited by" : "招待者: ",
     "Received shares" : "共有を受け取りました",
     "No guest accounts created" : "ゲストアカウントはまだ作成されていません",

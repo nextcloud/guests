@@ -42,6 +42,7 @@ OC.L10N.register(
     "An error occured while fetching the shares list" : "Ett fel inträffade vid hämtning av listan med delningar",
     "Guests accounts" : "Gästkonton",
     "Email" : "E-post",
+    "User ID" : "Användar-ID",
     "Invited by" : "Inbjuden av",
     "Received shares" : "Mottagna delningar",
     "No guest accounts created" : "Inga gästkonton skapade",

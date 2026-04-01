@@ -42,6 +42,7 @@ OC.L10N.register(
     "An error occured while fetching the shares list" : "Produciuse un erro ao recuperar a lista de comparticións",
     "Guests accounts" : "Contas de convidado",
     "Email" : "Correo-e",
+    "User ID" : "ID do usuario",
     "Invited by" : "Convidado por",
     "Received shares" : "Elementos compartidos recibidos",
     "No guest accounts created" : "Non se crearon contas de convidado",

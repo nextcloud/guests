@@ -42,6 +42,7 @@ OC.L10N.register(
     "An error occured while fetching the shares list" : "An error occured while fetching the shares list",
     "Guests accounts" : "Guests accounts",
     "Email" : "Email",
+    "User ID" : "ໄອດີຜູ້ໃຊ້",
     "Invited by" : "Invited by",
     "Received shares" : "Received shares",
     "No guest accounts created" : "No guest accounts created",

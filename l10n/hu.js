@@ -35,6 +35,7 @@ OC.L10N.register(
     "An error occured while fetching the shares list" : "Hiba történt a megosztási lista lekérése során",
     "Guests accounts" : "Vendégfiókok",
     "Email" : "E-mail",
+    "User ID" : "Felhasználóazonosító",
     "Invited by" : "Meghívta:",
     "Received shares" : "Fogadott megosztások",
     "No guest accounts created" : "Nincs vendégfiók létrehozva",

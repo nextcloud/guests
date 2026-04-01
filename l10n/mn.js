@@ -10,6 +10,7 @@ OC.L10N.register(
     "None" : "—é—É —á “Ø–≥“Ø–π",
     "Name" : "–ù—ç—Ä",
     "Email" : "Имэйл",
+    "User ID" : "Хэрэглэгчийн ID",
     "Default" : "Өгөгдмөл",
     "Cancel" : "–¶—É—Ü–ª–∞—Ö",
     "Invite {name}" : "{name}-г урих",

@@ -33,6 +33,7 @@ OC.L10N.register(
     "An error occured while fetching the shares list" : "Не удалось получить список опубликованных ресурсов",
     "Guests accounts" : "Гостевые учётные записи",
     "Email" : "Электронная почта",
+    "User ID" : "ID пользователя",
     "Invited by" : "Пригласивший пользователь",
     "Received shares" : "Полученные общие ресурсы",
     "No guest accounts created" : "Не создано ни одной гостевой учётной записи",

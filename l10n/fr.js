@@ -42,6 +42,7 @@ OC.L10N.register(
     "An error occured while fetching the shares list" : "Une erreur est survenue pendant la mise à jour de la liste des partages",
     "Guests accounts" : " Comptes invités",
     "Email" : "E-mail",
+    "User ID" : "Identifiant utilisateur",
     "Invited by" : "Invité par",
     "Received shares" : "Partages reçus",
     "No guest accounts created" : "Aucun compte invité",

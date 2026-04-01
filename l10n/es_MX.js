@@ -13,6 +13,7 @@ OC.L10N.register(
     "None" : "Ninguno",
     "Name" : "Nombre",
     "Email" : "Correo electrónico",
+    "User ID" : "ID de usuario",
     "Default" : "Por omisión",
     "Cancel" : "Cancelar",
     "Language" : "Idioma",

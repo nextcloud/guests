@@ -11,6 +11,7 @@ OC.L10N.register(
     "None" : "Tidak ada",
     "Name" : "Nama",
     "Email" : "Email",
+    "User ID" : "ID Pengguna",
     "Default" : "Default",
     "Cancel" : "Batal",
     "Language" : "Bahasa",

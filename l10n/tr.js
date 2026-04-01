@@ -42,6 +42,7 @@ OC.L10N.register(
     "An error occured while fetching the shares list" : "Paylaşımlar listesi alınırken bir sorun çıktı",
     "Guests accounts" : "Konuk hesapları",
     "Email" : "E-posta",
+    "User ID" : "Kullanıcı kimliği",
     "Invited by" : "Davet eden",
     "Received shares" : "Alınan paylaşımlar",
     "No guest accounts created" : "Henüz bir konuk hesabı eklenmemiş",

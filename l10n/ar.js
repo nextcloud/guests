@@ -35,6 +35,7 @@ OC.L10N.register(
     "An error occured while fetching the shares list" : "حدث خطأ أثناء جلب قائمة المُشاركات",
     "Guests accounts" : "حسابات الضيوف",
     "Email" : "البريد الإلكتروني",
+    "User ID" : "رمز المستخدم",
     "Invited by" : "تمّت دعوته من قِبَل",
     "Received shares" : "مُشاركات مُستلمة",
     "No guest accounts created" : "لم يتم إنشاء أي حسابات ضيوف",

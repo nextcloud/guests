@@ -28,6 +28,7 @@ OC.L10N.register(
     "An error occured while fetching the shares list" : "Wystąpił błąd podczas pobierania listy udostępnień",
     "Guests accounts" : "Konta gości",
     "Email" : "E-mail",
+    "User ID" : "ID użytkownika",
     "Invited by" : "Zaproszony przez",
     "Received shares" : "Otrzymane udostępnianie",
     "No guest accounts created" : "Nie utworzono kont gości",

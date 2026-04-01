@@ -42,6 +42,7 @@ OC.L10N.register(
     "An error occured while fetching the shares list" : "پاي تىزىملىكىنى ئالغاندا خاتالىق كۆرۈلدى",
     "Guests accounts" : "مېھمانلارنىڭ ھېساباتى",
     "Email" : "تورخەت",
+    "User ID" : "ئىشلەتكۈچى كىملىكى",
     "Invited by" : "تەكلىپ قىلىنغان",
     "Received shares" : "ئېرىشكەن پاي",
     "No guest accounts created" : "ھېچقانداق مېھمان ھېساباتى قۇرۇلمىدى",

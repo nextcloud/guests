@@ -42,6 +42,7 @@ OC.L10N.register(
     "An error occured while fetching the shares list" : "Jaosmeedia loendi laadimisel tekkis viga",
     "Guests accounts" : "Külaliskontod",
     "Email" : "E-post",
+    "User ID" : "Kasutajatunnus",
     "Invited by" : "Kutsuja:",
     "Received shares" : "Vatsuvõetud jaosmeedia",
     "No guest accounts created" : "Ühtegi külaliskontot pole loodud",

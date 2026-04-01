@@ -42,6 +42,7 @@ OC.L10N.register(
     "An error occured while fetching the shares list" : "Παρουσιάστηκε σφάλμα κατά την ανάκτηση της λίστας κοινόχρηστων",
     "Guests accounts" : "Λογαριασμοί επισκεπτών",
     "Email" : "Ηλεκτρονική αλληλογραφία",
+    "User ID" : "ID Χρήστη",
     "Invited by" : "Προσκεκλήμένος από",
     "Received shares" : "Ληφθέντα κοινόχρηστα",
     "No guest accounts created" : "Δεν δημιουργήθηκαν λογαριασμοί επισκέπτη",

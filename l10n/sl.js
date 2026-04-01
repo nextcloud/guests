@@ -33,6 +33,7 @@ OC.L10N.register(
     "An error occured while fetching the shares list" : "Med pridobivanjem seznama mest souporabe je prišlo do napake.",
     "Guests accounts" : "Računi gostov",
     "Email" : "Elektronski naslov",
+    "User ID" : "ID Uporabnika",
     "Invited by" : "Povabilo:",
     "Received shares" : "Prejeta mesta souporabe",
     "No guest accounts created" : "Ni ustvarjenega nobenega računa za goste",

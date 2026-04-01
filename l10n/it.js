@@ -42,6 +42,7 @@ OC.L10N.register(
     "An error occured while fetching the shares list" : "Si è verificato un errore durante il recupero dell'elenco delle condivisioni",
     "Guests accounts" : "Account ospite",
     "Email" : "Email",
+    "User ID" : "ID utente",
     "Invited by" : "Invitato da",
     "Received shares" : "Condivisioni ricevute",
     "No guest accounts created" : "Nessun account ospite creato",

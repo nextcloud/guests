@@ -27,6 +27,7 @@ OC.L10N.register(
     "An error occured while fetching the shares list" : "هنگام واگذاری لیست سهام خطایی روی داد",
     "Guests accounts" : "حساب‌های مهمان",
     "Email" : "رایانامه",
+    "User ID" : "شناسه کاربر",
     "Invited by" : "دعوت شده توسط",
     "Received shares" : "اشتراک را دریافت کرد",
     "No guest accounts created" : "هیچ حساب مهمانی ایجاد نشده است",

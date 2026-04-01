@@ -25,6 +25,7 @@ OC.L10N.register(
     "An error occured while fetching the shares list" : "אירעה שגיאה במהלך קבלת רשימת השיתופים",
     "Guests accounts" : "חשבונות אורחים",
     "Email" : "דוא״ל",
+    "User ID" : "מזהה משתמש",
     "Invited by" : "הזמנה מאת",
     "Received shares" : "שיתופים שהתקבלו",
     "No guest accounts created" : "לא נוצרו חשבונות אורחים",

@@ -42,6 +42,7 @@ OC.L10N.register(
     "An error occured while fetching the shares list" : "Došlo k chybe pri získavaní zoznamu zdieľaní",
     "Guests accounts" : "Účty hostí",
     "Email" : "E-mail",
+    "User ID" : "ID užívateľa",
     "Invited by" : "Pozvaný používateľom",
     "Received shares" : "Obdržané zdieľania",
     "No guest accounts created" : "Neboli vytvorené žiadne účty hostí",

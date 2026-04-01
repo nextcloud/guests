@@ -30,6 +30,7 @@ OC.L10N.register(
     "An error occured while fetching the shares list" : "Gaunant viešinių sąrašą, įvyko klaida",
     "Guests accounts" : "Svečių paskyros",
     "Email" : "El. paštas",
+    "User ID" : "Naudotojo ID",
     "Invited by" : "Pakvietė",
     "Received shares" : "Gauti viešiniai",
     "No guest accounts created" : "Nesukurta jokių svečio paskyrų",

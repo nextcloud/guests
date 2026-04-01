@@ -28,6 +28,7 @@ OC.L10N.register(
     "An error occured while fetching the shares list" : "En fejl opstod under hentning af delingslisten",
     "Guests accounts" : "Gæste-konti",
     "Email" : "E-mail",
+    "User ID" : "Bruger ID",
     "Invited by" : "Inviteret af",
     "Received shares" : "Modtagne delinger",
     "No guest accounts created" : "Ingen gæstekonti oprettet",

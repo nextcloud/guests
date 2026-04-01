@@ -11,6 +11,7 @@ OC.L10N.register(
     "None" : "ไม่มี",
     "Name" : "ชื่อ",
     "Email" : "อีเมล",
+    "User ID" : "ไอดีผู้ใช้งาน",
     "Cancel" : "ยกเลิก",
     "Language" : "ภาษา",
     "Error" : "ข้อผิดพลาด"

@@ -42,6 +42,7 @@ OC.L10N.register(
     "An error occured while fetching the shares list" : "Tharla earráid agus an liosta scaireanna á fháil",
     "Guests accounts" : "Cuntais aíonna",
     "Email" : "Ríomhphost",
+    "User ID" : "ID Úsáideoir",
     "Invited by" : "Ar cuireadh ó",
     "Received shares" : "Fuarthas scaireanna",
     "No guest accounts created" : "Níor cruthaíodh cuntais aoi",

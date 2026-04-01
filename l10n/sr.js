@@ -42,6 +42,7 @@ OC.L10N.register(
     "An error occured while fetching the shares list" : "Догодила се грешка приликом дохватања листе дељења",
     "Guests accounts" : "Гостински налози",
     "Email" : "Е-пошта",
+    "User ID" : "Кориснички ID",
     "Invited by" : "Позван од стране",
     "Received shares" : "Примљена дељења",
     "No guest accounts created" : "Није направљен гостински налог",

@@ -11,6 +11,7 @@ OC.L10N.register(
     "None" : "Niciuna",
     "Name" : "Nume",
     "Email" : "E-mail",
+    "User ID" : "ID-ul utilizatorului",
     "Default" : "Implicită",
     "Cancel" : "Anulare",
     "Language" : "Limba",

@@ -42,6 +42,7 @@ OC.L10N.register(
     "An error occured while fetching the shares list" : "取得分享清單時發生錯誤",
     "Guests accounts" : "訪客帳號",
     "Email" : "電子郵件",
+    "User ID" : "使用者 ID",
     "Invited by" : "邀請者：",
     "Received shares" : "收到的分享",
     "No guest accounts created" : "沒有建立的訪客帳號",
