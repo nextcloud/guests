@@ -76,6 +76,7 @@ OC.L10N.register(
     "Creating guests accounts is restricted while \"Restrict accounts to only share with accounts in their groups\" is enabled." : "Створення гостьових облікових записів обмежено, при цьому увімкнено \"Обмежити користувачів надавати спільних доступ тільки в межах груп, до яких вони належать\".",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Лише адміністратори груп можуть створювати гостьові облікові записи, а гостей потрібно додати принаймні до однієї з груп, в яких автор спільного ресурсу є груповим адміністратором.",
     "Guest accounts can access mounted external storages" : "Гостьові облікові записи можуть мати доступ до під'єднаних зовнішніх сховищ.",
+    "Use a hash of the email as user ID for improved privacy" : "Використовувати хеш ел. пошти як ID корстувача з метою покращення приватности",
     "Hide other accounts from guests" : "Приховати інші облікові записи від гостей",
     "Guests will still be able to see accounts from any group they are added to" : "Гості все ще матимуть змогу бачити облікові записи в групах, до яких їх долучено",
     "Limit guest account creation to the following groups only" : "Обмежте створення гостьових акаунтів лише для наступних груп",

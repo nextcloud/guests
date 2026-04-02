@@ -74,6 +74,7 @@
     "Creating guests accounts is restricted while \"Restrict accounts to only share with accounts in their groups\" is enabled." : "Die Erstellung von Gast-Konten ist eingeschränkt, solange \"Konten auf das Teilen mit Konten innerhalb ihrer Gruppen beschränken\" aktiv ist.",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Nur Gruppenadministratoren dürfen Gäste erstellen und Gäste müssen mindestens einer Gruppe hinzugefügt werden, für die der Freigabeersteller ein Gruppenadministrator ist.",
     "Guest accounts can access mounted external storages" : "Gast-Konten können auf eingebundene externe Speicher zugreifen",
+    "Use a hash of the email as user ID for improved privacy" : "Einen Hash der E-Mail als Benutzer-ID für mehr Datenschutz verwenden",
     "Hide other accounts from guests" : "Weitere Konten vor Gästen verbergen",
     "Guests will still be able to see accounts from any group they are added to" : "Gäste können weiterhin andere Konten aus den Gruppen sehen, in denen sie Mitglied sind",
     "Limit guest account creation to the following groups only" : "Die Erstellung von Gastkonten auf folgende Gruppen beschränken",

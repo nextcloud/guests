@@ -76,6 +76,7 @@ OC.L10N.register(
     "Creating guests accounts is restricted while \"Restrict accounts to only share with accounts in their groups\" is enabled." : "Die Erstellung von Gast-Konten ist eingeschränkt, solange \"Konten auf das Teilen mit Konten innerhalb deiner Gruppen beschränken\" aktiv ist.",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Nur die Gruppenadministration darf Gäste erstellen und Gäste müssen mindestens einer Gruppe hinzugefügt werden, für die der Freigabeersteller der Gruppenadministration angehört.",
     "Guest accounts can access mounted external storages" : "Gast-Konten können auf eingebundene externe Speicher zugreifen",
+    "Use a hash of the email as user ID for improved privacy" : "Einen Hash der E-Mail als Benutzer-ID für mehr Datenschutz verwenden",
     "Hide other accounts from guests" : "Weitere Konten für Gäste nicht anzeigen",
     "Guests will still be able to see accounts from any group they are added to" : "Gäste können weiterhin andere Konten jeder Gruppe sehen, von denen sie Mitglied sind",
     "Limit guest account creation to the following groups only" : "Die Erstellung von Gastkonten auf folgende Gruppen beschränken",
