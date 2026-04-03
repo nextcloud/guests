@@ -52,7 +52,7 @@ OC.L10N.register(
     "Convert guest to regular account" : "Gastkonto in ein reguläres Konto konvertieren",
     "New account name" : "Neuer Kontoname",
     "Cancel" : "Abbrechen",
-    "Converting guest…" : "Gastkonto wird konvertiert…",
+    "Converting guest…" : "Gastkonto wird konvertiert …",
     "Convert" : "Konvertieren",
     "Invite {name}" : "{name} einladen",
     "Guest user needs to be added to at least one group" : "Gast-Benutzer müssen zumindest einer Gruppe hinzugefügt werden",
