@@ -74,6 +74,7 @@
     "Creating guests accounts is restricted while \"Restrict accounts to only share with accounts in their groups\" is enabled." : "Att skapa gästkonton är begränsat medan \"Begränsa konton till att endast dela med konton i deras grupper\" är aktiverat.",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Endast gruppadministratörer får skapa gäster och gäster måste läggas till i minst en grupp som den som skapar delningen är gruppadministratör för.",
     "Guest accounts can access mounted external storages" : "Gästkonton kan komma åt monterade externa lagringar",
+    "Use a hash of the email as user ID for improved privacy" : "Använd en hash av e-postadressen som användar-ID för ökad integritet",
     "Hide other accounts from guests" : "Dölj andra konton från gäster",
     "Guests will still be able to see accounts from any group they are added to" : "Gäster kommer fortfarande att kunna se konton från vilken grupp de läggs till i",
     "Limit guest account creation to the following groups only" : "Begränsa skapandet av gästkonton till endast följande grupper",

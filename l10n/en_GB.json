@@ -74,6 +74,7 @@
     "Creating guests accounts is restricted while \"Restrict accounts to only share with accounts in their groups\" is enabled." : "Creating guests accounts is restricted while \"Restrict accounts to only share with accounts in their groups\" is enabled.",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for.",
     "Guest accounts can access mounted external storages" : "Guest accounts can access mounted external storages",
+    "Use a hash of the email as user ID for improved privacy" : "Use a hash of the email as user ID for improved privacy",
     "Hide other accounts from guests" : "Hide other accounts from guests",
     "Guests will still be able to see accounts from any group they are added to" : "Guests will still be able to see accounts from any group they are added to",
     "Limit guest account creation to the following groups only" : "Limit guest account creation to the following groups only",

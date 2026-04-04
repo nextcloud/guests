@@ -74,6 +74,7 @@
     "Creating guests accounts is restricted while \"Restrict accounts to only share with accounts in their groups\" is enabled." : "Tá srian le cuntais aíonna a chruthú agus tá “Srian le cuntais a roinnt le cuntais ina ngrúpaí amháin” cumasaithe.",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Ní cheadaítear ach do riarthóirí grúpa aíonna a chruthú agus ní mór aíonna a chur le grúpa amháin ar a laghad a bhfuil an cruthaitheoir scaireanna ina riarthóir grúpa dó.",
     "Guest accounts can access mounted external storages" : "Is féidir le cuntais aoi rochtain a fháil ar stórais sheachtracha suite",
+    "Use a hash of the email as user ID for improved privacy" : "Bain úsáid as hais den ríomhphost mar aitheantas úsáideora chun príobháideacht fheabhsaithe a chinntiú.",
     "Hide other accounts from guests" : "Folaigh cuntais eile ó aíonna",
     "Guests will still be able to see accounts from any group they are added to" : "Beidh aíonna fós in ann cuntais ó aon ghrúpa a gcuirtear leo a fheiceáil",
     "Limit guest account creation to the following groups only" : "Teorainn cruthú cuntais aoi go dtí na grúpaí seo a leanas amháin",
