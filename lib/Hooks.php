@@ -52,6 +52,9 @@ class Hooks {
 		}
 
 		$shareWith = $share->getSharedWith();
+		if ($shareWith === null) {
+			return;
+		}
 
 		$isGuest = $this->guestManager->isGuest($shareWith);
 		if (!$isGuest) {
