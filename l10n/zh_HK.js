@@ -76,6 +76,7 @@ OC.L10N.register(
     "Creating guests accounts is restricted while \"Restrict accounts to only share with accounts in their groups\" is enabled." : "啟用「限制帳戶只能分享給群組裡的其他帳戶」時，會限制訪客帳戶的建立。",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "只有群組管理員才能建立訪客帳戶，且訪客帳戶必須加進至少一個「分享建立者是群組管理員」的群組。",
     "Guest accounts can access mounted external storages" : "訪客帳戶能存取掛載的外部儲存區",
+    "Use a hash of the email as user ID for improved privacy" : "使用電子郵件的雜湊值作為用戶 ID，以提升隱私保護",
     "Hide other accounts from guests" : "不讓訪客看見其他帳戶",
     "Guests will still be able to see accounts from any group they are added to" : "訪客仍能看見其所加入群組中的帳戶名單",
     "Limit guest account creation to the following groups only" : "僅限以下群組建立訪客帳戶",
