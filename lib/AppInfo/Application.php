@@ -11,13 +11,13 @@ namespace OCA\Guests\AppInfo;
 use OCA\Files\Event\LoadAdditionalScriptsEvent;
 use OCA\Guests\Capabilities;
 use OCA\Guests\GroupBackend;
-use OCA\Guests\Listener\BeforeFileSystemSetupListener;
 use OCA\Guests\Listener\BeforeTemplateRenderedListener;
 use OCA\Guests\Listener\BeforeUserManagementRenderedListener;
 use OCA\Guests\Listener\LoadAdditionalScriptsListener;
 use OCA\Guests\Listener\ShareAutoAcceptListener;
 use OCA\Guests\Listener\ShareCreatedListener;
 use OCA\Guests\Listener\UserChangedListener;
+use OCA\Guests\Listener\UserFirstTimeLoggedInListener;
 use OCA\Guests\Listener\UserLoggedInListener;
 use OCA\Guests\Notifications\Notifier;
 use OCA\Guests\RestrictionManager;
@@ -53,7 +53,7 @@ class Application extends App implements IBootstrap {
 		$context->registerEventListener(UserChangedEvent::class, UserChangedListener::class);
 		$context->registerEventListener(UserLoggedInEvent::class, UserLoggedInListener::class);
 		$context->registerEventListener(ShareCreatedEvent::class, ShareCreatedListener::class);
-		$context->registerEventListener(UserFirstTimeLoggedInEvent::class, BeforeFileSystemSetupListener::class);
+		$context->registerEventListener(UserFirstTimeLoggedInEvent::class, UserFirstTimeLoggedInListener::class);
 
 		$context->registerNotifierService(Notifier::class);
 	}
