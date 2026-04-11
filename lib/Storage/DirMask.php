@@ -32,9 +32,14 @@ class DirMask extends PermissionsMask {
 	private readonly int $pathLength;
 
 	/**
+	 * Compatibility layer for Nextcloud 31-33 versions where the
+	 * {@see PermissionsMask::$mask} was private on PermissionsMask.
+	 * Once Nextcloud 34 is the minimum this variable can be dropped completely
+	 * and {@see PermissionsMask::$mask} can be used again.
+	 *
 	 * @var int the permissions bits we want to keep
 	 */
-	private $mask;
+	protected readonly int $maskWorkaround;
 
 	/**
 	 * @param array{storage: \OCP\Files\Storage\IStorage, mask: int, path: string, ...} $parameters
@@ -48,7 +53,7 @@ class DirMask extends PermissionsMask {
 		parent::__construct($parameters);
 		$this->path = rtrim((string)$parameters['path'], '/');
 		$this->pathLength = strlen((string)$parameters['path']);
-		$this->mask = $parameters['mask'];
+		$this->maskWorkaround = $parameters['mask'];
 	}
 
 	protected function checkPath(string $path): bool {
@@ -196,6 +201,8 @@ class DirMask extends PermissionsMask {
 		}
 
 		$sourceCache = $this->storage->getCache($path, $storage);
-		return new DirMaskCache($sourceCache, $this->mask, $this->checkPath(...));
+		// Todo replace when Nextcloud 34 is the minimum version
+		// return new DirMaskCache($sourceCache, $this->mask, $this->checkPath(...));
+		return new DirMaskCache($sourceCache, $this->maskWorkaround, $this->checkPath(...));
 	}
 }

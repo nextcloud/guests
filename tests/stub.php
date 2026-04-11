@@ -727,7 +727,7 @@ namespace OC\Files\Storage\Wrapper{
 	}
 
 	class PermissionsMask extends Wrapper {
-		public int $mask;
+		protected readonly int $mask;
 		public \OCP\Files\Storage\IStorage $storage;
 
 		public function __construct($parameters) {
