@@ -10,6 +10,7 @@ OC.L10N.register(
     "Couldn't send reset email. Please contact your administrator." : "No fue posible enviar el correo electrónico de restauración. Por favor contacta a tu adminstrador. ",
     "None" : "Ninguno",
     "Name" : "Nombre",
+    "Default" : "Por defecto",
     "Cancel" : "Cancel",
     "Language" : "Idioma",
     "Error" : "Error"
