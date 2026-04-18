@@ -50,6 +50,7 @@ class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetails
 	 *
 	 * Checks whether the user is member of a group or not.
 	 */
+	#[\Override]
 	public function inGroup($uid, $gid): bool {
 		return $gid === $this->groupName && $this->guestManager->isGuest($uid);
 	}
@@ -64,6 +65,7 @@ class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetails
 	 * This function fetches all groups a user belongs to. It does not check
 	 * if the user exists at all.
 	 */
+	#[\Override]
 	public function getUserGroups($uid): array {
 		if ($this->guestManager->isGuest($uid)) {
 			return [$this->groupName];
@@ -82,6 +84,7 @@ class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetails
 	 *
 	 * Returns a list with all groups
 	 */
+	#[\Override]
 	public function getGroups($search = '', $limit = -1, $offset = 0): array {
 		return $offset == 0 ? [$this->groupName] : [];
 	}
@@ -92,6 +95,7 @@ class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetails
 	 * @param string $gid
 	 * @since 4.5.0
 	 */
+	#[\Override]
 	public function groupExists($gid): bool {
 		return $gid === $this->groupName;
 	}
@@ -106,6 +110,7 @@ class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetails
 	 * @return array<int, string> an array of user ids
 	 * @since 4.5.0
 	 */
+	#[\Override]
 	public function usersInGroup($gid, $search = '', $limit = -1, $offset = 0): array {
 		if ($gid === $this->groupName) {
 			if ($this->guestManager->isGuest() && $this->config->hideOtherUsers()) {
@@ -118,6 +123,7 @@ class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetails
 		return [];
 	}
 
+	#[\Override]
 	public function countUsersInGroup(string $gid, string $search = ''): int {
 		if ($gid === $this->groupName) {
 			if ($this->guestManager->isGuest() && $this->config->hideOtherUsers()) {
@@ -130,6 +136,7 @@ class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetails
 		return 0;
 	}
 
+	#[\Override]
 	public function getGroupDetails(string $gid): array {
 		if ($gid === $this->groupName) {
 			return ['displayName' => 'Guests'];
@@ -138,6 +145,7 @@ class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetails
 		return [];
 	}
 
+	#[\Override]
 	public function hideGroup(string $groupId): bool {
 		return true;
 	}

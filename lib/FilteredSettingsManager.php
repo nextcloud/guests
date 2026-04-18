@@ -27,10 +27,12 @@ class FilteredSettingsManager implements IManager {
 		return $this->appWhitelist->isAppWhitelisted($appId);
 	}
 
+	#[\Override]
 	public function registerSection(string $type, string $section): void {
 		$this->manager->registerSection($type, $section);
 	}
 
+	#[\Override]
 	public function registerSetting(string $type, string $setting): void {
 		if (!$this->isSettingAllowed($setting)) {
 			return;
@@ -39,30 +41,37 @@ class FilteredSettingsManager implements IManager {
 		$this->manager->registerSetting($type, $setting);
 	}
 
+	#[\Override]
 	public function getAdminSections(): array {
 		return $this->manager->getAdminSections();
 	}
 
+	#[\Override]
 	public function getPersonalSections(): array {
 		return $this->manager->getPersonalSections();
 	}
 
+	#[\Override]
 	public function getAdminSettings($section, bool $subAdminOnly = false): array {
 		return $this->manager->getAdminSettings($section, $subAdminOnly);
 	}
 
+	#[\Override]
 	public function getAllowedAdminSettings(string $section, IUser $user): array {
 		return $this->manager->getAllowedAdminSettings($section, $user);
 	}
 
+	#[\Override]
 	public function getAllAllowedAdminSettings(IUser $user): array {
 		return $this->manager->getAllAllowedAdminSettings($user);
 	}
 
+	#[\Override]
 	public function getPersonalSettings($section): array {
 		return $this->manager->getPersonalSettings($section);
 	}
 
+	#[\Override]
 	public function getSection(string $type, string $sectionId): ?IIconSection {
 		return $this->manager->getSection($type, $sectionId);
 	}

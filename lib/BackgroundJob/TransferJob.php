@@ -81,6 +81,7 @@ class TransferJob extends QueuedJob {
 		}
 	}
 
+	#[\Override]
 	public function run($argument): void {
 		/** @var int $id */
 		$id = $argument['id'];

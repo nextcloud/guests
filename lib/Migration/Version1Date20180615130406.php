@@ -16,14 +16,17 @@ use OCP\Migration\SimpleMigrationStep;
  * Auto-generated migration step: Please modify to your needs!
  */
 class Version1Date20180615130406 extends SimpleMigrationStep {
+	#[\Override]
 	public function name(): string {
 		return 'Add table for guest users';
 	}
 
+	#[\Override]
 	public function description(): string {
 		return 'Adds table to keep track of guest users';
 	}
 
+	#[\Override]
 	public function changeSchema(IOutput $output, \Closure $schemaClosure, array $options) {
 		/** @var ISchemaWrapper $schema */
 		$schema = $schemaClosure();

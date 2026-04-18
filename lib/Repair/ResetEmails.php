@@ -28,10 +28,12 @@ class ResetEmails implements IRepairStep {
 	) {
 	}
 
+	#[\Override]
 	public function getName(): string {
 		return 'Reset the email of all guest accounts';
 	}
 
+	#[\Override]
 	public function run(IOutput $output): void {
 		if ($this->appConfig->getValueBool('guests', 'allow_email_change', false, true)) {
 			return;

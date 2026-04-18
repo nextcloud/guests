@@ -23,6 +23,8 @@ class UserLoggedInListener implements IEventListener {
 		private RestrictionManager $restrictionManager,
 	) {
 	}
+
+	#[\Override]
 	public function handle(Event $event): void {
 		if (!$event instanceof UserLoggedInEvent) {
 			return;

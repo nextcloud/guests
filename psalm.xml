@@ -40,12 +40,11 @@
                 <referencedClass name="OC\Security\CSP\ContentSecurityPolicyNonceManager" />
             </errorLevel>
         </UndefinedDocblockClass>
-        <UndefinedInterfaceMethod>
-            <errorLevel type="suppress">
-                <!-- FIXME Deprecated event handling -->
-                <referencedMethod name="OCP\IUserManager::listen" />
-                <referencedMethod name="OCP\IGroupManager::listen" />
-            </errorLevel>
-        </UndefinedInterfaceMethod>
+        <MissingOverrideAttribute>
+          <errorLevel type="info">
+			<!-- Remove when we depend on NC > 33 -->
+            <file name="lib/FilteredSettingsManager.php" />
+          </errorLevel>
+        </MissingOverrideAttribute>
     </issueHandlers>
 </psalm>
