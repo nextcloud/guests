@@ -6,7 +6,7 @@
 <psalm
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="https://getpsalm.org/schema/config"
-    xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+    xsi:schemaLocation="https://getpsalm.org/schema/config vendor-bin/psalm/vendor/vimeo/psalm/config.xsd"
     errorBaseline="tests/psalm-baseline.xml"
     errorLevel="4"
     findUnusedBaselineEntry="false"
@@ -22,13 +22,12 @@
         <directory name="lib" />
         <ignoreFiles>
             <directory name="vendor" />
+            <directory name="vendor-bin/nextcloud-ocp" />
         </ignoreFiles>
     </projectFiles>
     <extraFiles>
         <directory name="vendor" />
-        <ignoreFiles>
-            <directory name="vendor/phpunit/php-code-coverage" />
-        </ignoreFiles>
+        <directory name="vendor-bin/nextcloud-ocp" />
     </extraFiles>
     <issueHandlers>
         <UndefinedDocblockClass>

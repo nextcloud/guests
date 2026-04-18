@@ -3,7 +3,12 @@
 version: 2
 updates:
 - package-ecosystem: composer
-  directory: "/"
+  directories:
+    - "/"
+    - "/vendor-bin/csfixer"
+    - "/vendor-bin/phpunit"
+    - "/vendor-bin/psalm"
+    - "/vendor-bin/rector"
   schedule:
     interval: weekly
     day: saturday
@@ -13,6 +18,8 @@ updates:
   labels:
   - 3. to review
   - dependencies
+  cooldown:
+    default-days: 10
 - package-ecosystem: npm
   directory: "/"
   schedule:
@@ -24,3 +31,5 @@ updates:
   labels:
   - 3. to review
   - dependencies
+  cooldown:
+    default-days: 10
