@@ -123,7 +123,13 @@ class TransferJob extends QueuedJob {
 			return;
 		}
 
-		$targetUser->setSystemEMailAddress($sourceUser->getUID()); // Guest user id is an email
+		$sourceEmail = $sourceUser->getUID();
+		if (!str_contains($sourceEmail, '@')) {
+			// Guest user id is no email, maybe hashed user id,
+			// try email of original account
+			$sourceEmail = $sourceUser->getSystemEMailAddress();
+		}
+		$targetUser->setSystemEMailAddress($sourceEmail);
 
 		try {
 			$this->transferService->transfer($sourceUser, $targetUser);
