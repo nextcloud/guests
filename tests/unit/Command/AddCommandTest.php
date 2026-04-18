@@ -16,6 +16,7 @@ use OCP\IUserManager;
 use OCP\Mail\IMailer;
 use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Tester\CommandTester;
 use Test\TestCase;
 
@@ -31,6 +32,10 @@ class AddCommandTest extends TestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
+
+		// Prevent hidden Question prompts from invoking stty on the real terminal,
+		// which leaves the shell in an unusable state after the test run.
+		QuestionHelper::disableStty();
 
 		$this->userManager = $this->createMock(IUserManager::class);
 		$this->guestManager = $this->createMock(GuestManager::class);
@@ -51,7 +56,7 @@ class AddCommandTest extends TestCase {
 	/**
 	 * @return array<int, array<int, array<string, string>>|array<int, array<string, bool|string>>>
 	 */
-	public function createGuestDataProvider() {
+	public static function createGuestDataProvider(): array {
 		return [
 			[
 				[
