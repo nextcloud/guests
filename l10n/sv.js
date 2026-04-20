@@ -5,7 +5,7 @@ OC.L10N.register(
     "__language_name__" : "Svenska",
     "Invalid mail address" : "Ogiltig e-postadress",
     "A user with that email already exists." : "En användare med den e-postadressen finns redan.",
-    "A user with that name already exists." : "En användare med det namnet existerar redan.",
+    "A user with that name already exists." : "En användare med det namnet finns redan.",
     "User successfully created" : "Användare skapad",
     "Failed to authorize" : "Det gick inte att auktorisera",
     "Guest does not exist" : "Gäst finns inte",
