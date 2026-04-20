@@ -11,7 +11,7 @@
     errorLevel="4"
     findUnusedBaselineEntry="false"
     findUnusedCode="false"
-    phpVersion="8.1"
+    phpVersion="8.2"
     resolveFromConfigFile="true"
     totallyTyped="true"
 >
