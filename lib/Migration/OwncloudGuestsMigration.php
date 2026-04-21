@@ -28,10 +28,12 @@ class OwncloudGuestsMigration implements IRepairStep {
 	) {
 	}
 
+	#[\Override]
 	public function getName(): string {
 		return 'Converts owncloud guests to nextcloud guests';
 	}
 
+	#[\Override]
 	public function run(IOutput $output): void {
 		if (!$this->shouldRun()) {
 			$this->logger->info('Skipping owncloud guests migration, no owncloud guests found');

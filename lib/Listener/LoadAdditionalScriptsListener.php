@@ -25,6 +25,7 @@ class LoadAdditionalScriptsListener implements IEventListener {
 	) {
 	}
 
+	#[\Override]
 	public function handle(Event $event): void {
 		// If the user cannot create guests, we don't need to load the script
 		if (!$this->config->canCreateGuests()) {

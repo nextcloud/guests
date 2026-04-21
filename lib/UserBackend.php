@@ -89,6 +89,7 @@ class UserBackend extends ABackend implements
 	 *
 	 * Deletes a user
 	 */
+	#[\Override]
 	public function deleteUser($uid): bool {
 		// Delete user-group-relation
 		$query = $this->dbConn->getQueryBuilder();
@@ -114,6 +115,7 @@ class UserBackend extends ABackend implements
 	/**
 	 * Change the password of a user
 	 */
+	#[\Override]
 	public function setPassword(string $uid, string $password): bool {
 		if ($this->userExists($uid)) {
 			$this->eventDispatcher->dispatchTyped(new ValidatePasswordPolicyEvent($password));
@@ -132,6 +134,7 @@ class UserBackend extends ABackend implements
 		return false;
 	}
 
+	#[\Override]
 	public function getPasswordHash(string $userId): ?string {
 		if (!$this->userExists($userId)) {
 			return null;
@@ -150,6 +153,7 @@ class UserBackend extends ABackend implements
 		return $hash;
 	}
 
+	#[\Override]
 	public function setPasswordHash(string $userId, string $passwordHash): bool {
 		if (!$this->hasher->validate($passwordHash)) {
 			throw new InvalidArgumentException();
@@ -166,6 +170,7 @@ class UserBackend extends ABackend implements
 	/**
 	 * Change the display name of a user
 	 */
+	#[\Override]
 	public function setDisplayName(string $uid, string $displayName): bool {
 		if ($this->userExists($uid)) {
 			$query = $this->dbConn->getQueryBuilder();
@@ -187,6 +192,7 @@ class UserBackend extends ABackend implements
 	 *
 	 * @param string $uid user ID of the user
 	 */
+	#[\Override]
 	public function getDisplayName($uid): string {
 		$this->loadUser($uid);
 		return empty($this->cache[$uid]['displayname']) ? $uid : $this->cache[$uid]['displayname'];
@@ -200,6 +206,7 @@ class UserBackend extends ABackend implements
 	 * @param int|null $offset
 	 * @return array<string, string> an array of all displayNames (value) and the corresponding uids (key)
 	 */
+	#[\Override]
 	public function getDisplayNames($search = '', $limit = null, $offset = null): array {
 		if (!$this->allowListing) {
 			return [];
@@ -274,6 +281,7 @@ class UserBackend extends ABackend implements
 	 *
 	 * @return string|false
 	 */
+	#[\Override]
 	public function checkPassword(string $loginName, string $password) {
 		if (!$this->potentialGuestUserId($loginName)) {
 			return false;
@@ -359,6 +367,7 @@ class UserBackend extends ABackend implements
 	 * @param null|int $offset
 	 * @return list<string> an array of all uids
 	 */
+	#[\Override]
 	public function getUsers($search = '', $limit = null, $offset = null): array {
 		$users = $this->getDisplayNames($search, $limit, $offset);
 		$userIds = array_keys($users);
@@ -371,6 +380,7 @@ class UserBackend extends ABackend implements
 	 *
 	 * @param string $uid the username
 	 */
+	#[\Override]
 	public function userExists($uid): bool {
 		$this->loadUser($uid);
 		return $this->cache[$uid] !== false;
@@ -381,6 +391,7 @@ class UserBackend extends ABackend implements
 	 *
 	 * @return string|false
 	 */
+	#[\Override]
 	public function getHome(string $uid) {
 		if ($this->userExists($uid)) {
 			return $this->config->getHome($uid);
@@ -389,6 +400,7 @@ class UserBackend extends ABackend implements
 		return false;
 	}
 
+	#[\Override]
 	public function hasUserListings(): bool {
 		return true;
 	}
@@ -398,6 +410,7 @@ class UserBackend extends ABackend implements
 	 *
 	 * @return int|false
 	 */
+	#[\Override]
 	public function countUsers() {
 		$query = $this->dbConn->getQueryBuilder();
 		$query->select($query->func()->count('uid'))
@@ -426,10 +439,12 @@ class UserBackend extends ABackend implements
 	 *
 	 * @return string the name of the backend to be shown
 	 */
+	#[\Override]
 	public function getBackendName(): string {
 		return 'Guests';
 	}
 
+	#[\Override]
 	public function getRealUID(string $uid): string {
 		if (!$this->potentialGuestUserId($uid)) {
 			throw new \RuntimeException($uid . ' does not exist');
