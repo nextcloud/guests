@@ -222,6 +222,7 @@ class UserBackend extends ABackend implements
 				)
 				// sqlite doesn't like re-using a single named parameter here
 				->where($query->expr()->iLike('uid', $query->createPositionalParameter('%' . $this->dbConn->escapeLikeParameter($search) . '%')))
+				->orWhere($query->expr()->iLike('email', $query->createPositionalParameter('%' . $this->dbConn->escapeLikeParameter($search) . '%')))
 				->orWhere($query->expr()->iLike('displayname', $query->createPositionalParameter('%' . $this->dbConn->escapeLikeParameter($search) . '%')))
 				->orWhere($query->expr()->iLike('configvalue', $query->createPositionalParameter('%' . $this->dbConn->escapeLikeParameter($search) . '%')))
 				->orderBy($query->func()->lower('displayname'), 'ASC')
@@ -286,6 +287,11 @@ class UserBackend extends ABackend implements
 				$qb->expr()->eq(
 					'uid_lower', $qb->createNamedParameter(mb_strtolower($loginName))
 				)
+			)
+			->orWhere(
+				$qb->expr()->eq(
+					'email', $qb->createNamedParameter($loginName)
+				)
 			);
 		$result = $qb->executeQuery();
 		$row = $result->fetch();
@@ -330,6 +336,11 @@ class UserBackend extends ABackend implements
 				->where(
 					$qb->expr()->eq(
 						'uid_lower', $qb->createNamedParameter(mb_strtolower($uid))
+					)
+				)
+				->orWhere(
+					$qb->expr()->eq(
+						'email', $qb->createNamedParameter($uid)
 					)
 				);
 			$result = $qb->executeQuery();

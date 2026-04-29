@@ -44,6 +44,7 @@ class Version4002Date20250501195008 extends SimpleMigrationStep {
 			'length' => 64,
 			'default' => '',
 		]);
+		$table->addIndex(['email'], 'guests_users_email');
 		return $schema;
 	}
 
