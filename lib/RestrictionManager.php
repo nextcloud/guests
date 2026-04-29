@@ -12,10 +12,7 @@ namespace OCA\Guests;
 use OC\AppConfig;
 use OC\NavigationManager;
 use OCA\Files_External\Config\ExternalMountPoint;
-use OCA\Guests\Listener\BeforeFileSystemSetupListener;
-use OCP\EventDispatcher\IEventDispatcher;
 use OCP\Files\Config\IMountProviderCollection;
-use OCP\Files\Events\BeforeFileSystemSetupEvent;
 use OCP\Files\Mount\IMountPoint;
 use OCP\INavigationManager;
 use OCP\IRequest;
@@ -38,7 +35,6 @@ class RestrictionManager {
 		private readonly Config $config,
 		private readonly UserBackend $userBackend,
 		private readonly LoggerInterface $logger,
-		private readonly IEventDispatcher $eventDispatcher,
 	) {
 	}
 
@@ -56,8 +52,6 @@ class RestrictionManager {
 		}
 
 		if ($this->guestManager->isGuest($user)) {
-			$this->eventDispatcher->addServiceListener(BeforeFileSystemSetupEvent::class, BeforeFileSystemSetupListener::class);
-
 			if (!$this->config->allowExternalStorage()) {
 				$this->mountProviderCollection->registerMountFilter(fn (IMountPoint $mountPoint, IUser $user): bool => !($mountPoint instanceof ExternalMountPoint && $this->guestManager->isGuest($user)));
 			}
