@@ -77,6 +77,8 @@ class GuestManager {
 
 		if ($displayName !== '') {
 			$user->setDisplayName($displayName);
+		} else {
+			$user->setDisplayName($email);
 		}
 
 		if ($language !== '') {
