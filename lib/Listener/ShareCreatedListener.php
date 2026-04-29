@@ -73,7 +73,6 @@ class ShareCreatedListener implements IEventListener {
 		}
 
 		$user = $this->userSession->getUser();
-		$this->userManager->get($shareWith);
 
 		if (!$user) {
 			throw new \Exception(
