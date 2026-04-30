@@ -70,4 +70,21 @@ class UserBackendTest extends TestCase {
 
 		$this->assertEquals([], $this->backend->getUsers());
 	}
+
+	public function testHashedUid(): void {
+		$email = 'foo@example.tld';
+		$uid = hash('sha256', $email);
+		$this->backend->createUser($uid, 'bar');
+		$this->backend->setInitialEmail($uid, $email);
+		$this->backend->setDisplayName($uid, 'foo');
+		$this->assertTrue($this->backend->userExists($email));
+
+		$this->assertEquals($uid, $this->backend->checkPassword($email, 'bar'));
+
+		$this->assertEquals('foo', $this->backend->getDisplayName($uid));
+		$this->assertEquals('foo', $this->backend->getDisplayName($email));
+		$this->assertEquals(['foo'], array_values($this->backend->getDisplayNames($uid)));
+		$this->assertEquals(['foo'], array_values($this->backend->getDisplayNames($email)));
+		$this->assertEquals(['foo'], array_values($this->backend->getDisplayNames(substr($email, 0, 10))));
+	}
 }
