@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { t } from '@nextcloud/l10n'
 import NcSelect from '@nextcloud/vue/components/NcSelect'
 
 export default {
@@ -51,6 +52,10 @@ export default {
 		selected() {
 			this.$emit('input', this.selected.map((group) => group.gid))
 		},
+	},
+
+	methods: {
+		t,
 	},
 }
 </script>

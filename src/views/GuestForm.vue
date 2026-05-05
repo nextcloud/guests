@@ -103,6 +103,7 @@
 import axios from '@nextcloud/axios'
 import { showError, showSuccess } from '@nextcloud/dialogs'
 import { emit } from '@nextcloud/event-bus'
+import { t } from '@nextcloud/l10n'
 import { generateOcsUrl } from '@nextcloud/router'
 import { ShareType } from '@nextcloud/sharing'
 import NcButton from '@nextcloud/vue/components/NcButton'
@@ -186,6 +187,8 @@ export default {
 	},
 
 	methods: {
+		t,
+
 		populate(metaData, shareWith) {
 			if (
 				shareWith

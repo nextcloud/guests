@@ -113,6 +113,7 @@
 <script>
 import axios from '@nextcloud/axios'
 import { showError } from '@nextcloud/dialogs'
+import { t } from '@nextcloud/l10n'
 import { generateUrl } from '@nextcloud/router'
 import { clearTimeout, setTimeout } from 'timers'
 import NcButton from '@nextcloud/vue/components/NcButton'
@@ -177,6 +178,8 @@ export default {
 	},
 
 	methods: {
+		t,
+
 		async loadConfig() {
 			const { data } = await axios.get(generateUrl('apps/guests/config'))
 			this.config = data
