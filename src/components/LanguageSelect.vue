@@ -16,6 +16,7 @@
 
 <script>
 import axios from '@nextcloud/axios'
+import { t } from '@nextcloud/l10n'
 import { generateOcsUrl } from '@nextcloud/router'
 import NcSelect from '@nextcloud/vue/components/NcSelect'
 import logger from '../utils/logger.ts'
@@ -60,6 +61,8 @@ export default {
 	},
 
 	methods: {
+		t,
+
 		async loadLanguages() {
 			try {
 				const result = await axios.get(generateOcsUrl('apps/guests/api/v1/languages'))
