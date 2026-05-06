@@ -220,6 +220,7 @@ export default {
 		},
 
 		resetSaving() {
+			this.error = false
 			this.saved = false
 			this.saving = false
 			clearTimeout(this.savingTimeout)
