@@ -6,6 +6,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## 4.7.1
+### Fixes
+* fix(vue3): expose t() in components broken by Vue 3 migration by @pringelmann in https://github.com/nextcloud/guests/pull/1551
+
+### Other
+* chore(dev-deps): Bump nextcloud/ocp package by @nextcloud-command in https://github.com/nextcloud/guests/pull/1550
+
 ## 4.5.1
 ### Changes
 * feat: add better description in settings by @skjnldsv in https://github.com/nextcloud/guests/pull/1390
