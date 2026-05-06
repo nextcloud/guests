@@ -43,7 +43,7 @@
 				variant="primary"
 				form="transfer-guest-form"
 				:disabled="loading || message"
-				nativeType="submit">
+				type="submit">
 				<template v-if="loading" #icon>
 					<NcLoadingIcon :name="t('guests', 'Converting guest…')" />
 				</template>

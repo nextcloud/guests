@@ -85,7 +85,7 @@
 					</NcNoteCard>
 					<NcButton
 						variant="primary"
-						nativeType="submit"
+						type="submit"
 						:disabled="loading">
 						<template #icon>
 							<AccountPlus v-if="!loading" :size="20" />
