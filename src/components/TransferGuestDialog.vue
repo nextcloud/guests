@@ -61,6 +61,7 @@ import axios from '@nextcloud/axios'
 import { showError } from '@nextcloud/dialogs'
 import { translate as t } from '@nextcloud/l10n'
 import { generateOcsUrl } from '@nextcloud/router'
+import DOMPurify from 'dompurify'
 import { defineComponent } from 'vue'
 import NcButton from '@nextcloud/vue/components/NcButton'
 import NcDialog from '@nextcloud/vue/components/NcDialog'
@@ -68,21 +69,6 @@ import NcLoadingIcon from '@nextcloud/vue/components/NcLoadingIcon'
 import NcNoteCard from '@nextcloud/vue/components/NcNoteCard'
 import NcTextField from '@nextcloud/vue/components/NcTextField'
 import { logger } from '../services/logger.ts'
-
-/**
- * Escape HTML special characters to prevent XSS when interpolating
- * server-supplied values into HTML strings.
- *
- * @param text The plain text to escape
- */
-function escapeHtml(text: string): string {
-	return text
-		.replace(/&/g, '&amp;')
-		.replace(/</g, '&lt;')
-		.replace(/>/g, '&gt;')
-		.replace(/"/g, '&quot;')
-		.replace(/'/g, '&#039;')
-}
 
 /**
  *
@@ -94,15 +80,15 @@ function escapeHtml(text: string): string {
 function generateMessage({ source, target, status }: { source: string, target: string, status: 'waiting' | 'started' }) {
 	const matchStatus = {
 		waiting: t('guests', 'Conversion of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} is pending', {
-			guest: escapeHtml(source),
-			user: escapeHtml(target),
+			guest: DOMPurify.sanitize(source),
+			user: DOMPurify.sanitize(target),
 			strongStart: '<strong>',
 			strongEnd: '</strong>',
 		}, undefined, { escape: false, sanitize: false }),
 
 		started: t('guests', 'Conversion of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} has started', {
-			guest: escapeHtml(source),
-			user: escapeHtml(target),
+			guest: DOMPurify.sanitize(source),
+			user: DOMPurify.sanitize(target),
 			strongStart: '<strong>',
 			strongEnd: '</strong>',
 		}, undefined, { escape: false, sanitize: false }),

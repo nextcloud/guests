@@ -65,6 +65,8 @@ export default {
 		language(value) {
 			if (value && typeof value !== 'string') {
 				this.$emit('update:modelValue', value.code)
+			} else if (!value) {
+				this.$emit('update:modelValue', '')
 			}
 		},
 	},
