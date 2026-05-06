@@ -37,7 +37,7 @@
 		<div v-else-if="error">
 			<div class="error">
 				<div class="icon-error" />
-				{{ t('guests', 'An error occured while fetching the shares list') }}
+				{{ t('guests', 'An error occurred while fetching the shares list') }}
 			</div>
 		</div>
 		<div v-if="!loaded">
@@ -50,7 +50,7 @@
 import axios from '@nextcloud/axios'
 import { formatRelativeTime } from '@nextcloud/l10n'
 import { generateOcsUrl } from '@nextcloud/router'
-import logger from '../utils/logger.ts'
+import { logger } from '../services/logger.ts'
 
 export default {
 	name: 'GuestDetails',

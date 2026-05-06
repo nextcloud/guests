@@ -115,7 +115,6 @@ import axios from '@nextcloud/axios'
 import { showError } from '@nextcloud/dialogs'
 import { t } from '@nextcloud/l10n'
 import { generateUrl } from '@nextcloud/router'
-import { clearTimeout, setTimeout } from 'timers'
 import NcButton from '@nextcloud/vue/components/NcButton'
 import NcCheckboxRadioSwitch from '@nextcloud/vue/components/NcCheckboxRadioSwitch'
 import NcNoteCard from '@nextcloud/vue/components/NcNoteCard'
@@ -124,6 +123,7 @@ import NcSettingsSection from '@nextcloud/vue/components/NcSettingsSection'
 import NcSettingsSelectGroup from '@nextcloud/vue/components/NcSettingsSelectGroup'
 import History from 'vue-material-design-icons/History.vue'
 import GuestList from '../components/GuestList.vue'
+import { logger } from '../services/logger.ts'
 
 export default {
 	name: 'GuestSettings',
@@ -191,11 +191,11 @@ export default {
 
 			try {
 				await axios.put(generateUrl('apps/guests/config'), this.config)
-			} catch ({ data }) {
-				this.error = true
-				logger.error('Error saving config', { data })
-			} finally {
 				this.saved = true
+			} catch (error) {
+				this.error = true
+				logger.error('Error saving config', { error })
+			} finally {
 				this.savingTimeout = setTimeout(() => {
 					this.resetSaving()
 				}, 3500)
@@ -208,11 +208,11 @@ export default {
 			try {
 				const { data } = await axios.post(generateUrl('apps/guests/whitelist/reset'))
 				this.config.whitelist = data.whitelist
-			} catch ({ data }) {
-				this.error = true
-				logger.error('Error resetting allowlist', { data })
-			} finally {
 				this.saved = true
+			} catch (error) {
+				this.error = true
+				logger.error('Error resetting allowlist', { error })
+			} finally {
 				this.savingTimeout = setTimeout(() => {
 					this.resetSaving()
 				}, 3500)

@@ -4,8 +4,8 @@
  */
 
 declare module '*.vue' {
-	import Vue from 'vue'
-	export default Vue
+	import type { DefineComponent } from 'vue'
+	export default DefineComponent
 }
 
 declare module '*.svg?raw' {

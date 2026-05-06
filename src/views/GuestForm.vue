@@ -91,7 +91,7 @@
 							<AccountPlus v-if="!loading" :size="20" />
 							<div v-else class="icon-loading-small" />
 						</template>
-						{{ t('guests', 'Invite user') }}
+						{{ t('guests', 'Invite guest') }}
 					</NcButton>
 				</div>
 			</form>
@@ -106,6 +106,7 @@ import { emit } from '@nextcloud/event-bus'
 import { t } from '@nextcloud/l10n'
 import { generateOcsUrl } from '@nextcloud/router'
 import { ShareType } from '@nextcloud/sharing'
+import { validate } from 'email-validator'
 import NcButton from '@nextcloud/vue/components/NcButton'
 import NcModal from '@nextcloud/vue/components/NcModal'
 import NcNoteCard from '@nextcloud/vue/components/NcNoteCard'
@@ -190,12 +191,8 @@ export default {
 		t,
 
 		populate(metaData, shareWith) {
-			if (
-				shareWith
-				&& shareWith.indexOf('@') !== -1
-				&& shareWith.lastIndexOf('.') > shareWith.indexOf('@')
-			) {
-				this.guest.email = shareWith || ''
+			if (shareWith && validate(shareWith)) {
+				this.guest.email = shareWith
 			} else {
 				this.guest.fullName = shareWith || ''
 			}
@@ -263,16 +260,19 @@ export default {
 
 				this.closeModal()
 				showSuccess(t('guests', 'Guest added'))
-			} catch ({ response }) {
+			} catch (error) {
+				const response = error?.response
 				const errors = response?.data?.ocs?.data?.errorMessages
 				// Backend returns either an array of strings or an
 				// object with error messages for each field.
 				if (Array.isArray(errors)) {
 					errors.map(showError)
-				} else {
+				} else if (errors) {
 					this.errors.email = errors.email ? errors.email : false
 					this.errors.username = errors.username ? errors.username : false
 					this.errors.button = errors.button ? errors.button : false
+				} else {
+					this.errors.button = true
 				}
 			} finally {
 				this.loading = false
@@ -307,6 +307,8 @@ export default {
 
 		resetForm() {
 			this.guest.fullName = this.guest.username = this.guest.email = ''
+			this.guest.groups = []
+			this.guest.language = ''
 		},
 
 		resetErrors() {

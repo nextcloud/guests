@@ -26,6 +26,11 @@ export default {
 	},
 
 	props: {
+		modelValue: {
+			type: Array,
+			default: () => [],
+		},
+
 		groups: {
 			type: Array,
 			default: () => [],
@@ -37,11 +42,13 @@ export default {
 		},
 	},
 
+	emits: ['update:modelValue'],
+
 	data() {
 		const defaultGroups = []
 		if (this.required && this.groups.length === 1) {
 			defaultGroups.push(this.groups[0])
-			this.$emit('input', defaultGroups.map((group) => group.gid))
+			this.$emit('update:modelValue', defaultGroups.map((group) => group.gid))
 		}
 		return {
 			selected: defaultGroups,
@@ -49,8 +56,14 @@ export default {
 	},
 
 	watch: {
+		modelValue(value) {
+			if (value.length === 0) {
+				this.selected = []
+			}
+		},
+
 		selected() {
-			this.$emit('input', this.selected.map((group) => group.gid))
+			this.$emit('update:modelValue', this.selected.map((group) => group.gid))
 		},
 	},
 

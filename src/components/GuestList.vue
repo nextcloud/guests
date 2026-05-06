@@ -3,7 +3,7 @@
   - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 <template>
-	<NcSettingsSection :name="t('guests', 'Guests accounts')">
+	<NcSettingsSection :name="t('guests', 'Guest accounts')">
 		<div v-if="loaded && !error" class="guests-list">
 			<table v-if="guests.length" class="table">
 				<thead>
@@ -72,7 +72,7 @@
 		<div v-else-if="error">
 			<div class="error">
 				<div class="icon-error" />
-				{{ t('guests', 'An error occured while fetching the shares list') }}
+				{{ t('guests', 'An error occurred while fetching the shares list') }}
 			</div>
 		</div>
 		<div v-if="!loaded">
@@ -91,9 +91,10 @@ import { generateOcsUrl } from '@nextcloud/router'
 import { defineComponent } from 'vue'
 import NcSettingsSection from '@nextcloud/vue/components/NcSettingsSection'
 import GuestDetails from './GuestDetails.vue'
-import logger from '../utils/logger.ts'
+import { logger } from '../services/logger.ts'
 
 type OcsGuest = {
+	uid: string
 	email: string
 	display_name: string
 	created_by: string
@@ -154,12 +155,14 @@ export default defineComponent({
 				this.sort_direction = 1
 			}
 			this.guests = this.guests.sort((a, b) => {
-				return (a[this.sort]).localeCompare(b[this.sort]) * this.sort_direction
+				const valA = String(a[this.sort])
+				const valB = String(b[this.sort])
+				return valA.localeCompare(valB) * this.sort_direction
 			})
 		},
 
 		toggleDetails(email: string) {
-			this.details_for = email
+			this.details_for = this.details_for === email ? '' : email
 		},
 	},
 })
