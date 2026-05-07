@@ -19,7 +19,7 @@ import axios from '@nextcloud/axios'
 import { t } from '@nextcloud/l10n'
 import { generateOcsUrl } from '@nextcloud/router'
 import NcSelect from '@nextcloud/vue/components/NcSelect'
-import logger from '../utils/logger.ts'
+import { logger } from '../services/logger.ts'
 
 export default {
 	name: 'LanguageSelect',
@@ -28,17 +28,22 @@ export default {
 	},
 
 	props: {
+		modelValue: {
+			type: String,
+			default: '',
+		},
+
 		disabled: {
 			type: Boolean,
 			default: false,
 		},
 	},
 
-	emits: ['input'],
+	emits: ['update:modelValue'],
 
 	data() {
 		return {
-			language: '',
+			language: this.modelValue || '',
 			defaultLanguage: {
 				code: '',
 				name: t('guests', 'Default'),
@@ -51,8 +56,18 @@ export default {
 	},
 
 	watch: {
-		language() {
-			this.$emit('input', this.language.code)
+		modelValue(value) {
+			if (!value) {
+				this.language = ''
+			}
+		},
+
+		language(value) {
+			if (value && typeof value !== 'string') {
+				this.$emit('update:modelValue', value.code)
+			} else if (!value) {
+				this.$emit('update:modelValue', '')
+			}
 		},
 	},
 

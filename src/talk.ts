@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+import { t } from '@nextcloud/l10n'
 import { validate } from 'email-validator'
 import { guestForm } from './init.ts'
 

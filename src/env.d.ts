@@ -21,6 +21,21 @@ declare global {
 			}
 		}
 	}
+
+	// Nextcloud global OC object available on every page
+	const OC: {
+		MimeType: {
+			getIconUrl(mime: string): string
+		}
+		ContactsMenu: {
+			addAction(action: {
+				id: string
+				icon: string
+				label: string
+				onClick: () => void
+			}): void
+		}
+	}
 }
 
 export {}

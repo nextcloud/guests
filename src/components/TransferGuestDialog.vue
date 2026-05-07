@@ -43,7 +43,7 @@
 				variant="primary"
 				form="transfer-guest-form"
 				:disabled="loading || message"
-				nativeType="submit">
+				type="submit">
 				<template v-if="loading" #icon>
 					<NcLoadingIcon :name="t('guests', 'Converting guest…')" />
 				</template>
@@ -61,6 +61,7 @@ import axios from '@nextcloud/axios'
 import { showError } from '@nextcloud/dialogs'
 import { translate as t } from '@nextcloud/l10n'
 import { generateOcsUrl } from '@nextcloud/router'
+import DOMPurify from 'dompurify'
 import { defineComponent } from 'vue'
 import NcButton from '@nextcloud/vue/components/NcButton'
 import NcDialog from '@nextcloud/vue/components/NcDialog'
@@ -79,15 +80,15 @@ import { logger } from '../services/logger.ts'
 function generateMessage({ source, target, status }: { source: string, target: string, status: 'waiting' | 'started' }) {
 	const matchStatus = {
 		waiting: t('guests', 'Conversion of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} is pending', {
-			guest: source,
-			user: target,
+			guest: DOMPurify.sanitize(source),
+			user: DOMPurify.sanitize(target),
 			strongStart: '<strong>',
 			strongEnd: '</strong>',
 		}, undefined, { escape: false, sanitize: false }),
 
 		started: t('guests', 'Conversion of guest {strongStart}{guest}{strongEnd} to {strongStart}{user}{strongEnd} has started', {
-			guest: source,
-			user: target,
+			guest: DOMPurify.sanitize(source),
+			user: DOMPurify.sanitize(target),
 			strongStart: '<strong>',
 			strongEnd: '</strong>',
 		}, undefined, { escape: false, sanitize: false }),
@@ -149,9 +150,11 @@ export default defineComponent({
 						status: data.ocs?.data?.status,
 					})
 				}
-			} catch (error: Error) {
-				logger.error(error.response.data.ocs?.data?.message, { error })
-				showError(error.response.data.ocs?.data?.message)
+			} catch (error: unknown) {
+				const message = (error as { response?: { data?: { ocs?: { data?: { message?: string } } } } })
+					?.response?.data?.ocs?.data?.message
+				logger.error(message ?? 'Failed to transfer guest', { error })
+				showError(message ?? t('guests', 'An error occurred while converting the guest'))
 				this.$emit('close', null)
 			}
 			this.loading = false

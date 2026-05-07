@@ -8,7 +8,7 @@ import { t } from '@nextcloud/l10n'
 import { ShareType } from '@nextcloud/sharing'
 import { validate } from 'email-validator'
 import { guestForm } from './init.ts'
-import logger from './utils/logger.ts'
+import { logger } from './services/logger.ts'
 
 // entry in the sharing input search results
 const result = {
