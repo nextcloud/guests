@@ -76,6 +76,14 @@
 							{{ errors.groups }}
 						</NcNoteCard>
 					</div>
+
+					<!-- Send invite email -->
+					<div class="form-group">
+						<NcCheckboxRadioSwitch :checked.sync="sendInvite"
+							:disabled="loading">
+							{{ t('guests', 'Send invitation email') }}
+						</NcCheckboxRadioSwitch>
+					</div>
 				</div>
 
 				<!-- Footer -->
@@ -108,6 +116,7 @@ import { generateOcsUrl } from '@nextcloud/router'
 import { ShareType } from '@nextcloud/sharing'
 import NcButton from '@nextcloud/vue/components/NcButton'
 import NcModal from '@nextcloud/vue/components/NcModal'
+import NcCheckboxRadioSwitch from '@nextcloud/vue/components/NcCheckboxRadioSwitch'
 import NcNoteCard from '@nextcloud/vue/components/NcNoteCard'
 import AccountPlus from 'vue-material-design-icons/AccountPlus.vue'
 import GroupSelect from '../components/GroupSelect.vue'
@@ -121,6 +130,7 @@ export default {
 		GroupSelect,
 		LanguageSelect,
 		NcButton,
+		NcCheckboxRadioSwitch,
 		NcModal,
 		NcNoteCard,
 	},
@@ -134,6 +144,7 @@ export default {
 
 			isOpened: false,
 			loading: false,
+			sendInvite: true,
 
 			// guest data
 			guest: {
@@ -241,7 +252,7 @@ export default {
 					email: this.guest.email,
 					language: this.guest.language,
 					groups: this.guest.groups,
-					sendInvite: this.integrationApp !== 'files',
+					sendInvite: this.sendInvite,
 				})
 
 				if (this.integrationApp === 'files') {
@@ -307,6 +318,7 @@ export default {
 
 		resetForm() {
 			this.guest.fullName = this.guest.username = this.guest.email = ''
+			this.sendInvite = true
 		},
 
 		resetErrors() {
