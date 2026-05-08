@@ -84,8 +84,8 @@
 						{{ t('guests', 'An error occurred, try again') }}
 					</NcNoteCard>
 					<NcButton
-						variant="primary"
 						type="submit"
+						variant="primary"
 						:disabled="loading">
 						<template #icon>
 							<AccountPlus v-if="!loading" :size="20" />
