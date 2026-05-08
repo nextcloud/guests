@@ -25,8 +25,6 @@ OC.L10N.register(
     "Name" : "Име",
     "Shared By" : "Споделено От ",
     "Shared At" : "Споделено В",
-    "An error occured while fetching the shares list" : "Възникна грешка при извличане на списъка със споделяния",
-    "Guests accounts" : "Профили на гости",
     "Email" : "Имейл",
     "User ID" : "Потребителски Идентификатор /Име/",
     "Invited by" : "Поканен от",
@@ -39,6 +37,7 @@ OC.L10N.register(
     "Language" : "Език",
     "Add guest to groups:" : "Добавяне на гости към групи:",
     "An error occurred, try again" : "Възникна грешка, опитайте отново",
+    "Invite guest" : "Поканете гост",
     "Error" : "Грешка",
     "Your settings have been updated" : "Вашите настройки са актуализирани",
     "Saving …" : "Запазване ...",
@@ -50,7 +49,6 @@ OC.L10N.register(
     "Guests will still be able to see accounts from any group they are added to" : "Гостите все още ще могат да виждат профили от всяка група, към която са добавени",
     "Limit guest access to an app's allowlist" : "Ограничен достъп на гостите до списъка с разрешени приложения",
     "Reset allowlist" : "Нулиране на списъка с разрешени",
-    "Invite guest" : "Поканете гост",
     "A user with this ID or email address already exists" : "Потребител с този идентификатор или имейл адрес вече съществува"
 },
 "nplurals=2; plural=(n != 1);");

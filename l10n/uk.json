@@ -37,8 +37,7 @@
     "Name" : "Назва",
     "Shared By" : "Хто надав доступ",
     "Shared At" : "Коли було надано доступ",
-    "An error occured while fetching the shares list" : "Помилка під час отримання списку спільних ресурсів",
-    "Guests accounts" : "Гостьові облікові записи",
+    "Guest accounts" : "Облікові записи гостей",
     "Email" : "Ел.пошта",
     "User ID" : "ID користувача",
     "Invited by" : "Запрошення надіслано",
@@ -61,7 +60,7 @@
     "Language" : "Мова",
     "Add guest to groups:" : "Додати гостя до груп:",
     "An error occurred, try again" : "Трапилася помилка, спробуйте ще раз",
-    "Invite user" : "Запросити користувача",
+    "Invite guest" : "Запросити гостя",
     "Error" : "Помилка",
     "Your settings have been updated" : "Ваші налаштування оновлено",
     "Saving …" : "Збереження ...",
@@ -82,7 +81,6 @@
     "Limit guest access to an app's allowlist" : "Обмежити доступ гостей згідно зі списком доступу до застосунку",
     "Reset allowlist" : "Скинути список доступу",
     "Add guest" : "Додати гостя",
-    "Invite guest" : "Запросити гостя",
     "A user with this ID or email address already exists" : "Користувач з таким ідентифікатором або адресою ел. пошти вже присутній",
     "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Гість буде перетворений на звичайний обліковий запис з ім'ям \"{userId}\" найближчим часом"
 },"pluralForm" :"nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);"

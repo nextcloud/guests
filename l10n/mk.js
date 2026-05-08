@@ -29,8 +29,6 @@ OC.L10N.register(
     "Name" : "Име",
     "Shared By" : "Споделено од",
     "Shared At" : "Споделено на",
-    "An error occured while fetching the shares list" : "Настана грешка при обидот за преземање на листата со споделување.",
-    "Guests accounts" : "Гостински сметки",
     "Email" : "Е-пошта",
     "Invited by" : "Поканет од",
     "Received shares" : "Примени споделувања",
@@ -43,12 +41,12 @@ OC.L10N.register(
     "Language" : "Јазик",
     "Add guest to groups:" : "Додади гостин во групаи:",
     "An error occurred, try again" : "Се случи грешка. Обиди се повторно",
+    "Invite guest" : "Покани гостин",
     "Error" : "Грешка",
     "Your settings have been updated" : "Вашите параметри се ажурирани",
     "Saving …" : "Зачувува  …",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Само на групата со администратори и е овоможено да креира гости и гостите мора да бидат најмалку во една група каде што креирачот на споделувањето е администратор во таа група.",
     "Add guest" : "Додади гостин",
-    "Invite guest" : "Покани гостин",
     "A user with this ID or email address already exists" : "Корисник со ова ID или Е-пошта адреса веќе постои"
 },
 "nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;");

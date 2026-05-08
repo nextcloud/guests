@@ -22,8 +22,7 @@
     "Name" : "نام",
     "Shared By" : "اشتراک گذاشته شده توسط",
     "Shared At" : "مشترک در",
-    "An error occured while fetching the shares list" : "هنگام واگذاری لیست سهام خطایی روی داد",
-    "Guests accounts" : "حساب‌های مهمان",
+    "Guest accounts" : "حساب‌های مهمان",
     "Email" : "رایانامه",
     "User ID" : "شناسه کاربر",
     "Invited by" : "دعوت شده توسط",
@@ -36,13 +35,13 @@
     "Language" : "زبان",
     "Add guest to groups:" : "Add guest to groups:",
     "An error occurred, try again" : "An error occurred, try again",
+    "Invite guest" : "Invite guest",
     "Error" : "خطا",
     "Your settings have been updated" : "تنظیمات شما به روز شده است",
     "Saving …" : "در حال ذخیره",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for.",
     "Limit guest access to an app's allowlist" : "Limit guest access to an app's allowlist",
     "Reset allowlist" : "Reset allowlist",
-    "Invite guest" : "Invite guest",
     "A user with this ID or email address already exists" : "A user with this ID or email address already exists"
 },"pluralForm" :"nplurals=2; plural=(n > 1);"
 }

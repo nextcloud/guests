@@ -25,8 +25,7 @@ OC.L10N.register(
     "Name" : "Izena",
     "Shared By" : "Nork partekatua",
     "Shared At" : "Noiz partekatua",
-    "An error occured while fetching the shares list" : "Errore bat gertatu da partekatzeen zerrendak jasotzean",
-    "Guests accounts" : "Gonbidatuen kontuak",
+    "Guest accounts" : "Gonbidatuen kontuak",
     "Email" : "Posta elektronikoa",
     "User ID" : "Erabiltzailearen ID",
     "Invited by" : "Nork gonbidatua",
@@ -40,6 +39,7 @@ OC.L10N.register(
     "Language" : "Hizkuntza",
     "Add guest to groups:" : "Gehitu gonbidatua taldeetara:",
     "An error occurred, try again" : "Errore bat gertatu da, saiatu berriro",
+    "Invite guest" : "Gonbidapen berria bidali",
     "Error" : "Errorea",
     "Your settings have been updated" : "Zure ezarpenak eguneratu dira",
     "Saving …" : "Gordetzen  ...",
@@ -51,7 +51,6 @@ OC.L10N.register(
     "Guests will still be able to see accounts from any group they are added to" : "Gonbidatuek gehitzen zaien edozein taldeko kontuak ikusi ahal izango dituzte edonola ere",
     "Limit guest access to an app's allowlist" : "Mugatu gonbidatuen sarbidea aplikazioen baimen-zerrenda batera",
     "Reset allowlist" : "Baimen-zerrenda hasieratu",
-    "Invite guest" : "Gonbidapen berria bidali",
     "A user with this ID or email address already exists" : "Badago izen edo e-posta hori duen erabiltzaile bat"
 },
 "nplurals=2; plural=(n != 1);");

@@ -37,8 +37,7 @@
     "Name" : "Ad",
     "Shared By" : "Paylaşan",
     "Shared At" : "Paylaşılan",
-    "An error occured while fetching the shares list" : "Paylaşımlar listesi alınırken bir sorun çıktı",
-    "Guests accounts" : "Konuk hesapları",
+    "Guest accounts" : "Konuk hesaplar",
     "Email" : "E-posta",
     "User ID" : "Kullanıcı kimliği",
     "Invited by" : "Davet eden",
@@ -61,7 +60,7 @@
     "Language" : "Dil",
     "Add guest to groups:" : "Konuk şu gruplara eklensin:",
     "An error occurred, try again" : "Bir sorun çıktı. Yeniden deneyin",
-    "Invite user" : "Kullanıcı davet et",
+    "Invite guest" : "Konuk davet et",
     "Error" : "Hata",
     "Your settings have been updated" : "Ayarlarınız güncellendi",
     "Saving …" : "Kaydediliyor…",
@@ -81,7 +80,6 @@
     "Limit guest access to an app's allowlist" : "Konuk erişimi bir uygulamanın beyaz listesi ile sınırlansın",
     "Reset allowlist" : "İzin verilenler listesini sıfırla",
     "Add guest" : "Konuk ekle",
-    "Invite guest" : "Konuk davet et",
     "A user with this ID or email address already exists" : "Bu kimlik ya da e-posta adresinin kayıtlı olduğu bir kullanıcı hesabı zaten var.",
     "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Konuk yakında \"{userId}\" hesap adıyla normal bir hesaba dönüştürülecek"
 },"pluralForm" :"nplurals=2; plural=(n > 1);"

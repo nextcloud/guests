@@ -22,8 +22,6 @@ OC.L10N.register(
     "Name" : "Nome",
     "Shared By" : "Partilhado por",
     "Shared At" : "Partilhado em",
-    "An error occured while fetching the shares list" : "Ocorreu um erro ao obter a lista de partilhas",
-    "Guests accounts" : "Contas de convidado",
     "Email" : "E-mail",
     "Invited by" : "Convidado por",
     "Received shares" : "Partilhas recebidas",
@@ -32,9 +30,9 @@ OC.L10N.register(
     "Invite {name}" : "Convidar {name}",
     "Language" : "Idioma",
     "Add guest to groups:" : "Adicionar convidado aos grupos:",
+    "Invite guest" : "Convidar convidado",
     "Error" : "Erro",
     "Your settings have been updated" : "As suas definições foram atualizadas",
-    "Saving …" : "A guardar ...",
-    "Invite guest" : "Convidar convidado"
+    "Saving …" : "A guardar ..."
 },
 "nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

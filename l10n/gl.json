@@ -37,8 +37,7 @@
     "Name" : "Nome",
     "Shared By" : "Compartido por",
     "Shared At" : "Compartido en",
-    "An error occured while fetching the shares list" : "Produciuse un erro ao recuperar a lista de comparticións",
-    "Guests accounts" : "Contas de convidado",
+    "Guest accounts" : "Contas de convidados",
     "Email" : "Correo-e",
     "User ID" : "ID do usuario",
     "Invited by" : "Convidado por",
@@ -61,7 +60,7 @@
     "Language" : "Idioma",
     "Add guest to groups:" : "Engadir convidado a grupos:",
     "An error occurred, try again" : "Produciuse un erro, ténteo de novo",
-    "Invite user" : "Convidar a un usuario",
+    "Invite guest" : "Convidar a alguén",
     "Error" : "Erro",
     "Your settings have been updated" : "Actualizaronse os axustes",
     "Saving …" : "Gardando…",
@@ -81,7 +80,6 @@
     "Limit guest access to an app's allowlist" : "Limitar o acceso dos convidados á lista de permisos dunha aplicación",
     "Reset allowlist" : "Restabelecer lista de permisos",
     "Add guest" : "Engadir un convidado",
-    "Invite guest" : "Convidar a alguén",
     "A user with this ID or email address already exists" : "Xa existe un usuario con este ID ou enderezo de correo-e",
     "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "A conta de convidado converterase en breve nunha conta normal co nome de conta «{userId}»."
 },"pluralForm" :"nplurals=2; plural=(n != 1);"

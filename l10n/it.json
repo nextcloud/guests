@@ -37,8 +37,6 @@
     "Name" : "Nome",
     "Shared By" : "Condiviso da",
     "Shared At" : "Condiviso a",
-    "An error occured while fetching the shares list" : "Si è verificato un errore durante il recupero dell'elenco delle condivisioni",
-    "Guests accounts" : "Account ospite",
     "Email" : "Email",
     "User ID" : "ID utente",
     "Invited by" : "Invitato da",
@@ -61,7 +59,7 @@
     "Language" : "Lingua",
     "Add guest to groups:" : "Aggiungi ospite a gruppi:",
     "An error occurred, try again" : "Si è verificato un errore, riprova",
-    "Invite user" : "Invita utente",
+    "Invite guest" : "Invita ospite",
     "Error" : "Errore",
     "Your settings have been updated" : "Le tue impostazioni sono state aggiornate.",
     "Saving …" : "Salvataggio…",
@@ -81,7 +79,6 @@
     "Limit guest access to an app's allowlist" : "Limita l'accesso degli ospiti all'elenco di autorizzazioni di un'applicazione",
     "Reset allowlist" : "Reimposta lista autorizzati",
     "Add guest" : "Aggiungi ospite",
-    "Invite guest" : "Invita ospite",
     "A user with this ID or email address already exists" : "Un utente con questo ID o indirizzo email esiste già",
     "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "L'account ospite verrà presto convertito in un account regolare con il nome \"{userId}\"."
 },"pluralForm" :"nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"

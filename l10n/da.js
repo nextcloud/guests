@@ -25,8 +25,7 @@ OC.L10N.register(
     "Name" : "Navn",
     "Shared By" : "Delt af",
     "Shared At" : "Delt fra",
-    "An error occured while fetching the shares list" : "En fejl opstod under hentning af delingslisten",
-    "Guests accounts" : "Gæste-konti",
+    "Guest accounts" : "Gæstekonti",
     "Email" : "E-mail",
     "User ID" : "Bruger ID",
     "Invited by" : "Inviteret af",
@@ -40,11 +39,11 @@ OC.L10N.register(
     "Language" : "Sprog",
     "Add guest to groups:" : "Føj gæst til grupper",
     "An error occurred, try again" : "Der opstod en fejl. Prøv igen",
+    "Invite guest" : "Inviter gæst",
     "Error" : "Fejl",
     "Your settings have been updated" : "Dine indstillinger er opdateret",
     "Saving …" : "Gemmer …",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Kun Gruppeadministratorer kan tilføje gæster, og gæster skal tilknyttes til mindst en gruppe, som den, der opretter delingen, er administrator for.",
-    "Invite guest" : "Inviter gæst",
     "A user with this ID or email address already exists" : "En bruger med dette ID eller denne e-mailadresse eksisterer allerede"
 },
 "nplurals=2; plural=(n != 1);");

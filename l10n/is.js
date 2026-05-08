@@ -24,8 +24,6 @@ OC.L10N.register(
     "Name" : "Heiti",
     "Shared By" : "Deilt af",
     "Shared At" : "Deilt á",
-    "An error occured while fetching the shares list" : "Villa kom upp við að ná í lista yfir sameignir",
-    "Guests accounts" : "Gestaaðgangar:",
     "Email" : "Tölvupóstur",
     "Invited by" : "Boðið af",
     "Received shares" : "Tók á móti sameignum",
@@ -36,10 +34,10 @@ OC.L10N.register(
     "Guest user needs to be added to at least one group" : "Gestanotendum verður að bæta í a.m.k. einn hóp",
     "Language" : "Tungumál",
     "Add guest to groups:" : "Bæta gesti við hópa:",
+    "Invite guest" : "Bjóða gesti",
     "Error" : "Villa",
     "Your settings have been updated" : "Stillingarnar þínar voru uppfærðar",
     "Saving …" : "Vista …",
-    "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Aðeins hópstjórum er heimilt að útbúa gesti og gestum verður að bæta í a.m.k. einn hóp þar sem sá sem útbýr sameignina er hópstjóri.",
-    "Invite guest" : "Bjóða gesti"
+    "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Aðeins hópstjórum er heimilt að útbúa gesti og gestum verður að bæta í a.m.k. einn hóp þar sem sá sem útbýr sameignina er hópstjóri."
 },
 "nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);");

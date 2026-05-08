@@ -24,8 +24,6 @@ OC.L10N.register(
     "Name" : "Name",
     "Shared By" : "Shared By",
     "Shared At" : "Shared At",
-    "An error occured while fetching the shares list" : "An error occured while fetching the shares list",
-    "Guests accounts" : "Guests accounts",
     "Email" : "Email",
     "Invited by" : "Invited by",
     "Received shares" : "Received shares",
@@ -37,6 +35,7 @@ OC.L10N.register(
     "Language" : "Language",
     "Add guest to groups:" : "Add guest to groups:",
     "An error occurred, try again" : "An error occurred, try again",
+    "Invite guest" : "Invite guest",
     "Error" : "Error",
     "Your settings have been updated" : "Your settings have been updated",
     "Saving …" : "Saving …",
@@ -48,7 +47,6 @@ OC.L10N.register(
     "Guests will still be able to see accounts from any group they are added to" : "Guests will still be able to see accounts from any group they are added to",
     "Limit guest access to an app's allowlist" : "Limit guest access to an app's allowlist",
     "Reset allowlist" : "Reset allowlist",
-    "Invite guest" : "Invite guest",
     "A user with this ID or email address already exists" : "A user with this ID or email address already exists"
 },
 "nplurals=2; plural=(n!=1);");

@@ -23,8 +23,6 @@
     "Name" : "Nom",
     "Shared By" : "Compartit per",
     "Shared At" : "Compartit a",
-    "An error occured while fetching the shares list" : "S'ha produït un error en recuperar la llista de comparticions",
-    "Guests accounts" : "Comptes de convidats",
     "Email" : "Adreça electrònica",
     "User ID" : "ID de l'usuari",
     "Invited by" : "Convidat per",
@@ -37,6 +35,7 @@
     "Language" : "Llengua",
     "Add guest to groups:" : "Afegeix convidat als grups:",
     "An error occurred, try again" : "S'ha produït un error, torneu-ho a provar",
+    "Invite guest" : "Convidar convidat",
     "Error" : "Error",
     "Your settings have been updated" : "S'ha actualitzat els vostres paràmetres",
     "Saving …" : "S'està desant…",
@@ -48,7 +47,6 @@
     "Guests will still be able to see accounts from any group they are added to" : "Els convidats encara podran veure els comptes de qualsevol grup al qual s'afegeixin",
     "Limit guest access to an app's allowlist" : "Limiteu l'accés dels convidats a la llista de permisos d'una aplicació",
     "Reset allowlist" : "Restableix la llista de permisos",
-    "Invite guest" : "Convidar convidat",
     "A user with this ID or email address already exists" : "Ja existeix un usuari amb aquest ID o adreça de correu electrònic"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

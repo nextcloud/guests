@@ -37,8 +37,6 @@
     "Name" : "Naam",
     "Shared By" : "Gedeeld door",
     "Shared At" : "Gedeeld om",
-    "An error occured while fetching the shares list" : "Er trad een fout op bij het ophalen van de lijst met deellinks",
-    "Guests accounts" : "Gastenaccounts",
     "Email" : "E-mail",
     "User ID" : "Gebruiker-ID",
     "Invited by" : "Uitgenodigd door",
@@ -61,7 +59,7 @@
     "Language" : "Taal",
     "Add guest to groups:" : "Gast toevoegen aan groepen:",
     "An error occurred, try again" : "Er trad een fout op. Probeer het opnieuw",
-    "Invite user" : "Gebruiker uitnodigen",
+    "Invite guest" : "Uitnodigen gast",
     "Error" : "Fout",
     "Your settings have been updated" : "Je instellingen zijn bijgewerkt",
     "Saving …" : "Opslaan ...",
@@ -81,7 +79,6 @@
     "Limit guest access to an app's allowlist" : "Beperk de toegang van gasten tot de toegestane lijst van een apps",
     "Reset allowlist" : "Toegestane lijst opnieuw instellen",
     "Add guest" : "Gast toevoegen",
-    "Invite guest" : "Uitnodigen gast",
     "A user with this ID or email address already exists" : "Er bestaat al een gebruiker met dit ID of e-mailadres.",
     "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Het gastaccount wordt weldra omgezet naar een reguliere account met de accountnaam  \"{userId}\""
 },"pluralForm" :"nplurals=2; plural=(n != 1);"

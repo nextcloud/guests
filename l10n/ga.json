@@ -37,8 +37,7 @@
     "Name" : "Ainm",
     "Shared By" : "Roinnte ag",
     "Shared At" : "Roinnte Ag",
-    "An error occured while fetching the shares list" : "Tharla earráid agus an liosta scaireanna á fháil",
-    "Guests accounts" : "Cuntais aíonna",
+    "Guest accounts" : "Cuntais aoi",
     "Email" : "Ríomhphost",
     "User ID" : "ID Úsáideoir",
     "Invited by" : "Ar cuireadh ó",
@@ -61,7 +60,7 @@
     "Language" : "Teanga",
     "Add guest to groups:" : "Cuir aoi le grúpaí:",
     "An error occurred, try again" : "Tharla earráid, bain triail eile as",
-    "Invite user" : "Tabhair cuireadh don úsáideoir",
+    "Invite guest" : "Tabhair cuireadh do aoi",
     "Error" : "Earráid",
     "Your settings have been updated" : "Nuashonraíodh do shocruithe",
     "Saving …" : "Shábháil …",
@@ -82,7 +81,6 @@
     "Limit guest access to an app's allowlist" : "Teorainn a chur le rochtain aoi ar liosta ceadaithe aip",
     "Reset allowlist" : "Athshocraigh liosta ceadaithe",
     "Add guest" : "Cuir aoi leis",
-    "Invite guest" : "Tabhair cuireadh do aoi",
     "A user with this ID or email address already exists" : "Tá úsáideoir leis an aitheantas nó an seoladh ríomhphoist seo ann cheana",
     "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Tiontófar aoi go gnáthchuntas leis an ainm cuntais \"{userId}\" go luath"
 },"pluralForm" :"nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4);"

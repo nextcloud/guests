@@ -23,8 +23,7 @@
     "Name" : "Nazwa",
     "Shared By" : "Udostępnione przez",
     "Shared At" : "Udostępnione w",
-    "An error occured while fetching the shares list" : "Wystąpił błąd podczas pobierania listy udostępnień",
-    "Guests accounts" : "Konta gości",
+    "Guest accounts" : "Konta gości",
     "Email" : "E-mail",
     "User ID" : "ID użytkownika",
     "Invited by" : "Zaproszony przez",
@@ -38,6 +37,7 @@
     "Language" : "Język",
     "Add guest to groups:" : "Dodaj gościa do grup:",
     "An error occurred, try again" : "Wystąpił błąd, spróbuj ponownie",
+    "Invite guest" : "Zaproś gościa",
     "Error" : "Błąd",
     "Your settings have been updated" : "Twoje ustawienia zostały zaktualizowane",
     "Saving …" : "Zapisywanie…",
@@ -49,7 +49,6 @@
     "Guests will still be able to see accounts from any group they are added to" : "Goście nadal będą mogli zobaczyć konta z dowolnej grupy, do której zostali dodani",
     "Limit guest access to an app's allowlist" : "Ogranicz dostęp gości do listy dozwolonych aplikacji",
     "Reset allowlist" : "Zresetuj listę dozwolonych",
-    "Invite guest" : "Zaproś gościa",
     "A user with this ID or email address already exists" : "Użytkownik o tym ID lub adresie e-mail już istnieje",
     "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Wkrótce gość zostanie przekonwertowany na zwykłe konto o nazwie „{userId}”."
 },"pluralForm" :"nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);"

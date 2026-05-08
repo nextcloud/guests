@@ -28,8 +28,7 @@
     "Name" : "Имя",
     "Shared By" : "Доступ предоставлен",
     "Shared At" : "Доступно на",
-    "An error occured while fetching the shares list" : "Не удалось получить список опубликованных ресурсов",
-    "Guests accounts" : "Гостевые учётные записи",
+    "Guest accounts" : "Гостевые аккаунты",
     "Email" : "Электронная почта",
     "User ID" : "ID пользователя",
     "Invited by" : "Пригласивший пользователь",
@@ -45,6 +44,7 @@
     "Language" : "Язык",
     "Add guest to groups:" : "Добавить в группу:",
     "An error occurred, try again" : "Произошла ошибка, попробуйте еще раз",
+    "Invite guest" : "Пригласить гостя",
     "Error" : "Ошибка",
     "Your settings have been updated" : "Параметры обновлены",
     "Saving …" : "Сохранение…",
@@ -59,7 +59,6 @@
     "Guests will still be able to see accounts from any group they are added to" : "Гости по-прежнему смогут видеть учетные записи из любой группы, в которую они добавлены",
     "Limit guest access to an app's allowlist" : "Ограничить гостевой доступ к белому списку приложения",
     "Reset allowlist" : "Сбросить список разрешений",
-    "Invite guest" : "Пригласить гостя",
     "A user with this ID or email address already exists" : "Пользователь с таким идентификатором или адресом электронной почты уже существует"
 },"pluralForm" :"nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);"
 }

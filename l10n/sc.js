@@ -25,8 +25,6 @@ OC.L10N.register(
     "Name" : "Nùmene",
     "Shared By" : "Cumpartzidu dae",
     "Shared At" : "Cumpartzidu: ",
-    "An error occured while fetching the shares list" : "B'at àpidu un'errore in su carrigamentu de sa lista de cumpartziduras",
-    "Guests accounts" : "Contos de invitu",
     "Email" : "Posta eletrònica",
     "Invited by" : "Invitu dae",
     "Received shares" : "Cumpartziduras retzidas",
@@ -38,11 +36,11 @@ OC.L10N.register(
     "Guest user needs to be added to at least one group" : "Sa persone invitada depet èssere agiunta a su mancu a unu grupu",
     "Language" : "Limba",
     "Add guest to groups:" : "Agiunghe persone invitada a grupos:",
+    "Invite guest" : "Invita una persone",
     "Error" : "Errore",
     "Your settings have been updated" : "Cunfiguratzione atualizada",
     "Saving …" : "Sarvende ...",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Isceti s'amministratzione podet creare contos de invitu, e is persones invitadas depent èssere agiuntas a su mancu a unu grupu amministradu dae chie at creadu sa cumpartzidura.",
-    "Invite guest" : "Invita una persone",
     "A user with this ID or email address already exists" : "Esistet giai una persone cun custa identificatzione o posta eletrònica"
 },
 "nplurals=2; plural=(n != 1);");

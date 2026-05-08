@@ -24,8 +24,6 @@ OC.L10N.register(
     "Name" : "Nombre",
     "Shared By" : "Compartido por",
     "Shared At" : "Compartido el",
-    "An error occured while fetching the shares list" : "Ocurrió un error al obtener la lista de comparticiones",
-    "Guests accounts" : "Cuentas de invitado",
     "User ID" : "ID de usuario",
     "Invited by" : "Invitado por",
     "Received shares" : "Comparticiones recibidas",
@@ -36,6 +34,7 @@ OC.L10N.register(
     "Language" : "Idioma",
     "Add guest to groups:" : "Agregar invitado a grupos:",
     "An error occurred, try again" : "Ocurrió un error, inténtalo de nuevo",
+    "Invite guest" : "Invitar invitado",
     "Error" : "Error",
     "Your settings have been updated" : "Se han actualizado tus configuraciones",
     "Saving …" : "Guardando...",
@@ -47,7 +46,6 @@ OC.L10N.register(
     "Guests will still be able to see accounts from any group they are added to" : "Los invitados aún podrán ver las cuentas de cualquier grupo al que sean agregados",
     "Limit guest access to an app's allowlist" : "Limitar el acceso de los invitados a la lista de aplicaciones permitidas",
     "Reset allowlist" : "Restablecer la lista de aplicaciones permitidas",
-    "Invite guest" : "Invitar invitado",
     "A user with this ID or email address already exists" : "Ya existe un usuario con este ID o dirección de correo electrónico"
 },
 "nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

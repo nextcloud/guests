@@ -22,8 +22,6 @@ OC.L10N.register(
     "Name" : "שם",
     "Shared By" : "משותף על ידי",
     "Shared At" : "שותף במועד",
-    "An error occured while fetching the shares list" : "אירעה שגיאה במהלך קבלת רשימת השיתופים",
-    "Guests accounts" : "חשבונות אורחים",
     "Email" : "דוא״ל",
     "User ID" : "מזהה משתמש",
     "Invited by" : "הזמנה מאת",
@@ -35,10 +33,10 @@ OC.L10N.register(
     "Guest user needs to be added to at least one group" : "יש להוסיף את המשתמש אורח לקבוצה אחת לפחות",
     "Language" : "שפה",
     "Add guest to groups:" : "הוספת אורח לקבוצות:",
+    "Invite guest" : "הזמנת אורח",
     "Error" : "שגיאה",
     "Your settings have been updated" : "ההגדרות שלך עודכנו",
     "Saving …" : "מתבצע שמירה…",
-    "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "רק מנהלי קבוצות מורשים ליצור חשבונות אורחים ויש לצרף אורחים לפחות לקבוצה אחת ששולח השיתוף מנהל.",
-    "Invite guest" : "הזמנת אורח"
+    "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "רק מנהלי קבוצות מורשים ליצור חשבונות אורחים ויש לצרף אורחים לפחות לקבוצה אחת ששולח השיתוף מנהל."
 },
 "nplurals=3; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: 2;");

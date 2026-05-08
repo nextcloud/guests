@@ -33,8 +33,6 @@ OC.L10N.register(
     "Name" : "Nimi",
     "Shared By" : "Jakaja",
     "Shared At" : "Jakamisajankohta",
-    "An error occured while fetching the shares list" : "Jakolistaa noudettaessa tapahtui virhe",
-    "Guests accounts" : "Vierastilit",
     "Email" : "Sähköposti",
     "User ID" : "Käyttäjätunniste",
     "Invited by" : "Kutsunut",
@@ -54,7 +52,7 @@ OC.L10N.register(
     "Language" : "Kieli",
     "Add guest to groups:" : "Lisää vieras ryhmiin:",
     "An error occurred, try again" : "Tapahtui virhe. Yritä uudelleen",
-    "Invite user" : "Kutsu käyttäjä",
+    "Invite guest" : "Kutsu vieras",
     "Error" : "Virhe",
     "Your settings have been updated" : "Asetuksesi on tallennettu",
     "Saving …" : "Tallennetaan …",
@@ -63,7 +61,6 @@ OC.L10N.register(
     "Limit guest account creation to the following groups only" : "Rajaa vierastilien luontia vain seuraaviin ryhmiin",
     "Select groups to allow" : "Valitse sallittavat ryhmät",
     "Add guest" : "Lisää vieras",
-    "Invite guest" : "Kutsu vieras",
     "A user with this ID or email address already exists" : "Käyttäjä tällä ID-tunnistella tai sähköpostiosoitteella on jo olemassa"
 },
 "nplurals=2; plural=(n != 1);");

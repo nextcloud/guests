@@ -37,8 +37,7 @@
     "Name" : "Nom",
     "Shared By" : "Partagé par",
     "Shared At" : "Partagé à",
-    "An error occured while fetching the shares list" : "Une erreur est survenue pendant la mise à jour de la liste des partages",
-    "Guests accounts" : " Comptes invités",
+    "Guest accounts" : "Comptes invités",
     "Email" : "E-mail",
     "User ID" : "Identifiant utilisateur",
     "Invited by" : "Invité par",
@@ -61,7 +60,7 @@
     "Language" : "Langue",
     "Add guest to groups:" : "Ajouter l'invité aux groupes :",
     "An error occurred, try again" : "Une erreur est survenue, réessayez",
-    "Invite user" : "Inviter un utilisateur",
+    "Invite guest" : "Créer un compte invité",
     "Error" : "Erreur",
     "Your settings have been updated" : "Vos paramètres ont été mis à jour",
     "Saving …" : "Enregistrement  …",
@@ -81,7 +80,6 @@
     "Limit guest access to an app's allowlist" : "Limiter l'accès des invités à la liste d'autorisation d'une application",
     "Reset allowlist" : "Réinitialiser la liste d'autorisation",
     "Add guest" : "Ajouter un Invité",
-    "Invite guest" : "Créer un compte invité",
     "A user with this ID or email address already exists" : "Un utilisateur avec cet ID ou cette adresse e-mail existe déjà",
     "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "L'invité sera bientôt converti en un compte normal avec le nom de compte \"{userId}\""
 },"pluralForm" :"nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"

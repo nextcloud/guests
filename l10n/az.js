@@ -9,7 +9,6 @@ OC.L10N.register(
     "Guests" : "Qonaqlar",
     "None" : "Heç bir",
     "Name" : "Ad",
-    "Guests accounts" : "Qonaq hesabları",
     "Email" : "Email",
     "Invited by" : "Dəvət edən",
     "Cancel" : "Cancel",

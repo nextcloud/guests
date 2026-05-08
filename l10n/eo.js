@@ -20,7 +20,6 @@ OC.L10N.register(
     "Name" : "Nomo",
     "Shared By" : "Kunhavigita de",
     "Shared At" : "Kunhavigita",
-    "Guests accounts" : "Gastkontoj",
     "Email" : "Retpoŝtadreso",
     "Invited by" : "Invitita de",
     "Received shares" : "Ricevitaj kunhavoj",

@@ -30,8 +30,6 @@ OC.L10N.register(
     "Name" : "Ime podpisnika",
     "Shared By" : "Souporabo omogoča:",
     "Shared At" : "Souporaba na:",
-    "An error occured while fetching the shares list" : "Med pridobivanjem seznama mest souporabe je prišlo do napake.",
-    "Guests accounts" : "Računi gostov",
     "Email" : "Elektronski naslov",
     "User ID" : "ID Uporabnika",
     "Invited by" : "Povabilo:",
@@ -45,11 +43,11 @@ OC.L10N.register(
     "Guest user needs to be added to at least one group" : "Gostujoči uporabnik mora biti dodan v vsaj eno skupino.",
     "Language" : "Jezik",
     "Add guest to groups:" : "Dodaj gosta v skupino:",
+    "Invite guest" : "Povabi gosta",
     "Error" : "Napaka",
     "Your settings have been updated" : "Nastavitve so posodobljene.",
     "Saving …" : "Poteka shranjevanje …",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Le skrbniki skupin imajo dovoljenja za ustvarjanje računov gostov, gostje pa morajo biti dodani v vsaj eno skupino, katere ustvarjalec je skrbnik skupine.",
-    "Invite guest" : "Povabi gosta",
     "A user with this ID or email address already exists" : "Uporabnik s tem določilom ID ali elektronskim naslovom že obstaja."
 },
 "nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);");

@@ -26,8 +26,7 @@ OC.L10N.register(
     "Name" : "名称",
     "Shared By" : "共享人",
     "Shared At" : "共享于",
-    "An error occured while fetching the shares list" : "提取共享列表时发生错误",
-    "Guests accounts" : "访客账号",
+    "Guest accounts" : "访客账号",
     "Email" : "电子邮箱",
     "User ID" : "用户ID",
     "Invited by" : "邀请人",
@@ -40,6 +39,7 @@ OC.L10N.register(
     "Language" : "语言",
     "Add guest to groups:" : "添加访客到群组：",
     "An error occurred, try again" : "发生错误，请重试",
+    "Invite guest" : "邀请访客",
     "Error" : "错误",
     "Your settings have been updated" : "您的设置已更新",
     "Saving …" : "正在保存 ……",
@@ -51,7 +51,6 @@ OC.L10N.register(
     "Guests will still be able to see accounts from any group they are added to" : "访客仍可在自己加入的任何组中看到其他帐户。",
     "Limit guest access to an app's allowlist" : "限制用户访问应用的白名单",
     "Reset allowlist" : "重置白名单",
-    "Invite guest" : "邀请访客",
     "A user with this ID or email address already exists" : "具有此 ID 或电子邮件地址的用户已存在"
 },
 "nplurals=1; plural=0;");

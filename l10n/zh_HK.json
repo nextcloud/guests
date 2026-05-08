@@ -37,8 +37,7 @@
     "Name" : "名字",
     "Shared By" : "分享者：",
     "Shared At" : "分享時間：",
-    "An error occured while fetching the shares list" : "取得分享清單時發生錯誤",
-    "Guests accounts" : "訪客帳戶",
+    "Guest accounts" : "訪客帳戶",
     "Email" : "電郵地址",
     "User ID" : "用戶 ID",
     "Invited by" : "邀請者：",
@@ -61,7 +60,7 @@
     "Language" : "語言",
     "Add guest to groups:" : "將訪客加入群組：",
     "An error occurred, try again" : "發生錯誤，請重試",
-    "Invite user" : "邀請用戶",
+    "Invite guest" : "邀請訪客",
     "Error" : "錯誤",
     "Your settings have been updated" : "已更新您的設定",
     "Saving …" : "儲存中 ...",
@@ -82,7 +81,6 @@
     "Limit guest access to an app's allowlist" : "限制訪客存取應用程式的許可名單",
     "Reset allowlist" : "重設許可名單",
     "Add guest" : "添加訪客",
-    "Invite guest" : "邀請訪客",
     "A user with this ID or email address already exists" : "有用戶已經使用此名稱或電郵地址註冊。",
     "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "訪客快將轉換為「{userId}」為名的一般帳戶"
 },"pluralForm" :"nplurals=1; plural=0;"

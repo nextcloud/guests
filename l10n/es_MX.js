@@ -17,7 +17,7 @@ OC.L10N.register(
     "Default" : "Por omisión",
     "Cancel" : "Cancelar",
     "Language" : "Idioma",
-    "Error" : "Error",
-    "Invite guest" : "Agregar Invitado"
+    "Invite guest" : "Agregar Invitado",
+    "Error" : "Error"
 },
 "nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

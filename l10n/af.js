@@ -11,7 +11,6 @@ OC.L10N.register(
     "None" : "Geen",
     "Shared By" : "Gedeel Deur",
     "Shared At" : "Gedeel Om",
-    "Guests accounts" : "Gasterekeninge",
     "Invited by" : "Genooi deur",
     "Cancel" : "Cancel",
     "Language" : "Taal"

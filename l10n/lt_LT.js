@@ -27,8 +27,6 @@ OC.L10N.register(
     "Name" : "Pavadinimas",
     "Shared By" : "Bendrina",
     "Shared At" : "Pradėta bendrinti",
-    "An error occured while fetching the shares list" : "Gaunant viešinių sąrašą, įvyko klaida",
-    "Guests accounts" : "Svečių paskyros",
     "Email" : "El. paštas",
     "User ID" : "Naudotojo ID",
     "Invited by" : "Pakvietė",
@@ -40,11 +38,11 @@ OC.L10N.register(
     "Language" : "Kalba",
     "Add guest to groups:" : "Pridėti svečią į grupes:",
     "An error occurred, try again" : "Įvyko klaida, bandykite dar kartą",
+    "Invite guest" : "Pakviesti svečią",
     "Error" : "Klaida",
     "Your settings have been updated" : "Jūsų nustatymai atnaujinti",
     "Saving …" : "Įrašoma…",
     "Hide other accounts from guests" : "Slėpti nuo svečių kitas paskyras",
-    "Invite guest" : "Pakviesti svečią",
     "A user with this ID or email address already exists" : "Naudotojas su šiuo ID ar el. pašto adresu jau yra"
 },
 "nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);");

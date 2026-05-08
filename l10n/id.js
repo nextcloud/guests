@@ -10,6 +10,7 @@ OC.L10N.register(
     "Couldn't send reset email. Please contact your administrator." : "Tidak dapat mengirim email setel ulang. Silakan hubungi administrator Anda.",
     "None" : "Tidak ada",
     "Name" : "Nama",
+    "Guest accounts" : "Akun tamu",
     "Email" : "Email",
     "User ID" : "ID Pengguna",
     "Default" : "Default",

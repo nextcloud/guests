@@ -37,8 +37,7 @@
     "Name" : "Surname",
     "Shared By" : "Shared By",
     "Shared At" : "Shared At",
-    "An error occured while fetching the shares list" : "An error occured while fetching the shares list",
-    "Guests accounts" : "Guests accounts",
+    "Guest accounts" : "Guest accounts",
     "Email" : "Email",
     "User ID" : "User ID",
     "Invited by" : "Invited by",
@@ -61,7 +60,7 @@
     "Language" : "Language",
     "Add guest to groups:" : "Add guest to groups:",
     "An error occurred, try again" : "An error occurred, try again",
-    "Invite user" : "Invite user",
+    "Invite guest" : "Invite guest",
     "Error" : "Error",
     "Your settings have been updated" : "Your settings have been updated",
     "Saving …" : "Saving …",
@@ -82,7 +81,6 @@
     "Limit guest access to an app's allowlist" : "Limit guest access to an app's allowlist",
     "Reset allowlist" : "Reset allowlist",
     "Add guest" : "Add guest",
-    "Invite guest" : "Invite guest",
     "A user with this ID or email address already exists" : "A user with this ID or email address already exists",
     "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Guest will be converted to a regular account with the account name \"{userId}\" soon"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"

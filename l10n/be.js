@@ -12,7 +12,6 @@ OC.L10N.register(
     "Cancel" : "Скасаваць",
     "Invite {name}" : "Запрасіць {name}",
     "Language" : "Мова",
-    "Invite user" : "Запрасіць карыстальніка",
     "Error" : "Памылка",
     "Saving …" : "Захаванне …"
 },

@@ -37,8 +37,7 @@
     "Name" : "Име",
     "Shared By" : "Поделио",
     "Shared At" : "Подељено у",
-    "An error occured while fetching the shares list" : "Догодила се грешка приликом дохватања листе дељења",
-    "Guests accounts" : "Гостински налози",
+    "Guest accounts" : "Налози госта",
     "Email" : "Е-пошта",
     "User ID" : "Кориснички ID",
     "Invited by" : "Позван од стране",
@@ -61,7 +60,7 @@
     "Language" : "Језик",
     "Add guest to groups:" : "Додај госта у групе:",
     "An error occurred, try again" : "Дошло је до грешке, покушајте поново",
-    "Invite user" : "Позови корисника",
+    "Invite guest" : "Позови госта",
     "Error" : "Грешка",
     "Your settings have been updated" : "Ваше поставке су ажуриране",
     "Saving …" : "Чувам …",
@@ -81,7 +80,6 @@
     "Limit guest access to an app's allowlist" : "Ограничи госту приступ листи дозвољених апликације",
     "Reset allowlist" : "Ресетуј листу дозвољених",
     "Add guest" : "Додај госта",
-    "Invite guest" : "Позови госта",
     "A user with this ID or email address already exists" : "Корисник са овим ID или и-мејл адресом већ постоји",
     "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Ускоро ће се гост конвертовати у регуларни налог са именом „{userId}”"
 },"pluralForm" :"nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);"
