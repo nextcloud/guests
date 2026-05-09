@@ -32,6 +32,7 @@ OC.L10N.register(
     "Name" : "الاسم",
     "Shared By" : "تمت مشاركته مِن طرف",
     "Shared At" : "مُشتركة في ",
+    "Guest accounts" : "حسابات الضيوف",
     "Email" : "البريد الإلكتروني",
     "User ID" : "رمز المستخدم",
     "Invited by" : "تمّت دعوته من قِبَل",

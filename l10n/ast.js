@@ -11,6 +11,7 @@ OC.L10N.register(
     "Couldn't send reset email. Please contact your administrator." : "Nun se pudo unviar el mensaxe de reaniciu. Ponte en contautu cola alministración.",
     "None" : "Nada",
     "Name" : "Nome",
+    "Guest accounts" : "Cuentes de convidáu",
     "Email" : "Direición de corréu electrónicu",
     "Default" : "Por defeutu",
     "Cancel" : "Encaboxar",
