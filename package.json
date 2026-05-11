@@ -30,15 +30,20 @@
     "watch": "vite build --mode development --watch",
     "lint": "eslint --ext .js,.ts,.vue src",
     "lint:fix": "eslint --ext .js,.ts,.vue src --fix",
+    "start:nextcloud": "node playwright/start-nextcloud-server.mjs",
     "stylelint": "stylelint css/*.css css/*.scss src/**/*.vue",
-    "stylelint:fix": "stylelint css/*.css css/*.scss src/**/*.vue --fix"
+    "stylelint:fix": "stylelint css/*.css css/*.scss src/**/*.vue --fix",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@nextcloud/browserslist-config": "^3.1.2",
+    "@nextcloud/e2e-test-server": "^0.4.0",
     "@nextcloud/stylelint-config": "^3.2.1",
     "@nextcloud/typings": "^1.10.0",
     "@nextcloud/vite-config": "^2.5.2",
+    "@playwright/test": "^1.59.1",
     "@vue/tsconfig": "^0.9.1",
     "vite": "^7.3.2"
   },
