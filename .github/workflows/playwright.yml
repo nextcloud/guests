@@ -10,6 +10,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: playwright-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   test:
     timeout-minutes: 30
@@ -22,7 +26,7 @@ jobs:
 
       - name: Check composer.json
         id: check_composer
-        uses: andstor/file-existence-action@558493d6c74bf472d87c84eab196434afc2fa029 # v2
+        uses: andstor/file-existence-action@558493d6c74bf472d87c84eab196434afc2fa029 # v3.1.0
         with:
           files: 'composer.json'
 
@@ -64,3 +68,12 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
+          if-no-files-found: ignore
+
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: always()
+        with:
+          name: playwright-traces
+          path: test-results/
+          retention-days: 30
+          if-no-files-found: ignore

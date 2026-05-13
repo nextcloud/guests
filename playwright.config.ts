@@ -11,7 +11,10 @@ export default defineConfig({
 	forbidOnly: !!process.env.CI,
 	retries: process.env.CI ? 2 : 0,
 	workers: 1,
-	reporter: process.env.CI ? 'github' : 'html',
+	// HTML output is uploaded as a CI artifact so failed runs leave breadcrumbs.
+	reporter: process.env.CI
+		? [['github'], ['html', { outputFolder: 'playwright-report', open: 'never' }]]
+		: 'html',
 
 	use: {
 		baseURL: 'http://localhost:8089/index.php/',

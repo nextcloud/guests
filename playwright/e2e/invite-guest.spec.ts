@@ -25,7 +25,8 @@ test('Invite Guest dialog submits and creates the account', async ({
 		window.OCA.Guests!.openGuestDialog!('files', shareWith)
 	}, email)
 
-	const dialog = adminPage.locator('#app-guests')
+	// Title mutates from "Invite Guest" to "Invite <name|email>" as the form fills.
+	const dialog = adminPage.getByRole('dialog', { name: /^invite /i })
 	await expect(dialog).toBeVisible({ timeout: 10_000 })
 
 	await dialog.getByLabel(/guest name|name/i).first().fill('Playwright Guest')
