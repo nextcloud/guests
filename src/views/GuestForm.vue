@@ -238,7 +238,6 @@ export default {
 					email: this.guest.email,
 					language: this.guest.language,
 					groups: this.guest.groups,
-					sendInvite: this.integrationApp !== 'files',
 				})
 
 				if (this.integrationApp === 'files') {
