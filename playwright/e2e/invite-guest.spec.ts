@@ -31,8 +31,6 @@ test('Invite Guest dialog submits and creates the account', async ({
 
 	await dialog.getByLabel(/guest name|name/i).first().fill('Playwright Guest')
 
-	// The submit button must actually submit the form; the v4.7.0 nativeType="submit"
-	// regression broke that silently.
 	const responsePromise = adminPage.waitForResponse((r) => r.url().includes('/apps/guests/api/v1/users') && r.request().method() === 'PUT')
 	await dialog.getByRole('button', { name: /invite (guest|user)/i }).click()
 	const response = await responsePromise

@@ -13,8 +13,6 @@ test('Admin Guests settings page renders without errors', async ({ adminPage }) 
 
 	await adminPage.goto('/settings/admin/guests')
 
-	// If t() is missing in methods, the whole settings component fails to render
-	// and these assertions fail. That's the 4.7.0 regression class this guards.
 	await expect(adminPage.getByRole('heading', { name: 'Guests', exact: true })).toBeVisible()
 	await expect(adminPage.getByRole('checkbox', { name: /external storage/i })).toBeVisible()
 
