@@ -1,0 +1,50 @@
+/**
+ * SPDX-FileCopyrightText: 2026 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+
+import { createGuest, deleteUser, expect, test } from '../support/fixtures.ts'
+
+const uniqueSuffix = () => Math.random().toString(36).slice(2, 8)
+
+test('Converting a guest to a regular user via the admin user list', async ({
+	adminPage,
+	adminApi,
+}) => {
+	const suffix = uniqueSuffix()
+	const email = `playwright-convert+${suffix}@example.com`
+	const displayName = `Playwright Convert ${suffix}`
+
+	const uid = await createGuest(adminApi, { displayName, email })
+
+	try {
+		await adminPage.goto('/settings/users')
+
+		// Find the row for the test guest by its display name.
+		const guestRow = adminPage.getByRole('row').filter({
+			has: adminPage.getByText(displayName),
+		}).first()
+		await expect(guestRow).toBeVisible({ timeout: 15_000 })
+
+		// Open the row's actions menu and trigger "Convert to user".
+		await guestRow.getByRole('button', { name: /more|actions/i }).click()
+		await adminPage.getByRole('menuitem', { name: /convert.*user/i }).click()
+
+		// Dialog: fill password and submit.
+		const dialog = adminPage.getByRole('dialog')
+		await expect(dialog).toBeVisible()
+		await dialog.getByLabel(/password/i).first().fill('Playwright-' + suffix)
+		await dialog.getByRole('button', { name: /convert|submit|save/i }).click()
+
+		// Success toast or row backend change
+		await expect(adminPage.getByText(/conver(ted|sion)/i)).toBeVisible({
+			timeout: 15_000,
+		})
+	} finally {
+		try {
+			await deleteUser(adminApi, uid)
+		} catch {
+			// no-op
+		}
+	}
+})

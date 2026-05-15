@@ -13,3 +13,5 @@ js
 .php-cs-fixer.cache
 .phpunit.result.cache
 .phpunit.cache
+playwright-report/
+test-results/
