@@ -173,6 +173,7 @@ class UsersController extends OCSController {
 				'message' => $this->l10n->t(
 					'User successfully created'
 				),
+				'username' => $username,
 			],
 			Http::STATUS_CREATED
 		);
