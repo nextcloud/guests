@@ -28,7 +28,7 @@ class InviteService {
 	}
 
 	public function sendInvite(string $userId, string $guest, ?IShare $share = null): bool {
-		$passwordToken = $this->config->getUserValue($guest, 'core', 'lostpassword', null);
+		$passwordToken = $this->config->getUserValue($userId, 'core', 'lostpassword');
 
 		if (!$passwordToken) {
 			$this->logger->warning('No password token found for guest "' . $guest . '", skipping invitation email');
