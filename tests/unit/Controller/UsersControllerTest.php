@@ -707,7 +707,10 @@ class UsersControllerTest extends TestCase {
 
 		$response = $this->controller->create('new@example.com', 'Test User', 'en', ['group1', 'group2']);
 		$this->assertEquals(Http::STATUS_CREATED, $response->getStatus());
-		$this->assertEquals(['message' => 'User successfully created'], $response->getData());
+		$this->assertEquals([
+			'message' => 'User successfully created',
+			'username' => 'new@example.com',
+		], $response->getData());
 	}
 
 	/**
