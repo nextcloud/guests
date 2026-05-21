@@ -6,6 +6,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 4.7.4
+### Fixes
+* fix(invite): send welcome email when creating guest from share dialog by @pringelmann in https://github.com/nextcloud/guests/pull/1566
+
 ## 4.7.3
 ### Fixes
 * fix: apply username from backend instead of guessing by @susnux in https://github.com/nextcloud/guests/pull/1571
