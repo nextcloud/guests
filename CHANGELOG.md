@@ -6,6 +6,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## 4.7.3
+### Fixes
+* fix: apply username from backend instead of guessing by @susnux in https://github.com/nextcloud/guests/pull/1571
+
+## 4.7.2
+### Fixes
+* fix(src): resolve 20 bugs, logic flaws, type issues and prose errors across the frontend by @copilot-swe-agent in https://github.com/nextcloud/guests/pull/1552
+
+### Other
+* Chore(deps): Bump @nextcloud/axios from 2.5.2 to 2.6.0 by @dependabot[bot] in https://github.com/nextcloud/guests/pull/1549
+* Chore(deps): Bump axios from 1.15.0 to 1.16.0 by @dependabot[bot] in https://github.com/nextcloud/guests/pull/1554
+
 ## 4.7.1
 ### Fixes
 * fix(vue3): expose t() in components broken by Vue 3 migration by @pringelmann in https://github.com/nextcloud/guests/pull/1551
