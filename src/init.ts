@@ -12,14 +12,22 @@ if (!OCA.Guests) {
 	OCA.Guests = {}
 }
 
-// Create mount point for the guest form dialog
-const guestRoot = document.createElement('div')
-guestRoot.setAttribute('id', 'guest-root')
-document.body.appendChild(guestRoot)
+// NC appends a `?v=...` cache-buster to the script-tag URL but the
+// bundled `import` from main.ts doesn't, so this module loads twice.
+// Reuse the first mount instead of creating a second Vue app. See #1555.
+let guestForm: InstanceType<typeof GuestForm>
+if (OCA.Guests._guestForm) {
+	guestForm = OCA.Guests._guestForm
+} else {
+	const guestRoot = document.createElement('div')
+	guestRoot.setAttribute('id', 'guest-root')
+	document.body.appendChild(guestRoot)
 
-// Initialize the guest form dialog and expose it
-const guestForm = createApp(GuestForm)
-	.mount('#guest-root') as InstanceType<typeof GuestForm>
+	guestForm = createApp(GuestForm)
+		.mount('#guest-root') as InstanceType<typeof GuestForm>
+
+	OCA.Guests._guestForm = guestForm
+}
 
 OCA.Guests.openGuestDialog = (app: string, shareWith?: string) => {
 	guestForm.populate({ app }, shareWith)
