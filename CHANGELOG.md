@@ -6,6 +6,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 4.7.5
+### Fixes
+* fix(invite): guard against double-mount when init.ts evaluates twice by @pringelmann in https://github.com/nextcloud/guests/pull/1576
+
 ## 4.7.4
 ### Fixes
 * fix(invite): send welcome email when creating guest from share dialog by @pringelmann in https://github.com/nextcloud/guests/pull/1566
