@@ -11,11 +11,11 @@ declare(strict_types=1);
 namespace OCA\Guests\Listener;
 
 use OCA\Guests\AppInfo\Application;
+use OCA\Guests\Config;
 use OCA\Guests\GuestManager;
 use OCA\Guests\Service\InviteService;
 use OCP\EventDispatcher\Event;
 use OCP\EventDispatcher\IEventListener;
-use OCP\IUserManager;
 use OCP\IUserSession;
 use OCP\Share\Events\ShareCreatedEvent;
 use OCP\Share\IShare;
@@ -28,7 +28,7 @@ class ShareCreatedListener implements IEventListener {
 	public function __construct(
 		private readonly LoggerInterface $logger,
 		private readonly IUserSession $userSession,
-		private readonly IUserManager $userManager,
+		private readonly Config $config,
 		private readonly GuestManager $guestManager,
 		private readonly InviteService $inviteService,
 	) {
@@ -53,12 +53,16 @@ class ShareCreatedListener implements IEventListener {
 			return;
 		}
 
-		$shareWith = $share->getSharedWith();
+		$guestId = $share->getSharedWith();
+		if ($share->getShareType() === IShare::TYPE_EMAIL && $this->config->useHashedEmailAsUserID()) {
+			$email = strtolower($guestId);
+			$guestId = hash('sha256', $email);
+		}
 
-		$isGuest = $this->guestManager->isGuest($shareWith);
+		$isGuest = $this->guestManager->isGuest($guestId);
 		if (!$isGuest) {
 			$this->logger->debug(
-				"ignoring user '" . $shareWith . "', not a guest",
+				"ignoring user '" . $guestId . "', not a guest",
 				['app' => Application::APP_ID]
 			);
 			return;
@@ -80,11 +84,11 @@ class ShareCreatedListener implements IEventListener {
 			);
 		}
 
-		$this->logger->debug("checking if '" . $shareWith . "' has a password",
+		$this->logger->debug("checking if '" . $guestId . "' has a password",
 			['app' => Application::APP_ID]);
 
 		$uid = $user->getUID();
 
-		$this->inviteService->sendInvite($uid, $shareWith, $share);
+		$this->inviteService->sendInvite($uid, $guestId, $share);
 	}
 }
