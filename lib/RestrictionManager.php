@@ -38,12 +38,23 @@ class RestrictionManager {
 	) {
 	}
 
-	public function verifyAccess(): void {
-		$this->whitelist->verifyAccess($this->userSession->getUser(), $this->request);
+	public function verifyAccess(?IUser $user = null): void {
+		$user ??= $this->userSession->getUser();
+
+		if ($user === null) {
+			// Nothing to verify without a user. The session is not always
+			// populated when this runs (e.g. the user_saml ACS handler
+			// dispatches UserLoggedInEvent before binding the user to the
+			// session), so callers should pass the user explicitly; guard
+			// here to avoid forwarding null to the non-nullable whitelist.
+			return;
+		}
+
+		$this->whitelist->verifyAccess($user, $this->request);
 	}
 
-	public function setupRestrictions(): void {
-		$user = $this->userSession->getUser();
+	public function setupRestrictions(?IUser $user = null): void {
+		$user ??= $this->userSession->getUser();
 
 		if ($user === null) {
 			// No user logged in, no restrictions needed

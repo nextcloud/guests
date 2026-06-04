@@ -30,7 +30,12 @@ class UserLoggedInListener implements IEventListener {
 			return;
 		}
 
-		$this->restrictionManager->verifyAccess();
-		$this->restrictionManager->setupRestrictions();
+		// Use the user from the event rather than the user session: when the
+		// event is dispatched from the user_saml ACS handler the user is not
+		// yet bound to the session, so IUserSession::getUser() returns null
+		// (see https://github.com/nextcloud/guests/issues/1588).
+		$user = $event->getUser();
+		$this->restrictionManager->verifyAccess($user);
+		$this->restrictionManager->setupRestrictions($user);
 	}
 }
