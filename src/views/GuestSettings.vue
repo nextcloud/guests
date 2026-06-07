@@ -38,21 +38,21 @@
 				<NcCheckboxRadioSwitch
 					v-model="config.allowExternalStorage"
 					type="switch"
-					@update:checked="saveConfig">
+					@update:modelValue="saveConfig">
 					{{ t('guests', 'Guest accounts can access mounted external storages') }}
 				</NcCheckboxRadioSwitch>
 
 				<NcCheckboxRadioSwitch
 					v-model="config.useHashedEmailAsUserID"
 					type="switch"
-					@update:checked="saveConfig">
+					@update:modelValue="saveConfig">
 					{{ t('guests', 'Use a hash of the email as user ID for improved privacy') }}
 				</NcCheckboxRadioSwitch>
 
 				<NcCheckboxRadioSwitch
 					v-model="config.hideUsers"
 					type="switch"
-					@update:checked="saveConfig">
+					@update:modelValue="saveConfig">
 					{{ t('guests', 'Hide other accounts from guests') }}
 				</NcCheckboxRadioSwitch>
 
@@ -64,7 +64,7 @@
 				<NcCheckboxRadioSwitch
 					:modelValue="config.createRestrictedToGroup.length > 0"
 					type="switch"
-					@update:checked="onGroupRestrictToggle">
+					@update:modelValue="onGroupRestrictToggle">
 					{{ t('guests', 'Limit guest account creation to the following groups only') }}
 				</NcCheckboxRadioSwitch>
 
@@ -80,7 +80,7 @@
 				<NcCheckboxRadioSwitch
 					v-model="config.useWhitelist"
 					type="switch"
-					@update:checked="saveConfig">
+					@update:modelValue="saveConfig">
 					{{ t('guests', 'Limit guest access to an app\'s allowlist') }}
 				</NcCheckboxRadioSwitch>
 
