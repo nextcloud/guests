@@ -52,7 +52,6 @@ class GuestManager {
 			return $this->userBackend->userExists($user);
 		}
 
-
 		return $this->userBackend->userExists($user->getUID());
 	}
 

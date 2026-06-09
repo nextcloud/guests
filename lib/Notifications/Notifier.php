@@ -78,7 +78,6 @@ class Notifier implements INotifier {
 				$notification->setIcon($this->url->getAbsoluteURL($this->url->imagePath('core', 'actions/info.svg')));
 
 				return $notification;
-
 			case 'guest-transfer-fail':
 				$params = $notification->getSubjectParameters();
 				$notification
@@ -88,7 +87,6 @@ class Notifier implements INotifier {
 						$this->getRichMessageParams($params['source'], $params['target']),
 					);
 				return $notification;
-
 			case 'guest-transfer-done':
 				$params = $notification->getSubjectParameters();
 				$notification
@@ -98,7 +96,6 @@ class Notifier implements INotifier {
 						$this->getRichMessageParams($params['source'], $params['target']),
 					);
 				return $notification;
-
 			default:
 				// Unknown subject => Unknown notification => throw
 				throw new UnknownNotificationException();
