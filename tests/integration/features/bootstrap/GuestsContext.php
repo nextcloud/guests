@@ -13,7 +13,6 @@ use GuzzleHttp\Exception\ClientException;
 
 require __DIR__ . '/../../vendor/autoload.php';
 
-
 /**
  * Guests context.
  */
