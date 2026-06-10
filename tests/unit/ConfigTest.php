@@ -253,4 +253,62 @@ class ConfigTest extends TestCase {
 
 		$this->guestConfig->setCreateRestrictedToGroup(['group1', 'group2']);
 	}
+
+	public function testGetGuestQuota(): void {
+		$this->appConfig->method('getAppValueString')
+			->with('guest_quota')
+			->willReturn('5 GB');
+
+		$this->assertEquals('5 GB', $this->guestConfig->getGuestQuota());
+	}
+
+	public function testHasGuestQuotaOverride(): void {
+		$this->globalAppConfig->method('hasKey')
+			->with('guests', 'guest_quota')
+			->willReturn(true);
+
+		$this->assertTrue($this->guestConfig->hasGuestQuotaOverride());
+	}
+
+	public function testGetGuestQuotaDefaultWithoutOverride(): void {
+		// No explicit value stored: the app config returns the preset-derived
+		// lexicon default, getDetails() is not consulted.
+		$this->globalAppConfig->method('hasKey')
+			->with('guests', 'guest_quota')
+			->willReturn(false);
+		$this->appConfig->method('getAppValueString')
+			->with('guest_quota')
+			->willReturn('1 GB');
+
+		$this->assertEquals('1 GB', $this->guestConfig->getGuestQuotaDefault());
+	}
+
+	public function testGetGuestQuotaDefaultWithOverride(): void {
+		// An override is stored, so the preset default is read from the lexicon
+		// details rather than from the (overridden) stored value.
+		$this->globalAppConfig->method('hasKey')
+			->with('guests', 'guest_quota')
+			->willReturn(true);
+		$this->globalAppConfig->method('getDetails')
+			->with('guests', 'guest_quota')
+			->willReturn(['default' => '10 GB']);
+
+		$this->assertEquals('10 GB', $this->guestConfig->getGuestQuotaDefault());
+	}
+
+	public function testSetGuestQuotaValue(): void {
+		$this->appConfig->expects($this->once())
+			->method('setAppValueString')
+			->with('guest_quota', '500 MB');
+
+		$this->guestConfig->setGuestQuota('500 MB');
+	}
+
+	public function testSetGuestQuotaDefaultRemovesOverride(): void {
+		$this->appConfig->expects($this->once())
+			->method('deleteAppValue')
+			->with('guest_quota');
+
+		$this->guestConfig->setGuestQuota('default');
+	}
 }
