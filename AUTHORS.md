@@ -12,6 +12,7 @@
 - Christopher Ng <chrng8@gmail.com>
 - Côme Chilliet <come.chilliet@nextcloud.com>
 - Daniel Kesselberg <mail@danielkesselberg.de>
+- ernolf <raphael.gradenwitz@googlemail.com>
 - F. E Noel Nfebe <fenn25.fn@gmail.com>
 - Felix Heidecke <felix@heidecke.me>
 - felixboehm <felix@owncloud.com>
