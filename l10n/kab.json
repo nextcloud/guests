@@ -1,9 +1,12 @@
 { "translations": {
+    "Guests" : "Inebgiwen",
     "None" : "Ula d yiwen",
     "Name" : "Nom",
     "Email" : "Imayl",
     "Default" : "Prédéfini(e)",
     "Cancel" : "Cancel",
-    "Error" : "Erreur"
+    "Language" : "Tutlayt",
+    "Error" : "Erreur",
+    "Saving …" : "Asekles …"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
