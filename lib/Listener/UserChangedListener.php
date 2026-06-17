@@ -47,7 +47,7 @@ class UserChangedListener implements IEventListener {
 			return;
 		}
 
-		$userId = (string)$user->getUID();
+		$userId = $user->getUID();
 		$guestEmail = $this->config->getUserValue($userId, Application::APP_ID, 'email', strtolower($userId));
 		if ($event->getValue() === $guestEmail) {
 			return;
