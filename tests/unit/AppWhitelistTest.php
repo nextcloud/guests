@@ -60,6 +60,8 @@ class AppWhitelistTest extends TestCase {
 			->willReturn(true);
 		$this->guestManager->method('isGuest')
 			->willReturn(true);
+		$this->appManager->method('cleanAppId')
+			->willReturnCallback(fn (string $appId) => $appId);
 		$user = $this->createStub(IUser::class);
 
 		$this->assertFalse($this->appWhitelist->isUrlAllowed($user, '/apps/news/...'));
@@ -73,6 +75,8 @@ class AppWhitelistTest extends TestCase {
 			->willReturn(false);
 		$this->guestManager->method('isGuest')
 			->willReturn(true);
+		$this->appManager->method('cleanAppId')
+			->willReturnCallback(fn (string $appId) => $appId);
 		$user = $this->createStub(IUser::class);
 
 		$this->assertTrue($this->appWhitelist->isUrlAllowed($user, '/apps/news/...'));
