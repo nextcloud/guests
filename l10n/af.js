@@ -1,7 +1,6 @@
 OC.L10N.register(
     "guests",
     {
-    "Access to this resource is forbidden for guests." : "Toegang tot hierdie hulpbron is vir gaste verbode.",
     "__language_name__" : "Afrikaans",
     "Invalid mail address" : "Ongeldige posadres",
     "A user with that name already exists." : "’n Gelyknamige gebruiker bestaan reeds.",

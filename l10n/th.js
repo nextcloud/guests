@@ -1,7 +1,6 @@
 OC.L10N.register(
     "guests",
     {
-    "Access to this resource is forbidden for guests." : "ผู้เยี่ยมชมไม่สามารถเข้าถึงทรัพยากรนี้ได้",
     "__language_name__" : "ไทย",
     "Invalid mail address" : "ที่อยู่อีเมลไม่ถูกต้อง",
     "A user with that name already exists." : "มีชื้อผู้ใช้นี้อยู่แล้ว",

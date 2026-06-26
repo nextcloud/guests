@@ -1,7 +1,6 @@
 OC.L10N.register(
     "guests",
     {
-    "Access to this resource is forbidden for guests." : "دسترسی به این منبع برای مهمان‌ها ممنوع است.",
     "__language_name__" : "__language_name__",
     "Invalid mail address" : "آدرس ایمیل نامعتبر است",
     "A user with that email already exists." : "کاربری با این ایمیل از قبل وجود دارد.",

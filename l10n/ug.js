@@ -1,7 +1,6 @@
 OC.L10N.register(
     "guests",
     {
-    "Access to this resource is forbidden for guests." : "مېھمانلارغا بۇ مەنبەنى زىيارەت قىلىش مەنئى قىلىنىدۇ.",
     "__language_name__" : "ئۇيغۇرچە",
     "Invalid mail address" : "ئىناۋەتسىز خەت ئادرېسى",
     "A user with that email already exists." : "بۇ ئېلېكترونلۇق خەت بار ئىشلەتكۈچى مەۋجۇت.",

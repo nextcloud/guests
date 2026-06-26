@@ -1,7 +1,6 @@
 OC.L10N.register(
     "guests",
     {
-    "Access to this resource is forbidden for guests." : "已禁止訪客存取此資源。",
     "__language_name__" : "正體中文（臺灣）",
     "Invalid mail address" : "無效的電子郵件地址",
     "A user with that email already exists." : "同電子信箱的使用者已經存在。",

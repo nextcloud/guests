@@ -1,7 +1,6 @@
 OC.L10N.register(
     "guests",
     {
-    "Access to this resource is forbidden for guests." : "Přístup k tomuto prostředku je pro hosty zakázán.",
     "__language_name__" : "Čeština",
     "Invalid mail address" : "Neplatná e-mailová adresa",
     "A user with that email already exists." : "Uživatel s takovým e-mailem už existuje.",

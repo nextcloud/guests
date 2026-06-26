@@ -1,7 +1,6 @@
 OC.L10N.register(
     "guests",
     {
-    "Access to this resource is forbidden for guests." : "წვდომა ამ რესურსზე სტუმრებისთვის აკრძალულია.",
     "__language_name__" : "ქართული",
     "Invalid mail address" : "არასწორი საფოსტო მისამართი",
     "A user with that name already exists." : "მომხმარებელი ამ სახელით უკვე არსებობს.",

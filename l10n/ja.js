@@ -1,7 +1,6 @@
 OC.L10N.register(
     "guests",
     {
-    "Access to this resource is forbidden for guests." : "ゲストからのアクセスは禁止されています",
     "__language_name__" : "日本語 (Japanese)",
     "Invalid mail address" : "無効なメールアドレスです",
     "A user with that email already exists." : "そのメールアドレスはすでに存在します。",

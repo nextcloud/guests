@@ -1,7 +1,6 @@
 OC.L10N.register(
     "guests",
     {
-    "Access to this resource is forbidden for guests." : "Ehhez az erőforráshoz vendégek nem férhetnek hozzá.",
     "__language_name__" : "Magyar",
     "Invalid mail address" : "Érvénytelen e-mail-cím",
     "A user with that email already exists." : "Ezzel az e-mail-címmel már létezik felhasználó.",

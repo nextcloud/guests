@@ -1,7 +1,6 @@
 OC.L10N.register(
     "guests",
     {
-    "Access to this resource is forbidden for guests." : "L'accesu d'esti recursu ta prohibíu pa convidaos.",
     "__language_name__" : "Asturianu",
     "Invalid mail address" : "La direición de corréu electrónicu ye incorreuta",
     "A user with that name already exists." : "Yá esiste un nome d'usuariu con esi nome.",

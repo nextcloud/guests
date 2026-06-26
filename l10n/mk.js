@@ -1,7 +1,6 @@
 OC.L10N.register(
     "guests",
     {
-    "Access to this resource is forbidden for guests." : "Пристапот до овој ресурс е забранет за гости.",
     "__language_name__" : "Македонски",
     "Invalid mail address" : "Неправилна електронска адреса/пошта",
     "A user with that email already exists." : "Корисник со оваа адреса на е-пошта веќе постои.",

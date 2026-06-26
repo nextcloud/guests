@@ -1,7 +1,6 @@
 OC.L10N.register(
     "guests",
     {
-    "Access to this resource is forbidden for guests." : "El acceso a este recurso está prohibido para invitados. ",
     "__language_name__" : "Español (Peru)",
     "Invalid mail address" : "Dirección de correo inválida",
     "A user with that name already exists." : "Un usuario con ese nombre ya existe. ",

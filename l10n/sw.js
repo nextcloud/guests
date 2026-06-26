@@ -1,7 +1,6 @@
 OC.L10N.register(
     "guests",
     {
-    "Access to this resource is forbidden for guests." : "Ufikiaji wa rasilimali hii hauruhusiwi kwa wageni.",
     "__language_name__" : "_lugha_jina_",
     "Invalid mail address" : "Anwani ya barua pepe si sahihi",
     "A user with that email already exists." : "Mtumiaji aliye na barua pepe hiyo tayari yupo.",

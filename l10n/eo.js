@@ -1,7 +1,6 @@
 OC.L10N.register(
     "guests",
     {
-    "Access to this resource is forbidden for guests." : "Aliro al tiu ero ne eblas por gastoj.",
     "__language_name__" : "Esperanto",
     "Invalid mail address" : "Retpoŝtadreso nevalida",
     "A user with that email already exists." : "Uzanto kun tiu retpoŝtadreso jam ekzistas.",

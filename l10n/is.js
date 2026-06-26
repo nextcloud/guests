@@ -1,7 +1,6 @@
 OC.L10N.register(
     "guests",
     {
-    "Access to this resource is forbidden for guests." : "Gestum er bannaður aðgangur að þessum tilföngum.",
     "__language_name__" : "Íslenska",
     "Invalid mail address" : "Ógilt tölvupóstfang",
     "A user with that email already exists." : "Notandi með þessu tölvupóstfangi er þegar til.",

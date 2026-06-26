@@ -1,7 +1,6 @@
 OC.L10N.register(
     "guests",
     {
-    "Access to this resource is forbidden for guests." : "Šim resursam viesu piekļuve ir aizliegta.",
     "__language_name__" : "Latviešu",
     "Invalid mail address" : "Nepareiza e-pasta adrese",
     "A user with that name already exists." : "Jau pastāv lietotājs ar šo vārdu.",

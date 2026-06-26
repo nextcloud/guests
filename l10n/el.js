@@ -1,7 +1,6 @@
 OC.L10N.register(
     "guests",
     {
-    "Access to this resource is forbidden for guests." : "Δεν επιτρέπεται η πρόσβαση επισκεπτών σε αυτόν τον πόρο.",
     "__language_name__" : "Ελληνικά",
     "Invalid mail address" : "Μη έγκυρη διεύθυνση Ηλ.Ταχυδρομείου.",
     "A user with that email already exists." : "Υπάρχει ήδη χρήστης με την ίδια διεύθυνη ηλ. ταχυδρομείου ",

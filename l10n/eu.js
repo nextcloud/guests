@@ -1,7 +1,6 @@
 OC.L10N.register(
     "guests",
     {
-    "Access to this resource is forbidden for guests." : "Gonbidatuek debekatua dute baliabide honetarako sarbidea.",
     "__language_name__" : "Euskara",
     "Invalid mail address" : "Helbide elektroniko baliogabea",
     "A user with that email already exists." : "Badago e-mail hori duen erabiltzaile bat.",

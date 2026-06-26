@@ -1,5 +1,4 @@
 { "translations": {
-    "Access to this resource is forbidden for guests." : "Гостям заборонено доступ до цього ресурсу.",
     "__language_name__" : "Українська",
     "Invalid mail address" : "Недійсна електронна адреса",
     "A user with that email already exists." : "Користувач з такою email адресою вже існує.",
