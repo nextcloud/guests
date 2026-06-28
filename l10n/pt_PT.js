@@ -7,6 +7,7 @@ OC.L10N.register(
     "A user with that name already exists." : "Já existe um utilizador com esse nome.",
     "User successfully created" : "Utilizador criado com sucesso",
     "Failed to authorize" : "Falhou a autorização",
+    "User already exists" : "Usuário já existe",
     "%s via %s" : "%s via %s",
     "Couldn't send reset email. Please contact your administrator." : "Não foi possível enviar a mensagem de reposição. Por favor, contacte o seu administrador.",
     "%s shared a file with you" : "%s partilhou um ficheiro consigo.",
