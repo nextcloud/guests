@@ -16,6 +16,7 @@ OC.L10N.register(
     "The share will expire at %s." : "Deling vil udløbe d. %s.",
     "Activate account" : "Aktiver konto",
     "View share" : "Se delt indhold",
+    "Guests" : "Gæster",
     "Data imported" : "Data importeret",
     "Data from your previous guest account was successfully imported into your new account." : "Data fra din tidligere gæstekonto blev korrekt importeret til din nye konto.",
     "Create guest accounts for easier collaboration" : "Opret gæstekonti for lettere samarbejde.",
