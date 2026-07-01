@@ -22,6 +22,7 @@ OC.L10N.register(
     "You have been invited" : "Você foi convidado",
     "You can activate your guest account with the button below." : "Você pode ativar sua conta de convidado com o botão abaixo.",
     "After your account is activated you can log in with %s." : "Após a ativação da sua conta, você poderá fazer login com %s.",
+    "Guests" : "Convidados",
     "Data imported" : "Dados importados",
     "Failed to convert guest {guest} account to {user} account" : "Falha ao converter a conta de convidado {guest} para conta {user}",
     "Create guest accounts for easier collaboration" : "Criar contas de convidado para colaboração mais fácil",
