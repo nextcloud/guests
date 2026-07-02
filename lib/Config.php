@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace OCA\Guests;
 
+use OCA\Guests\AppInfo\Application;
 use OCP\AppFramework\Services\IAppConfig;
 use OCP\Group\ISubAdmin;
 use OCP\IAppConfig as IGlobalAppConfig;
@@ -49,6 +50,47 @@ class Config {
 
 	public function setHideOtherUsers(bool $hide): void {
 		$this->appConfig->setAppValueBool(ConfigLexicon::HIDE_OTHER_ACCOUNTS, $hide);
+	}
+
+	/**
+	 * Currently configured default quota for new guest accounts. Returns the
+	 * explicit override if one is set, otherwise the preset-derived default.
+	 */
+	public function getGuestQuota(): string {
+		return $this->appConfig->getAppValueString(ConfigLexicon::GUEST_DISK_QUOTA);
+	}
+
+	/**
+	 * Whether an explicit default quota is stored, as opposed to falling back
+	 * to the preset-derived default from the config lexicon.
+	 */
+	public function hasGuestQuotaOverride(): bool {
+		return $this->globalAppConfig->hasKey(Application::APP_ID, ConfigLexicon::GUEST_DISK_QUOTA);
+	}
+
+	/**
+	 * The preset-derived default quota, regardless of any override. This is the
+	 * value the instance's configuration preset assigns to guests.
+	 */
+	public function getGuestQuotaDefault(): string {
+		// getDetails() only works once a value is stored; when no override is
+		// set, the app config already returns the preset-derived lexicon default.
+		if (!$this->hasGuestQuotaOverride()) {
+			return $this->appConfig->getAppValueString(ConfigLexicon::GUEST_DISK_QUOTA);
+		}
+		return (string)($this->globalAppConfig->getDetails(Application::APP_ID, ConfigLexicon::GUEST_DISK_QUOTA)['default'] ?? '0 B');
+	}
+
+	/**
+	 * Store the default guest quota. An empty value or 'default' removes the
+	 * override so the preset-derived default applies again.
+	 */
+	public function setGuestQuota(?string $quota): void {
+		if ($quota === null || $quota === '' || $quota === 'default') {
+			$this->appConfig->deleteAppValue(ConfigLexicon::GUEST_DISK_QUOTA);
+			return;
+		}
+		$this->appConfig->setAppValueString(ConfigLexicon::GUEST_DISK_QUOTA, $quota);
 	}
 
 	public function getHome(string $uid): string {

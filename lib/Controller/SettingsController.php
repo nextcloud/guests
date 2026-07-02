@@ -18,6 +18,7 @@ use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\Services\IAppConfig;
 use OCP\IRequest;
+use OCP\Util;
 
 /**
  * Class SettingsController is used to handle configuration changes on the
@@ -55,13 +56,15 @@ class SettingsController extends Controller {
 			'whiteListableApps' => $this->appWhitelist->getWhitelistAbleApps(),
 			'sharingRestrictedToGroup' => $this->config->isSharingRestrictedToGroup(),
 			'createRestrictedToGroup' => $this->config->getCreateRestrictedToGroup(),
+			'guestQuota' => $this->config->hasGuestQuotaOverride() ? $this->config->getGuestQuota() : 'default',
+			'guestQuotaDefault' => $this->config->getGuestQuotaDefault(),
 		]);
 	}
 
 	/**
 	 * @param list<string> $whitelist
 	 */
-	public function setConfig(bool $useWhitelist, array $whitelist, bool $allowExternalStorage, bool $useHashedEmailAsUserID, bool $hideUsers, array $createRestrictedToGroup): DataResponse {
+	public function setConfig(bool $useWhitelist, array $whitelist, bool $allowExternalStorage, bool $useHashedEmailAsUserID, bool $hideUsers, array $createRestrictedToGroup, string $guestQuota = 'default'): DataResponse {
 		$newWhitelist = [];
 		foreach ($whitelist as $app) {
 			$newWhitelist[] = trim((string)$app);
@@ -73,8 +76,24 @@ class SettingsController extends Controller {
 		$this->config->setUseHashedEmailAsUserID($useHashedEmailAsUserID);
 		$this->config->setHideOtherUsers($hideUsers);
 		$this->config->setCreateRestrictedToGroup($createRestrictedToGroup);
+		if ($this->isValidQuota($guestQuota)) {
+			$this->config->setGuestQuota($guestQuota);
+		}
 
 		return new DataResponse();
+	}
+
+	/**
+	 * A quota value is acceptable if it is the "default" sentinel, "none"
+	 * (unlimited) or a human-readable size such as "500 MB".
+	 */
+	private function isValidQuota(string $quota): bool {
+		if ($quota === 'default' || $quota === 'none') {
+			return true;
+		}
+		// Require an explicit unit so the stored value is unambiguous (e.g. "500 MB").
+		return preg_match('/^\d+(\.\d+)?\s*[KMGTP]?B$/i', trim($quota)) === 1
+			&& Util::computerFileSize($quota) !== false;
 	}
 
 	/**
