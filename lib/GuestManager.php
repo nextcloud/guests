@@ -111,9 +111,16 @@ class GuestManager {
 			);
 		}
 
-		$user->setQuota($this->appConfig->getAppValueString(ConfigLexicon::GUEST_DISK_QUOTA));
+		$this->setGuestQuota($user);
 
 		return $user;
+	}
+
+	/**
+	 * Apply the configured default guest quota to an account.
+	 */
+	public function setGuestQuota(IUser $user): void {
+		$user->setQuota($this->appConfig->getAppValueString(ConfigLexicon::GUEST_DISK_QUOTA));
 	}
 
 	/**

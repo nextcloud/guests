@@ -13,6 +13,7 @@ use OCA\Guests\Config;
 use OCA\Guests\Controller\UsersController;
 use OCA\Guests\Db\TransferMapper;
 use OCA\Guests\GuestManager;
+use OCA\Guests\Service\ConversionService;
 use OCA\Guests\Service\InviteService;
 use OCA\Guests\TransferService;
 use OCP\AppFramework\Http;
@@ -29,6 +30,7 @@ use OCP\IUserManager;
 use OCP\IUserSession;
 use OCP\Mail\IMailer;
 use PHPUnit\Framework\MockObject\MockObject;
+use Psr\Log\LoggerInterface;
 use Test\TestCase;
 
 class UsersControllerTest extends TestCase {
@@ -46,6 +48,8 @@ class UsersControllerTest extends TestCase {
 	private IAppConfig&MockObject $appConfig;
 	private IConfig&MockObject $config;
 	private InviteService&MockObject $inviteService;
+	private ConversionService&MockObject $conversionService;
+	private LoggerInterface&MockObject $logger;
 	private Config $guestsConfig;
 
 	private UsersController $controller;
@@ -67,6 +71,8 @@ class UsersControllerTest extends TestCase {
 		$this->appConfig = $this->createMock(IAppConfig::class);
 		$this->config = $this->createMock(IConfig::class);
 		$this->inviteService = $this->createMock(InviteService::class);
+		$this->conversionService = $this->createMock(ConversionService::class);
+		$this->logger = $this->createMock(LoggerInterface::class);
 
 		$this->guestsConfig = new Config(
 			$this->config,
@@ -93,7 +99,9 @@ class UsersControllerTest extends TestCase {
 			$this->groupManager,
 			$this->transferService,
 			$this->transferMapper,
-			$this->inviteService
+			$this->inviteService,
+			$this->conversionService,
+			$this->logger
 		);
 	}
 
@@ -751,5 +759,63 @@ class UsersControllerTest extends TestCase {
 		$response = $this->controller->create('new@example.com', 'Test User', 'en', []);
 		$this->assertEquals(Http::STATUS_UNPROCESSABLE_ENTITY, $response->getStatus());
 		$this->assertEquals(['errorMessages' => ['email' => 'Error creating guest']], $response->getData());
+	}
+
+	public function testConvertSucceeds(): void {
+		$author = $this->createMock(IUser::class);
+		$this->userSession->method('getUser')->willReturn($author);
+
+		$user = $this->createMock(IUser::class);
+		$user->method('getBackendClassName')->willReturn('Database');
+		$user->method('getLastLogin')->willReturn(0);
+
+		$this->userManager->method('get')->with('karl')->willReturn($user);
+		$this->guestManager->method('isGuest')->with($user)->willReturn(false);
+
+		$this->conversionService->expects($this->once())
+			->method('convertToGuest')
+			->with($user, $author);
+
+		$this->guestManager->expects($this->once())
+			->method('setGuestQuota')
+			->with($user);
+
+		$response = $this->controller->convert('karl');
+		$this->assertEquals(Http::STATUS_OK, $response->getStatus());
+	}
+
+	public function testConvertAccountNotFound(): void {
+		$this->userSession->method('getUser')->willReturn($this->createMock(IUser::class));
+		$this->userManager->method('get')->with('karl')->willReturn(null);
+
+		$response = $this->controller->convert('karl');
+		$this->assertEquals(Http::STATUS_NOT_FOUND, $response->getStatus());
+	}
+
+	public function testConvertAlreadyGuest(): void {
+		$this->userSession->method('getUser')->willReturn($this->createMock(IUser::class));
+
+		$user = $this->createMock(IUser::class);
+		$this->userManager->method('get')->with('karl')->willReturn($user);
+		$this->guestManager->method('isGuest')->with($user)->willReturn(true);
+
+		$response = $this->controller->convert('karl');
+		$this->assertEquals(Http::STATUS_CONFLICT, $response->getStatus());
+	}
+
+	public function testConvertRejectsAccountThatLoggedIn(): void {
+		$this->userSession->method('getUser')->willReturn($this->createMock(IUser::class));
+
+		$user = $this->createMock(IUser::class);
+		$user->method('getBackendClassName')->willReturn('Database');
+		$user->method('getLastLogin')->willReturn(1700000000);
+
+		$this->userManager->method('get')->with('karl')->willReturn($user);
+		$this->guestManager->method('isGuest')->with($user)->willReturn(false);
+
+		$this->conversionService->expects($this->never())->method('convertToGuest');
+
+		$response = $this->controller->convert('karl');
+		$this->assertEquals(Http::STATUS_CONFLICT, $response->getStatus());
 	}
 }

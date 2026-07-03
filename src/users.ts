@@ -5,11 +5,13 @@
 
 import type { User } from './types.ts'
 
+import SvgAccountArrowLeft from '@mdi/svg/svg/account-arrow-left.svg?raw'
 import SvgAccountArrowRight from '@mdi/svg/svg/account-arrow-right.svg?raw'
 import { showSuccess } from '@nextcloud/dialogs'
 import { subscribe } from '@nextcloud/event-bus'
 import { translate as t } from '@nextcloud/l10n'
 import { spawnDialog } from '@nextcloud/vue/functions/dialog'
+import ConvertToGuestDialog from './components/ConvertToGuestDialog.vue'
 import TransferGuestDialog from './components/TransferGuestDialog.vue'
 
 /**
@@ -31,7 +33,28 @@ function transferGuest(_event: MouseEvent, user: User): void {
 	}, onClose)
 }
 
-const enabled = (user: User) => user?.backend === 'Guests'
+/**
+ *
+ * @param _event unused click event
+ * @param user the account from the user-management list
+ */
+function convertToGuest(_event: MouseEvent, user: User): void {
+	const onClose = (userId: null | string) => {
+		if (userId === null) {
+			return
+		}
+		showSuccess(t('guests', 'Account "{userId}" was converted into a guest account', { userId }))
+		window.location.reload()
+	}
+
+	spawnDialog(ConvertToGuestDialog, {
+		user,
+		// @ts-expect-error callback parameters are known
+	}, onClose)
+}
+
+const isGuest = (user: User) => user?.backend === 'Guests'
+const isConvertibleAccount = (user: User) => user?.backend === 'Database' && !user?.lastLogin
 
 /**
  *
@@ -41,7 +64,13 @@ function registerAction() {
 		SvgAccountArrowRight,
 		t('guests', 'Convert guest to regular account'),
 		transferGuest,
-		enabled,
+		isGuest,
+	)
+	window.OCA.Settings.UserList.registerAction(
+		SvgAccountArrowLeft,
+		t('guests', 'Convert to guest account'),
+		convertToGuest,
+		isConvertibleAccount,
 	)
 }
 
