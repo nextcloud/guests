@@ -253,4 +253,52 @@ class ConfigTest extends TestCase {
 
 		$this->guestConfig->setCreateRestrictedToGroup(['group1', 'group2']);
 	}
+
+	public function testGetGuestQuota(): void {
+		$this->appConfig->method('getAppValueString')
+			->with('guest_quota')
+			->willReturn('5 GB');
+
+		$this->assertEquals('5 GB', $this->guestConfig->getGuestQuota());
+	}
+
+	public function testHasGuestQuotaOverride(): void {
+		$this->globalAppConfig->method('hasKey')
+			->with('guests', 'guest_quota')
+			->willReturn(true);
+
+		$this->assertTrue($this->guestConfig->hasGuestQuotaOverride());
+	}
+
+	public function testGetGuestQuotaDefault(): void {
+		$this->globalAppConfig->method('getKeyDetails')
+			->with('guests', 'guest_quota')
+			->willReturn(['app' => 'guests', 'key' => 'guest_quota', 'default' => '1 GB']);
+
+		$this->assertEquals('1 GB', $this->guestConfig->getGuestQuotaDefault());
+	}
+
+	public function testGetGuestQuotaDefaultFallsBackWhenNoLexiconDefault(): void {
+		$this->globalAppConfig->method('getKeyDetails')
+			->with('guests', 'guest_quota')
+			->willReturn(['app' => 'guests', 'key' => 'guest_quota']);
+
+		$this->assertEquals('0 B', $this->guestConfig->getGuestQuotaDefault());
+	}
+
+	public function testSetGuestQuotaValue(): void {
+		$this->appConfig->expects($this->once())
+			->method('setAppValueString')
+			->with('guest_quota', '500 MB');
+
+		$this->guestConfig->setGuestQuota('500 MB');
+	}
+
+	public function testSetGuestQuotaDefaultRemovesOverride(): void {
+		$this->appConfig->expects($this->once())
+			->method('deleteAppValue')
+			->with('guest_quota');
+
+		$this->guestConfig->setGuestQuota('default');
+	}
 }

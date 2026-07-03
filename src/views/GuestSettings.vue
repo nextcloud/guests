@@ -128,6 +128,22 @@
 						{{ t('guests', 'Reset allowlist') }}
 					</NcButton>
 				</div>
+
+				<!-- Default quota for new guest accounts -->
+				<div class="guest-quota">
+					<label :for="quotaInputId" class="guest-quota__label">
+						{{ t('guests', 'Default quota for new guest accounts') }}
+					</label>
+					<NcSelect
+						v-model="quotaModel"
+						:inputId="quotaInputId"
+						class="guest-quota__select"
+						:options="quotaOptions"
+						:clearable="false"
+						:filterable="false"
+						label="label"
+						@search="onQuotaSearch" />
+				</div>
 			</div>
 			<div v-if="!loaded">
 				<div class="loading" />
@@ -180,6 +196,8 @@ export default {
 			savingTimeout: null,
 			editingAllowlist: false,
 			whitelistDraft: [],
+			quotaInputId: 'guests-default-quota',
+			quotaSearch: '',
 			config: {
 				useWhitelist: false,
 				allowExternalStorage: false,
@@ -189,6 +207,8 @@ export default {
 				whiteListableApps: [],
 				sharingRestrictedToGroup: false,
 				createRestrictedToGroup: [],
+				guestQuota: 'default',
+				guestQuotaDefault: '0 B',
 			},
 		}
 	},
@@ -201,6 +221,54 @@ export default {
 			return (this.config.whitelist ?? [])
 				.map((app) => (typeof app === 'string' ? app : (app.label ?? app.id ?? app.name ?? String(app))))
 				.filter(Boolean)
+		},
+
+		baseQuotaOptions() {
+			return [
+				{ id: 'default', label: t('guests', 'Default quota ({size})', { size: this.config.guestQuotaDefault || '0 B' }) },
+				{ id: 'none', label: t('guests', 'Unlimited') },
+				{ id: '1 GB', label: '1 GB' },
+				{ id: '5 GB', label: '5 GB' },
+				{ id: '10 GB', label: '10 GB' },
+			]
+		},
+
+		// When a bare number is typed, offer it with selectable units (KB/MB/GB)
+		// instead of silently assuming bytes. A partially typed unit narrows the
+		// suggestions (e.g. "500 m" → "500 MB").
+		quotaOptions() {
+			const search = (this.quotaSearch || '').trim()
+			const parts = search.match(/^(\d+(?:\.\d+)?)\s*([a-z]*)$/i)
+			if (parts) {
+				const value = parts[1]
+				const typedUnit = parts[2].toLowerCase()
+				const units = ['KB', 'MB', 'GB']
+				const matching = typedUnit
+					? units.filter((unit) => unit.toLowerCase().startsWith(typedUnit))
+					: units
+				return (matching.length ? matching : units)
+					.map((unit) => ({ id: `${value} ${unit}`, label: `${value} ${unit}` }))
+			}
+			return this.baseQuotaOptions
+		},
+
+		quotaModel: {
+			get() {
+				const current = this.config.guestQuota
+				return this.baseQuotaOptions.find((option) => option.id === current)
+					?? { id: current, label: current }
+			},
+
+			set(option) {
+				const value = (option && typeof option === 'object') ? option.id : option
+				if (!this.isValidQuota(value)) {
+					showError(t('guests', 'Please enter a quota with a unit, for example "500 MB" or "2 GB"'))
+					return
+				}
+				this.config.guestQuota = value
+				this.quotaSearch = ''
+				this.saveConfig()
+			},
 		},
 
 		statusText() {
@@ -235,6 +303,18 @@ export default {
 			this.config.whitelist = [...this.whitelistDraft]
 			this.editingAllowlist = false
 			this.saveConfig()
+		},
+
+		onQuotaSearch(query) {
+			this.quotaSearch = query
+		},
+
+		isValidQuota(value) {
+			// A unit is required so the stored value is unambiguous; a bare
+			// number like "500" is rejected (it would mean 500 bytes).
+			return value === 'default'
+				|| value === 'none'
+				|| /^\d+(\.\d+)?\s*(b|kb|mb|gb|tb|pb)$/i.test(String(value).trim())
 		},
 
 		async loadConfig() {
@@ -370,6 +450,16 @@ export default {
 
 	.reset-button {
 		margin-top: 1rem;
+	}
+}
+
+.guest-quota {
+	margin-top: 1.5rem;
+	max-width: 400px;
+
+	&__label {
+		display: block;
+		margin-bottom: 4px;
 	}
 }
 
