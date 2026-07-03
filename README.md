@@ -23,7 +23,7 @@ The app is published in the [app store](https://apps.nextcloud.com/apps/guests).
 
 ## Development
 
-Development is ongoing. A [CHANGELOG](https://github.com/nextcloud/guests/blob/master/CHANGELOG.md) covers the highlights. [New releases are also published](https://github.com/nextcloud-releases/guests/releases) on GitHub.
+Development is ongoing. A [CHANGELOG](https://github.com/nextcloud/guests/blob/main/CHANGELOG.md) covers the highlights. [New releases are also published](https://github.com/nextcloud-releases/guests/releases) on GitHub.
 
 ## Usage
 
@@ -43,12 +43,12 @@ Optionally, when creating a guest the following values may also be specified:
 
 Admins/Group admins also may:
 
-* specify the group(s) to put the guest user in (see [Guest specific behavior and configuration](https://github.com/nextcloud/guests/blob/master/README.md#guest-specific-behavior-and-configuration) for details).
+* specify the group(s) to put the guest user in (see [Guest specific behavior and configuration](https://github.com/nextcloud/guests/blob/main/README.md#guest-specific-behavior-and-configuration) for details).
 
 ![image](https://github.com/nextcloud/guests/assets/1731941/68edbd4f-fedc-45f0-8241-2e1cd12d04de)
 
 > [!WARNING]
-> While it is easy to create a new Guest, it's important to understand the default behavior and how guests interact with other features in Nextcloud. See [Guest specific behavior and configuration](https://github.com/nextcloud/guests/blob/master/README.md#guest-specific-behavior-and-configuration) for details.
+> While it is easy to create a new Guest, it's important to understand the default behavior and how guests interact with other features in Nextcloud. See [Guest specific behavior and configuration](https://github.com/nextcloud/guests/blob/main/README.md#guest-specific-behavior-and-configuration) for details.
 
 ### Deleting a guest
 
@@ -149,6 +149,24 @@ By default, guests will not be able to list other users in the system, but if a 
 to list users within that group (and, for example, share files with those users).
 
 As a result, guests will be able to see each other as they are part of the same `guest` group. To prevent that behavior, you can add the `guest` group to the "Exclude groups from sharing" settings. You can find more information in [our documentation about sharing](https://docs.nextcloud.com/server/21/admin_manual/configuration_files/file_sharing_configuration.html).
+
+### Default quota for new guests
+
+New guest accounts are created with a default storage quota. This default comes from the **Quick presets** configuration (*Administration → Quick presets*), where it is listed as *"set default disk quota assigned to guest account at its creation"* (`guest_quota`). Its value depends on the selected preset: the **Default** preset uses `0 B`, while organization or family presets use a non-zero quota such as `1 GB` or `10 GB`. As a result, on many instances guests no longer receive `0 B` automatically.
+
+Administrators can review and override this default under **Administration settings → Guests → "Default quota for new guest accounts"**: pick a preset (the *Default* entry shows the current preset value), *Unlimited*, or enter a custom size such as `500 MB`.
+
+It can also be set on the command line:
+
+```
+occ config:app:set guests guest_quota --value "500 MB"
+```
+
+Remove the override to fall back to the Quick presets default again:
+
+```
+occ config:app:delete guests guest_quota
+```
 
 ### Converting guest users to full users
 
