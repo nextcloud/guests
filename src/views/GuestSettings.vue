@@ -84,21 +84,50 @@
 					{{ t('guests', 'Limit guest access to an app\'s allowlist') }}
 				</NcCheckboxRadioSwitch>
 
-				<p v-if="config.useWhitelist" class="allowlist">
-					<NcSelect
-						v-model="config.whitelist"
-						:options="config.whiteListableApps"
-						:multiple="true"
-						:closeOnSelect="false"
-						:clearSearchOnSelect="false"
-						@input="saveConfig" />
+				<div v-if="config.useWhitelist" class="allowlist">
+					<!-- Read-only display with an edit (pencil) button -->
+					<div v-if="!editingAllowlist" class="allowlist__row allowlist__row--display">
+						<ul v-if="allowlistApps.length" class="allowlist__apps">
+							<li v-for="app in allowlistApps" :key="app" class="allowlist__app">
+								{{ app }}
+							</li>
+						</ul>
+						<span v-else class="allowlist__empty">{{ t('guests', 'No apps selected') }}</span>
+						<NcButton
+							variant="tertiary"
+							:aria-label="t('guests', 'Edit allowlist')"
+							:title="t('guests', 'Edit allowlist')"
+							@click="startEditAllowlist">
+							<template #icon>
+								<Pencil :size="20" />
+							</template>
+						</NcButton>
+					</div>
+					<!-- Edit mode: changes are only persisted when confirmed -->
+					<div v-else class="allowlist__row">
+						<NcSelect
+							v-model="whitelistDraft"
+							class="allowlist__select"
+							:options="config.whiteListableApps"
+							:multiple="true"
+							keepOpen />
+						<NcButton
+							variant="tertiary"
+							:aria-label="t('guests', 'Confirm allowlist')"
+							:title="t('guests', 'Confirm allowlist')"
+							@click="confirmAllowlist">
+							<template #icon>
+								<Check :size="20" />
+							</template>
+						</NcButton>
+					</div>
 					<NcButton variant="secondary" class="reset-button" @click="reset">
 						<template #icon>
 							<History :size="16" />
 						</template>
 						{{ t('guests', 'Reset allowlist') }}
 					</NcButton>
-				</p>
+				</div>
 			</div>
 			<div v-if="!loaded">
 				<div class="loading" />
@@ -121,13 +150,16 @@ import NcNoteCard from '@nextcloud/vue/components/NcNoteCard'
 import NcSelect from '@nextcloud/vue/components/NcSelect'
 import NcSettingsSection from '@nextcloud/vue/components/NcSettingsSection'
 import NcSettingsSelectGroup from '@nextcloud/vue/components/NcSettingsSelectGroup'
+import Check from 'vue-material-design-icons/Check.vue'
 import History from 'vue-material-design-icons/History.vue'
+import Pencil from 'vue-material-design-icons/Pencil.vue'
 import GuestList from '../components/GuestList.vue'
 import { logger } from '../services/logger.ts'
 
 export default {
 	name: 'GuestSettings',
 	components: {
+		Check,
 		GuestList,
 		History,
 		NcButton,
@@ -136,6 +168,7 @@ export default {
 		NcSelect,
 		NcSettingsSection,
 		NcSettingsSelectGroup,
+		Pencil,
 	},
 
 	data() {
@@ -145,6 +178,8 @@ export default {
 			saved: false,
 			saving: false,
 			savingTimeout: null,
+			editingAllowlist: false,
+			whitelistDraft: [],
 			config: {
 				useWhitelist: false,
 				allowExternalStorage: false,
@@ -159,6 +194,15 @@ export default {
 	},
 
 	computed: {
+		allowlistApps() {
+			// getAppWhitelist() returns [''] for an empty allowlist (explode of an
+			// empty string), so drop empty entries to show the placeholder instead
+			// of a blank chip.
+			return (this.config.whitelist ?? [])
+				.map((app) => (typeof app === 'string' ? app : (app.label ?? app.id ?? app.name ?? String(app))))
+				.filter(Boolean)
+		},
+
 		statusText() {
 			if (this.error) {
 				return t('guests', 'Error')
@@ -179,6 +223,19 @@ export default {
 
 	methods: {
 		t,
+
+		startEditAllowlist() {
+			// Drop the empty entry from an empty allowlist so the selector does
+			// not start with a blank, removable tag.
+			this.whitelistDraft = (this.config.whitelist ?? []).filter(Boolean)
+			this.editingAllowlist = true
+		},
+
+		confirmAllowlist() {
+			this.config.whitelist = [...this.whitelistDraft]
+			this.editingAllowlist = false
+			this.saveConfig()
+		},
 
 		async loadConfig() {
 			const { data } = await axios.get(generateUrl('apps/guests/config'))
@@ -208,6 +265,9 @@ export default {
 			try {
 				const { data } = await axios.post(generateUrl('apps/guests/whitelist/reset'))
 				this.config.whitelist = data.whitelist
+				if (this.editingAllowlist) {
+					this.whitelistDraft = [...data.whitelist]
+				}
 				this.saved = true
 			} catch (error) {
 				this.error = true
@@ -266,12 +326,46 @@ export default {
 }
 
 .allowlist {
-	max-width: 500px;
+	max-width: 690px;
+	margin-inline-start: var(--default-clickable-area);
 
-	.multiselect {
-		width: calc(100% - 48px);
-		margin-right: 0;
+	&__row {
+		display: flex;
+		align-items: center;
+		gap: 8px;
 		margin-top: 1rem;
+
+		&--display {
+			align-items: flex-start;
+		}
+	}
+
+	&__apps {
+		flex: 1 1 auto;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 4px;
+		min-width: 0;
+		padding-top: 4px;
+	}
+
+	&__app {
+		padding: 2px 10px;
+		background-color: var(--color-background-dark);
+		border-radius: var(--border-radius-pill, 1rem);
+		color: var(--color-text-maxcontrast);
+		font-size: 0.9em;
+	}
+
+	&__empty {
+		flex: 1 1 auto;
+		padding-top: 6px;
+		color: var(--color-text-maxcontrast);
+	}
+
+	&__select {
+		flex: 1 1 auto;
+		min-width: 0;
 	}
 
 	.reset-button {
