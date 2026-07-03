@@ -59,7 +59,7 @@ Guests may be deleted in the same way you would remove (or disable) regular user
 The command `occ guests:add` can be used to create guest users on the command-line.
 
 ```
-php occ guests:add [--generate-password] [--password-from-env] [--display-name [DISPLAY-NAME]] [--language [LANGUAGE]] [--] <created-by> <email>
+php occ guests:add [--uid [UID]] [--generate-password] [--password-from-env] [--display-name [DISPLAY-NAME]] [--language [LANGUAGE]] [--] <created-by> <email>
 ```
 
 For example:
@@ -69,6 +69,14 @@ OC_PASS=somepassword php occ guests:add --password-from-env --display-name "Max 
 ```
 
 The user will then be able to login with "maxmustermann@example.com" using the given password.
+
+By default the guest's login name (user ID) is derived from the email address, or a hash of it when the *"Use a hash of the email as user ID for improved privacy"* setting is enabled. To give the guest a free-form login name instead, pass `--uid`:
+
+```bash
+OC_PASS=somepassword php occ guests:add --password-from-env --uid maxm admin maxmustermann@example.com
+```
+
+The guest can then log in with "maxm".
 
 When using `--generate-password` instead of giving a password, a random password will be generated. The guest user should then use the "forgot password" link to reset it.
 
@@ -168,6 +176,20 @@ Remove the override to fall back to the Quick presets default again:
 occ config:app:delete guests guest_quota
 ```
 
+### Converting accounts to guests
+
+An administrator can convert a regular account into a guest account. In *Administration settings → Users*, open the account's `…` menu and choose **Convert to guest account**. The account keeps its login name and password but becomes a limited guest, restricted to the apps allowed for guests, and receives the [default guest quota](#default-quota-for-new-guests). The conversion cannot be undone automatically.
+
+This is only possible for accounts that
+
+* use the database backend,
+* are not already a guest, and
+* have **never logged in**.
+
+A typical use case is self-registration through the [registration](https://apps.nextcloud.com/apps/registration) app with *"Require administrator approval"* enabled: those accounts are created disabled and never logged in, so instead of enabling them an administrator can downgrade them to guests. Once such an account has logged in, conversion is no longer possible.
+
+If you would rather registered users keep their email address as login name, enable *"Force email as login name"* in the registration app settings.
+
 ### Converting guest users to full users
 
 Guest users can be automatically converted into full users (provided by any other user back end like SAML, LDAP, OAuth, database...) on their **first** login. When this happens they will retain their shares.
@@ -185,4 +207,4 @@ By default the old (guest) account will be disabled after successful conversion.
 - Enhancement ideas: https://github.com/nextcloud/guests/issues
 - Pull requests: https://github.com/nextcloud/guests/pulls
 - Troubleshooting assistance: https://help.nextcloud.com
-- Code: https://github.com/nextcloud/guests/tree/master
+- Code: https://github.com/nextcloud/guests/tree/main
