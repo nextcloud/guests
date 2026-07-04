@@ -50,6 +50,7 @@ OC.L10N.register(
     "Add guest to groups:" : "Legg gjester til grupper:",
     "An error occurred, try again" : "Det oppsto en feil, prøv igjen",
     "Invite guest" : "Inviter gjest",
+    "Unlimited" : "Ubegrenset",
     "Error" : "Feil",
     "Your settings have been updated" : "Innstillingene dine har blitt oppdatert",
     "Saving …" : "Lagrer ...",

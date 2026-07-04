@@ -64,6 +64,7 @@ OC.L10N.register(
     "Add guest to groups:" : "Cuir aoi le grúpaí:",
     "An error occurred, try again" : "Tharla earráid, bain triail eile as",
     "Invite guest" : "Tabhair cuireadh do aoi",
+    "Unlimited" : "Gan teorainn",
     "Error" : "Earráid",
     "Your settings have been updated" : "Nuashonraíodh do shocruithe",
     "Saving …" : "Shábháil …",

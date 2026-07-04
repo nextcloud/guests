@@ -10,6 +10,7 @@ OC.L10N.register(
     "Email" : "Thư điện tử",
     "Cancel" : "Hủy bỏ",
     "Language" : "Ngôn ngữ",
+    "Unlimited" : "Không giới hạn",
     "Error" : "Lỗi"
 },
 "nplurals=1; plural=0;");

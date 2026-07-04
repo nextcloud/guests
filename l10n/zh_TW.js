@@ -64,6 +64,7 @@ OC.L10N.register(
     "Add guest to groups:" : "將訪客加入群組：",
     "An error occurred, try again" : "發生錯誤，請重試",
     "Invite guest" : "邀請訪客",
+    "Unlimited" : "無限制",
     "Error" : "錯誤",
     "Your settings have been updated" : "已更新您的設定",
     "Saving …" : "正在儲存 …",

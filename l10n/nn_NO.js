@@ -9,6 +9,7 @@ OC.L10N.register(
     "Email" : "Epost",
     "Cancel" : "Cancel",
     "Language" : "Språk",
+    "Unlimited" : "Ubegrensa",
     "Error" : "Feil",
     "Saving …" : "Lagrar …"
 },

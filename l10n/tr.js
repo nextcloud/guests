@@ -64,6 +64,7 @@ OC.L10N.register(
     "Add guest to groups:" : "Konuk şu gruplara eklensin:",
     "An error occurred, try again" : "Bir sorun çıktı. Yeniden deneyin",
     "Invite guest" : "Konuk davet et",
+    "Unlimited" : "Sınırsız",
     "Error" : "Hata",
     "Your settings have been updated" : "Ayarlarınız güncellendi",
     "Saving …" : "Kaydediliyor…",

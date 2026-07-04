@@ -52,6 +52,7 @@ OC.L10N.register(
     "Add guest to groups:" : "Lisää vieras ryhmiin:",
     "An error occurred, try again" : "Tapahtui virhe. Yritä uudelleen",
     "Invite guest" : "Kutsu vieras",
+    "Unlimited" : "Rajoittamaton",
     "Error" : "Virhe",
     "Your settings have been updated" : "Asetuksesi on tallennettu",
     "Saving …" : "Tallennetaan …",

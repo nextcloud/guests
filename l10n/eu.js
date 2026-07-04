@@ -39,6 +39,7 @@ OC.L10N.register(
     "Add guest to groups:" : "Gehitu gonbidatua taldeetara:",
     "An error occurred, try again" : "Errore bat gertatu da, saiatu berriro",
     "Invite guest" : "Gonbidapen berria bidali",
+    "Unlimited" : "Mugagabea",
     "Error" : "Errorea",
     "Your settings have been updated" : "Zure ezarpenak eguneratu dira",
     "Saving …" : "Gordetzen  ...",

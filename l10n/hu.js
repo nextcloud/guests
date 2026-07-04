@@ -50,6 +50,7 @@ OC.L10N.register(
     "Add guest to groups:" : "Vendég hozzáadása a csoportokhoz:",
     "An error occurred, try again" : "Hiba történt, próbálja újra",
     "Invite guest" : "Vendég meghívása",
+    "Unlimited" : "Korlátlan",
     "Error" : "Hiba",
     "Your settings have been updated" : "Beállításai sikeresen frissítve",
     "Saving …" : "Mentés …",

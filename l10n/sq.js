@@ -13,6 +13,7 @@ OC.L10N.register(
     "Default" : "Paraprake",
     "Cancel" : "Anuloje",
     "Language" : "Gjuha",
+    "Unlimited" : "E palimituar",
     "Error" : "Gabim"
 },
 "nplurals=2; plural=(n != 1);");

@@ -64,6 +64,7 @@ OC.L10N.register(
     "Add guest to groups:" : "افزودن مهمان به گروه‌ها:",
     "An error occurred, try again" : "خطایی رخ داد، دوباره تلاش کنید",
     "Invite guest" : "دعوت از مهمان",
+    "Unlimited" : "نامحدود",
     "Error" : "خطا",
     "Your settings have been updated" : "تنظیمات شما به‌روزرسانی شد",
     "Saving …" : "در حال ذخیره",

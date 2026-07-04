@@ -62,6 +62,7 @@ OC.L10N.register(
     "Add guest to groups:" : "Pridať hosťa do skupín:",
     "An error occurred, try again" : "Vyskytla sa chyba, skúste znova",
     "Invite guest" : "Pozviať hosťa",
+    "Unlimited" : "Neobmedzené",
     "Error" : "Chyba",
     "Your settings have been updated" : "Vaše nastavenie bolo aktualizované",
     "Saving …" : "Ukladanie …",

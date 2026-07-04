@@ -8,6 +8,7 @@ OC.L10N.register(
     "Name" : "නම",
     "Cancel" : "අවලංගු",
     "Language" : "භාෂාව",
+    "Unlimited" : "අසීමිත",
     "Error" : "දෝෂය"
 },
 "nplurals=2; plural=(n != 1);");

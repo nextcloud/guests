@@ -16,6 +16,7 @@ OC.L10N.register(
     "Default" : "Default",
     "Cancel" : "Batal",
     "Language" : "Bahasa",
+    "Unlimited" : "Tak terbatas",
     "Error" : "Galat",
     "Saving …" : "Menyimpan …"
 },

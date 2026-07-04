@@ -33,6 +33,7 @@ OC.L10N.register(
     "Language" : "שפה",
     "Add guest to groups:" : "הוספת אורח לקבוצות:",
     "Invite guest" : "הזמנת אורח",
+    "Unlimited" : "ללא הגבלה",
     "Error" : "שגיאה",
     "Your settings have been updated" : "ההגדרות שלך עודכנו",
     "Saving …" : "מתבצע שמירה…",

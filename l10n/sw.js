@@ -61,6 +61,7 @@ OC.L10N.register(
     "Add guest to groups:" : "Ongeza mgeni kwenye makundi",
     "An error occurred, try again" : "Hitilafu imetokea, jaribu tena baadaye",
     "Invite guest" : "Mwalike mgeni",
+    "Unlimited" : "Isiyo na kikomo",
     "Error" : "Hitilafu",
     "Your settings have been updated" : "Mipangilio yako imesasishwa",
     "Saving …" : "Inahifadhi …",

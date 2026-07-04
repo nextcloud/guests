@@ -64,6 +64,7 @@ OC.L10N.register(
     "Add guest to groups:" : "Pridėti svečią į grupes:",
     "An error occurred, try again" : "Įvyko klaida, bandykite dar kartą",
     "Invite guest" : "Pakviesti svečią",
+    "Unlimited" : "Neribotai",
     "Error" : "Klaida",
     "Your settings have been updated" : "Jūsų nustatymai atnaujinti",
     "Saving …" : "Įrašoma…",

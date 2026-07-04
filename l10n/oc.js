@@ -12,6 +12,7 @@ OC.L10N.register(
     "Email" : "Adreiça electronica",
     "Cancel" : "Anullar",
     "Language" : "Lenga",
+    "Unlimited" : "Illimitat",
     "Error" : "Error"
 },
 "nplurals=2; plural=(n > 1);");

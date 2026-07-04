@@ -13,6 +13,7 @@ OC.L10N.register(
     "User ID" : "ไอดีผู้ใช้งาน",
     "Cancel" : "ยกเลิก",
     "Language" : "ภาษา",
+    "Unlimited" : "ไม่จำกัด",
     "Error" : "ข้อผิดพลาด"
 },
 "nplurals=1; plural=0;");

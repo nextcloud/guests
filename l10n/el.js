@@ -62,6 +62,7 @@ OC.L10N.register(
     "Add guest to groups:" : "Προσθήκη επισκέπτη στις ομάδες:",
     "An error occurred, try again" : "Παρουσιάστηκε σφάλμα, δοκιμάστε ξανά",
     "Invite guest" : "Πρόσκληση επισκέπτη",
+    "Unlimited" : "Απεριόριστο",
     "Error" : "Σφάλμα",
     "Your settings have been updated" : "Οι ρυθμίσεις σας ενημερώθηκαν",
     "Saving …" : "Αποθήκευση ...",

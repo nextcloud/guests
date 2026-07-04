@@ -64,6 +64,7 @@ OC.L10N.register(
     "Add guest to groups:" : "Добавить в группу:",
     "An error occurred, try again" : "Произошла ошибка, попробуйте еще раз",
     "Invite guest" : "Пригласить гостя",
+    "Unlimited" : "Неограничено",
     "Error" : "Ошибка",
     "Your settings have been updated" : "Параметры обновлены",
     "Saving …" : "Сохранение…",

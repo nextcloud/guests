@@ -34,6 +34,7 @@ OC.L10N.register(
     "Language" : "Tungumál",
     "Add guest to groups:" : "Bæta gesti við hópa:",
     "Invite guest" : "Bjóða gesti",
+    "Unlimited" : "Ótakmarkað",
     "Error" : "Villa",
     "Your settings have been updated" : "Stillingarnar þínar voru uppfærðar",
     "Saving …" : "Vista …",

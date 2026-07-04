@@ -8,6 +8,7 @@ OC.L10N.register(
     "None" : "Nulle",
     "Cancel" : "Cancel",
     "Language" : "Lingua",
+    "Unlimited" : "Ilimitate",
     "Error" : "Error"
 },
 "nplurals=2; plural=(n != 1);");

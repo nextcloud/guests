@@ -7,6 +7,7 @@ OC.L10N.register(
     "Email" : "អ៊ីមែល",
     "Cancel" : "លើកលែង",
     "Language" : "ភាសា",
+    "Unlimited" : "មិន​កំណត់",
     "Error" : "កំហុស"
 },
 "nplurals=1; plural=0;");

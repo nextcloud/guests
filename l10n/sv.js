@@ -64,6 +64,7 @@ OC.L10N.register(
     "Add guest to groups:" : "Lägg till gäst i grupper:",
     "An error occurred, try again" : "Ett fel uppstod, försök igen",
     "Invite guest" : "Bjud in gäst",
+    "Unlimited" : "Obegränsat",
     "Error" : "Fel",
     "Your settings have been updated" : "Dina inställningar har uppdaterats",
     "Saving …" : "Sparar …",

@@ -62,6 +62,7 @@ OC.L10N.register(
     "Add guest to groups:" : "Додај госта у групе:",
     "An error occurred, try again" : "Дошло је до грешке, покушајте поново",
     "Invite guest" : "Позови госта",
+    "Unlimited" : "Неограничено",
     "Error" : "Грешка",
     "Your settings have been updated" : "Ваше поставке су ажуриране",
     "Saving …" : "Чувам …",

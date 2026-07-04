@@ -64,6 +64,7 @@ OC.L10N.register(
     "Add guest to groups:" : "Lisa külaline gruppidesse:",
     "An error occurred, try again" : "Tekkis viga, palun proovi uuesti",
     "Invite guest" : "Saada kutse külalisele",
+    "Unlimited" : "Piiramatult",
     "Error" : "Viga",
     "Your settings have been updated" : "Sinu seadistused on uuendatud",
     "Saving …" : "Salvestan…",

@@ -15,6 +15,7 @@ OC.L10N.register(
     "Cancel" : "–¶—É—Ü–ª–∞—Ö",
     "Invite {name}" : "{name}-г урих",
     "Language" : "–•—ç–ª",
+    "Unlimited" : "Хязгааргүй",
     "Error" : "–ê–ª–¥–∞–∞",
     "Saving …" : "Хадгалж байна …",
     "Add guest" : "Зочин нэмэх"

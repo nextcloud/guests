@@ -61,6 +61,7 @@ OC.L10N.register(
     "Add guest to groups:" : "Gast toevoegen aan groepen:",
     "An error occurred, try again" : "Er trad een fout op. Probeer het opnieuw",
     "Invite guest" : "Uitnodigen gast",
+    "Unlimited" : "Ongelimiteerd",
     "Error" : "Fout",
     "Your settings have been updated" : "Je instellingen zijn bijgewerkt",
     "Saving …" : "Opslaan ...",

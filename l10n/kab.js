@@ -8,6 +8,7 @@ OC.L10N.register(
     "Default" : "Prédéfini(e)",
     "Cancel" : "Cancel",
     "Language" : "Tutlayt",
+    "Unlimited" : "War talast",
     "Error" : "Erreur",
     "Saving …" : "Asekles …"
 },

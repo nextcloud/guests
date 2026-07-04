@@ -64,6 +64,7 @@ OC.L10N.register(
     "Add guest to groups:" : "ゲストをグループに追加:",
     "An error occurred, try again" : "エラーが発生しました。再度試行してください。",
     "Invite guest" : "ゲストを招待する",
+    "Unlimited" : "無制限",
     "Error" : "エラー",
     "Your settings have been updated" : "設定が更新されました",
     "Saving …" : "保存中 …",

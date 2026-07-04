@@ -25,6 +25,7 @@ OC.L10N.register(
     "No guest accounts created" : "Neniu gastkonto kreita",
     "Cancel" : "Cancel",
     "Language" : "Lingvo",
+    "Unlimited" : "Senlima",
     "Error" : "Eraro"
 },
 "nplurals=2; plural=(n != 1);");

@@ -62,6 +62,7 @@ OC.L10N.register(
     "Add guest to groups:" : "گۇرۇپپىلارغا مېھمان قوشۇڭ:",
     "An error occurred, try again" : "خاتالىق كۆرۈلدى ، قايتا سىناڭ",
     "Invite guest" : "مېھمان تەكلىپ قىلىڭ",
+    "Unlimited" : "چەكسىز",
     "Error" : "خاتالىق",
     "Your settings have been updated" : "تەڭشەكلىرىڭىز يېڭىلاندى",
     "Saving …" : "ساقلاۋاتىدۇ  ...",

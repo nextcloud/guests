@@ -36,6 +36,7 @@ OC.L10N.register(
     "Language" : "Jezik",
     "Add guest to groups:" : "Dodaj gosta u grupe:",
     "Invite guest" : "Pozovi gosta",
+    "Unlimited" : "Neograničeno",
     "Error" : "Pogreška",
     "Your settings have been updated" : "Vaše su postavke ažurirane",
     "Saving …" : "Spremanje…",

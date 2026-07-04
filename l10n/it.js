@@ -62,6 +62,7 @@ OC.L10N.register(
     "Add guest to groups:" : "Aggiungi ospite a gruppi:",
     "An error occurred, try again" : "Si è verificato un errore, riprova",
     "Invite guest" : "Invita ospite",
+    "Unlimited" : "Illimitata",
     "Error" : "Errore",
     "Your settings have been updated" : "Le tue impostazioni sono state aggiornate.",
     "Saving …" : "Salvataggio…",

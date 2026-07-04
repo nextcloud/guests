@@ -8,6 +8,7 @@ OC.L10N.register(
     "Default" : "Standart",
     "Cancel" : "Bekor qilish",
     "Language" : "Language",
+    "Unlimited" : "Unlimited",
     "Error" : "Xatolik"
 },
 "nplurals=1; plural=0;");
