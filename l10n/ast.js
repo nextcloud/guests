@@ -15,6 +15,7 @@ OC.L10N.register(
     "Default" : "Por defeutu",
     "Cancel" : "Encaboxar",
     "Language" : "Llingua",
+    "Unlimited" : "Ensin llende",
     "Error" : "Error"
 },
 "nplurals=2; plural=(n != 1);");

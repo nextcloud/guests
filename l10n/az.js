@@ -14,6 +14,7 @@ OC.L10N.register(
     "Cancel" : "Cancel",
     "Invite {name}" : "{name} Dəvət et",
     "Language" : "Dil",
+    "Unlimited" : "Limitsiz",
     "Error" : "Səhv",
     "Saving …" : "Saxlanılır …"
 },

@@ -12,6 +12,7 @@ OC.L10N.register(
     "Shared At" : "Gedeel Om",
     "Invited by" : "Genooi deur",
     "Cancel" : "Cancel",
-    "Language" : "Taal"
+    "Language" : "Taal",
+    "Unlimited" : "Onbeperkte"
 },
 "nplurals=2; plural=(n != 1);");
