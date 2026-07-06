@@ -6,6 +6,44 @@
 
 All notable changes to this project will be documented in this file.
 
+## 4.8.0
+### Features
+* feat(deps): Add Nextcloud 35 support by @nickvergessen in https://github.com/nextcloud/guests/pull/1568
+* feat(whitelisting): Explicitly tell which app is blocked to user by @artonge in https://github.com/nextcloud/guests/pull/1611
+* feat(settings): add a default quota selector for new guest accounts by @ernolf in https://github.com/nextcloud/guests/pull/1618
+
+### Fixes
+* fix(settings): use @update:modelValue so admin switches save again by @ernolf in https://github.com/nextcloud/guests/pull/1598
+* fix(settings): save the guest allowlist again by @ernolf in https://github.com/nextcloud/guests/pull/1616
+* fix: add missing index on email in the guest_users table by @CarlSchwan in https://github.com/nextcloud/guests/pull/1600
+* fix: avoid TypeError when the session user is null by @solracsf in https://github.com/nextcloud/guests/pull/1592
+* fix: convert recipient to user ID for email shares by @susnux in https://github.com/nextcloud/guests/pull/1572
+
+### Other
+* test(playwright): add happy-path e2e suite by @pringelmann in https://github.com/nextcloud/guests/pull/1565
+* chore: migrate away from deprecated OC_App by @susnux in https://github.com/nextcloud/guests/pull/1612
+* Dependency and tooling updates (@nextcloud/vue 9.6.0 → 9.8.2, and others) by @dependabot and @nextcloud-command
+
+## 4.7.5
+### Fixes
+* fix(invite): guard against double-mount when init.ts evaluates twice by @pringelmann in https://github.com/nextcloud/guests/pull/1576
+
+## 4.7.4
+### Fixes
+* fix(invite): send welcome email when creating guest from share dialog by @pringelmann in https://github.com/nextcloud/guests/pull/1566
+
+## 4.7.3
+### Fixes
+* fix: apply username from backend instead of guessing by @susnux in https://github.com/nextcloud/guests/pull/1571
+
+## 4.7.2
+### Fixes
+* fix(src): resolve 20 bugs, logic flaws, type issues and prose errors across the frontend by @copilot-swe-agent in https://github.com/nextcloud/guests/pull/1552
+
+### Other
+* Chore(deps): Bump @nextcloud/axios from 2.5.2 to 2.6.0 by @dependabot[bot] in https://github.com/nextcloud/guests/pull/1549
+* Chore(deps): Bump axios from 1.15.0 to 1.16.0 by @dependabot[bot] in https://github.com/nextcloud/guests/pull/1554
+
 ## 4.7.1
 ### Fixes
 * fix(vue3): expose t() in components broken by Vue 3 migration by @pringelmann in https://github.com/nextcloud/guests/pull/1551
