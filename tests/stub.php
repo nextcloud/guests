@@ -143,12 +143,8 @@ namespace OC\DB {
 
 namespace {
 
-	use OCP\IServerContainer;
-
 	class OC {
 		public static $CLI = false;
-		/** @var IServerContainer */
-		public static $server;
 		public static $SERVERROOT = '';
 	}
 
