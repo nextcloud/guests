@@ -803,6 +803,41 @@ class UsersControllerTest extends TestCase {
 		$this->assertEquals(Http::STATUS_CONFLICT, $response->getStatus());
 	}
 
+	public function testConvertRejectsAdmin(): void {
+		$this->userSession->method('getUser')->willReturn($this->createMock(IUser::class));
+
+		$user = $this->createMock(IUser::class);
+		$user->method('getBackendClassName')->willReturn('Database');
+		$user->method('getLastLogin')->willReturn(0);
+
+		$this->userManager->method('get')->with('karl')->willReturn($user);
+		$this->guestManager->method('isGuest')->with($user)->willReturn(false);
+		$this->groupManager->method('isAdmin')->with('karl')->willReturn(true);
+
+		$this->conversionService->expects($this->never())->method('convertToGuest');
+
+		$response = $this->controller->convert('karl');
+		$this->assertEquals(Http::STATUS_CONFLICT, $response->getStatus());
+	}
+
+	public function testConvertRejectsSubAdmin(): void {
+		$this->userSession->method('getUser')->willReturn($this->createMock(IUser::class));
+
+		$user = $this->createMock(IUser::class);
+		$user->method('getBackendClassName')->willReturn('Database');
+		$user->method('getLastLogin')->willReturn(0);
+
+		$this->userManager->method('get')->with('karl')->willReturn($user);
+		$this->guestManager->method('isGuest')->with($user)->willReturn(false);
+		$this->groupManager->method('isAdmin')->with('karl')->willReturn(false);
+		$this->subAdmin->method('isSubAdmin')->with($user)->willReturn(true);
+
+		$this->conversionService->expects($this->never())->method('convertToGuest');
+
+		$response = $this->controller->convert('karl');
+		$this->assertEquals(Http::STATUS_CONFLICT, $response->getStatus());
+	}
+
 	public function testConvertRejectsAccountThatLoggedIn(): void {
 		$this->userSession->method('getUser')->willReturn($this->createMock(IUser::class));
 

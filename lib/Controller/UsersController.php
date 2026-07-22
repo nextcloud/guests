@@ -286,6 +286,12 @@ class UsersController extends OCSController {
 			], Http::STATUS_CONFLICT);
 		}
 
+		if ($this->groupManager->isAdmin($userId) || $this->subAdmin->isSubAdmin($user)) {
+			return new DataResponse([
+				'message' => $this->l10n->t('Accounts with administrative privileges cannot be converted to guests')
+			], Http::STATUS_CONFLICT);
+		}
+
 		try {
 			$this->conversionService->convertToGuest($user, $author);
 			$this->guestManager->setGuestQuota($user);
