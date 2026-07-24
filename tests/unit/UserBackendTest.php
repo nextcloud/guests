@@ -87,4 +87,19 @@ class UserBackendTest extends TestCase {
 		$this->assertEquals(['foo'], array_values($this->backend->getDisplayNames($email)));
 		$this->assertEquals(['foo'], array_values($this->backend->getDisplayNames(substr($email, 0, 10))));
 	}
+
+	public function testCustomLoginNameUid(): void {
+		// A free-form UID (neither an email nor a sha256 hash) must be recognised.
+		$uid = 'karl';
+		$email = 'karl.doe@example.tld';
+		$this->backend->createUser($uid, 'bar');
+		$this->backend->setInitialEmail($uid, $email);
+		$this->backend->setDisplayName($uid, 'Karl Doe');
+
+		$this->assertTrue($this->backend->userExists($uid));
+		$this->assertEquals($uid, $this->backend->getRealUID($uid));
+		$this->assertEquals($uid, $this->backend->checkPassword($uid, 'bar'));
+		$this->assertEquals($uid, $this->backend->checkPassword($email, 'bar'));
+		$this->assertEquals('Karl Doe', $this->backend->getDisplayName($uid));
+	}
 }

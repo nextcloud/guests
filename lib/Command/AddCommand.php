@@ -49,6 +49,12 @@ class AddCommand extends Command {
 				'Email address'
 			)
 			->addOption(
+				'uid',
+				null,
+				InputOption::VALUE_REQUIRED,
+				'Login name (user ID) for the guest. If omitted, the email address is used (hashed when the privacy setting is enabled).'
+			)
+			->addOption(
 				'generate-password',
 				null,
 				InputOption::VALUE_NONE,
@@ -86,11 +92,15 @@ class AddCommand extends Command {
 		}
 
 		$email = $input->getArgument('email');
-		if ($this->config->useHashedEmailAsUserID()) {
-			$email = strtolower($email);
-			$uid = hash('sha256', $email);
-		} else {
-			$uid = $email;
+
+		$uid = $input->getOption('uid');
+		if ($uid === null || $uid === '') {
+			if ($this->config->useHashedEmailAsUserID()) {
+				$email = strtolower($email);
+				$uid = hash('sha256', $email);
+			} else {
+				$uid = $email;
+			}
 		}
 
 		// same behavior like in the UsersController

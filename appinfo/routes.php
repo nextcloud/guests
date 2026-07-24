@@ -51,6 +51,11 @@ return [
 			'verb' => 'POST',
 		],
 		[
+			'name' => 'users#convert',
+			'url' => '/api/v1/convert',
+			'verb' => 'POST',
+		],
+		[
 			'name' => 'API#languages',
 			'url' => '/api/v1/languages',
 			'verb' => 'GET'
