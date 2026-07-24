@@ -7,6 +7,7 @@ OC.L10N.register(
     "Email" : "ইমেইল",
     "Cancel" : "বাতিল করুন",
     "Language" : "ভাষা",
+    "Unlimited" : "অসীম",
     "Error" : "সমস্যা"
 },
 "nplurals=2; plural=(n != 1);");
