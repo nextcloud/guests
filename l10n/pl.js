@@ -53,6 +53,7 @@ OC.L10N.register(
     "Guests will still be able to see accounts from any group they are added to" : "Goście nadal będą mogli zobaczyć konta z dowolnej grupy, do której zostali dodani",
     "Limit guest access to an app's allowlist" : "Ogranicz dostęp gości do listy dozwolonych aplikacji",
     "Reset allowlist" : "Zresetuj listę dozwolonych",
+    "Add guest" : "Dodaj gościa",
     "A user with this ID or email address already exists" : "Użytkownik o tym ID lub adresie e-mail już istnieje",
     "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Wkrótce gość zostanie przekonwertowany na zwykłe konto o nazwie „{userId}”."
 },
