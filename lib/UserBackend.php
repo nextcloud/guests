@@ -330,8 +330,7 @@ class UserBackend extends ABackend implements
 			return false;
 		}
 
-		// guests $uid could be NULL or ''
-		// or is not an email anyway
+		// Skip empty IDs; any non-empty ID is resolved against the guests_users table.
 		if (!$this->potentialGuestUserId($uid)) {
 			$this->cache[$uid] = false;
 			return false;
@@ -473,14 +472,10 @@ class UserBackend extends ABackend implements
 	}
 
 	/**
-	 * Guest app user ids are:
-	 * - either email addresses so they need to contain an @
-	 * - lowercase sha256 hashes of email addresses, 64 characters of a-f and 0-9
-	 *
-	 * @param string $userId
-	 * @return bool
+	 * Guard against empty IDs only. Any non-empty ID may belong to a guest and is
+	 * resolved against the guests_users table.
 	 */
 	protected function potentialGuestUserId(string $userId): bool {
-		return str_contains($userId, '@') || preg_match('/^[a-f0-9]{64}$/', $userId);
+		return $userId !== '';
 	}
 }

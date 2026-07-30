@@ -186,4 +186,49 @@ class AddCommandTest extends TestCase {
 		$this->assertStringContainsString('Invalid email address "guestid@@@".', $output);
 		$this->assertEquals(1, $this->commandTester->getStatusCode());
 	}
+
+	public function testCreateGuestWithCustomUid(): void {
+		$createdByUser = $this->createStub(IUser::class);
+
+		$guestUser = $this->createMock(IUser::class);
+		$guestUser->method('getUID')->willReturn('karl');
+
+		$this->userManager->expects($this->once())
+			->method('get')
+			->with('creator')
+			->willReturn($createdByUser);
+
+		// The explicit login name is used as the user ID, not the email or its hash.
+		$this->userManager->expects($this->once())
+			->method('userExists')
+			->with('karl')
+			->willReturn(false);
+
+		$this->mailer->expects($this->once())
+			->method('validateMailAddress')
+			->with('guestid@example.com')
+			->willReturn(true);
+
+		$this->guestManager->expects($this->once())
+			->method('createGuest')
+			->with(
+				$createdByUser,
+				'karl',
+				'guestid@example.com',
+				'',
+				'',
+				null
+			)
+			->willReturn($guestUser);
+
+		$this->commandTester->execute([
+			'created-by' => 'creator',
+			'email' => 'guestid@example.com',
+			'--uid' => 'karl',
+			'--generate-password' => true,
+		]);
+
+		$output = $this->commandTester->getDisplay();
+		$this->assertStringContainsString('The guest account user "karl" was created successfully', $output);
+	}
 }

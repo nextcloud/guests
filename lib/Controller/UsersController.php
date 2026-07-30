@@ -14,6 +14,7 @@ use OCA\Guests\Config;
 use OCA\Guests\Db\Transfer;
 use OCA\Guests\Db\TransferMapper;
 use OCA\Guests\GuestManager;
+use OCA\Guests\Service\ConversionService;
 use OCA\Guests\Service\InviteService;
 use OCA\Guests\TransferService;
 use OCP\AppFramework\Db\DoesNotExistException;
@@ -29,6 +30,7 @@ use OCP\IUser;
 use OCP\IUserManager;
 use OCP\IUserSession;
 use OCP\Mail\IMailer;
+use Psr\Log\LoggerInterface;
 
 class UsersController extends OCSController {
 	public function __construct(
@@ -45,6 +47,8 @@ class UsersController extends OCSController {
 		private readonly TransferService $transferService,
 		private readonly TransferMapper $transferMapper,
 		private readonly InviteService $inviteService,
+		private readonly ConversionService $conversionService,
+		private readonly LoggerInterface $logger,
 	) {
 		parent::__construct($appName, $request);
 	}
@@ -244,5 +248,60 @@ class UsersController extends OCSController {
 		$this->transferService->addTransferJob($author, $sourceUser, $targetUserId);
 
 		return new DataResponse([], Http::STATUS_CREATED);
+	}
+
+	/**
+	 * Convert a regular, never-logged-in account into a guest account
+	 */
+	public function convert(string $userId): DataResponse {
+		$author = $this->userSession->getUser();
+		if (!($author instanceof IUser)) {
+			return new DataResponse([
+				'message' => $this->l10n->t('Failed to authorize')
+			], Http::STATUS_UNAUTHORIZED);
+		}
+
+		$user = $this->userManager->get($userId);
+		if (!($user instanceof IUser)) {
+			return new DataResponse([
+				'message' => $this->l10n->t('Account not found')
+			], Http::STATUS_NOT_FOUND);
+		}
+
+		if ($this->guestManager->isGuest($user)) {
+			return new DataResponse([
+				'message' => $this->l10n->t('Account is already a guest')
+			], Http::STATUS_CONFLICT);
+		}
+
+		if ($user->getBackendClassName() !== 'Database') {
+			return new DataResponse([
+				'message' => $this->l10n->t('Only regular accounts can be converted to guests')
+			], Http::STATUS_CONFLICT);
+		}
+
+		if ($user->getLastLogin() !== 0) {
+			return new DataResponse([
+				'message' => $this->l10n->t('Only accounts that have never logged in can be converted')
+			], Http::STATUS_CONFLICT);
+		}
+
+		if ($this->groupManager->isAdmin($userId) || $this->subAdmin->isSubAdmin($user)) {
+			return new DataResponse([
+				'message' => $this->l10n->t('Accounts with administrative privileges cannot be converted to guests')
+			], Http::STATUS_CONFLICT);
+		}
+
+		try {
+			$this->conversionService->convertToGuest($user, $author);
+			$this->guestManager->setGuestQuota($user);
+		} catch (\Throwable $e) {
+			$this->logger->error('Failed to convert account "' . $userId . '" to a guest', ['exception' => $e]);
+			return new DataResponse([
+				'message' => $this->l10n->t('An error occurred while converting the account')
+			], Http::STATUS_INTERNAL_SERVER_ERROR);
+		}
+
+		return new DataResponse([]);
 	}
 }
