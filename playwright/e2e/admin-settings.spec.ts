@@ -13,7 +13,8 @@ test('Admin Guests settings page renders without errors', async ({ adminPage }) 
 
 	await adminPage.goto('/settings/admin/guests')
 
-	await expect(adminPage.getByRole('heading', { name: 'Guests', exact: true })).toBeVisible()
+	// Scope to our section: the framework also renders a hidden page <h1> with the section name.
+	await expect(adminPage.locator('#guest-settings').getByRole('heading', { name: 'Guests', exact: true })).toBeVisible()
 	await expect(adminPage.getByRole('checkbox', { name: /external storage/i })).toBeVisible()
 
 	expect(pageErrors, `uncaught page errors: ${pageErrors.join(' | ')}`).toEqual([])
