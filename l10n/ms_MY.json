@@ -1,8 +1,8 @@
 { "translations": {
     "__language_name__" : "Bahasa Melayu",
+    "Cancel" : "Cancel",
     "Name" : "Nama",
     "Email" : "Email",
-    "Cancel" : "Cancel",
     "Language" : "Bahasa",
     "Error" : "Ralat"
 },"pluralForm" :"nplurals=1; plural=0;"

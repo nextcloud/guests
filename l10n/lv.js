@@ -7,10 +7,10 @@ OC.L10N.register(
     "User successfully created" : "Lietotājs izveidots sekmīgi",
     "%s via %s" : "%s ar %s",
     "Couldn't send reset email. Please contact your administrator." : "Nevarēja nosūtīt atiestatīšanas e-pasta ziņojumu. Lūgums sazināties ar savu pārvaldītāju.",
+    "Cancel" : "Atcelt",
     "None" : "Nav",
     "Name" : "Nosaukums",
     "Email" : "E-pasts",
-    "Cancel" : "Atcelt",
     "Language" : "Valoda",
     "Unlimited" : "Neierobežota",
     "Error" : "Kļūda"

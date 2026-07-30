@@ -15,6 +15,7 @@ OC.L10N.register(
     "Activate account" : "Aktivigi konton",
     "View share" : "Vidi kunhavon",
     "Create guest accounts for easier collaboration" : "Krei gastkontojn por pli facila kunlaboro",
+    "Cancel" : "Cancel",
     "None" : "Nenio",
     "Name" : "Nomo",
     "Shared By" : "Kunhavigita de",
@@ -23,7 +24,6 @@ OC.L10N.register(
     "Invited by" : "Invitita de",
     "Received shares" : "Ricevitaj kunhavoj",
     "No guest accounts created" : "Neniu gastkonto kreita",
-    "Cancel" : "Cancel",
     "Language" : "Lingvo",
     "Unlimited" : "Senlima",
     "Error" : "Eraro"

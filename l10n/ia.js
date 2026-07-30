@@ -5,8 +5,8 @@ OC.L10N.register(
     "Invalid mail address" : "Adresse de e-posta non valide",
     "A user with that name already exists." : "Un usator con iste nomine ja existe.",
     "Couldn't send reset email. Please contact your administrator." : "Non poteva inviar le message de reinitialisation. Per favor contacta tu administrator.",
-    "None" : "Nulle",
     "Cancel" : "Cancel",
+    "None" : "Nulle",
     "Language" : "Lingua",
     "Unlimited" : "Ilimitate",
     "Error" : "Error"

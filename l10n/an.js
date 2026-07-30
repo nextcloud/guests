@@ -1,10 +1,10 @@
 OC.L10N.register(
     "guests",
     {
+    "Cancel" : "Cancelar",
     "None" : "Denguno",
     "Name" : "Nombre",
     "Email" : "Correu electronico",
-    "Cancel" : "Cancelar",
     "Language" : "Luenga",
     "Error" : "Error"
 },

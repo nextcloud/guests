@@ -7,11 +7,11 @@ OC.L10N.register(
     "User successfully created" : "สร้างผู้ใช้เรียบร้อยแล้ว",
     "%s via %s" : "%s ผ่าน %s",
     "Couldn't send reset email. Please contact your administrator." : "ไม่สามารถส่งอีเมลรีเซ็ต กรุณาติดต่อผู้ดูแลระบบของคุณ",
+    "Cancel" : "ยกเลิก",
     "None" : "ไม่มี",
     "Name" : "ชื่อ",
     "Email" : "อีเมล",
     "User ID" : "ไอดีผู้ใช้งาน",
-    "Cancel" : "ยกเลิก",
     "Language" : "ภาษา",
     "Unlimited" : "ไม่จำกัด",
     "Error" : "ข้อผิดพลาด"

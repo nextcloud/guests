@@ -2,10 +2,10 @@ OC.L10N.register(
     "guests",
     {
     "__language_name__" : "বাংলা ভাষা",
+    "Cancel" : "বাতিল করুন",
     "None" : "কোনটিই নয়",
     "Name" : "নাম",
     "Email" : "ইমেইল",
-    "Cancel" : "বাতিল করুন",
     "Language" : "ভাষা",
     "Unlimited" : "অসীম",
     "Error" : "সমস্যা"

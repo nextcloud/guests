@@ -1,12 +1,13 @@
 OC.L10N.register(
     "guests",
     {
+    "Account not found" : "Akkaunt topilmadi",
     "Couldn't send reset email. Please contact your administrator." : "Couldn't send reset email. Please contact your administrator.",
+    "Cancel" : "Bekor qilish",
     "None" : "Yo'q",
     "Name" : "Name",
     "Email" : "Email",
     "Default" : "Standart",
-    "Cancel" : "Bekor qilish",
     "Language" : "Language",
     "Unlimited" : "Unlimited",
     "Error" : "Xatolik"

@@ -8,12 +8,12 @@ OC.L10N.register(
     "User already exists" : "Utilizatorul există deja",
     "%s via %s" : "%s via %s",
     "Couldn't send reset email. Please contact your administrator." : "Expedierea email-ului de resetare a eşuat. Vă rugăm să contactaţi administratorul dvs.",
+    "Cancel" : "Anulare",
     "None" : "Niciuna",
     "Name" : "Nume",
     "Email" : "E-mail",
     "User ID" : "ID-ul utilizatorului",
     "Default" : "Implicită",
-    "Cancel" : "Anulare",
     "Language" : "Limba",
     "Unlimited" : "Nelimitată",
     "Error" : "Eroare"

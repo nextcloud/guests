@@ -2,9 +2,9 @@ OC.L10N.register(
     "guests",
     {
     "__language_name__" : "Srpski",
+    "Cancel" : "Poništi",
     "None" : "Ništa",
     "Name" : "Ime",
-    "Cancel" : "Poništi",
     "Language" : "Jezik",
     "Error" : "Greška"
 },

@@ -5,10 +5,10 @@
     "User already exists" : "L’utilizaire existís ja",
     "%s via %s" : "%s via %s",
     "Couldn't send reset email. Please contact your administrator." : "Impossible de mandar lo corrièl de reïnicializacion. Contactatz vòstre administrator.",
+    "Cancel" : "Anullar",
     "None" : "Cap",
     "Name" : "Nom",
     "Email" : "Adreiça electronica",
-    "Cancel" : "Anullar",
     "Language" : "Lenga",
     "Unlimited" : "Illimitat",
     "Error" : "Error"

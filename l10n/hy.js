@@ -3,9 +3,9 @@ OC.L10N.register(
     {
     "__language_name__" : "Հայերեն",
     "Invalid mail address" : "Անվավեր էլ. հասցե",
+    "Cancel" : "չեղարկել",
     "Name" : "Անուն",
     "Email" : "Էլ․փոստ",
-    "Cancel" : "չեղարկել",
     "Language" : "Լեզու",
     "Error" : "Սխալ"
 },

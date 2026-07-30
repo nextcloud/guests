@@ -7,10 +7,10 @@ OC.L10N.register(
     "User successfully created" : "მომხმარებელი წარმატებით შეიქმნა",
     "%s via %s" : "%s %s-ით",
     "Couldn't send reset email. Please contact your administrator." : "აღდგენის ელ-წერილი ვერ გაიგზავნა. გთხოვთ დაუკავშირდეთ თქვენს ადმინისტრატორს.",
+    "Cancel" : "გაუქმება",
     "None" : "არც ერთი",
     "Name" : "სახელი",
     "Default" : "საწყისი პარამეტრები",
-    "Cancel" : "გაუქმება",
     "Language" : "ენა",
     "Unlimited" : "ულიმიტო",
     "Error" : "შეცდომა"

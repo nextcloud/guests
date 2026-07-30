@@ -7,11 +7,11 @@ OC.L10N.register(
     "User successfully created" : "gebruiker suksesvol geskep",
     "%s via %s" : "%s d.m.v. %s",
     "Couldn't send reset email. Please contact your administrator." : "Kon nie die herstel-e-pos stuur nie. Kontak asseblief jou administrateur.",
+    "Cancel" : "Cancel",
     "None" : "Geen",
     "Shared By" : "Gedeel Deur",
     "Shared At" : "Gedeel Om",
     "Invited by" : "Genooi deur",
-    "Cancel" : "Cancel",
     "Language" : "Taal",
     "Unlimited" : "Onbeperkte"
 },

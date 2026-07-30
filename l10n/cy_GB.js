@@ -1,10 +1,10 @@
 OC.L10N.register(
     "guests",
     {
+    "Cancel" : "Cancel",
     "None" : "Dim",
     "Name" : "Enw",
     "Email" : "E-bost",
-    "Cancel" : "Cancel",
     "Language" : "Iaith",
     "Error" : "Gwall"
 },
