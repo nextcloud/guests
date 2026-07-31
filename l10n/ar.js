@@ -10,6 +10,7 @@ OC.L10N.register(
     "Guest does not exist" : "الضيف غير موجود",
     "User already exists" : "أنت موجودٌ مُسبقاً",
     "User is not a guest" : "المستخدِم غير موجود",
+    "Account not found" : "الحساب غير موجود ",
     "%s via %s" : "%s عبر %s",
     "Couldn't send reset email. Please contact your administrator." : "تعذر إرسال البريد الإلكتروني لإعادة التعيين. يرجى مراجعة المسؤول.",
     "Hey there," : "مرحبا، ",

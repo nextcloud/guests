@@ -11,6 +11,11 @@ OC.L10N.register(
     "User already exists" : "Benutzer existiert bereits",
     "User is not a guest" : "Der Benutzer ist kein Gast",
     "Account not found" : "Konto nicht gefunden",
+    "Account is already a guest" : "Konto ist bereits Gast",
+    "Only regular accounts can be converted to guests" : "Nur reguläre Konten können zu Gästen umgewandelt werden",
+    "Only accounts that have never logged in can be converted" : "Nur Konten, die sich noch nie angemeldet haben, können umgewandelt werden",
+    "Accounts with administrative privileges cannot be converted to guests" : "Konten mit Administrationsrechten können nicht zu Gästen umgewandelt werden",
+    "An error occurred while converting the account" : "Es ist ein Fehler bei der Umwandlung des Kontos aufgetreten",
     "%s via %s" : "%s über %s",
     "Couldn't send reset email. Please contact your administrator." : "Die E-Mail zum Zurücksetzen konnte nicht versendet werden. Bitte kontaktieren Sie Ihre Administration.",
     "%s shared a file with you" : "%s hat eine Datei mit Ihnen geteilt",
@@ -35,7 +40,12 @@ OC.L10N.register(
     "Conversion of guest {guest} to {user} completed" : "Konvertierung von Gast {guest} zu {user} abgeschlossen",
     "Create guest accounts for easier collaboration" : "Gastkonten für einfachere Zusammenarbeit erstellen",
     "👥 Allows for better collaboration with external users by allowing users to create guests account.\n\nGuests accounts can be created from the share menu by entering either the recipients email or name and choosing \"create guest account\", once the share is created the guest user will receive an email notification about the mail with a link to set their password.\n\nGuests users can only access files shared to them and cannot create any files outside of shares, additionally, the apps accessible to guest accounts are whitelisted." : "👥 Ermöglicht eine bessere Zusammenarbeit mit externen Benutzern, indem Benutzern das Erstellen eines Gastkontos ermöglicht wird.\n\nGästekonten können über das Freigabemenü erstellt werden, indem Sie entweder die E-Mail-Adresse oder den Namen des Empfängers eingeben und \"Gastkonto erstellen\" auswählen. Sobald die Freigabe erstellt wurde, erhält der Gastbenutzer eine E-Mail-Benachrichtigung mit einem Link zum Festlegen des Passworts.\n\nGastbenutzer können nur auf für sie freigegebene Dateien zugreifen und können keine Dateien außerhalb von Freigaben erstellen. Darüber hinaus werden die Apps, auf welche die Gastkonten zugreifen können, in eine Whitelist aufgenommen.",
+    "Convert to guest account" : "In ein Gastkonto umwandeln",
+    "The account \"{userId}\" will be converted into a guest account. It keeps its login name and password but becomes a limited guest account, restricted to the apps allowed for guests." : "Das Konto \"{userId}\" wird in ein Gastkonto umgewandelt. Es behält den Anmeldenamen und das Passwort, wird jedoch zu einem eingeschränkten Gastkonto, das auf die für Gäste zugelassenen Apps beschränkt ist.",
+    "This is only possible for accounts that have never logged in. It cannot be undone automatically." : "Dies ist nur für Konten möglich, die sich noch nie angemeldet haben. Es kann nicht automatisch rückgängig gemacht werden.",
     "Cancel" : "Abbrechen",
+    "Converting account…" : "Wandle das Konto …",
+    "Convert to guest" : "Zu Gast umwandeln",
     "None" : "Keine",
     "Name" : "Name",
     "Shared By" : "Geteilt von",
@@ -93,6 +103,7 @@ OC.L10N.register(
     "Default quota for new guest accounts" : "Standard-Kontingent für neue Gastkonten",
     "Add guest" : "Gast hinzufügen",
     "A user with this ID or email address already exists" : "Ein Benutzer mit dieser ID oder E-Mail-Adresse existiert bereits.",
-    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Das Gastkonto wird in Kürze in ein reguläres Konto mit dem Namen \"{userId}\" konvertiert"
+    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Das Gastkonto wird in Kürze in ein reguläres Konto mit dem Namen \"{userId}\" konvertiert",
+    "Account \"{userId}\" was converted into a guest account" : "Konto \"{userId}\" wurde in ein Gastkonto umgewandelt"
 },
 "nplurals=2; plural=(n != 1);");

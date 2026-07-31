@@ -4,6 +4,7 @@
     "A user with that name already exists." : "Yá esiste un nome d'usuariu con esi nome.",
     "User successfully created" : "L'usuariu creóse con ésitu",
     "User already exists" : "L'usuariu yá esiste",
+    "Account not found" : "Nun s'atopó la cuenta",
     "%s via %s" : "%s per %s",
     "Couldn't send reset email. Please contact your administrator." : "Nun se pudo unviar el mensaxe de reaniciu. Ponte en contautu cola alministración.",
     "Cancel" : "Encaboxar",

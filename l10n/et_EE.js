@@ -11,6 +11,11 @@ OC.L10N.register(
     "User already exists" : "Kasutaja on juba olemas",
     "User is not a guest" : "Kasutaja pole külaline",
     "Account not found" : "Kasutajakontot ei leidu",
+    "Account is already a guest" : "See kasutajakonto on juba külaliskonto",
+    "Only regular accounts can be converted to guests" : "Vaid tavakontosid saad muuta külaliskontoks",
+    "Only accounts that have never logged in can be converted" : "Saad teisendada vaid neid kontosid, millega pole veel sisse logitud",
+    "Accounts with administrative privileges cannot be converted to guests" : "Peakasutaja õigustes kontosid ei sa külaliskontoks teisendada",
+    "An error occurred while converting the account" : "Kasutajakonto teisendamisel tekkis viga",
     "%s via %s" : "%s üle %s",
     "Couldn't send reset email. Please contact your administrator." : "Ei suutnud lähtestada e-maili. Palun võta ühendust administraatoriga.",
     "%s shared a file with you" : "%s jagas faili sinuga",
@@ -35,7 +40,12 @@ OC.L10N.register(
     "Conversion of guest {guest} to {user} completed" : "Õnnestus konverteerida {guest} külaliskonto {user} tavakontoks",
     "Create guest accounts for easier collaboration" : "Lihtsama ühistöö huvides lisa ja halda külaliskontosid",
     "👥 Allows for better collaboration with external users by allowing users to create guests account.\n\nGuests accounts can be created from the share menu by entering either the recipients email or name and choosing \"create guest account\", once the share is created the guest user will receive an email notification about the mail with a link to set their password.\n\nGuests users can only access files shared to them and cannot create any files outside of shares, additionally, the apps accessible to guest accounts are whitelisted." : "👥 Kasutades võimalust luua külaliskontosid võimaldab paremat koostööd väliste kasutajatega.\n\nKülaliskontosid saad luua jagamismenüüst sisestades külalise e-posti aadressi ja nime ning valides „Loo külaliskonto“. Seepeale saab külaline teavituskirja lingiga oma salasõna sisestamiseks.\n\nKülalised näevad vaid neile jagatud faile ega saa jaosmeedia väliselt ühtegi faili luua. Lisaks on kasutatavad rakendused piiratud etteantud loendiga.",
+    "Convert to guest account" : "Teisenda külaliskontoks",
+    "The account \"{userId}\" will be converted into a guest account. It keeps its login name and password but becomes a limited guest account, restricted to the apps allowed for guests." : "„{userId}“ kasutajakonto teisendatakse külaliskontoks. Sisselogimisel pruugitav kasutajanimi ja salasõna ei muutu, aga konto muutumub piiratud õigustega külaliskontoks, mis võib kasutada vaid neid rakendusi, kus see on lubatud.",
+    "This is only possible for accounts that have never logged in. It cannot be undone automatically." : "See on võimalik vaid nende kontode puhul, millega pole veel sisse logitud. Tegevust ei saa automaatselt tagasi pöörata.",
     "Cancel" : "Tühista",
+    "Converting account…" : "Teisendan kasutajakontot…",
+    "Convert to guest" : "Muuda külaliskontoks",
     "None" : "Pole",
     "Name" : "Nimi",
     "Shared By" : "Jagaja:",
@@ -93,6 +103,7 @@ OC.L10N.register(
     "Default quota for new guest accounts" : "Vaikimisi kvoot uute külaliskontode jaoks",
     "Add guest" : "Lisa külaline",
     "A user with this ID or email address already exists" : "Sellise tunnuse või e-posti aadressiga kasutaja on juba olemas.",
-    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Külaliskonto konverteeritakse tavakasutaja kontoks nimega „{userId}“ üsna pea"
+    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Külaliskonto konverteeritakse tavakasutaja kontoks nimega „{userId}“ üsna pea",
+    "Account \"{userId}\" was converted into a guest account" : "„{userId}“ kasutajakonto on teisendatud külaliskontoks"
 },
 "nplurals=2; plural=(n != 1);");

@@ -9,6 +9,11 @@
     "User already exists" : "Usuário já existe",
     "User is not a guest" : "O usuário não é um convidado",
     "Account not found" : "Conta não encontrada",
+    "Account is already a guest" : "A conta já é uma conta de convidado",
+    "Only regular accounts can be converted to guests" : "Somente contas regulares podem ser convertidas em contas de convidado",
+    "Only accounts that have never logged in can be converted" : "Somente contas que nunca logaram podem ser convertidas",
+    "Accounts with administrative privileges cannot be converted to guests" : "Contas com privilégios administrativos não podem ser convertidas em contas de convidado",
+    "An error occurred while converting the account" : "Ocorreu um erro durante a conversão da conta",
     "%s via %s" : "%s via %s",
     "Couldn't send reset email. Please contact your administrator." : "Não foi possível enviar o e-mail de redefinição. Por favor, contate o administrador.",
     "%s shared a file with you" : "%s compartilhou um arquivo com você",
@@ -33,7 +38,12 @@
     "Conversion of guest {guest} to {user} completed" : "Conversão do convidado {guest} para {user} concluída",
     "Create guest accounts for easier collaboration" : "Crie contas de convidados para facilitar a colaboração",
     "👥 Allows for better collaboration with external users by allowing users to create guests account.\n\nGuests accounts can be created from the share menu by entering either the recipients email or name and choosing \"create guest account\", once the share is created the guest user will receive an email notification about the mail with a link to set their password.\n\nGuests users can only access files shared to them and cannot create any files outside of shares, additionally, the apps accessible to guest accounts are whitelisted." : "👥 Permite uma melhor colaboração com usuários externos, permitindo que os usuários criem contas de convidados. \n\nAs contas de convidados podem ser criadas a partir do menu de compartilhamento inserindo o e-mail ou nome do destinatário e escolhendo \"criar conta de convidado\". Assim que o compartilhamento for criado, o usuário convidado receberá uma notificação por e-mail sobre o e-mail com um link para definir sua senha. \n\nOs usuários convidados só podem acessar arquivos compartilhados com eles e não podem criar nenhum arquivo fora dos compartilhamentos; além disso, os aplicativos acessíveis às contas de convidados estão na lista de permissões. ",
+    "Convert to guest account" : "Converter em conta de convidado",
+    "The account \"{userId}\" will be converted into a guest account. It keeps its login name and password but becomes a limited guest account, restricted to the apps allowed for guests." : "A conta “{userId}” será convertida em uma conta de convidado. Ela mantém seu nome de usuário e senha, mas passa a ser uma conta de convidado com acesso limitado, restrita aos aplicativos permitidos para convidados.",
+    "This is only possible for accounts that have never logged in. It cannot be undone automatically." : "Isso só é possível para contas que nunca logaram. Não é possível reverter essa ação automaticamente.",
     "Cancel" : "Cancelar",
+    "Converting account…" : "Convertendo conta…",
+    "Convert to guest" : "Converter em conta de convidado",
     "None" : "Nenhum",
     "Name" : "Nome",
     "Shared By" : "Compartilhado Por",
@@ -91,6 +101,7 @@
     "Default quota for new guest accounts" : "Cota padrão para novas contas de convidado",
     "Add guest" : "Adicionar convidado",
     "A user with this ID or email address already exists" : "Já existe um usuário com este ID ou endereço de e-mail",
-    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "O convidado será convertido em uma conta regular com o nome de conta \"{userId}\" em breve"
+    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "O convidado será convertido em uma conta regular com o nome de conta \"{userId}\" em breve",
+    "Account \"{userId}\" was converted into a guest account" : "A conta “{userId}” foi convertida em uma conta de convidado"
 },"pluralForm" :"nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"
 }
