@@ -9,6 +9,11 @@
     "User already exists" : "Cet utilisateur existe déjà",
     "User is not a guest" : "Cet utilisateur n'est pas un invité",
     "Account not found" : "Compte introuvable",
+    "Account is already a guest" : "Ce compte est déjà un compte invité",
+    "Only regular accounts can be converted to guests" : "Seuls les comptes standard peuvent être convertis en comptes invités",
+    "Only accounts that have never logged in can be converted" : "Seuls les comptes qui ne se sont jamais connectés peuvent être convertis",
+    "Accounts with administrative privileges cannot be converted to guests" : "Les comptes disposant de privilèges d'administration ne peuvent pas être convertis en comptes invités",
+    "An error occurred while converting the account" : "Une erreur est survenue lors de la conversion du compte",
     "%s via %s" : "%s via %s",
     "Couldn't send reset email. Please contact your administrator." : "Impossible d’envoyer l'e-mail de réinitialisation. Veuillez contacter votre administrateur.",
     "%s shared a file with you" : "%s a partagé un document avec vous",
@@ -33,7 +38,12 @@
     "Conversion of guest {guest} to {user} completed" : "Conversion de l'invité {guest} en {user} terminée",
     "Create guest accounts for easier collaboration" : "Créez des compte invités pour faciliter la collaboration",
     "👥 Allows for better collaboration with external users by allowing users to create guests account.\n\nGuests accounts can be created from the share menu by entering either the recipients email or name and choosing \"create guest account\", once the share is created the guest user will receive an email notification about the mail with a link to set their password.\n\nGuests users can only access files shared to them and cannot create any files outside of shares, additionally, the apps accessible to guest accounts are whitelisted." : "👥 Permet une meilleure collaboration avec les utilisateurs externes en permettant aux utilisateurs de créer un compte invité.\n\nLes comptes invités peuvent être créés à partir du menu de partage en saisissant l'adresse e-mail ou le nom du destinataire et en choisissant « créer un compte invité », une fois le partage créé, l'utilisateur invité recevra une notification par e-mail à propos de l'e-mail avec un lien pour définir son mot de passe.\n\nLes utilisateurs invités peuvent uniquement accéder aux fichiers qui leur sont partagés et ne peuvent créer aucun fichier en dehors des partages. De plus, les applications accessibles aux comptes invités sont sur liste blanche.",
+    "Convert to guest account" : "Convertir en compte invité",
+    "The account \"{userId}\" will be converted into a guest account. It keeps its login name and password but becomes a limited guest account, restricted to the apps allowed for guests." : "Le compte « {userId} » sera converti en compte invité. Il conservera son identifiant et son mot de passe, mais deviendra un compte invité limité aux applications autorisées pour les invités.",
+    "This is only possible for accounts that have never logged in. It cannot be undone automatically." : "Cette opération n’est possible que pour les comptes qui ne se sont jamais connectés. Elle ne peut pas être annulée automatiquement.",
     "Cancel" : "Annuler",
+    "Converting account…" : "Conversion du compte…",
+    "Convert to guest" : "Convertir en compte invité",
     "None" : "Aucun",
     "Name" : "Nom",
     "Shared By" : "Partagé par",
@@ -91,6 +101,7 @@
     "Default quota for new guest accounts" : "Quota par défaut des nouveaux comptes invités",
     "Add guest" : "Ajouter un Invité",
     "A user with this ID or email address already exists" : "Un utilisateur avec cet ID ou cette adresse e-mail existe déjà",
-    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "L'invité sera bientôt converti en un compte normal avec le nom de compte \"{userId}\""
+    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "L'invité sera bientôt converti en un compte normal avec le nom de compte \"{userId}\"",
+    "Account \"{userId}\" was converted into a guest account" : "Le compte « {userId} » a été converti en compte invité"
 },"pluralForm" :"nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"
 }

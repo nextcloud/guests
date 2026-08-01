@@ -9,6 +9,11 @@
     "User already exists" : "Naudotojas jau yra",
     "User is not a guest" : "Naudotojas nėra svečias",
     "Account not found" : "Paskyra nerasta",
+    "Account is already a guest" : "Paskyra jau yra kaip svečio paskyra",
+    "Only regular accounts can be converted to guests" : "Tik įprastas paskyras galima paversti svečių paskyromis",
+    "Only accounts that have never logged in can be converted" : "Galima konvertuoti tik tas paskyras, į kurias niekada nebuvo prisijungta",
+    "Accounts with administrative privileges cannot be converted to guests" : "Paskyrų su administratoriaus teisėmis negalima paversti svečių paskyromis",
+    "An error occurred while converting the account" : "Konvertuojant paskyrą įvyko klaida",
     "%s via %s" : "%s per %s",
     "Couldn't send reset email. Please contact your administrator." : "Nepavyko išsiųsti atstatymo el. laiško, susisiekite su savo administratoriumi.",
     "%s shared a file with you" : "%s bendrino failą su jumis",
@@ -33,7 +38,12 @@
     "Conversion of guest {guest} to {user} completed" : "Svečio {guest} konversija į {user} užbaigta",
     "Create guest accounts for easier collaboration" : "Sukurti svečio paskyras lengvesniam bendradarbiavimui",
     "👥 Allows for better collaboration with external users by allowing users to create guests account.\n\nGuests accounts can be created from the share menu by entering either the recipients email or name and choosing \"create guest account\", once the share is created the guest user will receive an email notification about the mail with a link to set their password.\n\nGuests users can only access files shared to them and cannot create any files outside of shares, additionally, the apps accessible to guest accounts are whitelisted." : "👥 Sudaro sąlygas geriau bendradarbiauti su išoriniais vartotojais, nes leidžia vartotojams kurti svečių paskyras.\n\nSvečių paskyras galima sukurti iš dalijimosi meniu, įvedant gavėjo el. pašto adresą arba vardą ir pasirinkus „sukurti svečio paskyrą“. Sukūrus dalijimąsi, svečias gaus el. laišką su nuoroda, kuria galės nustatyti savo slaptažodį.\n\nSvečiai gali pasiekti tik su jais bendrinamus failus ir negali kurti jokių failų už bendrinimo ribų. Be to, programos, prieinamos svečių paskyroms, yra įtrauktos į baltąjį sąrašą.",
+    "Convert to guest account" : "Konvertuoti į svečio paskyrą",
+    "The account \"{userId}\" will be converted into a guest account. It keeps its login name and password but becomes a limited guest account, restricted to the apps allowed for guests." : "Paskyra „{userId}“ bus pakeista į svečio paskyrą. Ji išlaikys savo prisijungimo vardą bei slaptažodį, tačiau taps ribota svečio paskyra, kurioje bus galima naudotis tik svečiams leidžiamomis programėlėmis.",
+    "This is only possible for accounts that have never logged in. It cannot be undone automatically." : "Tai įmanoma tik paskyroms, į kurias niekada nebuvo prisijungta. Šio veiksmo negalima automatiškai atšaukti.",
     "Cancel" : "Atsisakyti",
+    "Converting account…" : "Konvertuojama paskyra...",
+    "Convert to guest" : "Paversti svečiu",
     "None" : "Nėra",
     "Name" : "Pavadinimas",
     "Shared By" : "Bendrina",
@@ -91,6 +101,7 @@
     "Default quota for new guest accounts" : "Numatytoji kvota naujoms svečių paskyroms",
     "Add guest" : "Pridėti svečią",
     "A user with this ID or email address already exists" : "Vartotojas su šiuo ID ar el. pašto adresu jau yra",
-    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Netrukus svečio paskyra bus pakeista į įprastą paskyrą su paskyros pavadinimu „{userId}“."
+    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Netrukus svečio paskyra bus pakeista į įprastą paskyrą su paskyros pavadinimu „{userId}“.",
+    "Account \"{userId}\" was converted into a guest account" : "Paskyra „{userId}“ buvo paversta svečio paskyra"
 },"pluralForm" :"nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);"
 }
