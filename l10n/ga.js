@@ -11,6 +11,11 @@ OC.L10N.register(
     "User already exists" : "Úsáideoir ann cheana féin",
     "User is not a guest" : "Ní aoi é an t-úsáideoir",
     "Account not found" : "Cuntas gan aimsiú",
+    "Account is already a guest" : "Is aoi cheana féin an cuntas",
+    "Only regular accounts can be converted to guests" : "Ní féidir ach cuntais rialta a thiontú ina n-aíonna",
+    "Only accounts that have never logged in can be converted" : "Ní féidir ach cuntais nár logáil isteach riamh a thiontú",
+    "Accounts with administrative privileges cannot be converted to guests" : "Ní féidir cuntais a bhfuil pribhléidí riaracháin acu a thiontú ina n-aíonna",
+    "An error occurred while converting the account" : "Tharla earráid agus an cuntas á thiontú",
     "%s via %s" : "%s tríd%s",
     "Couldn't send reset email. Please contact your administrator." : "Níorbh fhéidir ríomhphost athshocraithe a sheoladh. Déan teagmháil le do riarthóir le do thoil.",
     "%s shared a file with you" : "Roinn %s comhad leat",
@@ -35,7 +40,12 @@ OC.L10N.register(
     "Conversion of guest {guest} to {user} completed" : "Críochnaíodh tiontú {guest} go {user}",
     "Create guest accounts for easier collaboration" : "Cruthaigh cuntais aoi le haghaidh comhoibriú níos éasca",
     "👥 Allows for better collaboration with external users by allowing users to create guests account.\n\nGuests accounts can be created from the share menu by entering either the recipients email or name and choosing \"create guest account\", once the share is created the guest user will receive an email notification about the mail with a link to set their password.\n\nGuests users can only access files shared to them and cannot create any files outside of shares, additionally, the apps accessible to guest accounts are whitelisted." : "👥 Ligeann sé do chomhoibriú níos fearr le húsáideoirí seachtracha trí ligean d'úsáideoirí cuntas aíonna a chruthú.\n\nIs féidir cuntais aíonna a chruthú ón roghchlár scaireanna trí ríomhphost nó ainm an fhaighteora a chur isteach agus “cruthaigh cuntas aoi” a roghnú, a luaithe a chruthaítear an sciar gheobhaidh an t-aoi-úsáideoir fógra ríomhphoist faoin ríomhphost le nasc chun a phasfhocal a shocrú.\n\nNí féidir le húsáideoirí aíonna rochtain a fháil ach ar chomhaid a roinntear leo agus ní féidir leo aon chomhaid a chruthú lasmuigh de scaireanna, chomh maith leis sin, tá na haipeanna a bhfuil rochtain ag aoi-chuntais orthu ar an liosta bán.",
+    "Convert to guest account" : "Tiontaigh go cuntas aoi",
+    "The account \"{userId}\" will be converted into a guest account. It keeps its login name and password but becomes a limited guest account, restricted to the apps allowed for guests." : "Déanfar cuntas aoi den chuntas \"{userId}\". Coinníonn sé a ainm logála isteach agus a phasfhocal ach bíonn sé ina chuntas aoi teoranta, atá srianta do na haipeanna atá ceadaithe d'aíonna.",
+    "This is only possible for accounts that have never logged in. It cannot be undone automatically." : "Ní féidir é seo a dhéanamh ach amháin i gcás cuntas nár logáil isteach riamh. Ní féidir é a chealú go huathoibríoch.",
     "Cancel" : "Cealaigh",
+    "Converting account…" : "Ag comhshó cuntais…",
+    "Convert to guest" : "Tiontaigh go haoi",
     "None" : "aon cheann",
     "Name" : "Ainm",
     "Shared By" : "Roinnte ag",
@@ -93,6 +103,7 @@ OC.L10N.register(
     "Default quota for new guest accounts" : "Cuóta réamhshocraithe do chuntais aoi nua",
     "Add guest" : "Cuir aoi leis",
     "A user with this ID or email address already exists" : "Tá úsáideoir leis an aitheantas nó an seoladh ríomhphoist seo ann cheana",
-    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Tiontófar aoi go gnáthchuntas leis an ainm cuntais \"{userId}\" go luath"
+    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Tiontófar aoi go gnáthchuntas leis an ainm cuntais \"{userId}\" go luath",
+    "Account \"{userId}\" was converted into a guest account" : "Rinneadh cuntas \"{userId}\" a thiontú ina chuntas aoi"
 },
 "nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4);");
