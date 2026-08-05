@@ -22,23 +22,26 @@ class FilteredSettingsManager implements IManager {
 	) {
 	}
 
-	private function isSettingAllowed(string $setting): bool {
-		$appId = App::getAppIdForClass($setting);
+	private function isSettingAllowed(string $setting, ?string $appId): bool {
+		// TODO when we depend on NC 34, drop App::getAppIdForClass
+		$appId = $appId ?? App::getAppIdForClass($setting);
 		return $this->appWhitelist->isAppWhitelisted($appId);
 	}
 
 	#[\Override]
-	public function registerSection(string $type, string $section): void {
-		$this->manager->registerSection($type, $section);
+	public function registerSection(string $type, string $section, ?string $appId = null): void {
+		/** @psalm-suppress TooManyArguments Starting with NC34, we have 3 args */
+		$this->manager->registerSection($type, $section, $appId);
 	}
 
 	#[\Override]
-	public function registerSetting(string $type, string $setting): void {
-		if (!$this->isSettingAllowed($setting)) {
+	public function registerSetting(string $type, string $setting, ?string $appId = null): void {
+		if (!$this->isSettingAllowed($setting, $appId)) {
 			return;
 		}
 
-		$this->manager->registerSetting($type, $setting);
+		/** @psalm-suppress TooManyArguments Starting with NC34, we have 3 args */
+		$this->manager->registerSetting($type, $setting, $appId);
 	}
 
 	#[\Override]
