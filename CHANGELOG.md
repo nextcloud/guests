@@ -6,6 +6,23 @@
 
 All notable changes to this project will be documented in this file.
 
+## 4.9.0
+### Features
+* feat: convert regular accounts to guests by @ernolf in https://github.com/nextcloud/guests/pull/1619
+
+### Fixes
+* fix(tests): scope admin settings heading locator to the guests section by @ernolf in https://github.com/nextcloud/guests/pull/1645
+* fix(SettingsManager): Adapt to change in master by @CarlSchwan in https://github.com/nextcloud/guests/pull/1652
+
+### Other
+* Chore(deps-dev): Bump brace-expansion from 2.1.0 to 2.1.4 by @dependabot[bot] in https://github.com/nextcloud/guests/pull/1648
+* Chore(deps): Bump @nextcloud/dialogs from 7.4.0 to 7.4.1 by @dependabot[bot] in https://github.com/nextcloud/guests/pull/1647
+* Chore(deps): Bump fast-uri from 3.1.4 to 3.1.5 by @dependabot[bot] in https://github.com/nextcloud/guests/pull/1650
+* Chore(deps): Bump axios from 1.16.0 to 1.18.1 by @dependabot[bot] in https://github.com/nextcloud/guests/pull/1635
+* Chore(deps): Bump dompurify from 3.4.11 to 3.4.12 by @dependabot[bot] in https://github.com/nextcloud/guests/pull/1638
+* Chore(deps): Bump immutable from 5.1.5 to 5.1.9 by @dependabot[bot] in https://github.com/nextcloud/guests/pull/1640
+* Chore(deps): Bump fast-uri from 3.1.2 to 3.1.4 by @dependabot[bot] in https://github.com/nextcloud/guests/pull/1639
+
 ## 4.8.0
 ### Features
 * feat(deps): Add Nextcloud 35 support by @nickvergessen in https://github.com/nextcloud/guests/pull/1568
