@@ -102,4 +102,28 @@ class UserBackendTest extends TestCase {
 		$this->assertEquals($uid, $this->backend->checkPassword($email, 'bar'));
 		$this->assertEquals('Karl Doe', $this->backend->getDisplayName($uid));
 	}
+
+	/**
+	 * An outdated hash has to be upgraded no matter whether the guest logged
+	 * in with the user id or with the email address.
+	 */
+	public function testOutdatedPasswordHashIsUpgradedOnEmailLogin(): void {
+		$email = 'foo@example.tld';
+		$uid = hash('sha256', $email);
+		$this->backend->createUser($uid, 'bar');
+		$this->backend->setInitialEmail($uid, $email);
+
+		// An unprefixed bcrypt hash is a legacy hash, so verifying it always
+		// hands back a replacement hash.
+		$legacyHash = password_hash('bar', PASSWORD_BCRYPT);
+		$query = Server::get(IDBConnection::class)->getQueryBuilder();
+		$query->update('guests_users')
+			->set('password', $query->createNamedParameter($legacyHash))
+			->where($query->expr()->eq('uid_lower', $query->createNamedParameter($uid)));
+		$query->executeStatement();
+
+		$this->assertEquals($uid, $this->backend->checkPassword($email, 'bar'));
+
+		$this->assertNotEquals($legacyHash, $this->backend->getPasswordHash($uid));
+	}
 }
