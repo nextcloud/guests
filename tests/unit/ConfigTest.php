@@ -123,6 +123,17 @@ class ConfigTest extends TestCase {
 		$this->assertEquals(['app1', 'app2', 'app3'], $this->guestConfig->getAppWhitelist());
 	}
 
+	public function testGetAppWhitelistEmpty(): void {
+		$this->appConfig->method('getAppValueString')
+			->with('whitelist')
+			->willReturn('');
+
+		// explode() on an empty string yields a single empty entry, which
+		// would both whitelist the empty app id and show up as a blank entry
+		// in the admin settings.
+		$this->assertEquals([], $this->guestConfig->getAppWhitelist());
+	}
+
 	public function testSetAppWhitelistArray(): void {
 		$this->appConfig->expects($this->once())
 			->method('setAppValueString')

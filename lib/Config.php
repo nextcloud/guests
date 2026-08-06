@@ -104,7 +104,7 @@ class Config {
 	 * @return list<string>
 	 */
 	public function getAppWhitelist(): array {
-		return explode(',', $this->appConfig->getAppValueString(ConfigLexicon::WHITE_LIST));
+		return array_values(array_filter(explode(',', $this->appConfig->getAppValueString(ConfigLexicon::WHITE_LIST)), static fn (string $app): bool => $app !== ''));
 	}
 
 	public function setAppWhitelist(array $whitelist): void {
