@@ -83,7 +83,8 @@ class AppWhitelist {
 		if (!$this->isUrlAllowed($user, $url)) {
 			header('HTTP/1.0 403 Forbidden');
 			Template::printErrorPage($this->l10n->t(
-				"Access to this resource ($app) is forbidden for guests."
+				'Access to this resource (%s) is forbidden for guests.',
+				[$app]
 			));
 			exit;
 		}
