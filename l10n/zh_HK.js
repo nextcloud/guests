@@ -11,6 +11,11 @@ OC.L10N.register(
     "User already exists" : "用戶已存在",
     "User is not a guest" : "用戶不是訪客",
     "Account not found" : "找不到帳戶",
+    "Account is already a guest" : "帳號已為訪客",
+    "Only regular accounts can be converted to guests" : "僅一般帳號可轉換為訪客",
+    "Only accounts that have never logged in can be converted" : "僅從未登入的帳號可轉換",
+    "Accounts with administrative privileges cannot be converted to guests" : "有管理權限的帳號無法被轉換為訪客",
+    "An error occurred while converting the account" : "轉換帳號時發生錯誤",
     "%s via %s" : "%s 經由 %s",
     "Couldn't send reset email. Please contact your administrator." : "無法寄出重設密碼電郵。請聯絡您的管理員。",
     "%s shared a file with you" : "%s 與您分享了檔案",
@@ -35,7 +40,12 @@ OC.L10N.register(
     "Conversion of guest {guest} to {user} completed" : "轉換訪客 {guest} 為 {user} 已完成",
     "Create guest accounts for easier collaboration" : "建立訪客帳戶，讓協作更簡單",
     "👥 Allows for better collaboration with external users by allowing users to create guests account.\n\nGuests accounts can be created from the share menu by entering either the recipients email or name and choosing \"create guest account\", once the share is created the guest user will receive an email notification about the mail with a link to set their password.\n\nGuests users can only access files shared to them and cannot create any files outside of shares, additionally, the apps accessible to guest accounts are whitelisted." : "👥 透過允許用戶建立訪客帳號來與外部用戶有更好的協作。\n\n訪客帳號可以透過在分享選單中輸入收件者電子郵件或名稱並選取「建立訪客帳號」來建立，一旦建立了分享，訪客用戶將會收到設定他們密碼的電子郵件。\n\n訪客用戶僅能存取與他們分享的檔案，且無法在分享之外建立任何檔案，此外，訪客帳號可存取的應用程式也必須放入白名單。",
+    "Convert to guest account" : "轉換為訪客帳戶",
+    "The account \"{userId}\" will be converted into a guest account. It keeps its login name and password but becomes a limited guest account, restricted to the apps allowed for guests." : "帳號「{userId}」將會轉換為訪客帳戶。該帳號將保留原有的登入名稱和密碼，但會轉變為功能受限的訪客帳戶，僅能使用允許訪客使用的應用程式。",
+    "This is only possible for accounts that have never logged in. It cannot be undone automatically." : "此功能僅適用於從未登入過的帳號。此操作無法自動撤銷。",
     "Cancel" : "取消",
+    "Converting account…" : "正在轉換帳戶 ⋯",
+    "Convert to guest" : "轉換為訪客",
     "None" : "無",
     "Name" : "名字",
     "Shared By" : "分享者：",
@@ -93,6 +103,7 @@ OC.L10N.register(
     "Default quota for new guest accounts" : "新訪客帳戶的預設配額",
     "Add guest" : "添加訪客",
     "A user with this ID or email address already exists" : "有用戶已經使用此名稱或電郵地址註冊。",
-    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "訪客快將轉換為「{userId}」為名的一般帳戶"
+    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "訪客快將轉換為「{userId}」為名的一般帳戶",
+    "Account \"{userId}\" was converted into a guest account" : "帳戶「{userId}」已轉換為訪客帳戶"
 },
 "nplurals=1; plural=0;");

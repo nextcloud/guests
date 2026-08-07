@@ -9,6 +9,11 @@
     "User already exists" : "User already exists",
     "User is not a guest" : "User is not a guest",
     "Account not found" : "Account not found",
+    "Account is already a guest" : "Account is already a guest",
+    "Only regular accounts can be converted to guests" : "Only regular accounts can be converted to guests",
+    "Only accounts that have never logged in can be converted" : "Only accounts that have never logged in can be converted",
+    "Accounts with administrative privileges cannot be converted to guests" : "Accounts with administrative privileges cannot be converted to guests",
+    "An error occurred while converting the account" : "An error occurred while converting the account",
     "%s via %s" : "%s via %s",
     "Couldn't send reset email. Please contact your administrator." : "Couldn't send reset email. Please contact your administrator.",
     "%s shared a file with you" : "%s shared a file with you",
@@ -33,7 +38,12 @@
     "Conversion of guest {guest} to {user} completed" : "Conversion of guest {guest} to {user} completed",
     "Create guest accounts for easier collaboration" : "Create guest accounts for easier collaboration",
     "👥 Allows for better collaboration with external users by allowing users to create guests account.\n\nGuests accounts can be created from the share menu by entering either the recipients email or name and choosing \"create guest account\", once the share is created the guest user will receive an email notification about the mail with a link to set their password.\n\nGuests users can only access files shared to them and cannot create any files outside of shares, additionally, the apps accessible to guest accounts are whitelisted." : "👥 Allows for better collaboration with external users by allowing users to create guests account.\n\nGuests accounts can be created from the share menu by entering either the recipients email or name and choosing \"create guest account\", once the share is created the guest user will receive an email notification about the mail with a link to set their password.\n\nGuests users can only access files shared to them and cannot create any files outside of shares, additionally, the apps accessible to guest accounts are whitelisted.",
+    "Convert to guest account" : "Convert to guest account",
+    "The account \"{userId}\" will be converted into a guest account. It keeps its login name and password but becomes a limited guest account, restricted to the apps allowed for guests." : "The account \"{userId}\" will be converted into a guest account. It keeps its login name and password but becomes a limited guest account, restricted to the apps allowed for guests.",
+    "This is only possible for accounts that have never logged in. It cannot be undone automatically." : "This is only possible for accounts that have never logged in. It cannot be undone automatically.",
     "Cancel" : "Cancel",
+    "Converting account…" : "Converting account…",
+    "Convert to guest" : "Convert to guest",
     "None" : "None",
     "Name" : "Surname",
     "Shared By" : "Shared By",
@@ -91,6 +101,7 @@
     "Default quota for new guest accounts" : "Default quota for new guest accounts",
     "Add guest" : "Add guest",
     "A user with this ID or email address already exists" : "A user with this ID or email address already exists",
-    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Guest will be converted to a regular account with the account name \"{userId}\" soon"
+    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Guest will be converted to a regular account with the account name \"{userId}\" soon",
+    "Account \"{userId}\" was converted into a guest account" : "Account \"{userId}\" was converted into a guest account"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
