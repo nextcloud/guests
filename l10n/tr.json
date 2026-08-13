@@ -39,7 +39,11 @@
     "Create guest accounts for easier collaboration" : "Daha kolay iş birliği yapmak için konuk hesapları oluşturun",
     "👥 Allows for better collaboration with external users by allowing users to create guests account.\n\nGuests accounts can be created from the share menu by entering either the recipients email or name and choosing \"create guest account\", once the share is created the guest user will receive an email notification about the mail with a link to set their password.\n\nGuests users can only access files shared to them and cannot create any files outside of shares, additionally, the apps accessible to guest accounts are whitelisted." : "👥 Kullanıcıların konuk hesaplar eklemesine izin vererek, dış kullanıcılar ile daha iyi iş birliği sağlar.\n\nKonuk hesapları, paylaş menüsünden alıcının e-posta adresini yazarak ya da \"konuk hesabı ekle\" seçeneğini seçerek eklenebilir. Paylaşım eklendikten sonra konuk kullanıcılara parolalarını ayarlayabilecekleri bir bağlantının bulunduğu bir e-posta gönderilir.\n\nKonuk kullanıcılar yalnızca kendileri ile paylaşılan dosyalara erişebilir ve paylaşımlar dışına dosya ekleyemez. Ayrıca konuk hesapların erişebileceği uygulamalar izin verilenler listesine eklenir. ",
     "Convert to guest account" : "Konuk hesabına dönüştür",
+    "The account \"{userId}\" will be converted into a guest account. It keeps its login name and password but becomes a limited guest account, restricted to the apps allowed for guests." : "\"{userId}\" hesabı bir konuk hesabına dönüştürülecek. Kullanıcı adı ve parolası korunacak. Ancak konuklar için izin verilen uygulamalarla sınırlı bir konuk hesabına dönüşecek.",
+    "This is only possible for accounts that have never logged in. It cannot be undone automatically." : "Bu işlem yalnızca hiç oturum açmamış hesaplar için yapılabilir. Otomatik olarak geri alınamaz.",
     "Cancel" : "İptal",
+    "Converting account…" : "Hesap dönüştürülüyor…",
+    "Convert to guest" : "Konuk hesabına dönüştür",
     "None" : "Yok",
     "Name" : "Ad",
     "Shared By" : "Paylaşan",
@@ -69,7 +73,9 @@
     "Add guest to groups:" : "Konuk şu gruplara eklensin:",
     "An error occurred, try again" : "Bir sorun çıktı. Yeniden deneyin",
     "Invite guest" : "Konuk davet et",
+    "Default quota ({size})" : "Varsayılan kota ({size})",
     "Unlimited" : "Sınırsız",
+    "Please enter a quota with a unit, for example \"500 MB\" or \"2 GB\"" : "Lütfen kotayı bir birim ile yazın. Örnek: \"500 MB\" veya \"2 GB\"",
     "Error" : "Hata",
     "Your settings have been updated" : "Ayarlarınız güncellendi",
     "Saving …" : "Kaydediliyor…",
@@ -88,9 +94,14 @@
     "Limit guest account creation to the following groups only" : "Konuk hesaplarını yalnızca aşağıdaki gruplar oluşturabilsin",
     "Select groups to allow" : "İzin verilecek grupları seçin",
     "Limit guest access to an app's allowlist" : "Konuk erişimi bir uygulamanın beyaz listesi ile sınırlansın",
+    "No apps selected" : "Herhangi bir uygulama seçilmemiş",
+    "Edit allowlist" : "İzin verilenler listesini düzenle",
+    "Confirm allowlist" : "İzin verilenler listesini onayla",
     "Reset allowlist" : "İzin verilenler listesini sıfırla",
+    "Default quota for new guest accounts" : "Yeni konuk hesapları için varsayılan kota",
     "Add guest" : "Konuk ekle",
     "A user with this ID or email address already exists" : "Bu kimlik ya da e-posta adresinin kayıtlı olduğu bir kullanıcı hesabı zaten var.",
-    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Konuk yakında \"{userId}\" hesap adıyla normal bir hesaba dönüştürülecek"
+    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Konuk yakında \"{userId}\" hesap adıyla normal bir hesaba dönüştürülecek",
+    "Account \"{userId}\" was converted into a guest account" : "\"{userId}\" hesabı konuk hesabına dönüştürüldü"
 },"pluralForm" :"nplurals=2; plural=(n > 1);"
 }
