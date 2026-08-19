@@ -8,6 +8,7 @@ OC.L10N.register(
     "User successfully created" : "Успешно създаден потребител",
     "Failed to authorize" : "Неуспешно оторизиране",
     "User already exists" : "Вече съществува потребител",
+    "Account not found" : "Няма намерен профил",
     "%s via %s" : "%s през %s",
     "Couldn't send reset email. Please contact your administrator." : "Изпращането на електронна поща е неуспешно. Моля, свържете се с вашия администратор.",
     "Hey there," : "Здравейте,",
