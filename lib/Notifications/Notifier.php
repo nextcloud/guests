@@ -49,7 +49,7 @@ class Notifier implements INotifier {
 			],
 			'user' => [
 				'type' => $targetUser ? 'user' : 'highlight',
-				'id' => $targetUser?->getUID() ?? $source,
+				'id' => $targetUser?->getUID() ?? $target,
 				'name' => $targetUser?->getDisplayName() ?? $target,
 			],
 		];
