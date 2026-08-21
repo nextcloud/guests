@@ -28,7 +28,16 @@ class AppWhitelist {
 
 	private readonly int $baseUrlLength;
 
-	public const WHITELIST_ALWAYS = 'core,theming,settings,avatar,files,heartbeat,dav,guests,impersonate,accessibility,terms_of_service,dashboard,weather_status,user_status,apporder,twofactor_totp,twofactor_webauthn,twofactor_backupcodes,twofactor_nextcloud_notification';
+	/**
+	 * Apps a guest may always reach, no matter what the administrator
+	 * configured.
+	 *
+	 * The twofactor_* entries are a safety net. Provider apps are also picked
+	 * up at runtime by isTwoFactorProviderApp(), but that only sees providers
+	 * declared in info.xml, and only while info.xml is readable, so the ones
+	 * that were listed here before stay listed.
+	 */
+	public const WHITELIST_ALWAYS = 'core,theming,settings,avatar,files,heartbeat,dav,guests,impersonate,accessibility,terms_of_service,dashboard,weather_status,user_status,apporder,twofactor_totp,twofactor_webauthn,twofactor_backupcodes,twofactor_nextcloud_notification,twofactor_gateway';
 
 	public const DEFAULT_WHITELIST = 'files_trashbin,files_versions,files_sharing,files_texteditor,text,activity,firstrunwizard,photos,notifications,dashboard,user_status,weather_status';
 
@@ -48,7 +57,19 @@ class AppWhitelist {
 		$whitelist = $this->config->getAppWhitelist();
 		$alwaysEnabled = explode(',', self::WHITELIST_ALWAYS);
 
-		return in_array($appId, array_merge($whitelist, $alwaysEnabled), true);
+		if (in_array($appId, array_merge($whitelist, $alwaysEnabled), true)) {
+			return true;
+		}
+
+		return $this->isTwoFactorProviderApp($appId);
+	}
+
+	private function isTwoFactorProviderApp(string $appId): bool {
+		if (!in_array($appId, $this->appManager->getEnabledApps(), true)) {
+			return false;
+		}
+
+		return !empty($this->appManager->getAppInfo($appId)['two-factor-providers']);
 	}
 
 	public function isWhitelistEnabled(): bool {

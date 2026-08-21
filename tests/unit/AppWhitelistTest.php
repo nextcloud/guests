@@ -93,4 +93,72 @@ class AppWhitelistTest extends TestCase {
 
 		$this->assertFalse($this->appWhitelist->isAppWhitelisted(''));
 	}
+
+	/**
+	 * Two-factor authentication has to keep working for guests, so an app that
+	 * declares a provider in its info.xml is allowed without the administrator
+	 * having to whitelist it by hand.
+	 */
+	public function testTwoFactorProviderAppIsWhitelisted(): void {
+		$this->config->method('getAppWhitelist')
+			->willReturn(['foo', 'bar']);
+		$this->appManager->method('getEnabledApps')
+			->willReturn(['twofactor_email']);
+		$this->appManager->method('getAppInfo')
+			->willReturn(['two-factor-providers' => ['OCA\TwoFactorEmail\Provider\EmailProvider']]);
+
+		$this->assertTrue($this->appWhitelist->isAppWhitelisted('twofactor_email'));
+	}
+
+	/**
+	 * A provider app the administrator disabled must not be whitelisted, and an
+	 * unknown app id must not reach the info.xml lookup at all, so that guesses
+	 * cannot make every request resolve an app path on disk.
+	 */
+	public function testDisabledTwoFactorProviderAppIsNotWhitelisted(): void {
+		$this->config->method('getAppWhitelist')
+			->willReturn([]);
+		$this->appManager->method('getEnabledApps')
+			->willReturn([]);
+		$this->appManager->expects($this->never())
+			->method('getAppInfo');
+
+		$this->assertFalse($this->appWhitelist->isAppWhitelisted('twofactor_email'));
+	}
+
+	/**
+	 * The runtime lookup only sees providers declared in info.xml, and only
+	 * while info.xml is readable, so the provider apps that are whitelisted by
+	 * name have to stay whitelisted by name. Both stubs are deliberately empty
+	 * here so that only WHITELIST_ALWAYS can satisfy the assertions.
+	 */
+	public function testTwoFactorAppsAreWhitelistedWithoutTheInfoXmlLookup(): void {
+		$this->config->method('getAppWhitelist')
+			->willReturn([]);
+		$this->appManager->method('getEnabledApps')
+			->willReturn([]);
+		$this->appManager->method('getAppInfo')
+			->willReturn(null);
+
+		foreach ([
+			'twofactor_totp',
+			'twofactor_webauthn',
+			'twofactor_backupcodes',
+			'twofactor_nextcloud_notification',
+			'twofactor_gateway',
+		] as $appId) {
+			$this->assertTrue($this->appWhitelist->isAppWhitelisted($appId), $appId);
+		}
+	}
+
+	public function testAppWithoutTwoFactorProviderIsNotWhitelisted(): void {
+		$this->config->method('getAppWhitelist')
+			->willReturn([]);
+		$this->appManager->method('getEnabledApps')
+			->willReturn(['news']);
+		$this->appManager->method('getAppInfo')
+			->willReturn(['two-factor-providers' => []]);
+
+		$this->assertFalse($this->appWhitelist->isAppWhitelisted('news'));
+	}
 }
