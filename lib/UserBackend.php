@@ -233,7 +233,7 @@ class UserBackend extends ABackend implements
 				->orWhere($query->expr()->iLike('displayname', $query->createPositionalParameter('%' . $this->dbConn->escapeLikeParameter($search) . '%')))
 				->orWhere($query->expr()->iLike('configvalue', $query->createPositionalParameter('%' . $this->dbConn->escapeLikeParameter($search) . '%')))
 				->orderBy($query->func()->lower('displayname'), 'ASC')
-				->orderBy('uid_lower', 'ASC')
+				->addOrderBy('uid_lower', 'ASC')
 				->setMaxResults($limit)
 				->setFirstResult($offset);
 		}

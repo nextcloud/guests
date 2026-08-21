@@ -126,4 +126,17 @@ class UserBackendTest extends TestCase {
 
 		$this->assertNotEquals($legacyHash, $this->backend->getPasswordHash($uid));
 	}
+
+	/**
+	 * Searching orders by display name first, which also decides which
+	 * guests a limited search returns.
+	 */
+	public function testSearchIsOrderedByDisplayName(): void {
+		$this->backend->createUser('aaa@example.tld', 'bar');
+		$this->backend->setDisplayName('aaa@example.tld', 'Zoe');
+		$this->backend->createUser('zzz@example.tld', 'bar');
+		$this->backend->setDisplayName('zzz@example.tld', 'Alice');
+
+		$this->assertEquals(['Alice', 'Zoe'], array_values($this->backend->getDisplayNames('example.tld')));
+	}
 }
