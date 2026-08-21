@@ -82,4 +82,15 @@ class AppWhitelistTest extends TestCase {
 		$this->assertTrue($this->appWhitelist->isUrlAllowed($user, '/apps/news/...'));
 		$this->assertTrue($this->appWhitelist->isUrlAllowed($user, '/apps/foo/...'));
 	}
+
+	/**
+	 * getRequestedApp() returns an empty string for urls that carry no
+	 * resolvable app id, so it must never be treated as whitelisted.
+	 */
+	public function testEmptyAppIdIsNotWhitelisted(): void {
+		$this->config->method('getAppWhitelist')
+			->willReturn(['foo', 'bar']);
+
+		$this->assertFalse($this->appWhitelist->isAppWhitelisted(''));
+	}
 }
