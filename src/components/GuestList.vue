@@ -59,7 +59,7 @@
 							:key="guest.email + '-details'"
 							class="details">
 							<td colspan="5">
-								<GuestDetails :guestId="guest.email" />
+								<GuestDetails :guestId="guest.uid" />
 							</td>
 						</tr>
 					</template>
