@@ -310,7 +310,9 @@ class UserBackend extends ABackend implements
 			$newHash = '';
 			if ($this->hasher->verify($password, $storedHash, $newHash)) {
 				if ($newHash !== '') {
-					$this->setPassword($loginName, $password);
+					// $loginName can be the email address, while setPassword()
+					// matches on the user id.
+					$this->setPassword((string)$row['uid'], $password);
 				}
 
 				return (string)$row['uid'];
