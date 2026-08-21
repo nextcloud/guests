@@ -9,6 +9,7 @@
     xsi:schemaLocation="https://getpsalm.org/schema/config vendor-bin/psalm/vendor/vimeo/psalm/config.xsd"
     errorBaseline="tests/psalm-baseline.xml"
     errorLevel="4"
+    findUnusedIssueHandlerSuppression="false"
     findUnusedBaselineEntry="false"
     findUnusedCode="false"
     phpVersion="8.1"
