@@ -133,6 +133,21 @@ namespace OC {
 		 */
 		public function getValue($app, $key, $default = '') {
 		}
+
+		public function getValueString(string $app, string $key, string $default = '', bool $lazy = false): string {
+		}
+
+		public function getValueBool(string $app, string $key, bool $default = false, bool $lazy = false): bool {
+		}
+
+		public function getValueInt(string $app, string $key, int $default = 0, bool $lazy = false): int {
+		}
+
+		public function getValueFloat(string $app, string $key, float $default = 0, bool $lazy = false): float {
+		}
+
+		public function getValueArray(string $app, string $key, array $default = [], bool $lazy = false): array {
+		}
 	}
 }
 
