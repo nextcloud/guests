@@ -1,6 +1,7 @@
 OC.L10N.register(
     "guests",
     {
+    "Access to this resource (%s) is forbidden for guests." : "Bu kaynağa (%s) konukların erişmesine izin verilmiyor.",
     "__language_name__" : "Türkçe",
     "Invalid mail address" : "E-posta adresi geçersiz",
     "A user with that email already exists." : "Bu e-posta adresinin kayıtlı olduğu bir kullanıcı hesabı zaten var.",

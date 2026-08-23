@@ -1,6 +1,7 @@
 OC.L10N.register(
     "guests",
     {
+    "Access to this resource (%s) is forbidden for guests." : "Ligipääs sellele ressursile (%s) on külaliste jaoks keelatud.",
     "__language_name__" : "Eesti",
     "Invalid mail address" : "Vigane e-posti aadress",
     "A user with that email already exists." : "Selle e-posti aadressiga kasutaja on juba olemas.",

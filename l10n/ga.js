@@ -1,6 +1,7 @@
 OC.L10N.register(
     "guests",
     {
+    "Access to this resource (%s) is forbidden for guests." : "Tá cosc ​​ar rochtain ar an acmhainn seo (%s) d'aíonna.",
     "__language_name__" : "__ainm_teanga__",
     "Invalid mail address" : "Seoladh ríomhphoist neamhbhailí",
     "A user with that email already exists." : "Tá úsáideoir leis an ríomhphost sin ann cheana féin.",
