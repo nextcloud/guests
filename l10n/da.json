@@ -44,6 +44,7 @@
     "Your settings have been updated" : "Dine indstillinger er opdateret",
     "Saving …" : "Gemmer …",
     "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Kun Gruppeadministratorer kan tilføje gæster, og gæster skal tilknyttes til mindst en gruppe, som den, der opretter delingen, er administrator for.",
+    "Add guest" : "Tilføj gæst",
     "A user with this ID or email address already exists" : "En bruger med dette ID eller denne e-mailadresse eksisterer allerede"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
