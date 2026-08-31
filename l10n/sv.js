@@ -1,6 +1,7 @@
 OC.L10N.register(
     "guests",
     {
+    "Access to this resource (%s) is forbidden for guests." : "Åtkomst till den här resursen (%s) är förbjuden för gäster.",
     "__language_name__" : "Svenska",
     "Invalid mail address" : "Ogiltig e-postadress",
     "A user with that email already exists." : "En användare med den e-postadressen finns redan.",
@@ -11,6 +12,11 @@ OC.L10N.register(
     "User already exists" : "Användaren finns redan",
     "User is not a guest" : "Användaren är inte en gäst",
     "Account not found" : "Kontot hittades inte",
+    "Account is already a guest" : "Kontot är redan ett gästkonto",
+    "Only regular accounts can be converted to guests" : "Endast vanliga konton kan konverteras till gästkonton",
+    "Only accounts that have never logged in can be converted" : "Endast konton som aldrig har loggat in kan konverteras",
+    "Accounts with administrative privileges cannot be converted to guests" : "Konton med administrativa behörigheter kan inte konverteras till gästkonton",
+    "An error occurred while converting the account" : "Ett fel uppstod när kontot konverterades",
     "%s via %s" : "%s via %s",
     "Couldn't send reset email. Please contact your administrator." : "Det gick inte att skicka återställningsmeddelandet. Kontakta administratören.",
     "%s shared a file with you" : "%s delade en fil med dig",
@@ -35,7 +41,12 @@ OC.L10N.register(
     "Conversion of guest {guest} to {user} completed" : "Konverteringen av gästen {guest} till {user} är slutförd",
     "Create guest accounts for easier collaboration" : "Skapa gästkonton för enklare samarbete",
     "👥 Allows for better collaboration with external users by allowing users to create guests account.\n\nGuests accounts can be created from the share menu by entering either the recipients email or name and choosing \"create guest account\", once the share is created the guest user will receive an email notification about the mail with a link to set their password.\n\nGuests users can only access files shared to them and cannot create any files outside of shares, additionally, the apps accessible to guest accounts are whitelisted." : "👥 Gör det enklare att samarbeta med externa användare genom att låta användare skapa gästkonton.\n\nGästkonton kan skapas från delningsmenyn genom att ange mottagarens e-postadress eller namn och välja ”Skapa gästkonto”. När delningen har skapats får gästanvändaren ett e-postmeddelande med en länk för att ange sitt lösenord.\n\nGästanvändare kan endast komma åt filer som har delats med dem och kan inte skapa filer utanför delningarna. Dessutom begränsas de appar som gästkonton kan använda genom en tillåtelselista.",
+    "Convert to guest account" : "Konvertera till gästkonto",
+    "The account \"{userId}\" will be converted into a guest account. It keeps its login name and password but becomes a limited guest account, restricted to the apps allowed for guests." : "Kontot ”{userId}” konverteras till ett gästkonto. Det behåller sitt inloggningsnamn och lösenord men blir ett begränsat gästkonto, begränsat till de appar som är tillåtna för gäster.",
+    "This is only possible for accounts that have never logged in. It cannot be undone automatically." : "Detta är endast möjligt för konton som aldrig har loggat in. Det går inte att ångra automatiskt.",
     "Cancel" : "Avbryt",
+    "Converting account…" : "Konverterar kontot …",
+    "Convert to guest" : "Konvertera till gäst",
     "None" : "Ingen",
     "Name" : "Namn",
     "Shared By" : "Delad av",
@@ -93,6 +104,7 @@ OC.L10N.register(
     "Default quota for new guest accounts" : "Standardkvot för nya gästkonton",
     "Add guest" : "Lägg till gäst",
     "A user with this ID or email address already exists" : "En användare med detta ID eller denna e-postadress finns redan.",
-    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Gästen kommer snart att konverteras till ett vanligt konto med kontonamnet \"{userId}\""
+    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Gästen kommer snart att konverteras till ett vanligt konto med kontonamnet \"{userId}\"",
+    "Account \"{userId}\" was converted into a guest account" : "Kontot ”{userId}” konverterades till ett gästkonto"
 },
 "nplurals=2; plural=(n != 1);");
