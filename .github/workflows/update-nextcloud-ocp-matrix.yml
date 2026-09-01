@@ -21,6 +21,9 @@ jobs:
   update-nextcloud-ocp:
     runs-on: ubuntu-latest
 
+    # Only allowed to be run on nextcloud repositories
+    if: ${{ github.repository_owner == 'nextcloud' }}
+
     strategy:
       fail-fast: false
       matrix:
@@ -30,7 +33,7 @@ jobs:
     name: update-nextcloud-ocp-${{ matrix.branches }}
 
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
           ref: ${{ matrix.branches }}
@@ -40,10 +43,10 @@ jobs:
         id: versions
         uses: icewind1991/nextcloud-version-matrix@8a7bac6300b2f0f3100088b297995a229558ddba # v1.3.2
 
-      - name: Set up php8.2
-        uses: shivammathur/setup-php@accd6127cb78bee3e8082180cb391013d204ef9f # v2.37.0
+      - name: Set up php8.3
+        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # 2.37.2
         with:
-          php-version: 8.2
+          php-version: 8.3
           # https://docs.nextcloud.com/server/stable/admin_manual/installation/source_installation.html#prerequisites-for-manual-installation
           extensions: bz2, ctype, curl, dom, fileinfo, gd, iconv, intl, json, libxml, mbstring, openssl, pcntl, posix, session, simplexml, xmlreader, xmlwriter, zip, zlib, sqlite, pdo_sqlite
           coverage: none
@@ -56,8 +59,8 @@ jobs:
           grep '/appinfo/info.xml' .github/CODEOWNERS | cut -f 2- -d ' ' | xargs | awk '{ print "codeowners="$0 }' >> $GITHUB_OUTPUT
         continue-on-error: true
 
-      - name: Composer install
-        run: composer install
+      - name: Install composer dependencies
+        uses: ramsey/composer-install@65e4f84970763564f46a70b8a54b90d033b3bdda # 4.0.0
 
       - name: Check composer bin for nextcloud/ocp exists
         id: check_composer_bin
@@ -90,7 +93,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
         with:
-          token: ${{ secrets.COMMAND_BOT_PAT }} # zizmor: ignore[secrets-outside-env]
+          token: ${{ secrets.COMMAND_BOT_PAT }}
           commit-message: 'chore(dev-deps): Bump nextcloud/ocp package'
           committer: GitHub <noreply@github.com>
           author: nextcloud-command <nextcloud-command@users.noreply.github.com>
