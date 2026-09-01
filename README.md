@@ -150,6 +150,13 @@ In addition, the following apps are always whitelisted to ensure minimal functio
 * `weather_status`
 * `user_status`
 * `apporder`
+* `twofactor_totp`
+* `twofactor_webauthn`
+* `twofactor_backupcodes`
+* `twofactor_nextcloud_notification`
+* `twofactor_gateway`
+
+Two-factor authentication has to keep working for guests as well, otherwise an instance that enforces it locks them out. So any enabled app that declares a two-factor provider in its `appinfo/info.xml` is allowed too, even when it is not on the list above and the administrator did not whitelist it. Such an app is still offered in the whitelist picker, but ticking or unticking it there makes no difference. Apps that register their provider from the app bootstrap instead cannot be recognised that way, which is why `twofactor_backupcodes` and `twofactor_gateway` are listed by name.
 
 ### Hide other users
 
