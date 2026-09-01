@@ -9,7 +9,9 @@ OC.L10N.register(
     "None" : "Keng",
     "Name" : "Numm",
     "Email" : "Email",
+    "Default" : "Standard",
     "Language" : "Sprooch",
+    "Unlimited" : "Onbegrenzt",
     "Error" : "Fehler"
 },
 "nplurals=2; plural=(n != 1);");

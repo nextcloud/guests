@@ -7,7 +7,9 @@
     "None" : "Keng",
     "Name" : "Numm",
     "Email" : "Email",
+    "Default" : "Standard",
     "Language" : "Sprooch",
+    "Unlimited" : "Onbegrenzt",
     "Error" : "Fehler"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
