@@ -38,6 +38,7 @@ class UserBackend extends ABackend implements
 	IGetRealUIDBackend,
 	IPasswordHashBackend {
 
+	/** @var CappedMemoryCache<array{'uid': string, 'displayname': ?string, 'email': ?string}|false> */
 	private CappedMemoryCache $cache;
 
 	private bool $allowListing = true;
@@ -73,8 +74,11 @@ class UserBackend extends ABackend implements
 
 			$result = $qb->executeStatement();
 
-			// Clear cache
-			unset($this->cache[$uid]);
+			$this->cache[$uid] = [
+				'uid' => $uid,
+				'displayname' => null,
+				'email' => null,
+			];
 
 			return (bool)$result;
 		}
@@ -98,7 +102,11 @@ class UserBackend extends ABackend implements
 		$result = $query->executeStatement();
 
 		if (isset($this->cache[$uid])) {
-			unset($this->cache[$uid]);
+			$cached = $this->cache[$uid];
+			if ($cached['email']) {
+				$this->cache[$cached['email']] = false;
+			}
+			$this->cache[$uid] = false;
 		}
 
 		return (bool)$result;
@@ -109,7 +117,18 @@ class UserBackend extends ABackend implements
 		$query->update('guests_users')
 			->set('email', $query->createNamedParameter($email))
 			->where($query->expr()->eq('uid_lower', $query->createNamedParameter(mb_strtolower($uid))));
-		return (bool)$query->executeStatement();
+		$result = (bool)$query->executeStatement();
+		if ($result && isset($this->cache[$uid])) {
+			$cached = $this->cache[$uid];
+			if ($cached['email'] !== null) {
+				$this->cache[$cached['email']] = false;
+			}
+
+			$cached['email'] = $email;
+			$this->cache[$uid] = $cached;
+			$this->cache[$email] = $cached;
+		}
+		return $result;
 	}
 
 	/**
@@ -179,7 +198,14 @@ class UserBackend extends ABackend implements
 				->where($query->expr()->eq('uid_lower', $query->createNamedParameter(mb_strtolower($uid))));
 			$query->executeStatement();
 
-			$this->cache[$uid]['displayname'] = $displayName;
+			$cached = $this->cache[$uid];
+			if ($cached) {
+				$cached['displayname'] = $displayName;
+				$this->cache[$uid] = $cached;
+				if ($cached['email']) {
+					$this->cache[$cached['email']] = $cached;
+				}
+			}
 
 			return true;
 		}
@@ -340,7 +366,7 @@ class UserBackend extends ABackend implements
 
 		if (!isset($this->cache[$uid])) {
 			$qb = $this->dbConn->getQueryBuilder();
-			$qb->select('uid', 'displayname')
+			$qb->select('uid', 'displayname', 'email')
 				->from('guests_users')
 				->where(
 					$qb->expr()->eq(
@@ -360,9 +386,21 @@ class UserBackend extends ABackend implements
 
 			// "uid" is primary key, so there can only be a single result
 			if ($row !== false) {
-				$this->cache[$uid] = [];
-				$this->cache[$uid]['uid'] = (string)$row['uid'];
-				$this->cache[$uid]['displayname'] = (string)$row['displayname'];
+				$email = $row['email'];
+				$realUid = (string)$row['uid'];
+
+				$this->cache[$realUid] = [
+					'uid' => $realUid,
+					'email' => $email,
+					'displayname' => $row['displayname'],
+				];
+				if ($email) {
+					$this->cache[$email] = [
+						'uid' => $realUid,
+						'email' => $email,
+						'displayname' => $row['displayname'],
+					];
+				}
 			} else {
 				return false;
 			}
