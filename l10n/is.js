@@ -39,6 +39,7 @@ OC.L10N.register(
     "Error" : "Villa",
     "Your settings have been updated" : "Stillingarnar þínar voru uppfærðar",
     "Saving …" : "Vista …",
-    "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Aðeins hópstjórum er heimilt að útbúa gesti og gestum verður að bæta í a.m.k. einn hóp þar sem sá sem útbýr sameignina er hópstjóri."
+    "Only group admins are allowed to create guests and guests must be added to at least one group the share creator is a group admin for." : "Aðeins hópstjórum er heimilt að útbúa gesti og gestum verður að bæta í a.m.k. einn hóp þar sem sá sem útbýr sameignina er hópstjóri.",
+    "Add guest" : "Bæta við gesti"
 },
 "nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);");
