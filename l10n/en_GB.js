@@ -1,6 +1,7 @@
 OC.L10N.register(
     "guests",
     {
+    "Access to this resource (%s) is forbidden for guests." : "Access to this resource (%s) is forbidden for guests.",
     "__language_name__" : "English (British English)",
     "Invalid mail address" : "Invalid mail address",
     "A user with that email already exists." : "A user with that email already exists.",

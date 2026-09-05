@@ -1,4 +1,5 @@
 { "translations": {
+    "Access to this resource (%s) is forbidden for guests." : "訪客不能存取此資源 (%s)。",
     "__language_name__" : "正體中文（香港）",
     "Invalid mail address" : "無效的電郵地址",
     "A user with that email already exists." : "有用戶已經使用此電郵地址註冊。",
