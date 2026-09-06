@@ -16,11 +16,11 @@ use OCP\Files\Config\IMountProviderCollection;
 use OCP\Files\Mount\IMountPoint;
 use OCP\INavigationManager;
 use OCP\IRequest;
-use OCP\IServerContainer;
 use OCP\IUser;
 use OCP\IUserSession;
 use OCP\Server;
 use OCP\Settings\IManager;
+use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 
 class RestrictionManager {
@@ -29,7 +29,7 @@ class RestrictionManager {
 		private readonly AppWhitelist $whitelist,
 		private readonly IRequest $request,
 		private readonly IUserSession $userSession,
-		private readonly IServerContainer $server,
+		private readonly ContainerInterface $server,
 		private readonly GuestManager $guestManager,
 		private readonly IMountProviderCollection $mountProviderCollection,
 		private readonly Config $config,
