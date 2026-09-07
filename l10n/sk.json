@@ -1,4 +1,5 @@
 { "translations": {
+    "Access to this resource (%s) is forbidden for guests." : "Prístup k tomuto zdroju (%s) je hosťom zakázaný.",
     "__language_name__" : "Slovenčina",
     "Invalid mail address" : "Neplatná emailová adresa",
     "A user with that email already exists." : "Používateľ s takýmto e-mailom už existuje.",
@@ -9,6 +10,11 @@
     "User already exists" : "Používateľ už existuje",
     "User is not a guest" : "Užívateľ nie je návštevník",
     "Account not found" : "Účet sa nenašiel",
+    "Account is already a guest" : "Účet je už hosťovským účtom",
+    "Only regular accounts can be converted to guests" : "Na hosťovský účet možno konvertovať iba bežné účty",
+    "Only accounts that have never logged in can be converted" : "Konvertovať možno iba účty, ktoré sa nikdy neprihlásili",
+    "Accounts with administrative privileges cannot be converted to guests" : "Účty s oprávneniami správcu nemožno konvertovať na hosťovské účty",
+    "An error occurred while converting the account" : "Pri konverzii účtu sa vyskytla chyba",
     "%s via %s" : "%s cez %s",
     "Couldn't send reset email. Please contact your administrator." : "Nemožno poslať email pre obnovu. Kontaktujte prosím vášho administrátora.",
     "%s shared a file with you" : "%s zdieľal súbor s vami",
@@ -33,7 +39,12 @@
     "Conversion of guest {guest} to {user} completed" : "Konverzia návštevníka {guest}na {user} dokončená",
     "Create guest accounts for easier collaboration" : "Vytvorte si účty hostí pre ľahšiu spoluprácu",
     "👥 Allows for better collaboration with external users by allowing users to create guests account.\n\nGuests accounts can be created from the share menu by entering either the recipients email or name and choosing \"create guest account\", once the share is created the guest user will receive an email notification about the mail with a link to set their password.\n\nGuests users can only access files shared to them and cannot create any files outside of shares, additionally, the apps accessible to guest accounts are whitelisted." : "👥 Umožňuje lepšiu spoluprácu s externými používateľmi tým, že si môžu vytvoriť účtet hosťa.\n\nÚčty hostí je možné vytvoriť z ponuky zdieľania zadaním e-mailu alebo mena príjemcu a výberom možnosti „vytvoriť účet hosťa“. Po vytvorení zdieľania používateľ-hosť o tom dostane e-mailom upozornenie spolu s odkazom pre nastavenie svojho hesla.\n\nPoužívatelia-hostia majú prístup iba k súborom, ktoré sú im zdieľané, a nemôžu vytvárať žiadne súbory mimo zdieľania. Aplikácie prístupné účtom hosťov sú riadené zoznamom povolených.",
+    "Convert to guest account" : "Konvertovať na hosťovský účet",
+    "The account \"{userId}\" will be converted into a guest account. It keeps its login name and password but becomes a limited guest account, restricted to the apps allowed for guests." : "Účet „{userId}“ bude konvertovaný na hosťovský účet. Zachová si prihlasovacie meno a heslo, ale stane sa obmedzeným hosťovským účtom s prístupom iba k aplikáciám povoleným pre hostí.",
+    "This is only possible for accounts that have never logged in. It cannot be undone automatically." : "Toto je možné iba pri účtoch, ktoré sa nikdy neprihlásili. Konverziu nie je možné automaticky vrátiť späť.",
     "Cancel" : "Zrušiť",
+    "Converting account…" : "Prebieha konverzia účtu…",
+    "Convert to guest" : "Konvertovať na hosťa",
     "None" : "Žiadne",
     "Name" : "Názov",
     "Shared By" : "Zdieľa",
@@ -91,6 +102,7 @@
     "Default quota for new guest accounts" : "Predvolená kvóta pre nové hosťovské účty",
     "Add guest" : "Pridať hosťa",
     "A user with this ID or email address already exists" : "Používateľ s takýmto ID alebo e-mailom už existuje.",
-    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Návštevník bude konvertovaný na plnohodnotný účet s názvom účtu \"{userId}\" čoskoro"
+    "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Návštevník bude konvertovaný na plnohodnotný účet s názvom účtu \"{userId}\" čoskoro",
+    "Account \"{userId}\" was converted into a guest account" : "Účet „{userId}“ bol konvertovaný na hosťovský účet"
 },"pluralForm" :"nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);"
 }
