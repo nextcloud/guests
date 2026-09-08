@@ -175,10 +175,6 @@ export default {
 		},
 	},
 
-	beforeMount() {
-		this.loadGroups()
-	},
-
 	methods: {
 		t,
 
@@ -201,6 +197,7 @@ export default {
 
 		openModal() {
 			this.isOpened = true
+			this.loadGroups()
 			this.$nextTick(() => {
 				if (this.guest.fullName) {
 					this.$refs.email.focus()
