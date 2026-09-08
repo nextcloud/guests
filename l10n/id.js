@@ -18,6 +18,7 @@ OC.L10N.register(
     "Language" : "Bahasa",
     "Unlimited" : "Tak terbatas",
     "Error" : "Galat",
-    "Saving …" : "Menyimpan …"
+    "Saving …" : "Menyimpan …",
+    "Add guest" : "Tambahkan tamu"
 },
 "nplurals=1; plural=0;");
