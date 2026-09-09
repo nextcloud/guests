@@ -15,6 +15,7 @@ OC.L10N.register(
     "Email" : "Email",
     "User ID" : "ID Pengguna",
     "Default" : "Default",
+    "Invite {name}" : "Undang {name}",
     "Language" : "Bahasa",
     "Unlimited" : "Tak terbatas",
     "Error" : "Galat",
