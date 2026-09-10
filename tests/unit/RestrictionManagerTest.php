@@ -15,7 +15,6 @@ use OCA\Guests\RestrictionManager;
 use OCA\Guests\UserBackend;
 use OCP\Files\Config\IMountProviderCollection;
 use OCP\IRequest;
-use OCP\IServerContainer;
 use OCP\IUser;
 use OCP\IUserSession;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -42,7 +41,6 @@ class RestrictionManagerTest extends TestCase {
 			$this->whitelist,
 			$this->request,
 			$this->userSession,
-			$this->createMock(IServerContainer::class),
 			$this->createMock(GuestManager::class),
 			$this->createMock(IMountProviderCollection::class),
 			$this->createMock(Config::class),
