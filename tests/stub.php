@@ -149,6 +149,21 @@ namespace OC {
 		public function getValueArray(string $app, string $key, array $default = [], bool $lazy = false): array {
 		}
 	}
+
+	class Server implements \Psr\Container\ContainerInterface {
+		/**
+		 * @param \Closure(\OCP\IContainer): mixed $closure
+		 */
+		public function registerService(string $name, Closure $closure, bool $shared = true): void {
+		}
+		/**
+		 * @template T
+		 * @param class-string<T>|string $id
+		 * @return ($id is class-string<T> ? T : mixed)
+		 */
+		public function get(string $id): mixed {
+		}
+	}
 }
 
 namespace OC\DB {
@@ -157,12 +172,9 @@ namespace OC\DB {
 }
 
 namespace {
-
-	use OCP\IServerContainer;
-
 	class OC {
 		public static $CLI = false;
-		/** @var IServerContainer */
+		/** @var \OC\Server */
 		public static $server;
 		public static $SERVERROOT = '';
 	}
