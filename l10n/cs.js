@@ -81,6 +81,8 @@ OC.L10N.register(
     "Limit guest account creation to the following groups only" : "Omezit vytváření účtů hostů pouze na následující skupiny",
     "Select groups to allow" : "Vybrat skupiny, které povolit",
     "Limit guest access to an app's allowlist" : "Omezit hostovi přístup pouze na aplikace, uvedené v seznamu povolených",
+    "Edit allowlist" : "Upravit seznam povolených",
+    "Confirm allowlist" : "Potvrdit seznam povolených",
     "Reset allowlist" : "Vrátit seznam povolených do výchozího stavu",
     "Add guest" : "Přidat hosta",
     "A user with this ID or email address already exists" : "Uživatel s tímto identifikátorem nebo e-mailovou adresou už existuje",
