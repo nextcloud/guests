@@ -13,7 +13,7 @@ OC.L10N.register(
     "User is not a guest" : "Cet utilisateur n'est pas un invité",
     "Account not found" : "Compte introuvable",
     "Account is already a guest" : "Ce compte est déjà un compte invité",
-    "Only regular accounts can be converted to guests" : "Seuls les comptes standard peuvent être convertis en comptes invités",
+    "Only regular accounts can be converted to guests" : "Seuls les comptes standards peuvent être convertis en comptes invités",
     "Only accounts that have never logged in can be converted" : "Seuls les comptes qui ne se sont jamais connectés peuvent être convertis",
     "Accounts with administrative privileges cannot be converted to guests" : "Les comptes disposant de privilèges d'administration ne peuvent pas être convertis en comptes invités",
     "An error occurred while converting the account" : "Une erreur est survenue lors de la conversion du compte",
