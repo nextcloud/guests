@@ -19,6 +19,8 @@ use OCP\Migration\SimpleMigrationStep;
 
 #[AddIndex(table: 'guests_users', type: IndexType::INDEX, description: 'Add missing index')]
 class Version4008Date20260609101600 extends SimpleMigrationStep {
+	private bool $columnAdded = false;
+
 	public function __construct(
 		protected IDBConnection $db,
 	) {
@@ -33,11 +35,38 @@ class Version4008Date20260609101600 extends SimpleMigrationStep {
 		$schema = $schemaClosure();
 
 		$table = $schema->getTable('guests_users');
-		if ($table->hasIndex('guests_users_email')) {
-			return null;
+		$changed = false;
+
+		if (!$table->hasColumn('email')) {
+			$table->addColumn('email', 'string', [
+				'notnull' => false,
+				'length' => 64,
+				'default' => '',
+			]);
+			$this->columnAdded = true;
+			$changed = true;
 		}
 
-		$table->addIndex(['email'], 'guests_users_email');
-		return $schema;
+		if (!$table->hasIndex('guests_users_email')) {
+			$table->addIndex(['email'], 'guests_users_email');
+			$changed = true;
+		}
+
+		return $changed ? $schema : null;
+	}
+
+	/**
+	 * @param Closure(): ISchemaWrapper $schemaClosure
+	 */
+	#[\Override]
+	public function postSchemaChange(IOutput $output, Closure $schemaClosure, array $options): void {
+		if (!$this->columnAdded) {
+			return;
+		}
+
+		$query = $this->db->getQueryBuilder();
+		$query->update('guests_users')
+			->set('email', 'uid_lower');
+		$query->executeStatement();
 	}
 }
