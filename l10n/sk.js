@@ -10,7 +10,7 @@ OC.L10N.register(
     "Failed to authorize" : "Autorizácia zlyhala",
     "Guest does not exist" : "Návštevník neexistuje",
     "User already exists" : "Používateľ už existuje",
-    "User is not a guest" : "Užívateľ nie je návštevník",
+    "User is not a guest" : "Používateľ nie je návštevník",
     "Account not found" : "Účet sa nenašiel",
     "Account is already a guest" : "Účet je už hosťovským účtom",
     "Only regular accounts can be converted to guests" : "Na hosťovský účet možno konvertovať iba bežné účty",
