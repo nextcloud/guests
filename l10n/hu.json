@@ -64,6 +64,7 @@
     "Select groups to allow" : "Válassza ki a csoportokat",
     "Limit guest access to an app's allowlist" : "A vendéghozzáférés az alkalmazás engedélyezési listájára korlátozása",
     "Reset allowlist" : "Engedélyezési lista alaphelyzetbe állítása",
+    "Add guest" : "Vendég hozzáadása",
     "A user with this ID or email address already exists" : "Ezzel az azonosítóval vagy e-mail-címmel már létezik felhasználó",
     "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "A vendég hamarosan a(z) „{userId}” szokásos fiókká lesz alakítva"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
