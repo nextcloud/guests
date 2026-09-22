@@ -52,6 +52,7 @@ OC.L10N.register(
     "Guests will still be able to see accounts from any group they are added to" : "访客仍可在自己加入的任何组中看到其他帐户。",
     "Limit guest access to an app's allowlist" : "限制用户访问应用的白名单",
     "Reset allowlist" : "重置白名单",
+    "Add guest" : "添加访客",
     "A user with this ID or email address already exists" : "具有此 ID 或电子邮件地址的用户已存在"
 },
 "nplurals=1; plural=0;");
