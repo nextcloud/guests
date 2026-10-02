@@ -11,6 +11,7 @@ OC.L10N.register(
     "None" : "Ninguno",
     "Name" : "Nombre",
     "Email" : "Correo electrónico",
+    "Default" : "Por defecto",
     "Language" : "Idioma",
     "Unlimited" : "Ilimitado",
     "Error" : "Error"

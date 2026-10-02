@@ -67,7 +67,7 @@ OC.L10N.register(
     "Converting guest…" : "Konverzia návštevníka...",
     "Convert" : "Konvertovať",
     "Invite {name}" : "Pozvať {name}",
-    "Guest user needs to be added to at least one group" : "Používateľ-hosť musí byť pridaný aspoň do jednej skupiny",
+    "Guest user needs to be added to at least one group" : "Hosťujúci používateľ musí byť pridaný aspoň do jednej skupiny",
     "Guest added" : "Host pridáný",
     "Invite Guest" : "Pozvať Hosťa",
     "Guests are accounts with limited permissions who will be able to access resources shared with them and use apps." : "Hostia sú účty s obmedzenými právami, ktoré budú môcť pristupovať k zdrojom zdieľaným s nimi a používať aplikácie.",
