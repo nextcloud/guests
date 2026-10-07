@@ -20,7 +20,7 @@
     "%s shared a file with you" : "%s zdieľal súbor s vami",
     "Hey there," : "Zdravím,",
     "%1$s just invited you and shared »%2$s« with you." : "%1$s vás práve pozval a zdieľal s vami »%2$s«.",
-    "You can access the shared file by activating your guest account." : "K zdieľanému súboru sa dostanete aktivovaním používateľského účtu.",
+    "You can access the shared file by activating your guest account." : "K zdieľanému súboru sa dostanete aktivovaním hosťovského účtu.",
     "After your account is activated you can view the share by logging in with %s." : "Po aktivácii účtu môžete zdieľanie zobraziť prihlásením pomocou %s.",
     "The share will expire at %s." : "Platnosť zdieľania končí %s.",
     "Activate account" : "Aktivovať účet",
