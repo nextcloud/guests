@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace OCA\Guests;
 
 use OCP\Group\Backend\ABackend;
+use OCP\Group\Backend\IBatchMethodsBackend;
 use OCP\Group\Backend\ICountUsersBackend;
 use OCP\Group\Backend\IGroupDetailsBackend;
 use OCP\Group\Backend\IHideFromCollaborationBackend;
@@ -21,7 +22,7 @@ use OCP\IUserSession;
  *
  * @package OCA\Guests
  */
-class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetailsBackend, IHideFromCollaborationBackend {
+class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetailsBackend, IHideFromCollaborationBackend, IBatchMethodsBackend {
 	/** @var string[] */
 	private array $guestMembers = [];
 
@@ -148,5 +149,23 @@ class GroupBackend extends ABackend implements ICountUsersBackend, IGroupDetails
 	#[\Override]
 	public function hideGroup(string $groupId): bool {
 		return true;
+	}
+
+	#[\Override]
+	public function groupsExists(array $gids): array {
+		return array_intersect($gids, [$this->groupName]);
+	}
+
+	#[\Override]
+	public function getGroupsDetails(array $gids): array {
+		$result = [];
+		foreach ($gids as $gid) {
+			if ($gid === $this->groupName) {
+				$result[$gid] = ['displayName' => 'Guests'];
+			} else {
+				$result[$gid] = [];
+			}
+		}
+		return $result;
 	}
 }
