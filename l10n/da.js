@@ -23,7 +23,7 @@ OC.L10N.register(
     "Hey there," : "Hej,",
     "%1$s just invited you and shared »%2$s« with you." : "%1$s har lige inviteret dig og delt »%2$s« med dig.",
     "You can access the shared file by activating your guest account." : "Du kan få adgang til det delte indhold ved at aktivere din gæstekonto.",
-    "After your account is activated you can view the share by logging in with %s." : "Når din konto er aktiveret kan du se det delte indhold ved at logge på med %s.",
+    "After your account is activated you can view the share by logging in with %s." : "Når din konto er aktiveret, kan du se det delte indhold ved at logge ind med %s.",
     "The share will expire at %s." : "Deling vil udløbe d. %s.",
     "Activate account" : "Aktiver konto",
     "View share" : "Se delt indhold",
