@@ -60,7 +60,7 @@
     "@nextcloud/sharing": "^0.4.0",
     "@nextcloud/vue": "^9.13.1",
     "email-validator": "^2.0.4",
-    "vue": "^3.5.30",
+    "vue": "^3.5.43",
     "vue-material-design-icons": "^5.3.1"
   },
   "engines": {
