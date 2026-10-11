@@ -12,7 +12,7 @@
     findUnusedIssueHandlerSuppression="false"
     findUnusedBaselineEntry="false"
     findUnusedCode="false"
-    phpVersion="8.1"
+    phpVersion="8.3"
     resolveFromConfigFile="true"
     totallyTyped="true"
 >
