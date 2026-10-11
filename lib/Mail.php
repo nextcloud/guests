@@ -16,6 +16,7 @@ use OCP\IURLGenerator;
 use OCP\IUserManager;
 use OCP\IUserSession;
 use OCP\L10N\IFactory;
+use OCP\Mail\EMailDetails;
 use OCP\Mail\IEMailTemplate;
 use OCP\Mail\IMailer;
 use OCP\Share\IShare;
@@ -61,15 +62,14 @@ class Mail {
 		$senderDisplayName = $this->userSession->getUser()->getDisplayName();
 
 		if (!$share instanceof IShare) {
-			[ $subject, $emailTemplate ] = $this->composeInviteMessage($senderDisplayName, $guestEmail, $passwordLink, $l10n);
+			$emailTemplate = $this->composeInviteMessage($senderDisplayName, $replyTo, $guestEmail, $passwordLink, $l10n);
 		} else {
-			[ $subject, $emailTemplate ] = $this->composeShareMessage($share, $senderDisplayName, $guestEmail, $passwordLink, $l10n);
+			$emailTemplate = $this->composeShareMessage($share, $senderDisplayName, $replyTo, $guestEmail, $passwordLink, $l10n);
 		}
 
 		try {
 			$message = $this->mailer->createMessage();
 			$message->setTo([$guestEmail => $targetUser->getDisplayName()]);
-			$emailTemplate->setSubject($subject);
 			$message->useTemplate($emailTemplate);
 			$message->setFrom([
 				Util::getDefaultEmailAddress('sharing-noreply')
@@ -91,87 +91,60 @@ class Mail {
 		}
 	}
 
-	/**
-	 * @return array{string, IEMailTemplate}
-	 */
-	private function composeShareMessage(IShare $share, string $senderDisplayName, string $guestEmail, string $passwordLink, IL10N $l10n): array {
+	private function composeShareMessage(IShare $share, string $senderDisplayName, ?string $senderEmail, string $guestEmail, string $passwordLink, IL10N $l10n): IEMailTemplate {
 		$filename = trim($share->getTarget(), '/');
-		$subject = $l10n->t('%s shared a file with you', [$senderDisplayName]);
 		$expiration = $share->getExpirationDate();
+		$note = $share->getNote();
 
 		$link = $this->urlGenerator->linkToRouteAbsolute(
 			'files.viewcontroller.showFile', ['fileid' => $share->getNodeId(), 'direct' => 1]
 		);
 		$emailTemplate = $this->mailer->createEMailTemplate('guest.share');
+		$emailTemplate->setLanguage($l10n->getLanguageCode());
+		$emailTemplate->setSubject($l10n->t('%1$s shared %2$s with you', [$senderDisplayName, $filename]));
 
 		$emailTemplate->addHeader();
-		$emailTemplate->addHeading($l10n->t('%s shared a file with you', [$senderDisplayName]));
+		$emailTemplate->addBodySender($senderDisplayName, $senderEmail ?? '');
+		$emailTemplate->addHeading($l10n->t('%1$s shared %2$s with you', [$senderDisplayName, $filename]));
 
-		$emailTemplate->addBodyText(
-			$l10n->t('Hey there,')
-		);
-
-		$emailTemplate->addBodyText(
-			$l10n->t('%1$s just invited you and shared »%2$s« with you.', [$senderDisplayName, $filename])
-		);
-
-		$emailTemplate->addBodyText(
-			$l10n->t('You can access the shared file by activating your guest account.')
-		);
-		$emailTemplate->addBodyText(
-			$l10n->t('After your account is activated you can view the share by logging in with %s.', [$guestEmail])
-		);
-
-		if ($expiration) {
-			$formattedDate = $l10n->l('date', $expiration);
-			$emailTemplate->addBodyText(
-				$l10n->t('The share will expire at %s.', [$formattedDate])
-			);
+		if ($note !== '') {
+			$emailTemplate->addBodyNote($note, $l10n->t('Note'));
 		}
 
-		$emailTemplate->addBodyButtonGroup(
-			$l10n->t('Activate account'),
-			$passwordLink,
-			$l10n->t('View share'),
-			$link
-		);
+		$details = new EMailDetails($filename);
+		if ($expiration !== null) {
+			$details->addRow($l10n->t('Valid until'))->text((string)$l10n->l('date', $expiration, ['width' => 'medium']));
+		}
+		$details->addRow($l10n->t('Your login'))->text($guestEmail);
+		$emailTemplate->addBodyDetails($details);
+
+		$emailTemplate->addBodyText($l10n->t('Activate your guest account to open it.'));
+		$emailTemplate->addBodyButtons([
+			['text' => $l10n->t('Activate account'), 'url' => $passwordLink],
+			['text' => $l10n->t('View share'), 'url' => $link],
+		]);
 		$emailTemplate->addFooter();
 
-		return [ $subject, $emailTemplate ];
+		return $emailTemplate;
 	}
 
-	/**
-	 * @return array{string, IEMailTemplate}
-	 */
-	private function composeInviteMessage(string $senderDisplayName, string $guestEmail, string $passwordLink, IL10N $l10n): array {
-		$subject = $l10n->t('%s invited you as a guest', [$senderDisplayName]);
-
+	private function composeInviteMessage(string $senderDisplayName, ?string $senderEmail, string $guestEmail, string $passwordLink, IL10N $l10n): IEMailTemplate {
 		$emailTemplate = $this->mailer->createEMailTemplate('guest.invite');
+		$emailTemplate->setLanguage($l10n->getLanguageCode());
+		$emailTemplate->setSubject($l10n->t('%s invited you as a guest', [$senderDisplayName]));
 
 		$emailTemplate->addHeader();
-		$emailTemplate->addHeading($l10n->t('You have been invited'));
+		$emailTemplate->addBodySender($senderDisplayName, $senderEmail ?? '');
+		$emailTemplate->addHeading($l10n->t('%s invited you as a guest', [$senderDisplayName]));
 
-		$emailTemplate->addBodyText(
-			$l10n->t('Hey there,')
-		);
+		$details = new EMailDetails($this->defaults->getName());
+		$details->addRow($l10n->t('Your login'))->text($guestEmail);
+		$emailTemplate->addBodyDetails($details);
 
-		$emailTemplate->addBodyText(
-			$l10n->t('%s just invited you.', [$senderDisplayName])
-		);
-
-		$emailTemplate->addBodyText(
-			$l10n->t('You can activate your guest account with the button below.')
-		);
-		$emailTemplate->addBodyText(
-			$l10n->t('After your account is activated you can log in with %s.', [$guestEmail])
-		);
-
-		$emailTemplate->addBodyButton(
-			$l10n->t('Activate account'),
-			$passwordLink
-		);
+		$emailTemplate->addBodyText($l10n->t('Activate your guest account to get started.'));
+		$emailTemplate->addBodyButton($l10n->t('Activate account'), $passwordLink);
 		$emailTemplate->addFooter();
 
-		return [ $subject, $emailTemplate ];
+		return $emailTemplate;
 	}
 }
