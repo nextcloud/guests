@@ -71,7 +71,7 @@ class Mail {
 			$message->setTo([$guestEmail => $targetUser->getDisplayName()]);
 			$message->setSubject($subject);
 			$message->useTemplate($emailTemplate);
-   			$message->setSubject($subject);
+			$message->setSubject($subject);
 			$message->setFrom([
 				Util::getDefaultEmailAddress('sharing-noreply')
 					=> $l10n->t('%s via %s', [
