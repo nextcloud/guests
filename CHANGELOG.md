@@ -6,6 +6,70 @@
 
 All notable changes to this project will be documented in this file.
 
+## 4.10.1
+### Fixes
+* fix: Remove legacy method calls from tests/bootstrap.php by @come-nc in https://github.com/nextcloud/guests/pull/1697
+* fix: embed inline logo in guest invitation emails by @klaussalminenq5 in https://github.com/nextcloud/guests/pull/1719
+
+### Other
+* Bump @grpc/grpc-js from 1.14.4 to 1.14.5
+* Bump @nextcloud/e2e-test-server from 0.5.1 to 0.6.1
+* Bump @nextcloud/router from 3.1.0 to 3.2.0
+* Bump @nextcloud/vue from 9.11.0 to 9.13.1
+* Bump @playwright/test from 1.62.1 to 1.63.0
+* Bump @vue/server-renderer and vue
+* Bump axios from 1.18.1 to 1.20.0
+* Bump brace-expansion from 2.1.4 to 2.1.7
+* Bump dompurify from 3.4.15 to 3.4.16
+* Bump joi from 18.2.8 to 18.2.9
+* Bump moment from 2.30.1 to 2.31.0
+* Bump nanoid from 3.3.16 to 3.3.19
+* Bump postcss-selector-parser from 7.1.4 to 7.1.6
+* Bump rector/rector from 2.6.5 to 2.6.7 in /vendor-bin/rector
+* Bump source-map-js from 1.2.1 to 1.2.2
+* Bump vimeo/psalm from 6.16.1 to 6.19.1 in /vendor-bin/psalm
+
+### New Contributors
+* @klaussalminenq5 made their first contribution in https://github.com/nextcloud/guests/pull/1719
+
+## 4.10.0
+### Features
+* feat(deps): Add Nextcloud 36 support by @nickvergessen in https://github.com/nextcloud/guests/pull/1675
+
+### Performance
+* perf(GuestForm): Load groups when required by @CarlSchwan in https://github.com/nextcloud/guests/pull/1686
+
+### Fixes
+* fix(backend): Upgrade outdated password hashes on email logins by @solracsf in https://github.com/nextcloud/guests/pull/1667
+* fix(settings): Load guest details by user id instead of email by @solracsf in https://github.com/nextcloud/guests/pull/1670
+* fix(whitelisting): Make the blocked app message translatable again by @solracsf in https://github.com/nextcloud/guests/pull/1665
+* fix(whitelisting): Never treat the empty app id as whitelisted by @solracsf in https://github.com/nextcloud/guests/pull/1666
+* fix(notifications): Use the target id in guest conversion notifications by @solracsf in https://github.com/nextcloud/guests/pull/1669
+* fix(restrictions): Apply the app config overwrite to the typed getters by @solracsf in https://github.com/nextcloud/guests/pull/1664
+* fix(backend): Keep the display name ordering when searching guests by @solracsf in https://github.com/nextcloud/guests/pull/1668
+* fix(whitelist): Recognise every two-factor provider app for guests by @solracsf in https://github.com/nextcloud/guests/pull/1672
+* fix: populate cache when creating user by @icewind1991 in https://github.com/nextcloud/guests/pull/1678
+* fix: Remove uses of IServerContainer interface by @come-nc in https://github.com/nextcloud/guests/pull/1689
+* fix(psalm): Don't report UnusedIssueHandlerSuppression by @CarlSchwan in https://github.com/nextcloud/guests/pull/1671
+
+### Other
+* [main] ci(actions): Update workflow templates from organization template repository by @nextcloud-command in https://github.com/nextcloud/guests/pull/1674
+* [main] Update nextcloud/ocp dependency
+* Bump @humanfs/node from 0.16.7 to 0.16.8
+* Bump @nextcloud/dialogs from 7.4.1 to 7.5.0
+* Bump @nextcloud/e2e-test-server from 0.4.0 to 0.5.1
+* Bump @nextcloud/vue from 9.9.0 to 9.11.0
+* Bump @playwright/test from 1.60.0 to 1.62.1
+* Bump browserslist from 4.28.1 to 4.28.8
+* Bump dompurify from 3.4.12 to 3.4.13
+* Bump fast-uri from 3.1.5 to 3.1.7
+* Bump joi from 18.2.1 to 18.2.8
+* Bump js-yaml from 4.2.0 to 4.3.2
+* Bump rector/rector from 2.5.7 to 2.6.5 in /vendor-bin/rector
+
+### New Contributors
+* @come-nc made their first contribution in https://github.com/nextcloud/guests/pull/1689
+
 ## 4.9.0
 ### Features
 * feat: convert regular accounts to guests by @ernolf in https://github.com/nextcloud/guests/pull/1619
