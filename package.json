@@ -33,6 +33,8 @@
     "start:nextcloud": "node playwright/start-nextcloud-server.mjs",
     "stylelint": "stylelint css/*.css css/*.scss src/**/*.vue",
     "stylelint:fix": "stylelint css/*.css css/*.scss src/**/*.vue --fix",
+    "playwright": "playwright test",
+    "playwright:install-ci": "playwright install chromium --only-shell",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui"
   },
