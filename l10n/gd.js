@@ -1,6 +1,7 @@
 OC.L10N.register(
     "guests",
     {
+    "Note" : "Nòta",
     "Cancel" : "Sguir dheth",
     "None" : "Chan eil gin",
     "Name" : "Ainm",

@@ -6,6 +6,7 @@ OC.L10N.register(
     "Account not found" : "Уліковы запіс не знойдзены",
     "%s via %s" : "%s праз %s",
     "Couldn't send reset email. Please contact your administrator." : "Не ўдалося адправіць ліст для скіду. Звярніцеся да адміністратара.",
+    "Valid until" : "Дзейнічае да",
     "Cancel" : "Скасаваць",
     "None" : "Няма",
     "Name" : "Назва",

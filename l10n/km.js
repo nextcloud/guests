@@ -2,6 +2,7 @@ OC.L10N.register(
     "guests",
     {
     "__language_name__" : "ភាសាខ្មែរ",
+    "%1$s shared %2$s with you" : "%1$s បាន​ចែករំលែក %2$s ជាមួយ​អ្នក",
     "Cancel" : "លើកលែង",
     "None" : "គ្មាន",
     "Name" : "ឈ្មោះ",

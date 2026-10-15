@@ -7,6 +7,8 @@ OC.L10N.register(
     "User already exists" : "L’utilizaire existís ja",
     "%s via %s" : "%s via %s",
     "Couldn't send reset email. Please contact your administrator." : "Impossible de mandar lo corrièl de reïnicializacion. Contactatz vòstre administrator.",
+    "Note" : "Nòta",
+    "Valid until" : "Valid fins a",
     "Cancel" : "Anullar",
     "None" : "Cap",
     "Name" : "Nom",

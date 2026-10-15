@@ -7,6 +7,8 @@ OC.L10N.register(
     "User successfully created" : "El usuario fue creado exitosamente",
     "%s via %s" : "%s vía %s",
     "Couldn't send reset email. Please contact your administrator." : "No fue posible enviar el correo electrónico de restauración. Por favor contacta a tu adminstrador. ",
+    "%1$s shared %2$s with you" : "%1$s ha compartido %2$s contigo",
+    "Valid until" : "Válido hasta",
     "Cancel" : "Cancel",
     "None" : "Ninguno",
     "Name" : "Nombre",

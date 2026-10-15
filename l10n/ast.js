@@ -9,6 +9,8 @@ OC.L10N.register(
     "Account not found" : "Nun s'atopó la cuenta",
     "%s via %s" : "%s per %s",
     "Couldn't send reset email. Please contact your administrator." : "Nun se pudo unviar el mensaxe de reaniciu. Ponte en contautu cola alministración.",
+    "%1$s shared %2$s with you" : "%1$s compartió «%2$s» contigo",
+    "Note" : "Nota",
     "Cancel" : "Encaboxar",
     "None" : "Nada",
     "Name" : "Nome",

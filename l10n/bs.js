@@ -4,6 +4,7 @@ OC.L10N.register(
     "__language_name__" : "Bosanski jezik",
     "Invalid mail address" : "Nevažeća adresa e-pošte",
     "Couldn't send reset email. Please contact your administrator." : "Slanje emaila resetovanja nije moguće. Molim kontaktirajte administratora.",
+    "Valid until" : "Validno do",
     "Cancel" : "Odustani",
     "None" : "Ništa",
     "Name" : "Ime",

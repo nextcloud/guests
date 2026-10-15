@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Account not found" : "Akkaunt topilmadi",
     "Couldn't send reset email. Please contact your administrator." : "Couldn't send reset email. Please contact your administrator.",
+    "Note" : "Eslatma",
     "Cancel" : "Bekor qilish",
     "None" : "Yo'q",
     "Name" : "Name",

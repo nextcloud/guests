@@ -2,6 +2,7 @@ OC.L10N.register(
     "guests",
     {
     "__language_name__" : "Bahasa Melayu",
+    "%1$s shared %2$s with you" : "%1$s berkongsi %2$s dengan anda",
     "Cancel" : "Cancel",
     "Name" : "Nama",
     "Email" : "Email",
