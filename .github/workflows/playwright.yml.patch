@@ -1,0 +1,14 @@
+--- a/.github/workflows/playwright.yml
++++ b/.github/workflows/playwright.yml
+@@ -30,10 +30,7 @@
+   pull_request:
+     branches:
+       - main
+-      - master
+-      - stable35
+-      - stable34
+-      - stable33
++      - stable-4.10
+ 
+ permissions:
+   contents: read
