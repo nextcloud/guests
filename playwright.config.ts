@@ -11,10 +11,8 @@ export default defineConfig({
 	forbidOnly: !!process.env.CI,
 	retries: process.env.CI ? 2 : 0,
 	workers: 1,
-	// HTML output is uploaded as a CI artifact so failed runs leave breadcrumbs.
-	reporter: process.env.CI
-		? [['github'], ['html', { outputFolder: 'playwright-report', open: 'never' }]]
-		: 'html',
+	// Blob reports are merged across shards by the playwright workflow
+	reporter: process.env.CI ? [['blob'], ['github']] : 'html',
 
 	use: {
 		baseURL: 'http://localhost:8089/index.php/',
