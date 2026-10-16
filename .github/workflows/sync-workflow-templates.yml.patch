@@ -1,0 +1,13 @@
+--- a/.github/workflows/sync-workflow-templates.yml
++++ b/.github/workflows/sync-workflow-templates.yml
+@@ -26,9 +26,7 @@
+       matrix:
+         branches:
+           - ${{ github.event.repository.default_branch }}
+-          - 'stable35'
+-          - 'stable34'
+-          - 'stable33'
++          - 'stable-4.10'
+ 
+     name: Update workflows in ${{ matrix.branches }}
+ 
