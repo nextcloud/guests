@@ -20,6 +20,7 @@ OC.L10N.register(
     "Default" : "Implicită",
     "Language" : "Limba",
     "Unlimited" : "Nelimitată",
-    "Error" : "Eroare"
+    "Error" : "Eroare",
+    "Saving …" : "Se salvează …"
 },
 "nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));");
