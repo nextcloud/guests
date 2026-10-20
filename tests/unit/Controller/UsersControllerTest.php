@@ -159,8 +159,7 @@ class UsersControllerTest extends TestCase {
 
 		// Set up group restriction check
 		$this->appConfig->method('getAppValueArray')
-			->with('create_restricted_to_group', [])
-			->willReturn(['allowed_group1', 'allowed_group2']);
+			->willReturnCallback(fn (string $key): array => $key === 'create_restricted_to_group' ? ['allowed_group1', 'allowed_group2'] : []);
 
 		// User's groups don't intersect with allowed groups
 		$this->groupManager->method('getUserGroupIds')
@@ -190,8 +189,7 @@ class UsersControllerTest extends TestCase {
 
 		// Set up group restriction check
 		$this->appConfig->method('getAppValueArray')
-			->with('create_restricted_to_group', [])
-			->willReturn(['allowed_group1', 'allowed_group2']);
+			->willReturnCallback(fn (string $key): array => $key === 'create_restricted_to_group' ? ['allowed_group1', 'allowed_group2'] : []);
 
 		// User is in the admin group
 		$this->groupManager->method('getUserGroupIds')
@@ -242,8 +240,7 @@ class UsersControllerTest extends TestCase {
 
 		// Set up group restriction check
 		$this->appConfig->method('getAppValueArray')
-			->with('create_restricted_to_group', [])
-			->willReturn(['allowed_group1', 'allowed_group2']);
+			->willReturnCallback(fn (string $key): array => $key === 'create_restricted_to_group' ? ['allowed_group1', 'allowed_group2'] : []);
 
 		// User is in one of the allowed groups
 		$this->groupManager->method('getUserGroupIds')
@@ -296,8 +293,7 @@ class UsersControllerTest extends TestCase {
 
 		// No group restrictions
 		$this->appConfig->method('getAppValueArray')
-			->with('create_restricted_to_group', [])
-			->willReturn([]);
+			->willReturnCallback(fn (string $key): array => $key === 'create_restricted_to_group' ? [] : []);
 
 		// Sharing is restricted to group
 		$this->globalAppConfig->method('getValueBool')
@@ -353,8 +349,7 @@ class UsersControllerTest extends TestCase {
 
 		// No group restrictions
 		$this->appConfig->method('getAppValueArray')
-			->with('create_restricted_to_group', [])
-			->willReturn([]);
+			->willReturnCallback(fn (string $key): array => $key === 'create_restricted_to_group' ? [] : []);
 
 		// Sharing is restricted to group
 		$this->globalAppConfig->method('getValueBool')
@@ -388,8 +383,7 @@ class UsersControllerTest extends TestCase {
 
 		// No group restrictions
 		$this->appConfig->method('getAppValueArray')
-			->with('create_restricted_to_group', [])
-			->willReturn([]);
+			->willReturnCallback(fn (string $key): array => $key === 'create_restricted_to_group' ? [] : []);
 
 		// Sharing is restricted to group
 		$this->config->method('getAppValue')
@@ -433,8 +427,7 @@ class UsersControllerTest extends TestCase {
 
 		// Groups restriction is empty
 		$this->appConfig->method('getAppValueArray')
-			->with('create_restricted_to_group', [])
-			->willReturn([]);
+			->willReturnCallback(fn (string $key): array => $key === 'create_restricted_to_group' ? [] : []);
 
 		// Sharing is restricted to group
 		$this->globalAppConfig->method('getValueBool')
@@ -530,8 +523,7 @@ class UsersControllerTest extends TestCase {
 
 		// There is no group restriction in place
 		$this->appConfig->method('getAppValueArray')
-			->with('create_restricted_to_group', [])
-			->willReturn([]);
+			->willReturnCallback(fn (string $key): array => $key === 'create_restricted_to_group' ? [] : []);
 
 		$this->assertTrue($this->guestsConfig->canCreateGuests());
 		$this->assertTrue($this->guestsConfig->isSharingRestrictedToGroup());
@@ -698,8 +690,7 @@ class UsersControllerTest extends TestCase {
 
 		// Enable restrictions
 		$this->appConfig->method('getAppValueArray')
-			->with('create_restricted_to_group', [])
-			->willReturn(['group1', 'group2']);
+			->willReturnCallback(fn (string $key): array => $key === 'create_restricted_to_group' ? ['group1', 'group2'] : []);
 
 		// User's groups don't intersect with allowed groups
 		$this->groupManager->method('getUserGroupIds')
@@ -852,5 +843,35 @@ class UsersControllerTest extends TestCase {
 
 		$response = $this->controller->convert('karl');
 		$this->assertEquals(Http::STATUS_CONFLICT, $response->getStatus());
+	}
+
+	/**
+	 * Test that creation fails when the email domain is on the blocklist.
+	 */
+	public function testCreateFailsForBlockedDomain(): void {
+		$currentUser = $this->createMock(IUser::class);
+		$currentUser->method('getUID')->willReturn('admin');
+		$this->userSession->method('getUser')
+			->willReturn($currentUser);
+		$this->guestManager->method('isGuest')
+			->willReturn(false);
+		$this->groupManager->method('isAdmin')
+			->willReturn(true);
+		$this->mailer->method('validateMailAddress')
+			->willReturn(true);
+		$this->appConfig->method('getAppValueArray')
+			->willReturnCallback(fn (string $key) => $key === 'blocked_domains' ? ['example.com'] : []);
+		$this->userManager->method('getByEmail')
+			->willReturn([]);
+
+		$this->guestManager->expects($this->never())
+			->method('createGuest');
+
+		$response = $this->controller->create('guest@sub.example.com', 'Guest', 'en', []);
+		$this->assertEquals(Http::STATUS_UNPROCESSABLE_ENTITY, $response->getStatus());
+		$this->assertEquals(
+			['errorMessages' => ['email' => 'Guest accounts cannot be created for this email domain.']],
+			$response->getData()
+		);
 	}
 }

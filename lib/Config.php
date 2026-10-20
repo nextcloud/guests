@@ -163,4 +163,99 @@ class Config {
 	public function setCreateRestrictedToGroup(array $groups): void {
 		$this->appConfig->setAppValueArray('create_restricted_to_group', $groups);
 	}
+
+	/**
+	 * Email domains that must not be invited as guests.
+	 *
+	 * @return list<string>
+	 */
+	public function getBlockedDomains(): array {
+		return self::normalizeDomains($this->appConfig->getAppValueArray(ConfigLexicon::BLOCKED_DOMAINS));
+	}
+
+	/**
+	 * @param list<string> $domains
+	 */
+	public function setBlockedDomains(array $domains): void {
+		$this->appConfig->setAppValueArray(ConfigLexicon::BLOCKED_DOMAINS, self::normalizeDomains($domains));
+	}
+
+	/**
+	 * Whether the domain of the given email address is blocked for guest
+	 * invitations. A blocked entry like "example.com" matches the domain
+	 * itself and all of its subdomains (e.g. "mail.example.com"), but not
+	 * unrelated domains sharing the same suffix (e.g. "otherexample.com").
+	 */
+	public function isEmailDomainBlocked(string $email): bool {
+		$atPosition = strrpos($email, '@');
+		if ($atPosition === false) {
+			return false;
+		}
+		$rawDomain = rtrim(mb_strtolower(trim(substr($email, $atPosition + 1))), '.');
+		if ($rawDomain === '') {
+			return false;
+		}
+		$emailDomain = self::toAsciiDomain($rawDomain) ?? $rawDomain;
+
+		foreach ($this->getBlockedDomains() as $blockedDomain) {
+			$blockedDomain = self::toAsciiDomain($blockedDomain);
+			if ($blockedDomain === null) {
+				continue;
+			}
+			if ($emailDomain === $blockedDomain || str_ends_with($emailDomain, '.' . $blockedDomain)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Lower-case, trim and de-duplicate domain entries. Leading "@", "*." and
+	 * "." as well as trailing dots are stripped, so "@Example.com" and
+	 * "*.example.com" are both stored as "example.com". Entries that are not
+	 * a valid domain name are dropped. Internationalized domains are kept in
+	 * the form they were entered; "bücher.de" and "xn--bcher-kva.de" count as
+	 * duplicates.
+	 *
+	 * @param array<array-key, mixed> $domains
+	 * @return list<string>
+	 */
+	public static function normalizeDomains(array $domains): array {
+		$normalized = [];
+		foreach ($domains as $domain) {
+			if (!is_string($domain)) {
+				continue;
+			}
+			$domain = mb_strtolower(trim($domain));
+			$domain = preg_replace('/^(@|\*\.|\.)+/u', '', $domain) ?? '';
+			$domain = rtrim($domain, '.');
+			$asciiDomain = self::toAsciiDomain($domain);
+			if ($asciiDomain === null || isset($normalized[$asciiDomain])) {
+				continue;
+			}
+			$normalized[$asciiDomain] = $domain;
+		}
+		return array_values($normalized);
+	}
+
+	/**
+	 * Convert a lower-case domain to its ASCII (punycode) form and validate it
+	 * as a hostname: at most 253 characters, labels of 1-63 letters, digits or
+	 * inner hyphens.
+	 */
+	private static function toAsciiDomain(string $domain): ?string {
+		if ($domain === '') {
+			return null;
+		}
+		$ascii = idn_to_ascii($domain, IDNA_NONTRANSITIONAL_TO_ASCII, INTL_IDNA_VARIANT_UTS46);
+		if ($ascii === false) {
+			return null;
+		}
+		$ascii = strtolower($ascii);
+		if (strlen($ascii) > 253
+			|| preg_match('/^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?(?:\.[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?)*$/', $ascii) !== 1) {
+			return null;
+		}
+		return $ascii;
+	}
 }

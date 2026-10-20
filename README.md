@@ -110,6 +110,16 @@ If that setting is turned on, guests can only be invited by [group admins](https
 
 Upon invitation, the group admin must select at least one of their adminstrated groups the guest shall be member of.
 
+### Blocking email domains
+
+Administrators can prevent guest accounts from being created for specific email domains (_Settings > Administration > Guests > `Block guest invitations for these email domains`_). An entry such as `example.com` blocks `example.com` and all of its subdomains (e.g. `mail.example.com`), but not other domains that merely end with the same characters (e.g. `otherexample.com`). The blocklist applies to invitations from the web UI, the API and `occ guests:add`; existing guest accounts are not affected.
+
+The list can also be set from the command line:
+
+```bash
+occ config:app:set guests blocked_domains --value='["example.com","example.org"]' --type=array
+```
+
 ### Share acceptance
 
 Guest users automatically accept all files and folders that are shared with them. This is in constract to regular full users (who have to actively accept incoming shares since Nextcloud 18).
