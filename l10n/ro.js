@@ -21,6 +21,7 @@ OC.L10N.register(
     "Language" : "Limba",
     "Unlimited" : "Nelimitată",
     "Error" : "Eroare",
-    "Saving …" : "Se salvează …"
+    "Saving …" : "Se salvează …",
+    "Add guest" : "Adaugă un invitat"
 },
 "nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));");
