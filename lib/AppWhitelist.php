@@ -36,8 +36,12 @@ class AppWhitelist {
 	 * up at runtime by isTwoFactorProviderApp(), but that only sees providers
 	 * declared in info.xml, and only while info.xml is readable, so the ones
 	 * that were listed here before stay listed.
+	 *
+	 * intrusion_detection holds a suspicious login on its own pages until it
+	 * is confirmed, for example with a code sent by email, so a guest who is
+	 * asked to confirm a login must be able to reach them.
 	 */
-	public const WHITELIST_ALWAYS = 'core,theming,settings,avatar,files,heartbeat,dav,guests,impersonate,accessibility,terms_of_service,dashboard,weather_status,user_status,apporder,twofactor_totp,twofactor_webauthn,twofactor_backupcodes,twofactor_nextcloud_notification,twofactor_gateway';
+	public const WHITELIST_ALWAYS = 'core,theming,settings,avatar,files,heartbeat,dav,guests,impersonate,accessibility,terms_of_service,dashboard,weather_status,user_status,apporder,twofactor_totp,twofactor_webauthn,twofactor_backupcodes,twofactor_nextcloud_notification,twofactor_gateway,intrusion_detection';
 
 	public const DEFAULT_WHITELIST = 'files_trashbin,files_versions,files_sharing,files_texteditor,text,activity,firstrunwizard,photos,notifications,dashboard,user_status,weather_status';
 
