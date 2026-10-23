@@ -115,6 +115,12 @@ class UsersController extends OCSController {
 			);
 		}
 
+		if (!isset($errorMessages['email']) && $this->config->isEmailDomainBlocked($email)) {
+			$errorMessages['email'] = $this->l10n->t(
+				'Guest accounts cannot be created for this email domain.'
+			);
+		}
+
 		if ($this->config->useHashedEmailAsUserID()) {
 			$email = strtolower($email);
 			$username = hash('sha256', $email);
