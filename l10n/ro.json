@@ -75,7 +75,7 @@
     "Please enter a quota with a unit, for example \"500 MB\" or \"2 GB\"" : "Introdu o cotă cu unitate de măsură, de exemplu „500 MB” sau „2 GB”",
     "Error" : "Eroare",
     "Your settings have been updated" : "Setările tale au fost actualizate",
-    "Saving …" : "Se salvează…",
+    "Saving …" : "Se salvează …",
     "The admin group is always allowed to create guest accounts" : "Grupul de administratori poate crea întotdeauna conturi de invitat",
     "Guest accounts are grouped under a virtual group in the account manager" : "Conturile de invitat sunt grupate într-un grup virtual în gestionarul de conturi",
     "Guests are simple, limited accounts you can give to people outside your Nextcloud instance." : "Invitații sunt conturi simple, limitate, pe care le poți oferi persoanelor din afara instanței tale Nextcloud.",
