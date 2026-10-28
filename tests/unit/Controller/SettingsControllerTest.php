@@ -81,4 +81,27 @@ class SettingsControllerTest extends TestCase {
 
 		$this->setConfigWithQuota('not a size');
 	}
+
+	public function testSetConfigStoresBlockedDomains(): void {
+		$this->config->expects($this->once())
+			->method('setBlockedDomains')
+			->with(['example.com']);
+
+		$this->controller->setConfig(false, [], false, true, false, [], 'default', ['example.com']);
+	}
+
+	public function testSetConfigKeepsBlockedDomainsWhenOmitted(): void {
+		$this->config->expects($this->never())
+			->method('setBlockedDomains');
+
+		$this->controller->setConfig(false, [], false, true, false, [], 'default');
+	}
+
+	public function testGetConfigReturnsBlockedDomains(): void {
+		$this->config->method('getBlockedDomains')
+			->willReturn(['example.com']);
+
+		$data = $this->controller->getConfig()->getData();
+		$this->assertSame(['example.com'], $data['blockedDomains']);
+	}
 }

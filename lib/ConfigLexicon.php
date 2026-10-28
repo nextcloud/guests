@@ -28,6 +28,7 @@ class ConfigLexicon implements ILexicon {
 	public const WHITE_LIST = 'whitelist';
 	public const GROUP_LIMITATION = 'create_restricted_to_group';
 	public const GUEST_DISK_QUOTA = 'guest_quota';
+	public const BLOCKED_DOMAINS = 'blocked_domains';
 	public const USER_CREATED_BY = 'created_by';
 
 	#[\Override]
@@ -48,6 +49,7 @@ class ConfigLexicon implements ILexicon {
 				default => '0 B',
 			}, definition: 'set default disk quota assigned to guest account at its creation'),
 			new Entry(self::GROUP_LIMITATION, ValueType::ARRAY, []),
+			new Entry(self::BLOCKED_DOMAINS, ValueType::ARRAY, [], 'email domains that cannot be invited as guests (subdomains are included)'),
 		];
 	}
 

@@ -231,4 +231,35 @@ class AddCommandTest extends TestCase {
 		$output = $this->commandTester->getDisplay();
 		$this->assertStringContainsString('The guest account user "karl" was created successfully', $output);
 	}
+
+	public function testCreateGuestBlockedDomain(): void {
+		$this->userManager->expects($this->once())
+			->method('get')
+			->with('creator')
+			->willReturn($this->createMock(IUser::class));
+
+		$this->userManager->method('userExists')
+			->willReturn(false);
+
+		$this->mailer->method('validateMailAddress')
+			->willReturn(true);
+
+		$this->config->expects($this->once())
+			->method('isEmailDomainBlocked')
+			->with('guest@blocked.example')
+			->willReturn(true);
+
+		$this->guestManager->expects($this->never())
+			->method('createGuest');
+
+		$this->commandTester->execute([
+			'created-by' => 'creator',
+			'email' => 'guest@blocked.example',
+			'--generate-password' => true,
+		]);
+
+		$output = $this->commandTester->getDisplay();
+		$this->assertStringContainsString('it is on the blocklist', $output);
+		$this->assertEquals(1, $this->commandTester->getStatusCode());
+	}
 }
