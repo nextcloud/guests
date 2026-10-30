@@ -62,6 +62,7 @@ OC.L10N.register(
     "Guests will still be able to see accounts from any group they are added to" : "Gjester vil fortsatt kunne se kontoer fra alle grupper de er lagt til i",
     "Limit guest access to an app's allowlist" : "Begrens gjestetilgang til tillatelseslisten til en app",
     "Reset allowlist" : "Tilbakestill tillatelsesliste",
+    "Add guest" : "Legg til gjest",
     "A user with this ID or email address already exists" : "En bruker med denne IDen eller e-postadresse eksisterer allerede",
     "Guest will be converted to a regular account with the account name \"{userId}\" soon" : "Gjest vil bli konvertert til en vanlig konto med kontonavnet \"{userId}\" snart"
 },
