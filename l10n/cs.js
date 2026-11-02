@@ -29,6 +29,7 @@ OC.L10N.register(
     "Create guest accounts for easier collaboration" : "Vytvářejte účty hostům, pro snazší spolupráci",
     "👥 Allows for better collaboration with external users by allowing users to create guests account.\n\nGuests accounts can be created from the share menu by entering either the recipients email or name and choosing \"create guest account\", once the share is created the guest user will receive an email notification about the mail with a link to set their password.\n\nGuests users can only access files shared to them and cannot create any files outside of shares, additionally, the apps accessible to guest accounts are whitelisted." : "👥 Umožňuje lepší spolupráci s uživateli zvenčí tím, že si mohou vytvářet účet hosta.\n\nÚčty hostů je možné vytvářet z nabídky sdílení zadáním buď e-mailu příjemce nebo jména a volbou „vytvořit účet hosta“. Jakmile je sdílení vytvořeno, host o tom obdrží upozornění e-mailem společně s odkazem pro nastavení si svého hesla.\n\nHosté mohou přistupovat pouze k souborům, které jsou jim nasdíleny a nemohou vytvářet žádné soubory mimo sdílení. Které aplikace jsou přístupné účtům hostů je řízeno řízeno seznamem aplikací, povolených pro hosty.",
     "Cancel" : "Storno",
+    "Converting account…" : "Převádění účtu…",
     "None" : "Žádná",
     "Name" : "Název",
     "Shared By" : "Sdílí",
