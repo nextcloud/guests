@@ -130,6 +130,12 @@ class AppWhitelist {
 			return $this->appManager->cleanAppId($app);
 		}
 
+		if (str_starts_with($url, '/ocsapp/apps/')) {
+			// empty string / 'ocsapp' / 'apps' / $app / rest of the route
+			[, , , $app,] = explode('/', $url, 5);
+			return $this->appManager->cleanAppId($app);
+		}
+
 		if ($url === '/cron.php') {
 			return 'core';
 		}
