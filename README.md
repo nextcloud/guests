@@ -155,8 +155,11 @@ In addition, the following apps are always whitelisted to ensure minimal functio
 * `twofactor_backupcodes`
 * `twofactor_nextcloud_notification`
 * `twofactor_gateway`
+* `intrusion_detection`
 
 Two-factor authentication has to keep working for guests as well, otherwise an instance that enforces it locks them out. So any enabled app that declares a two-factor provider in its `appinfo/info.xml` is allowed too, even when it is not on the list above and the administrator did not whitelist it. Such an app is still offered in the whitelist picker, but ticking or unticking it there makes no difference. Apps that register their provider from the app bootstrap instead cannot be recognised that way, which is why `twofactor_backupcodes` and `twofactor_gateway` are listed by name.
+
+The same goes for `intrusion_detection`: when it asks a guest to confirm a suspicious login, for example with a code sent by email, the guest has to reach its confirmation pages to finish the login.
 
 ### Hide other users
 
