@@ -76,6 +76,27 @@
 						@update:modelValue="onSelectGroups" />
 				</p>
 
+				<!-- Blocked email domains -->
+				<div class="blocked-domains">
+					<label :for="blockedDomainsInputId" class="blocked-domains__label">
+						{{ t('guests', 'Block guest invitations for these email domains') }}
+					</label>
+					<NcSelect
+						v-model="config.blockedDomains"
+						:inputId="blockedDomainsInputId"
+						class="blocked-domains__select"
+						:options="[]"
+						:multiple="true"
+						:taggable="true"
+						:noDrop="true"
+						:placeholder="t('guests', 'e.g. example.com')"
+						:createOption="normalizeDomain"
+						@update:modelValue="onBlockedDomainsChange" />
+					<p class="blocked-domains__hint">
+						{{ t('guests', 'Subdomains are blocked as well. Existing guest accounts are not affected.') }}
+					</p>
+				</div>
+
 				<!-- Allowlist -->
 				<NcCheckboxRadioSwitch
 					v-model="config.useWhitelist"
@@ -198,6 +219,7 @@ export default {
 			whitelistDraft: [],
 			quotaInputId: 'guests-default-quota',
 			quotaSearch: '',
+			blockedDomainsInputId: 'guests-blocked-domains',
 			config: {
 				useWhitelist: false,
 				allowExternalStorage: false,
@@ -209,6 +231,7 @@ export default {
 				createRestrictedToGroup: [],
 				guestQuota: 'default',
 				guestQuotaDefault: '0 B',
+				blockedDomains: [],
 			},
 		}
 	},
@@ -317,9 +340,36 @@ export default {
 				|| /^\d+(\.\d+)?\s*(b|kb|mb|gb|tb|pb)$/i.test(String(value).trim())
 		},
 
+		normalizeDomain(value) {
+			return String(value ?? '')
+				.trim()
+				.toLowerCase()
+				.replace(/^(@|\*\.|\.)+/, '')
+				.replace(/\.+$/, '')
+		},
+
+		isValidDomain(value) {
+			if (value.length > 253) {
+				return false
+			}
+			return value.split('.').every((label) => label.length <= 63
+				&& /^[\p{L}\p{M}0-9]([\p{L}\p{M}0-9-]*[\p{L}\p{M}0-9])?$/u.test(label))
+		},
+
+		onBlockedDomainsChange(domains) {
+			const normalized = (domains ?? [])
+				.map((domain) => this.normalizeDomain(typeof domain === 'string' ? domain : (domain?.label ?? '')))
+			const invalid = normalized.filter((domain) => domain !== '' && !this.isValidDomain(domain))
+			if (invalid.length > 0) {
+				showError(t('guests', 'Invalid domain: {domain}', { domain: invalid[0] }))
+			}
+			this.config.blockedDomains = [...new Set(normalized.filter((domain) => this.isValidDomain(domain)))]
+			this.saveConfig()
+		},
+
 		async loadConfig() {
 			const { data } = await axios.get(generateUrl('apps/guests/config'))
-			this.config = data
+			this.config = { blockedDomains: [], ...data }
 			this.loaded = true
 		},
 
@@ -327,7 +377,10 @@ export default {
 			this.resetSaving()
 
 			try {
-				await axios.put(generateUrl('apps/guests/config'), this.config)
+				const { data } = await axios.put(generateUrl('apps/guests/config'), this.config)
+				if (Array.isArray(data?.blockedDomains)) {
+					this.config.blockedDomains = data.blockedDomains
+				}
 				this.saved = true
 			} catch (error) {
 				this.error = true
@@ -450,6 +503,26 @@ export default {
 
 	.reset-button {
 		margin-top: 1rem;
+	}
+}
+
+.blocked-domains {
+	margin-top: 1.5rem;
+	margin-bottom: 1rem;
+	max-width: 690px;
+
+	&__label {
+		display: block;
+		margin-bottom: 4px;
+	}
+
+	&__select {
+		width: 100%;
+	}
+
+	&__hint {
+		margin-top: 4px;
+		color: var(--color-text-maxcontrast);
 	}
 }
 

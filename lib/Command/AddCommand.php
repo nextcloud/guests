@@ -114,6 +114,11 @@ class AddCommand extends Command {
 			return self::FAILURE;
 		}
 
+		if ($this->config->isEmailDomainBlocked($email)) {
+			$output->writeln('<error>Guest accounts cannot be created for the domain of "' . $email . '", it is on the blocklist.</error>');
+			return self::FAILURE;
+		}
+
 		$password = null;
 		if (!$input->getOption('generate-password')) {
 			if ($input->getOption('password-from-env')) {
