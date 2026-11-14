@@ -60,7 +60,7 @@
     "@nextcloud/logger": "^3.0.3",
     "@nextcloud/router": "^3.2.0",
     "@nextcloud/sharing": "^0.4.0",
-    "@nextcloud/vue": "^9.14.0",
+    "@nextcloud/vue": "^9.14.1",
     "email-validator": "^2.0.4",
     "vue": "^3.5.44",
     "vue-material-design-icons": "^5.4.0"
