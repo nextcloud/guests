@@ -161,4 +161,35 @@ class AppWhitelistTest extends TestCase {
 
 		$this->assertFalse($this->appWhitelist->isAppWhitelisted('news'));
 	}
+
+	/**
+	 * A guest asked by intrusion_detection to confirm a login must reach its
+	 * confirmation pages even when the administrator did not whitelist it.
+	 */
+	public function testIntrusionDetectionConfirmationIsAllowed(): void {
+		$this->config->method('getAppWhitelist')
+			->willReturn(['files_sharing']);
+		$this->config->method('useWhitelist')
+			->willReturn(true);
+		$this->guestManager->method('isGuest')
+			->willReturn(true);
+		$this->appManager->method('cleanAppId')
+			->willReturnCallback(fn (string $appId) => $appId);
+		$this->appManager->method('getEnabledApps')
+			->willReturn(['intrusion_detection']);
+		$this->appManager->method('getAppInfo')
+			->willReturn(['two-factor-providers' => []]);
+		$user = $this->createStub(IUser::class);
+
+		$this->assertTrue($this->appWhitelist->isUrlAllowed($user, '/apps/intrusion_detection/verify'));
+		$this->assertTrue($this->appWhitelist->isUrlAllowed($user, '/apps/intrusion_detection/notice'));
+		$this->assertTrue($this->appWhitelist->isUrlAllowed($user, '/apps/intrusion_detection/password'));
+	}
+
+	public function testAlwaysAllowedAppsAreNotOfferedInThePicker(): void {
+		$this->appManager->method('getInstalledApps')
+			->willReturn(['files', 'news', 'intrusion_detection']);
+
+		$this->assertSame(['news'], $this->appWhitelist->getWhitelistAbleApps());
+	}
 }
