@@ -58,13 +58,15 @@ class SettingsController extends Controller {
 			'createRestrictedToGroup' => $this->config->getCreateRestrictedToGroup(),
 			'guestQuota' => $this->config->hasGuestQuotaOverride() ? $this->config->getGuestQuota() : 'default',
 			'guestQuotaDefault' => $this->config->getGuestQuotaDefault(),
+			'blockedDomains' => $this->config->getBlockedDomains(),
 		]);
 	}
 
 	/**
 	 * @param list<string> $whitelist
+	 * @param list<string>|null $blockedDomains null keeps the stored list unchanged
 	 */
-	public function setConfig(bool $useWhitelist, array $whitelist, bool $allowExternalStorage, bool $useHashedEmailAsUserID, bool $hideUsers, array $createRestrictedToGroup, string $guestQuota = 'default'): DataResponse {
+	public function setConfig(bool $useWhitelist, array $whitelist, bool $allowExternalStorage, bool $useHashedEmailAsUserID, bool $hideUsers, array $createRestrictedToGroup, string $guestQuota = 'default', ?array $blockedDomains = null): DataResponse {
 		$newWhitelist = [];
 		foreach ($whitelist as $app) {
 			$newWhitelist[] = trim((string)$app);
@@ -79,8 +81,13 @@ class SettingsController extends Controller {
 		if ($this->isValidQuota($guestQuota)) {
 			$this->config->setGuestQuota($guestQuota);
 		}
+		if ($blockedDomains !== null) {
+			$this->config->setBlockedDomains($blockedDomains);
+		}
 
-		return new DataResponse();
+		return new DataResponse([
+			'blockedDomains' => $this->config->getBlockedDomains(),
+		]);
 	}
 
 	/**

@@ -312,4 +312,80 @@ class ConfigTest extends TestCase {
 
 		$this->guestConfig->setGuestQuota('default');
 	}
+
+	public static function normalizeDomainsProvider(): array {
+		return [
+			'plain' => [['example.com'], ['example.com']],
+			'case and whitespace' => [['  Example.COM '], ['example.com']],
+			'leading at sign' => [['@example.com'], ['example.com']],
+			'wildcard' => [['*.example.com'], ['example.com']],
+			'leading and trailing dot' => [['.example.com.'], ['example.com']],
+			'duplicates' => [['example.com', 'EXAMPLE.com', '@example.com'], ['example.com']],
+			'invalid entries dropped' => [['', 'not a domain', 'exa_mple.com', '-bad.com', 'good.org'], ['good.org']],
+			'idn' => [['bücher.de'], ['bücher.de']],
+			'idn upper case' => [['BÜCHER.DE'], ['bücher.de']],
+			'idn duplicate in punycode' => [['bücher.de', 'xn--bcher-kva.de'], ['bücher.de']],
+			'label too long' => [[str_repeat('a', 64) . '.com'], []],
+			'domain too long' => [[implode('.', array_fill(0, 64, 'abcd'))], []],
+		];
+	}
+
+	/**
+	 * @dataProvider normalizeDomainsProvider
+	 */
+	public function testNormalizeDomains(array $input, array $expected): void {
+		$this->assertSame($expected, Config::normalizeDomains($input));
+	}
+
+	public function testSetBlockedDomainsStoresNormalizedList(): void {
+		$this->appConfig->expects($this->once())
+			->method('setAppValueArray')
+			->with('blocked_domains', ['example.com', 'example.org']);
+
+		$this->guestConfig->setBlockedDomains(['@Example.com', '*.example.org', 'example.com']);
+	}
+
+	public static function blockedEmailProvider(): array {
+		return [
+			'exact domain' => ['guest@example.com', true],
+			'uppercase' => ['Guest@EXAMPLE.COM', true],
+			'subdomain' => ['guest@mail.example.com', true],
+			'deep subdomain' => ['guest@a.b.example.com', true],
+			'same suffix, other domain' => ['guest@otherexample.com', false],
+			'parent domain only' => ['guest@com', false],
+			'other domain' => ['guest@example.org', false],
+			'second blocked entry' => ['guest@blocked.net', true],
+			'no at sign' => ['example.com', false],
+			'idn as punycode' => ['guest@xn--bcher-kva.de', true],
+			'idn upper case' => ['guest@BÜCHER.de', true],
+			'idn subdomain' => ['guest@mail.bücher.de', true],
+		];
+	}
+
+	/**
+	 * @dataProvider blockedEmailProvider
+	 */
+	public function testIsEmailDomainBlocked(string $email, bool $expected): void {
+		$this->appConfig->method('getAppValueArray')
+			->with('blocked_domains')
+			->willReturn(['example.com', 'blocked.net', 'bücher.de']);
+
+		$this->assertSame($expected, $this->guestConfig->isEmailDomainBlocked($email));
+	}
+
+	public function testIsEmailDomainBlockedMatchesPunycodeEntry(): void {
+		$this->appConfig->method('getAppValueArray')
+			->with('blocked_domains')
+			->willReturn(['xn--bcher-kva.de']);
+
+		$this->assertTrue($this->guestConfig->isEmailDomainBlocked('guest@bücher.de'));
+	}
+
+	public function testIsEmailDomainBlockedWithEmptyBlocklist(): void {
+		$this->appConfig->method('getAppValueArray')
+			->with('blocked_domains')
+			->willReturn([]);
+
+		$this->assertFalse($this->guestConfig->isEmailDomainBlocked('guest@example.com'));
+	}
 }
